@@ -1,0 +1,18 @@
+{
+  "ticker": "RACE",
+  "agent": "executor",
+  "date": "2026-06-01",
+  "verdict": "HOLD",
+  "score": 3,
+  "thesis": "Ferrari היא עסק 9/10 בסטאפ ביצוע חלש: R/R 0.37:1 ב-$345, EV = מחיר נוכחי, מתחת ל-200DMA, 59 ימים לפני אירוע בינארי (Q2 + Luce order data). WAIT עד 30 יולי 2026 עם כניסה מותנית ב-$310-320 אם Q2 מאשר Luce חיובי + EBIT recovery.",
+  "key_risks": [
+    "R/R structurally limited: 2:1 מחייב כניסה ב-$296 שנמוך מ-52W low; מחיר הוגן אינו מחיר אטרקטיבי",
+    "Luce binary event לפני כניסה: Q2 2026 = הנקודה הראשונה לאמוד order intake; כל כניסה מוקדמת = תשלום מחיר מלא על אי-ודאות מקסימלית",
+    "Narrative Bias: הנרטיב 'Ferrari=Hermès' עלול להחליף חישוב R/R — הסיכון הסובייקטיבי הגדול ביותר לביצוע",
+    "מבנה תיק: IBIT rebalance חייב להקדים כל כניסה (Cash 3.6% < רצפת 5%)"
+  ],
+  "position_size_pct": 0,
+  "valuation_summary": "fair value $378 base (+9.6% from $345), bear $255 (-26%), bull $480 (+39%); EV@$345 = $345.89 — no edge; R/R 2:1 at $296; post-Q2 positive EV at $315 = +22%",
+  "entry_exit_plan": "WAIT until Q2 2026 (July 30): Tranche 1 1.6%@$320 LIMIT / T2 1.2%@$315 / T3 1.2%@$345-355; stop $289 (2×ATR below $315 entry); expand to 8% on Luce Q4 deliveries ≥300 units",
+  "handoff_summary": "המבצע מאשר פסיקת WAIT של ה-CEO ומגדיר תוכנית כניסה מדויקת. ניתוח R/R מגלה: $345 = EV מחיר שוק ללא edge; R/R 2:1 'תקני' מחייב כניסה ב-$296 שנמוך מ-52W low — פרדוקס שמלמד כי Ferrari בתמחור נוכחי פשוט אינה מציעה R/R מספק. Post-Q2 חיובי, EV משתפר ל-+22% ב-$315 עם probability distribution מעודכנת. פעולה מיידית: (1) מכירת IBIT 10%→4% לשחרור $119 ולהבאת Cash ל-9.6%; (2) הגדרת LIMIT order $320 להפעלה ביום Q2 earnings אם Luce order intake חיובי + EBIT margin ≥29% + guidance maintained; (3) סטופ $289 (ATR-based, מתחת ל-52W low). הסיכון הסובייקטיבי הגדול: Narrative Bias 'Ferrari=Hermès' עלול להניע כניסה מוקדמת — המבצע מסמן זאת במפורש."
+}

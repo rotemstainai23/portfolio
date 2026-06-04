@@ -1,0 +1,114 @@
+{
+  "ticker": "ROCK",
+  "agent": "analyst",
+  "date": "2026-06-01",
+  "verdict": "REVIEW",
+  "score": 6,
+  "thesis": "Gibraltar Industries ביצעה רכישה טרנספורמטיבית (OmniMax, $1.335B) שהופכת אותה למנהיגת שוק בניקוז גגות בצ' אמריקה — אבל מינוף 3.9x, ירידה אורגנית בכל הפלחים, ומזומן של $20M בלבד הופכים אותה להשקעה ספקולטיבית עם R/R 2.7:1 לטובה בתרחיש בסיס.",
+  "key_risks": [
+    "Leverage 3.9x עם covenant max 5.25x — אין מרווח ביצועי; כל miss EBITDA מסוכן",
+    "כל שלושת הפלחים בירידה אורגנית — OmniMax מסתיר עסק בסיסי מתכווץ",
+    "Goodwill + Intangibles = $1.706B (61% נכסים) — impairment catastrophic לholder equity",
+    "אינפלציית אלומיניום 16% עם פיגור תמחור — EBITDA pressure נמשך",
+    "Guidance embedding 4-5% residential growth — אם שוק חלש, profit warning אפשרי"
+  ],
+  "position_size_pct": 2.5,
+  "valuation_summary": "שווי הוגן בסיס $49-52 (+30%), שורי $82-85 (+112%); EV/EBITDA 7.4x = discount 33% לסקטור IF deleveraging executes",
+  "entry_exit_plan": "כניסה ספקולטיבית: 50% בסביבות $38-39, 50% נוסף אם Q2 2026 מראה FCF חיובי ומרווח גולמי >24%; stop loss $32 (מתחת ל-52W low); יעד בסיס $52, יעד שורי $68",
+  "handoff_summary": "Gibraltar (ROCK) היא חברת מוצרי בנייה שנמצאת במהפך מבני אחרי רכישת OmniMax ($1.335B, פבר' 2026) — מינוף 3.9x, ירידה אורגנית בכל הפלחים, FCF שלילי ב-Q1, ומזומן $20M בלבד. הנהלה שמרה על guidance $1.76-1.83B הכנסות + $310-326M Adj EBITDA 2026, synergies הועלו ל-$26.2M, CEO קנה מניות אישית. המניה ירדה 48% מהשיא ונסחרת ב-9.56x forward P/E — cheap IF execution. הסיכון: שוק דיור רך + commodity inflation + intangibles 61% מנכסים = עקב אכילס לתזה השורית.",
+  "visual_scores": {
+    "business_engines": [
+      {
+        "label": "Residential (Roofing+OmniMax)",
+        "revenue_b": 0.281,
+        "growth_pct": 56.0,
+        "weight_pct": 79
+      },
+      {
+        "label": "Agtech (Greenhouses)",
+        "revenue_b": 0.056,
+        "growth_pct": 23.6,
+        "weight_pct": 16
+      },
+      {
+        "label": "Infrastructure",
+        "revenue_b": 0.019,
+        "growth_pct": -10.0,
+        "weight_pct": 5
+      }
+    ],
+    "moat_scores": [
+      {
+        "label": "Manufacturing Scale (post-OmniMax)",
+        "score_0_10": 6
+      },
+      {
+        "label": "Brand Portfolio (35+ brands)",
+        "score_0_10": 6
+      },
+      {
+        "label": "Distribution Relationships",
+        "score_0_10": 5
+      },
+      {
+        "label": "Pricing Power",
+        "score_0_10": 5
+      },
+      {
+        "label": "Switching Costs",
+        "score_0_10": 3
+      }
+    ],
+    "stress_categories": [
+      {
+        "label": "מודל עסקי",
+        "score_0_10": 5.5
+      },
+      {
+        "label": "סיכון ושרשרת אספקה",
+        "score_0_10": 3
+      },
+      {
+        "label": "יושרה חשבונאית",
+        "score_0_10": 5.5
+      },
+      {
+        "label": "הנהלה והקצאת הון",
+        "score_0_10": 7
+      },
+      {
+        "label": "יעילות תפעולית",
+        "score_0_10": 4.5
+      }
+    ],
+    "valuation": {
+      "bear_price": 13,
+      "base_price": 50,
+      "bull_price": 83,
+      "current_price": 38.65
+    },
+    "financials_3y": [
+      {
+        "year": "FY2023",
+        "revenue_b": 1.047,
+        "op_margin_pct": 11.5,
+        "fcf_b": 0.206,
+        "eps": 3.61
+      },
+      {
+        "year": "FY2024",
+        "revenue_b": 1.023,
+        "op_margin_pct": 13.7,
+        "fcf_b": 0.157,
+        "eps": 4.5
+      },
+      {
+        "year": "FY2025",
+        "revenue_b": 1.136,
+        "op_margin_pct": 10.8,
+        "fcf_b": 0.091,
+        "eps": 3.25
+      }
+    ]
+  }
+}

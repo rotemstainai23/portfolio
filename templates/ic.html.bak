@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ועדת השקעות</title>
+<link rel="stylesheet" href="_shared.css">
+<style>
+.matrix{width:100%;border-collapse:separate;border-spacing:5px;margin-top:6px}
+.matrix th{font-size:10.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.4px;padding:8px 6px;text-align:center}
+.matrix th.row{text-align:right;width:120px}
+.matrix td{background:var(--surface);border-radius:8px;padding:9px 8px;text-align:center;font-size:11px;color:var(--muted2);line-height:1.5;vertical-align:middle}
+.matrix td.rowlbl{background:transparent;color:var(--text);font-weight:700;font-size:12px;text-align:right}
+.matrix td.verdict{font-weight:700;color:var(--text)}
+.mi{font-size:13px;display:block;margin-bottom:2px}
+.cell-g{background:rgba(46,204,113,.10)}.cell-y{background:rgba(245,200,66,.10)}
+.cell-r{background:rgba(224,92,92,.10)}.cell-v{background:rgba(167,139,250,.12)}
+.cpoints{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px}
+.cpoint{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px;border-right:3px solid var(--green)}
+.cpoint h4{font-size:13px;color:var(--text);margin-bottom:5px}
+.cpoint p{font-size:11.5px;color:var(--muted2);line-height:1.6}
+.blindspot{background:linear-gradient(135deg,#1a1508,#0d0b07);border:1px solid #4a3a12;border-radius:12px;padding:22px;border-top:3px solid var(--yellow)}
+.blindspot .bs-tag{display:inline-block;background:rgba(245,200,66,.14);color:var(--yellow);font-size:12px;font-weight:700;padding:5px 14px;border-radius:20px;margin-bottom:13px}
+.blindspot h3{font-size:16px;color:var(--text);margin-bottom:10px}
+.blindspot p{font-size:13px;color:var(--muted2);line-height:1.8;margin-bottom:9px}
+.blindspot p b{color:var(--text)}
+.blindspot .impact{background:var(--surface);border-radius:8px;padding:11px 15px;margin-top:10px;font-size:12px;color:var(--text);border-right:3px solid var(--yellow)}
+.scoretbl{width:100%;border-collapse:collapse;margin-top:6px}
+.scoretbl td{padding:11px 12px;border-bottom:1px solid var(--bg);font-size:13px}
+.scoretbl tr:last-child td{border-bottom:none}
+.scoretbl .lbl{color:var(--muted2)}.scoretbl .val{text-align:left;font-weight:800}
+.trig{display:flex;align-items:center;gap:12px;padding:11px 14px;background:var(--surface);border-radius:9px;margin-bottom:9px;border-right:3px solid var(--blue)}
+.trig .ti{font-size:15px}
+.trig .tb{font-size:12.5px;color:var(--muted2);line-height:1.5}
+.trig .tb b{color:var(--text)}
+.hardtruth{background:rgba(224,92,92,.06);border:1px solid rgba(224,92,92,.25);border-radius:10px;padding:16px 18px;font-size:13.5px;color:var(--text);line-height:1.8}
+.hardtruth .ht-l{font-size:11px;color:var(--red);font-weight:800;text-transform:uppercase;letter-spacing:.5px;margin-bottom:7px}
+</style>
+</head>
+<body>
+<div id="root" class="error-box">⏳ טוען…</div>
+<script>
+'use strict';
+const params=new URLSearchParams(location.search);const ticker=params.get('ticker');
+if(!ticker){document.getElementById('root').innerHTML='<b>שגיאה:</b> חסר טיקר.';}
+else{document.title='ועדה — '+ticker;const s=document.createElement('script');s.src='../analyses/'+ticker+'/ic.js';s.onload=render;s.onerror=()=>{document.getElementById('root').innerHTML='<b>אין נתונים</b> ל-'+ticker;};document.head.appendChild(s);}
+function render(){const d=window.AGENT_DATA;if(!d)return;const root=document.getElementById('root');root.className='';
+root.innerHTML=`
+<div class="topbar tb-purple">
+  <div><h1 class="c-purple">⚖️ ועדת השקעות — ${d.company||d.ticker}</h1>
+  <div class="sub">חוליה 5 · שכבת הכרעה סופית · סינתזה</div></div>
+  <div class="stamp">תאריך: <b>${d.date}</b><br>4 handoffs · לא מנתחת מחדש</div>
+</div>
+<div class="wrap">
+  ${d.inherited?`<div class="inherit purple">
+    <div class="ih-title">① אימות קלטים — 4 handoffs</div>
+    ${d.inherited.map(i=>`<div class="ih-r"><span>${i.icon}</span><span class="tx">${i.text}</span></div>`).join('')}
+  </div>`:''}
+
+  ${d.matrix?`<div class="section">
+    <h2><span class="bar-accent" style="background:var(--purple)"></span>② מטריצת קונסנזוס סוכנים</h2>
+    <div class="desc">${d.matrix.description||''}</div>
+    <table class="matrix"><thead><tr><th class="row"></th>${d.matrix.headers.map(h=>`<th>${h}</th>`).join('')}</tr></thead>
+    <tbody>${d.matrix.rows.map(r=>`<tr><td class="rowlbl">${r.label}</td>${r.cells.map(c=>`<td class="${c.cls||''}">${c.icon?`<span class="mi">${c.icon}</span>`:''}${c.text}</td>`).join('')}</tr>`).join('')}</tbody></table>
+    ${d.matrix.note?`<div class="desc" style="margin-top:12px;margin-bottom:0">${d.matrix.note}</div>`:''}
+  </div>`:''}
+
+  ${d.consensus_points?`<div class="section">
+    <h2><span class="bar-accent" style="background:var(--green)"></span>③ נקודות קונסנזוס</h2>
+    <div class="cpoints">${d.consensus_points.map(p=>`<div class="cpoint"><h4>${p.title}</h4><p>${p.body}</p></div>`).join('')}</div>
+  </div>`:''}
+
+  ${d.disagreements?`<div class="section">
+    <h2><span class="bar-accent" style="background:var(--orange)"></span>④ חילוקי דעות</h2>
+    <div class="desc" style="margin-bottom:0">${d.disagreements}</div>
+  </div>`:''}
+
+  ${d.blindspot?`<div class="blindspot">
+    <span class="bs-tag">⑤ בדיקת חשיבת-עדר</span>
+    <h3>${d.blindspot.headline}</h3>
+    ${d.blindspot.paragraphs.map(p=>`<p>${p}</p>`).join('')}
+    ${d.blindspot.impact?`<div class="impact"><b>השפעה על הפסיקה:</b> ${d.blindspot.impact}</div>`:''}
+  </div>`:''}
+
+  ${d.most_right?`<div class="section">
+    <h2><span class="bar-accent" style="background:var(--blue)"></span>⑥ איזה סוכן צפוי להיות הכי צודק?</h2>
+    <div class="desc" style="margin-bottom:0">${d.most_right}</div>
+  </div>`:''}
+
+  ${d.scorecard?`<div class="section">
+    <h2><span class="bar-accent" style="background:var(--purple)"></span>⑦ סיכום החלטה</h2>
+    <table class="scoretbl">${d.scorecard.map(s=>`<tr><td class="lbl">${s.lbl}</td><td class="val ${s.color||''}">${s.val}</td></tr>`).join('')}</table>
+  </div>`:''}
+
+  ${d.verdict?`<div class="verdict ${d.verdict.style||'green'}">
+    <span class="tag">⑧ פסיקת ועדה סופית</span>
+    <h2>${d.verdict.headline}</h2>
+    ${d.verdict.paragraphs.map(p=>`<p>${p}</p>`).join('')}
+    <div class="scorebig">${d.verdict.scoreboxes.map(s=>`<div class="scorebox"><div class="sb-lbl">${s.lbl}</div><div class="sb-num ${s.color}" style="font-size:${s.size||'20'}px">${s.val}</div></div>`).join('')}</div>
+  </div>`:''}
+
+  ${d.triggers?`<div class="section">
+    <h2><span class="bar-accent" style="background:var(--blue)"></span>⑨ ${d.triggers.title||'טריגרי מעקב'}</h2>
+    <div class="desc">${d.triggers.description||''}</div>
+    ${d.triggers.items.map(t=>`<div class="trig"><span class="ti">${t.icon}</span><span class="tb">${t.text}</span></div>`).join('')}
+  </div>`:''}
+
+  ${d.hard_truth?`<div class="section">
+    <h2><span class="bar-accent" style="background:var(--red)"></span>⑩ האמת הקשה</h2>
+    <div class="hardtruth"><div class="ht-l">הדבר שכנראה לא תרצה לשמוע</div>${d.hard_truth}</div>
+  </div>`:''}
+
+  ${d.handoff?`<div class="section"><div class="handoff" style="margin-top:0"><b>📤 ${d.handoff_title||'HANDOFF למתעד'}</b><br>${d.handoff}</div></div>`:''}
+</div>
+<div class="footer">${d.footer||''}</div>`;}
+</script>
+</body>
+</html>

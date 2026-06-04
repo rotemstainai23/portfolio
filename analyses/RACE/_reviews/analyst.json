@@ -1,0 +1,18 @@
+{
+  "ticker": "RACE",
+  "agent": "analyst",
+  "date": "2026-06-01",
+  "verdict": "REVIEW",
+  "score": 8,
+  "thesis": "Ferrari היא אחת מחברות היוקרה האיכותיות ביותר בעולם — FCF CAGR 19%, מרווח EBITDA 39%, ספר הזמנות לסוף 2027. הירידה מ-$519 ל-$345 (-34%) נגרמת בעיקר ממחלוקת Luce (brand risk), מכסים, וסין — לא מידרדרות פונדמנטלית. עדיין לא מחיר מציאה ברור: base case נותן +10% בלבד.",
+  "key_risks": [
+    "מחלוקת Luce: שחיקת brand DNA — sedan 4-דלתות שנויה במחלוקת, ex-CEO מבקר, מניה -8.4% ביום גילוי",
+    "מכסי ייבוא ארה\"ב: 30% מנפח בסיכון, 10% העלאה מחיר כבר; הסכם EU-US לא ברור",
+    "ירידת סין מבנית: -21% ב-2024, -13% ב-9M 2025 — common prosperity + luxury anti-western sentiment",
+    "תמחור פרמיום 30-34x Forward P/E: base case upside שולי; מצריך ביצוע מושלם"
+  ],
+  "position_size_pct": 0,
+  "valuation_summary": "fair value $378 (base, 37x forward P/E on €9.45 guidance), upside 10%; bull $480 (+39%); bear $255 (-26%)",
+  "entry_exit_plan": "כניסה ב-$310-320 אם Luce controversy נרגעת ו-Q2 2026 results חיוביים; stop $290; TP1 $390, TP2 $450",
+  "handoff_summary": "Ferrari N.V. (RACE) היא חברת מוצרי יוקרה בתחפושת יצרנית רכב: EBITDA margin 39%, FCF CAGR 19%, ספר הזמנות לסוף 2027, buyback $3.5B. המניה ירדה 34% מ-$519 ל-$345 בגלל: (1) מכסי ייבוא ארה\"ב 25% שלוחצים ~50bps EBITDA, (2) ירידת סין מתמשכת (-21%/2024), (3) מחלוקת Luce (sedan חשמלי €550K נגד DNA המותג — מניה -8.4% ב-25/5/2026). הפונדמנטלים יציבים ומשתפרים: FY2025 שיא בכל המדדים, Q1 2026 מאשר guidance. האנליסט מדרג עסק 41/50 (8/10) — איכות עסקית גבוהה, אבל מחיר לא זול (Forward P/E ~30-34x). עורך הדין השטן צריך לתקוף: (1) האם Luce מנפצת את moat המותג? (2) האם תמחור 30x+ הוגן כשbase case upside 10% בלבד? (3) האם ביצוע מבנה הון (EV capex €4.29B) ייפגע ב-FCF? (4) האם סין הפסידה לנצח? ה-kill switch: ביטולי הזמנות Luce, EBIT margin <27%, חוב נטו הופך חיובי."
+}

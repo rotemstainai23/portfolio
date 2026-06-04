@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>דוח אנליסט</title>
+<link rel="stylesheet" href="_shared.css">
+<link rel="stylesheet" href="_redesign.css">
+</head>
+<body>
+<div id="root" class="error-box">⏳ טוען…</div>
+
+<script>
+'use strict';
+const params = new URLSearchParams(location.search);
+const ticker = params.get('ticker');
+if (!ticker) {
+  document.getElementById('root').innerHTML = '<b>שגיאה:</b> חסר פרמטר טיקר.<br>פתח עם <code>?ticker=NOW</code> בסוף הכתובת.';
+} else {
+  document.title = 'אנליסט — ' + ticker;
+  const s = document.createElement('script');
+  s.src = '../analyses/' + ticker + '/analyst.js';
+  s.onload = render;
+  s.onerror = () => {
+    // גיבוי: תצוגה אוטומטית (.auto.js) כשאין analyst.js ידני
+    const s2 = document.createElement('script');
+    s2.src = '../analyses/' + ticker + '/analyst.auto.js';
+    s2.onload = render;
+    s2.onerror = () => { document.getElementById('root').innerHTML = '<b>אין נתונים</b> עבור ' + ticker + '.<br>צפוי: <code>analyses/' + ticker + '/analyst.js</code>'; };
+    document.head.appendChild(s2);
+  };
+  document.head.appendChild(s);
+}
+
+/* ---------- אייקונים בוגרים (SVG קו, currentColor) ---------- */
+const ICONS = {
+  biz:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18"/><path d="M2 22h20"/><path d="M10 6h4M10 10h4M10 14h4M10 18h4"/></svg>',
+  growth:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>',
+  fin:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><rect x="7" y="11" width="3" height="7"/><rect x="12" y="7" width="3" height="11"/><rect x="17" y="4" width="3" height="14"/></svg>',
+  moat:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>',
+  quarterly:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>',
+  stress:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3.34 19a10 10 0 1 1 17.32 0"/><path d="M12 13l4-3"/></svg>',
+  flags:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4M12 17h.01"/></svg>',
+  val:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18"/><path d="M5 7h14"/><path d="M5 7 2 13a4 4 0 0 0 6 0z"/><path d="M19 7l3 6a4 4 0 0 1-6 0z"/><path d="M8 21h8"/></svg>',
+  comp:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/><line x1="22" y1="12" x2="18" y2="12"/><line x1="6" y1="12" x2="2" y2="12"/><line x1="12" y1="6" x2="12" y2="2"/><line x1="12" y1="22" x2="12" y2="18"/></svg>',
+  news:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8M15 18h-5M10 6h8v4h-8z"/></svg>',
+  rocket:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg>',
+  alpha:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>'
+};
+
+/* ---------- עוזרים בסיסיים ---------- */
+function bcCol(v, hpct, color, yoy){
+  return `<div class="bc-col" style="height:${hpct}%;background:${color}"><span class="bc-val">${v}</span>${yoy?`<span class="bc-yoy">${yoy}</span>`:''}</div>`;
+}
+function chart(title, items, foot){
+  const max = Math.max(...items.map(i=>Math.abs(i.v)));
+  return `<div class="barchart"><div class="bc-title">${title}</div>
+    <div class="bc-plot">${items.map(i=>bcCol(i.label, Math.max(8,Math.abs(i.v)/max*100), i.color||'var(--blue)', i.yoy||'')).join('')}</div>
+    <div class="bc-axis">${items.map(i=>`<span>${i.year}</span>`).join('')}</div>
+    <div class="bc-foot">${foot||''}</div></div>`;
+}
+
+/* ---------- עוזרי עיצוב חללי ---------- */
+function takeaway(t, max){
+  if(!t) return '';
+  const c = String(t).replace(/<[^>]+>/g,'').trim();
+  if(c.length <= max) return c;
+  const dot = c.indexOf('. ');
+  if(dot > 0 && dot < max) return c.slice(0, dot+1);
+  return c.slice(0, max).trim() + '…';
+}
+// ממפה כל ערך צבע לרמזור: good/bad/warn/neutral
+function sigOf(color){
+  const s = String(color||'').toLowerCase();
+  if(/green/.test(s)) return 'good';
+  if(/red/.test(s)) return 'bad';
+  if(/yellow|orange|gold/.test(s)) return 'warn';
+  return 'neutral';
+}
+function kpiClass(color){
+  const m = {'c-blue':'blue','c-green':'green','c-red':'red','c-purple':'purple','c-gold':'gold','c-yellow':'gold','c-orange':'orange'};
+  return m[color] || 'blue';
+}
+function trendDir(sub){
+  const s = String(sub);
+  if(/[-−]/.test(s) || /ירד|שפל|פחד/.test(s)) return 'down';
+  if(/\+|עלה|צמיח|buy|חזק/i.test(s)) return 'up';
+  return 'flat';
+}
+// שורה תחתונה בולטת
+function bottomline(text, tone){
+  if(!text) return '';
+  return `<div class="bottomline ${tone||''}"><div class="bl-eyebrow">שורה תחתונה</div><div class="bl-text">${text}</div></div>`;
+}
+function rep(label, body){ if(!body) return ''; return `<div class="rep"><div class="rep-label">${label}</div>${body}</div>`; }
+
+// בר גדול עם תווית ערך
+function bigBar(it){
+  const fill = it.fill || 'neutral';
+  return `<div class="bigbar">
+    <div class="bb-head"><div class="bb-label">${it.label}${it.sub?`<span class="bb-sub">${it.sub}</span>`:''}</div><div class="bb-val ${it.valcls||fill}">${it.val}</div></div>
+    <div class="bb-track"><div class="bb-fill ${fill}" style="width:${Math.max(6,Math.min(100,it.width))}%"></div></div>
+  </div>`;
+}
+function bigBars(items){ return `<div class="bigbars">${items.map(bigBar).join('')}</div>`; }
+
+// תרשים עוגה (donut) לתמהיל הכנסות
+function donut(items){
+  const tot = items.reduce((s,i)=>s+(+i.pct||0),0) || 1;
+  let acc = 0;
+  const segs = items.map(i=>{ const a=acc; acc += (+i.pct/tot*100); return `${i.color} ${a.toFixed(1)}% ${acc.toFixed(1)}%`; }).join(',');
+  const legend = items.map(i=>`<div class="rmix-item"><span class="rmix-dot" style="background:${i.color}"></span><span class="rmix-name">${i.label}</span>${i.val?`<span class="rmix-val">${i.val}</span>`:''}<span class="rmix-pct">${Math.round(i.pct/tot*100)}%</span></div>`).join('');
+  return `<div class="rmix"><div class="rmix-donut" style="background:conic-gradient(${segs})"><div class="rmix-center"><div class="big">100%</div><div class="small">הכנסות</div></div></div><div class="rmix-legend">${legend}</div></div>`;
+}
+
+// תרשים רדאר (Spider) — SVG טבעי
+function radar(items){
+  const n = items.length;
+  if(!n) return '';
+  const scores = items.map(i=>+i.score||0);
+  const denom = Math.max(...scores) > 10 ? 100 : 10;
+  const size=270, cx=size/2, cy=size/2, R=size*0.33;
+  const ang = i => (-90 + i*360/n) * Math.PI/180;
+  const pt = (i,rad) => [cx+rad*Math.cos(ang(i)), cy+rad*Math.sin(ang(i))];
+  let grid='';
+  [0.25,0.5,0.75,1].forEach(g=>{
+    const p = items.map((_,i)=>pt(i,R*g).map(x=>x.toFixed(1)).join(',')).join(' ');
+    grid += `<polygon class="radar-grid" points="${p}"/>`;
+  });
+  let axes='';
+  items.forEach((_,i)=>{
+    const [x,y]=pt(i,R);
+    axes += `<line class="radar-axis" x1="${cx}" y1="${cy}" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}"/>`;
+    const [lx,ly]=pt(i,R+16);
+    axes += `<text class="radar-num" x="${lx.toFixed(1)}" y="${ly.toFixed(1)}" text-anchor="middle" dominant-baseline="central">${i+1}</text>`;
+  });
+  const dp = items.map((it,i)=>pt(i, R*Math.min(1,(+it.score||0)/denom)).map(x=>x.toFixed(1)).join(',')).join(' ');
+  let dots='';
+  items.forEach((it,i)=>{ const [x,y]=pt(i, R*Math.min(1,(+it.score||0)/denom)); dots += `<circle class="radar-dot" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="3.6"/>`; });
+  const svg = `<svg viewBox="0 0 ${size} ${size}" width="${size}" height="${size}" role="img" aria-label="תרשים רדאר">${grid}${axes}<polygon class="radar-poly" points="${dp}"/>${dots}</svg>`;
+  const legend = `<div class="radar-legend">${items.map((it,i)=>{ const sg=sigOf(it.color); return `<div class="radar-li"><span class="rl-idx ${sg}">${i+1}</span><span class="rl-name">${it.label}</span><span class="rl-score ${sg}">${it.score}/${denom}</span></div>`; }).join('')}</div>`;
+  return `<div class="radar-wrap">${svg}${legend}</div>`;
+}
+
+// אוסף דפי-העל
+let DOSSIERS = [];
+function topic(o){
+  DOSSIERS.push(o);
+  const sig = o.sig || {text:'מידע', cls:'neutral'};
+  return `<button class="tile" data-id="${o.id}" onclick="openDossier('${o.id}')" aria-haspopup="dialog">
+    <div class="tile-top">
+      <span class="tile-ico ${o.iconColor||'purple'}">${ICONS[o.iconKey]||''}</span>
+      <span class="tile-sig ${sig.cls}">${sig.text}</span>
+    </div>
+    <div class="tile-title">${o.title}</div>
+    <div class="tile-headline">${o.headline||''}</div>
+    <div class="tile-cta">פתח דף מלא <span class="arr">←</span></div>
+  </button>`;
+}
+function renderDossiers(){
+  return DOSSIERS.map(o=>`
+  <div class="dossier-overlay" id="dz-${o.id}" hidden role="dialog" aria-modal="true" aria-label="${o.title}" onclick="overlayClick(event)">
+    <div class="dossier">
+      <div class="dossier-head">
+        <span class="tile-ico ${o.iconColor||'purple'}">${ICONS[o.iconKey]||''}</span>
+        <div class="dh-text"><h2>${o.title}</h2>${o.sub?`<div class="dossier-sub">${o.sub}</div>`:''}</div>
+        <button class="dossier-close" onclick="closeDossier()" aria-label="סגור">✕</button>
+      </div>
+      <div class="dossier-body">${o.body}</div>
+    </div>
+  </div>`).join('');
+}
+
+/* ---------- פתיחה/סגירה של דף-על ---------- */
+function openDossier(id){
+  const o = document.getElementById('dz-'+id);
+  if(!o) return;
+  o.hidden = false;
+  document.body.style.overflow = 'hidden';
+  document.addEventListener('keydown', escClose);
+  const c = o.querySelector('.dossier-close'); if(c) c.focus();
+}
+function closeDossier(){
+  document.querySelectorAll('.dossier-overlay').forEach(o=>o.hidden=true);
+  document.body.style.overflow = '';
+  document.removeEventListener('keydown', escClose);
+}
+function escClose(e){ if(e.key==='Escape') closeDossier(); }
+function overlayClick(e){ if(e.target === e.currentTarget) closeDossier(); }
+
+function render(){
+  const d = window.AGENT_DATA;
+  if(!d){document.getElementById('root').innerHTML='נתונים ריקים';return;}
+  DOSSIERS = [];
+  const root = document.getElementById('root');
+  root.className='';
+  let tiles = '';
+
+  // ----- מודל עסקי: תרשים עוגה -----
+  if(d.business_model){
+    const bm = d.business_model;
+    const mix = bm.revenue_mix || (bm.engines && bm.engines.length && bm.engines.every(e=>typeof e.pct==='number' && e.pct<=100) && bm.engines.reduce((s,e)=>s+e.pct,0)>80 ? bm.engines : null);
+    tiles += topic({
+      id:'biz', iconKey:'biz', iconColor:'blue', title:'מודל עסקי',
+      headline: takeaway(bm.description,110), sub: takeaway(bm.description,150),
+      sig:{text:'הליבה', cls:'neutral'},
+      body: `${rep('① איך החברה מרוויחה', `<div class="desc">${bm.description||''}</div>`)}
+        ${mix?rep('② תמהיל ההכנסות — 100%', donut(mix.map(e=>({label:e.label, pct:e.pct, val:e.val, color:e.color||'var(--blue)'})))):''}
+        ${bottomline(bm.note)}`
+    });
+  }
+
+  // ----- מנועי צמיחה: הרחבה לכל נתון -----
+  if(d.growth){
+    const st = d.growth.stats||[];
+    tiles += topic({
+      id:'growth', iconKey:'growth', iconColor:'green', title:'מנועי צמיחה',
+      headline: takeaway(d.growth.description,110),
+      sig:{text:'צמיחה', cls:'good'},
+      body: `${rep('① מה מניע את הצמיחה', `<div class="desc">${d.growth.description||''}</div>`)}
+        ${st.length?rep('② מספרי המפתח + למה זה חשוב', st.map(s=>`<div class="statcard"><div class="sc-top"><div class="sc-lbl">${s.lbl}</div><div class="sc-val">${s.val}</div></div>${s.growth?`<div class="sc-grow">${s.growth}</div>`:''}${s.why?`<div class="whyline">${s.why}</div>`:''}</div>`).join('')):''}
+        ${bottomline(d.growth.note)}`
+    });
+  }
+
+  // ----- פיננסים: מסקנה מתחת לכל נתון -----
+  if(d.financials_3y){
+    const f = d.financials_3y;
+    tiles += topic({
+      id:'fin', iconKey:'fin', iconColor:'blue', title:'פיננסים — 3 שנים',
+      headline: takeaway(f.description,110),
+      sig:{text:'נתונים', cls:'neutral'},
+      body: `${rep('① תמונת מצב', `<div class="desc">${f.description||''}</div>`)}
+        ${(f.charts||[]).length?rep('② מגמות שנתיות', `<div class="chartgrid">${f.charts.map(c=>chart(c.title,c.bars,c.foot)).join('')}</div>`):''}
+        ${f.readout&&f.readout.length?rep('③ המסקנה שלי לכל נתון', `<div class="readout">${f.readout.map(r=>`<div class="readout-row"><div class="readout-ico ${r.sig||'neutral'}">${r.sig==='good'?'✓':r.sig==='bad'?'✕':'!'}</div><div class="readout-body"><div class="ro-metric">${r.metric}</div><div class="ro-text">${r.text}</div></div></div>`).join('')}</div>`):''}
+        ${f.table?rep('④ טבלת נתונים', `<table class="dtable"><thead><tr>${f.table.headers.map(x=>`<th>${x}</th>`).join('')}</tr></thead><tbody>${f.table.rows.map(r=>`<tr>${r.map((c,i)=>i===0?`<td class="metric">${c}</td>`:`<td>${c}</td>`).join('')}</tr>`).join('')}</tbody></table>`):''}
+        ${bottomline(f.note)}`
+    });
+  }
+
+  // ----- חפיר: רדאר -----
+  if(d.moat){
+    const items = d.moat.items||[];
+    tiles += topic({
+      id:'moat', iconKey:'moat', iconColor:'gold', title:'חפיר תחרותי',
+      headline: takeaway(d.moat.description,110),
+      sig:{text:'יתרון', cls:'good'},
+      body: `${rep('① כמה חזק היתרון', `<div class="desc">${d.moat.description||''}</div>`)}
+        ${items.length?rep('② מרכיבי החפיר — תרשים רדאר', radar(items)):''}
+        ${bottomline(d.moat.note)}`
+    });
+  }
+
+  // ----- רבעון אחרון: 3 סיבות לכל נתון -----
+  if(d.quarterly){
+    const c = d.quarterly;
+    tiles += topic({
+      id:'q', iconKey:'quarterly', iconColor:'purple', title:'רבעון אחרון'+(c.period?(' · '+c.period):''),
+      headline: takeaway(c.description,110),
+      sig:{text:'עדכני', cls:'neutral'},
+      body: `${rep('① סיכום הרבעון', `<div class="desc">${c.description||''}</div>`)}
+        ${c.cards?rep('② כל נתון — ולמה הוא זז', c.cards.map(x=>`<div class="qcard"><div class="qc-top"><div class="qc-lbl">${x.lbl}</div><div class="qc-val ${x.color||'c-text'}">${x.val}</div></div>${x.sub?`<div class="qc-sub">${x.sub}</div>`:''}${x.reasons&&x.reasons.length?`<ul class="reasons">${x.reasons.map(r=>`<li>${r}</li>`).join('')}</ul>`:''}</div>`).join('')):''}
+        ${bottomline(c.note)}`
+    });
+  }
+
+  // ----- מבחן לחץ: רדאר -----
+  if(d.stress_test){
+    const t = d.stress_test;
+    const total = parseFloat(t.total)||0;
+    const stCls = total>=40?'good':total>=30?'warn':'bad';
+    tiles += topic({
+      id:'stress', iconKey:'stress', iconColor:'purple', title:'מבחן לחץ מוסדי',
+      headline: 'ניקוד כולל '+(t.total||'')+' מתוך 50',
+      sig:{text:(t.total||'')+'/50', cls:stCls},
+      body: `${(t.categories||[]).length?rep('① ניקוד לפי קטגוריה — תרשים רדאר', radar(t.categories)):''}
+        ${bottomline(t.summary, stCls)}`
+    });
+  }
+
+  // ----- דגלים פורנזיים: כותרות בולטות -----
+  if(d.red_flags && d.red_flags.length){
+    const hasHigh = d.red_flags.some(f=>/high|red|חמור|גבוה/i.test(f.severity||''));
+    tiles += topic({
+      id:'flags', iconKey:'flags', iconColor:'red', title:'דגלים פורנזיים',
+      headline: d.red_flags.length+' דגלים זוהו בבדיקה הפורנזית',
+      sig:{text:d.red_flags.length+' דגלים', cls:hasHigh?'bad':'warn'},
+      body: `<div class="desc" style="margin-bottom:18px">אלה המסקנות הבולטות מהניתוח הפורנזי. כל דגל הוא ממצא שדורש תשומת לב.</div>
+        ${d.red_flags.map(f=>{ const sv=(f.severity||'').toLowerCase(); const cls=/red/.test(sv)?'red':/green/.test(sv)?'green':'yellow'; return `<div class="flagbig ${cls}"><div class="flagbig-top"><div class="flagbig-rank">${f.rank}</div><div class="flagbig-title">${f.title}</div></div><div class="flagbig-body">${f.body}</div></div>`; }).join('')}`
+    });
+  }
+
+  // ----- מסגרת שווי: בר גדול -----
+  if(d.valuation){
+    const v = d.valuation;
+    const vb = [
+      {label:'תרחיש דובי', sub:v.bear.sub, val:v.bear.pct, width:v.bear.height, fill:'bad'},
+      {label:'תרחיש בסיס', sub:v.base.sub, val:v.base.pct, width:v.base.height, fill:'warn'},
+      {label:'תרחיש שורי', sub:v.bull.sub, val:v.bull.pct, width:v.bull.height, fill:'good'}
+    ];
+    tiles += topic({
+      id:'val', iconKey:'val', iconColor:'gold', title:'מסגרת שווי',
+      headline: takeaway(v.description,110),
+      sig:{text:'3 תרחישים', cls:'neutral'},
+      body: `${rep('① ההסבר', `<div class="desc">${v.description||''}</div>`)}
+        ${rep('② מחיר יעד לפי תרחיש', bigBars(vb.map((x,i)=>({label:x.label+([v.bear,v.base,v.bull][i].price?` · יעד ${[v.bear,v.base,v.bull][i].price}`:''), sub:x.sub, val:x.val, width:x.width, fill:x.fill}))))}
+        ${v.curline?rep('③ מול המחיר הנוכחי', `<div class="curline">${v.curline}</div>`):''}
+        ${bottomline(v.note)}`
+    });
+  }
+
+  // ----- מתחרים -----
+  if(d.competitors && d.competitors.table && d.competitors.table.length){
+    const ct = d.competitors;
+    const tbl = ct.table || [];
+    tiles += topic({
+      id:'competitors', iconKey:'comp', iconColor:'blue', title:'מיצוב תחרותי',
+      headline: ct.edge || ct.description || 'השוואה מול עמיתים מובילים',
+      sig:{text:'השוואה', cls:'neutral'},
+      body: `${rep('① עמדה תחרותית', `<div class="desc">${ct.description||''}</div>`)}
+        ${rep('② נתונים מרכזיים מול עמיתים', `<div class="comp-table-wrap"><table class="dtable comp-tbl">
+          <thead><tr><th>טיקר</th><th>P/E</th><th>P/S</th><th>צמיחה</th><th>מרווח גולמי</th><th>שווי שוק</th><th>vs. החברה</th></tr></thead>
+          <tbody>${tbl.map(r=>`<tr class="${r.ticker===d.ticker?'comp-main':''}" >
+            <td><b>${r.ticker||''}</b>${r.ticker===d.ticker?' ◄':''}</td>
+            <td>${r.pe||'N/A'}</td><td>${r.ps||'N/A'}</td>
+            <td>${r.rev_growth||'N/A'}</td><td>${r.gross_margin||'N/A'}</td>
+            <td>${r.market_cap||'N/A'}</td>
+            <td class="comp-vs">${r.vs_company||''}</td>
+          </tr>`).join('')}</tbody>
+        </table></div>`)}
+        ${ct.edge?rep('③ היתרון המרכזי', `<div class="desc c-green">${ct.edge}</div>`):''}
+        ${bottomline(ct.note)}`
+    });
+  }
+
+  // ----- קטליזטורי חדשות -----
+  if(d.news_catalysts && d.news_catalysts.items && d.news_catalysts.items.length){
+    const nc = d.news_catalysts;
+    const sentCls = nc.net_sentiment==='bullish'?'good':nc.net_sentiment==='bearish'?'bad':'warn';
+    tiles += topic({
+      id:'news', iconKey:'news', iconColor:'purple', title:'קטליזטורי שוק',
+      headline: nc.description || 'חדשות וסיגנלים שוקיים אחרונים',
+      sig:{text: nc.net_sentiment||'ניטרלי', cls:sentCls},
+      body: `${rep('① מצב חדשותי כולל', `<div class="desc">${nc.description||''}</div>
+        ${nc.net_sentiment_why?`<div class="verdict-tag ${sentCls}" style="margin-top:8px;padding:8px 14px;border-radius:8px;font-size:13px">${nc.net_sentiment_why}</div>`:''}`)}
+        ${rep('② אירועי מפתח', `<div class="news-list">${nc.items.map(it=>{
+          const dir = it.direction==='green'?'good':it.direction==='red'?'bad':'warn';
+          const icon = it.direction==='green'?'🟢':it.direction==='red'?'🔴':'🟡';
+          return `<div class="news-item"><div class="ni-top"><span class="ni-icon">${icon}</span>
+            <span class="ni-date">${it.date||''}</span>
+            <span class="ni-type tag ${dir}">${it.type||''}</span></div>
+            <div class="ni-headline">${it.headline||''}</div>
+            ${it.impact?`<div class="ni-impact">${it.impact}</div>`:''}
+          </div>`;
+        }).join('')}</div>`)}`
+    });
+  }
+
+  // ----- מפת דרכים אסטרטגית -----
+  if(d.strategic_roadmap && d.strategic_roadmap.initiatives && d.strategic_roadmap.initiatives.length){
+    const sr = d.strategic_roadmap;
+    tiles += topic({
+      id:'roadmap', iconKey:'rocket', iconColor:'gold', title:'מפת דרכים אסטרטגית',
+      headline: sr.description || 'יוזמות אסטרטגיות ותוכניות עתיד',
+      sig:{text:'עתיד', cls:'neutral'},
+      body: `${rep('① כיוון אסטרטגי', `<div class="desc">${sr.description||''}</div>`)}
+        ${rep('② יוזמות מרכזיות', sr.initiatives.map(ini=>{
+          const credCls = ini.credibility==='high'?'good':ini.credibility==='low'?'bad':'warn';
+          return `<div class="roadmap-card">
+            <div class="rm-title">${ini.title||''}</div>
+            <div class="rm-meta">
+              <span class="tag ${credCls}">אמינות: ${ini.credibility||'?'}</span>
+              ${ini.timeline?`<span class="rm-time">⏱ ${ini.timeline}</span>`:''}
+              ${ini.scale?`<span class="rm-scale">📐 ${ini.scale}</span>`:''}
+            </div>
+            ${ini.status?`<div class="rm-status">${ini.status}</div>`:''}
+          </div>`;
+        }).join(''))}
+        ${sr.hidden_gem?rep('③ הניצוץ הנסתר', `<div class="hidden-gem"><div class="hg-label">⚡ מה השוק מפספס</div><div class="hg-body">${sr.hidden_gem}</div></div>`):''}
+        ${bottomline(sr.note)}`
+    });
+  }
+
+  // ----- אות אלפא -----
+  if(d.alpha_signal && d.alpha_signal.signals && d.alpha_signal.signals.length){
+    const as = d.alpha_signal;
+    const confCls = as.confidence==='HIGH'?'good':as.confidence==='SPECULATIVE'?'warn':'neutral';
+    tiles += topic({
+      id:'alpha', iconKey:'alpha', iconColor:'gold', title:'הזדמנות א-שגרתית',
+      headline: as.description || 'סיגנלים לא קונצנזוס שהשוק עלול להחמיץ',
+      sig:{text: as.confidence||'MEDIUM', cls:confCls},
+      body: `${as.thesis?rep('① תזת האלפא', `<div class="desc alpha-thesis">${as.thesis}</div>`):''}
+        ${rep('② סיגנלים', as.signals.map(s=>{
+          const convCls = s.conviction==='HIGH'?'good':s.conviction==='SPECULATIVE'?'warn':'neutral';
+          const typeLabel = {
+            short_squeeze:'סחיטת שורטים', insider_buying:'קנייה פנימית',
+            institutional_accumulation:'צבירה מוסדית', hidden_optionality:'אופציונליות נסתרת',
+            sentiment_divergence:'דיברגנציה סנטימנט'
+          }[s.type] || s.type;
+          return `<div class="alpha-card">
+            <div class="ac-top"><span class="ac-type">${typeLabel}</span>
+              <span class="conviction-badge ${convCls}">${s.conviction||'MEDIUM'}</span></div>
+            <div class="ac-detail">${s.detail||''}</div>
+          </div>`;
+        }).join(''))}
+        ${bottomline(as.note)}`
+    });
+  }
+
+  // ----- הרכבת העמוד -----
+  root.innerHTML = `
+<div class="topbar tb-blue">
+  <div><h1 class="c-blue">דוח אנליסט פורנזי — ${d.company||d.ticker}</h1>
+  <div class="sub">טיקר: ${d.ticker} · ${d.sector||''}</div></div>
+  <div class="stamp">תאריך: <b>${d.date}</b><br>${d.period||''}
+    <a href="financial_statements.html?ticker=${d.ticker}" style="display:inline-block;margin-top:8px;padding:5px 12px;background:rgba(139,92,246,.15);border:1px solid rgba(139,92,246,.3);border-radius:8px;font-size:11px;font-weight:700;color:var(--brand-purple);text-decoration:none">📊 דוחות כספיים</a>
+  </div>
+</div>
+<div class="wrap">
+
+  ${d.final?`<div class="hero-conclusion">
+    <div class="hc-eyebrow">השורה התחתונה</div>
+    <div class="hc-headline">${d.final.headline}</div>
+    ${d.crash_banner?`<div class="hc-sub">${d.crash_banner.body}</div>`:(d.final.paragraphs&&d.final.paragraphs[0]?`<div class="hc-sub">${d.final.paragraphs[0]}</div>`:'')}
+    ${d.final.scorecard?`<div class="hc-metrics">${d.final.scorecard.map(s=>`<div class="hc-metric"><div class="hm-val ${s.color||'c-green'}">${s.val}</div><div class="hm-lbl">${s.lbl}</div></div>`).join('')}</div>`:''}
+  </div>`:''}
+
+  ${d.verification_banner?`<div class="vbanner"><b>אימות מקורות:</b> ${d.verification_banner}</div>`:''}
+
+
+
+  ${tiles?`<div class="tiles-head"><h2>ניתוח לפי נושא</h2><span class="th-hint">לחץ חלונית לדף מלא · כל נושא מוצג בכמה דרכים</span></div>
+  <div class="tiles">${tiles}</div>`:''}
+
+  ${d.final?`<div class="verdict green">
+    <span class="tag">שיפוט איכות סופי</span>
+    <h2>${d.final.headline}</h2>
+    ${(d.final.paragraphs||[]).map(p=>`<p>${p}</p>`).join('')}
+    <div class="scorecard">${(d.final.scorecard||[]).map(s=>`<div class="scoreitem"><div class="si-lbl">${s.lbl}</div><div class="si-val ${s.color||'c-green'}">${s.val}</div></div>`).join('')}</div>
+    ${d.final.handoff?`<div class="handoff"><b>HANDOFF לעורך הדין השטן</b><br>${d.final.handoff}</div>`:''}
+  </div>`:''}
+</div>
+<div class="footer">${d.footer||''}
+${d.disclaimer?`<div class="disclaimer"><b>הסתייגות:</b> ${d.disclaimer}</div>`:''}
+</div>
+${renderDossiers()}`;
+}
+</script>
+<script src="_agent_graphs.js"></script>
+<script src="_interactions.js"></script>
+</body>
+</html>

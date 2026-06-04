@@ -1,0 +1,122 @@
+{
+  "ticker": "AMZN",
+  "agent": "analyst",
+  "date": "2026-05-28",
+  "verdict": "INTACT",
+  "score": 68,
+  "thesis": "AWS מואץ ל-28% עם RPO $464B מגבה ביקוש ארוך-טווח; מרווחי שיא 13.1%; אך FCF TTM שלילי (-$2.47B) ו-$200B CapEx 2026 מעכבים כניסה — kill switch 2 בסיכון קיצוני, מחיר 18.2% מעל טריגר.",
+  "key_risks": [
+    "FCF TTM -$2.47B: kill switch 2 (FCF<$10B by Q4-2026) כבר נשבר — $200B CapEx לא מאפשר התאוששות ב-2026",
+    "Azure structural enterprise advantage: M365 bundling + 33% growth בFY2025 vs AWS 17-24%",
+    "Q1 2026 EPS $2.78 מנופח ב-$16.8B Anthropic gain; clean EPS ≈$1.56 — flat vs Q1 2025"
+  ],
+  "position_size_pct": 0,
+  "valuation_summary": "fair value $224-256 (base case), upside -8% to -18% from current; bull $320-360 (+18-32%) requires AWS 26%+ + FCF recovery",
+  "entry_exit_plan": "טריגר: $230↓; stop: $195 (-15% מטריגר); TP1: $280 (+22%), TP2: $340 (+48%); kill: AWS YoY <22% ל-2 רבעונים OR FCF TTM <$10B Q4-2026",
+  "handoff_summary": "Amazon מציגה acceleration מבנית ב-AWS (28%, 15-quarter high) עם RPO $464B (כולל OpenAI $100B+) שמגבה ביקוש ריאלי. מרווחי שיא (13.1%) ופרסום חזק (24%) מאשרים את התזה האיכותית. אולם: FCF TTM שלילי (-$2.47B), $200B CapEx מתוכנן ל-2026 יבטיח שנה נוספת של FCF שלילי, EPS Q1 2026 מנופח ב-$16.8B Anthropic gain (EPS נקי ≈$1.56, כמעט flat vs. Q1 2025), ו-Azure עדיין גדלה מהר יותר בenterprise. הכניסה ממתינה לטריגר $230 (18.2% מתחת). המחיר הנוכחי $271.85 מתמחר execution מושלם ואין margin of safety. לעורך הדין השטן: תקוף את (1) ה-FCF monetization assumption, (2) clean earnings growth היא כמעט אפסית, (3) Azure structural moat — ושקול האם הסיכון המבני גבוה מספיק להוריד את הטריגר.",
+  "visual_scores": {
+    "business_engines": [
+      {
+        "label": "North America",
+        "revenue_b": 104.1,
+        "growth_pct": 12,
+        "weight_pct": 57.4
+      },
+      {
+        "label": "International",
+        "revenue_b": 39.8,
+        "growth_pct": 19,
+        "weight_pct": 21.9
+      },
+      {
+        "label": "AWS",
+        "revenue_b": 37.6,
+        "growth_pct": 28,
+        "weight_pct": 20.7
+      },
+      {
+        "label": "Advertising (within segments)",
+        "revenue_b": 17.2,
+        "growth_pct": 24,
+        "weight_pct": 9.5
+      }
+    ],
+    "moat_scores": [
+      {
+        "label": "AWS switching costs",
+        "score_0_10": 9
+      },
+      {
+        "label": "Prime/logistics flywheel",
+        "score_0_10": 8
+      },
+      {
+        "label": "Advertising data moat",
+        "score_0_10": 8
+      },
+      {
+        "label": "Trainium/Graviton silicon",
+        "score_0_10": 6
+      },
+      {
+        "label": "International brand",
+        "score_0_10": 5
+      },
+      {
+        "label": "Regulatory moat",
+        "score_0_10": 3
+      }
+    ],
+    "stress_categories": [
+      {
+        "label": "איכות מודל עסקי",
+        "score_0_10": 7
+      },
+      {
+        "label": "סיכון ושרשרת",
+        "score_0_10": 6
+      },
+      {
+        "label": "יושרה חשבונאית",
+        "score_0_10": 6
+      },
+      {
+        "label": "הנהלה והקצאת הון",
+        "score_0_10": 7
+      },
+      {
+        "label": "יעילות תפעולית",
+        "score_0_10": 8
+      }
+    ],
+    "valuation": {
+      "bear_price": 108,
+      "base_price": 240,
+      "bull_price": 340,
+      "current_price": 271.85
+    },
+    "financials_3y": [
+      {
+        "year": "FY2023",
+        "revenue_b": 574.8,
+        "op_margin_pct": 6.4,
+        "fcf_b": 32.2,
+        "eps": 2.9
+      },
+      {
+        "year": "FY2024",
+        "revenue_b": 638.0,
+        "op_margin_pct": 10.8,
+        "fcf_b": 32.9,
+        "eps": 5.53
+      },
+      {
+        "year": "FY2025",
+        "revenue_b": 716.9,
+        "op_margin_pct": 11.2,
+        "fcf_b": 7.7,
+        "eps": 7.17
+      }
+    ]
+  }
+}

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>עורך הדין השטן</title>
+<link rel="stylesheet" href="_shared.css">
+<style>
+.attack{background:linear-gradient(135deg,#1a1013,#0c0a0e);border:1px solid #3a1a1a;border-top:3px solid var(--red);border-radius:12px;padding:24px;margin-bottom:20px}
+.attack .tag{display:inline-block;background:rgba(224,92,92,.13);color:var(--red);font-size:12px;font-weight:700;padding:5px 14px;border-radius:20px;margin-bottom:14px}
+.attack h2{font-size:18px;color:var(--text);margin-bottom:12px}
+.attack p{font-size:13.5px;color:var(--muted2);line-height:1.85;margin-bottom:11px}
+.attack p b{color:var(--text)}.attack .punch{color:var(--red);font-weight:700}
+.riskgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(165px,1fr));gap:12px}
+.riskcard{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:15px;border-top:3px solid var(--muted)}
+.riskcard.green{border-top-color:var(--green)}.riskcard.yellow{border-top-color:var(--yellow)}.riskcard.red{border-top-color:var(--red)}
+.riskcard .rc-lbl{font-size:11px;color:var(--muted);margin-bottom:7px}
+.riskcard .rc-val{font-size:14px;font-weight:800;margin-bottom:5px}
+.riskcard.green .rc-val{color:var(--green)}.riskcard.yellow .rc-val{color:var(--yellow)}.riskcard.red .rc-val{color:var(--red)}
+.riskcard .rc-note{font-size:11px;color:var(--muted2);line-height:1.55}
+.dchart{display:flex;align-items:flex-end;gap:18px;height:175px;margin-top:8px}
+.dcol{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%}
+.dcol .dc-price{font-size:15px;font-weight:800;margin-bottom:6px}
+.dcol .dc-fill{width:100%;border-radius:6px 6px 0 0;display:flex;align-items:flex-start;justify-content:center;padding-top:8px;font-size:11px;font-weight:700;color:#07090f;min-height:24px}
+.dcol .dc-lbl{font-size:11.5px;margin-top:8px;font-weight:600;text-align:center}
+.dcol .dc-sub{font-size:10px;color:var(--muted);margin-top:3px;text-align:center}
+.chart-row{display:flex;gap:30px;align-items:center;flex-wrap:wrap}
+.donut{width:180px;height:180px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;position:relative}
+.donut::after{content:'';position:absolute;width:110px;height:110px;border-radius:50%;background:var(--surface2)}
+.donut .center{position:relative;z-index:2;text-align:center}
+.donut .center .big{font-size:15px;font-weight:800;color:var(--text)}
+.donut .center .small{font-size:10px;color:var(--muted);margin-top:3px}
+.legend{display:flex;flex-direction:column;gap:9px;flex:1;min-width:250px}
+.leg-item{display:flex;align-items:center;gap:10px;font-size:12.5px}
+.leg-dot{width:13px;height:13px;border-radius:4px;flex-shrink:0}
+.leg-name{flex:1}.leg-val{font-weight:700}
+.kill{background:var(--surface);border-radius:10px;padding:13px 16px;margin-bottom:10px;border-right:4px solid var(--red);display:flex;gap:12px;align-items:flex-start}
+.kill .ks-ico{font-size:15px;flex-shrink:0}
+.kill .ks-body h3{font-size:13px;color:var(--text);margin-bottom:3px}
+.kill .ks-body p{font-size:11.5px;color:var(--muted2);line-height:1.55}
+</style>
+</head>
+<body>
+<div id="root" class="error-box">⏳ טוען…</div>
+<script>
+'use strict';
+const params=new URLSearchParams(location.search);const ticker=params.get('ticker');
+if(!ticker){document.getElementById('root').innerHTML='<b>שגיאה:</b> חסר טיקר. פתח עם <code>?ticker=NOW</code>.';}
+else{document.title='שטן — '+ticker;const s=document.createElement('script');s.src='../analyses/'+ticker+'/devils.js';s.onload=render;s.onerror=()=>{document.getElementById('root').innerHTML='<b>אין נתונים</b> ל-'+ticker;};document.head.appendChild(s);}
+function render(){const d=window.AGENT_DATA;if(!d){return;}const root=document.getElementById('root');root.className='';
+root.innerHTML=`
+<div class="topbar tb-red">
+  <div><h1 class="c-red">⚖️ עורך הדין השטן — ${d.company||d.ticker}</h1>
+  <div class="sub">טיקר: ${d.ticker} · קצין הגנת תיק</div></div>
+  <div class="stamp">תאריך: <b>${d.date}</b><br>מקור: דשבורד אנליסט (ירושה)</div>
+</div>
+<div class="wrap">
+  ${d.inherited?`<div class="inherit">
+    <div class="ih-title">① נתונים שהתקבלו מהאנליסט — נעולים</div>
+    <div class="ih-grid">${d.inherited.items.map(i=>`<div class="ih-item"><span class="k">${i.k}</span><span class="v">${i.v}</span></div>`).join('')}</div>
+    ${d.inherited.note?`<div class="ih-note">${d.inherited.note}</div>`:''}
+  </div>`:''}
+
+  ${d.attack?`<div class="attack">
+    <span class="tag">② מצב עורך דין שטן — הטיעון נגד</span>
+    <h2>${d.attack.headline}</h2>
+    ${d.attack.paragraphs.map(p=>`<p>${p}</p>`).join('')}
+  </div>`:''}
+
+  ${d.risk_scorecard?`<div class="section">
+    <h2><span class="bar-accent" style="background:var(--red)"></span>③ כרטיס ניקוד סיכון</h2>
+    <div class="desc">${d.risk_scorecard.description||''}</div>
+    <div class="riskgrid">${d.risk_scorecard.items.map(r=>`<div class="riskcard ${r.color}"><div class="rc-lbl">${r.lbl}</div><div class="rc-val">${r.val}</div><div class="rc-note">${r.note}</div></div>`).join('')}</div>
+  </div>`:''}
+
+  ${d.valuation_risk?`<div class="section">
+    <h2><span class="bar-accent" style="background:var(--red)"></span>④ סיכון שווי — חישוב הסיכון השלילי</h2>
+    <div class="desc">${d.valuation_risk.description||''}</div>
+    <div class="dchart">${d.valuation_risk.scenarios.map(s=>`<div class="dcol"><div class="dc-price ${s.color}">${s.price}</div><div class="dc-fill" style="height:${s.height}%;background:var(--${s.bg})">${s.pct}</div><div class="dc-lbl ${s.color}">${s.lbl}</div><div class="dc-sub">${s.sub}</div></div>`).join('')}</div>
+    <div class="desc" style="margin-top:14px;margin-bottom:0">${d.valuation_risk.note||''}</div>
+  </div>`:''}
+
+  ${d.stress_test?`<div class="section">
+    <h2><span class="bar-accent" style="background:var(--purple)"></span>⑤ מבחן לחץ — 4 תרחישים</h2>
+    <div class="desc">${d.stress_test.description||''}</div>
+    <div class="chart-row">
+      <div class="donut" style="background:conic-gradient(${d.stress_test.gradient})">
+        <div class="center"><div class="big">התפלגות</div><div class="small">הסתברות</div></div>
+      </div>
+      <div class="legend">${d.stress_test.scenarios.map(s=>`<div class="leg-item"><span class="leg-dot" style="background:${s.color}"></span><span class="leg-name">${s.name}</span><span class="leg-val">${s.prob}</span></div>`).join('')}</div>
+    </div>
+    <table class="dtable"><thead><tr><th>תרחיש</th><th>%</th><th>תנאים</th><th>השפעת מניה</th><th>השפעה על תיק*</th></tr></thead>
+    <tbody>${d.stress_test.rows.map(r=>`<tr><td>${r.scenario}</td><td>${r.prob}</td><td class="metric">${r.conditions}</td><td class="${r.stock_color}">${r.stock_impact}</td><td class="${r.pf_color}">${r.pf_impact}</td></tr>`).join('')}</tbody></table>
+    <div class="desc" style="margin-top:10px;margin-bottom:0">${d.stress_test.note||''}</div>
+  </div>`:''}
+
+  ${d.kill_switches?`<div class="section">
+    <h2><span class="bar-accent" style="background:var(--red)"></span>⑥ Kill Switches</h2>
+    ${d.kill_switches.map(k=>`<div class="kill"><div class="ks-ico">🔴</div><div class="ks-body"><h3>${k.title}</h3><p>${k.body}</p></div></div>`).join('')}
+  </div>`:''}
+
+  ${d.verdict?`<div class="verdict yellow">
+    <span class="tag">⑦ פסיקה סופית — עורך הדין השטן</span>
+    <h2>${d.verdict.headline}</h2>
+    ${d.verdict.paragraphs.map(p=>`<p>${p}</p>`).join('')}
+    <div class="scorebig">${d.verdict.scoreboxes.map(s=>`<div class="scorebox"><div class="sb-lbl">${s.lbl}</div><div class="sb-num ${s.color}" style="font-size:${s.size||'20'}px">${s.val}</div></div>`).join('')}</div>
+    ${d.verdict.handoff?`<div class="handoff"><b>📤 HANDOFF ל-CEO</b><br>${d.verdict.handoff}</div>`:''}
+  </div>`:''}
+</div>
+<div class="footer">${d.footer||''}</div>`;}
+</script>
+</body>
+</html>

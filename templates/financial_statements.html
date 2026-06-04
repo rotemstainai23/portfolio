@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>דוחות כספיים</title>
+<link rel="stylesheet" href="_shared.css">
+<link rel="stylesheet" href="_redesign.css">
+<style>
+/* ── Topbar ───────────────────────────────────────────── */
+.fs-topbar{display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:12px;padding:28px 32px 0;margin-bottom:24px}
+.fs-title-wrap h1{font-size:22px;font-weight:800;color:var(--text);margin:0 0 4px}
+.fs-title-wrap .sub{font-size:12px;color:var(--muted2)}
+.topbar-actions{display:flex;gap:10px;align-items:center}
+.btn-back{padding:7px 16px;background:var(--glass);border:1px solid var(--glass-border);
+  border-radius:10px;font-size:12px;font-weight:700;color:var(--muted2);cursor:pointer;
+  text-decoration:none;transition:.2s}
+.btn-back:hover{color:var(--text);background:var(--glass-2)}
+.period-sel{display:flex;gap:4px;background:var(--glass);border:1px solid var(--glass-border);
+  border-radius:10px;padding:3px}
+.period-btn{padding:5px 14px;border-radius:8px;font-size:11.5px;font-weight:700;
+  background:transparent;border:none;color:var(--muted2);cursor:pointer;transition:.2s}
+.period-btn.active{background:var(--glass-2);color:var(--text)}
+.period-btn:hover{color:var(--text)}
+
+/* ── KPI Row ───────────────────────────────────────────── */
+.kpi-row{display:flex;gap:12px;flex-wrap:wrap;padding:0 32px;margin-bottom:28px}
+.kpi-card{flex:1;min-width:140px;background:var(--glass);border:1px solid var(--glass-border);
+  border-radius:14px;padding:16px 18px}
+.kpi-card .k-lbl{font-size:10px;font-weight:700;color:var(--muted2);text-transform:uppercase;
+  letter-spacing:.7px;margin-bottom:6px}
+.kpi-card .k-val{font-size:20px;font-weight:800;color:var(--text)}
+.kpi-card .k-var{font-size:11px;margin-top:4px;font-weight:700}
+.k-var.pos{color:var(--sig-good)} .k-var.neg{color:var(--sig-bad)} .k-var.neu{color:var(--muted2)}
+
+/* ── Tabs ───────────────────────────────────────────────── */
+.tabs{display:flex;gap:4px;flex-wrap:wrap;padding:0 32px;border-bottom:1px solid var(--glass-border);
+  margin-bottom:0}
+.tab-btn{padding:9px 20px;font-size:12.5px;font-weight:700;font-family:Heebo,sans-serif;
+  background:transparent;border:1px solid transparent;border-bottom:none;
+  border-radius:10px 10px 0 0;color:var(--muted2);cursor:pointer;transition:.2s}
+.tab-btn:hover{color:var(--text);background:var(--glass)}
+.tab-btn.active{background:var(--glass-2);border-color:var(--glass-border);color:var(--text);
+  border-bottom:2px solid var(--brand-purple)}
+.tab-panel{display:none;padding:24px 32px 40px}
+.tab-panel.active{display:block}
+
+/* ── Financial Table ───────────────────────────────────── */
+.fin-table{width:100%;border-collapse:collapse;font-size:12.5px}
+.fin-table thead th{padding:10px 14px;font-size:10px;color:var(--muted2);text-transform:uppercase;
+  letter-spacing:.5px;font-weight:700;text-align:left;border-bottom:1px solid var(--glass-border);
+  white-space:nowrap}
+.fin-table thead th:first-child{text-align:right;min-width:200px}
+.fin-table thead th.period-col{text-align:left;min-width:110px}
+.fin-table thead th.var-col{min-width:80px;color:var(--muted);font-size:9.5px}
+.fin-table tbody tr:hover td{background:var(--glass)}
+.fin-table td{padding:9px 14px;border-bottom:1px solid rgba(255,255,255,.03);
+  font-variant-numeric:tabular-nums;vertical-align:middle}
+.fin-table td:first-child{color:var(--text);font-weight:500;text-align:right;
+  padding-right:6px;direction:ltr;text-align:left}
+.fin-table td.num{text-align:left;color:var(--muted2)}
+.fin-table td.num.cur{color:var(--text);font-weight:700}
+.fin-table tr.section-head td{background:rgba(139,92,246,.06);font-weight:800;
+  font-size:11px;color:var(--brand-purple);text-transform:uppercase;letter-spacing:.5px;
+  padding:12px 14px 8px;border-top:1px solid var(--glass-border)}
+.fin-table tr.section-head td:first-child{padding-right:6px}
+.fin-table td.var-pct{text-align:left;font-size:11px;font-weight:700}
+.var-up{color:var(--sig-good)} .var-dn{color:var(--sig-bad)} .var-neu{color:var(--muted)}
+.var-flag{display:inline-block;padding:1px 6px;border-radius:5px;font-size:10px;margin-right:4px}
+.var-flag.big-up{background:var(--sig-good-soft);color:var(--sig-good)}
+.var-flag.big-dn{background:var(--sig-bad-soft);color:var(--sig-bad)}
+
+/* ── Period headers ─────────────────────────────────────── */
+.period-head{font-size:11px;font-weight:700;color:var(--text)}
+.period-sub{font-size:9px;color:var(--muted);display:block;margin-top:1px}
+
+/* ── Context strip (analyst.js) ─────────────────────────── */
+.ctx-strip{margin:0 32px 20px;padding:14px 18px;background:var(--glass);
+  border:1px solid var(--glass-border);border-radius:12px;border-right:3px solid var(--brand-purple)}
+.ctx-strip .ctx-label{font-size:10px;font-weight:800;color:var(--brand-purple);
+  text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px}
+.ctx-strip .ctx-text{font-size:12.5px;color:var(--muted2);line-height:1.55}
+
+/* ── Error / Loading ──────────────────────────────────────── */
+.loading{padding:80px 32px;text-align:center;color:var(--muted2);font-size:14px}
+.error-box{padding:32px;background:var(--sig-bad-soft);border:1px solid var(--sig-bad);
+  border-radius:14px;margin:32px;color:var(--sig-bad);font-size:13px}
+</style>
+</head>
+<body>
+<div id="root">
+  <div class="loading">⏳ טוען דוחות כספיים…</div>
+</div>
+
+<script>
+'use strict';
+
+const params  = new URLSearchParams(location.search);
+const TICKER  = (params.get('ticker') || '').toUpperCase();
+const PERIOD  = params.get('period') || 'annual';
+
+if (!TICKER) {
+  document.getElementById('root').innerHTML =
+    '<div class="error-box"><b>שגיאה:</b> חסר פרמטר ticker. פתח עם <code>?ticker=NVDA</code></div>';
+} else {
+  document.title = 'דוחות כספיים — ' + TICKER;
+  loadData(PERIOD);
+}
+
+/* ── טעינה ───────────────────────────────────────────────── */
+function loadData(period) {
+  fetch('/api/financial-statements/' + TICKER + '?period=' + period)
+    .then(r => r.json())
+    .then(data => {
+      if (data.error) {
+        document.getElementById('root').innerHTML =
+          '<div class="error-box"><b>שגיאת API:</b> ' + data.error + '</div>';
+        return;
+      }
+      render(data, period);
+    })
+    .catch(e => {
+      document.getElementById('root').innerHTML =
+        '<div class="error-box"><b>שגיאת חיבור:</b> ' + e.message + '</div>';
+    });
+}
+
+/* ── עיצוב ───────────────────────────────────────────────── */
+function fmt(v) {
+  if (v === null || v === undefined) return '<span class="var-neu">—</span>';
+  const abs = Math.abs(v);
+  let s;
+  if (abs >= 1e9)  s = (v / 1e9).toFixed(2) + 'B';
+  else if (abs >= 1e6) s = (v / 1e6).toFixed(1) + 'M';
+  else if (abs >= 1e3) s = (v / 1e3).toFixed(0) + 'K';
+  else s = v.toFixed(0);
+  return (v < 0 ? '(' + s.replace('-','') + ')' : s);
+}
+
+function fmtPct(v, income_metric) {
+  if (v === null || v === undefined) return '<span class="var-neu">—</span>';
+  // לדוחות הכנסות: הוצאות — עלייה היא שלילית; הכנסות — עלייה היא חיובית
+  const isExpense = income_metric && /cost|expense|deprec|amort|tax|interest expense/i.test(income_metric);
+  const favorable = isExpense ? v < 0 : v > 0;
+  const cls   = favorable ? 'var-up' : 'var-dn';
+  const flag  = Math.abs(v) >= 10 ? (favorable ? '<span class="var-flag big-up">+</span>' : '<span class="var-flag big-dn">!</span>') : '';
+  return `<span class="${cls}">${flag}${v > 0 ? '+' : ''}${v.toFixed(1)}%</span>`;
+}
+
+function pctOf(num, denom) {
+  if (!num || !denom || denom === 0) return null;
+  return (num / denom * 100).toFixed(1) + '%';
+}
+
+/* ── טבלה ─────────────────────────────────────────────────── */
+function buildTable(periods, sections) {
+  if (!periods || periods.length === 0)
+    return '<div class="loading">אין נתונים לתקופה זו</div>';
+
+  // כותרות תקופות
+  const colCount = Math.min(periods.length, 4);
+  let thead = '<tr><th></th>';
+  for (let i = 0; i < colCount; i++) {
+    const isCurrent = i === 0;
+    thead += `<th class="period-col ${isCurrent ? 'cur' : ''}">
+      <span class="period-head">${periods[i].label}</span>
+      ${isCurrent ? '<span class="period-sub">עדכני</span>' : ''}
+    </th>`;
+    if (i < colCount - 1)
+      thead += '<th class="var-col">YoY%</th>';
+  }
+  thead += '</tr>';
+
+  let tbody = '';
+  for (const sec of sections) {
+    tbody += `<tr class="section-head"><td colspan="${1 + colCount * 2 - 1}">${sec.label}</td></tr>`;
+    for (const key of sec.keys) {
+      const displayKey = key.replace(/_/g, ' ');
+      tbody += '<tr><td>' + displayKey + '</td>';
+      for (let i = 0; i < colCount; i++) {
+        const val = (periods[i] && periods[i].data) ? periods[i].data[key] : null;
+        const isCurrent = i === 0;
+        tbody += `<td class="num ${isCurrent ? 'cur' : ''}">${fmt(val)}</td>`;
+        if (i < colCount - 1) {
+          const varPct = periods[i] && periods[i].variances ? periods[i].variances[key] : null;
+          tbody += `<td class="var-pct">${fmtPct(varPct, key)}</td>`;
+        }
+      }
+      tbody += '</tr>';
+    }
+  }
+
+  return `<table class="fin-table"><thead>${thead}</thead><tbody>${tbody}</tbody></table>`;
+}
+
+/* ── סקציות לפי סוג ─────────────────────────────────────── */
+function incomeSections(periods) {
+  const keys = periods.length ? Object.keys(periods[0].data) : [];
+  const pick = (...names) => names.find(n => keys.includes(n));
+
+  const rev = ['Total Revenue', 'Operating Revenue'].filter(k => keys.includes(k));
+  const cogs = ['Cost Of Revenue', 'Reconciled Cost Of Revenue'].filter(k => keys.includes(k));
+  const gross = ['Gross Profit'].filter(k => keys.includes(k));
+  const opex = ['Research And Development', 'Selling General Administrative',
+    'Operating Expense', 'Total Expenses'].filter(k => keys.includes(k));
+  const op = ['Operating Income', 'EBIT', 'EBITDA'].filter(k => keys.includes(k));
+  const other = ['Interest Income', 'Interest Expense', 'Net Non Operating Interest Income Expense',
+    'Other Non Operating Income Expense'].filter(k => keys.includes(k));
+  const bottom = ['Pretax Income', 'Tax Provision', 'Net Income',
+    'Net Income Common Stockholders', 'Diluted EPS', 'Basic EPS'].filter(k => keys.includes(k));
+
+  const secs = [];
+  if (rev.length) secs.push({label: 'הכנסות', keys: rev});
+  if (cogs.length) secs.push({label: 'עלות הכנסות', keys: cogs});
+  if (gross.length) secs.push({label: 'רווח גולמי', keys: gross});
+  if (opex.length) secs.push({label: 'הוצאות תפעוליות', keys: opex});
+  if (op.length) secs.push({label: 'הכנסה תפעולית', keys: op});
+  if (other.length) secs.push({label: 'הכנסה/הוצאה אחרת', keys: other});
+  if (bottom.length) secs.push({label: 'שורה תחתונה', keys: bottom});
+
+  // כל מה שנשאר
+  const covered = new Set([...rev, ...cogs, ...gross, ...opex, ...op, ...other, ...bottom]);
+  const rest = keys.filter(k => !covered.has(k));
+  if (rest.length) secs.push({label: 'נוסף', keys: rest});
+
+  return secs;
+}
+
+function balanceSections(periods) {
+  const keys = periods.length ? Object.keys(periods[0].data) : [];
+  const assets = ['Cash And Cash Equivalents', 'Cash Cash Equivalents And Short Term Investments',
+    'Receivables', 'Net Receivables', 'Inventory', 'Current Assets', 'Total Current Assets',
+    'Net PPE', 'Goodwill', 'Intangible Assets', 'Total Non Current Assets',
+    'Total Assets'].filter(k => keys.includes(k));
+  const liab = ['Accounts Payable', 'Current Deferred Revenue', 'Current Liabilities',
+    'Total Current Liabilities', 'Long Term Debt', 'Total Non Current Liabilities Net Minority Interest',
+    'Total Liabilities Net Minority Interest'].filter(k => keys.includes(k));
+  const equity = ['Common Stock Equity', 'Retained Earnings', 'Total Equity Gross Minority Interest',
+    'Stockholders Equity'].filter(k => keys.includes(k));
+  const rest = keys.filter(k => !assets.includes(k) && !liab.includes(k) && !equity.includes(k));
+
+  const secs = [];
+  if (assets.length) secs.push({label: 'נכסים', keys: assets});
+  if (liab.length) secs.push({label: 'התחייבויות', keys: liab});
+  if (equity.length) secs.push({label: 'הון עצמי', keys: equity});
+  if (rest.length) secs.push({label: 'נוסף', keys: rest});
+  return secs;
+}
+
+function cashflowSections(periods) {
+  const keys = periods.length ? Object.keys(periods[0].data) : [];
+  const ops = ['Net Income', 'Depreciation Amortization Depletion', 'Depreciation And Amortization',
+    'Stock Based Compensation', 'Change In Working Capital', 'Changes In Account Receivables',
+    'Change In Inventory', 'Changes In Payable', 'Operating Cash Flow'].filter(k => keys.includes(k));
+  const inv = ['Capital Expenditure', 'Purchase Of Investment', 'Sale Of Investment',
+    'Investing Cash Flow', 'Net PPE Purchase And Sale'].filter(k => keys.includes(k));
+  const fin = ['Issuance Of Debt', 'Repayment Of Debt', 'Common Stock Issuance',
+    'Repurchase Of Capital Stock', 'Financing Cash Flow'].filter(k => keys.includes(k));
+  const fcf = ['Free Cash Flow', 'Levered Free Cash Flow'].filter(k => keys.includes(k));
+  const rest = keys.filter(k => !ops.includes(k) && !inv.includes(k) && !fin.includes(k) && !fcf.includes(k));
+
+  const secs = [];
+  if (ops.length) secs.push({label: 'תזרים תפעולי', keys: ops});
+  if (inv.length) secs.push({label: 'תזרים השקעות', keys: inv});
+  if (fin.length) secs.push({label: 'תזרים מימוני', keys: fin});
+  if (fcf.length) secs.push({label: 'תזרים חופשי', keys: fcf});
+  if (rest.length) secs.push({label: 'נוסף', keys: rest});
+  return secs;
+}
+
+/* ── KPI cards ─────────────────────────────────────────── */
+function buildKPIs(data) {
+  if (!data.income_statement || data.income_statement.length < 1) return '';
+  const cur = data.income_statement[0].data;
+  const prev = data.income_statement.length > 1 ? data.income_statement[1].data : null;
+  const rev = cur['Total Revenue'] || cur['Operating Revenue'];
+  const gross = cur['Gross Profit'];
+  const opInc = cur['Operating Income'] || cur['EBIT'];
+  const net = cur['Net Income'] || cur['Net Income Common Stockholders'];
+  const fcf = (data.cash_flow[0] || {}).data || {};
+  const fcfVal = fcf['Free Cash Flow'] || fcf['Operating Cash Flow'];
+
+  function varPct(cur_v, prev_data, key) {
+    if (!prev_data) return null;
+    const p = prev_data[key];
+    if (cur_v == null || p == null || p === 0) return null;
+    return ((cur_v - p) / Math.abs(p) * 100).toFixed(1);
+  }
+
+  const kpis = [
+    {lbl: 'הכנסות', val: fmt(rev), vp: varPct(rev, prev, 'Total Revenue') || varPct(rev, prev, 'Operating Revenue')},
+    {lbl: 'מרווח גולמי', val: pctOf(gross, rev) || '—', vp: null},
+    {lbl: 'מרווח תפעולי', val: pctOf(opInc, rev) || '—', vp: null},
+    {lbl: 'רווח נקי', val: fmt(net), vp: varPct(net, prev, 'Net Income') || varPct(net, prev, 'Net Income Common Stockholders')},
+    {lbl: 'FCF', val: fmt(fcfVal), vp: null},
+  ];
+
+  return kpis.map(k => {
+    const vNum = parseFloat(k.vp);
+    const vcls = isNaN(vNum) ? 'neu' : vNum > 0 ? 'pos' : 'neg';
+    const vStr = isNaN(vNum) ? '' : (vNum > 0 ? '+' : '') + vNum + '%';
+    return `<div class="kpi-card">
+      <div class="k-lbl">${k.lbl}</div>
+      <div class="k-val">${k.val}</div>
+      ${vStr ? `<div class="k-var ${vcls}">${vStr} YoY</div>` : ''}
+    </div>`;
+  }).join('');
+}
+
+/* ── הרכבת עמוד ─────────────────────────────────────────── */
+function render(data, period) {
+  const ac = data.analyst_context || {};
+  const company = ac.company || TICKER;
+  const sector  = ac.sector  || '';
+  const periodLabel = period === 'quarterly' ? 'רבעוני' : 'שנתי';
+
+  const ctx = ac.financials_3y && ac.financials_3y.description
+    ? `<div class="ctx-strip">
+        <div class="ctx-label">🔍 הקשר מ-Analyst</div>
+        <div class="ctx-text">${ac.financials_3y.description}</div>
+       </div>` : '';
+
+  const kpis = buildKPIs(data);
+
+  const incSecs  = incomeSections(data.income_statement);
+  const balSecs  = balanceSections(data.balance_sheet);
+  const cfSecs   = cashflowSections(data.cash_flow);
+
+  const html = `
+<div class="fs-topbar">
+  <div class="fs-title-wrap">
+    <h1>דוחות כספיים — ${company} <span style="color:var(--muted2);font-weight:400">(${TICKER})</span></h1>
+    <div class="sub">${sector} · נתונים: Yahoo Finance (yfinance) · ${new Date().toLocaleDateString('he-IL')}</div>
+  </div>
+  <div class="topbar-actions">
+    <div class="period-sel">
+      <button class="period-btn ${period==='annual'?'active':''}"
+        onclick="switchPeriod('annual')">שנתי</button>
+      <button class="period-btn ${period==='quarterly'?'active':''}"
+        onclick="switchPeriod('quarterly')">רבעוני</button>
+    </div>
+    <a class="btn-back" href="analyst.html?ticker=${TICKER}">← חזור לאנליסט</a>
+  </div>
+</div>
+
+${kpis ? `<div class="kpi-row">${kpis}</div>` : ''}
+${ctx}
+
+<div class="tabs">
+  <button class="tab-btn active" onclick="openTab(event,'tab-income')">הכנסות והוצאות</button>
+  <button class="tab-btn" onclick="openTab(event,'tab-balance')">מאזן</button>
+  <button class="tab-btn" onclick="openTab(event,'tab-cashflow')">תזרים מזומנים</button>
+</div>
+
+<div id="tab-income" class="tab-panel active">
+  ${buildTable(data.income_statement, incSecs)}
+</div>
+<div id="tab-balance" class="tab-panel">
+  ${buildTable(data.balance_sheet, balSecs)}
+</div>
+<div id="tab-cashflow" class="tab-panel">
+  ${buildTable(data.cash_flow, cfSecs)}
+</div>`;
+
+  document.getElementById('root').innerHTML = html;
+}
+
+/* ── ניהול UI ──────────────────────────────────────────── */
+function openTab(e, id) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  e.currentTarget.classList.add('active');
+  document.getElementById(id).classList.add('active');
+}
+
+function switchPeriod(p) {
+  const url = new URL(location.href);
+  url.searchParams.set('period', p);
+  location.href = url.toString();
+}
+</script>
+</body>
+</html>

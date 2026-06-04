@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>דוח אנליסט</title>
+<link rel="stylesheet" href="_shared.css">
+</head>
+<body>
+<div id="root" class="error-box">⏳ טוען…</div>
+
+<script>
+'use strict';
+const params = new URLSearchParams(location.search);
+const ticker = params.get('ticker');
+if (!ticker) {
+  document.getElementById('root').innerHTML = '<b>שגיאה:</b> חסר פרמטר טיקר.<br>פתח עם <code>?ticker=NOW</code> בסוף הכתובת.';
+} else {
+  document.title = 'אנליסט — ' + ticker;
+  const s = document.createElement('script');
+  s.src = '../analyses/' + ticker + '/analyst.js';
+  s.onload = render;
+  s.onerror = () => { document.getElementById('root').innerHTML = '<b>אין נתונים</b> עבור ' + ticker + '.<br>צפוי: <code>analyses/' + ticker + '/analyst.js</code>'; };
+  document.head.appendChild(s);
+}
+
+function h(html){const d=document.createElement('div');d.innerHTML=html;return d.firstElementChild;}
+function bcCol(v, hpct, color, yoy){
+  return `<div class="bc-col" style="height:${hpct}%;background:${color}"><span class="bc-val">${v}</span>${yoy?`<span class="bc-yoy">${yoy}</span>`:''}</div>`;
+}
+function chart(title, items, foot){
+  const max = Math.max(...items.map(i=>Math.abs(i.v)));
+  return `<div class="barchart"><div class="bc-title">${title}</div>
+    <div class="bc-plot">${items.map(i=>bcCol(i.label, Math.max(8,Math.abs(i.v)/max*100), i.color||'var(--blue)', i.yoy||'')).join('')}</div>
+    <div class="bc-axis">${items.map(i=>`<span>${i.year}</span>`).join('')}</div>
+    <div class="bc-foot">${foot||''}</div></div>`;
+}
+function hbar(label, pct, color, tag){
+  return `<div class="hbar"><div class="hb-label">${label}</div>
+    <div class="hb-track"><div class="hb-fill" style="width:${pct}%;background:${color}"></div></div>
+    <div class="hb-tag">${tag}</div></div>`;
+}
+
+function render(){
+  const d = window.AGENT_DATA;
+  if(!d){document.getElementById('root').innerHTML='נתונים ריקים';return;}
+  const root = document.getElementById('root');
+  root.className='';
+  root.innerHTML = `
+<div class="topbar tb-blue">
+  <div><h1 class="c-blue">🔍 דוח אנליסט פורנזי — ${d.company||d.ticker}</h1>
+  <div class="sub">טיקר: ${d.ticker} · ${d.sector||''}</div></div>
+  <div class="stamp">תאריך: <b>${d.date}</b><br>${d.period||''}</div>
+</div>
+<div class="wrap">
+  ${d.verification_banner?`<div class="vbanner"><b>✅ אימות מקורות:</b> ${d.verification_banner}</div>`:''}
+  ${d.crash_banner?`<div class="crashbanner"><b>${d.crash_banner.title}</b><br><span>${d.crash_banner.body}</span></div>`:''}
+
+  <div class="cards">${(d.market_cards||[]).map(c=>`<div class="card"><div class="lbl">${c.lbl}</div><div class="val ${c.color||'c-text'}">${c.val}</div><div class="sub">${c.sub||''}</div></div>`).join('')}</div>
+
+  ${d.business_model?`<div class="section">
+    <h2><span class="bar-accent" style="background:var(--blue)"></span>א.1 מודל עסקי</h2>
+    <div class="desc">${d.business_model.description}</div>
+    ${d.business_model.engines?`<div style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px">${d.business_model.engines_label||'מנועי הכנסה'}</div>
+    ${d.business_model.engines.map(e=>hbar(e.label, e.pct, e.color, `<b>${e.val}</b> · ${e.growth} <span class="dot" style="background:var(--green)"></span>`)).join('')}`:''}
+    ${d.business_model.note?`<div class="desc" style="margin-top:14px;margin-bottom:0">${d.business_model.note}</div>`:''}
+  </div>`:''}
+
+  ${d.growth?`<div class="section">
+    <h2><span class="bar-accent" style="background:var(--green)"></span>א.2 מנועי צמיחה</h2>
+    <div class="desc">${d.growth.description||''}</div>
+    <div class="statrow">${(d.growth.stats||[]).map(s=>`<div class="statbig"><div class="sb-lbl">${s.lbl}</div><div class="sb-val">${s.val}</div><div class="sb-grow">${s.growth}</div></div>`).join('')}</div>
+  </div>`:''}
+
+  ${d.financials_3y?`<div class="section">
+    <h2><span class="bar-accent" style="background:var(--purple)"></span>דשבורד פיננסי — 3 שנים</h2>
+    <div class="desc">${d.financials_3y.description||''}</div>
+    <div class="chartgrid">${(d.financials_3y.charts||[]).map(c=>chart(c.title, c.bars, c.foot)).join('')}</div>
+    ${d.financials_3y.table?`<table class="dtable" style="margin-top:18px"><thead><tr>${d.financials_3y.table.headers.map(h=>`<th>${h}</th>`).join('')}</tr></thead><tbody>${d.financials_3y.table.rows.map(r=>`<tr>${r.map((c,i)=>i===0?`<td class="metric">${c}</td>`:`<td>${c}</td>`).join('')}</tr>`).join('')}</tbody></table>`:''}
+    ${d.financials_3y.note?`<div class="desc" style="margin-top:12px;margin-bottom:0">${d.financials_3y.note}</div>`:''}
+  </div>`:''}
+
+  ${d.moat?`<div class="section">
+    <h2><span class="bar-accent" style="background:var(--gold)"></span>א.3 חפיר (יתרון תחרותי)</h2>
+    <div class="desc">${d.moat.description||''}</div>
+    ${(d.moat.items||[]).map(m=>hbar(m.label, m.score, m.color, m.tag)).join('')}
+    ${d.moat.note?`<div class="desc" style="margin-top:14px;margin-bottom:0">${d.moat.note}</div>`:''}
+  </div>`:''}
+
+  ${d.quarterly?`<div class="section">
+    <h2><span class="bar-accent" style="background:var(--blue)"></span>חלק ב — רבעון אחרון <span class="tagnum">${d.quarterly.period||''}</span></h2>
+    <div class="desc">${d.quarterly.description||''}</div>
+    ${d.quarterly.cards?`<div class="cards" style="margin-bottom:0">${d.quarterly.cards.map(c=>`<div class="card"><div class="lbl">${c.lbl}</div><div class="val ${c.color||'c-text'}">${c.val}</div><div class="sub">${c.sub||''}</div></div>`).join('')}</div>`:''}
+    ${d.quarterly.note?`<div class="desc" style="margin-top:14px;margin-bottom:0">${d.quarterly.note}</div>`:''}
+  </div>`:''}
+
+  ${d.stress_test?`<div class="section">
+    <h2><span class="bar-accent" style="background:var(--purple)"></span>א.4 מבחן לחץ מוסדי <span class="tagnum">· ניקוד מתוך 50</span></h2>
+    ${(d.stress_test.categories||[]).map(c=>hbar(c.label, c.score*10, c.color, `<b>${c.score}</b>/10 ${c.icon||''}`)).join('')}
+    <div style="display:flex;align-items:center;gap:14px;margin-top:16px;padding:14px 18px;background:var(--surface);border-radius:10px;border:1px solid rgba(46,204,113,.25)">
+      <div style="font-size:30px;font-weight:800;color:var(--green)">${d.stress_test.total}</div>
+      <div style="font-size:13px;color:var(--muted2);line-height:1.6">${d.stress_test.summary}</div>
+    </div>
+  </div>`:''}
+
+  ${d.red_flags?`<div class="section">
+    <h2><span class="bar-accent" style="background:var(--red)"></span>א.5 דגלים פורנזיים</h2>
+    ${d.red_flags.map(f=>`<div class="flag ${f.severity}"><div class="rank">${f.rank}</div><div class="body"><h3>${f.title}</h3><p>${f.body}</p></div></div>`).join('')}
+  </div>`:''}
+
+  ${d.valuation?`<div class="section">
+    <h2><span class="bar-accent" style="background:var(--orange)"></span>ג.4 מסגרת שווי</h2>
+    <div class="desc">${d.valuation.description||''}</div>
+    <div class="scen">
+      <div class="scen-bar"><div class="sc-price c-red">${d.valuation.bear.price}</div><div class="sc-fill" style="height:${d.valuation.bear.height}%;background:var(--red)">${d.valuation.bear.pct}</div><div class="sc-lbl c-red">🔴 דובי</div><div class="sc-sub">${d.valuation.bear.sub}</div></div>
+      <div class="scen-bar"><div class="sc-price c-yellow">${d.valuation.base.price}</div><div class="sc-fill" style="height:${d.valuation.base.height}%;background:var(--yellow)">${d.valuation.base.pct}</div><div class="sc-lbl c-yellow">🟡 בסיס</div><div class="sc-sub">${d.valuation.base.sub}</div></div>
+      <div class="scen-bar"><div class="sc-price c-green">${d.valuation.bull.price}</div><div class="sc-fill" style="height:${d.valuation.bull.height}%;background:var(--green)">${d.valuation.bull.pct}</div><div class="sc-lbl c-green">🟢 שורי</div><div class="sc-sub">${d.valuation.bull.sub}</div></div>
+    </div>
+    <div class="curline">${d.valuation.curline}</div>
+    <div class="desc" style="margin-top:14px;margin-bottom:0">${d.valuation.note||''}</div>
+  </div>`:''}
+
+  ${d.final?`<div class="verdict green">
+    <span class="tag">ג.8 שיפוט איכות סופי</span>
+    <h2>${d.final.headline}</h2>
+    ${(d.final.paragraphs||[]).map(p=>`<p>${p}</p>`).join('')}
+    <div class="scorecard">${(d.final.scorecard||[]).map(s=>`<div class="scoreitem"><div class="si-lbl">${s.lbl}</div><div class="si-val ${s.color||'c-green'}">${s.val}</div></div>`).join('')}</div>
+    ${d.final.handoff?`<div class="handoff"><b>📤 HANDOFF לעורך הדין השטן</b><br>${d.final.handoff}</div>`:''}
+  </div>`:''}
+</div>
+<div class="footer">${d.footer||''}
+${d.disclaimer?`<div class="disclaimer">⚠️ <b>הסתייגות:</b> ${d.disclaimer}</div>`:''}
+</div>`;
+}
+</script>
+</body>
+</html>

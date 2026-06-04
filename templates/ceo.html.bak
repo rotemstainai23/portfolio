@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CEO</title>
+<link rel="stylesheet" href="_shared.css">
+<style>
+.minibar{height:7px;background:var(--border2);border-radius:4px;overflow:hidden;margin-top:6px}
+.minifill{height:100%;border-radius:4px}
+.bias{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.biascard{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px;border-top:3px solid var(--green)}
+.biascard.warn{border-top-color:var(--yellow)}
+.biascard h4{font-size:13px;color:var(--text);margin-bottom:5px}
+.biascard p{font-size:11.5px;color:var(--muted2);line-height:1.55}
+.opp{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:15px;margin-bottom:10px}
+.opp h4{font-size:13px;color:var(--text);margin-bottom:5px}
+.opp .rank{display:inline-block;background:rgba(77,166,255,.13);color:var(--blue);font-size:10px;font-weight:800;padding:2px 8px;border-radius:6px;margin-left:8px}
+.opp p{font-size:11.5px;color:var(--muted2);line-height:1.55}
+.flag-line{background:var(--surface);border-radius:10px;padding:12px 16px;margin-bottom:9px;border-right:4px solid var(--yellow);font-size:12.5px;color:var(--muted2);line-height:1.6}
+.flag-line b{color:var(--text)}
+</style>
+</head>
+<body>
+<div id="root" class="error-box">⏳ טוען…</div>
+<script>
+'use strict';
+const params=new URLSearchParams(location.search);const ticker=params.get('ticker');
+if(!ticker){document.getElementById('root').innerHTML='<b>שגיאה:</b> חסר טיקר.';}
+else{document.title='CEO — '+ticker;const s=document.createElement('script');s.src='../analyses/'+ticker+'/ceo.js';s.onload=render;s.onerror=()=>{document.getElementById('root').innerHTML='<b>אין נתונים</b> ל-'+ticker;};document.head.appendChild(s);}
+function render(){const d=window.AGENT_DATA;if(!d)return;const root=document.getElementById('root');root.className='';
+root.innerHTML=`
+<div class="topbar tb-blue">
+  <div><h1 class="c-blue">👔 CEO — ${d.company||d.ticker}</h1>
+  <div class="sub">אדריכל תיק · האם זה משפר את התיק כולו</div></div>
+  <div class="stamp">תאריך: <b>${d.date}</b><br>חוליה 3 בשרשרת</div>
+</div>
+<div class="wrap">
+  ${d.inherited?`<div class="inherit">
+    <div class="ih-title">① אימות קלטים</div>
+    ${d.inherited.map(i=>`<div class="ih-r"><span>${i.icon}</span><span class="tx">${i.text}</span></div>`).join('')}
+  </div>`:''}
+
+  ${d.layer_fit?`<div class="section">
+    <h2><span class="bar-accent" style="background:var(--blue)"></span>② התאמה לתיק — שכבה והקצאה</h2>
+    <div class="desc">${d.layer_fit.description||''}</div>
+    <table class="dtable"><thead><tr>${d.layer_fit.headers.map(h=>`<th>${h}</th>`).join('')}</tr></thead>
+    <tbody>${d.layer_fit.rows.map(r=>`<tr><td>${r.layer}</td><td><b>${r.current}</b></td><td>${r.target}</td><td><span class="status-pill ${r.status_class}">${r.status}</span></td><td class="${r.impact_color||''}">${r.impact}</td></tr>`).join('')}</tbody></table>
+    ${d.layer_fit.note?`<div class="desc" style="margin-top:14px;margin-bottom:0">${d.layer_fit.note}</div>`:''}
+  </div>`:''}
+
+  ${d.concentration?`<div class="section">
+    <h2><span class="bar-accent" style="background:var(--orange)"></span>③ סיכון ריכוז — חפיפה תמטית</h2>
+    <div class="desc">${d.concentration.description||''}</div>
+    ${d.concentration.flags.map(f=>`<div class="flag-line">${f}</div>`).join('')}
+    ${d.concentration.note?`<div class="desc" style="margin-top:14px;margin-bottom:0">${d.concentration.note}</div>`:''}
+  </div>`:''}
+
+  ${d.opportunity_cost?`<div class="section">
+    <h2><span class="bar-accent" style="background:var(--purple)"></span>④ עלות הזדמנות — מי השימוש הכי טוב</h2>
+    ${d.opportunity_cost.options.map(o=>`<div class="opp"><h4>${o.title}${o.recommended?'<span class="rank">המומלצת</span>':''}</h4><p>${o.body}</p></div>`).join('')}
+    ${d.opportunity_cost.verdict?`<div class="desc" style="margin-top:8px;margin-bottom:0">${d.opportunity_cost.verdict}</div>`:''}
+  </div>`:''}
+
+  ${d.behavioral?`<div class="section">
+    <h2><span class="bar-accent" style="background:var(--red)"></span>⑤ ביקורת הטיות התנהגותיות</h2>
+    <div class="bias">${d.behavioral.biases.map(b=>`<div class="biascard ${b.warn?'warn':''}"><h4>${b.title}</h4><p>${b.body}</p></div>`).join('')}</div>
+    ${d.behavioral.circuit_breaker?`<div class="desc" style="margin-top:14px;margin-bottom:0">${d.behavioral.circuit_breaker}</div>`:''}
+  </div>`:''}
+
+  ${d.position_size?`<div class="section">
+    <h2><span class="bar-accent" style="background:var(--green)"></span>⑥ מנוע גודל פוזיציה</h2>
+    <div class="desc">${d.position_size.description||''}</div>
+    <table class="dtable"><thead><tr><th>אילוץ</th><th>ערך</th><th>הערה</th></tr></thead>
+    <tbody>${d.position_size.constraints.map(c=>`<tr><td>${c.constraint}</td><td>${c.value}</td><td>${c.note}</td></tr>`).join('')}</tbody></table>
+  </div>`:''}
+
+  ${d.verdict?`<div class="verdict ${d.verdict.style||'yellow'}">
+    <span class="tag">⑦ פסיקת CEO סופית</span>
+    <h2>${d.verdict.headline}</h2>
+    ${d.verdict.paragraphs.map(p=>`<p>${p}</p>`).join('')}
+    <div class="scorebig">${d.verdict.scoreboxes.map(s=>`<div class="scorebox"><div class="sb-lbl">${s.lbl}</div><div class="sb-num ${s.color}" style="font-size:${s.size||'20'}px">${s.val}</div></div>`).join('')}</div>
+    ${d.verdict.handoff?`<div class="handoff"><b>📤 HANDOFF ל-Executor</b><br>${d.verdict.handoff}</div>`:''}
+  </div>`:''}
+</div>
+<div class="footer">${d.footer||''}</div>`;}
+</script>
+</body>
+</html>

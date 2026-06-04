@@ -1,0 +1,34 @@
+{
+  "ticker": "ROCK",
+  "agent": "ic",
+  "date": "2026-06-01",
+  "verdict": "WAIT",
+  "score": 4,
+  "thesis": "Gibraltar Industries ביצעה הימור ממונף ענק (OmniMax $1.335B, leverage 3.9x, $20M מזומן) בשוק דיור שטרם התאושש. R/R 0.71:1 בתרחיש בסיס, מבנה תיק אוסר כניסה (ספקולציה 16.3%), ו-EBITDA OmniMax לא מאומת עצמאית. WAIT עד קיצוץ IBIT + Q2 2026.",
+  "key_risks": [
+    "OmniMax EBITDA לא מאומת עצמאית — חברה פרטית; 25% overstated = leverage 4.5x וimpairment מיידי",
+    "Covenant breach: EBITDA miss 31% → Net Leverage >5.25x → equity כמעט אפס",
+    "מבנה תיק: ספקולציה 16.3% vs. יעד 5-10%; IBIT חייבת לרדת ל-4% לפני כל כניסה חדשה",
+    "R/R 0.71:1 — מתחת לסף מינימלי 2:1; entry אטרקטיבי אמיתי: $26-28",
+    "כל פלח אורגני יורד; guidance embeds +4-5% housing growth שQ1 2026 כבר הפריך"
+  ],
+  "position_size_pct": 0,
+  "valuation_summary": "שווי הוגן בסיס $50 (+30%), שורי $83 (+112%), דובי $13-22 (-43-66%). Entry אטרקטיבי לR/R 2:1: $26-28. כרגע $38.65 = הוגן לבסיס בלבד.",
+  "entry_exit_plan": "0% כרגע. תנאים: (1) קיצוץ IBIT ל-4%, (2) Q2 2026 EBITDA ≥$90M + Gross Margin >24% + FCF חיובי, (3) מחיר ≤$35 עדיף (≤$28 אופטימלי). גודל לאחר תנאים: 1-1.5%. Stop: $25 (leverage escalation).",
+  "handoff_summary": "ועדת ההשקעות פוסקת WAIT פה אחד. ארבעת הסוכנים הגיעו לאותה מסקנה בדרכים שונות. זוהתה נקודה עיוורת משותפת: כל הניתוח מבוסס על EBITDA OmniMax $110-120M שלא אומת עצמאית (חברה פרטית). R/R נוכחי 0.71:1. מבנה תיק אוסר כניסה (ספקולציה 16.3%). פעולה מיידית: קיצוץ IBIT מ-10% ל-4%. בדיקה מחודשת: אוגוסט 2026 עם Q2 results.",
+  "visual_scores": {
+    "risk_reward": {
+      "current_price": 38.65,
+      "fair_value": 50.5,
+      "trigger_price": 35.0,
+      "stop_price": 25.0,
+      "tp1_price": 52.0
+    },
+    "agent_scores": {
+      "analyst_score_0_10": 6,
+      "devils_risk_0_10": 7,
+      "ceo_conviction_0_10": 4,
+      "executor_quality_0_10": null
+    }
+  }
+}

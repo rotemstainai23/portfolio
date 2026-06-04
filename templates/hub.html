@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>מרכז ניתוח השקעות</title>
+<link rel="stylesheet" href="_shared.css">
+<link rel="stylesheet" href="_redesign.css">
+<style>
+/* ===== Cinematic Overlay ===== */
+#cinema-overlay{
+  position:fixed;inset:0;z-index:9999;
+  background:#080d1a;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;
+  animation:cinemaExit .7s cubic-bezier(.4,0,.2,1) 1.5s forwards;
+  pointer-events:auto;
+}
+.co-tag{
+  font-size:11px;font-weight:800;letter-spacing:3px;text-transform:uppercase;
+  color:var(--brand-purple);opacity:.8;
+}
+.co-logo{
+  font-size:clamp(28px,5vw,48px);font-weight:900;letter-spacing:-1.5px;
+  background:var(--grad-brand);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  text-align:center;
+}
+.co-tagline{
+  font-size:14px;color:var(--muted2);font-weight:500;letter-spacing:.5px;
+}
+.co-bar{
+  width:220px;height:2px;background:rgba(255,255,255,.08);border-radius:2px;overflow:hidden;margin-top:8px;
+}
+.co-bar-fill{
+  height:100%;background:var(--grad-brand);border-radius:2px;
+  animation:coBarFill 1.3s cubic-bezier(.4,0,.2,1) .1s forwards;width:0;
+}
+
+/* ===== Topbar ===== */
+.hub-topbar{
+  padding:16px 32px 0;
+}
+.hub-topbar-inner{
+  padding:16px 24px;display:flex;align-items:center;gap:14px;margin-bottom:24px;
+  border-radius:20px;
+}
+.hub-title{
+  font-size:clamp(18px,2.5vw,26px);font-weight:900;letter-spacing:-.5px;
+  background:var(--grad-brand);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+}
+.hub-subtitle{font-size:12px;color:var(--muted2);margin-top:3px}
+
+.live-indicator{
+  display:flex;align-items:center;gap:7px;
+  font-size:11px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;
+  color:var(--sig-good);margin-left:auto;
+}
+.live-dot{
+  width:8px;height:8px;border-radius:50%;background:var(--sig-good);flex-shrink:0;
+  animation:livePulse 2s ease infinite;
+}
+.live-time{
+  font-family:'Fira Code',monospace;color:var(--muted2);font-weight:600;
+  font-size:11px;letter-spacing:0;text-transform:none;margin-right:4px;
+}
+.hub-back{
+  display:flex;align-items:center;gap:7px;padding:8px 15px;border-radius:12px;
+  background:var(--glass-2);border:1px solid var(--glass-border);color:var(--muted2);
+  text-decoration:none;font-size:12px;font-weight:700;flex-shrink:0;
+  transition:background var(--dur),color var(--dur);
+}
+.hub-back:hover{background:var(--brand-purple-soft);color:var(--brand-purple)}
+
+/* ===== KPI Stats ===== */
+.hub-stats{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:12px;padding:0 32px;margin-bottom:28px;
+}
+.hub-stat{
+  background:var(--glass);backdrop-filter:blur(30px);border:1px solid var(--glass-border);
+  border-radius:18px;padding:18px 20px;
+  transition:transform var(--dur) var(--ease),box-shadow var(--dur) var(--ease);
+}
+.hub-stat:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.hs-val{
+  font-size:26px;font-weight:900;font-family:'Fira Code',monospace;color:var(--text);
+  min-height:32px;
+}
+.hs-lbl{font-size:10px;color:var(--muted2);margin-top:6px;font-weight:700;letter-spacing:.5px;text-transform:uppercase}
+.hs-change{
+  font-size:12px;font-weight:700;margin-top:8px;
+  display:inline-flex;align-items:center;gap:4px;padding:3px 9px;border-radius:8px;
+}
+.hs-change.up{background:var(--sig-good-soft);color:var(--sig-good)}
+.hs-change.down{background:var(--sig-bad-soft);color:var(--sig-bad)}
+.hs-change.flat{background:var(--sig-warn-soft);color:var(--sig-warn)}
+
+/* ===== Heatmap ===== */
+.heatmap-section{margin-bottom:28px}
+.hub-section-title{
+  font-size:11px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;
+  color:var(--brand-purple);padding:0 32px;margin-bottom:14px;
+  display:flex;align-items:center;gap:10px;
+}
+.hub-section-title::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,var(--glass-border),transparent)}
+.heatmap-container{
+  margin:0 32px;border-radius:20px;overflow:hidden;
+  background:var(--glass);backdrop-filter:blur(30px);border:1px solid var(--glass-border);
+  position:relative;
+}
+#portfolio-heatmap{display:block;width:100%;height:260px}
+.hm-tooltip{
+  position:fixed;z-index:100;pointer-events:none;
+  background:rgba(8,13,26,.92);backdrop-filter:blur(20px);
+  border:1px solid var(--glass-border-strong);border-radius:14px;
+  padding:12px 16px;min-width:160px;
+  opacity:0;transition:opacity .15s var(--ease);
+  box-shadow:var(--shadow-lg);
+}
+.hm-tooltip.visible{opacity:1}
+.hmt-sym{font-size:18px;font-weight:900;font-family:'Fira Code',monospace;color:var(--text);margin-bottom:4px}
+.hmt-name{font-size:11px;color:var(--muted2);margin-bottom:8px}
+.hmt-row{display:flex;justify-content:space-between;align-items:center;gap:16px;font-size:12px;margin-bottom:3px}
+.hmt-lbl{color:var(--muted2);font-weight:600}
+.hmt-val{font-weight:800;font-family:'Fira Code',monospace;color:var(--text)}
+
+/* ===== Ticker Grid ===== */
+.ticker-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
+  gap:16px;padding:0 32px 40px;
+}
+.ticker-card{
+  position:relative;border-radius:22px;overflow:hidden;cursor:pointer;
+  background:var(--glass);backdrop-filter:blur(34px) saturate(170%);
+  border:1px solid var(--glass-border);
+  box-shadow:var(--shadow-md),inset 0 1px 0 var(--glass-hi);
+  transition:transform var(--dur) var(--ease),box-shadow var(--dur) var(--ease),border-color var(--dur) var(--ease);
+  text-decoration:none;color:inherit;display:block;
+}
+.ticker-card:nth-child(1){animation:fadeInUp .5s var(--ease) 0ms both}
+.ticker-card:nth-child(2){animation:fadeInUp .5s var(--ease) 60ms both}
+.ticker-card:nth-child(3){animation:fadeInUp .5s var(--ease) 120ms both}
+.ticker-card:nth-child(4){animation:fadeInUp .5s var(--ease) 180ms both}
+.ticker-card:nth-child(5){animation:fadeInUp .5s var(--ease) 240ms both}
+.ticker-card:nth-child(n+6){animation:fadeInUp .5s var(--ease) 300ms both}
+.ticker-card:hover{
+  transform:translateY(-6px) scale(1.01);
+  border-color:var(--glass-border-strong);
+  box-shadow:var(--shadow-lg),0 0 30px rgba(139,92,246,.2);
+}
+.ticker-card::before{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(220px circle at var(--mx,50%) var(--my,30%),rgba(139,92,246,.12),transparent 70%);
+  opacity:0;transition:opacity .3s var(--ease);
+}
+.ticker-card:hover::before{opacity:1}
+
+/* accent bar */
+.tc-accent{height:3px;width:100%}
+.tc-accent.green{background:var(--grad-good)}
+.tc-accent.red{background:var(--grad-bad)}
+.tc-accent.warn{background:var(--grad-warn)}
+.tc-accent.neutral{background:var(--grad-brand)}
+
+.tc-body{padding:18px 20px 14px}
+
+/* top row: symbol + ring */
+.tc-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:12px;gap:8px}
+.tc-left{flex:1;min-width:0}
+.tc-symbol{font-size:24px;font-weight:900;font-family:'Fira Code',monospace;letter-spacing:-1px;color:var(--text)}
+.tc-name{font-size:11px;color:var(--muted2);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:160px}
+
+/* AI badge */
+.tc-ai{
+  display:inline-flex;align-items:center;gap:4px;
+  font-size:9.5px;font-weight:800;letter-spacing:.5px;
+  color:var(--brand-purple);background:var(--brand-purple-soft);
+  border:1px solid rgba(139,92,246,.25);border-radius:6px;
+  padding:2px 7px;margin-top:5px;
+  animation:aiGlow 3s ease infinite;
+}
+
+/* score ring mini */
+.tc-ring-wrap{flex-shrink:0;display:flex;flex-direction:column;align-items:center;gap:3px}
+.tc-ring{width:38px;height:38px}
+.tc-ring svg{width:100%;height:100%;transform:rotate(-90deg)}
+.tc-ring-track{fill:none;stroke:rgba(255,255,255,.07);stroke-width:5;stroke-linecap:round}
+.tc-ring-fill{fill:none;stroke-width:5;stroke-linecap:round;stroke-dasharray:0 100;transition:stroke-dasharray 1s var(--ease-bounce) .3s}
+.tc-ring-fill.good{stroke:#34d399}
+.tc-ring-fill.warn{stroke:#fbbf24}
+.tc-ring-fill.bad{stroke:#fb7185}
+.tc-ring-fill.neutral{stroke:rgba(139,92,246,.5)}
+.tc-ring-lbl{font-size:9px;color:var(--muted2);font-weight:700;letter-spacing:.3px;text-align:center}
+
+/* signal badge */
+.tc-signal{
+  font-size:10.5px;font-weight:800;padding:4px 10px;border-radius:16px;
+  letter-spacing:.3px;white-space:nowrap;border:1px solid transparent;display:inline-block;margin-top:6px;
+}
+.tc-signal.good{background:var(--sig-good-soft);color:var(--sig-good);border-color:rgba(52,211,153,.25)}
+.tc-signal.bad{background:var(--sig-bad-soft);color:var(--sig-bad);border-color:rgba(251,113,133,.25)}
+.tc-signal.warn{background:var(--sig-warn-soft);color:var(--sig-warn);border-color:rgba(251,191,36,.25)}
+.tc-signal.neutral{background:var(--glass-2);color:var(--muted2)}
+
+/* price row */
+.tc-price{font-size:26px;font-weight:900;font-family:'Fira Code',monospace;color:var(--text);margin-bottom:2px}
+.tc-change{font-size:12px;font-weight:700;display:inline-flex;align-items:center;gap:4px;margin-bottom:10px}
+.tc-change.up{color:var(--sig-good)}.tc-change.down{color:var(--sig-bad)}.tc-change.flat{color:var(--sig-warn)}
+
+/* conviction bar */
+.tc-conv-wrap{margin-bottom:14px}
+.tc-conv-lbl{font-size:9.5px;color:var(--muted2);font-weight:700;letter-spacing:.4px;text-transform:uppercase;margin-bottom:5px}
+.tc-conv-track{height:4px;background:rgba(255,255,255,.06);border-radius:4px;overflow:hidden}
+.tc-conv-fill{
+  height:100%;border-radius:4px;
+  width:0;animation:convBar .9s var(--ease-bounce) .5s forwards;
+}
+.tc-conv-fill.good{background:linear-gradient(90deg,#34d399,#6ee7b7)}
+.tc-conv-fill.warn{background:linear-gradient(90deg,#fbbf24,#fde68a)}
+.tc-conv-fill.bad{background:linear-gradient(90deg,#fb7185,#fca5a5)}
+.tc-conv-fill.neutral{background:linear-gradient(90deg,var(--brand-purple),#a78bfa)}
+
+/* links */
+.tc-links{display:flex;gap:7px;flex-wrap:wrap;border-top:1px solid var(--glass-border);padding-top:12px}
+.tc-link{
+  display:flex;align-items:center;gap:5px;padding:5px 11px;border-radius:9px;
+  font-size:11px;font-weight:700;text-decoration:none;
+  background:var(--glass-2);border:1px solid var(--glass-border);color:var(--muted2);
+  transition:background var(--dur),color var(--dur),transform .2s var(--ease-bounce);
+}
+.tc-link:hover{transform:scale(1.06)}
+.tc-link.analyst:hover{background:rgba(96,165,250,.14);color:var(--blue)}
+.tc-link.devils:hover{background:var(--sig-bad-soft);color:var(--sig-bad)}
+.tc-link.ceo:hover{background:rgba(139,92,246,.18);color:var(--brand-purple)}
+.tc-link.ic:hover{background:var(--sig-good-soft);color:var(--sig-good)}
+
+/* loading */
+.hub-loading{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  min-height:300px;gap:16px;color:var(--muted2);font-size:14px;grid-column:1/-1;
+}
+.hub-spinner{
+  width:40px;height:40px;border-radius:50%;
+  border:3px solid var(--glass-border);border-top-color:var(--brand-purple);
+  animation:spin .8s linear infinite;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* empty state */
+.hub-empty{text-align:center;padding:60px 32px;color:var(--muted2);grid-column:1/-1}
+.hub-empty p{font-size:14px;line-height:1.8}
+
+@media(max-width:760px){
+  .hub-topbar,.hub-stats,.hub-section-title,.ticker-grid{padding-right:14px;padding-left:14px}
+  .heatmap-container{margin:0 14px}
+  .ticker-grid{grid-template-columns:1fr}
+  #portfolio-heatmap{height:200px}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== Cinematic Overlay ===== -->
+<div id="cinema-overlay" aria-hidden="true">
+  <div class="co-tag">Investment Intelligence Platform</div>
+  <div class="co-logo">Portfolio AI</div>
+  <div class="co-tagline">מערכת ניתוח השקעות מבוססת AI</div>
+  <div class="co-bar"><div class="co-bar-fill"></div></div>
+</div>
+
+<!-- ===== Topbar ===== -->
+<div class="hub-topbar">
+  <div class="hub-topbar-inner topbar glass">
+    <div style="flex:1;min-width:0">
+      <div class="hub-title">מרכז ניתוח השקעות</div>
+      <div class="hub-subtitle" id="hub-sub">טוען נתוני תיק…</div>
+    </div>
+    <div class="live-indicator">
+      <span class="live-dot"></span>
+      LIVE
+      <span class="live-time" id="live-time"></span>
+    </div>
+    <a href="/" class="hub-back">← דשבורד ראשי</a>
+  </div>
+</div>
+
+<!-- ===== KPI Stats ===== -->
+<div class="hub-stats" id="hub-stats" style="display:none"></div>
+
+<!-- ===== Portfolio Heatmap ===== -->
+<div class="heatmap-section" id="heatmap-section" style="display:none">
+  <div class="hub-section-title">מפת תיק ההשקעות</div>
+  <div class="heatmap-container">
+    <svg id="portfolio-heatmap" preserveAspectRatio="none"></svg>
+    <div id="heatmap-tooltip" class="hm-tooltip"></div>
+  </div>
+</div>
+
+<!-- ===== Ticker Grid ===== -->
+<div class="hub-section-title" id="hub-sec-title" style="display:none">מניות בתיק</div>
+<div class="ticker-grid" id="ticker-grid">
+  <div class="hub-loading">
+    <div class="hub-spinner"></div>
+    <span>טוען נתוני תיק…</span>
+  </div>
+</div>
+
+<script>
+'use strict';
+
+/* ---- עוזרים ---- */
+function sigClass(verdict) {
+  if (!verdict) return 'neutral';
+  const v = verdict.toString().toLowerCase();
+  if (/buy|strong|חזק|קנ|invest|yes/i.test(v)) return 'good';
+  if (/sell|avoid|לא|no|red/i.test(v)) return 'bad';
+  if (/hold|wait|watch|yellow|שמור/i.test(v)) return 'warn';
+  return 'neutral';
+}
+
+function sigLabel(verdict) {
+  if (!verdict) return 'אין נתון';
+  const v = verdict.toString();
+  return v.length > 18 ? v.slice(0, 18) + '…' : v;
+}
+
+function fmtPct(n) {
+  if (n == null) return '';
+  return (n >= 0 ? '+' : '') + n.toFixed(2) + '%';
+}
+
+function changeClass(n) {
+  if (n == null) return 'flat';
+  return n > 0 ? 'up' : n < 0 ? 'down' : 'flat';
+}
+
+/* ---- Counter Animation ---- */
+function animateCounter(el, target, prefix, suffix, decimals, duration) {
+  prefix = prefix || '';
+  suffix = suffix || '';
+  decimals = decimals || 0;
+  duration = duration || 1400;
+  const start = performance.now();
+  const step = (now) => {
+    const t = Math.min((now - start) / duration, 1);
+    const ease = 1 - Math.pow(1 - t, 3);
+    el.textContent = prefix + (target * ease).toFixed(decimals) + suffix;
+    if (t < 1) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+}
+
+/* ---- Live Clock ---- */
+function startClock() {
+  const el = document.getElementById('live-time');
+  const tick = () => {
+    const now = new Date();
+    const h = String(now.getHours()).padStart(2, '0');
+    const m = String(now.getMinutes()).padStart(2, '0');
+    const s = String(now.getSeconds()).padStart(2, '0');
+    el.textContent = h + ':' + m + ':' + s;
+  };
+  tick();
+  setInterval(tick, 1000);
+}
+
+/* ---- Heatmap Color ---- */
+function pnlColor(pct) {
+  if (pct == null) return 'rgba(139,92,246,.4)';
+  const clamped = Math.max(-20, Math.min(20, pct));
+  if (clamped >= 0) {
+    const t = clamped / 20;
+    const r = Math.round(59 + (52 - 59) * t);
+    const g = Math.round(130 + (211 - 130) * t);
+    const b = Math.round(246 + (153 - 246) * t);
+    return `rgba(${r},${g},${b},${.55 + t * .35})`;
+  } else {
+    const t = Math.abs(clamped) / 20;
+    const r = Math.round(59 + (251 - 59) * t);
+    const g = Math.round(130 + (113 - 130) * t);
+    const b = Math.round(246 + (133 - 246) * t);
+    return `rgba(${r},${g},${b},${.55 + t * .35})`;
+  }
+}
+
+/* ---- Treemap (slice-and-dice) ---- */
+function sliceDice(items, x, y, w, h, horiz) {
+  const total = items.reduce((s, d) => s + d.value, 0);
+  if (total === 0) return [];
+  const rects = [];
+  let offset = 0;
+  items.forEach(d => {
+    const ratio = d.value / total;
+    if (horiz) {
+      rects.push({ ...d, x: x + offset, y, w: w * ratio, h });
+      offset += w * ratio;
+    } else {
+      rects.push({ ...d, x, y: y + offset, w, h: h * ratio });
+      offset += h * ratio;
+    }
+  });
+  return rects;
+}
+
+function buildHeatmap(holdings) {
+  const svg = document.getElementById('portfolio-heatmap');
+  const tooltip = document.getElementById('heatmap-tooltip');
+  const bbox = svg.parentElement.getBoundingClientRect();
+  const W = bbox.width || 800;
+  const H = 260;
+  svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+
+  const data = holdings
+    .filter(h => (h.market_value || 0) > 0)
+    .map(h => ({
+      sym: h.symbol,
+      name: h.name || h.symbol,
+      value: h.market_value || 0,
+      pnl: h.pnl || 0,
+      pnlPct: h.market_value > 0 ? (h.pnl / (h.market_value - h.pnl)) * 100 : 0,
+      price: h.current_price || h.buy_price || 0,
+      change: h.day_change_pct || null,
+    }))
+    .sort((a, b) => b.value - a.value);
+
+  if (data.length === 0) return;
+
+  const rects = sliceDice(data, 2, 2, W - 4, H - 4, W >= H);
+  const pad = 2;
+
+  rects.forEach((d, i) => {
+    const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+    g.style.cursor = 'pointer';
+    g.style.animation = `heatCell .4s var(--ease) ${i * 55}ms both`;
+
+    const rx = Math.max(0, d.x + pad);
+    const ry = Math.max(0, d.y + pad);
+    const rw = Math.max(0, d.w - pad * 2);
+    const rh = Math.max(0, d.h - pad * 2);
+
+    const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+    rect.setAttribute('x', rx);
+    rect.setAttribute('y', ry);
+    rect.setAttribute('width', rw);
+    rect.setAttribute('height', rh);
+    rect.setAttribute('rx', 10);
+    rect.setAttribute('fill', pnlColor(d.pnlPct));
+    rect.setAttribute('stroke', 'rgba(255,255,255,.08)');
+    rect.setAttribute('stroke-width', '1');
+
+    const labelSize = Math.min(rw / 3.5, rh / 2.2, 22);
+    const showLabel = rw > 48 && rh > 30;
+    const showPct = rw > 60 && rh > 50;
+
+    if (showLabel) {
+      const sym = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+      sym.setAttribute('x', rx + rw / 2);
+      sym.setAttribute('y', ry + rh / 2 + (showPct ? -6 : labelSize / 3));
+      sym.setAttribute('text-anchor', 'middle');
+      sym.setAttribute('dominant-baseline', 'middle');
+      sym.setAttribute('font-family', "'Fira Code', monospace");
+      sym.setAttribute('font-size', Math.max(10, labelSize));
+      sym.setAttribute('font-weight', '900');
+      sym.setAttribute('fill', 'rgba(255,255,255,.95)');
+      sym.textContent = d.sym;
+      g.appendChild(sym);
+
+      if (showPct) {
+        const pctTxt = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        pctTxt.setAttribute('x', rx + rw / 2);
+        pctTxt.setAttribute('y', ry + rh / 2 + labelSize * .9);
+        pctTxt.setAttribute('text-anchor', 'middle');
+        pctTxt.setAttribute('dominant-baseline', 'middle');
+        pctTxt.setAttribute('font-family', "'Fira Code', monospace");
+        pctTxt.setAttribute('font-size', Math.max(8, labelSize * .58));
+        pctTxt.setAttribute('font-weight', '700');
+        pctTxt.setAttribute('fill', d.pnlPct >= 0 ? 'rgba(52,211,153,.9)' : 'rgba(251,113,133,.9)');
+        pctTxt.textContent = (d.pnlPct >= 0 ? '+' : '') + d.pnlPct.toFixed(1) + '%';
+        g.appendChild(pctTxt);
+      }
+    }
+
+    g.appendChild(rect);
+    if (showLabel) {
+      g.appendChild(g.children[0]);
+      if (showPct) g.appendChild(g.children[0]);
+    }
+
+    /* hover tooltip */
+    g.addEventListener('mouseenter', (e) => {
+      tooltip.innerHTML = `
+        <div class="hmt-sym">${d.sym}</div>
+        <div class="hmt-name">${d.name}</div>
+        <div class="hmt-row"><span class="hmt-lbl">מחיר</span><span class="hmt-val">$${d.price.toFixed(2)}</span></div>
+        <div class="hmt-row"><span class="hmt-lbl">שווי</span><span class="hmt-val">$${d.value.toFixed(0)}</span></div>
+        <div class="hmt-row"><span class="hmt-lbl">P&L</span><span class="hmt-val" style="color:${d.pnl>=0?'var(--sig-good)':'var(--sig-bad)'}">${d.pnl>=0?'+':''}$${d.pnl.toFixed(0)} (${d.pnlPct>=0?'+':''}${d.pnlPct.toFixed(1)}%)</span></div>
+        ${d.change!=null?`<div class="hmt-row"><span class="hmt-lbl">היום</span><span class="hmt-val" style="color:${d.change>=0?'var(--sig-good)':'var(--sig-bad)'}">${d.change>=0?'▲':'▼'} ${Math.abs(d.change).toFixed(2)}%</span></div>`:''}
+      `;
+      tooltip.classList.add('visible');
+    });
+
+    g.addEventListener('mousemove', (e) => {
+      const vw = window.innerWidth;
+      let lx = e.clientX + 16;
+      if (lx + 180 > vw) lx = e.clientX - 196;
+      tooltip.style.left = lx + 'px';
+      tooltip.style.top = (e.clientY - 60) + 'px';
+    });
+
+    g.addEventListener('mouseleave', () => tooltip.classList.remove('visible'));
+    g.addEventListener('click', () => { location.href = 'analyst.html?ticker=' + d.sym; });
+
+    svg.appendChild(g);
+  });
+
+  document.getElementById('heatmap-section').style.display = '';
+}
+
+/* ---- Score Ring ---- */
+function ringFill(sig) {
+  const map = { good: 85, warn: 55, bad: 22, neutral: 0 };
+  const pct = map[sig] || 0;
+  const circ = 2 * Math.PI * 14;
+  return `${(pct / 100) * circ} ${circ}`;
+}
+
+/* ---- Conviction bar width ---- */
+function convWidth(sig) {
+  const map = { good: '82%', warn: '55%', bad: '28%', neutral: '40%' };
+  return map[sig] || '40%';
+}
+
+/* ---- Sparkline SVG ---- */
+function sparkline(prices, cls) {
+  if (!prices || prices.length < 2) return '';
+  const w = 260, h = 44;
+  const mn = Math.min(...prices), mx = Math.max(...prices);
+  const range = mx - mn || 1;
+  const pts = prices.map((p, i) => {
+    const x = (i / (prices.length - 1)) * w;
+    const y = h - ((p - mn) / range) * (h - 4) - 2;
+    return `${x},${y}`;
+  }).join(' ');
+  const color = cls === 'good' ? '#34d399' : cls === 'bad' ? '#fb7185' : '#8b5cf6';
+  return `<svg viewBox="0 0 ${w} ${h}" preserveAspectRatio="none" style="width:100%;height:44px">
+    <polyline points="${pts}" fill="none" stroke="${color}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>`;
+}
+
+/* ---- Card Builder ---- */
+function buildCard(ticker, price, change, verdict, name, verdictLabel) {
+  const sig = sigClass(verdict);
+  const chgCls = changeClass(change);
+  const chgTxt = change != null ? fmtPct(change) : '—';
+  const priceTxt = price != null ? '$' + price.toFixed(2) : '—';
+  const accentCls = sig === 'good' ? 'green' : sig === 'bad' ? 'red' : sig === 'warn' ? 'warn' : 'neutral';
+  const circ = 2 * Math.PI * 14;
+  const dash = ringFill(sig);
+  const convW = convWidth(sig);
+  const label = verdictLabel || sigLabel(verdict);
+
+  return `
+  <div class="ticker-card"
+       onmousemove="const r=this.getBoundingClientRect();this.style.setProperty('--mx',((event.clientX-r.left)/r.width*100)+'%');this.style.setProperty('--my',((event.clientY-r.top)/r.height*100)+'%')">
+    <div class="tc-accent ${accentCls}"></div>
+    <div class="tc-body">
+      <div class="tc-top">
+        <div class="tc-left">
+          <div class="tc-symbol">${ticker}</div>
+          <div class="tc-name">${name || ''}</div>
+          <span class="tc-ai">⬡ AI</span>
+        </div>
+        <div class="tc-ring-wrap">
+          <div class="tc-ring">
+            <svg viewBox="0 0 32 32">
+              <circle class="tc-ring-track" cx="16" cy="16" r="14"/>
+              <circle class="tc-ring-fill ${sig}" cx="16" cy="16" r="14"
+                style="stroke-dasharray:${dash};stroke-dashoffset:0"/>
+            </svg>
+          </div>
+          <span class="tc-ring-lbl">${sig === 'good' ? 'BUY' : sig === 'bad' ? 'SELL' : sig === 'warn' ? 'HOLD' : 'N/A'}</span>
+        </div>
+      </div>
+
+      <span class="tc-signal ${sig}">${label}</span>
+
+      <div style="margin-top:10px">
+        <div class="tc-price">${priceTxt}</div>
+        <div class="tc-change ${chgCls}">${chgCls === 'up' ? '▲' : chgCls === 'down' ? '▼' : '—'} ${chgTxt} היום</div>
+      </div>
+
+      <div class="tc-conv-wrap">
+        <div class="tc-conv-lbl">Conviction</div>
+        <div class="tc-conv-track">
+          <div class="tc-conv-fill ${sig}" style="--conv-w:${convW}"></div>
+        </div>
+      </div>
+
+      <div class="tc-links">
+        <a class="tc-link analyst" href="analyst.html?ticker=${ticker}">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M3 3v18h18"/><rect x="7" y="11" width="3" height="7"/><rect x="12" y="7" width="3" height="11"/><rect x="17" y="4" width="3" height="14"/></svg>
+          אנליסט
+        </a>
+        <a class="tc-link devils" href="devils.html?ticker=${ticker}">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          Devil
+        </a>
+        <a class="tc-link ceo" href="ceo.html?ticker=${ticker}">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+          CEO
+        </a>
+        <a class="tc-link ic" href="ic.html?ticker=${ticker}">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+          IC
+        </a>
+      </div>
+    </div>
+  </div>`;
+}
+
+/* ---- Stats Row ---- */
+function buildStats(holdings, totalValue, totalPnl, totalPnlPct) {
+  const cnt = holdings.length;
+  const pnlCls = totalPnl >= 0 ? 'up' : 'down';
+  const pnlSign = totalPnl >= 0 ? '+' : '';
+  const buySignals = holdings.filter(h => sigClass(h.last_verdict) === 'good').length;
+  return `
+    <div class="hub-stat reveal" style="animation:fadeInUp .5s var(--ease) 0ms both">
+      <div class="hs-val" id="cnt-holdings">${cnt}</div>
+      <div class="hs-lbl">מניות בתיק</div>
+    </div>
+    <div class="hub-stat reveal" style="animation:fadeInUp .5s var(--ease) 60ms both">
+      <div class="hs-val" id="cnt-value">$—</div>
+      <div class="hs-lbl">שווי תיק</div>
+    </div>
+    <div class="hub-stat reveal" style="animation:fadeInUp .5s var(--ease) 120ms both">
+      <div class="hs-val" id="cnt-pnl" style="color:var(--${totalPnl>=0?'sig-good':'sig-bad'})">$—</div>
+      <div class="hs-lbl">רווח / הפסד</div>
+      <span class="hs-change ${pnlCls}" id="cnt-pnlpct">—</span>
+    </div>
+    <div class="hub-stat reveal" style="animation:fadeInUp .5s var(--ease) 180ms both">
+      <div class="hs-val" id="cnt-buy">${buySignals}</div>
+      <div class="hs-lbl">סיגנל קנייה</div>
+      ${buySignals > 0 ? '<span class="hs-change up">▲ חיובי</span>' : '<span class="hs-change flat">ניטרלי</span>'}
+    </div>`;
+}
+
+/* ---- Main ---- */
+async function loadHub() {
+  startClock();
+  try {
+    const [portRes, pricesRes] = await Promise.all([
+      fetch('/api/portfolio'),
+      fetch('/api/prices')
+    ]);
+    if (!portRes.ok) throw new Error('portfolio API error');
+    const portfolio = await portRes.json();
+    let prices = {};
+    try { if (pricesRes.ok) prices = await pricesRes.json(); } catch(e) {}
+
+    const holdings = portfolio.holdings || [];
+
+    if (holdings.length === 0) {
+      document.getElementById('ticker-grid').innerHTML =
+        '<div class="hub-empty"><p>אין מניות בתיק עדיין.<br>הוסף מניות דרך הדשבורד הראשי.</p></div>';
+      document.getElementById('hub-sub').textContent = 'אין מניות בתיק';
+      return;
+    }
+
+    const totalValue = holdings.reduce((s, h) => s + (h.market_value || 0), 0);
+    const totalPnl   = holdings.reduce((s, h) => s + (h.pnl || 0), 0);
+    const totalCost  = totalValue - totalPnl;
+    const totalPnlPct = totalCost > 0 ? (totalPnl / totalCost) * 100 : 0;
+
+    /* stats row */
+    const statsEl = document.getElementById('hub-stats');
+    statsEl.innerHTML = buildStats(holdings, totalValue, totalPnl, totalPnlPct);
+    statsEl.style.display = 'grid';
+    document.getElementById('hub-sec-title').style.display = 'flex';
+    document.getElementById('hub-sub').textContent =
+      `${holdings.length} מניות · עודכן ${new Date().toLocaleTimeString('he-IL')}`;
+
+    /* heatmap */
+    buildHeatmap(holdings);
+
+    /* cards */
+    const order = { good: 0, warn: 1, neutral: 2, bad: 3 };
+    const cards = holdings
+      .map(h => {
+        const sig = sigClass(h.last_verdict);
+        return {
+          html: buildCard(
+            h.symbol,
+            h.current_price ?? h.buy_price,
+            h.day_change_pct ?? null,
+            h.last_verdict || null,
+            h.name || h.symbol,
+            h.last_signal_label || null
+          ),
+          sig
+        };
+      })
+      .sort((a, b) => (order[a.sig] || 2) - (order[b.sig] || 2));
+
+    document.getElementById('ticker-grid').innerHTML = cards.map(c => c.html).join('');
+
+    /* counter animations - מאוחר אחרי ה-overlay */
+    setTimeout(() => {
+      const valEl = document.getElementById('cnt-value');
+      const pnlEl = document.getElementById('cnt-pnl');
+      const pctEl = document.getElementById('cnt-pnlpct');
+      if (valEl) animateCounter(valEl, totalValue / 1000, '$', 'K', 1, 1400);
+      if (pnlEl) animateCounter(pnlEl, totalPnl, totalPnl >= 0 ? '+$' : '-$', '', 0, 1400);
+      if (pctEl) animateCounter(pctEl, Math.abs(totalPnlPct), totalPnlPct >= 0 ? '+' : '-', '%', 1, 1400);
+    }, 1500);
+
+  } catch (err) {
+    document.getElementById('ticker-grid').innerHTML =
+      `<div class="hub-empty"><p>שגיאה בטעינת הנתונים:<br><code style="font-size:11px;color:var(--sig-bad)">${err.message}</code></p></div>`;
+    document.getElementById('hub-sub').textContent = 'שגיאת חיבור';
+  }
+}
+
+loadHub();
+</script>
+<script src="_interactions.js"></script>
+</body>
+</html>

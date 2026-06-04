@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>דוח אנליסט — ServiceNow Inc. (NOW)</title>
+<style>
+:root{
+  --bg:#07090f;--surface:#0d1117;--surface2:#111827;
+  --border:#1a2744;--border2:#1e3a5f;
+  --text:#dce6f5;--muted:#6b7e9a;--muted2:#8899aa;
+  --blue:#4da6ff;--green:#2ecc71;--red:#e05c5c;
+  --orange:#f0a050;--yellow:#f5c842;--purple:#a78bfa;--gold:#d4af37;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;padding-bottom:40px}
+.topbar{background:linear-gradient(135deg,#101628,#070b14);padding:18px 32px;border-bottom:1px solid var(--border);
+  display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.topbar h1{font-size:21px;color:var(--blue)}
+.topbar .sub{font-size:12px;color:var(--muted);margin-top:4px}
+.stamp{font-size:11px;color:var(--muted);text-align:left;line-height:1.7}
+.stamp b{color:var(--text)}
+.wrap{max-width:1100px;margin:0 auto;padding:24px 32px}
+.vbanner{background:rgba(46,204,113,.07);border:1px solid rgba(46,204,113,.25);border-radius:10px;
+  padding:13px 18px;font-size:12px;color:var(--muted2);margin-bottom:20px;line-height:1.75}
+.vbanner b{color:var(--green)}
+.section{background:var(--surface2);border:1px solid var(--border2);border-radius:12px;padding:22px 24px;margin-bottom:20px}
+.section h2{font-size:16px;color:var(--text);margin-bottom:4px;display:flex;align-items:center;gap:8px}
+.section .tagnum{font-size:11px;color:var(--muted);font-weight:400}
+.section .desc{font-size:12.5px;color:var(--muted2);margin:6px 0 18px;line-height:1.7}
+.bar-accent{width:4px;height:18px;border-radius:2px;display:inline-block}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(165px,1fr));gap:13px;margin-bottom:20px}
+.card{background:var(--surface2);border:1px solid var(--border2);border-radius:12px;padding:16px}
+.card .lbl{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.6px;margin-bottom:7px}
+.card .val{font-size:21px;font-weight:800;line-height:1}
+.card .sub{font-size:11px;color:var(--muted);margin-top:6px}
+.c-blue{color:var(--blue)}.c-green{color:var(--green)}.c-red{color:var(--red)}
+.c-orange{color:var(--orange)}.c-text{color:var(--text)}.c-purple{color:var(--purple)}.c-yellow{color:var(--yellow)}
+
+.crashbanner{background:linear-gradient(135deg,#1a1013,#0a0a10);border:1px solid #4a1a1a;
+  border-right:3px solid var(--red);border-radius:11px;padding:14px 18px;margin-bottom:20px}
+.crashbanner b{color:var(--red);font-weight:800}
+.crashbanner span{color:var(--muted2);font-size:12.5px;line-height:1.7}
+
+.chartgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:14px}
+.barchart{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:15px 15px 12px}
+.bc-title{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:28px}
+.bc-plot{height:158px;display:flex;align-items:flex-end;gap:16px;border-bottom:2px solid var(--border2)}
+.bc-col{flex:1;border-radius:6px 6px 0 0;min-height:8px;position:relative;
+  display:flex;align-items:flex-end;justify-content:center;padding-bottom:7px}
+.bc-val{position:absolute;top:-22px;left:0;right:0;text-align:center;font-size:12.5px;font-weight:800;color:var(--text)}
+.bc-yoy{font-size:9.5px;font-weight:800;color:rgba(7,9,15,.72)}
+.bc-axis{display:flex;gap:16px;margin-top:7px}
+.bc-axis span{flex:1;text-align:center;font-size:10.5px;color:var(--muted)}
+.bc-foot{font-size:10.5px;color:var(--muted);margin-top:10px;text-align:center}
+
+.hbar{display:flex;align-items:center;gap:12px;margin-bottom:11px}
+.hbar .hb-label{width:150px;flex-shrink:0;font-size:12.5px;color:var(--text)}
+.hbar .hb-track{flex:1;height:22px;background:var(--surface);border-radius:6px;overflow:hidden}
+.hbar .hb-fill{height:100%;border-radius:6px}
+.hbar .hb-tag{width:130px;flex-shrink:0;font-size:11px;text-align:left}
+.dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-left:5px}
+
+.statrow{display:grid;grid-template-columns:repeat(auto-fit,minmax(195px,1fr));gap:14px}
+.statbig{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px}
+.statbig .sb-lbl{font-size:11px;color:var(--muted);margin-bottom:8px}
+.statbig .sb-val{font-size:22px;font-weight:800;color:var(--text)}
+.statbig .sb-grow{font-size:12px;font-weight:700;color:var(--green);margin-top:5px}
+
+.dtable{width:100%;border-collapse:collapse;margin-top:6px}
+.dtable th{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;text-align:right;padding:9px 10px;border-bottom:1px solid var(--border)}
+.dtable td{padding:11px 10px;border-bottom:1px solid var(--bg);font-size:13px;font-variant-numeric:tabular-nums}
+.dtable tr:last-child td{border-bottom:none}
+.dtable .metric{color:var(--muted2);font-variant-numeric:normal}
+.up{color:var(--green)}.down{color:var(--red)}.flat{color:var(--yellow)}
+
+.flag{background:var(--surface);border-radius:10px;padding:14px 16px;margin-bottom:11px;
+  border-right:4px solid var(--muted);display:flex;gap:13px;align-items:flex-start}
+.flag.red{border-right-color:var(--red)}
+.flag.yellow{border-right-color:var(--yellow)}
+.flag.green{border-right-color:var(--green)}
+.flag .rank{font-size:15px;font-weight:800;width:32px;height:32px;border-radius:8px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center}
+.flag.red .rank{background:rgba(224,92,92,.14);color:var(--red)}
+.flag.yellow .rank{background:rgba(245,200,66,.14);color:var(--yellow)}
+.flag.green .rank{background:rgba(46,204,113,.14);color:var(--green)}
+.flag .body h3{font-size:13.5px;margin-bottom:4px;color:var(--text)}
+.flag .body p{font-size:12px;color:var(--muted2);line-height:1.6}
+
+.scen{display:flex;align-items:flex-end;gap:18px;height:185px;padding:0 10px}
+.scen-bar{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%}
+.scen-bar .sc-price{font-size:15px;font-weight:800;margin-bottom:6px}
+.scen-bar .sc-fill{width:100%;border-radius:6px 6px 0 0;display:flex;align-items:flex-start;
+  justify-content:center;padding-top:8px;font-size:11px;font-weight:700;color:#07090f;min-height:24px}
+.scen-bar .sc-lbl{font-size:11.5px;margin-top:8px;font-weight:600}
+.scen-bar .sc-sub{font-size:10px;color:var(--muted);margin-top:3px;text-align:center}
+.curline{font-size:11px;color:var(--muted);text-align:center;margin-top:12px}
+.curline b{color:var(--blue)}
+
+.verdict{background:linear-gradient(135deg,#10182a,#0a0e18);border:1px solid var(--border2);
+  border-radius:12px;padding:24px;border-top:3px solid var(--green)}
+.verdict .tag{display:inline-block;background:rgba(46,204,113,.13);color:var(--green);
+  font-size:12px;font-weight:700;padding:5px 14px;border-radius:20px;margin-bottom:14px}
+.verdict h2{font-size:18px;margin-bottom:12px}
+.verdict p{font-size:13px;color:var(--muted2);line-height:1.8;margin-bottom:10px}
+.verdict p b{color:var(--text)}
+.scorecard{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:14px}
+.scoreitem{background:var(--surface);border-radius:8px;padding:12px;text-align:center}
+.scoreitem .si-lbl{font-size:10px;color:var(--muted);margin-bottom:6px}
+.scoreitem .si-val{font-size:18px;font-weight:800}
+
+.handoff{background:var(--surface);border:1px dashed var(--border2);border-radius:10px;
+  padding:18px;margin-top:16px;font-size:12.5px;color:var(--muted2);line-height:1.85}
+.handoff b{color:var(--text)}
+.footer{max-width:1100px;margin:0 auto;padding:8px 32px;font-size:11px;color:var(--muted);line-height:1.9}
+.footer b{color:var(--muted2)}
+.disclaimer{background:rgba(245,200,66,.05);border:1px solid rgba(245,200,66,.18);
+  border-radius:8px;padding:12px 16px;font-size:11.5px;color:var(--muted2);line-height:1.7;margin-top:8px}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div>
+    <h1>🔍 דוח אנליסט פורנזי — ServiceNow Inc.</h1>
+    <div class="sub">טיקר: NOW · NYSE · מגזר: תוכנת ארגון / זרימת עבודה (SaaS) · אנליסט מאוחד</div>
+  </div>
+  <div class="stamp">
+    תאריך ניתוח: <b>24 במאי 2026</b><br>
+    שנת כספים אחרונה: <b>FY2025</b> (31.12.25) · רבעון אחרון: <b>Q1 FY2026</b>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <div class="vbanner">
+    <b>✅ אימות מקורות:</b> נתוני פיננסים — stockanalysis.com · נתוני רבעון Q1 FY2026 — הודעת רווחים רשמית (SEC 8-K) דרך WebSearch.
+    macrotrends וגישות נוספות הוגבלו בגישה במהלך המחקר. סעיף "אימות מקורות" בתחתית מסכם כל פער. מחיר נכון לסגירת ~23.5.2026.
+  </div>
+
+  <!-- DRAMATIC CONTEXT BANNER -->
+  <div class="crashbanner">
+    <b>📉 ServiceNow ירדה ~53% מהשיא של 12 החודשים האחרונים</b><br>
+    <span>מ-$211.48 ל-$99.69. ב-Q1 FY2026 החברה <b style="color:#2ecc71">היכתה את כל המדדים והעלתה תחזית</b> — והמניה ירדה 17% ביום הדוח. השוק לא מתמחר את העבר; הוא מתמחר פחד מבני. תפקיד הניתוח: לזהות אם הפחד אמיתי.</span>
+  </div>
+
+  <!-- MARKET SNAPSHOT -->
+  <div class="cards">
+    <div class="card"><div class="lbl">מחיר נוכחי</div><div class="val c-orange">$99.69</div><div class="sub">−3.5% היום</div></div>
+    <div class="card"><div class="lbl">שווי שוק</div><div class="val c-text">$102.8B</div><div class="sub">1.03B מניות</div></div>
+    <div class="card"><div class="lbl">P/E (TTM)</div><div class="val c-text">59.4</div><div class="sub">Forward P/E: 23.0</div></div>
+    <div class="card"><div class="lbl">טווח 52 שבועות</div><div class="val c-red">$81–$211</div><div class="sub">קרוב לשפל</div></div>
+    <div class="card"><div class="lbl">קונצנזוס</div><div class="val c-green">$143</div><div class="sub">Strong Buy · +43%</div></div>
+    <div class="card"><div class="lbl">הכנסות TTM</div><div class="val c-text">$13.96B</div><div class="sub">+21.7%</div></div>
+  </div>
+
+  <!-- A.1 BUSINESS MODEL -->
+  <div class="section">
+    <h2><span class="bar-accent" style="background:var(--blue)"></span>א.1 מודל עסקי <span class="tagnum">· איך ServiceNow מרוויחה כסף</span></h2>
+    <div class="desc">
+      ServiceNow היא <b>פלטפורמת SaaS</b> שמריצה את "זרימות העבודה הפנימיות" של ארגונים גדולים — ניהול שירות-IT (ITSM),
+      משאבי אנוש, שירות לקוחות, ופיתוח אפליקציות. הלקוחות (תאגידים גדולים, ממשלות) משלמים <b>מנוי שנתי-רב-שנתי</b>
+      מבוסס מודולים ומשתמשים. ההכנסה <b>חוזרת ויציבה</b>, ההטמעה <b>עמוקה</b> (קשה להחליף), והמרת לקוח מודול-נוסף קלה.
+      הסחורה: זמן-עבודה ושיפור תהליך.
+    </div>
+    <div style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px">
+      מנועי הכנסה — Q1 FY2026
+    </div>
+    <div class="hbar">
+      <div class="hb-label">מנוי (Subscription)</div>
+      <div class="hb-track"><div class="hb-fill" style="width:100%;background:var(--blue)"></div></div>
+      <div class="hb-tag"><b>$3.67B</b> · +22.2% <span class="dot" style="background:var(--green)"></span></div>
+    </div>
+    <div class="hbar">
+      <div class="hb-label">cRPO (הכנסה עתידית)</div>
+      <div class="hb-track"><div class="hb-fill" style="width:100%;background:var(--purple)"></div></div>
+      <div class="hb-tag"><b>$12.64B</b> · +22.5% <span class="dot" style="background:var(--green)"></span></div>
+    </div>
+    <div class="hbar">
+      <div class="hb-label">לקוחות &gt; $5M ACV</div>
+      <div class="hb-track"><div class="hb-fill" style="width:82%;background:var(--orange)"></div></div>
+      <div class="hb-tag"><b>630</b> · עסקאות חדשות +80% <span class="dot" style="background:var(--green)"></span></div>
+    </div>
+    <div class="desc" style="margin-top:14px;margin-bottom:0">
+      <b>cRPO</b> = הכנסות חוזות שמובטחות מכוח חוזים קיימים — מדד הניבוי הטוב ביותר ל-SaaS. cRPO צומח 22.5% YoY ו-100bps מעל ההנחיה — סימן ברור שהביקוש בריא.
+      <b>16 עסקאות חדשות מעל $5M</b> ברבעון, צמיחה של ~80% YoY — מומנטום בקצה הרווחי ביותר של בסיס הלקוחות.
+    </div>
+  </div>
+
+  <!-- A.2 GROWTH ENGINES -->
+  <div class="section">
+    <h2><span class="bar-accent" style="background:var(--green)"></span>א.2 מנועי צמיחה <span class="tagnum">· הנחיית FY2026 — מעלה</span></h2>
+    <div class="desc">
+      צמיחה <b>מבנית, לא מחזורית</b> — דיגיטציה של תהליכים ארגוניים. רק 100bps מהצמיחה מגיעים מ-Moveworks (רכישת AI); השאר אורגני.
+    </div>
+    <div class="statrow">
+      <div class="statbig">
+        <div class="sb-lbl">הנחיית מנוי FY2026</div>
+        <div class="sb-val">$15.7–15.8B</div>
+        <div class="sb-grow">▲ +20.5–21% cc · הועלתה</div>
+      </div>
+      <div class="statbig">
+        <div class="sb-lbl">מרווח תפעולי Non-GAAP</div>
+        <div class="sb-val">31.5%</div>
+        <div class="sb-grow">▲ הנחיה — מתרחב</div>
+      </div>
+      <div class="statbig">
+        <div class="sb-lbl">FCF Margin (הנחיה)</div>
+        <div class="sb-val">35%</div>
+        <div class="sb-grow">▲ Q1 בפועל הגיע ל-44%</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FINANCIAL DASHBOARD -->
+  <div class="section">
+    <h2><span class="bar-accent" style="background:var(--purple)"></span>דשבורד פיננסי — 3 שנים <span class="tagnum">· FY2023 → FY2025</span></h2>
+    <div class="desc">צמיחה עקבית של ~21–24%, מרווחים תפעוליים מתרחבים, FCF גדל פי 1.7 ב-3 שנים. בסיס מספרי איכותי.</div>
+    <div class="chartgrid">
+
+      <div class="barchart">
+        <div class="bc-title">הכנסות נטו ($B)</div>
+        <div class="bc-plot">
+          <div class="bc-col" style="height:67%;background:var(--blue)"><span class="bc-val">8.97</span></div>
+          <div class="bc-col" style="height:83%;background:var(--blue)"><span class="bc-val">10.98</span><span class="bc-yoy">+22%</span></div>
+          <div class="bc-col" style="height:100%;background:var(--blue)"><span class="bc-val">13.28</span><span class="bc-yoy">+21%</span></div>
+        </div>
+        <div class="bc-axis"><span>FY23</span><span>FY24</span><span>FY25</span></div>
+        <div class="bc-foot">↑ צמיחה דו-ספרתית גבוהה, מעט מתמתנת</div>
+      </div>
+
+      <div class="barchart">
+        <div class="bc-title">מרווח תפעולי GAAP (%)</div>
+        <div class="bc-plot">
+          <div class="bc-col" style="height:62%;background:var(--purple)"><span class="bc-val">8.5</span></div>
+          <div class="bc-col" style="height:91%;background:var(--purple)"><span class="bc-val">12.4</span><span class="bc-yoy">+3.9pp</span></div>
+          <div class="bc-col" style="height:100%;background:var(--purple)"><span class="bc-val">13.7</span><span class="bc-yoy">+1.3pp</span></div>
+        </div>
+        <div class="bc-axis"><span>FY23</span><span>FY24</span><span>FY25</span></div>
+        <div class="bc-foot">↑ מינוף תפעולי · Non-GAAP ~31%</div>
+      </div>
+
+      <div class="barchart">
+        <div class="bc-title">רווח נקי ($B) — GAAP</div>
+        <div class="bc-plot">
+          <div class="bc-col" style="height:99%;background:var(--green)"><span class="bc-val">1.73*</span></div>
+          <div class="bc-col" style="height:82%;background:var(--green)"><span class="bc-val">1.43</span><span class="bc-yoy">−17%</span></div>
+          <div class="bc-col" style="height:100%;background:var(--green)"><span class="bc-val">1.75</span><span class="bc-yoy">+23%</span></div>
+        </div>
+        <div class="bc-axis"><span>FY23</span><span>FY24</span><span>FY25</span></div>
+        <div class="bc-foot">* FY23 כולל הטבת מס חד-פעמית</div>
+      </div>
+
+      <div class="barchart">
+        <div class="bc-title">תזרים מזומן חופשי ($B)</div>
+        <div class="bc-plot">
+          <div class="bc-col" style="height:59%;background:var(--blue)"><span class="bc-val">2.70</span></div>
+          <div class="bc-col" style="height:75%;background:var(--blue)"><span class="bc-val">3.42</span><span class="bc-yoy">+27%</span></div>
+          <div class="bc-col" style="height:100%;background:var(--blue)"><span class="bc-val">4.58</span><span class="bc-yoy">+34%</span></div>
+        </div>
+        <div class="bc-axis"><span>FY23</span><span>FY24</span><span>FY25</span></div>
+        <div class="bc-foot">↑ מרווח FCF מ-30% ל-34.5%</div>
+      </div>
+
+      <div class="barchart">
+        <div class="bc-title">EPS מדולל ($)</div>
+        <div class="bc-plot">
+          <div class="bc-col" style="height:100%;background:var(--gold)"><span class="bc-val">1.68*</span></div>
+          <div class="bc-col" style="height:82%;background:var(--gold)"><span class="bc-val">1.37</span><span class="bc-yoy">−18%</span></div>
+          <div class="bc-col" style="height:99%;background:var(--gold)"><span class="bc-val">1.67</span><span class="bc-yoy">+22%</span></div>
+        </div>
+        <div class="bc-axis"><span>FY23</span><span>FY24</span><span>FY25</span></div>
+        <div class="bc-foot">* FY23 נופח ע"י הטבת מס</div>
+      </div>
+
+      <div class="barchart">
+        <div class="bc-title">SBC ($B) — הדגל המבני</div>
+        <div class="bc-plot">
+          <div class="bc-col" style="height:82%;background:var(--red)"><span class="bc-val">1.60</span></div>
+          <div class="bc-col" style="height:89%;background:var(--red)"><span class="bc-val">1.75</span><span class="bc-yoy">+9%</span></div>
+          <div class="bc-col" style="height:100%;background:var(--red)"><span class="bc-val">1.96</span><span class="bc-yoy">+12%</span></div>
+        </div>
+        <div class="bc-axis"><span>FY23</span><span>FY24</span><span>FY25</span></div>
+        <div class="bc-foot">🔴 ~15% מהכנסות · עלות אמיתית</div>
+      </div>
+
+    </div>
+
+    <table class="dtable" style="margin-top:18px">
+      <thead><tr><th>מדד</th><th>FY2023</th><th>FY2024</th><th>FY2025</th><th>מגמה</th></tr></thead>
+      <tbody>
+        <tr><td class="metric">הכנסות</td><td>$8.97B</td><td>$10.98B</td><td>$13.28B</td><td class="up">↑ +21–22%/שנה</td></tr>
+        <tr><td class="metric">מרווח גולמי</td><td>78.6%</td><td>79.2%</td><td>77.5%</td><td class="flat">→ ~78%</td></tr>
+        <tr><td class="metric">מרווח תפעולי GAAP</td><td>8.5%</td><td>12.4%</td><td>13.7%</td><td class="up">↑ מתרחב</td></tr>
+        <tr><td class="metric">FCF</td><td>$2.70B</td><td>$3.42B</td><td>$4.58B</td><td class="up">↑ +27–34%</td></tr>
+        <tr><td class="metric">FCF Margin</td><td>30.1%</td><td>31.1%</td><td>34.5%</td><td class="up">↑ מצוין</td></tr>
+        <tr><td class="metric">SBC</td><td>$1.60B</td><td>$1.75B</td><td>$1.96B</td><td class="down">↓ עולה ב-9–12%/שנה</td></tr>
+        <tr><td class="metric">רכישות חוזרות</td><td>$0.54B</td><td>$0.70B</td><td>$1.84B</td><td class="up">↑ פי 2.6 ב-FY25</td></tr>
+        <tr><td class="metric">EPS GAAP</td><td>$1.68*</td><td>$1.37</td><td>$1.67</td><td class="flat">→ FY23 נופח ממס</td></tr>
+      </tbody>
+    </table>
+    <div class="desc" style="margin-top:12px;margin-bottom:0">
+      <b>קריאת אנליסט:</b> רווחים מגובים במזומן (FCF $4.58B &gt; רווח נקי $1.75B — הפער הוא בדיוק SBC).
+      ב-FY25 הוכפלו הרכישות החוזרות ל-$1.84B — מקזזות כמעט בדיוק את ה-SBC. <b>זה לא נדיב — זה מינימום כדי לא לדלל.</b>
+      ההכפלה אומרת: ההנהלה מודעת שהשוק "סופר את ה-SBC" ופועלת. שווה לעקוב אם הקצב נשמר.
+    </div>
+  </div>
+
+  <!-- A.3 MOAT -->
+  <div class="section">
+    <h2><span class="bar-accent" style="background:var(--gold)"></span>א.3 חפיר (יתרון תחרותי)</h2>
+    <div class="desc">
+      הליבה: <b>עלויות מעבר עצומות</b>. כשאתה מריץ את ניהול-IT, HR, ושירות-לקוחות שלך על ServiceNow — להחליף זה לעצור את הארגון.
+      פלטפורמה מודולרית שגדלה בלקוח (land &amp; expand).
+    </div>
+    <div class="hbar"><div class="hb-label">עלויות מעבר</div><div class="hb-track"><div class="hb-fill" style="width:95%;background:var(--green)"></div></div><div class="hb-tag">🟢 חזק מאוד</div></div>
+    <div class="hbar"><div class="hb-label">יתרון הפצה</div><div class="hb-track"><div class="hb-fill" style="width:85%;background:var(--green)"></div></div><div class="hb-tag">🟢 630 לקוחות &gt;$5M</div></div>
+    <div class="hbar"><div class="hb-label">יתרון לגודל</div><div class="hb-track"><div class="hb-fill" style="width:80%;background:var(--green)"></div></div><div class="hb-tag">🟢 R&amp;D + מכירות</div></div>
+    <div class="hbar"><div class="hb-label">כוח מותג</div><div class="hb-track"><div class="hb-fill" style="width:80%;background:var(--green)"></div></div><div class="hb-tag">🟢 "חברת הזרימה"</div></div>
+    <div class="hbar"><div class="hb-label">IP / פלטפורמה</div><div class="hb-track"><div class="hb-fill" style="width:70%;background:var(--yellow)"></div></div><div class="hb-tag">🟡 משמעותי</div></div>
+    <div class="hbar"><div class="hb-label">אפקטי רשת</div><div class="hb-track"><div class="hb-fill" style="width:55%;background:var(--yellow)"></div></div><div class="hb-tag">🟡 דרך מפתחים</div></div>
+    <div class="hbar"><div class="hb-label">יתרון עלות</div><div class="hb-track"><div class="hb-fill" style="width:65%;background:var(--yellow)"></div></div><div class="hb-tag">🟡 בינוני</div></div>
+    <div class="hbar"><div class="hb-label">חסמים רגולטוריים</div><div class="hb-track"><div class="hb-fill" style="width:45%;background:var(--yellow)"></div></div><div class="hb-tag">🟡 נמוך</div></div>
+    <div class="desc" style="margin-top:14px;margin-bottom:0">
+      <b>מסקנת חפיר: רחב — אבל עם איום מבני.</b> הבעיה: עלויות-המעבר מגנות מפני מעבר ל<b>פלטפורמת SaaS אחרת</b>.
+      הן לא בהכרח מגנות מפני <b>סוכני AI שמבצעים את העבודה ישירות</b> ללא הפלטפורמה. זה הדיבייט הגדול.
+    </div>
+  </div>
+
+  <!-- B QUARTERLY -->
+  <div class="section">
+    <h2><span class="bar-accent" style="background:var(--blue)"></span>חלק ב — רבעון אחרון <span class="tagnum">· Q1 FY2026, הסתיים 31.3.2026</span></h2>
+    <div class="desc">
+      <b>היכה בכל מדד והעלה את התחזית — והמניה ירדה 17%.</b> זה הסיפור.
+      Q1 היה רבעון <b>תפעולית מצוין</b>; השוק תמחר אכזבה ביחס לבר הגבוה ולסיפור ה-AI.
+    </div>
+    <div class="cards" style="margin-bottom:0">
+      <div class="card"><div class="lbl">cRPO</div><div class="val c-green">$12.64B</div><div class="sub">▲ +22.5% YoY · 100bps מעל הנחיה</div></div>
+      <div class="card"><div class="lbl">הכנסות מנוי</div><div class="val c-green">$3.671B</div><div class="sub">▲ +22.2% YoY</div></div>
+      <div class="card"><div class="lbl">מרווח תפעולי Non-GAAP</div><div class="val c-green">32%</div><div class="sub">▲ מעל הנחיה</div></div>
+      <div class="card"><div class="lbl">FCF Margin</div><div class="val c-green">44%</div><div class="sub">▲ Q1 חזק יוצא דופן</div></div>
+    </div>
+    <div class="desc" style="margin-top:14px;margin-bottom:0">
+      <b>שים לב:</b> ~75bps רוח-נגד מהאטת עסקאות on-prem במזה"ת (סכסוך מקומי) — אז הצמיחה האמיתית הייתה עוד יותר חזקה.
+      <b>תרומת Moveworks</b> (רכישת AI שהושלמה): ~100bps. שאר הצמיחה — אורגנית. <b>ההנהלה העלתה את ההנחיה השנתית</b>
+      ל-$15.7–15.8B מנוי. השוק לא קנה — וזה אומר משהו.
+    </div>
+  </div>
+
+  <!-- A.4 STRESS TEST -->
+  <div class="section">
+    <h2><span class="bar-accent" style="background:var(--purple)"></span>א.4 מבחן לחץ מוסדי <span class="tagnum">· ניקוד מתוך 50</span></h2>
+    <div class="desc">ניקוד 5 קטגוריות, כל אחת /10.</div>
+    <div class="hbar"><div class="hb-label">א · מודל עסקי</div><div class="hb-track"><div class="hb-fill" style="width:90%;background:var(--green)"></div></div><div class="hb-tag"><b>9</b>/10 🟢</div></div>
+    <div class="hbar"><div class="hb-label">ב · סיכון מבני</div><div class="hb-track"><div class="hb-fill" style="width:60%;background:var(--yellow)"></div></div><div class="hb-tag"><b>6</b>/10 🟡</div></div>
+    <div class="hbar"><div class="hb-label">ג · יושרה חשבונאית</div><div class="hb-track"><div class="hb-fill" style="width:70%;background:var(--yellow)"></div></div><div class="hb-tag"><b>7</b>/10 🟡</div></div>
+    <div class="hbar"><div class="hb-label">ד · הנהלה והון</div><div class="hb-track"><div class="hb-fill" style="width:80%;background:var(--green)"></div></div><div class="hb-tag"><b>8</b>/10 🟢</div></div>
+    <div class="hbar"><div class="hb-label">ה · יעילות תפעולית</div><div class="hb-track"><div class="hb-fill" style="width:90%;background:var(--green)"></div></div><div class="hb-tag"><b>9</b>/10 🟢</div></div>
+    <div style="display:flex;align-items:center;gap:14px;margin-top:16px;padding:14px 18px;
+      background:var(--surface);border-radius:10px;border:1px solid rgba(46,204,113,.25)">
+      <div style="font-size:30px;font-weight:800;color:var(--green)">39</div>
+      <div style="font-size:13px;color:var(--muted2);line-height:1.6">
+        <b style="color:var(--text)">סה"כ 39/50 — איכות גבוהה.</b> נמוך מ-Visa (42/50) בעיקר בקטגוריות "סיכון מבני" (איום AI) ו"יושרה חשבונאית" (קנס על SBC כבד).
+        העסק לכשעצמו — מהאיכותיים בשוק.
+      </div>
+    </div>
+  </div>
+
+  <!-- A.5 RED FLAGS -->
+  <div class="section">
+    <h2><span class="bar-accent" style="background:var(--red)"></span>א.5 דגלים פורנזיים</h2>
+    <div class="flag red"><div class="rank">1</div><div class="body">
+      <h3>🔴 איום ה-Agentic AI על מודל ה-SaaS</h3>
+      <p>הסיפור הגדול. ServiceNow מוכרת אפליקציות-זרימת-עבודה. AI agents שיכולים <b>לבצע את העבודה ישירות</b> — לפתוח טיקטים, לאשר בקשות HR, לטפל בלקוח — מאיימים לעקוף את שכבת האפליקציה כולה. השוק מתמחר את הפחד הזה; ירידה של 53% מהשיא אינה תאונה.</p></div></div>
+    <div class="flag yellow"><div class="rank">2</div><div class="body">
+      <h3>🟡 SBC כעלות נסתרת — 15% מההכנסות</h3>
+      <p>SBC FY2025 = $1.96B מול הכנסות $13.28B = 14.7%. רכישות חוזרות $1.84B מקזזות את הדילול אך לא מפחיתות אותו אמיתית. ההכפלה ברכישות חוזרות ב-FY25 לעומת FY24 ($0.7B→$1.84B) מאותתת מודעות — אך עדיין: GAAP מציג את התמונה האמיתית של רווחיות בסיסית, ו-GAAP פחות מרשים מ-Non-GAAP.</p></div></div>
+    <div class="flag yellow"><div class="rank">3</div><div class="body">
+      <h3>🟡 האטת קצב הצמיחה</h3>
+      <p>FY23 +23.8% → FY24 +22.4% → FY25 +20.9% → הנחיית FY26 +20.5–21%. ירידה איטית אך עקבית. עדיין מצוין, אך מסלול הצמיחה אינו "אינסופי" יותר.</p></div></div>
+    <div class="flag yellow"><div class="rank">4</div><div class="body">
+      <h3>🟡 דחיסת מכפיל כבר התרחשה</h3>
+      <p>NOW נסחרה בעבר ב-50–70x forward; היום ~23x. חלק נכבד מהתיקון כבר במחיר. השאלה: זה הוגן או מוגזם.</p></div></div>
+    <div class="flag green"><div class="rank">✓</div><div class="body">
+      <h3>🟢 איכות חשבונאית בסיסית — נקייה</h3>
+      <p>FCF גבוה מרווח נקי באופן עקבי, גילוי SBC מלא, רכישות חוזרות אגרסיביות. אין סימני "ניהול הכנסות" או מניפולציה. הדגל בקטגוריה ג' הוא על <b>פרשנות</b> ה-Non-GAAP, לא על יושרה.</p></div></div>
+  </div>
+
+  <!-- VALUATION -->
+  <div class="section">
+    <h2><span class="bar-accent" style="background:var(--orange)"></span>ג.4 מסגרת שווי <span class="tagnum">· 3 תרחישים</span></h2>
+    <div class="desc">
+      בניגוד ל-Visa — כאן יש <b>מרווח ביטחון אמיתי.</b> Forward P/E 23 על צמיחת 20% וצמיחת FCF 30%+ זה זול היסטורית.
+      השאלה היא אם הצמיחה תמשיך — וזה תלוי בתשובה לדגל #1.
+    </div>
+    <div class="scen">
+      <div class="scen-bar">
+        <div class="sc-price c-red">$80</div>
+        <div class="sc-fill" style="height:56%;background:var(--red)">−20%</div>
+        <div class="sc-lbl c-red">🔴 דובי</div>
+        <div class="sc-sub">AI agents מאיצים · 18x fwd</div>
+      </div>
+      <div class="scen-bar">
+        <div class="sc-price c-yellow">$120</div>
+        <div class="sc-fill" style="height:84%;background:var(--yellow)">+20%</div>
+        <div class="sc-lbl c-yellow">🟡 בסיס</div>
+        <div class="sc-sub">צמיחה 18–20% · ~26x fwd</div>
+      </div>
+      <div class="scen-bar">
+        <div class="sc-price c-green">$143</div>
+        <div class="sc-fill" style="height:100%;background:var(--green)">+43%</div>
+        <div class="sc-lbl c-green">🟢 שורי</div>
+        <div class="sc-sub">חזרה ל-30x · קונסנזוס</div>
+      </div>
+    </div>
+    <div class="curline">מחיר נוכחי: <b>$99.69</b> · קונצנזוס אנליסטים: <b>$143</b> (+43%) · שפל 52ש': <b>$81</b></div>
+    <div class="desc" style="margin-top:14px;margin-bottom:0">
+      <b>מרווח ביטחון: כן.</b> אסימטריה ברורה — סיכון של −20% (ל-$80, ליד השפל) מול תשואה +43% לקונסנזוס. R/R ~2.2:1 — עובר את הסף.
+      זו <b>הפעם הראשונה בשרשרת</b> שאנחנו רואים מרווח ביטחון אמיתי.
+    </div>
+  </div>
+
+  <!-- FINAL VERDICT -->
+  <div class="verdict">
+    <span class="tag">ג.8 שיפוט איכות סופי</span>
+    <h2>עסק יוצא דופן · מחיר אטרקטיבי · עם איום מבני שיש לכמת</h2>
+    <p>
+      ServiceNow היא אחת מחברות ה-SaaS האיכותיות בעולם: צמיחה 21%, FCF margin 34%, cRPO +22%, 630 לקוחות-ענק.
+      Q1 FY2026 היה רבעון מצטיין. הירידה של 53% מהשיא <b>לא משקפת הרעה עסקית</b> — היא משקפת
+      <b>שינוי בנרטיב</b>: השוק כבר לא מוכן לשלם 60x forward על "SaaS אינסופי" כשיש שאלה אמיתית האם
+      Agentic AI יעקוף את שכבת האפליקציה.
+    </p>
+    <p>
+      <b>השאלה המכרעת היא לא "האם החברה טובה" — היא "האם הפחד מ-AI סוף-של-עולם או לא".</b>
+      התשובה היא כנראה איפשהו באמצע: AI יקטין חלק מהביקוש למודולים מסוימים, אבל הקושי להחליף מערכת
+      שמריצה את כל הזרימות הארגוניות יחזיק את הליבה. את ההכרעה הסופית — לעורך הדין השטן.
+    </p>
+    <div class="scorecard">
+      <div class="scoreitem"><div class="si-lbl">איכות עסק</div><div class="si-val c-green">9/10</div></div>
+      <div class="scoreitem"><div class="si-lbl">חפיר</div><div class="si-val c-green">8/10</div></div>
+      <div class="scoreitem"><div class="si-lbl">יושרה חשבונאית</div><div class="si-val c-yellow">7/10</div></div>
+      <div class="scoreitem"><div class="si-lbl">הנהלה</div><div class="si-val c-green">8/10</div></div>
+      <div class="scoreitem"><div class="si-lbl">שווי / מחיר</div><div class="si-val c-green">8/10</div></div>
+      <div class="scoreitem"><div class="si-lbl">ציון כולל</div><div class="si-val c-green">8.0/10</div></div>
+    </div>
+    <div class="handoff">
+      <b>📤 HANDOFF לעורך הדין השטן</b><br>
+      חברה: ServiceNow Inc. (NOW) · מחיר $99.69 · שווי הוגן (בסיס) $120 · שווי הוגן (שורי) $143 · ציון איכות 8.0/10<br>
+      <b>ההנחה השבירה ביותר:</b> ש-Agentic AI <b>לא</b> יעקוף את שכבת ה-SaaS של ServiceNow מהר מספיק כדי להאט את הצמיחה דרמטית ב-3–5 השנים הקרובות.<br>
+      <b>דגלים שכבר זוהו:</b> איום AI מבני · SBC 15% מההכנסות · האטת צמיחה · מכפיל שכבר נדחס.<br>
+      <b>נתוני 3 שנים נעולים:</b> רב' $8.97/$10.98/$13.28B · OpMargin GAAP 8.5/12.4/13.7% · FCF $2.70/$3.42/$4.58B · SBC $1.60/$1.75/$1.96B<br>
+      <b>תחום הכי תקיף לעורך הדין השטן:</b> חוזק נרטיב ה-AI-disruption + השפעת SBC על רווחיות אמיתית.
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  <b>אימות מקורות:</b><br>
+  ✅ פיננסים 3 שנים + מחיר/מכפילים — stockanalysis.com.<br>
+  ✅ Q1 FY2026 + הנחיית FY2026 — הודעת רווחים רשמית של ServiceNow (8-K לפי WebSearch).<br>
+  ⚠️ <b>הוגבל בגישה:</b> macrotrends (paywall), חלק מ-WebFetch (session limit). מאזן (מזומן/חוב) לא אומת מספרית — ידוע: מאזן בריא, מזומן נטו חיובי (לא מספר מאומת).<br>
+  🔴 לא נמשך: תמליל שיחת הוועידה המלאה של Q1 FY2026 (לחיפוש חופשי באתר IR של החברה).<br>
+  <div class="disclaimer">
+    ⚠️ <b>הסתייגות:</b> מספרים מ-3 שנים פיננסים הם GAAP. תרחישי השווי מבוססים על EPS עתידי משוער (Non-GAAP) ועל מכפילים נורמליים — לא תחזית. אינו ייעוץ השקעות. נכון ל-24.5.2026.
+  </div>
+</div>
+
+</body>
+</html>

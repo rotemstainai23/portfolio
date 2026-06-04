@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ועדת השקעות — ServiceNow (NOW)</title>
+<style>
+:root{--bg:#07090f;--surface:#0d1117;--surface2:#111827;--border:#1a2744;--border2:#1e3a5f;
+--text:#dce6f5;--muted:#6b7e9a;--muted2:#8899aa;--blue:#4da6ff;--green:#2ecc71;--red:#e05c5c;
+--orange:#f0a050;--yellow:#f5c842;--purple:#a78bfa;--gold:#d4af37;}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;padding-bottom:40px}
+.topbar{background:linear-gradient(135deg,#0f1226,#08090f);padding:18px 32px;border-bottom:1px solid var(--border2);
+display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.topbar h1{font-size:21px;color:var(--purple)}
+.topbar .sub{font-size:12px;color:var(--muted);margin-top:4px}
+.stamp{font-size:11px;color:var(--muted);text-align:left;line-height:1.7}
+.stamp b{color:var(--text)}
+.wrap{max-width:1120px;margin:0 auto;padding:24px 32px}
+.inherit{background:rgba(167,139,250,.06);border:1px solid rgba(167,139,250,.25);border-radius:10px;padding:14px 18px;margin-bottom:20px}
+.inherit .ih-title{font-size:12px;color:var(--purple);font-weight:700;margin-bottom:10px}
+.inherit .ih-r{display:flex;align-items:flex-start;gap:9px;font-size:12px;margin-bottom:7px}
+.inherit .ih-r .tx{color:var(--muted2);line-height:1.6}.inherit .ih-r .tx b{color:var(--text)}
+.section{background:var(--surface2);border:1px solid var(--border2);border-radius:12px;padding:22px 24px;margin-bottom:20px}
+.section h2{font-size:16px;color:var(--text);margin-bottom:4px;display:flex;align-items:center;gap:8px}
+.section .desc{font-size:12.5px;color:var(--muted2);margin:6px 0 16px;line-height:1.7}
+.bar-accent{width:4px;height:18px;border-radius:2px;display:inline-block}
+.c-blue{color:var(--blue)}.c-green{color:var(--green)}.c-red{color:var(--red)}.c-orange{color:var(--orange)}.c-text{color:var(--text)}.c-yellow{color:var(--yellow)}.c-purple{color:var(--purple)}
+
+.matrix{width:100%;border-collapse:separate;border-spacing:5px;margin-top:6px}
+.matrix th{font-size:10.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.4px;padding:8px 6px;text-align:center}
+.matrix th.row{text-align:right;width:120px}
+.matrix td{background:var(--surface);border-radius:8px;padding:9px 8px;text-align:center;font-size:11px;color:var(--muted2);line-height:1.5;vertical-align:middle}
+.matrix td.rowlbl{background:transparent;color:var(--text);font-weight:700;font-size:12px;text-align:right}
+.matrix td.verdict{font-weight:700;color:var(--text)}
+.mi{font-size:13px;display:block;margin-bottom:2px}
+.cell-g{background:rgba(46,204,113,.10)}.cell-y{background:rgba(245,200,66,.10)}
+.cell-r{background:rgba(224,92,92,.10)}.cell-v{background:rgba(167,139,250,.12)}
+
+.cpoints{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px}
+.cpoint{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px;border-right:3px solid var(--green)}
+.cpoint h4{font-size:13px;color:var(--text);margin-bottom:5px}
+.cpoint p{font-size:11.5px;color:var(--muted2);line-height:1.6}
+
+.blindspot{background:linear-gradient(135deg,#1a1508,#0d0b07);border:1px solid #4a3a12;border-radius:12px;padding:22px;border-top:3px solid var(--yellow)}
+.blindspot .bs-tag{display:inline-block;background:rgba(245,200,66,.14);color:var(--yellow);font-size:12px;font-weight:700;padding:5px 14px;border-radius:20px;margin-bottom:13px}
+.blindspot h3{font-size:16px;color:var(--text);margin-bottom:10px}
+.blindspot p{font-size:13px;color:var(--muted2);line-height:1.8;margin-bottom:9px}
+.blindspot p b{color:var(--text)}
+.blindspot .impact{background:var(--surface);border-radius:8px;padding:11px 15px;margin-top:10px;font-size:12px;color:var(--text);border-right:3px solid var(--yellow)}
+
+.scoretbl{width:100%;border-collapse:collapse;margin-top:6px}
+.scoretbl td{padding:11px 12px;border-bottom:1px solid var(--bg);font-size:13px}
+.scoretbl tr:last-child td{border-bottom:none}
+.scoretbl .lbl{color:var(--muted2)}
+.scoretbl .val{text-align:left;font-weight:800}
+
+.verdict{background:linear-gradient(135deg,#0a1a10,#06100a);border:1px solid #1a3a22;border-radius:12px;padding:24px;border-top:3px solid var(--green)}
+.verdict .tag{display:inline-block;background:rgba(46,204,113,.13);color:var(--green);font-size:12px;font-weight:700;padding:5px 14px;border-radius:20px;margin-bottom:14px}
+.verdict h2{font-size:20px;margin-bottom:12px}
+.verdict p{font-size:13px;color:var(--muted2);line-height:1.8;margin-bottom:10px}
+.verdict p b{color:var(--text)}
+.scorebig{display:flex;gap:14px;flex-wrap:wrap;margin-top:14px}
+.scorebox{background:var(--surface);border-radius:10px;padding:15px 18px;flex:1;min-width:135px;text-align:center}
+.scorebox .sb-lbl{font-size:10px;color:var(--muted);margin-bottom:6px}
+.scorebox .sb-num{font-size:20px;font-weight:800}
+
+.trig{display:flex;align-items:center;gap:12px;padding:11px 14px;background:var(--surface);border-radius:9px;margin-bottom:9px;border-right:3px solid var(--blue)}
+.trig .ti{font-size:15px}
+.trig .tb{font-size:12.5px;color:var(--muted2);line-height:1.5}
+.trig .tb b{color:var(--text)}
+
+.hardtruth{background:rgba(224,92,92,.06);border:1px solid rgba(224,92,92,.25);border-radius:10px;padding:16px 18px;font-size:13.5px;color:var(--text);line-height:1.8}
+.hardtruth .ht-l{font-size:11px;color:var(--red);font-weight:800;text-transform:uppercase;letter-spacing:.5px;margin-bottom:7px}
+
+.handoff{background:var(--surface);border:1px dashed var(--border2);border-radius:10px;padding:18px;font-size:12.5px;color:var(--muted2);line-height:1.85;margin-top:16px}
+.handoff b{color:var(--text)}
+.footer{max-width:1120px;margin:0 auto;padding:8px 32px;font-size:11px;color:var(--muted);line-height:1.9}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <div><h1>⚖️ ועדת השקעות — ServiceNow</h1>
+  <div class="sub">חוליה 5 · שכבת הכרעה סופית · סינתזה</div></div>
+  <div class="stamp">תאריך: <b>24 במאי 2026</b><br>4 handoffs · לא מנתחת מחדש</div>
+</div>
+
+<div class="wrap">
+
+  <div class="inherit">
+    <div class="ih-title">① אימות קלטים — 4 handoffs</div>
+    <div class="ih-r"><span>✅</span><span class="tx"><b>אנליסט:</b> איכות 8.0/10 · שווי הוגן בסיס $120 / שורי $143 · מרווח ביטחון ✓</span></div>
+    <div class="ih-r"><span>✅</span><span class="tx"><b>שטן:</b> סיכון 6/10 · תוחלת משוקללת +5.5% · תקרת פוזיציה 8%</span></div>
+    <div class="ih-r"><span>✅</span><span class="tx"><b>CEO:</b> APPROVED WITH CONDITIONS · 5% · Growth · תנאי: קיצוץ IBIT</span></div>
+    <div class="ih-r"><span>✅</span><span class="tx"><b>Executor:</b> Scale In · איכות כניסה 7/10 · R/R 2.2:1 · T1 ב-$100 מיידי</span></div>
+  </div>
+
+  <div class="section">
+    <h2><span class="bar-accent" style="background:var(--purple)"></span>② מטריצת קונסנזוס סוכנים</h2>
+    <div class="desc">קונסנזוס חזק לטובת רכישה — שונה מ-Visa שבה כולם הסכימו "חכה".</div>
+    <table class="matrix">
+      <thead><tr><th class="row"></th><th>אנליסט</th><th>שטן</th><th>CEO</th><th>Executor</th><th>ועדה</th></tr></thead>
+      <tbody>
+        <tr><td class="rowlbl">איכות עסק</td>
+          <td class="cell-g"><span class="mi">🟢</span>חזק · 8/10</td>
+          <td class="cell-g"><span class="mi">🟢</span>"לא נשבר"</td>
+          <td class="cell-g"><span class="mi">🟢</span>מתאים</td>
+          <td class="cell-g"><span class="mi">🟢</span>פילטרים עברו</td>
+          <td class="cell-v verdict">✅ חזק</td></tr>
+        <tr><td class="rowlbl">רמת סיכון</td>
+          <td class="cell-y"><span class="mi">🟡</span>איום AI</td>
+          <td class="cell-y"><span class="mi">🟡</span>בינוני · 6/10</td>
+          <td class="cell-y"><span class="mi">🟡</span>חפיפה תמטית</td>
+          <td class="cell-y"><span class="mi">🟡</span>סכין נופלת</td>
+          <td class="cell-v verdict">🟡 בינוני</td></tr>
+        <tr><td class="rowlbl">הערכת שווי</td>
+          <td class="cell-g"><span class="mi">🟢</span>מרווח ביטחון</td>
+          <td class="cell-g"><span class="mi">🟢</span>מכפיל סביר</td>
+          <td class="cell-g"><span class="mi">🟢</span>—</td>
+          <td class="cell-g"><span class="mi">🟢</span>"אטרקטיבי"</td>
+          <td class="cell-v verdict">🟢 אטרקטיבי</td></tr>
+        <tr><td class="rowlbl">עיתוי כניסה</td>
+          <td class="cell-y">—</td><td class="cell-y">—</td><td class="cell-y">—</td>
+          <td class="cell-g"><span class="mi">🟢</span>R/R 2.2:1</td>
+          <td class="cell-v verdict">🟢 עובר</td></tr>
+        <tr><td class="rowlbl">גודל פוזיציה</td>
+          <td class="cell-y">—</td>
+          <td class="cell-g"><span class="mi">🟢</span>תקרה 8%</td>
+          <td class="cell-g"><span class="mi">🟢</span>5% מאושר</td>
+          <td class="cell-y">—</td>
+          <td class="cell-v verdict">5% (לא להגדיל)</td></tr>
+        <tr><td class="rowlbl">המלצה</td>
+          <td class="cell-g"><span class="mi">🟢</span>איכות + מחיר</td>
+          <td class="cell-y"><span class="mi">🟡</span>סיכון בינוני*</td>
+          <td class="cell-g"><span class="mi">🟢</span>APPROVED W/COND</td>
+          <td class="cell-g"><span class="mi">🟢</span>Scale In</td>
+          <td class="cell-v verdict">✅ APPROVED</td></tr>
+      </tbody>
+    </table>
+    <div class="desc" style="margin-top:12px;margin-bottom:0">* השטן: "סיכון בינוני בעסק, סיכון נמוך בשווי". תוחלת חיובית.</div>
+  </div>
+
+  <div class="section">
+    <h2><span class="bar-accent" style="background:var(--green)"></span>③ נקודות קונסנזוס</h2>
+    <div class="cpoints">
+      <div class="cpoint"><h4>✓ עסק מצוין במחיר אטרקטיבי</h4>
+        <p>פעם ראשונה בשרשרת: כולם מסכימים שיש כאן <b>הזדמנות אמיתית</b>. איכות 8/10 + R/R 2.2:1.</p></div>
+      <div class="cpoint"><h4>✓ הסיכון אינו פיננסי — אלא נרטיבי</h4>
+        <p>FCF $4.58B, מאזן בריא. החששות הן <b>על המודל העתידי</b> (AI), לא על המספרים הנוכחיים.</p></div>
+      <div class="cpoint"><h4>✓ Scale In הוא המבנה הנכון</h4>
+        <p>מניה שירדה 53% עלולה לרדת עוד. כניסה מלאה = סיכון יתר. 40/30/30 מבטיח מחיר ממוצע טוב.</p></div>
+      <div class="cpoint"><h4>✓ קיצוץ IBIT הוא תנאי מקדים</h4>
+        <p>IBIT ב-11% חורג מתקרת הספקולציה. CEO דרש קיצוץ — מימון NOW יבוא משם, לא מהוספת חוב לתיק.</p></div>
+    </div>
+  </div>
+
+  <div class="blindspot">
+    <span class="bs-tag">④ בדיקת חשיבת-עדר — נקודה עיוורת משותפת</span>
+    <h3>⚠️ ההנחה שכולנו סומכים עליה: ש-AI לא ימחק את ה-SaaS</h3>
+    <p>
+      4 הסוכנים אותו מודל AI. כשהקונסנזוס חזק — חובה לשאול: <b>על מה כולם הסכימו בלי לבדוק לעומק?</b>
+    </p>
+    <p>
+      ההנחה המשותפת: <b>שעלויות-המעבר של ServiceNow יחזיקו</b> מספיק זמן כדי שהחברה תספיק להתאים את עצמה לעידן ה-Agentic AI.
+      עורך הדין השטן הזכיר את האיום — אך גם הוא תמחר אותו רק כ-10% הסתברות "אסון". מה אם זה 25%? 40%?
+    </p>
+    <p>
+      תרחיש שלא תמחרנו לעומק: <b>"מוות איטי"</b> — הצמיחה ממשיכה ברמה סבירה, אבל מודלי AI חדשים מאיצים את הדיסאינטרמדיאציה
+      במהלך 3–5 שנים, וב-FY2029 הצמיחה היא לא 20% אלא 8%. במצב כזה המכפיל ייפול שוב — אפילו אם הרווחים עדיין גדלים.
+    </p>
+    <div class="impact">
+      <b>השפעה על הפסיקה:</b> רמת הביטחון יורדת דרגה (מ"גבוה" ל<b>"בינוני-גבוה"</b>) ב-NOW בגלל הסיכון המבני,
+      בדומה ל-Visa. אך בניגוד ל-Visa שבה גם המחיר היה גבוה — כאן המחיר כבר מתמחר חלק מהפחד, אז הפוזיציה עדיין מאושרת.
+    </div>
+  </div>
+
+  <div class="section">
+    <h2><span class="bar-accent" style="background:var(--blue)"></span>⑤ איזה סוכן צפוי להיות הכי צודק?</h2>
+    <div class="desc" style="margin-bottom:0">
+      <b>ה-Executor.</b> שאר הסוכנים נתנו הערכות איכותיות; ה-Executor נתן <b>מספר קשיח</b>:
+      R/R 2.21:1 ב-$100. זה לא דעה — זו מתמטיקה. גם אם השטן צודק חלקית (חלק מהבעיה כבר תומחר),
+      וגם אם האנליסט אופטימי מדי (שווי הוגן 120, לא 143), R/R של 2:1 ב-$100 הוא <b>בלם בטיחות.</b>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2><span class="bar-accent" style="background:var(--purple)"></span>⑥ סיכום החלטה</h2>
+    <table class="scoretbl">
+      <tr><td class="lbl">איכות עסק</td><td class="val c-green">חזק (8.0/10)</td></tr>
+      <tr><td class="lbl">רמת סיכון</td><td class="val c-yellow">בינוני (6/10)</td></tr>
+      <tr><td class="lbl">הערכת שווי</td><td class="val c-green">אטרקטיבי</td></tr>
+      <tr><td class="lbl">התאמה לתיק</td><td class="val c-yellow">בינוני (חפיפת AI)</td></tr>
+      <tr><td class="lbl">איכות כניסה</td><td class="val c-green">טוב (7/10)</td></tr>
+      <tr><td class="lbl">נקודה עיוורת משותפת</td><td class="val c-yellow">זוהתה (AI ארוך-טווח)</td></tr>
+      <tr><td class="lbl">רמת ביטחון</td><td class="val c-yellow">בינוני-גבוה</td></tr>
+      <tr><td class="lbl">גודל פוזיציה מומלץ</td><td class="val c-green">5%</td></tr>
+    </table>
+  </div>
+
+  <div class="verdict">
+    <span class="tag">⑦ פסיקת ועדה סופית</span>
+    <h2>✅ APPROVED WITH CONDITIONS — Scale In · 5%</h2>
+    <p>
+      <b>זה ההפך מ-Visa.</b> שם כולם הסכימו "חכה". כאן כולם מסכימים "פעל" — אבל בזהירות.
+      Q1 FY2026 חזק, R/R 2.2:1, מחיר ב-50% משיא, מאזן בריא. <b>הסיכון אינו בעסק — הוא בנרטיב.</b>
+      וזה סיכון שאפשר לחיות איתו ב-5% מהתיק, לא ב-12%.
+    </p>
+    <p>
+      <b>תנאי קודמים:</b><br>
+      1️⃣ קיצוץ IBIT מ-11% ל-4% — חובה לפני NOW.<br>
+      2️⃣ T1 בלבד מיידי (40% × $96 = ~$38). T2/T3 מותנים בטריגרי מחיר ($90 / $82).<br>
+      3️⃣ Kill switches פעילים: cRPO &lt;15% ל-2 רבעונים, או דמו AI שמחליף ITSM → מכירה.
+    </p>
+    <div class="scorebig">
+      <div class="scorebox"><div class="sb-lbl">פסיקה</div><div class="sb-num c-green" style="font-size:13px">APPROVED</div></div>
+      <div class="scorebox"><div class="sb-lbl">ביטחון</div><div class="sb-num c-yellow" style="font-size:15px">בינוני-גבוה</div></div>
+      <div class="scorebox"><div class="sb-lbl">גודל</div><div class="sb-num c-blue">5%</div></div>
+      <div class="scorebox"><div class="sb-lbl">איכות תהליך</div><div class="sb-num c-green" style="font-size:15px">גבוהה</div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2><span class="bar-accent" style="background:var(--blue)"></span>⑧ לוח סקירות לאחר עסקה</h2>
+    <div class="desc">מתחיל אחרי T1.</div>
+    <div class="trig"><span class="ti">📅</span><span class="tb"><b>סקירה 30 יום (~23.6.2026):</b> האם התזה עדיין שלמה? יש דמו AI מאיים?</span></div>
+    <div class="trig"><span class="ti">📅</span><span class="tb"><b>סקירה 60 יום (~23.7.2026):</b> Q2 FY26 (סוף יולי) — הדוח הבא. אישור או הפרכה.</span></div>
+    <div class="trig"><span class="ti">📅</span><span class="tb"><b>סקירה 90 יום (~22.8.2026):</b> סיכום ראשון של ההחזקה. כל ה-Kill Switches נבדקים.</span></div>
+    <div class="trig"><span class="ti">🛑</span><span class="tb"><b>טריגר מיידי:</b> Kill Switch מופעל לפני התאריך → הערכה מחדש מיידית, לא מחכים לסקירה המתוזמנת.</span></div>
+  </div>
+
+  <div class="section">
+    <h2><span class="bar-accent" style="background:var(--red)"></span>⑨ האמת הקשה</h2>
+    <div class="hardtruth">
+      <div class="ht-l">הדבר שכנראה לא תרצה לשמוע</div>
+      <b>החלטה זו תיראה טיפשית — בכל מקרה.</b> אם Agentic AI יאכל את ה-SaaS, תאמר לעצמך "השטן צדק וקניתי מלכודת ערך".
+      אם החפיר יחזיק, תאמר "היה ברור, למה רק 5%?". <b>שני התחושות הללו הן אשליה.</b> ההחלטה נכונה ברגע זה לפי
+      הראיות שיש לנו. התהליך — לא התוצאה — הוא מה שמודדים. אם תפעל מבוסס תהליך עקבית, התוצאות יבואו בממוצע.
+      <b>אסור</b> לראות הצלחה אחת כהוכחה לטעות בגודל הפוזיציה — או כישלון אחד כהוכחה שהתהליך שבור.
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="handoff" style="margin-top:0">
+      <b>📤 HANDOFF למתעד העסקאות</b><br>
+      חברה: ServiceNow (NOW) · תאריך: 24.5.2026<br>
+      <b>פסיקה:</b> APPROVED WITH CONDITIONS · <b>גודל מאושר:</b> 5% (~$96) · <b>שכבה:</b> Growth · <b>ביטחון:</b> בינוני-גבוה<br>
+      <b>פעולה ראשונה:</b> איזון מחדש IBIT 11%→4% (משחרר ~$135). אז BUY-TRANCHE-1 של NOW.<br>
+      <b>שווי הוגן (בסיס):</b> $120 · <b>טריגר מחיר T2:</b> $90 · <b>T3:</b> $82 · <b>סטופ:</b> $75 · <b>TP1:</b> $130 · <b>TP2:</b> $155<br>
+      <b>תזה במשפט:</b> SaaS-ארגוני מצטיין בחפיר עמוק במחיר שמתמחר את חששות ה-AI — R/R 2.2:1 מצדיק כניסה הדרגתית.<br>
+      <b>הנחה שבירה:</b> שעלויות-המעבר של ServiceNow מגנות גם מפני Agentic AI.<br>
+      <b>Kill Switches:</b> (1) cRPO &lt;15% ל-2 רבעונים · (2) דמו ציבורי של סוכן AI שמחליף ITSM.<br>
+      הסוכן הבא: מתעד עסקאות → רישום בדשבורד + הוספה ל-Watchlist (לטריגרים T2/T3).
+    </div>
+  </div>
+</div>
+<div class="footer">סינתזה של 4 handoffs. הוועדה לא ניתחה מחדש — סינתזה והכריעה.</div>
+</body>
+</html>

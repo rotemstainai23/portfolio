@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>עורך הדין השטן — Visa Inc. (V)</title>
+<style>
+:root{
+  --bg:#07090f;--surface:#0d1117;--surface2:#111827;
+  --border:#1a2744;--border2:#1e3a5f;
+  --text:#dce6f5;--muted:#6b7e9a;--muted2:#8899aa;
+  --blue:#4da6ff;--green:#2ecc71;--red:#e05c5c;
+  --orange:#f0a050;--yellow:#f5c842;--purple:#a78bfa;--gold:#d4af37;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;padding-bottom:40px}
+
+.topbar{
+  background:linear-gradient(135deg,#1c1014,#0a0709);
+  padding:18px 32px;border-bottom:1px solid #3a1a1a;
+  display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap
+}
+.topbar h1{font-size:21px;color:var(--red);letter-spacing:-.3px}
+.topbar .sub{font-size:12px;color:var(--muted);margin-top:4px}
+.stamp{font-size:11px;color:var(--muted);text-align:left;line-height:1.7}
+.stamp b{color:var(--text)}
+
+.wrap{max-width:1100px;margin:0 auto;padding:24px 32px}
+
+.inherit{
+  background:rgba(77,166,255,.06);border:1px solid rgba(77,166,255,.25);
+  border-radius:10px;padding:14px 18px;margin-bottom:20px
+}
+.inherit .ih-title{font-size:12px;color:var(--blue);font-weight:700;margin-bottom:10px}
+.inherit .ih-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(135px,1fr));gap:10px}
+.inherit .ih-item{font-size:12px}
+.inherit .ih-item .k{color:var(--muted);font-size:10px;display:block;margin-bottom:2px}
+.inherit .ih-item .v{color:var(--text);font-weight:700}
+.inherit .ih-note{font-size:10.5px;color:var(--muted);margin-top:10px;line-height:1.6}
+
+.section{
+  background:var(--surface2);border:1px solid var(--border2);border-radius:12px;
+  padding:22px 24px;margin-bottom:20px
+}
+.section h2{font-size:16px;color:var(--text);margin-bottom:4px;display:flex;align-items:center;gap:8px}
+.section .tagnum{font-size:11px;color:var(--muted);font-weight:400}
+.section .desc{font-size:12.5px;color:var(--muted2);margin:6px 0 16px;line-height:1.7}
+.bar-accent{width:4px;height:18px;border-radius:2px;display:inline-block}
+
+.attack{
+  background:linear-gradient(135deg,#1a1013,#0c0a0e);border:1px solid #3a1a1a;
+  border-top:3px solid var(--red);border-radius:12px;padding:24px;margin-bottom:20px
+}
+.attack .tag{display:inline-block;background:rgba(224,92,92,.13);color:var(--red);
+  font-size:12px;font-weight:700;padding:5px 14px;border-radius:20px;margin-bottom:14px}
+.attack h2{font-size:18px;color:var(--text);margin-bottom:12px}
+.attack p{font-size:13.5px;color:var(--muted2);line-height:1.85;margin-bottom:11px}
+.attack p b{color:var(--text)}
+.attack .punch{color:var(--red);font-weight:700}
+
+/* RISK SCORECARD */
+.riskgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(165px,1fr));gap:12px}
+.riskcard{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:15px;
+  border-top:3px solid var(--muted)}
+.riskcard.green{border-top-color:var(--green)}
+.riskcard.yellow{border-top-color:var(--yellow)}
+.riskcard.red{border-top-color:var(--red)}
+.riskcard .rc-lbl{font-size:11px;color:var(--muted);margin-bottom:7px}
+.riskcard .rc-val{font-size:14px;font-weight:800;margin-bottom:5px}
+.riskcard.green .rc-val{color:var(--green)}
+.riskcard.yellow .rc-val{color:var(--yellow)}
+.riskcard.red .rc-val{color:var(--red)}
+.riskcard .rc-note{font-size:11px;color:var(--muted2);line-height:1.55}
+
+/* CARDS */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:13px}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:15px}
+.card .lbl{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.6px;margin-bottom:7px}
+.card .val{font-size:18px;font-weight:800;line-height:1.3}
+.card .sub{font-size:11px;color:var(--muted);margin-top:6px;line-height:1.5}
+.c-red{color:var(--red)}.c-green{color:var(--green)}.c-yellow{color:var(--yellow)}.c-text{color:var(--text)}.c-blue{color:var(--blue)}
+
+/* VALUATION DOWNSIDE BAR CHART */
+.dchart{display:flex;align-items:flex-end;gap:18px;height:175px;margin-top:8px}
+.dcol{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%}
+.dcol .dc-price{font-size:15px;font-weight:800;margin-bottom:6px}
+.dcol .dc-fill{width:100%;border-radius:6px 6px 0 0;display:flex;align-items:flex-start;
+  justify-content:center;padding-top:8px;font-size:11px;font-weight:700;color:#07090f;min-height:24px}
+.dcol .dc-lbl{font-size:11.5px;margin-top:8px;font-weight:600;text-align:center}
+.dcol .dc-sub{font-size:10px;color:var(--muted);margin-top:3px;text-align:center}
+
+/* TABLE */
+.dtable{width:100%;border-collapse:collapse;margin-top:8px}
+.dtable th{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;text-align:right;padding:9px 10px;border-bottom:1px solid var(--border)}
+.dtable td{padding:11px 10px;border-bottom:1px solid var(--bg);font-size:12.5px;font-variant-numeric:tabular-nums}
+.dtable tr:last-child td{border-bottom:none}
+.dtable .metric{color:var(--muted2);font-variant-numeric:normal}
+
+/* STRESS DONUT */
+.chart-row{display:flex;gap:30px;align-items:center;flex-wrap:wrap}
+.donut{width:180px;height:180px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;position:relative}
+.donut::after{content:'';position:absolute;width:110px;height:110px;border-radius:50%;background:var(--surface2)}
+.donut .center{position:relative;z-index:2;text-align:center}
+.donut .center .big{font-size:15px;font-weight:800;color:var(--text)}
+.donut .center .small{font-size:10px;color:var(--muted);margin-top:3px}
+.legend{display:flex;flex-direction:column;gap:9px;flex:1;min-width:250px}
+.leg-item{display:flex;align-items:center;gap:10px;font-size:12.5px}
+.leg-dot{width:13px;height:13px;border-radius:4px;flex-shrink:0}
+.leg-name{flex:1}.leg-val{font-weight:700}
+
+/* KILL SWITCH */
+.kill{background:var(--surface);border-radius:10px;padding:13px 16px;margin-bottom:10px;
+  border-right:4px solid var(--red);display:flex;gap:12px;align-items:flex-start}
+.kill .ks-ico{font-size:15px;flex-shrink:0}
+.kill .ks-body h3{font-size:13px;color:var(--text);margin-bottom:3px}
+.kill .ks-body p{font-size:11.5px;color:var(--muted2);line-height:1.55}
+
+/* VERDICT */
+.verdict{background:linear-gradient(135deg,#10182a,#0a0e18);border:1px solid var(--border2);
+  border-radius:12px;padding:24px;border-top:3px solid var(--green)}
+.verdict .tag{display:inline-block;background:rgba(46,204,113,.13);color:var(--green);
+  font-size:12px;font-weight:700;padding:5px 14px;border-radius:20px;margin-bottom:14px}
+.verdict h2{font-size:18px;color:var(--text);margin-bottom:12px}
+.verdict p{font-size:13px;color:var(--muted2);line-height:1.8;margin-bottom:10px}
+.verdict p b{color:var(--text)}
+.scorebig{display:flex;gap:14px;flex-wrap:wrap;margin-top:14px}
+.scorebox{background:var(--surface);border-radius:10px;padding:15px 20px;flex:1;min-width:150px;text-align:center}
+.scorebox .sb-lbl{font-size:10px;color:var(--muted);margin-bottom:6px}
+.scorebox .sb-num{font-size:24px;font-weight:800}
+
+.handoff{background:var(--surface);border:1px dashed var(--border2);border-radius:10px;
+  padding:18px;margin-top:16px;font-size:12.5px;color:var(--muted2);line-height:1.8}
+.handoff b{color:var(--text)}
+
+.footer{max-width:1100px;margin:0 auto;padding:8px 32px;font-size:11px;color:var(--muted);line-height:1.9}
+.footer b{color:var(--muted2)}
+.disclaimer{background:rgba(245,200,66,.05);border:1px solid rgba(245,200,66,.18);
+  border-radius:8px;padding:12px 16px;font-size:11.5px;color:var(--muted2);line-height:1.7;margin-top:8px}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div>
+    <h1>⚖️ עורך הדין השטן — Visa Inc.</h1>
+    <div class="sub">טיקר: V · NYSE · קצין הגנת תיק · משימה: לשבור את התזה</div>
+  </div>
+  <div class="stamp">
+    תאריך: <b>22 במאי 2026</b><br>
+    מקור נתונים: <b>דשבורד אנליסט (ירושה)</b>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <!-- DATA INHERITANCE -->
+  <div class="inherit">
+    <div class="ih-title">① נתונים שהתקבלו מהאנליסט — נעולים</div>
+    <div class="ih-grid">
+      <div class="ih-item"><span class="k">מחיר נוכחי</span><span class="v">$331.12</span></div>
+      <div class="ih-item"><span class="k">שווי שוק</span><span class="v">$623.8B</span></div>
+      <div class="ih-item"><span class="k">שווי הוגן (בסיס)</span><span class="v">$360 (+9%)</span></div>
+      <div class="ih-item"><span class="k">ציון איכות</span><span class="v">8.5/10</span></div>
+      <div class="ih-item"><span class="k">Forward P/E</span><span class="v">~23x</span></div>
+      <div class="ih-item"><span class="k">P/S</span><span class="v">14.5x</span></div>
+      <div class="ih-item"><span class="k">FCF Yield</span><span class="v">~3.4%</span></div>
+      <div class="ih-item"><span class="k">דוח הבא</span><span class="v">Q3 FY26 (יולי)</span></div>
+    </div>
+    <div class="ih-note">
+      מספרים אלה נעולים — לא משונים. המתקפה היא על <b>המסקנות</b> שנגזרו מהם, לא על המספרים.
+      דגלים שהאנליסט כבר זיהה: הפרשות משפטיות חוזרות (interchange) · לחץ רגולטורי על עמלות · מסילות תשלום חלופיות ·
+      ההנחה השבירה: שהמכפיל הפרמיום (~23x) יישמר. לא סופק מידע דוב חיצוני נוסף — הניתוח מבוסס על נתוני האנליסט.
+    </div>
+  </div>
+
+  <!-- DEVIL'S ADVOCATE MODE -->
+  <div class="attack">
+    <span class="tag">② מצב עורך דין שטן — הטיעון נגד</span>
+    <h2>אתם קונים עסק מושלם — במחיר שמתמחר שהשליטה שלו נצחית</h2>
+    <p>
+      Visa היא עסק נהדר. זו בדיוק הבעיה. <b>כולם יודעים שזה עסק נהדר</b> — ולכן הוא מתומחר ב-14.5x מכירות
+      וב-~23x רווחי forward. בתמחור כזה אתם לא מהמרים על "עסק טוב" — אתם מהמרים על כך
+      ש<span class="punch">הדומיננטיות תישאר מוחלטת ובלתי-מאותגרת לנצח</span>.
+    </p>
+    <p>
+      <b>שתי סדקים בקיר.</b> ראשון — מוכר שורט מדרג-ראשון יצביע על כך שהשוק מתייחס להפרשות המשפטיות
+      כ"התאמות חד-פעמיות" (non-GAAP), בעוד שהן <b>חוזרות ומבניות</b> — מס קבוע על מודל העסק.
+      הרווח ה"אמיתי" נמוך מהמספר ש-Visa מציגה למשקיעים. שני — האיום על Visa אינו מתחרה כרטיסים,
+      אלא <b>עקיפת הכרטיס לחלוטין</b>: מסילות תשלום מיידיות (Pix בברזיל בלע נתח אדיר מצמיחת הכרטיסים שם;
+      UPI בהודו; FedNow בארה"ב). החפיר רחב — אבל הרצפה עלולה להישחק.
+    </p>
+    <p>
+      <b>הסיכון האמיתי אינו ש-Visa "תיפול".</b> הוא שתשלמו מחיר מלא עבור איכות, והמכפיל יתכווץ
+      בעוד שהעסק עצמו בסדר גמור — והתשואה שלכם תהיה אפסית או שלילית למשך שנים.
+      <span class="punch">זה בדיוק מה שקרה למניות "ברורות מאליהן" אחרות שנעשו יקרות מדי.</span>
+    </p>
+  </div>
+
+  <!-- RISK SCORECARD -->
+  <div class="section">
+    <h2><span class="bar-accent" style="background:var(--red)"></span>③ כרטיס ניקוד סיכון</h2>
+    <div class="desc">הוגנות לפני הכל: אם סיכון נמוך באמת — נאמר שהוא נמוך. וזה המצב ברוב הקטגוריות.</div>
+    <div class="riskgrid">
+      <div class="riskcard yellow"><div class="rc-lbl">שבירות תזה</div><div class="rc-val">🟡 בינונית</div>
+        <div class="rc-note">תלויה במכפיל הפרמיום — הנחה שעלולה להישבר</div></div>
+      <div class="riskcard green"><div class="rc-lbl">סיכון עסקי</div><div class="rc-val">🟢 נמוך</div>
+        <div class="rc-note">חפיר רחב; הדיסאינטרמדיאציה איטית</div></div>
+      <div class="riskcard green"><div class="rc-lbl">סיכון פיננסי</div><div class="rc-val">🟢 נמוך</div>
+        <div class="rc-note">מזומן נטו, FCF חזק — מאזן מצוין</div></div>
+      <div class="riskcard red"><div class="rc-lbl">סיכון שווי</div><div class="rc-val">🔴 גבוה</div>
+        <div class="rc-note">מתומחר לשלמות — מרווח ביטחון שולי</div></div>
+      <div class="riskcard yellow"><div class="rc-lbl">סיכון מאקרו</div><div class="rc-val">🟡 בינוני</div>
+        <div class="rc-note">חוצה-גבולות רגיש לתיירות ולמיתון</div></div>
+      <div class="riskcard yellow"><div class="rc-lbl">סיכון אירוע</div><div class="rc-val">🟡 בינוני</div>
+        <div class="rc-note">פסיקות ליטיגציה · רגולציה · דוחות</div></div>
+    </div>
+  </div>
+
+  <!-- RISK FRAMEWORK -->
+  <div class="section">
+    <h2><span class="bar-accent" style="background:var(--orange)"></span>④ מסגרת סיכון — פירוט</h2>
+    <div class="cards">
+      <div class="card"><div class="lbl">שבירות תזה</div>
+        <div class="val c-yellow">המכפיל חייב להחזיק</div>
+        <div class="sub">אם הצמיחה תאט מדו-ספרתית לחד-ספרתית גבוהה (נורמליזציית תיירות, נתח ל-A2A) — המכפיל מתכווץ ל-18–20x. זו ההנחה הכי קלה לביטול.</div></div>
+      <div class="card"><div class="lbl">סיכון עסקי</div>
+        <div class="val c-green">חפיר רחב — אך לא חסין</div>
+        <div class="sub">החפיר חזק מול מתחרי כרטיסים. הוא חלש יותר מול ממשלות שמסבסדות מסילות חלופיות (Pix/UPI/FedNow). שחיקה — איטית אך אמיתית.</div></div>
+      <div class="card"><div class="lbl">סיכון פיננסי</div>
+        <div class="val c-green">נמוך — בכנות</div>
+        <div class="sub">מזומן נטו $6.2B, FCF $21.6B, רווחים מגובים במזומן. אין כאן סיכון מאזני. הסיכון הפיננסי היחיד: זרם המזומן שיוצא להסדרים משפטיים.</div></div>
+      <div class="card"><div class="lbl">סיכון מאקרו</div>
+        <div class="val c-yellow">חוצה-גבולות = נקודת התורפה</div>
+        <div class="sub">המנוע הרווחי ביותר (עסקאות בינלאומיות) הוא גם התנודתי ביותר — קרס בקוביד. מיתון עולמי או זעזוע תיירות פוגעים בקו הרווחי ביותר. דולר חזק מקטין הכנסות מדווחות.</div></div>
+      <div class="card"><div class="lbl">סיכון קורלציה</div>
+        <div class="val c-green">מגוון מול תיק AI</div>
+        <div class="sub">Visa אינה מניית AI/שבבים — חפיפה תמטית נמוכה מול תיק מוטה-AI, כלומר תורמת לפיזור. אך בבהלת שוק רחבה היא עדיין יורדת (Beta 0.78 — פחות מהשוק).</div></div>
+      <div class="card"><div class="lbl">סיכון אירוע</div>
+        <div class="val c-yellow">ליטיגציה + דוח Q3</div>
+        <div class="sub">פסיקה/הסדר בתיק עמלות הסליקה — אירוע בינארי. דוח Q3 FY26 (יולי) — קונצנזוס גבוה, החמצה בחוצה-גבולות תיענש.</div></div>
+    </div>
+  </div>
+
+  <!-- VALUATION RISK -->
+  <div class="section">
+    <h2><span class="bar-accent" style="background:var(--red)"></span>⑤ סיכון שווי — חישוב הסיכון השלילי</h2>
+    <div class="desc">
+      הטיעון: ב-Forward P/E ~23x, הצמיחה כבר מגולמת. מה קורה למחיר אם המכפיל לבדו מתנרמל —
+      בלי שום הרעה בעסק? חישוב על בסיס EPS עתידי משוער ~$13.9.
+    </div>
+    <div class="dchart">
+      <div class="dcol">
+        <div class="dc-price c-blue">$331</div>
+        <div class="dc-fill" style="height:100%;background:var(--blue)">0%</div>
+        <div class="dc-lbl c-blue">מחיר נוכחי</div>
+        <div class="dc-sub">~23x forward</div>
+      </div>
+      <div class="dcol">
+        <div class="dc-price c-yellow">$278</div>
+        <div class="dc-fill" style="height:84%;background:var(--yellow)">−16%</div>
+        <div class="dc-lbl c-yellow">נורמליזציה</div>
+        <div class="dc-sub">~20x forward</div>
+      </div>
+      <div class="dcol">
+        <div class="dc-price c-orange">$250</div>
+        <div class="dc-fill" style="height:76%;background:var(--orange)">−24%</div>
+        <div class="dc-lbl c-orange">דירוג מחדש</div>
+        <div class="dc-sub">~18x forward</div>
+      </div>
+      <div class="dcol">
+        <div class="dc-price c-red">$209</div>
+        <div class="dc-fill" style="height:63%;background:var(--red)">−37%</div>
+        <div class="dc-lbl c-red">מכפיל מיתון</div>
+        <div class="dc-sub">~15x forward</div>
+      </div>
+    </div>
+    <div class="desc" style="margin-top:16px;margin-bottom:0">
+      <b>המתמטיקה:</b> מחיר מרומז = EPS עתידי (~$13.9) × מכפיל דחוס. ירידה ל-18x — מכפיל
+      שעדיין פרמיום ביחס לשוק — שווה <b>−24%</b>, בלי שום הרעה בעסק עצמו.
+      <b>מרווח ביטחון: שולי.</b> המניה הופכת אטרקטיבית בבירור באזור <b>$250–270</b>.
+    </div>
+  </div>
+
+  <!-- STRESS TEST -->
+  <div class="section">
+    <h2><span class="bar-accent" style="background:var(--purple)"></span>⑥ מבחן לחץ — 4 תרחישים <span class="tagnum">· הסתברויות = 100%</span></h2>
+    <div class="desc">
+      ההסתברויות מעוגנות בראיות: ביצוע 3-שנתי עקבי (תומך בבסיס), פרמיית שווי נוכחית (מגבילה את השורי),
+      ההנחה השבירה + ליטיגציה (מזינות את הדובי).
+    </div>
+    <div class="chart-row">
+      <div class="donut" style="background:conic-gradient(
+        var(--green) 0 25%,
+        var(--yellow) 25% 70%,
+        var(--red) 70% 95%,
+        #6b1a1a 95% 100%)">
+        <div class="center"><div class="big">התפלגות</div><div class="small">הסתברות תרחיש</div></div>
+      </div>
+      <div class="legend">
+        <div class="leg-item"><span class="leg-dot" style="background:var(--green)"></span>
+          <span class="leg-name">🟢 שורי — צמיחה אמצע-עשרת, מכפיל נשמר</span><span class="leg-val">25%</span></div>
+        <div class="leg-item"><span class="leg-dot" style="background:var(--yellow)"></span>
+          <span class="leg-name">🟡 בסיס — צמיחה דו-ספרתית נמוכה</span><span class="leg-val">45%</span></div>
+        <div class="leg-item"><span class="leg-dot" style="background:var(--red)"></span>
+          <span class="leg-name">🔴 דובי — דירוג מחדש / האטה</span><span class="leg-val">25%</span></div>
+        <div class="leg-item"><span class="leg-dot" style="background:#6b1a1a"></span>
+          <span class="leg-name">⚫ אסון — הסדר משפטי גדול + שיבוש A2A</span><span class="leg-val">5%</span></div>
+      </div>
+    </div>
+    <table class="dtable">
+      <thead><tr><th>תרחיש</th><th>הסתברות</th><th>תנאים</th><th>השפעה על המניה</th><th>השפעה על תיק*</th></tr></thead>
+      <tbody>
+        <tr><td>🟢 שורי</td><td>25%</td><td class="metric">צמיחה אמצע-עשרת, מכפיל פרמיום נשמר</td><td class="c-green">+22%</td><td class="c-green">+1.1%</td></tr>
+        <tr><td>🟡 בסיס</td><td>45%</td><td class="metric">צמיחה דו-ספרתית נמוכה, מכפיל מתנרמל מעט</td><td class="c-yellow">+9%</td><td class="c-yellow">+0.5%</td></tr>
+        <tr><td>🔴 דובי</td><td>25%</td><td class="metric">האטת צמיחה / דירוג מחדש ל-~18x</td><td class="c-red">−24%</td><td class="c-red">−1.2%</td></tr>
+        <tr><td>⚫ אסון</td><td>5%</td><td class="metric">הסדר interchange גדול + שיבוש A2A + מיתון</td><td class="c-red">−40%</td><td class="c-red">−2.0%</td></tr>
+      </tbody>
+    </table>
+    <div class="desc" style="margin-top:10px;margin-bottom:0">* השפעה על תיק — בהנחת פוזיציה אילוסטרטיבית של ~5%. הגודל הסופי נקבע ע"י ה-CEO.</div>
+  </div>
+
+  <!-- KILL SWITCH -->
+  <div class="section">
+    <h2><span class="bar-accent" style="background:var(--red)"></span>⑦ תנאי KILL SWITCH <span class="tagnum">· טריגרים מדידים להערכה מחדש</span></h2>
+    <div class="kill"><div class="ks-ico">🔴</div><div class="ks-body">
+      <h3>שבירת תזה — צמיחת חוצה-גבולות</h3>
+      <p>נפח חוצה-גבולות צומח מתחת ל-5% במשך 2 רבעונים רצופים → אות לשיבוש A2A / חולשת תיירות מבנית.</p></div></div>
+    <div class="kill"><div class="ks-ico">🔴</div><div class="ks-body">
+      <h3>קריסת הנחיות — צמיחת הכנסות</h3>
+      <p>צמיחת הכנסות נטו יורדת מתחת ל-7% במשך 2 רבעונים רצופים.</p></div></div>
+    <div class="kill"><div class="ks-ico">🔴</div><div class="ks-body">
+      <h3>שחיקת מרווח אמיתית</h3>
+      <p>מרווח תפעולי <b>Non-GAAP</b> יורד מתחת ל-~63% → סימן להרעה תפעולית אמיתית (להבדיל מרעש משפטי).</p></div></div>
+    <div class="kill"><div class="ks-ico">🔴</div><div class="ks-body">
+      <h3>אירוע ליטיגציה / רגולציה</h3>
+      <p>חיוב משפטי בודד מעל $2B, פסיקה סופית שלילית בתיק interchange, או חקיקת תקרת עמלות בארה"ב.</p></div></div>
+    <div class="kill"><div class="ks-ico">🟡</div><div class="ks-body">
+      <h3>אירוע דילול — לא רלוונטי</h3>
+      <p>Visa רוכשת מניות בעקביות (מקטינה ~3%/שנה) — אין סיכון דילול. נשמר למעקב לשם השלמות בלבד.</p></div></div>
+  </div>
+
+  <!-- BIGGEST MISTAKE -->
+  <div class="section">
+    <h2><span class="bar-accent" style="background:var(--orange)"></span>⑧ הטעות הגדולה ביותר שאתם עלולים לעשות</h2>
+    <div class="desc" style="font-size:13.5px;color:var(--text);line-height:1.85;margin-bottom:0">
+      לבלבל בין <b>"עסק מהמעלה הראשונה"</b> לבין <b>"אי אפשר להפסיד עליו כסף"</b>.
+      Visa-העסק כמעט בוודאות תהיה בסדר. Visa-המניה ב-14.5x מכירות יכולה להניב תשואה בינונית או שלילית
+      במשך שנים אם המכפיל יתכווץ. נקודת העיוורון: לעגֵן את ההחלטה על איכות העסק — ולהתעלם ממכפיל הכניסה.
+      וטעות שנייה: לקבל את נרטיב ה-non-GAAP ולהתייחס להפרשות המשפטיות כ"חד-פעמיות" כשהן חוזרות.
+    </div>
+  </div>
+
+  <!-- FINAL VERDICT -->
+  <div class="verdict">
+    <span class="tag">⑨ פסיקה סופית — עורך הדין השטן</span>
+    <h2>סיכון נמוך — עם הסתייגות שווי חדה</h2>
+    <p>
+      בכנות: Visa היא <b>עסק בסיכון נמוך</b>. חפיר רחב, מזומן נטו, FCF אדיר, הנהלה ממושמעת.
+      ניסיתי לשבור את התזה — והעסק לא נשבר. <b>אבל</b> — ה"סיכון" כאן אינו החברה, אלא ה<b>מחיר</b>:
+      מתומחרת לשלמות, מרווח ביטחון שולי, וירידת מכפיל צנועה לבדה שווה −24%.
+    </p>
+    <p>
+      ציון הסיכון <b>3/10</b> משקף את איכות העסק (עוגן 2 = MSFT/AAPL). תקרת הפוזיציה הנגזרת היא
+      <b>12%</b> — אך זו <b>תקרת סיכון, לא המלצת גודל</b>. בהינתן מרווח הביטחון השולי, עורך הדין השטן
+      ימליץ ל-CEO להיכנס בגודל מופחת, או להמתין לאזור $250–270.
+    </p>
+    <div class="scorebig">
+      <div class="scorebox"><div class="sb-lbl">ציון סיכון</div><div class="sb-num c-green">3/10</div></div>
+      <div class="scorebox"><div class="sb-lbl">תקרת פוזיציה</div><div class="sb-num c-blue">12%</div></div>
+      <div class="scorebox"><div class="sb-lbl">סיכון שלילי שווי</div><div class="sb-num c-red">−24%</div></div>
+      <div class="scorebox"><div class="sb-lbl">פסיקה</div><div class="sb-num c-green" style="font-size:17px">סיכון נמוך</div></div>
+    </div>
+    <div class="handoff">
+      <b>📤 HANDOFF ל-CEO</b><br>
+      חברה: Visa Inc. (V) · ציון סיכון: <b>3/10</b> (סיכון נמוך)<br>
+      <b>הסיכון הגדול ביותר:</b> סיכון שווי — מתומחרת לשלמות, מרווח ביטחון שולי.<br>
+      <b>ההנחה השבירה:</b> שהמכפיל הפרמיום (~23x forward) יישמר.<br>
+      <b>סיכון שלילי שווי:</b> −24% בדירוג מחדש ל-18x · −37% בתרחיש מיתון.<br>
+      <b>תקרת פוזיציה מקסימלית:</b> 12% (תקרת סיכון — לא המלצה; שקול גודל מופחת בשל מרווח הביטחון השולי).<br>
+      <b>טריגרי KILL SWITCH מובילים:</b> (1) צמיחת חוצה-גבולות &lt;5% ל-2 רבעונים · (2) חיוב משפטי &gt;$2B / חקיקת תקרת עמלות.<br>
+      הסוכן הבא: CEO.
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  <b>מקור נתונים:</b> דשבורד האנליסט (ירושה) — לא סופק מידע דוב חיצוני נוסף.<br>
+  המספרים הפיננסיים נעולים מדוח האנליסט; עורך הדין השטן תקף את המסקנות בלבד, לא את הנתונים.<br>
+  <div class="disclaimer">
+    ⚠️ <b>הסתייגות:</b> תרחישי השווי הם חישובים אנליטיים להמחשת סיכון — לא תחזית מחיר.
+    ההסתברויות הן הערכה מבוססת-ראיות, לא ודאות. אינו ייעוץ השקעות. נתונים נכונים ל-22.5.2026.
+  </div>
+</div>
+
+</body>
+</html>

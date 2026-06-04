@@ -1,0 +1,132 @@
+{
+  "ticker": "SOFI",
+  "agent": "analyst",
+  "date": "2026-05-30",
+  "verdict": "REVIEW",
+  "score": 57,
+  "thesis": "SoFi הוא בנק דיגיטלי בצמיחה מהירה (42% YoY) עם bank charter המעניק NIM 5.94% ייחודי, אך מאזן הסיכונים כולל: fair value accounting לא מוכח מול Muddy Waters, Technology Platform שאיבד את לקוחו הגדול (-27% YoY), ו-NCO אמיתי ~4.4% מוסתר מאחורי מכירות delinquent loans — מחיר נוכחי $18.25 מגלם base case מלא ללא margin of safety.",
+  "key_risks": [
+    "Fair value accounting overstatement — $1.8B+ marks שנויים במחלוקת, לא הוכחשו ספציפית (Muddy Waters 17/3/2026)",
+    "Technology Platform collapse — Chime יצאה, revenue -27% YoY, contribution -61%",
+    "NCO personal loans all-in ~4.4% vs 3.03% מוצג — $360M delinquent loan sales מסתירים הפסד אמיתי",
+    "ריבית — guidance מניח 0 rate cuts; כל הורדה תדחס NIM",
+    "Off-balance-sheet VIE $312M + $251M לפי Muddy Waters — לא הוכחש"
+  ],
+  "position_size_pct": 0,
+  "valuation_summary": "שווי הוגן base case $20–24 (upside +10–32% מ-$18.25); bear case $10–12 אם fair value restatement; bull case $30–38 אם Technology recovery + re-rating",
+  "entry_exit_plan": "כניסה: לא מומלצת כרגע — המתן לאחד מ: (א) הכחשה ספציפית שורה-שורה של Muddy Waters, (ב) Technology Platform חוזר ל-$100M+/רבעון, (ג) ירידה ל-$14–15 (margin of safety); יציאה/kill switch: fair value restatement כלשהו OR NCO all-in >6% OR Technology <$70M/רבעון 2 רבעונים ברצף",
+  "handoff_summary": "SoFi Technologies היא בנק דיגיטלי בצמיחה מהירה עם NIM ייחודי (5.94%), 14.7M חברים, ופיקדונות $40.2B. הפסגה הפיננסית ב-Q1 2026 ($1.09B revenue, +42% YoY) מוסתרת על-ידי שלושה סיכונים לא פתורים: (1) Muddy Waters (17/3/2026) מאשים fair value accounting מנופח ב-$1.8B+ על ספרי ההלוואות, עם discount rate 3.89% נמוך מ-10Y Treasury — SoFi לא הכחישה ספציפית; (2) Technology Platform (Galileo/Technisys) איבד את Chime — הלקוח הגדול — הכנסות ירדו 27% YoY ו-contribution profit ירד 61% ל-Q1 2026, הגדיל את הספק סביב ה-$2.3B השקעה ב-acquisitions; (3) NCO אמיתי על personal loans ~4.4% all-in (כולל $360M delinquent sales) מוסתר מאחורי NCO מוצג של 3.03%. שווי הוגן base case $20–24 מציע upside מוגבל מהמחיר הנוכחי $18.25, ללא margin of safety. מניה ראויה לניתוח שורטי מעמיק בשני מישורים: fair value accounting forensics ו-Technology Platform structural decline thesis.",
+  "visual_scores": {
+    "business_engines": [
+      {
+        "label": "Lending",
+        "revenue_b": 0.642,
+        "growth_pct": 55,
+        "weight_pct": 58.9
+      },
+      {
+        "label": "Financial Services",
+        "revenue_b": 0.429,
+        "growth_pct": 41,
+        "weight_pct": 39.3
+      },
+      {
+        "label": "Technology Platform",
+        "revenue_b": 0.075,
+        "growth_pct": -27,
+        "weight_pct": 6.9
+      }
+    ],
+    "moat_scores": [
+      {
+        "label": "Bank Charter (Cost Advantage)",
+        "score_0_10": 8
+      },
+      {
+        "label": "Vertical Integration (Tech Stack)",
+        "score_0_10": 7
+      },
+      {
+        "label": "Deposit Base ($40B)",
+        "score_0_10": 8
+      },
+      {
+        "label": "Productivity Loop (Cross-sell)",
+        "score_0_10": 6
+      },
+      {
+        "label": "Galileo Network Effects",
+        "score_0_10": 5
+      },
+      {
+        "label": "Brand (Millennials/GenZ)",
+        "score_0_10": 6
+      }
+    ],
+    "stress_categories": [
+      {
+        "label": "מודל עסקי",
+        "score_0_10": 7
+      },
+      {
+        "label": "סיכון ושרשרת",
+        "score_0_10": 5
+      },
+      {
+        "label": "יושרה חשבונאית",
+        "score_0_10": 5
+      },
+      {
+        "label": "הנהלה והקצאת הון",
+        "score_0_10": 6
+      },
+      {
+        "label": "יעילות תפעולית",
+        "score_0_10": 7
+      }
+    ],
+    "valuation": {
+      "bear_price": 11,
+      "base_price": 22,
+      "bull_price": 34,
+      "current_price": 18.25
+    },
+    "financials_3y": [
+      {
+        "year": "FY2022",
+        "revenue_b": 1.52,
+        "op_margin_pct": null,
+        "fcf_b": null,
+        "eps": -0.4
+      },
+      {
+        "year": "FY2023",
+        "revenue_b": 2.07,
+        "op_margin_pct": null,
+        "fcf_b": null,
+        "eps": -0.36
+      },
+      {
+        "year": "FY2024",
+        "revenue_b": 2.64,
+        "op_margin_pct": null,
+        "fcf_b": null,
+        "eps": 0.39
+      },
+      {
+        "year": "FY2025",
+        "revenue_b": 3.58,
+        "op_margin_pct": 13,
+        "fcf_b": null,
+        "eps": 0.39
+      },
+      {
+        "year": "TTM Q1-26",
+        "revenue_b": 3.91,
+        "op_margin_pct": 15,
+        "fcf_b": null,
+        "eps": 0.44
+      }
+    ]
+  }
+}

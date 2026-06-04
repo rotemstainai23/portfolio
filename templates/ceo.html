@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CEO</title>
+<link rel="stylesheet" href="_shared.css">
+<link rel="stylesheet" href="_redesign.css">
+<style>
+.opp-card{background:var(--glass);border:1px solid var(--glass-border);border-radius:14px;padding:16px 20px;margin-bottom:11px;position:relative;overflow:hidden}
+.opp-card.rec{background:linear-gradient(135deg,rgba(52,211,153,.10),rgba(139,92,246,.08));border-color:rgba(52,211,153,.35)}
+.opp-card.rec::before{content:'';position:absolute;top:0;right:0;width:5px;height:100%;background:var(--grad-good)}
+.opp-card h4{font-size:14.5px;color:var(--text);margin-bottom:7px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-weight:800}
+.opp-card .rec-tag{font-size:10.5px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;padding:3px 9px;border-radius:14px;background:var(--sig-good-soft);color:var(--sig-good);border:1px solid rgba(52,211,153,.3)}
+.opp-card p{font-size:13px;color:var(--muted2);line-height:1.7}
+.opp-card p b{color:var(--text)}
+.bias-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:11px}
+.bias-card{padding:14px 16px;background:var(--glass);border:1px solid var(--glass-border);border-radius:12px;position:relative;overflow:hidden}
+.bias-card::before{content:'';position:absolute;top:0;right:0;width:4px;height:100%;background:var(--grad-good)}
+.bias-card.warn::before{background:var(--grad-warn)}
+.bias-card h5{font-size:13.5px;font-weight:800;color:var(--text);margin-bottom:5px}
+.bias-card p{font-size:12px;color:var(--muted2);line-height:1.6}
+.bias-card p b{color:var(--text)}
+.flag-row{background:var(--glass);border:1px solid var(--glass-border);border-radius:13px;padding:14px 18px;margin-bottom:10px;border-right:4px solid var(--brand-gold);font-size:13.5px;color:var(--muted2);line-height:1.7}
+.flag-row b{color:var(--text)}
+.circuit-banner{margin-top:18px;padding:14px 18px;border-radius:14px;background:linear-gradient(120deg,rgba(52,211,153,.10),rgba(139,92,246,.05));border:1px solid rgba(52,211,153,.25);font-size:14px;color:var(--text);line-height:1.7}
+.circuit-banner b{color:#fff;font-weight:800}
+.inherit-pills{display:flex;flex-direction:column;gap:9px;margin-top:12px}
+.ih-r{display:flex;gap:11px;align-items:flex-start;padding:11px 16px;background:var(--glass);border:1px solid var(--glass-border);border-radius:12px}
+.ih-r .icn{font-size:15px;line-height:1.4;flex-shrink:0}
+.ih-r .tx{font-size:13px;color:var(--muted2);line-height:1.65}
+.ih-r .tx b{color:var(--text)}
+</style>
+</head>
+<body>
+<div id="root" class="error-box">⏳ טוען…</div>
+
+<script>
+'use strict';
+const params = new URLSearchParams(location.search);
+const ticker = params.get('ticker');
+if (!ticker) {
+  document.getElementById('root').innerHTML = '<b>שגיאה:</b> חסר טיקר.';
+} else {
+  document.title = 'CEO — ' + ticker;
+  const s = document.createElement('script');
+  s.src = '../analyses/' + ticker + '/ceo.js';
+  s.onload = render;
+  s.onerror = () => {
+    const s2 = document.createElement('script');
+    s2.src = '../analyses/' + ticker + '/ceo.auto.js';
+    s2.onload = render;
+    s2.onerror = () => { document.getElementById('root').innerHTML = '<b>אין נתונים</b> ל-' + ticker; };
+    document.head.appendChild(s2);
+  };
+  document.head.appendChild(s);
+}
+
+const ICONS = {
+  layers:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>',
+  pie:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"/><path d="M22 12A10 10 0 0 0 12 2v10z"/></svg>',
+  compare:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3h5v5"/><path d="M8 21H3v-5"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/><path d="M8 3H3v5"/><path d="M16 21h5v-5"/></svg>',
+  brain:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 1.98-3A2.5 2.5 0 0 1 9.5 2z"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-1.98-3A2.5 2.5 0 0 0 14.5 2z"/></svg>',
+  ruler:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="m21.3 8.7-9.6 9.6a1 1 0 0 1-1.4 0L2.7 10.7a1 1 0 0 1 0-1.4l9.6-9.6a1 1 0 0 1 1.4 0l8.6 8.6a1 1 0 0 1 0 1.4z"/><path d="m9.5 5.5 2 2"/><path d="m12 8 2 2"/><path d="m14.5 5.5 2 2"/><path d="m7 8 2 2"/><path d="m17 8 2 2"/></svg>'
+};
+
+function takeaway(t, max){ if(!t) return ''; const c=String(t).replace(/<[^>]+>/g,'').trim(); if(c.length<=max) return c; const dot=c.indexOf('. '); if(dot>0 && dot<max) return c.slice(0,dot+1); return c.slice(0,max).trim()+'…'; }
+function bottomline(text, tone){ if(!text) return ''; return `<div class="bottomline ${tone||''}"><div class="bl-eyebrow">שורה תחתונה</div><div class="bl-text">${text}</div></div>`; }
+function rep(label, body){ if(!body) return ''; return `<div class="rep"><div class="rep-label">${label}</div>${body}</div>`; }
+
+let DOSSIERS = [];
+function topic(o){
+  DOSSIERS.push(o);
+  const sig = o.sig || {text:'מידע', cls:'neutral'};
+  return `<button class="tile" data-id="${o.id}" onclick="openDossier('${o.id}')" aria-haspopup="dialog">
+    <div class="tile-top">
+      <span class="tile-ico ${o.iconColor||'purple'}">${ICONS[o.iconKey]||''}</span>
+      <span class="tile-sig ${sig.cls}">${sig.text}</span>
+    </div>
+    <div class="tile-title">${o.title}</div>
+    <div class="tile-headline">${o.headline||''}</div>
+    <div class="tile-cta">פתח דף מלא <span class="arr">←</span></div>
+  </button>`;
+}
+function renderDossiers(){
+  return DOSSIERS.map(o=>`
+  <div class="dossier-overlay" id="dz-${o.id}" hidden role="dialog" aria-modal="true" aria-label="${o.title}" onclick="overlayClick(event)">
+    <div class="dossier">
+      <div class="dossier-head">
+        <span class="tile-ico ${o.iconColor||'purple'}">${ICONS[o.iconKey]||''}</span>
+        <div class="dh-text"><h2>${o.title}</h2>${o.sub?`<div class="dossier-sub">${o.sub}</div>`:''}</div>
+        <button class="dossier-close" onclick="closeDossier()" aria-label="סגור">✕</button>
+      </div>
+      <div class="dossier-body">${o.body}</div>
+    </div>
+  </div>`).join('');
+}
+function openDossier(id){ const o=document.getElementById('dz-'+id); if(!o) return; o.hidden=false; document.body.style.overflow='hidden'; document.addEventListener('keydown',escClose); const c=o.querySelector('.dossier-close'); if(c) c.focus(); }
+function closeDossier(){ document.querySelectorAll('.dossier-overlay').forEach(o=>o.hidden=true); document.body.style.overflow=''; document.removeEventListener('keydown',escClose); }
+function escClose(e){ if(e.key==='Escape') closeDossier(); }
+function overlayClick(e){ if(e.target===e.currentTarget) closeDossier(); }
+
+function render(){
+  const d = window.AGENT_DATA;
+  if(!d){document.getElementById('root').innerHTML='נתונים ריקים';return;}
+  DOSSIERS = [];
+  const root = document.getElementById('root');
+  root.className = '';
+  let tiles = '';
+
+  // ----- התאמה לתיק -----
+  if(d.layer_fit){
+    const lf = d.layer_fit;
+    const positive = (lf.rows||[]).filter(r=>/c-green/.test(r.impact_color||'')).length;
+    const negative = (lf.rows||[]).filter(r=>/c-red/.test(r.impact_color||'')).length;
+    const sig = positive>negative ? {text:'משפר', cls:'good'} : negative>positive ? {text:'מחמיר', cls:'bad'} : {text:'מעורב', cls:'warn'};
+    const tbl = `<table class="dtable"><thead><tr>${lf.headers.map(h=>`<th>${h}</th>`).join('')}</tr></thead><tbody>${lf.rows.map(r=>`<tr><td>${r.layer}</td><td><b>${r.current}</b></td><td>${r.target}</td><td><span class="status-pill ${r.status_class||''}">${r.status}</span></td><td class="${r.impact_color||''}">${r.impact}</td></tr>`).join('')}</tbody></table>`;
+    tiles += topic({
+      id:'layerfit', iconKey:'layers', iconColor:'blue', title:'התאמה לתיק — שכבות והקצאה',
+      headline: takeaway(lf.description,120),
+      sig,
+      body: `${rep('① הקונספט',`<div class="desc">${lf.description||''}</div>`)}
+        ${rep('② טבלת שכבות',tbl)}
+        ${lf.note?bottomline(lf.note,positive>negative?'good':'warn'):''}`
+    });
+  }
+
+  // ----- סיכון ריכוז -----
+  if(d.concentration){
+    const c = d.concentration;
+    tiles += topic({
+      id:'conc', iconKey:'pie', iconColor:'orange', title:'סיכון ריכוז — חפיפה תמטית',
+      headline: takeaway(c.description,120),
+      sig:{text:'חפיפה', cls:'warn'},
+      body: `${rep('① הבעיה',`<div class="desc">${c.description||''}</div>`)}
+        ${rep('② דגלים',(c.flags||[]).map(f=>`<div class="flag-row">${f}</div>`).join(''))}
+        ${c.note?bottomline(c.note,'warn'):''}`
+    });
+  }
+
+  // ----- עלות הזדמנות -----
+  if(d.opportunity_cost){
+    const oc = d.opportunity_cost;
+    const cards = (oc.options||[]).map(o=>`<div class="opp-card ${o.recommended?'rec':''}"><h4>${o.title}${o.recommended?'<span class="rec-tag">המומלצת</span>':''}</h4><p>${o.body}</p></div>`).join('');
+    tiles += topic({
+      id:'opp', iconKey:'compare', iconColor:'purple', title:'עלות הזדמנות',
+      headline: 'איזה שימוש בכסף הוא הטוב ביותר',
+      sig:{text:'4 חלופות', cls:'neutral'},
+      body: `${rep('① החלופות',cards)}
+        ${oc.verdict?bottomline(oc.verdict,'good'):''}`
+    });
+  }
+
+  // ----- ביקורת הטיות -----
+  if(d.behavioral){
+    const b = d.behavioral;
+    const warns = (b.biases||[]).filter(x=>x.warn).length;
+    const sig = warns>=2 ? {text:`${warns} הטיות חמות`, cls:'warn'} : warns===1 ? {text:'הטיה אחת', cls:'warn'} : {text:'נקי', cls:'good'};
+    const cards = (b.biases||[]).map(x=>`<div class="bias-card ${x.warn?'warn':''}"><h5>${x.title}</h5><p>${x.body}</p></div>`).join('');
+    tiles += topic({
+      id:'bias', iconKey:'brain', iconColor:'red', title:'ביקורת הטיות התנהגותיות',
+      headline: warns>0 ? `${warns} הטיות לעקוב, השאר ניטרליות` : 'אין הטיות פעילות בהחלטה',
+      sig,
+      body: `${rep('① סריקת 6 הטיות',`<div class="bias-grid">${cards}</div>`)}
+        ${b.circuit_breaker?rep('② מפסק זרם',`<div class="circuit-banner">${b.circuit_breaker}</div>`):''}`
+    });
+  }
+
+  // ----- גודל פוזיציה -----
+  if(d.position_size){
+    const ps = d.position_size;
+    const tbl = `<table class="dtable"><thead><tr><th>אילוץ</th><th>ערך</th><th>הערה</th></tr></thead><tbody>${ps.constraints.map(c=>`<tr><td>${c.constraint}</td><td>${c.value}</td><td>${c.note}</td></tr>`).join('')}</tbody></table>`;
+    const finalRow = (ps.constraints||[]).find(c=>/גודל מאושר/.test(c.constraint||''));
+    const finalSize = finalRow ? String(finalRow.value).replace(/<[^>]+>/g,'').trim() : '';
+    tiles += topic({
+      id:'size', iconKey:'ruler', iconColor:'gold', title:'מנוע גודל פוזיציה',
+      headline: takeaway(ps.description,120),
+      sig:{text: finalSize || 'גודל סופי', cls:'good'},
+      body: `${rep('① הנוסחה',`<div class="desc">${ps.description||''}</div>`)}
+        ${rep('② חישוב האילוצים',tbl)}`
+    });
+  }
+
+  // ----- הרכבה -----
+  root.innerHTML = `
+<div class="topbar tb-purple">
+  <div><h1 class="c-purple">👔 CEO — ${d.company||d.ticker}</h1>
+  <div class="sub">אדריכל תיק · האם זה משפר את התיק כולו</div></div>
+  <div class="stamp">תאריך: <b>${d.date}</b><br>חוליה 3 בשרשרת</div>
+</div>
+<div class="wrap">
+
+  ${d.verdict?`<div class="hero-conclusion">
+    <div class="hc-eyebrow">פסיקת CEO</div>
+    <div class="hc-headline">${d.verdict.headline}</div>
+    ${d.verdict.paragraphs&&d.verdict.paragraphs[0]?`<div class="hc-sub">${d.verdict.paragraphs[0]}</div>`:''}
+    ${d.verdict.scoreboxes?`<div class="hc-metrics">${d.verdict.scoreboxes.map(s=>`<div class="hc-metric"><div class="hm-val ${s.color||'c-green'}" style="font-size:${s.size?s.size+'px':''}">${s.val}</div><div class="hm-lbl">${s.lbl}</div></div>`).join('')}</div>`:''}
+  </div>`:''}
+
+  ${d.inherited?`<div class="vbanner"><b>📥 קלטים מהשרשרת — אומתו:</b>
+    <div class="inherit-pills">${d.inherited.map(i=>`<div class="ih-r"><span class="icn">${i.icon}</span><span class="tx">${i.text}</span></div>`).join('')}</div>
+  </div>`:''}
+
+  ${tiles?`<div class="tiles-head"><h2>שיקולי ה-CEO לפי נושא</h2><span class="th-hint">לחץ חלונית לדף מלא · כל ציר החלטה מוצג בעומק</span></div>
+  <div class="tiles">${tiles}</div>`:''}
+
+  ${d.verdict?`<div class="verdict ${d.verdict.style||'green'}">
+    <span class="tag">פסיקת CEO סופית</span>
+    <h2>${d.verdict.headline}</h2>
+    ${(d.verdict.paragraphs||[]).map(p=>`<p>${p}</p>`).join('')}
+    <div class="scorebig">${(d.verdict.scoreboxes||[]).map(s=>`<div class="scorebox"><div class="sb-lbl">${s.lbl}</div><div class="sb-num ${s.color||''}" style="font-size:${s.size||'20'}px">${s.val}</div></div>`).join('')}</div>
+    ${d.verdict.handoff?`<div class="handoff"><b>📤 HANDOFF ל-Executor</b><br>${d.verdict.handoff}</div>`:''}
+  </div>`:''}
+</div>
+<div class="footer">${d.footer||''}</div>
+${renderDossiers()}`;
+}
+</script>
+<script src="_agent_graphs.js"></script>
+<script src="_interactions.js"></script>
+</body>
+</html>

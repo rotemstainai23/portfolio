@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>דוח בריאות תיק</title>
+<link rel="stylesheet" href="_shared.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Heebo',sans-serif;background:var(--bg,#0d1117);color:var(--text,#e6edf3);min-height:100vh}
+
+/* ── Header ── */
+.header{padding:28px 36px 20px;border-bottom:1px solid var(--border,#21262d)}
+.header-top{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:16px}
+.header-title{font-size:26px;font-weight:900;letter-spacing:-.8px}
+.header-title span{color:var(--blue,#58a6ff)}
+.header-meta{font-size:13px;color:var(--muted,#7d8590);margin-top:6px}
+.back-btn{font-size:12px;color:var(--muted,#7d8590);text-decoration:none;display:flex;align-items:center;gap:6px;padding:6px 12px;border:1px solid var(--border,#21262d);border-radius:8px;transition:color .15s,border-color .15s}
+.back-btn:hover{color:var(--text);border-color:var(--blue,#58a6ff)}
+
+/* ── Summary band ── */
+.summary-band{display:flex;gap:0;background:var(--surface,#161b22);border-bottom:1px solid var(--border,#21262d)}
+.summary-block{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:16px 12px;border-left:1px solid var(--border,#21262d);min-width:80px}
+.summary-block:last-child{border-left:none}
+.summary-num{font-size:28px;font-weight:900}
+.summary-lbl{font-size:10px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;margin-top:3px;color:var(--muted,#7d8590)}
+.s-intact .summary-num{color:#2ecc71}
+.s-review .summary-num{color:#f1c40f}
+.s-rerun  .summary-num{color:#e74c3c}
+.s-urgent .summary-num{color:#c0392b;animation:pulse 1.2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+
+/* ── Table ── */
+.table-wrap{overflow-x:auto;padding:0 36px 40px}
+table{width:100%;border-collapse:collapse;margin-top:24px;font-size:13px}
+th{font-size:10px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;color:var(--muted,#7d8590);padding:10px 14px;border-bottom:2px solid var(--border,#21262d);text-align:right;white-space:nowrap}
+td{padding:14px 14px;border-bottom:1px solid var(--border,#21262d);vertical-align:top}
+tr:hover td{background:var(--surface,#161b22)}
+tr:last-child td{border-bottom:none}
+
+.ticker-cell{display:flex;flex-direction:column;gap:3px}
+.ticker-sym{font-size:16px;font-weight:900;letter-spacing:-.3px}
+.ticker-co{font-size:11px;color:var(--muted,#7d8590)}
+
+.status-pill{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:800;border-radius:20px;padding:4px 12px;border:1px solid;white-space:nowrap}
+.pill-INTACT{color:#2ecc71;border-color:#2ecc7144;background:#2ecc7110}
+.pill-REVIEW{color:#f1c40f;border-color:#f1c40f44;background:#f1c40f10}
+.pill-RERUN {color:#e74c3c;border-color:#e74c3c44;background:#e74c3c10}
+.pill-URGENT{color:#c0392b;border-color:#c0392b44;background:#c0392b12;animation:pulse 1.2s infinite}
+
+.ks-flag{font-size:10px;font-weight:700;color:#e74c3c;margin-top:4px}
+.text-cell{font-size:12px;color:var(--text);line-height:1.55;max-width:220px}
+.text-cell.muted{color:var(--muted,#7d8590)}
+.catalyst-cell{font-size:12px;color:var(--blue,#58a6ff);line-height:1.55;max-width:180px}
+
+/* ── Report buttons per ticker ── */
+.reports-cell{display:flex;flex-direction:column;gap:6px;min-width:130px}
+.rep-btn{display:inline-block;font-size:10px;font-weight:700;padding:4px 10px;border-radius:6px;text-decoration:none;border:1px solid var(--border,#21262d);color:var(--muted,#7d8590);white-space:nowrap;text-align:center;transition:border-color .15s,color .15s}
+.rep-btn:hover{border-color:var(--blue,#58a6ff);color:var(--blue,#58a6ff)}
+.rep-btn.primary{border-color:var(--blue,#58a6ff)55;color:var(--blue,#58a6ff)}
+
+.conf-dots{display:inline-flex;gap:3px;vertical-align:middle}
+.conf-dot{width:6px;height:6px;border-radius:50%;background:var(--border,#21262d)}
+.conf-dot.on{background:currentColor}
+
+.action-tag{font-size:10px;font-weight:700;padding:2px 8px;border-radius:4px;border:1px solid;display:inline-block}
+.act-HOLD{color:#2ecc71;border-color:#2ecc7144;background:#2ecc7110}
+.act-MONITOR_CLOSELY{color:#f1c40f;border-color:#f1c40f44;background:#f1c40f10}
+.act-FULL_ANALYSIS{color:#e74c3c;border-color:#e74c3c44;background:#e74c3c10}
+.act-TRIM{color:#c0392b;border-color:#c0392b44;background:#c0392b10}
+
+.no-data{text-align:center;padding:80px;color:var(--muted,#7d8590)}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-top">
+    <div>
+      <div class="header-title">🩺 דוח בריאות תיק — <span id="hdr-date">טוען…</span></div>
+      <div class="header-meta" id="hdr-meta"></div>
+    </div>
+    <a href="/" class="back-btn">← דשבורד ראשי</a>
+  </div>
+</div>
+
+<div class="summary-band" id="summary-band">
+  <div class="summary-block s-intact"><div class="summary-num" id="s-intact">—</div><div class="summary-lbl">🟢 INTACT</div></div>
+  <div class="summary-block s-review"><div class="summary-num" id="s-review">—</div><div class="summary-lbl">🟡 REVIEW</div></div>
+  <div class="summary-block s-rerun" ><div class="summary-num" id="s-rerun" >—</div><div class="summary-lbl">🔴 RERUN</div></div>
+  <div class="summary-block s-urgent"><div class="summary-num" id="s-urgent">—</div><div class="summary-lbl">🚨 URGENT</div></div>
+</div>
+
+<div class="table-wrap" id="main-content">
+  <div class="no-data">טוען…</div>
+</div>
+
+<script>
+const STATUS_ICON = {INTACT:'🟢', REVIEW:'🟡', RERUN:'🔴', URGENT:'🚨'};
+const ACTION_MAP  = {HOLD:'החזק', MONITOR_CLOSELY:'עקוב מקרוב', FULL_ANALYSIS:'ניתוח מלא', TRIM:'שקול מכירה'};
+const ORDER_MAP   = {URGENT:0, RERUN:1, REVIEW:2, INTACT:3};
+
+function confDots(n, color) {
+  return `<span class="conf-dots" style="color:${color}">`
+    + [1,2,3].map(i=>`<span class="conf-dot${i<=n?' on':''}"></span>`).join('')
+    + '</span>';
+}
+
+// בדוק אילו דוחות קיימים לטיקר
+async function probeReports(ticker) {
+  const agents = ['analyst','devils','ceo','executor','ic'];
+  const links = [];
+  for (const ag of agents) {
+    try {
+      const r = await fetch(`/analyses/${ticker}/${ag}.js`, {method:'HEAD'});
+      if (r.ok) links.push(ag);
+    } catch(e) {}
+  }
+  // quick check
+  try {
+    const r = await fetch(`/analyses/${ticker}/quick.js`, {method:'HEAD'});
+    if (r.ok) links.push('quick');
+  } catch(e) {}
+  return links;
+}
+
+const AGENT_LABELS = {
+  analyst:'🔍 Analyst', devils:'😈 Devils', ceo:'👔 CEO',
+  executor:'⚙ Executor', ic:'🏛 Committee', quick:'⚡ Quick'
+};
+const AGENT_TMPL = {
+  analyst:'/templates/analyst.html', devils:'/templates/devils.html',
+  ceo:'/templates/ceo.html', executor:'/templates/executor.html',
+  ic:'/templates/ic.html', quick:'/templates/quick_check.html'
+};
+
+function renderTable(report) {
+  const results = [...report.results].sort((a,b)=>(ORDER_MAP[a.status]||9)-(ORDER_MAP[b.status]||9));
+  const s = report.summary || {};
+  document.getElementById('s-intact').textContent = s.intact ?? 0;
+  document.getElementById('s-review').textContent = s.review ?? 0;
+  document.getElementById('s-rerun').textContent  = s.rerun  ?? 0;
+  document.getElementById('s-urgent').textContent = s.urgent ?? 0;
+  document.getElementById('hdr-date').textContent  = `${report.run_date} ${report.run_time}`;
+  document.getElementById('hdr-meta').textContent  =
+    `${report.tickers_checked} פוזיציות נבדקו · Risk Surveillance Officer`;
+
+  const COLOR = {INTACT:'#2ecc71', REVIEW:'#f1c40f', RERUN:'#e74c3c', URGENT:'#c0392b'};
+
+  const main = document.getElementById('main-content');
+  main.innerHTML = `
+  <table>
+    <thead>
+      <tr>
+        <th>טיקר</th>
+        <th>סטטוס</th>
+        <th>בעיה / הערה</th>
+        <th>חדשות אחרונות</th>
+        <th>קטליזטור קרוב</th>
+        <th>פעולה</th>
+        <th>דוחות</th>
+      </tr>
+    </thead>
+    <tbody id="tbl-body"></tbody>
+  </table>`;
+
+  const tbody = document.getElementById('tbl-body');
+  results.forEach(r => {
+    const col = COLOR[r.status] || '#7d8590';
+    const icon = STATUS_ICON[r.status] || '⚪';
+    const ks = r.kill_switch_at_risk ? '<div class="ks-flag">⚠ Kill Switch בסכנה</div>' : '';
+    const actionCls = 'act-' + (r.action || 'HOLD');
+    const actionLbl = ACTION_MAP[r.action] || r.action || 'HOLD';
+    const conf = confDots(r.confidence||1, col);
+
+    const tr = document.createElement('tr');
+    tr.dataset.ticker = r.ticker;
+    tr.innerHTML = `
+      <td>
+        <div class="ticker-cell">
+          <div class="ticker-sym" style="color:${col}">${r.ticker}</div>
+          <div class="ticker-co">${r.company||''}</div>
+        </div>
+      </td>
+      <td>
+        <span class="status-pill pill-${r.status}">${icon} ${r.status}</span>
+        ${ks}
+      </td>
+      <td><div class="text-cell">${r.concern || '<span style="color:var(--muted)">—</span>'}</div></td>
+      <td><div class="text-cell muted">${r.company_news || '—'}</div></td>
+      <td><div class="catalyst-cell">${r.next_catalyst || '<span style="color:var(--muted)">—</span>'}</div></td>
+      <td>
+        <div style="display:flex;flex-direction:column;gap:4px;align-items:flex-start">
+          <span class="action-tag ${actionCls}">${actionLbl}</span>
+          <span style="font-size:10px;color:${col};margin-top:2px">ביטחון: ${conf}</span>
+        </div>
+      </td>
+      <td><div class="reports-cell" id="rep-${r.ticker}">
+        <span style="font-size:11px;color:var(--muted)">בודק…</span>
+      </div></td>
+    `;
+    tbody.appendChild(tr);
+
+    // טען קישורי דוחות לאחר רנדור
+    probeReports(r.ticker).then(available => {
+      const cell = document.getElementById(`rep-${r.ticker}`);
+      if (!cell) return;
+      if (!available.length) {
+        cell.innerHTML = '<span style="font-size:11px;color:var(--muted)">אין דוחות</span>';
+        return;
+      }
+      cell.innerHTML = available.map((ag, i) =>
+        `<a class="rep-btn${i===0?' primary':''}" href="${AGENT_TMPL[ag]}?ticker=${r.ticker}" target="_blank">${AGENT_LABELS[ag]}</a>`
+      ).join('');
+    });
+  });
+}
+
+fetch('/api/portfolio/health/latest')
+  .then(r => r.json())
+  .then(data => {
+    if (!data || !data.results) {
+      document.getElementById('main-content').innerHTML =
+        '<div class="no-data"><div style="font-size:32px;margin-bottom:12px">🩺</div>לא נמצא דוח — הרץ בדיקה מהדשבורד</div>';
+      document.getElementById('hdr-date').textContent = '—';
+      return;
+    }
+    renderTable(data);
+  })
+  .catch(() => {
+    document.getElementById('main-content').innerHTML =
+      '<div class="no-data" style="color:#e74c3c">⚠ שגיאת טעינה</div>';
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+// CLAUDE-AUTO-GENERATED — מחק שורה זו כדי לנעול את הקובץ מפני דריסה
+window.AGENT_DATA = {
+  "ticker": "SOFI",
+  "company": "SOFI",
+  "date": "2026-05-31 <span style=\"display:inline-block;font-size:10px;font-weight:700;padding:3px 9px;border-radius:11px;background:rgba(120,120,120,.12);border:1px solid #2ecc7155;color:#2ecc71;margin-right:6px\">🟢 Fresh · 0d</span>",
+  "sector": "",
+  "period": "",
+  "verdict": "HOLD",
+  "score": 20,
+  "position_size_pct": 0,
+  "valuation_summary": "שווי הוגן בסיס $20-24 (upside +20.7% מ-$18.22), אך R/R = 0.52:1; כניסה ל-2:1 R/R: $14.67; trigger CEO ל-3.4:1 R/R: $13.50",
+  "thesis": "SOFI עלתה 22.62% ב-5 ימים למחיר $18.22: R/R = 0.52:1 (נכשל, נדרש $14.67 ל-2:1), מומנטום פרבולי ללא קונסולידציה, מתחת ל-200DMA. Speculation overweight בתיק + CEO = 0% חוסמים כל כניסה. תוכנית מותנית: טראנש 1 ב-$15.20, טראנש 2 ב-$13.50 (3.4:1 R/R), לאחר איזון תיק.",
+  "key_risks": [
+    "R/R = 0.52:1 — נמוך פי 4 מסף 2:1; כניסה ב-$18.22 היא הרס הון בציפייה",
+    "Momentum filter: +22.62% ב-5 ימים — FOMO קלאסי, לא נקודת כניסה",
+    "RSI וATR חסרים — לא ניתן לאמת קנייתֵר או לחשב stop מדויק",
+    "Speculation 16.9% vs 10% תקרה — CEO = 0%, כל כניסה חסומה מתמטית לפני איזון",
+    "Fair value accounting לא הוכחש שורה-שורה — downside $10-12 ריאלי (39.6%)"
+  ],
+  "verification_banner": "נתונים אוטומטיים מ-handoff + dashboard-json",
+  "market_cards": [
+    {
+      "lbl": "Verdict",
+      "val": "HOLD",
+      "color": "c-blue"
+    },
+    {
+      "lbl": "Score",
+      "val": "20"
+    },
+    {
+      "lbl": "Position Size",
+      "val": "—%"
+    },
+    {
+      "lbl": "Valuation",
+      "val": "שווי הוגן בסיס $20-24 (upside +20.7% מ-$18.22), אך R/R = 0.52:1; כניסה ל-2:1 R/R: $14.67; trigger CEO ל-3.4:1 R/R: $13.50"
+    }
+  ],
+  "handoff_summary": "המבצע מוציא פסיקת WAIT חד-משמעית: מחיר $18.22 לאחר surge של +22.62% ב-5 ימים מייצר R/R = 0.52:1 — נמוך פי 4 מהסף. לא קיים תנאי שמצדיק כניסה בכל גודל כרגע. שני נתונים קריטיים חסרים (RSI, ATR) שמונעים אישור מלא גם בתרחיש פולבק. תוכנית מותנית מוגדרת: T1 ב-$15.20 (1.5%), T2 ב-$13.50 (1.5%, R/R 3.4:1, trigger CEO), T3 ב-$12.50 (1.0%, R/R 6.3:1) — כולם מחייבים Speculation < 10% וRSI זמין. stop מבני $11.00. ועדת ההשקעות מקבלת: אין עסקה, תוכנית טראנשים מותנית עם מחירים מדויקים, ורשימת תנאים מקדימים שאף אחד מהם אינו מתקיים היום.",
+  "entry_exit_plan": "המתן — תנאים: (1) Speculation < 10% + Cash > 5%; (2) pullback ל-$15.20 (T1 1.5%) or $13.50 (T2 1.5%) or $12.50 (T3 1.0%); stop $11.00 (מבני); kill switch: fair value restatement = ביטול מיידי"
+};

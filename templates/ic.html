@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ועדת השקעות</title>
+<link rel="stylesheet" href="_shared.css">
+<link rel="stylesheet" href="_redesign.css">
+<style>
+/* מטריצת קונסנזוס */
+.cmatrix{width:100%;border-collapse:separate;border-spacing:6px;margin-top:6px}
+.cmatrix th{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.4px;padding:9px 6px;text-align:center;font-weight:700}
+.cmatrix th.row{text-align:right;width:130px;color:var(--text);font-size:12px}
+.cmatrix td{background:var(--glass);border:1px solid var(--glass-border);border-radius:10px;padding:10px 8px;text-align:center;font-size:11.5px;color:var(--muted2);line-height:1.5;vertical-align:middle}
+.cmatrix td.rowlbl{background:transparent;border:none;color:var(--text);font-weight:700;font-size:12.5px;text-align:right}
+.cmatrix td.verdict{font-weight:800;color:var(--text);background:linear-gradient(120deg,rgba(139,92,246,.18),rgba(245,158,11,.10));border-color:rgba(139,92,246,.30)}
+.cmi{font-size:14px;display:block;margin-bottom:3px}
+.cmatrix .cell-g{background:var(--sig-good-soft);border-color:rgba(52,211,153,.25)}
+.cmatrix .cell-y{background:var(--sig-warn-soft);border-color:rgba(251,191,36,.25)}
+.cmatrix .cell-r{background:var(--sig-bad-soft);border-color:rgba(251,113,133,.25)}
+.cmatrix .cell-v{background:linear-gradient(120deg,rgba(139,92,246,.18),rgba(245,158,11,.10));border-color:rgba(139,92,246,.30)}
+
+/* נקודות קונסנזוס */
+.cpoint{background:var(--glass);border:1px solid var(--glass-border);border-radius:14px;padding:16px 20px;margin-bottom:11px;position:relative;overflow:hidden}
+.cpoint::before{content:'';position:absolute;top:0;right:0;width:5px;height:100%;background:var(--grad-good)}
+.cpoint h4{font-size:14.5px;color:var(--text);margin-bottom:6px;font-weight:800}
+.cpoint p{font-size:13px;color:var(--muted2);line-height:1.7}
+.cpoint p b{color:var(--text)}
+
+/* טריגרים */
+.trig-row{display:flex;align-items:flex-start;gap:12px;padding:14px 18px;background:var(--glass);border:1px solid var(--glass-border);border-radius:13px;margin-bottom:10px;border-right:4px solid var(--blue);font-size:13px;color:var(--muted2);line-height:1.65}
+.trig-row .ti{font-size:18px;flex-shrink:0;line-height:1.4}
+.trig-row .tb{flex:1}
+.trig-row .tb b{color:var(--text)}
+
+/* האמת הקשה */
+.hardtruth-box{background:linear-gradient(135deg,rgba(251,113,133,.10),rgba(8,13,26,.85));border:1px solid rgba(251,113,133,.25);border-radius:18px;padding:20px 24px;position:relative;overflow:hidden}
+.hardtruth-box::before{content:'';position:absolute;top:0;right:0;width:5px;height:100%;background:var(--grad-bad)}
+.hardtruth-box .ht-eyebrow{font-size:11px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;color:var(--sig-bad);margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.hardtruth-box .ht-eyebrow::before{content:'';width:18px;height:2px;border-radius:2px;background:currentColor}
+.hardtruth-box .ht-body{font-size:14.5px;color:var(--text);line-height:1.85}
+.hardtruth-box .ht-body b{color:#fff;font-weight:800}
+
+/* קלטים */
+.ih-r{display:flex;gap:11px;align-items:flex-start;padding:11px 16px;background:var(--glass);border:1px solid var(--glass-border);border-radius:12px;margin-bottom:8px}
+.ih-r:last-child{margin-bottom:0}
+.ih-r .icn{font-size:15px;line-height:1.4;flex-shrink:0}
+.ih-r .tx{font-size:13px;color:var(--muted2);line-height:1.65}
+.ih-r .tx b{color:var(--text)}
+
+/* כרטיס סקור */
+.scoresummary{display:flex;flex-direction:column;gap:8px}
+.scoresummary .sr{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:var(--glass);border:1px solid var(--glass-border);border-radius:11px;font-size:13.5px}
+.scoresummary .sr .lbl{color:var(--muted2)}
+.scoresummary .sr .val{font-weight:800;font-family:'Fira Code',monospace}
+
+/* בלוק "מי צודק" */
+.most-right{background:linear-gradient(135deg,rgba(245,158,11,.12),rgba(139,92,246,.06));border:1.5px solid var(--brand-gold);border-radius:18px;padding:20px 24px;font-size:14.5px;color:var(--text);line-height:1.8}
+.most-right b{color:#fff;font-weight:800}
+
+/* בלוק חילוקי דעות */
+.disagree-box{background:var(--glass);border:1px solid var(--glass-border);border-radius:14px;padding:16px 20px;font-size:13.5px;color:var(--muted2);line-height:1.75;border-right:4px solid var(--brand-purple)}
+.disagree-box b{color:var(--text)}
+
+/* גוגלים — שכבת השוואת סוכנים */
+#agent-graph-overlay{max-width:1160px;margin:0 auto;padding:0 32px 40px}
+.ags-header{font-size:12px;color:var(--brand-purple);font-weight:800;text-transform:uppercase;letter-spacing:1px;padding:18px 0 14px;border-top:1px solid var(--glass-border);margin-bottom:4px;display:flex;align-items:center;gap:9px}
+.ags-header::before{content:'';width:30px;height:2px;border-radius:2px;background:var(--grad-brand)}
+.ags-gauges{display:flex;flex-wrap:wrap;gap:22px;margin-top:18px;justify-content:center}
+.ags-gauge{display:flex;flex-direction:column;align-items:center;gap:10px}
+.ags-dial{width:120px;height:120px;border-radius:50%;display:grid;place-items:center;position:relative;background:conic-gradient(var(--c) calc(var(--p)*1%), var(--glass) 0);box-shadow:0 8px 24px rgba(0,0,0,.4);transition:.4s}
+.ags-dial::before{content:'';position:absolute;inset:10px;border-radius:50%;background:radial-gradient(circle at 50% 30%, rgba(28,38,64,.95), rgba(8,13,26,.98))}
+.ags-dial .num{position:relative;font-size:34px;font-weight:900;color:var(--text);line-height:1;font-family:'Fira Code',monospace}
+.ags-dial .den{position:relative;font-size:11px;color:var(--muted);margin-top:3px}
+.ags-gauge .glabel{font-size:14px;font-weight:800;color:var(--text)}
+.ags-gauge .gverdict{font-size:11px;font-weight:600;color:var(--muted2);background:var(--glass);padding:4px 12px;border-radius:14px;border:1px solid var(--glass-border)}
+</style>
+</head>
+<body>
+<div id="root" class="error-box">⏳ טוען…</div>
+<div id="agent-graph-overlay"></div>
+
+<script>
+'use strict';
+const params = new URLSearchParams(location.search);
+const ticker = params.get('ticker');
+if (!ticker) {
+  document.getElementById('root').innerHTML = '<b>שגיאה:</b> חסר טיקר.';
+} else {
+  document.title = 'ועדה — ' + ticker;
+  const s = document.createElement('script');
+  s.src = '../analyses/' + ticker + '/ic.js';
+  s.onload = () => { render(); renderAgentGraphs(); };
+  s.onerror = () => {
+    const s2 = document.createElement('script');
+    s2.src = '../analyses/' + ticker + '/ic.auto.js';
+    s2.onload = () => { render(); renderAgentGraphs(); };
+    s2.onerror = () => { document.getElementById('root').innerHTML = '<b>אין נתונים</b> ל-' + ticker; };
+    document.head.appendChild(s2);
+  };
+  document.head.appendChild(s);
+}
+
+const ICONS = {
+  grid:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>',
+  check:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/><polyline points="22 12 13 21 8 16"/></svg>',
+  eye:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"/><path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"/><path d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"/><line x1="2" y1="2" x2="22" y2="22"/></svg>',
+  trophy:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>',
+  scorecard:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="9" y1="9" x2="15" y2="9"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="13" y2="17"/></svg>',
+  calendar:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>',
+  hardtruth:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><line x1="9" y1="9" x2="15" y2="15"/><line x1="15" y1="9" x2="9" y2="15"/></svg>'
+};
+
+function takeaway(t, max){ if(!t) return ''; const c=String(t).replace(/<[^>]+>/g,'').trim(); if(c.length<=max) return c; const dot=c.indexOf('. '); if(dot>0 && dot<max) return c.slice(0,dot+1); return c.slice(0,max).trim()+'…'; }
+function bottomline(text, tone){ if(!text) return ''; return `<div class="bottomline ${tone||''}"><div class="bl-eyebrow">שורה תחתונה</div><div class="bl-text">${text}</div></div>`; }
+function rep(label, body){ if(!body) return ''; return `<div class="rep"><div class="rep-label">${label}</div>${body}</div>`; }
+
+let DOSSIERS = [];
+function topic(o){
+  DOSSIERS.push(o);
+  const sig = o.sig || {text:'מידע', cls:'neutral'};
+  return `<button class="tile" data-id="${o.id}" onclick="openDossier('${o.id}')" aria-haspopup="dialog">
+    <div class="tile-top">
+      <span class="tile-ico ${o.iconColor||'purple'}">${ICONS[o.iconKey]||''}</span>
+      <span class="tile-sig ${sig.cls}">${sig.text}</span>
+    </div>
+    <div class="tile-title">${o.title}</div>
+    <div class="tile-headline">${o.headline||''}</div>
+    <div class="tile-cta">פתח דף מלא <span class="arr">←</span></div>
+  </button>`;
+}
+function renderDossiers(){
+  return DOSSIERS.map(o=>`
+  <div class="dossier-overlay" id="dz-${o.id}" hidden role="dialog" aria-modal="true" aria-label="${o.title}" onclick="overlayClick(event)">
+    <div class="dossier">
+      <div class="dossier-head">
+        <span class="tile-ico ${o.iconColor||'purple'}">${ICONS[o.iconKey]||''}</span>
+        <div class="dh-text"><h2>${o.title}</h2>${o.sub?`<div class="dossier-sub">${o.sub}</div>`:''}</div>
+        <button class="dossier-close" onclick="closeDossier()" aria-label="סגור">✕</button>
+      </div>
+      <div class="dossier-body">${o.body}</div>
+    </div>
+  </div>`).join('');
+}
+function openDossier(id){ const o=document.getElementById('dz-'+id); if(!o) return; o.hidden=false; document.body.style.overflow='hidden'; document.addEventListener('keydown',escClose); const c=o.querySelector('.dossier-close'); if(c) c.focus(); }
+function closeDossier(){ document.querySelectorAll('.dossier-overlay').forEach(o=>o.hidden=true); document.body.style.overflow=''; document.removeEventListener('keydown',escClose); }
+function escClose(e){ if(e.key==='Escape') closeDossier(); }
+function overlayClick(e){ if(e.target===e.currentTarget) closeDossier(); }
+
+/* ---------- שכבת השוואת סוכנים — נשמרת מהמקור ---------- */
+function renderAgentGraphs(){
+  const t = params.get('ticker'); if(!t) return;
+  const defs = [
+    {key:'analyst', label:'אנליסט', color:'#60a5fa'},
+    {key:'devils', label:'עורך דין שטן', color:'#fb7185'},
+    {key:'ceo', label:'CEO', color:'#a78bfa'},
+    {key:'executor', label:'Executor', color:'#f59e0b'},
+    {key:'ic', label:'ועדה', color:'#34d399'}
+  ];
+  const snaps = [];
+  function next(i){
+    if(i>=defs.length){ paint(snaps); return; }
+    const def = defs[i];
+    const el = document.createElement('script');
+    el.src = '../analyses/'+t+'/'+def.key+'.js';
+    el.onload = () => {
+      const d = window.AGENT_DATA || {};
+      const s = {label:def.label, color:def.color};
+      if(typeof d.score==='number') s.score = d.score;
+      if(typeof d.verdict==='string') s.verdict = d.verdict;
+      snaps.push(s); next(i+1);
+    };
+    el.onerror = () => { snaps.push({label:def.label, color:def.color}); next(i+1); };
+    document.head.appendChild(el);
+  }
+  next(0);
+}
+function paint(snaps){
+  const ov = document.getElementById('agent-graph-overlay'); if(!ov) return;
+  const withScore = snaps.filter(s=>s.score!==undefined);
+  if(!withScore.length) return;
+  ov.innerHTML = `<div class="wrap" style="padding-top:0">
+    <div class="ags-header">ויזואליזציה משווה — כל הסוכנים</div>
+    <div class="desc" style="margin-bottom:8px">ככל שהמחוג מלא יותר והמספר גבוה, הסוכן חיובי יותר על המניה (סולם 0 עד 100).</div>
+    <div class="ags-gauges">${withScore.map(s=>`<div class="ags-gauge">
+      <div class="ags-dial" style="--c:${s.color};--p:${Math.min(s.score,100)}">
+        <span class="num">${s.score}</span><span class="den">/ 100</span>
+      </div>
+      <span class="glabel">${s.label}</span>
+      ${s.verdict?`<span class="gverdict">${s.verdict}</span>`:''}
+    </div>`).join('')}</div>
+  </div>`;
+}
+
+function render(){
+  const d = window.AGENT_DATA;
+  if(!d){document.getElementById('root').innerHTML='נתונים ריקים';return;}
+  DOSSIERS = [];
+  const root = document.getElementById('root');
+  root.className = '';
+  let tiles = '';
+
+  // ----- מטריצת קונסנזוס -----
+  if(d.matrix){
+    const m = d.matrix;
+    const greens = (m.rows||[]).reduce((s,r)=>s+(r.cells||[]).filter(c=>/cell-g/.test(c.cls||'')).length,0);
+    const reds = (m.rows||[]).reduce((s,r)=>s+(r.cells||[]).filter(c=>/cell-r/.test(c.cls||'')).length,0);
+    const sig = greens>reds*2 ? {text:'קונסנזוס חזק', cls:'good'} : reds>greens ? {text:'מחלוקת', cls:'bad'} : {text:'מעורב', cls:'warn'};
+    const tbl = `<table class="cmatrix"><thead><tr><th class="row"></th>${m.headers.map(h=>`<th>${h}</th>`).join('')}</tr></thead><tbody>${m.rows.map(r=>`<tr><td class="rowlbl">${r.label}</td>${r.cells.map(c=>`<td class="${c.cls||''}">${c.icon?`<span class="cmi">${c.icon}</span>`:''}${c.text}</td>`).join('')}</tr>`).join('')}</tbody></table>`;
+    tiles += topic({
+      id:'matrix', iconKey:'grid', iconColor:'purple', title:'מטריצת קונסנזוס סוכנים',
+      headline: takeaway(m.description,120),
+      sig,
+      body: `${rep('① הסבר',`<div class="desc">${m.description||''}</div>`)}
+        ${rep('② המטריצה',tbl)}
+        ${d.disagreements?rep('③ חילוקי דעות',`<div class="disagree-box">${d.disagreements}</div>`):''}
+        ${m.note?bottomline(m.note,'good'):''}`
+    });
+  }
+
+  // ----- נקודות הסכמה -----
+  if(d.consensus_points && d.consensus_points.length){
+    const cp = d.consensus_points;
+    tiles += topic({
+      id:'cons', iconKey:'check', iconColor:'green', title:'נקודות הסכמה',
+      headline: `${cp.length} מצבים שכולם רואים אותו דבר`,
+      sig:{text:`${cp.length} נקודות`, cls:'good'},
+      body: `<div class="desc" style="margin-bottom:16px">איפה כל 4 הסוכנים מסכימים. הסכמה רחבה היא הבסיס לפסיקה.</div>
+        ${cp.map(p=>`<div class="cpoint"><h4>${p.title}</h4><p>${p.body}</p></div>`).join('')}`
+    });
+  }
+
+  // ----- חשיבת-עדר -----
+  if(d.blindspot){
+    const b = d.blindspot;
+    tiles += topic({
+      id:'blind', iconKey:'eye', iconColor:'orange', title:'בדיקת חשיבת-עדר',
+      headline: takeaway(b.headline,120),
+      sig:{text:'נקודה עיוורת', cls:'warn'},
+      body: `${rep('① ההנחה המשותפת',`<h3 style="font-size:17px;font-weight:800;color:var(--text);margin-bottom:10px">${b.headline}</h3><div class="desc">${(b.paragraphs||[]).map(p=>`<p style="margin-bottom:10px">${p}</p>`).join('')}</div>`)}
+        ${b.impact?rep('② השפעה על הפסיקה',`<div class="circuit-banner" style="background:linear-gradient(120deg,rgba(251,191,36,.10),rgba(139,92,246,.05));border-color:rgba(251,191,36,.25)"><b>השפעה:</b> ${b.impact}</div>`):''}`
+    });
+  }
+
+  // ----- מי צודק -----
+  if(d.most_right){
+    tiles += topic({
+      id:'mostright', iconKey:'trophy', iconColor:'gold', title:'איזה סוכן צפוי להיות הכי צודק',
+      headline: takeaway(String(d.most_right).replace(/<[^>]+>/g,''),120),
+      sig:{text:'הערכה', cls:'neutral'},
+      body: `<div class="most-right">${d.most_right}</div>`
+    });
+  }
+
+  // ----- סקור מסכם -----
+  if(d.scorecard && d.scorecard.length){
+    const sc = d.scorecard;
+    const greens = sc.filter(s=>/c-green/.test(s.color||'')).length;
+    const yellows = sc.filter(s=>/c-yellow/.test(s.color||'')).length;
+    const reds = sc.filter(s=>/c-red/.test(s.color||'')).length;
+    const sig = reds>=2 ? {text:'בעייתי', cls:'bad'} : yellows>greens ? {text:'מעורב', cls:'warn'} : {text:'חזק', cls:'good'};
+    tiles += topic({
+      id:'score', iconKey:'scorecard', iconColor:'blue', title:'ניקוד מסכם',
+      headline: `${greens} חיובי · ${yellows} ניטרלי · ${reds} שלילי`,
+      sig,
+      body: `<div class="desc" style="margin-bottom:14px">8 מימדי הערכה לאחר סינתזה של כל ה-handoffs.</div>
+        <div class="scoresummary">${sc.map(s=>`<div class="sr"><span class="lbl">${s.lbl}</span><span class="val ${s.color||''}">${s.val}</span></div>`).join('')}</div>`
+    });
+  }
+
+  // ----- טריגרים -----
+  if(d.triggers){
+    const t = d.triggers;
+    tiles += topic({
+      id:'trig', iconKey:'calendar', iconColor:'blue', title: t.title||'לוח סקירות',
+      headline: takeaway(t.description,120) || 'תחנות לאחר הביצוע',
+      sig:{text:`${(t.items||[]).length} סקירות`, cls:'neutral'},
+      body: `${t.description?`<div class="desc" style="margin-bottom:14px">${t.description}</div>`:''}
+        ${(t.items||[]).map(it=>`<div class="trig-row"><span class="ti">${it.icon||'•'}</span><span class="tb">${it.text}</span></div>`).join('')}`
+    });
+  }
+
+  // ----- האמת הקשה -----
+  if(d.hard_truth){
+    tiles += topic({
+      id:'hard', iconKey:'hardtruth', iconColor:'red', title:'האמת הקשה',
+      headline: takeaway(String(d.hard_truth).replace(/<[^>]+>/g,''),120),
+      sig:{text:'תהליך > תוצאה', cls:'bad'},
+      body: `<div class="hardtruth-box"><div class="ht-eyebrow">הדבר שכנראה לא תרצה לשמוע</div><div class="ht-body">${d.hard_truth}</div></div>`
+    });
+  }
+
+  // ----- הרכבה -----
+  root.innerHTML = `
+<div class="topbar tb-purple">
+  <div><h1 class="c-purple">⚖️ ועדת השקעות — ${d.company||d.ticker}</h1>
+  <div class="sub">חוליה 5 · שכבת הכרעה סופית · סינתזה</div></div>
+  <div class="stamp">תאריך: <b>${d.date}</b><br>4 handoffs · לא מנתחת מחדש</div>
+</div>
+<div class="wrap">
+
+  ${d.verdict?`<div class="hero-conclusion">
+    <div class="hc-eyebrow">פסיקת הוועדה</div>
+    <div class="hc-headline">${d.verdict.headline}</div>
+    ${d.verdict.paragraphs&&d.verdict.paragraphs[0]?`<div class="hc-sub">${d.verdict.paragraphs[0]}</div>`:''}
+    ${d.verdict.scoreboxes?`<div class="hc-metrics">${d.verdict.scoreboxes.map(s=>`<div class="hc-metric"><div class="hm-val ${s.color||'c-green'}" style="font-size:${s.size?s.size+'px':''}">${s.val}</div><div class="hm-lbl">${s.lbl}</div></div>`).join('')}</div>`:''}
+  </div>`:''}
+
+  ${d.inherited?`<div class="vbanner"><b>📥 קלטים — 4 handoffs:</b>
+    <div style="margin-top:11px">${d.inherited.map(i=>`<div class="ih-r"><span class="icn">${i.icon}</span><span class="tx">${i.text}</span></div>`).join('')}</div>
+  </div>`:''}
+
+  ${tiles?`<div class="tiles-head"><h2>סינתזת הוועדה לפי נושא</h2><span class="th-hint">לחץ חלונית לדף מלא · 7 צירי החלטה</span></div>
+  <div class="tiles">${tiles}</div>`:''}
+
+  ${d.verdict?`<div class="verdict ${d.verdict.style||'green'}">
+    <span class="tag">פסיקת ועדה סופית</span>
+    <h2>${d.verdict.headline}</h2>
+    ${(d.verdict.paragraphs||[]).map(p=>`<p>${p}</p>`).join('')}
+    <div class="scorebig">${(d.verdict.scoreboxes||[]).map(s=>`<div class="scorebox"><div class="sb-lbl">${s.lbl}</div><div class="sb-num ${s.color||''}" style="font-size:${s.size||'20'}px">${s.val}</div></div>`).join('')}</div>
+    ${d.handoff?`<div class="handoff"><b>📤 ${d.handoff_title||'HANDOFF למתעד'}</b><br>${d.handoff}</div>`:''}
+  </div>`:''}
+</div>
+<div class="footer">${d.footer||''}</div>
+${renderDossiers()}`;
+}
+</script>
+<script src="_interactions.js"></script>
+</body>
+</html>

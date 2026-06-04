@@ -1,0 +1,134 @@
+{
+  "run_date": "2026-06-02",
+  "run_time": "22:00",
+  "tickers_checked": 11,
+  "results": [
+    {
+      "ticker": "NVDA",
+      "company": "NVIDIA Corporation",
+      "status": "INTACT",
+      "kill_switch_at_risk": false,
+      "concern": null,
+      "company_news": "Q1 FY2027 דווח 20 מאי — Blackwell מניע 70% מהכנסות Data Center. ביקוש עולה על היצע.",
+      "next_catalyst": "Q2 FY2027 earnings Aug 26, 2026 — קונסנזוס $85-87B, whisper ~$90B",
+      "action": "HOLD",
+      "confidence": 3
+    },
+    {
+      "ticker": "MSFT",
+      "company": "Microsoft Corporation",
+      "status": "INTACT",
+      "kill_switch_at_risk": false,
+      "concern": null,
+      "company_news": "AI Copilot מוטמע בכל שורת מוצרים. Azure AI הוא ה-growth engine המרכזי.",
+      "next_catalyst": "Q4 FY2026 earnings צפוי יולי 2026",
+      "action": "HOLD",
+      "confidence": 2
+    },
+    {
+      "ticker": "GOOG",
+      "company": "Alphabet Inc.",
+      "status": "REVIEW",
+      "kill_switch_at_risk": false,
+      "concern": "עלייה בביקורת ציבורית ורגולטורית על data centers — backlash מתפשט עם MSFT ו-NVDA",
+      "company_news": "TipRanks: NVDA, MSFT, GOOGL חשופות לסיכון AI data center backlash חדש. תחרות AI מ-OpenAI ו-Anthropic בשוק Search.",
+      "next_catalyst": "Q2 2026 earnings ~יולי 2026 — focus על Search AI market share",
+      "action": "MONITOR_CLOSELY",
+      "confidence": 2
+    },
+    {
+      "ticker": "META",
+      "company": "Meta Platforms Inc.",
+      "status": "INTACT",
+      "kill_switch_at_risk": false,
+      "concern": null,
+      "company_news": "META חתמה על עסקאות nuclear ענקיות (Vistra, Oklo, TerraPower) ל-6.6 GW לאשכול AI Prometheus — מחויבות CapEx ברורה.",
+      "next_catalyst": "Q2 2026 earnings ~יולי 2026 — focus על Llama + Reels monetization",
+      "action": "HOLD",
+      "confidence": 3
+    },
+    {
+      "ticker": "AVGO",
+      "company": "Broadcom Inc.",
+      "status": "INTACT",
+      "kill_switch_at_risk": false,
+      "concern": null,
+      "company_news": "הכנסות AI גדלו 106% ברבעון האחרון. Management מצביע על $100B+ בהכנסות AI chips ב-2027.",
+      "next_catalyst": "Earnings מיידי (ימים קרובים) — ציפיות גבוהות, פוטנציאל gap up/down",
+      "action": "HOLD",
+      "confidence": 3
+    },
+    {
+      "ticker": "MU",
+      "company": "Micron Technology Inc.",
+      "status": "INTACT",
+      "kill_switch_at_risk": false,
+      "concern": null,
+      "company_news": "Q3 FY2026 guidance חזק מאוד: gross margin ~81%, EPS $19.15. HBM demand מ-AI מניע ציקל שיא.",
+      "next_catalyst": "Q3 FY2026 earnings Jun 24, 2026 — תאריך קריטי לאישור ציקל",
+      "action": "HOLD",
+      "confidence": 3
+    },
+    {
+      "ticker": "IBIT",
+      "company": "iShares Bitcoin ETF",
+      "status": "REVIEW",
+      "kill_switch_at_risk": false,
+      "concern": "IBIT רשם $2B+ ב-outflows מאמצע מאי. יום שיא: $528M בגאות יחידה — אינסטיטוציות מממשות",
+      "company_news": "BlackRock IBIT AUM ~$67B אך flows הפכו שליליים בשבועות האחרונים לאחר תקופת inflows חזקה.",
+      "next_catalyst": "אין catalyst ספציפי — macro driven. עקוב אחר ETF flows שבועיים",
+      "action": "MONITOR_CLOSELY",
+      "confidence": 3
+    },
+    {
+      "ticker": "GLDM",
+      "company": "SPDR Gold MiniShares ETF",
+      "status": "INTACT",
+      "kill_switch_at_risk": false,
+      "concern": null,
+      "company_news": "זהב ממשיך לשמש כנכס מקלט. ריבית Fed וסיכון גיאופוליטי תומכים בביקוש.",
+      "next_catalyst": "החלטת Fed על ריבית — הודעה הבאה צפויה ספטמבר 2026",
+      "action": "HOLD",
+      "confidence": 2
+    },
+    {
+      "ticker": "VST",
+      "company": "Vistra Corp.",
+      "status": "INTACT",
+      "kill_switch_at_risk": false,
+      "concern": null,
+      "company_news": "META חתמה על עסקה ל-433 MW קיבולת גרעינית עם Vistra. EBITDA guidance 2026: $6.8-7.6B — hyperscaler demand משחק תפקיד מרכזי.",
+      "next_catalyst": "Q2 2026 earnings ~אוגוסט 2026 — אישור EBITDA guidance",
+      "action": "HOLD",
+      "confidence": 3
+    },
+    {
+      "ticker": "APLD",
+      "company": "Applied Digital Corp.",
+      "status": "INTACT",
+      "kill_switch_at_risk": false,
+      "concern": null,
+      "company_news": "Q3 2026: הכנסות $126.6M (+139% YoY), EBITDA $44.1M. 900 MW בבנייה, $16B contracted lease revenue — thesis בתנופה.",
+      "next_catalyst": "Q4 FY2026 earnings צפוי יוני-יולי 2026 — אישור ramp מתמשך",
+      "action": "HOLD",
+      "confidence": 3
+    },
+    {
+      "ticker": "OKLO",
+      "company": "Oklo Inc.",
+      "status": "REVIEW",
+      "kill_switch_at_risk": false,
+      "concern": "הכנסות ראשונות צפויות רק ב-2030. עד אז: milestones רגולטוריים ומסחריים חייבים להתקדם ברציפות",
+      "company_news": "NRC אישר Aurora design criteria — אבן דרך חשובה (de-risking). META חתמה על עסקה עם Oklo לאספקת אנרגיה גרעינית.",
+      "next_catalyst": "Combined license application progress + הסבת חוזי Switch/Equinix לחוזים מחייבים",
+      "action": "MONITOR_CLOSELY",
+      "confidence": 2
+    }
+  ],
+  "summary": {
+    "intact": 8,
+    "review": 3,
+    "rerun": 0,
+    "urgent": 0
+  }
+}

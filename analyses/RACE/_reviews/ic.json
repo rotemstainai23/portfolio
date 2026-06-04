@@ -1,0 +1,33 @@
+{
+  "ticker": "RACE",
+  "agent": "ic",
+  "date": "2026-06-01",
+  "verdict": "WAIT",
+  "score": 5,
+  "thesis": "Ferrari היא עסק 9/10 שהוועדה אישרה לרשימת מעקב פעילה: כניסה 4% ב-$310-320 post-Q2 2026 (30 יולי), בתנאי Luce order intake חיובי מפורש + EBIT≥29% + הנחיות שמורות + אין עדות לביטולים בדגמים קיימים. EV=$345=מחיר שוק, R/R 0.37:1, נקודה עיוורת משותפת זוהתה (EV economics לא נבחנו) — מגבילה סקייל-אפ.",
+  "key_risks": [
+    "נקודה עיוורת משותפת: כל הסוכנים הניחו שה-moat (FCF CAGR 19%, EBITDA 39%) שורד EV transition — הנחה שלא נבדקה; אם personalization תלויה ב-ICE experience, המודל קורס",
+    "Luce binary event: ה-IC מוסיף תנאי — גם היעדר עדות לביטולים בדגמים קיימים (לא רק Luce order intake)",
+    "R/R מוגבל מבנית: R/R 2:1 דורש $296 שנמוך מ-52W low — Ferrari בתמחורה הנוכחי לא מציעה entry point תקני; post-Q2 חיובי EV = +22% ב-$315",
+    "ריכוז מכפיל-פרמיום: NVDA+META+GOOG+RACE = 44% תיק ב-P/E 23x+ — rate shock יפגע כולם; הגיוון הסקטוריאלי אינו מגן מפני גורם ריבית"
+  ],
+  "position_size_pct": 0,
+  "valuation_summary": "fair value $378 base (+10%), bear $255 (-26%), bull $480 (+39%); EV@$345=$345.89=no edge; R/R post-Q2+ at $315 = EV +22%; R/R 2:1 at $296 (below 52W low)",
+  "entry_exit_plan": "WAIT: 4% LIMIT ב-$310-320 post-Q2 2026 (30 יולי) עם 5 תנאים (כולל תנאי ועדה חדש: אין soft demand בדגמים קיימים); stop $289; TP1 $390, TP2 $460; סקייל-אפ ל-8% רק בתנאים מחמירים (Luce Q4≥300 + ASP≥€700K + ביטולים<3%)",
+  "handoff_summary": "ועדת ההשקעות מאשרת WAIT ומוסיפה שתי תרומות מהותיות: (1) נקודה עיוורת משותפת זוהתה — כל הסוכנים הניחו שה-personalization moat שורד EV transition, הנחה שלא נבדקה ולא ניתנת לאימות לפני 2027-2028. זה מפחית ביטחון ומגביל סקייל-אפ. (2) תנאי כניסה נוסף: Q2 2026 חייב להיות נטול עדות לביטולים/softening בדגמים קיימים, לא רק חיובי ב-Luce. הסוכן הצפוי להיות הכי צודק: CEO/Executor על ההחלטה הטקטית (WAIT framework); DA על אפיון הסיכון (Luce כאיום moat, לא נקודתי). פעולה מיידית: ריאורגון IBIT (10%→4%). פעולה מותנית: LIMIT $320 ב-30 יולי 2026 בתנאי 5 הסעיפים. מקסימום ועדה: 4% ראשוני עד EV economics מוכחים.",
+  "visual_scores": {
+    "risk_reward": {
+      "current_price": 345,
+      "fair_value": 378,
+      "trigger_price": 315,
+      "stop_price": 289,
+      "tp1_price": 390
+    },
+    "agent_scores": {
+      "analyst_score_0_10": 8.0,
+      "devils_risk_0_10": 5.0,
+      "ceo_conviction_0_10": 6.0,
+      "executor_quality_0_10": 3.0
+    }
+  }
+}

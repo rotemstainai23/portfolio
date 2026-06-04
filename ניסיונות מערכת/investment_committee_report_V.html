@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ועדת השקעות — Visa Inc. (V)</title>
+<style>
+:root{
+  --bg:#07090f;--surface:#0d1117;--surface2:#111827;
+  --border:#1a2744;--border2:#1e3a5f;
+  --text:#dce6f5;--muted:#6b7e9a;--muted2:#8899aa;
+  --blue:#4da6ff;--green:#2ecc71;--red:#e05c5c;
+  --orange:#f0a050;--yellow:#f5c842;--purple:#a78bfa;--gold:#d4af37;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;padding-bottom:40px}
+.topbar{background:linear-gradient(135deg,#0f1226,#08090f);padding:18px 32px;border-bottom:1px solid var(--border2);
+  display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.topbar h1{font-size:21px;color:var(--purple)}
+.topbar .sub{font-size:12px;color:var(--muted);margin-top:4px}
+.stamp{font-size:11px;color:var(--muted);text-align:left;line-height:1.7}
+.stamp b{color:var(--text)}
+.wrap{max-width:1120px;margin:0 auto;padding:24px 32px}
+
+.inherit{background:rgba(167,139,250,.06);border:1px solid rgba(167,139,250,.25);border-radius:10px;padding:14px 18px;margin-bottom:20px}
+.inherit .ih-title{font-size:12px;color:var(--purple);font-weight:700;margin-bottom:10px}
+.inherit .ih-r{display:flex;align-items:flex-start;gap:9px;font-size:12px;margin-bottom:7px}
+.inherit .ih-r .tx{color:var(--muted2);line-height:1.6}.inherit .ih-r .tx b{color:var(--text)}
+
+.section{background:var(--surface2);border:1px solid var(--border2);border-radius:12px;padding:22px 24px;margin-bottom:20px}
+.section h2{font-size:16px;color:var(--text);margin-bottom:4px;display:flex;align-items:center;gap:8px}
+.section .tagnum{font-size:11px;color:var(--muted);font-weight:400}
+.section .desc{font-size:12.5px;color:var(--muted2);margin:6px 0 16px;line-height:1.7}
+.bar-accent{width:4px;height:18px;border-radius:2px;display:inline-block}
+.c-blue{color:var(--blue)}.c-green{color:var(--green)}.c-red{color:var(--red)}
+.c-orange{color:var(--orange)}.c-text{color:var(--text)}.c-yellow{color:var(--yellow)}.c-purple{color:var(--purple)}
+
+/* CONSENSUS MATRIX */
+.matrix{width:100%;border-collapse:separate;border-spacing:5px;margin-top:6px}
+.matrix th{font-size:10.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.4px;padding:8px 6px;text-align:center}
+.matrix th.row{text-align:right;width:120px}
+.matrix td{background:var(--surface);border-radius:8px;padding:9px 8px;text-align:center;font-size:11px;
+  color:var(--muted2);line-height:1.5;vertical-align:middle}
+.matrix td.rowlbl{background:transparent;color:var(--text);font-weight:700;font-size:12px;text-align:right}
+.matrix td.verdict{font-weight:700;color:var(--text)}
+.mi{font-size:13px;display:block;margin-bottom:2px}
+.cell-g{background:rgba(46,204,113,.10)}
+.cell-y{background:rgba(245,200,66,.10)}
+.cell-r{background:rgba(224,92,92,.10)}
+.cell-v{background:rgba(167,139,250,.12)}
+
+/* CONSENSUS POINTS */
+.cpoints{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px}
+.cpoint{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px;border-right:3px solid var(--green)}
+.cpoint h4{font-size:13px;color:var(--text);margin-bottom:5px}
+.cpoint p{font-size:11.5px;color:var(--muted2);line-height:1.6}
+
+/* BLINDSPOT */
+.blindspot{background:linear-gradient(135deg,#1a1508,#0d0b07);border:1px solid #4a3a12;
+  border-radius:12px;padding:22px;border-top:3px solid var(--yellow)}
+.blindspot .bs-tag{display:inline-block;background:rgba(245,200,66,.14);color:var(--yellow);
+  font-size:12px;font-weight:700;padding:5px 14px;border-radius:20px;margin-bottom:13px}
+.blindspot h3{font-size:16px;color:var(--text);margin-bottom:10px}
+.blindspot p{font-size:13px;color:var(--muted2);line-height:1.8;margin-bottom:9px}
+.blindspot p b{color:var(--text)}
+.blindspot .impact{background:var(--surface);border-radius:8px;padding:11px 15px;margin-top:10px;
+  font-size:12px;color:var(--text);border-right:3px solid var(--yellow)}
+
+/* SCORECARD */
+.scoretbl{width:100%;border-collapse:collapse;margin-top:6px}
+.scoretbl td{padding:11px 12px;border-bottom:1px solid var(--bg);font-size:13px}
+.scoretbl tr:last-child td{border-bottom:none}
+.scoretbl .lbl{color:var(--muted2)}
+.scoretbl .val{text-align:left;font-weight:800}
+
+/* VERDICT */
+.verdict{background:linear-gradient(135deg,#0f1226,#0a0c16);border:1px solid var(--border2);
+  border-radius:12px;padding:24px;border-top:3px solid var(--yellow)}
+.verdict .tag{display:inline-block;background:rgba(245,200,66,.13);color:var(--yellow);
+  font-size:12px;font-weight:700;padding:5px 14px;border-radius:20px;margin-bottom:14px}
+.verdict h2{font-size:20px;margin-bottom:12px}
+.verdict p{font-size:13px;color:var(--muted2);line-height:1.8;margin-bottom:10px}
+.verdict p b{color:var(--text)}
+.scorebig{display:flex;gap:14px;flex-wrap:wrap;margin-top:14px}
+.scorebox{background:var(--surface);border-radius:10px;padding:15px 18px;flex:1;min-width:135px;text-align:center}
+.scorebox .sb-lbl{font-size:10px;color:var(--muted);margin-bottom:6px}
+.scorebox .sb-num{font-size:20px;font-weight:800}
+
+/* TRIGGERS */
+.trig{display:flex;align-items:center;gap:12px;padding:11px 14px;background:var(--surface);
+  border-radius:9px;margin-bottom:9px;border-right:3px solid var(--blue)}
+.trig .ti{font-size:15px}
+.trig .tb{font-size:12.5px;color:var(--muted2);line-height:1.5}
+.trig .tb b{color:var(--text)}
+
+.hardtruth{background:rgba(224,92,92,.06);border:1px solid rgba(224,92,92,.25);border-radius:10px;
+  padding:16px 18px;font-size:13.5px;color:var(--text);line-height:1.8}
+.hardtruth .ht-l{font-size:11px;color:var(--red);font-weight:800;text-transform:uppercase;letter-spacing:.5px;margin-bottom:7px}
+
+.handoff{background:var(--surface);border:1px dashed var(--border2);border-radius:10px;padding:18px;
+  font-size:12.5px;color:var(--muted2);line-height:1.85;margin-top:16px}
+.handoff b{color:var(--text)}
+.footer{max-width:1120px;margin:0 auto;padding:8px 32px;font-size:11px;color:var(--muted);line-height:1.9}
+.disclaimer{background:rgba(245,200,66,.05);border:1px solid rgba(245,200,66,.18);border-radius:8px;
+  padding:12px 16px;font-size:11.5px;color:var(--muted2);line-height:1.7;margin-top:8px}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div><h1>⚖️ ועדת השקעות — Visa Inc.</h1>
+  <div class="sub">טיקר: V · NYSE · חוליה 5 — שכבת ההכרעה הסופית · סינתזה</div></div>
+  <div class="stamp">תאריך: <b>22 במאי 2026</b><br>מסנתז 4 handoffs · לא מנתח מחדש</div>
+</div>
+
+<div class="wrap">
+
+  <!-- INPUT VALIDATION -->
+  <div class="inherit">
+    <div class="ih-title">① אימות קלטים — 4 handoffs</div>
+    <div class="ih-r"><span>✅</span><span class="tx"><b>אנליסט:</b> איכות עסק 8.5/10 · שווי הוגן $320–405 (בסיס $360) · מרווח ביטחון שולי</span></div>
+    <div class="ih-r"><span>✅</span><span class="tx"><b>עורך דין שטן:</b> ציון סיכון 3/10 · תקרת פוזיציה 12% · ההנחה השבירה: שהמכפיל הפרמיום יישמר</span></div>
+    <div class="ih-r"><span>🟡</span><span class="tx"><b>CEO:</b> קביעה מתומצתת (דוח CEO מלא לא הורץ) — התאמה לתיק טובה: Visa מגוונת תיק מוטה-AI · שכבת Stability · אישור-עקרוני · מפסק זרם לא הופעל</span></div>
+    <div class="ih-r"><span>✅</span><span class="tx"><b>מבצע:</b> פסיקה "המתן" · איכות כניסה 4/10 · R/R 0.35:1 · משטר Risk-On</span></div>
+  </div>
+
+  <!-- CONSENSUS MATRIX -->
+  <div class="section">
+    <h2><span class="bar-accent" style="background:var(--purple)"></span>② מטריצת קונסנזוס סוכנים</h2>
+    <div class="desc">איפה כל סוכן עומד בכל נושא — והיכן הוועדה מכריעה. ✅ מסכים · 🟡 חלקי · ❌ חולק.</div>
+    <table class="matrix">
+      <thead><tr>
+        <th class="row"></th><th>אנליסט</th><th>עורך דין שטן</th><th>CEO</th><th>מבצע</th><th>פסיקת ועדה</th>
+      </tr></thead>
+      <tbody>
+        <tr>
+          <td class="rowlbl">איכות עסק</td>
+          <td class="cell-g"><span class="mi">🟢</span>חזק · 8.5/10</td>
+          <td class="cell-g"><span class="mi">🟢</span>"העסק לא נשבר"</td>
+          <td class="cell-g"><span class="mi">🟢</span>מתאים לתיק</td>
+          <td class="cell-g"><span class="mi">🟢</span>פילטרים עברו</td>
+          <td class="cell-v verdict">✅ חזק</td>
+        </tr>
+        <tr>
+          <td class="rowlbl">רמת סיכון</td>
+          <td class="cell-y"><span class="mi">🟡</span>מרווח שולי</td>
+          <td class="cell-g"><span class="mi">🟢</span>נמוך · 3/10</td>
+          <td class="cell-g"><span class="mi">🟢</span>שכבה יציבה</td>
+          <td class="cell-g"><span class="mi">🟢</span>—</td>
+          <td class="cell-v verdict">🟢 נמוך</td>
+        </tr>
+        <tr>
+          <td class="rowlbl">הערכת שווי</td>
+          <td class="cell-y"><span class="mi">🟡</span>הוגן-מלא</td>
+          <td class="cell-r"><span class="mi">🔴</span>יקר · −24% סיכון</td>
+          <td class="cell-y"><span class="mi">🟡</span>—</td>
+          <td class="cell-y"><span class="mi">🟡</span>"הוגן"</td>
+          <td class="cell-v verdict">🟡 הוגן-יקר</td>
+        </tr>
+        <tr>
+          <td class="rowlbl">עיתוי כניסה</td>
+          <td class="cell-y"><span class="mi">—</span>לא בתחומו</td>
+          <td class="cell-y"><span class="mi">—</span>לא בתחומו</td>
+          <td class="cell-y"><span class="mi">—</span>לא בתחומו</td>
+          <td class="cell-r"><span class="mi">🔴</span>גרוע · R/R 0.35</td>
+          <td class="cell-v verdict">🔴 גרוע</td>
+        </tr>
+        <tr>
+          <td class="rowlbl">גודל פוזיציה</td>
+          <td class="cell-y"><span class="mi">—</span></td>
+          <td class="cell-g"><span class="mi">🟢</span>תקרה 12%</td>
+          <td class="cell-y"><span class="mi">🟡</span>~6% (אילוס')</td>
+          <td class="cell-y"><span class="mi">—</span></td>
+          <td class="cell-v verdict">0% כעת</td>
+        </tr>
+        <tr>
+          <td class="rowlbl">המלצה</td>
+          <td class="cell-g"><span class="mi">🟢</span>עסק מצוין</td>
+          <td class="cell-y"><span class="mi">🟡</span>סיכון נמוך*</td>
+          <td class="cell-g"><span class="mi">🟢</span>אישור-עקרוני</td>
+          <td class="cell-r"><span class="mi">🔴</span>המתן</td>
+          <td class="cell-v verdict">⏸ WATCHLIST</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="desc" style="margin-top:14px;margin-bottom:0">* עורך הדין השטן הדגיש: הסיכון נמוך בעסק — גבוה <b>במחיר</b>.</div>
+  </div>
+
+  <!-- CONSENSUS POINTS -->
+  <div class="section">
+    <h2><span class="bar-accent" style="background:var(--green)"></span>③ נקודות קונסנזוס — היכן כולם מסכימים</h2>
+    <div class="desc">זהו מקרה של <b>קונסנזוס גבוה</b> — כמעט אין מחלוקת. וזה בדיוק מה שמפעיל את בדיקת חשיבת-העדר בסעיף ⑤.</div>
+    <div class="cpoints">
+      <div class="cpoint"><h4>✓ Visa היא עסק מהמעלה הראשונה</h4>
+        <p>כל ארבעת הסוכנים מסכימים: חפיר רחב, מרווחים יוצאי דופן, מאזן במזומן-נטו. אין מחלוקת על האיכות.</p></div>
+      <div class="cpoint"><h4>✓ הסיכון העסקי נמוך</h4>
+        <p>גם עורך הדין השטן, שתפקידו לתקוף, הודה: ניסה לשבור את התזה — והעסק עמד. ציון סיכון 3/10.</p></div>
+      <div class="cpoint"><h4>✓ המחיר הוא הבעיה — לא החברה</h4>
+        <p>אנליסט (מרווח שולי), שטן (−24% סיכון שווי) ומבצע (R/R 0.35:1) — שלושתם מצביעים על אותו דבר: התמחור מלא.</p></div>
+      <div class="cpoint"><h4>✓ Visa מגוונת את התיק</h4>
+        <p>היא אינה מניית AI — חפיפה תמטית נמוכה מול תיק מוטה-AI. מבחינת בניית תיק, זו תוספת מבורכת.</p></div>
+    </div>
+  </div>
+
+  <!-- DISAGREEMENTS -->
+  <div class="section">
+    <h2><span class="bar-accent" style="background:var(--orange)"></span>④ חילוקי דעות</h2>
+    <div class="desc" style="margin-bottom:0">
+      <b>כמעט אין.</b> המתח היחיד: האנליסט שורי על האיכות, עורך הדין השטן מדגיש את סיכון השווי —
+      אך אלה אינם סותרים. שניהם מתארים את אותה מציאות: חברה מצוינת במחיר מלא.
+      <b>פסיקת ועדה:</b> אין כאן קונפליקט אמיתי להכריע בו. כלל פתרון הקונפליקטים שכן הופעל הוא טכני וחד-משמעי —
+      <b>R/R &lt; 2:1 → המתן</b>. זה מכריע את הפסיקה.
+    </div>
+  </div>
+
+  <!-- BLINDSPOT -->
+  <div class="blindspot">
+    <span class="bs-tag">⑤ בדיקת חשיבת-עדר — נקודה עיוורת משותפת</span>
+    <h3>⚠️ זוהתה הנחה משותפת שאיש לא ערער עליה לעומק</h3>
+    <p>
+      ארבעת הסוכנים הם <b>אותו מודל AI</b> בכובעים שונים — הם עלולים לפספס את אותו דבר.
+      וכאן, כשהקונסנזוס כה גבוה, חובה לשאול: <b>על מה כולם הסכימו בלי לבדוק?</b>
+    </p>
+    <p>
+      ההנחה המשותפת: <b>שהצמיחה הדו-ספרתית של Visa תימשך</b> — נפח תשלומים, נפח חוצה-גבולות,
+      עסקאות מעובדות. הערכת השווי של האנליסט, ה"איכות" של ה-CEO, ואפילו ה"סיכון הנמוך" של עורך הדין השטן —
+      כולם נשענים על כך שהמכונה תמשיך להאיץ בקצב דומה.
+    </p>
+    <p>
+      עורך הדין השטן <b>כן</b> נגע בזה (סימן את מסילות התשלום החלופיות) — אבל איש לא <b>תמחֵר</b> תרחיש
+      שבו צמיחת חוצה-הגבולות נחתכת בחצי. הדיסאינטרמדיאציה (Pix, UPI, FedNow) היא איטית — ולכן קל לכל
+      סוכן "לדחות אותה למחר".
+    </p>
+    <div class="impact">
+      <b>השפעה על הפסיקה:</b> לפי הפרוטוקול — נקודה עיוורת משותפת מהותית → רמת הביטחון יורדת דרגה
+      (מ"גבוה" ל<b>"בינוני"</b>), וגודל הפוזיציה היעד מצומצם.
+    </div>
+  </div>
+
+  <!-- MOST RIGHT -->
+  <div class="section">
+    <h2><span class="bar-accent" style="background:var(--blue)"></span>⑥ איזה סוכן צפוי להיות הכי צודק?</h2>
+    <div class="desc" style="margin-bottom:0">
+      <b>המבצע.</b> שאר הסוכנים נתנו הערכות איכותיות ("מצוין", "סיכון נמוך", "מתאים") — חשובות, אך רכות.
+      המבצע נתן <b>מספר קשיח</b>: R/R של 0.35:1 מול סף 2:1. אי אפשר להתווכח עם המתמטיקה הזו.
+      כל עוד המחיר $331 — המבצע צודק, והפסיקה נגזרת ממנו.
+    </div>
+  </div>
+
+  <!-- FINAL SCORECARD -->
+  <div class="section">
+    <h2><span class="bar-accent" style="background:var(--purple)"></span>⑦ סיכום החלטה סופי</h2>
+    <table class="scoretbl">
+      <tr><td class="lbl">איכות עסק</td><td class="val c-green">חזק</td></tr>
+      <tr><td class="lbl">רמת סיכון (עסקי)</td><td class="val c-green">נמוך</td></tr>
+      <tr><td class="lbl">הערכת שווי</td><td class="val c-yellow">הוגן-יקר</td></tr>
+      <tr><td class="lbl">התאמה לתיק</td><td class="val c-green">חזק (מגוון)</td></tr>
+      <tr><td class="lbl">איכות כניסה</td><td class="val c-red">גרוע</td></tr>
+      <tr><td class="lbl">נקודה עיוורת משותפת</td><td class="val c-yellow">זוהתה</td></tr>
+      <tr><td class="lbl">רמת ביטחון</td><td class="val c-yellow">בינוני</td></tr>
+      <tr><td class="lbl">גודל פוזיציה מומלץ — כעת</td><td class="val c-text">0%</td></tr>
+      <tr><td class="lbl">גודל יעד — כשייעשה אקטואלי</td><td class="val c-text">~5% (שכבת Stability)</td></tr>
+    </table>
+  </div>
+
+  <!-- VERDICT -->
+  <div class="verdict">
+    <span class="tag">⑧ פסיקת ועדה סופית</span>
+    <h2>⏸ WATCHLIST — אושר עקרונית, ממתין למחיר</h2>
+    <p>
+      הוועדה מסכמת חמש חוליות ניתוח, ומגיעה למסקנה ברורה: <b>Visa היא עסק שראוי להחזיק —
+      אבל לא ב-$331.</b> הקונסנזוס חזק, ואין קונפליקט מהותי לפתור. הגורם המכריע הוא מתמטי:
+      יחס סיכון/תשואה של 0.35:1, רחוק מסף ה-2:1.
+    </p>
+    <p>
+      <b>הפעולה הבאה:</b> Visa נכנסת לרשימת המעקב הפעילה עם התראת מחיר ב-<b>$287</b>
+      (רמת הכניסה הראשונה של המבצע). אין פריסת הון כעת.
+    </p>
+    <div class="scorebig">
+      <div class="scorebox"><div class="sb-lbl">פסיקה</div><div class="sb-num c-yellow" style="font-size:15px">WATCHLIST</div></div>
+      <div class="scorebox"><div class="sb-lbl">ביטחון</div><div class="sb-num c-yellow" style="font-size:15px">בינוני</div></div>
+      <div class="scorebox"><div class="sb-lbl">גודל כעת</div><div class="sb-num c-text">0%</div></div>
+      <div class="scorebox"><div class="sb-lbl">איכות תהליך</div><div class="sb-num c-green" style="font-size:15px">גבוהה</div></div>
+    </div>
+  </div>
+
+  <!-- WATCHLIST RE-CHECK -->
+  <div class="section">
+    <h2><span class="bar-accent" style="background:var(--blue)"></span>⑨ טריגרי בדיקה חוזרת <span class="tagnum">· לא בוצעה עסקה</span></h2>
+    <div class="desc">המועמד אינו נשכח. בדיקה חוזרת תופעל באחד מאלה:</div>
+    <div class="trig"><span class="ti">💲</span><span class="tb"><b>טריגר מחיר:</b> המחיר יורד ל-$287 או פחות → הרץ מחדש את המבצע (R/R מבריא).</span></div>
+    <div class="trig"><span class="ti">📅</span><span class="tb"><b>טריגר זמן:</b> בדיקה חוזרת מתוזמנת — 21 ביוני 2026 (~30 יום).</span></div>
+    <div class="trig"><span class="ti">📊</span><span class="tb"><b>טריגר אירוע:</b> דוח Q3 FY2026 (~סוף יולי) — בדוק אם צמיחת חוצה-הגבולות נשמרת דו-ספרתית.</span></div>
+    <div class="trig"><span class="ti">🧩</span><span class="tb"><b>טריגר תזה:</b> כל ידיעה מהותית על האצת מסילות תשלום חלופיות (FedNow/A2A) → הערך מחדש את הנקודה העיוורת.</span></div>
+  </div>
+
+  <!-- HARD TRUTH -->
+  <div class="section">
+    <h2><span class="bar-accent" style="background:var(--red)"></span>⑩ האמת הקשה</h2>
+    <div class="hardtruth">
+      <div class="ht-l">הדבר שכנראה לא תרצה לשמוע</div>
+      הרצת חמש חוליות ניתוח מוסדי, מצאת חברה נהדרת — והתשובה היא "אל תקנה". זה מתסכל.
+      וייתכן ש-Visa פשוט תמשיך לעלות בלעדיך — וגם זו תוצאה לגיטימית. <b>הערך של המערכת הזו אינו
+      למצוא מנצחים — אלא למנוע ממך לשלם מחיר מלא עבור אחד.</b> "פוטנציאל שהוחמץ" הוא תוצאה נסבלת.
+      "פגיעה קבועה בהון" — לא. ההמתנה היא ההחלטה.
+    </div>
+  </div>
+
+  <!-- HANDOFF -->
+  <div class="section">
+    <div class="handoff" style="margin-top:0">
+      <b>📋 סיכום ועדת ההשקעות — Visa Inc. (V)</b><br>
+      תאריך: 22.5.2026 · <b>פסיקה סופית:</b> WATCHLIST · <b>ביטחון:</b> בינוני · <b>גודל כעת:</b> 0%<br>
+      <b>הסוכן הכי צודק:</b> המבצע (R/R 0.35:1 — מספר קשיח).<br>
+      <b>נקודה עיוורת משותפת:</b> הנחת המשך הצמיחה הדו-ספרתית — לא תומחרה תרחיש האטה.<br>
+      <b>טריגר חזרה:</b> מחיר $287 · בדיקה 21.6.2026 · דוח Q3 FY26.<br>
+      <b>סטטוס שרשרת:</b> חמש החוליות הושלמו. ההחלטה: להמתין.
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  <b>מקור:</b> סינתזה של 4 handoffs (אנליסט · עורך דין שטן · CEO · מבצע). הוועדה לא ניתחה מחדש — רק סינתזה והכריעה.
+  <div class="disclaimer">⚠️ ה-handoff של ה-CEO הוצג כקביעה מתומצתת (דוח CEO מלא לא הורץ בנפרד). הפסיקה ("WATCHLIST") אינה תלויה בכך — היא נגזרת משער ה-R/R. אינו ייעוץ השקעות.</div>
+</div>
+
+</body>
+</html>

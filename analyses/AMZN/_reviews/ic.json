@@ -1,0 +1,32 @@
+{
+  "ticker": "AMZN",
+  "agent": "ic",
+  "date": "2026-05-28",
+  "verdict": "WATCHLIST",
+  "score": 28,
+  "thesis": "AWS 28% YoY עם RPO $364B מגבה ביקוש מבני, מרווחים בשיא 13.1%. אולם FCF TTM -$2.47B, CapEx $200B FY2026 = FCF FY2026 est. -$37B, clean EPS flat YoY, EV $208 מול מחיר $272 (פרמיה 30.6%), ו-Azure enterprise capture מתחזק.",
+  "key_risks": [
+    "FCF trajectory שלילי מחריף: OCF est. $163B FY2026 vs CapEx $200B = -$37B FCF, kill switch נפרץ ומחמיר",
+    "Clean EPS Q1 2026 flat YoY ($1.56 vs $1.59): כל growth ה-reported הוא Anthropic one-time gain, P/E real ~45x",
+    "נקודה עיוורת: inference cost deflation עשויה להקטין AWS revenue-per-unit גם כש-volume גדל, Amazon ממנת ישירות את הסיכון דרך Anthropic"
+  ],
+  "position_size_pct": 0,
+  "valuation_summary": "EV $208.15, שווי בסיס $224-256. מחיר $271.85 נסחר ב-30.6% פרמיה לEV. כניסה מוצדקת ב-$230 עם תנאי Q2.",
+  "entry_exit_plan": "0% עכשיו. T1 $230 (50%) + T2 $215 (30%) + T3 $200 (20%) = 2.0% סה\"כ. תנאי: מחיר ≤$230 + Q2 AWS ≥25% + CapEx Q2 ≤$50B + IBIT קוצץ קודם. Stop $187. TP1 $295, TP2 $370. Kill: FCF TTM < -$15B OR AWS YoY < 22% ל-2 רבעונים.",
+  "handoff_summary": "ועדת ההשקעות מאשרת WATCHLIST פה אחד. קונסנזוס 3 סוכנים + עצירת מבצע = אין בסיס לכניסה ב-$271.85. נקודה עיוורת זוהתה: inference cost deflation מסכנת את ה-revenue-per-unit assumption שעליה נבנה ה-$200B CapEx bet. שלושת הפעולות הדחופות: (1) IBIT 10.3% → 4%, (2) NVDA 13.6% → 12%, (3) NOW ב-$102 (APPROVED, R/R 2.2:1). AMZN נדון מחדש ב-30 יולי 2026 עם Q2 data, או מוקדם יותר אם מחיר ≤$230. מפסק זרם CEO בתוקף 48 שעות מ-28.05.2026.",
+  "visual_scores": {
+    "risk_reward": {
+      "current_price": 271.85,
+      "fair_value": 240,
+      "trigger_price": 230,
+      "stop_price": 187,
+      "tp1_price": 295
+    },
+    "agent_scores": {
+      "analyst_score_0_10": 6.8,
+      "devils_risk_0_10": 7,
+      "ceo_conviction_0_10": 3,
+      "executor_quality_0_10": null
+    }
+  }
+}

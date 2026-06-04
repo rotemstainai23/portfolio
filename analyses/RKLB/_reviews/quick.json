@@ -1,0 +1,17 @@
+{
+  "ticker": "RKLB",
+  "agent": "quick",
+  "date": "2026-05-26",
+  "verdict": "INTACT",
+  "score": 8,
+  "thesis": "Vertically integrated space company with record commercial momentum ($200M Q1, $2.2B backlog); Neutron still targeting Q4 2026 launch despite tank redesign — kill switch not triggered.",
+  "key_risks": [
+    "Neutron second technical setback could push debut past 2027 kill switch",
+    "SpaceX competitive pressure compresses Electron pricing power",
+    "Valuation (Street targets $120–$140) leaves thin margin of safety at current price"
+  ],
+  "position_size_pct": 5,
+  "valuation_summary": "CFRA target $140, consensus Buy/Outperform; limited near-term upside at ~$135–140",
+  "entry_exit_plan": "Hold Tranche 1; no add until Neutron clears Wallops integration; exit if Neutron slips past 2027 OR dilution >15% in 12mo",
+  "handoff_summary": "RKLB thesis intact as of 2026-05-26. Q1 revenue $200.3M (+63.5% YoY), record $2.2B backlog. Major wins: $816M SDA, $190M DoD hypersonics, $90M USSF prime, 5-launch Neutron commercial deal. Neutron tank failed hydrostatic test Jan 21; redesign complete, targeting Q4 2026 debut — kill switch (past 2027) not triggered. Motiv Space Systems acquisition adds robotics/lunar optionality. Analyst consensus Strong Buy, targets $120–$140. Tranche 1 at 5% holds; Neutron Wallops integration (watch Q3 2026) is the key next catalyst."
+}

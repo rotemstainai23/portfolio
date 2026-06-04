@@ -1,0 +1,38 @@
+name: דוח CEO שבועי — ראשון 5:00
+
+on:
+  schedule:
+    - cron: '0 2 * * 0'
+  workflow_dispatch:
+
+jobs:
+  sunday-report:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install anthropic requests
+
+      - name: Run CEO weekly report
+        env:
+          NTFY_TOPIC:        ${{ secrets.NTFY_TOPIC }}
+          WHATSAPP_PHONE:    ${{ secrets.WHATSAPP_PHONE }}
+          CALLMEBOT_APIKEY:  ${{ secrets.CALLMEBOT_APIKEY }}
+          DASHBOARD_URL:     ${{ secrets.DASHBOARD_URL }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python scripts/sunday_report.py
+
+      - name: Commit weekly report
+        run: |
+          git config user.name  "portfolio-bot"
+          git config user.email "bot@portfolio"
+          git add analyses/_weekly/ || true
+          git diff --staged --quiet || git commit -m "auto: CEO weekly report $(date +%Y-%m-%d)"
+          git push || true

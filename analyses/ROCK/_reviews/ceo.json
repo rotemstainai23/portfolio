@@ -1,0 +1,19 @@
+{
+  "ticker": "ROCK",
+  "agent": "ceo",
+  "date": "2026-06-01",
+  "verdict": "WAIT",
+  "score": 4,
+  "thesis": "Gibraltar (ROCK) היא עסק בנייה איכותי שביצע הימור ממונף (OmniMax $1.335B, leverage 3.9x) בשוק דיור שטרם התאושש. מחיר 9.56x P/E נראה זול אך מוטה בAdj EPS; downside -43% בmiss 17%, covenant breach בmiss 31%. WAIT עד Q2 2026 + קיצוץ מוקדם של IBIT.",
+  "key_risks": [
+    "שכבת ספקולציה ב-16.3% (פי 1.6 מהתקרה) — אין מקום מבני ל-ROCK ללא קיצוץ IBIT קודם",
+    "Covenant breach: EBITDA miss 31% → Net Leverage >5.25x → equity כמעט אפס — סיכון binary לא חלקי",
+    "Q2 2026 טרם פורסם — כניסה לפני תוצאות = ספקולציה על ספקולציה ללא confirmation",
+    "Goodwill $1.7B = 194% הון עצמי — write-down Q4 2026 אפשרי אם OmniMax מאכזב",
+    "מחיר $38.65 הוגן לבסיס אבל לא bargain אמיתי; $26-28 הוא ה-entry האטרקטיבי"
+  ],
+  "position_size_pct": 0,
+  "valuation_summary": "שווי הוגן בסיס $50 (+30%), שורי $83 (+112%), דובי $13-22 (-43-66%). Entry אטרקטיבי: $26-28. נוכחי $38.65 = הוגן לבסיס בלבד.",
+  "entry_exit_plan": "0% כרגע. תנאי כניסה: (1) קיצוץ IBIT ל-4% תחילה, (2) Q2 2026 מאשר FCF חיובי + Gross Margin >24% + EBITDA Q2 ≥$85M, (3) מחיר ≤$35 עדיף. כניסה: 2% ($39). Stop loss: $29 (leverage escalation). יעד בסיס: $50.",
+  "handoff_summary": "CEO סיים ניתוח ROCK עם פסיקת WAIT מטעמי מבנה תיק. שכבת הספקולציה ב-16.3% (יעד 5-10%) אוסרת כניסה ללא קיצוץ IBIT (10%→4%) תחילה. לאחר רה-בלנסינג ו-Q2 2026 (אוגוסט 2026) — אם EBITDA ≥$85M, FCF חיובי, Gross Margin >24% — אפשרי לאשר 2% ב-Speculation. הסוכן הבא: Executor — לבצע קיצוץ IBIT כשלב ראשון בלבד, לא כניסה ל-ROCK."
+}

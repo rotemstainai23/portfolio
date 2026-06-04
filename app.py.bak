@@ -1,0 +1,1182 @@
+"""
+Investment OS — Python/Flask Backend
+Launch : python app.py  (or via start.bat)
+Dashboard: http://127.0.0.1:5000
+"""
+
+import json
+import os
+import re
+import shutil
+import subprocess
+import time
+import threading
+import webbrowser
+from datetime import datetime
+
+# truststore: use Windows native certificate store (fixes Yahoo SSL handshake on
+# Python distributions whose certifi bundle lacks the relevant intermediate CAs).
+# Must be imported and injected BEFORE the requests import to take effect.
+try:
+    import truststore
+    truststore.inject_into_ssl()
+except ImportError:
+    pass
+
+import requests as _requests
+from flask import Flask, jsonify, request, send_file, send_from_directory
+
+try:
+    import yfinance as yf
+    _HAS_YF = True
+except ImportError:
+    _HAS_YF = False
+
+ROOT           = os.path.dirname(os.path.abspath(__file__))
+PORTFOLIO_FILE = os.path.join(ROOT, 'portfolio.json')
+ANALYSES_DIR   = os.path.join(ROOT, 'analyses')
+PROMPTS_DIR    = os.path.join(ROOT, 'מערכת תיק ההשקעות')
+CONFIG_FILE    = os.path.join(ROOT, 'config.json')
+DECISIONS_FILE = os.path.join(ROOT, 'decision_log.json')
+
+PROMPT_FILES = {
+    'analyst':  'Unified_Analyst.md',
+    'devils':   'DevilsAdvocate_Updated.md',
+    'ceo':      'CEO_Agent_Updated.md',
+    'executor': 'Executor_Updated.md',
+    'ic':       'InvestmentCommittee_Updated.md',
+}
+
+AGENT_ORDER = ['analyst', 'devils', 'ceo', 'executor', 'ic']
+AGENT_LABELS = {
+    'analyst':  'Analyst',
+    'devils':   'Devil\'s Advocate',
+    'ceo':      'CEO',
+    'executor': 'Executor',
+    'ic':       'Investment Committee',
+}
+
+# Run-tracking (in-memory; killed on restart, which is fine for a local single-user app)
+_runs: dict = {}
+_runs_lock = threading.Lock()
+
+app = Flask(__name__, static_folder=None)
+
+_price_cache: dict = {}  # {sym: {'ts': float, 'data': {current_price, day_change_pct}}}
+CACHE_TTL          = 45
+
+
+# ── Data helpers ──────────────────────────────────────────────────────────────
+
+def load_portfolio() -> dict:
+    if os.path.exists(PORTFOLIO_FILE):
+        with open(PORTFOLIO_FILE, 'r', encoding='utf-8') as f:
+            return json.load(f)
+    return {'cash': 0, 'holdings': [], 'trades': [], 'watchlist': []}
+
+
+def save_portfolio(data: dict):
+    with open(PORTFOLIO_FILE, 'w', encoding='utf-8') as f:
+        json.dump(data, f, indent=2, ensure_ascii=False)
+
+
+def _fetch_yahoo_price(sym: str) -> dict:
+    """Single-symbol fetch via Yahoo v8 chart API (no auth, free). Returns dict with price/day_change_pct or Nones."""
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)',
+        'Accept':     'application/json',
+    }
+    for host in ('query1', 'query2'):
+        try:
+            url = (f'https://{host}.finance.yahoo.com/v8/finance/chart/{sym}'
+                   f'?interval=1d&range=2d&includePrePost=false')
+            r = _requests.get(url, headers=headers, timeout=6)
+            if r.ok:
+                meta = r.json()['chart']['result'][0]['meta']
+                curr = meta.get('regularMarketPrice')
+                prev = meta.get('previousClose') or meta.get('chartPreviousClose')
+                if curr:
+                    chg = (curr - prev) / prev * 100 if prev and prev > 0 else None
+                    return {'current_price': float(curr), 'day_change_pct': chg}
+        except Exception:
+            continue
+    return {'current_price': None, 'day_change_pct': None}
+
+
+def get_prices(symbols: list) -> dict:
+    """Per-symbol cache (45s TTL) + last-known-good fallback. Yahoo v8 only — free, auth-less, reliable.
+
+    Cache shape: { sym: {'data': {price,chg}, 'ts': float} }
+    Response shape per symbol: {'current_price', 'day_change_pct', 'stale_age_s': int|None}
+    """
+    now = time.time()
+    results: dict = {}
+    if not symbols:
+        return results
+
+    fresh, stale, failed = [], [], []
+
+    for sym in symbols:
+        cached = _price_cache.get(sym)
+        # Use cache while still warm
+        if cached and now - cached['ts'] < CACHE_TTL:
+            results[sym] = {**cached['data'], 'stale_age_s': None}
+            continue
+
+        # Fetch fresh
+        data = _fetch_yahoo_price(sym)
+        if data['current_price'] is not None:
+            _price_cache[sym] = {'ts': now, 'data': data}
+            results[sym] = {**data, 'stale_age_s': None}
+            fresh.append(sym)
+        elif cached:
+            # Fetch failed → last-known-good (stale)
+            age = int(now - cached['ts'])
+            results[sym] = {**cached['data'], 'stale_age_s': age}
+            stale.append(f'{sym}({age}s)')
+        else:
+            # No cache, no fetch
+            results[sym] = {**data, 'stale_age_s': None}
+            failed.append(sym)
+
+    ts = datetime.now().strftime('%H:%M:%S')
+    if fresh:  print(f'[{ts}] prices OK: {" ".join(fresh)}')
+    if stale:  print(f'[{ts}] prices stale: {" ".join(stale)}')
+    if failed: print(f'[{ts}] prices FAIL: {" ".join(failed)}')
+    return results
+
+
+def next_trade_id(trades: list) -> str:
+    nums = []
+    for t in trades:
+        try:
+            nums.append(int(t.get('trade_id', '').split('-')[1]))
+        except Exception:
+            pass
+    return f'TRD-{(max(nums) + 1):03d}' if nums else 'TRD-001'
+
+
+def _extract_analysis_meta(ticker: str) -> dict:
+    """חילוץ metadata בסיסי מ-analyst.js לטיקר נתון."""
+    fpath = os.path.join(ANALYSES_DIR, ticker, 'analyst.js')
+    if not os.path.exists(fpath):
+        return {}
+    try:
+        content = open(fpath, encoding='utf-8').read()
+        out = {}
+        for key, pattern in (
+            ('date',    r'date:\s*["\']([^"\']+)["\']'),
+            ('company', r'company:\s*["\']([^"\']+)["\']'),
+        ):
+            m = re.search(pattern, content)
+            if m:
+                out[key] = m.group(1)
+        for key, pattern in (
+            ('price_at_analysis', r'price_current:\s*([\d.]+)'),
+        ):
+            m = re.search(pattern, content)
+            if m:
+                out[key] = float(m.group(1))
+        return out
+    except Exception:
+        return {}
+
+
+# ── Static file serving ───────────────────────────────────────────────────────
+
+@app.route('/')
+def index():
+    return send_file(os.path.join(ROOT, 'portfolio.html'))
+
+
+@app.route('/templates/<path:filename>')
+def serve_template(filename):
+    return send_from_directory(os.path.join(ROOT, 'templates'), filename)
+
+
+@app.route('/analyses/<path:filename>')
+def serve_analysis(filename):
+    return send_from_directory(os.path.join(ROOT, 'analyses'), filename)
+
+
+# ── API: ping ─────────────────────────────────────────────────────────────────
+
+@app.route('/api/ping')
+def api_ping():
+    return jsonify({'ok': True, 'mode': 'python', 'time': datetime.now().strftime('%H:%M:%S')})
+
+
+# ── API: chart proxy ──────────────────────────────────────────────────────────
+
+@app.route('/api/chart')
+def api_chart():
+    symbol   = request.args.get('symbol', 'V')
+    interval = request.args.get('interval', '1d')
+    range_   = request.args.get('range', '6mo')
+    hdrs     = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)',
+        'Accept':     'application/json',
+    }
+    for host in ('query1', 'query2'):
+        try:
+            url = (f'https://{host}.finance.yahoo.com/v8/finance/chart/{symbol}'
+                   f'?interval={interval}&range={range_}')
+            r   = _requests.get(url, headers=hdrs, timeout=12)
+            if r.ok:
+                return r.content, 200, {'Content-Type': 'application/json; charset=utf-8'}
+        except Exception:
+            pass
+    return jsonify({'error': 'yahoo fetch failed'}), 502
+
+
+# ── API: portfolio ────────────────────────────────────────────────────────────
+
+@app.route('/api/portfolio')
+def api_portfolio():
+    portfolio = load_portfolio()
+    holdings  = portfolio.get('holdings', [])
+    cash      = float(portfolio.get('cash', 0))
+    trades    = portfolio.get('trades', [])
+    watchlist = portfolio.get('watchlist', [])
+
+    all_syms = list({h['symbol'] for h in holdings} | {w['symbol'] for w in watchlist})
+    prices   = get_prices(all_syms)
+
+    enriched    = []
+    total_value = 0.0
+    total_cost  = 0.0
+    today_chg   = 0.0
+
+    for h in holdings:
+        sym  = h['symbol']
+        p    = prices.get(sym, {})
+        curr = p.get('current_price')
+        chg  = p.get('day_change_pct')
+        cost = float(h['buy_price']) * float(h['quantity'])
+        mval = curr * float(h['quantity']) if curr is not None else None
+        pnl  = mval - cost if mval is not None else None
+        pnlP = pnl / cost * 100 if pnl is not None and cost > 0 else None
+
+        if mval:
+            total_value += mval
+        total_cost += cost
+        if curr and chg is not None:
+            prev       = curr / (1 + chg / 100)
+            today_chg += (curr - prev) * float(h['quantity'])
+
+        enriched.append({
+            'symbol':         sym,
+            'name':           h.get('name', sym),
+            'quantity':       float(h['quantity']),
+            'buy_price':      float(h['buy_price']),
+            'current_price':  curr,
+            'day_change_pct': chg,
+            'price_stale_s':  p.get('stale_age_s'),
+            'market_value':   round(mval, 4)  if mval is not None else None,
+            'cost_basis':     round(cost, 4),
+            'pnl':            round(pnl, 4)   if pnl  is not None else None,
+            'pnl_pct':        round(pnlP, 4)  if pnlP is not None else None,
+            'layer':          h.get('layer'),
+            'sector':         h.get('sector'),
+            'analyst_score':  h.get('analyst_score'),
+            'risk_score':     h.get('risk_score'),
+            'notes':          h.get('notes', ''),
+        })
+
+    w_enriched = []
+    for w in watchlist:
+        sym       = w['symbol']
+        p         = prices.get(sym, {})
+        curr      = p.get('current_price')
+        trig      = w.get('trigger_price')
+        direction = w.get('trigger_direction', 'below')
+        alert     = False
+        if curr is not None and trig is not None:
+            if direction == 'below' and curr <= float(trig):
+                alert = True
+            elif direction == 'above' and curr >= float(trig):
+                alert = True
+        dist = (round((curr - float(trig)) / float(trig) * 100, 2)
+                if curr and trig and float(trig) > 0 else None)
+        w_enriched.append({**w, 'current_price': curr, 'distance_pct': dist, 'alert': alert,
+                           'price_stale_s': p.get('stale_age_s')})
+
+    total_pnl = total_value - total_cost
+    return jsonify({
+        'holdings':  enriched,
+        'watchlist': w_enriched,
+        'trades':    trades,
+        'cash':      cash,
+        'summary': {
+            'total_value':   round(total_value, 4),
+            'total_cost':    round(total_cost,  4),
+            'total_pnl':     round(total_pnl,   4),
+            'total_pnl_pct': round(total_pnl / total_cost * 100, 4) if total_cost > 0 else 0,
+            'today_change':  round(today_chg, 4),
+            'grand_total':   round(total_value + cash, 4),
+            'positions':     len(enriched),
+            'trades_logged': len(trades),
+        },
+        'timestamp': datetime.now().isoformat(),
+    })
+
+
+# ── Holdings CRUD ─────────────────────────────────────────────────────────────
+
+@app.route('/api/holdings', methods=['GET'])
+def api_get_holdings():
+    return jsonify(load_portfolio().get('holdings', []))
+
+
+@app.route('/api/holdings', methods=['POST'])
+def api_upsert_holding():
+    global _price_cache
+    data = request.get_json()
+    sym  = data.get('symbol', '').upper()
+    if not sym:
+        return jsonify({'error': 'symbol required'}), 400
+
+    portfolio = load_portfolio()
+    holdings  = portfolio.setdefault('holdings', [])
+
+    for h in holdings:
+        if h['symbol'] == sym:
+            for k in ('quantity', 'buy_price'):
+                if k in data:
+                    h[k] = data[k]
+            for k in ('name', 'layer', 'sector', 'analyst_score', 'risk_score', 'notes'):
+                if k in data and data[k] is not None:
+                    h[k] = data[k]
+            save_portfolio(portfolio)
+            _price_cache.clear()
+            return jsonify({'ok': True, 'action': 'updated'})
+
+    holdings.append({
+        'symbol':        sym,
+        'name':          data.get('name', sym),
+        'quantity':      data['quantity'],
+        'buy_price':     data['buy_price'],
+        'layer':         data.get('layer'),
+        'sector':        data.get('sector'),
+        'analyst_score': data.get('analyst_score'),
+        'risk_score':    data.get('risk_score'),
+        'notes':         data.get('notes', ''),
+    })
+    save_portfolio(portfolio)
+    _price_cache.clear()
+    return jsonify({'ok': True, 'action': 'added'})
+
+
+@app.route('/api/holdings/<symbol>', methods=['DELETE'])
+def api_delete_holding(symbol):
+    portfolio = load_portfolio()
+    portfolio['holdings'] = [h for h in portfolio.get('holdings', [])
+                             if h['symbol'] != symbol.upper()]
+    save_portfolio(portfolio)
+    return jsonify({'ok': True})
+
+
+# ── Watchlist CRUD ────────────────────────────────────────────────────────────
+
+@app.route('/api/watchlist', methods=['GET'])
+def api_get_watchlist():
+    return jsonify(load_portfolio().get('watchlist', []))
+
+
+@app.route('/api/watchlist', methods=['POST'])
+def api_upsert_watchlist():
+    global _price_cache
+    data = request.get_json()
+    sym  = data.get('symbol', '').upper()
+    if not sym:
+        return jsonify({'error': 'symbol required'}), 400
+
+    portfolio = load_portfolio()
+    wl        = portfolio.setdefault('watchlist', [])
+
+    for i, w in enumerate(wl):
+        if w['symbol'] == sym:
+            wl[i] = {**w, **data, 'symbol': sym}
+            save_portfolio(portfolio)
+            _price_cache.clear()
+            return jsonify({'ok': True, 'action': 'updated'})
+
+    wl.append({**data, 'symbol': sym})
+    save_portfolio(portfolio)
+    _price_cache.clear()
+    return jsonify({'ok': True, 'action': 'added'})
+
+
+@app.route('/api/watchlist/<symbol>', methods=['DELETE'])
+def api_delete_watchlist(symbol):
+    portfolio = load_portfolio()
+    portfolio['watchlist'] = [w for w in portfolio.get('watchlist', [])
+                              if w['symbol'] != symbol.upper()]
+    save_portfolio(portfolio)
+    return jsonify({'ok': True})
+
+
+# ── Trades CRUD ───────────────────────────────────────────────────────────────
+
+@app.route('/api/trades', methods=['GET'])
+def api_get_trades():
+    return jsonify(load_portfolio().get('trades', []))
+
+
+@app.route('/api/trades', methods=['POST'])
+def api_add_trade():
+    data      = request.get_json()
+    portfolio = load_portfolio()
+    trades    = portfolio.setdefault('trades', [])
+    data['trade_id'] = next_trade_id(trades)
+    trades.append(data)
+    save_portfolio(portfolio)
+    return jsonify({'ok': True, 'trade_id': data['trade_id']})
+
+
+@app.route('/api/trades/<int:idx>', methods=['DELETE'])
+def api_delete_trade(idx):
+    portfolio = load_portfolio()
+    trades    = portfolio.get('trades', [])
+    if 0 <= idx < len(trades):
+        trades.pop(idx)
+        save_portfolio(portfolio)
+    return jsonify({'ok': True})
+
+
+# ── Cash ──────────────────────────────────────────────────────────────────────
+
+@app.route('/api/cash', methods=['PUT'])
+def api_update_cash():
+    data      = request.get_json()
+    portfolio = load_portfolio()
+    portfolio['cash'] = data.get('cash', 0)
+    save_portfolio(portfolio)
+    return jsonify({'ok': True})
+
+
+# ── Analyses metadata ─────────────────────────────────────────────────────────
+
+@app.route('/api/analyses')
+def api_analyses():
+    result = {}
+    if os.path.isdir(ANALYSES_DIR):
+        for ticker in sorted(os.listdir(ANALYSES_DIR)):
+            ticker_dir = os.path.join(ANALYSES_DIR, ticker)
+            if not os.path.isdir(ticker_dir):
+                continue
+            agents = sorted(f[:-3] for f in os.listdir(ticker_dir) if f.endswith('.js'))
+            if agents:
+                result[ticker] = {'agents': agents, **_extract_analysis_meta(ticker)}
+    return jsonify(result)
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Smart Context + Agent Runner
+# ─────────────────────────────────────────────────────────────────────────────
+
+def _load_config() -> dict:
+    if os.path.exists(CONFIG_FILE):
+        try:
+            with open(CONFIG_FILE, encoding='utf-8') as f:
+                return json.load(f)
+        except Exception:
+            pass
+    return {}
+
+
+def _portfolio_snapshot_compact() -> str:
+    p     = load_portfolio()
+    cash  = float(p.get('cash', 0))
+    syms  = list({h['symbol'] for h in p.get('holdings', [])} |
+                 {w['symbol'] for w in p.get('watchlist', [])})
+    prices = get_prices(syms)
+
+    lines = []
+    total_v = 0.0
+    enriched = []
+    for h in p.get('holdings', []):
+        sym  = h['symbol']
+        curr = prices.get(sym, {}).get('current_price')
+        mval = curr * float(h['quantity']) if curr else None
+        if mval:
+            total_v += mval
+        enriched.append((sym, h, curr, mval))
+
+    grand = total_v + cash
+    cash_pct = (cash / grand * 100) if grand > 0 else 0
+
+    layers: dict = {}
+    for sym, h, curr, mval in enriched:
+        l = h.get('layer') or 'Unknown'
+        layers[l] = layers.get(l, 0) + (mval or 0)
+
+    lines.append(f'Grand Total: ${grand:,.2f} | Cash: ${cash:,.2f} ({cash_pct:.1f}%) | Positions: {len(enriched)}')
+    lines.append('Layer Allocation:')
+    for l, v in sorted(layers.items(), key=lambda x: -x[1]):
+        pct = (v / grand * 100) if grand > 0 else 0
+        lines.append(f'  {l:<13} {pct:5.1f}%')
+    lines.append(f'  {"Cash":<13} {cash_pct:5.1f}%')
+    lines.append('')
+    lines.append('Holdings (by weight):')
+    enriched.sort(key=lambda x: -(x[3] or 0))
+    for sym, h, curr, mval in enriched:
+        w = (mval / grand * 100) if (mval and grand > 0) else 0
+        cost = float(h['buy_price']) * float(h['quantity'])
+        pnl_pct = ((mval - cost) / cost * 100) if (mval and cost > 0) else None
+        pnl_str = f'{pnl_pct:+.1f}%' if pnl_pct is not None else 'N/A'
+        lines.append(f'  {sym:<6} {(h.get("layer") or "?"):<11} W:{w:5.1f}%  P&L:{pnl_str:>7}  A/R:{h.get("analyst_score") or "?"}/{h.get("risk_score") or "?"}')
+    return '\n'.join(lines)
+
+
+def _watchlist_compact() -> str:
+    p     = load_portfolio()
+    wl    = p.get('watchlist', [])
+    if not wl:
+        return '(empty)'
+    syms   = [w['symbol'] for w in wl]
+    prices = get_prices(syms)
+    lines  = []
+    for w in wl:
+        sym  = w['symbol']
+        curr = prices.get(sym, {}).get('current_price')
+        trig = w.get('trigger_price')
+        direction = w.get('trigger_direction', 'below')
+        dist = None
+        alert = False
+        if curr and trig:
+            dist = (curr - float(trig)) / float(trig) * 100
+            if direction == 'below' and curr <= float(trig):  alert = True
+            if direction == 'above' and curr >= float(trig):  alert = True
+        flag = '⚠AT-TRIGGER' if alert else 'waiting'
+        lines.append(f'  {sym:<6} {w.get("verdict","?"):<10} price:${curr if curr else "N/A"} trig:${trig}{"↓" if direction=="below" else "↑"} dist:{dist:+.1f}% [{flag}]'
+                     if dist is not None else
+                     f'  {sym:<6} {w.get("verdict","?"):<10} price:${curr if curr else "N/A"} trig:${trig} [{flag}]')
+        if w.get('thesis'):
+            lines.append(f'         תזה: {w["thesis"][:120]}')
+        if w.get('kill_switch'):
+            lines.append(f'         Kill: {w["kill_switch"][:120]}')
+    return '\n'.join(lines)
+
+
+def _load_prior_handoffs(ticker: str, exclude_agent: str) -> str:
+    """Load most-recent HANDOFF for each prior agent (compact)."""
+    hd_dir = os.path.join(ANALYSES_DIR, ticker, '_handoffs')
+    if not os.path.isdir(hd_dir):
+        return ''
+    by_agent: dict = {}
+    for fname in sorted(os.listdir(hd_dir)):
+        if not fname.endswith('.md'):
+            continue
+        m = re.match(r'(\d{4}-\d{2}-\d{2})_(\w+)\.md', fname)
+        if not m:
+            continue
+        date, agent = m.group(1), m.group(2)
+        if agent == exclude_agent:
+            continue
+        # keep latest per agent
+        if agent not in by_agent or date > by_agent[agent][0]:
+            by_agent[agent] = (date, fname)
+
+    chunks = []
+    for agent in AGENT_ORDER:
+        if agent == exclude_agent or agent not in by_agent:
+            continue
+        date, fname = by_agent[agent]
+        try:
+            with open(os.path.join(hd_dir, fname), encoding='utf-8') as f:
+                content = f.read()
+            chunks.append(f'━━━ {AGENT_LABELS[agent]} HANDOFF ({date}) ━━━\n{content.strip()}')
+        except Exception:
+            pass
+    return '\n\n'.join(chunks)
+
+
+def _compute_market_delta(ticker: str) -> str:
+    """Price/score delta vs last analysis."""
+    meta = _extract_analysis_meta(ticker)
+    if not meta.get('price_at_analysis'):
+        return ''
+    p_old = meta['price_at_analysis']
+    prices = get_prices([ticker])
+    p_now = prices.get(ticker, {}).get('current_price')
+    if not p_now:
+        return f'Previous analysis: {meta.get("date","?")} | Previous price: ${p_old} | Current: N/A'
+    pct = (p_now - p_old) / p_old * 100
+    return (f'Previous analysis: {meta.get("date","?")} | '
+            f'Price then: ${p_old} → Now: ${p_now:.2f} ({pct:+.1f}%)')
+
+
+def _obsidian_vault_dir() -> str | None:
+    cfg = _load_config()
+    vault = cfg.get('obsidian_vault')
+    if not vault or not os.path.isdir(vault):
+        return None
+    return vault
+
+
+def _obsidian_ticker_path(ticker: str) -> str | None:
+    vault = _obsidian_vault_dir()
+    if not vault:
+        return None
+    cfg = _load_config()
+    folder = cfg.get('obsidian_ticker_folder', 'Tickers')
+    return os.path.join(vault, folder, f'{ticker}.md')
+
+
+def _obsidian_read_section(ticker: str, section_title: str) -> str:
+    """Extract a `## section_title` block. Graceful fallback."""
+    path = _obsidian_ticker_path(ticker)
+    if not path or not os.path.exists(path):
+        return ''
+    try:
+        with open(path, encoding='utf-8') as f:
+            content = f.read()
+        # match "## section_title" until next "## " or EOF
+        pat = rf'(?m)^##\s+{re.escape(section_title)}\s*\n(.+?)(?=^##\s+|\Z)'
+        m = re.search(pat, content, re.DOTALL)
+        return m.group(1).strip() if m else ''
+    except Exception:
+        return ''
+
+
+def _obsidian_append(ticker: str, section_heading: str, body: str) -> bool:
+    """Append a new section. Returns True on success, False otherwise (silent fail)."""
+    path = _obsidian_ticker_path(ticker)
+    if not path:
+        return False
+    try:
+        os.makedirs(os.path.dirname(path), exist_ok=True)
+        existing = ''
+        if os.path.exists(path):
+            with open(path, encoding='utf-8') as f:
+                existing = f.read().rstrip()
+        with open(path, 'w', encoding='utf-8') as f:
+            if existing:
+                f.write(existing + '\n\n')
+            f.write(f'## {section_heading}\n\n{body.strip()}\n')
+        return True
+    except Exception as e:
+        print(f'[obsidian write skipped] {e}')
+        return False
+
+
+# ── Decision Journal ─────────────────────────────────────────────────────────
+
+def _load_decisions() -> dict:
+    if os.path.exists(DECISIONS_FILE):
+        try:
+            with open(DECISIONS_FILE, encoding='utf-8') as f:
+                return json.load(f)
+        except Exception:
+            pass
+    return {'decisions': []}
+
+
+def _save_decisions(data: dict):
+    with open(DECISIONS_FILE, 'w', encoding='utf-8') as f:
+        json.dump(data, f, indent=2, ensure_ascii=False)
+
+
+def _next_decision_id(decisions: list) -> str:
+    nums = []
+    for d in decisions:
+        try:
+            nums.append(int(d.get('id', '').split('-')[1]))
+        except Exception:
+            pass
+    return f'DEC-{(max(nums) + 1):03d}' if nums else 'DEC-001'
+
+
+def _decision_for_ticker(ticker: str) -> dict | None:
+    """Latest decision for a ticker (or None)."""
+    data = _load_decisions()
+    matches = [d for d in data.get('decisions', []) if d.get('ticker') == ticker]
+    if not matches:
+        return None
+    matches.sort(key=lambda d: d.get('date', ''), reverse=True)
+    return matches[0]
+
+
+def _decision_context_block(ticker: str) -> str:
+    d = _decision_for_ticker(ticker)
+    if not d:
+        return ''
+    lines = [
+        f'Date: {d.get("date","?")}',
+        f'Decision: {d.get("decision","?")}',
+        f'Position Size: {d.get("position_size_pct","?")}%',
+        f'Conviction: {d.get("conviction","?")}',
+        f'Why: {d.get("why","")}',
+        f'Biggest Risk: {d.get("biggest_risk","")}',
+        f'Kill Switch: {d.get("kill_switch","")}',
+        f'Original Thesis: {d.get("original_thesis","")}',
+    ]
+    return '\n'.join(lines)
+
+
+# ── Dashboard JSON extractor + JS writer ─────────────────────────────────────
+
+_DASHBOARD_JSON_RE = re.compile(r'```dashboard-json\s*(\{.*?\})\s*```', re.DOTALL)
+
+
+def _extract_dashboard_json(output: str) -> dict | None:
+    """Extract the compact dashboard JSON block from agent output."""
+    m = _DASHBOARD_JSON_RE.search(output)
+    if not m:
+        return None
+    try:
+        return json.loads(m.group(1))
+    except json.JSONDecodeError:
+        return None
+
+
+def _update_review_json(ticker: str, agent: str, dash: dict):
+    """Write compact review to analyses/<T>/_reviews/<agent>.json — separate from original .js (which feeds visual templates)."""
+    review_dir = os.path.join(ANALYSES_DIR, ticker, '_reviews')
+    os.makedirs(review_dir, exist_ok=True)
+    payload = {
+        'ticker':             ticker,
+        'agent':              agent,
+        'date':               dash.get('date', datetime.now().strftime('%Y-%m-%d')),
+        'verdict':            dash.get('verdict'),
+        'score':              dash.get('score'),
+        'thesis':             dash.get('thesis'),
+        'key_risks':          dash.get('key_risks', []),
+        'position_size_pct':  dash.get('position_size_pct'),
+        'valuation_summary':  dash.get('valuation_summary'),
+        'entry_exit_plan':    dash.get('entry_exit_plan'),
+        'handoff_summary':    dash.get('handoff_summary'),
+    }
+    dest = os.path.join(review_dir, f'{agent}.json')
+    with open(dest, 'w', encoding='utf-8') as f:
+        json.dump(payload, f, indent=2, ensure_ascii=False)
+
+
+def _list_latest_reviews() -> list:
+    """Scan analyses/<T>/_reviews/*.json — return latest review per ticker (most recent across agents)."""
+    out = []
+    if not os.path.isdir(ANALYSES_DIR):
+        return out
+    for ticker in sorted(os.listdir(ANALYSES_DIR)):
+        rdir = os.path.join(ANALYSES_DIR, ticker, '_reviews')
+        if not os.path.isdir(rdir):
+            continue
+        reviews = []
+        for fname in os.listdir(rdir):
+            if not fname.endswith('.json'):
+                continue
+            try:
+                with open(os.path.join(rdir, fname), encoding='utf-8') as f:
+                    d = json.load(f)
+                d['mtime'] = os.path.getmtime(os.path.join(rdir, fname))
+                reviews.append(d)
+            except Exception:
+                continue
+        if reviews:
+            reviews.sort(key=lambda r: r.get('mtime', 0), reverse=True)
+            out.append(reviews[0])
+    # Newest reviews first across all tickers
+    out.sort(key=lambda r: r.get('mtime', 0), reverse=True)
+    return out
+
+
+# ── Quick Mode prompt (inline, not .md) ──────────────────────────────────────
+
+QUICK_SYSTEM_PROMPT = """You are a Quick Check Reviewer.
+
+You evaluate ONE ticker against its prior analysis and current state.
+You DO NOT do deep research. You only check: has anything materially changed?
+
+Use WebSearch sparingly (max 2-3 searches) for very recent news/earnings only.
+
+Your output MUST be exactly this structure:
+
+```
+STATUS: 🟢 INTACT | 🟡 REVIEW | 🔴 RE-RUN
+
+WHAT CHANGED (1 sentence):
+[one sentence]
+
+RATIONALE (2-3 sentences):
+[2-3 sentences citing specific signals]
+
+ACTION:
+[one line: hold / monitor X / run full chain because Y]
+```
+
+Then include the dashboard-json block as instructed.
+
+Be concise. Total response: under 400 words."""
+
+
+_DASHBOARD_JSON_INSTRUCTION = """
+━━━ STRUCTURED OUTPUT REQUIRED ━━━
+At the END of your response, include EXACTLY this block (replace placeholders):
+
+```dashboard-json
+{
+  "ticker": "TICKER_HERE",
+  "date": "YYYY-MM-DD",
+  "verdict": "BUY|AVOID|HOLD|SELL|REVIEW|INTACT|RERUN",
+  "score": 0,
+  "thesis": "1-2 sentence summary of current thesis",
+  "key_risks": ["risk 1", "risk 2"],
+  "position_size_pct": 0,
+  "valuation_summary": "fair value $X, upside Y%",
+  "entry_exit_plan": "tranches/stop/TP in one line",
+  "handoff_summary": "one paragraph for the next agent in the chain"
+}
+```
+
+Fill ALL fields. Use null if truly unknown. This drives the dashboard."""
+
+
+def _build_context(ticker: str, agent: str) -> dict:
+    """Build the full prompt = system + context. Returns {prompt, meta}."""
+    today = datetime.now().strftime('%Y-%m-%d')
+
+    # Quick Mode uses inline system prompt, no .md file
+    if agent == 'quick':
+        system = QUICK_SYSTEM_PROMPT
+    else:
+        sys_path = os.path.join(PROMPTS_DIR, PROMPT_FILES[agent])
+        if not os.path.exists(sys_path):
+            raise FileNotFoundError(f'system prompt missing: {sys_path}')
+        with open(sys_path, encoding='utf-8') as f:
+            system = f.read()
+
+    parts = [
+        f'TICKER: {ticker}',
+        f'DATE: {today}',
+        f'AGENT: {AGENT_LABELS.get(agent, agent.title())}',
+        '',
+        '━━━ PORTFOLIO SNAPSHOT ━━━',
+        _portfolio_snapshot_compact(),
+    ]
+
+    if agent in ('ceo', 'ic', 'analyst', 'quick'):
+        parts += ['', '━━━ WATCHLIST ━━━', _watchlist_compact()]
+
+    # Original decision (anti-drift)
+    dec_block = _decision_context_block(ticker)
+    if dec_block:
+        parts += ['', '━━━ ORIGINAL DECISION (anti-drift anchor) ━━━', dec_block]
+
+    if agent not in ('analyst',):
+        prior = _load_prior_handoffs(ticker, exclude_agent=agent)
+        if prior:
+            # Quick mode gets handoffs truncated to keep it lightweight
+            if agent == 'quick' and len(prior) > 6000:
+                prior = prior[:6000] + '\n[...truncated for quick mode...]'
+            parts += ['', '━━━ PRIOR HANDOFFS ━━━', prior]
+        else:
+            parts += ['', '━━━ PRIOR HANDOFFS ━━━', '(none — first run for this ticker)']
+
+    delta = _compute_market_delta(ticker)
+    if delta:
+        parts += ['', '━━━ MARKET DELTA ━━━', delta]
+
+    obs_thesis = _obsidian_read_section(ticker, 'תזה נוכחית') or _obsidian_read_section(ticker, 'Thesis')
+    if obs_thesis:
+        parts += ['', '━━━ OBSIDIAN: תזה ━━━', obs_thesis[:1500]]
+
+    parts += [
+        '',
+        '━━━ MEMORY DIRECTIVE ━━━',
+        f'אם זמין plugin claude-mem: שמור רק עובדות בעלות-אות גבוה על {ticker}:',
+        'thesis breaks, kill switch triggers, capital decisions, big mistakes.',
+        'אסור לשמור מחירים יומיים, נתוני שוק שגרתיים, או חישובי מכפילים.',
+        _DASHBOARD_JSON_INSTRUCTION,
+        '',
+        '━━━ END OF CONTEXT — הרץ עכשיו ━━━',
+    ]
+
+    context = '\n'.join(parts)
+    prompt  = f'{system}\n\n{context}'
+    return {'prompt': prompt, 'token_estimate': len(prompt) // 4}
+
+
+def _save_handoff(ticker: str, agent: str, content: str) -> dict:
+    """Save raw handoff + extract dashboard JSON → update .js + Obsidian append."""
+    today    = datetime.now().strftime('%Y-%m-%d')
+    hd_dir   = os.path.join(ANALYSES_DIR, ticker, '_handoffs')
+    os.makedirs(hd_dir, exist_ok=True)
+    raw_path = os.path.join(hd_dir, f'{today}_{agent}.md')
+    with open(raw_path, 'w', encoding='utf-8') as f:
+        f.write(content)
+
+    saved = {'raw': raw_path, 'obsidian': False, 'template_js': False, 'dashboard_json': False}
+
+    # Extract dashboard JSON + update .js (quick mode uses _quick_check.js)
+    try:
+        dash = _extract_dashboard_json(content)
+        if dash:
+            saved['dashboard_json'] = True
+            review_agent = 'quick' if agent == 'quick' else agent
+            _update_review_json(ticker, review_agent, dash)
+            saved['review_json'] = True
+    except Exception as e:
+        print(f'[js update skipped] {e}')
+
+    # Append to Obsidian (best-effort)
+    try:
+        agent_label = AGENT_LABELS.get(agent, 'Quick Check' if agent == 'quick' else agent.title())
+        if _obsidian_append(ticker, f'{today} — {agent_label}', content):
+            saved['obsidian'] = True
+    except Exception as e:
+        print(f'[obsidian append skipped] {e}')
+
+    return saved
+
+
+def _run_claude(prompt: str, timeout: int = 600, quick: bool = False) -> dict:
+    """Invoke `claude -p` via tempfile redirect. Returns {ok, output, error, elapsed}.
+
+    Why tempfile + shell redirect: subprocess.run with input= doesn't reliably
+    pipe stdin to .cmd shims on Windows. Writing prompt to a UTF-8 file and
+    using shell redirection works deterministically across .cmd/.exe.
+    """
+    start = time.time()
+    claude_bin = shutil.which('claude') or 'claude'
+
+    import tempfile
+    tmp = tempfile.NamedTemporaryFile(mode='w', suffix='.txt', encoding='utf-8',
+                                     delete=False, newline='\n')
+    try:
+        tmp.write(prompt)
+        tmp.close()
+        # shell=True + redirect handles stdin properly for .cmd shims on Windows.
+        # --allowedTools: one-click invocation cannot answer interactive permission
+        # prompts. Allow only read-only research tools the agents actually need.
+        allowed = 'WebSearch WebFetch Read Glob Grep'
+        cmd_str = f'"{claude_bin}" -p --allowedTools {allowed} < "{tmp.name}"'
+        result = subprocess.run(
+            cmd_str,
+            shell=True,
+            capture_output=True,
+            text=True,
+            encoding='utf-8',
+            timeout=timeout,
+        )
+        elapsed = time.time() - start
+        if result.returncode == 0:
+            return {'ok': True, 'output': result.stdout, 'error': '', 'elapsed': elapsed}
+        return {'ok': False,
+                'output': result.stdout,
+                'error': (result.stderr or '').strip() or f'exit {result.returncode}',
+                'elapsed': elapsed}
+    except subprocess.TimeoutExpired:
+        return {'ok': False, 'output': '', 'error': f'timeout after {timeout}s',
+                'elapsed': time.time() - start}
+    except FileNotFoundError:
+        return {'ok': False, 'output': '', 'error': 'claude CLI not found in PATH', 'elapsed': 0}
+    except Exception as e:
+        return {'ok': False, 'output': '', 'error': str(e), 'elapsed': time.time() - start}
+    finally:
+        try:
+            os.unlink(tmp.name)
+        except Exception:
+            pass
+
+
+def _run_agent_thread(run_id: str, ticker: str, agent: str, chain: bool = False):
+    """Background thread: build context → call claude → save → update run state."""
+    def update(**kwargs):
+        with _runs_lock:
+            _runs[run_id].update(kwargs)
+
+    try:
+        if chain:
+            update(status='running', current_agent='analyst', progress=0)
+            for i, ag in enumerate(AGENT_ORDER):
+                update(current_agent=ag, progress=int(i / len(AGENT_ORDER) * 100))
+                ctx = _build_context(ticker, ag)
+                res = _run_claude(ctx['prompt'])
+                if not res['ok']:
+                    update(status='failed', error=f'{ag}: {res["error"]}',
+                           finished=datetime.now().isoformat())
+                    return
+                saved = _save_handoff(ticker, ag, res['output'])
+                with _runs_lock:
+                    _runs[run_id].setdefault('steps', []).append({
+                        'agent': ag, 'ok': True, 'elapsed': round(res['elapsed'], 1),
+                        'tokens_est': ctx['token_estimate'], 'saved': saved,
+                    })
+            update(status='done', progress=100, finished=datetime.now().isoformat())
+        else:
+            update(status='running', current_agent=agent)
+            ctx = _build_context(ticker, agent)
+            # Quick mode: shorter timeout, returns faster
+            is_quick = (agent == 'quick')
+            res = _run_claude(ctx['prompt'], timeout=180 if is_quick else 600)
+            if not res['ok']:
+                update(status='failed', error=res['error'],
+                       finished=datetime.now().isoformat())
+                return
+            saved = _save_handoff(ticker, agent, res['output'])
+            update(status='done', elapsed=round(res['elapsed'], 1),
+                   tokens_est=ctx['token_estimate'], saved=saved,
+                   output_preview=res['output'][:500] if is_quick else None,
+                   finished=datetime.now().isoformat())
+    except Exception as e:
+        update(status='failed', error=str(e), finished=datetime.now().isoformat())
+
+
+# ── API: run / status ─────────────────────────────────────────────────────────
+
+@app.route('/api/run', methods=['POST'])
+def api_run():
+    data   = request.get_json()
+    ticker = (data.get('ticker') or '').upper().strip()
+    agent  = (data.get('agent')  or '').lower().strip()
+    if not ticker:
+        return jsonify({'error': 'ticker required'}), 400
+
+    chain = (agent == 'chain')
+    is_quick = (agent == 'quick')
+    if not chain and not is_quick and agent not in PROMPT_FILES:
+        return jsonify({'error': f'unknown agent: {agent}'}), 400
+
+    run_id = f'{ticker}_{agent}_{int(time.time())}'
+    with _runs_lock:
+        _runs[run_id] = {
+            'run_id':  run_id,
+            'ticker':  ticker,
+            'agent':   agent,
+            'chain':   chain,
+            'status':  'queued',
+            'started': datetime.now().isoformat(),
+        }
+    threading.Thread(target=_run_agent_thread, args=(run_id, ticker, agent, chain), daemon=True).start()
+    return jsonify({'run_id': run_id})
+
+
+@app.route('/api/run-status/<run_id>')
+def api_run_status(run_id):
+    with _runs_lock:
+        return jsonify(_runs.get(run_id, {'status': 'unknown', 'run_id': run_id}))
+
+
+@app.route('/api/handoffs/<ticker>')
+def api_handoffs(ticker):
+    """List handoff files for a ticker."""
+    hd_dir = os.path.join(ANALYSES_DIR, ticker.upper(), '_handoffs')
+    if not os.path.isdir(hd_dir):
+        return jsonify([])
+    items = []
+    for fname in sorted(os.listdir(hd_dir), reverse=True):
+        if fname.endswith('.md'):
+            items.append({
+                'filename': fname,
+                'url':      f'/handoffs/{ticker.upper()}/{fname}',
+                'size':     os.path.getsize(os.path.join(hd_dir, fname)),
+            })
+    return jsonify(items)
+
+
+@app.route('/handoffs/<ticker>/<path:filename>')
+def serve_handoff(ticker, filename):
+    return send_from_directory(
+        os.path.join(ANALYSES_DIR, ticker.upper(), '_handoffs'),
+        filename,
+        mimetype='text/plain; charset=utf-8',
+    )
+
+
+# ── API: latest reviews (compact dashboard cards) ─────────────────────────────
+
+@app.route('/api/latest-reviews')
+def api_latest_reviews():
+    return jsonify(_list_latest_reviews())
+
+
+@app.route('/api/latest-reviews/<ticker>')
+def api_latest_reviews_ticker(ticker):
+    """All reviews for a single ticker (newest first)."""
+    rdir = os.path.join(ANALYSES_DIR, ticker.upper(), '_reviews')
+    out = []
+    if os.path.isdir(rdir):
+        for fname in os.listdir(rdir):
+            if not fname.endswith('.json'):
+                continue
+            try:
+                with open(os.path.join(rdir, fname), encoding='utf-8') as f:
+                    d = json.load(f)
+                d['mtime'] = os.path.getmtime(os.path.join(rdir, fname))
+                out.append(d)
+            except Exception:
+                continue
+    out.sort(key=lambda r: r.get('mtime', 0), reverse=True)
+    return jsonify(out)
+
+
+# ── API: Decision Journal ─────────────────────────────────────────────────────
+
+@app.route('/api/decisions', methods=['GET'])
+def api_get_decisions():
+    return jsonify(_load_decisions().get('decisions', []))
+
+
+@app.route('/api/decisions/<ticker>', methods=['GET'])
+def api_get_decisions_for_ticker(ticker):
+    all_d = _load_decisions().get('decisions', [])
+    matches = [d for d in all_d if d.get('ticker') == ticker.upper()]
+    return jsonify(matches)
+
+
+@app.route('/api/decisions', methods=['POST'])
+def api_add_decision():
+    data = request.get_json() or {}
+    ticker = (data.get('ticker') or '').upper().strip()
+    if not ticker:
+        return jsonify({'error': 'ticker required'}), 400
+
+    journal = _load_decisions()
+    decisions = journal.setdefault('decisions', [])
+    entry = {
+        'id':                _next_decision_id(decisions),
+        'ticker':            ticker,
+        'date':              data.get('date') or datetime.now().strftime('%Y-%m-%d'),
+        'decision':          data.get('decision'),
+        'position_size_pct': data.get('position_size_pct'),
+        'why':               data.get('why', ''),
+        'biggest_risk':      data.get('biggest_risk', ''),
+        'kill_switch':       data.get('kill_switch', ''),
+        'conviction':        data.get('conviction'),
+        'original_thesis':   data.get('original_thesis', ''),
+    }
+    decisions.append(entry)
+    _save_decisions(journal)
+    return jsonify({'ok': True, 'id': entry['id']})
+
+
+@app.route('/api/decisions/<id>', methods=['DELETE'])
+def api_delete_decision(id):
+    journal = _load_decisions()
+    journal['decisions'] = [d for d in journal.get('decisions', []) if d.get('id') != id]
+    _save_decisions(journal)
+    return jsonify({'ok': True})
+
+
+# ── Entry point ───────────────────────────────────────────────────────────────
+
+def _open_browser():
+    time.sleep(1.5)
+    webbrowser.open('http://127.0.0.1:5000')
+
+
+if __name__ == '__main__':
+    import sys
+    if hasattr(sys.stdout, 'reconfigure'):
+        sys.stdout.reconfigure(encoding='utf-8', errors='replace')
+    print()
+    print('  ============================================')
+    print('   Investment OS  --  Python/Flask Engine')
+    print('  ============================================')
+    print('  Dashboard : http://127.0.0.1:5000')
+    print('  API       : /api/portfolio')
+    print('  ============================================')
+    print()
+    threading.Thread(target=_open_browser, daemon=True).start()
+    app.run(host='127.0.0.1', port=5000, debug=False)

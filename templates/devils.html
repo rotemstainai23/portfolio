@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>עורך הדין השטן</title>
+<link rel="stylesheet" href="_shared.css">
+<link rel="stylesheet" href="_redesign.css">
+<style>
+/* תוספות לעורך הדין השטן */
+.attack-quote{position:relative;border-radius:18px;padding:22px 26px;background:linear-gradient(120deg,rgba(251,113,133,.10),rgba(139,92,246,.06));border:1px solid var(--glass-border);box-shadow:var(--shadow-md);margin-bottom:18px}
+.attack-quote::before{content:'';position:absolute;top:0;right:0;width:5px;height:100%;background:var(--grad-bad);border-radius:18px 0 0 18px}
+.attack-quote p{font-size:14.5px;line-height:1.95;color:var(--text);margin-bottom:12px}
+.attack-quote p:last-child{margin-bottom:0}
+.attack-quote p b{color:#fff;font-weight:800}
+.attack-quote .punch{color:var(--sig-bad);font-weight:800}
+.killcard{display:flex;gap:14px;align-items:flex-start;padding:16px 20px;background:var(--glass);border:1px solid var(--glass-border);border-radius:14px;margin-bottom:11px;position:relative;overflow:hidden}
+.killcard::before{content:'';position:absolute;top:0;right:0;width:4px;height:100%;background:var(--grad-bad)}
+.killcard .kc-ico{width:36px;height:36px;border-radius:10px;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:var(--sig-bad-soft);color:var(--sig-bad)}
+.killcard .kc-ico svg{width:18px;height:18px;stroke-width:2}
+.killcard .kc-body{flex:1}
+.killcard .kc-title{font-size:14px;font-weight:800;color:var(--text);margin-bottom:5px;line-height:1.4}
+.killcard .kc-text{font-size:12.5px;color:var(--muted2);line-height:1.65}
+.stress-tbl{margin-top:14px}
+.stress-tbl.dtable th{background:var(--glass-2)}
+.ih-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:10px}
+.ih-item{display:flex;flex-direction:column;gap:4px;padding:10px 14px;background:var(--glass);border:1px solid var(--glass-border);border-radius:12px}
+.ih-item .k{font-size:11px;color:var(--muted);letter-spacing:.4px}
+.ih-item .v{font-size:14px;font-weight:800;color:var(--text);font-family:'Fira Code',monospace}
+.ih-note{margin-top:12px;padding:12px 16px;background:var(--sig-warn-soft);border:1px solid rgba(251,191,36,.25);border-radius:12px;font-size:13px;color:var(--text);line-height:1.7}
+</style>
+</head>
+<body>
+<div id="root" class="error-box">⏳ טוען…</div>
+
+<script>
+'use strict';
+const params = new URLSearchParams(location.search);
+const ticker = params.get('ticker');
+if (!ticker) {
+  document.getElementById('root').innerHTML = '<b>שגיאה:</b> חסר טיקר. פתח עם <code>?ticker=NOW</code>.';
+} else {
+  document.title = 'שטן — ' + ticker;
+  const s = document.createElement('script');
+  s.src = '../analyses/' + ticker + '/devils.js';
+  s.onload = render;
+  s.onerror = () => {
+    const s2 = document.createElement('script');
+    s2.src = '../analyses/' + ticker + '/devils.auto.js';
+    s2.onload = render;
+    s2.onerror = () => { document.getElementById('root').innerHTML = '<b>אין נתונים</b> ל-' + ticker; };
+    document.head.appendChild(s2);
+  };
+  document.head.appendChild(s);
+}
+
+/* ---------- אייקונים (SVG קו, currentColor) ---------- */
+const ICONS = {
+  gavel:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="m14 13-7.5 7.5a2.12 2.12 0 0 1-3-3L11 10"/><path d="m16 16 6-6"/><path d="m8 8 6-6"/><path d="m9 7 8 8"/><path d="m21 11-8-8"/></svg>',
+  shield:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>',
+  chartdown:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><polyline points="7 11 12 16 16 12 21 17"/><polyline points="21 11 21 17 15 17"/></svg>',
+  gauge:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="m12 14 4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/></svg>',
+  alert:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>'
+};
+
+/* ---------- עוזרים ---------- */
+function takeaway(t, max){ if(!t) return ''; const c=String(t).replace(/<[^>]+>/g,'').trim(); if(c.length<=max) return c; const dot=c.indexOf('. '); if(dot>0 && dot<max) return c.slice(0,dot+1); return c.slice(0,max).trim()+'…'; }
+function sigOf(color){ const s=String(color||'').toLowerCase(); if(/green/.test(s)) return 'good'; if(/red/.test(s)) return 'bad'; if(/yellow|orange|gold/.test(s)) return 'warn'; return 'neutral'; }
+function bottomline(text, tone){ if(!text) return ''; return `<div class="bottomline ${tone||''}"><div class="bl-eyebrow">שורה תחתונה</div><div class="bl-text">${text}</div></div>`; }
+function rep(label, body){ if(!body) return ''; return `<div class="rep"><div class="rep-label">${label}</div>${body}</div>`; }
+function bigBar(it){ const fill=it.fill||'neutral'; return `<div class="bigbar"><div class="bb-head"><div class="bb-label">${it.label}${it.sub?`<span class="bb-sub">${it.sub}</span>`:''}</div><div class="bb-val ${it.valcls||fill}">${it.val}</div></div><div class="bb-track"><div class="bb-fill ${fill}" style="width:${Math.max(6,Math.min(100,it.width))}%"></div></div></div>`; }
+function bigBars(items){ return `<div class="bigbars">${items.map(bigBar).join('')}</div>`; }
+
+/* ---------- Dossier system ---------- */
+let DOSSIERS = [];
+function topic(o){
+  DOSSIERS.push(o);
+  const sig = o.sig || {text:'מידע', cls:'neutral'};
+  return `<button class="tile" data-id="${o.id}" onclick="openDossier('${o.id}')" aria-haspopup="dialog">
+    <div class="tile-top">
+      <span class="tile-ico ${o.iconColor||'red'}">${ICONS[o.iconKey]||''}</span>
+      <span class="tile-sig ${sig.cls}">${sig.text}</span>
+    </div>
+    <div class="tile-title">${o.title}</div>
+    <div class="tile-headline">${o.headline||''}</div>
+    <div class="tile-cta">פתח דף מלא <span class="arr">←</span></div>
+  </button>`;
+}
+function renderDossiers(){
+  return DOSSIERS.map(o=>`
+  <div class="dossier-overlay" id="dz-${o.id}" hidden role="dialog" aria-modal="true" aria-label="${o.title}" onclick="overlayClick(event)">
+    <div class="dossier">
+      <div class="dossier-head">
+        <span class="tile-ico ${o.iconColor||'red'}">${ICONS[o.iconKey]||''}</span>
+        <div class="dh-text"><h2>${o.title}</h2>${o.sub?`<div class="dossier-sub">${o.sub}</div>`:''}</div>
+        <button class="dossier-close" onclick="closeDossier()" aria-label="סגור">✕</button>
+      </div>
+      <div class="dossier-body">${o.body}</div>
+    </div>
+  </div>`).join('');
+}
+function openDossier(id){ const o=document.getElementById('dz-'+id); if(!o) return; o.hidden=false; document.body.style.overflow='hidden'; document.addEventListener('keydown',escClose); const c=o.querySelector('.dossier-close'); if(c) c.focus(); }
+function closeDossier(){ document.querySelectorAll('.dossier-overlay').forEach(o=>o.hidden=true); document.body.style.overflow=''; document.removeEventListener('keydown',escClose); }
+function escClose(e){ if(e.key==='Escape') closeDossier(); }
+function overlayClick(e){ if(e.target===e.currentTarget) closeDossier(); }
+
+function render(){
+  const d = window.AGENT_DATA;
+  if(!d){document.getElementById('root').innerHTML='נתונים ריקים';return;}
+  DOSSIERS = [];
+  const root = document.getElementById('root');
+  root.className = '';
+  let tiles = '';
+
+  // ----- תיק התביעה -----
+  if(d.attack){
+    const a = d.attack;
+    tiles += topic({
+      id:'attack', iconKey:'gavel', iconColor:'red', title:'תיק התביעה',
+      headline: takeaway(a.headline,120),
+      sig:{text:'בייר', cls:'bad'},
+      body: `<div class="attack-quote">${a.paragraphs.map(p=>`<p>${p}</p>`).join('')}</div>`
+    });
+  }
+
+  // ----- כרטיס סיכון -----
+  if(d.risk_scorecard){
+    const rs = d.risk_scorecard;
+    const reds = (rs.items||[]).filter(x=>/red/.test(x.color||'')).length;
+    const yellows = (rs.items||[]).filter(x=>/yellow|orange/.test(x.color||'')).length;
+    const sig = reds>=2?{text:`${reds} סיכון גבוה`, cls:'bad'} : (reds>=1||yellows>=3)?{text:'מעורב', cls:'warn'} : {text:'נמוך', cls:'good'};
+    const cards = (rs.items||[]).map(it=>{
+      const sg = sigOf(it.color);
+      return `<div class="readout-row"><div class="readout-ico ${sg}">${sg==='good'?'✓':sg==='bad'?'✕':'!'}</div><div class="readout-body"><div class="ro-metric">${it.lbl} <span class="${'c-'+(it.color||'text')}" style="font-weight:800">${it.val}</span></div><div class="ro-text">${it.note||''}</div></div></div>`;
+    }).join('');
+    tiles += topic({
+      id:'risk', iconKey:'shield', iconColor:'red', title:'כרטיס סיכון',
+      headline: takeaway(rs.description,120),
+      sig,
+      body: `${rep('① פילוח הסיכון',`<div class="desc">${rs.description||''}</div>`)}
+        ${rep('② ציון לכל קטגוריה',`<div class="readout">${cards}</div>`)}`
+    });
+  }
+
+  // ----- סיכון שווי שלילי -----
+  if(d.valuation_risk){
+    const v = d.valuation_risk;
+    const bars = (v.scenarios||[]).map(s=>({
+      label:`${s.lbl} · ${s.price}`,
+      sub: s.sub,
+      val: s.pct,
+      width: Math.max(6, Math.min(100, +s.height||0)),
+      fill: /red|orange/.test(s.bg||'')?'bad' : /yellow/.test(s.bg||'')?'warn' : /green/.test(s.bg||'')?'good' : 'neutral'
+    }));
+    tiles += topic({
+      id:'valrisk', iconKey:'chartdown', iconColor:'red', title:'סיכון שווי שלילי',
+      headline: takeaway(v.description,120),
+      sig:{text:`${(v.scenarios||[]).length} תרחישים`, cls:'bad'},
+      body: `${rep('① ההסבר',`<div class="desc">${v.description||''}</div>`)}
+        ${rep('② תרחישי דחיסת מכפיל', bigBars(bars))}
+        ${bottomline(v.note,'bad')}`
+    });
+  }
+
+  // ----- מבחן לחץ -----
+  if(d.stress_test){
+    const t = d.stress_test;
+    const legend = (t.scenarios||[]).map(s=>`<div class="rmix-item"><span class="rmix-dot" style="background:${s.color}"></span><span class="rmix-name">${s.name}</span><span class="rmix-pct">${s.prob}</span></div>`).join('');
+    const donutHTML = t.gradient ? `<div class="rmix"><div class="rmix-donut" style="background:conic-gradient(${t.gradient})"><div class="rmix-center"><div class="big">4</div><div class="small">תרחישים</div></div></div><div class="rmix-legend">${legend}</div></div>` : '';
+    const tbl = (t.rows||[]).length ? `<table class="dtable stress-tbl"><thead><tr><th>תרחיש</th><th>%</th><th>תנאים</th><th>השפעת מניה</th><th>השפעה תיק*</th></tr></thead><tbody>${t.rows.map(r=>`<tr><td>${r.scenario}</td><td>${r.prob}</td><td class="metric">${r.conditions}</td><td class="${r.stock_color}">${r.stock_impact}</td><td class="${r.pf_color}">${r.pf_impact}</td></tr>`).join('')}</tbody></table>` : '';
+    tiles += topic({
+      id:'stress', iconKey:'gauge', iconColor:'purple', title:'מבחן לחץ — 4 תרחישים',
+      headline: takeaway(t.description,120),
+      sig:{text:'הסתברויות', cls:'warn'},
+      body: `${rep('① ההיגיון מאחורי ההסתברויות',`<div class="desc">${t.description||''}</div>`)}
+        ${donutHTML?rep('② התפלגות',donutHTML):''}
+        ${tbl?rep('③ פירוט תרחישים',tbl):''}
+        ${bottomline(t.note,'warn')}`
+    });
+  }
+
+  // ----- Kill Switches -----
+  if(d.kill_switches && d.kill_switches.length){
+    const ks = d.kill_switches;
+    const cards = ks.map(k=>`<div class="killcard"><div class="kc-ico">${ICONS.alert}</div><div class="kc-body"><div class="kc-title">${k.title}</div><div class="kc-text">${k.body}</div></div></div>`).join('');
+    tiles += topic({
+      id:'kill', iconKey:'alert', iconColor:'red', title:'Kill Switches',
+      headline: `${ks.length} טריגרים שיפרקו את התזה`,
+      sig:{text:`${ks.length} טריגרים`, cls:'bad'},
+      body: `<div class="desc" style="margin-bottom:18px">כל אחד מאלה הוא <b>אות יציאה</b>. אם אחד מהם מתממש, התזה השורית נחלשת מהותית.</div>${cards}`
+    });
+  }
+
+  // ----- הרכבה -----
+  root.innerHTML = `
+<div class="topbar tb-red">
+  <div><h1 class="c-red">⚖️ עורך הדין השטן — ${d.company||d.ticker}</h1>
+  <div class="sub">טיקר: ${d.ticker} · קצין הגנת תיק</div></div>
+  <div class="stamp">תאריך: <b>${d.date}</b><br>מקור: דשבורד אנליסט (ירושה)</div>
+</div>
+<div class="wrap">
+
+  ${d.attack?`<div class="hero-conclusion">
+    <div class="hc-eyebrow">תיק עורך הדין השטן</div>
+    <div class="hc-headline">${d.attack.headline}</div>
+    ${d.attack.paragraphs&&d.attack.paragraphs[0]?`<div class="hc-sub">${d.attack.paragraphs[0]}</div>`:''}
+    ${d.verdict&&d.verdict.scoreboxes?`<div class="hc-metrics">${d.verdict.scoreboxes.map(s=>`<div class="hc-metric"><div class="hm-val ${s.color||'c-yellow'}" style="font-size:${s.size?s.size+'px':''}">${s.val}</div><div class="hm-lbl">${s.lbl}</div></div>`).join('')}</div>`:''}
+  </div>`:''}
+
+  ${d.inherited?`<div class="vbanner"><b>📥 נתונים שהתקבלו מהאנליסט — נעולים:</b>
+    <div class="ih-grid">${d.inherited.items.map(i=>`<div class="ih-item"><span class="k">${i.k}</span><span class="v">${i.v}</span></div>`).join('')}</div>
+    ${d.inherited.note?`<div class="ih-note"><b>ההנחה השבירה:</b> ${d.inherited.note}</div>`:''}
+  </div>`:''}
+
+  ${tiles?`<div class="tiles-head"><h2>ניתוח התקיפה לפי נושא</h2><span class="th-hint">לחץ חלונית לדף מלא · כל ציר סיכון מוצג בכמה דרכים</span></div>
+  <div class="tiles">${tiles}</div>`:''}
+
+  ${d.verdict?`<div class="verdict ${d.verdict.style||'yellow'}">
+    <span class="tag">פסיקה סופית — עורך הדין השטן</span>
+    <h2>${d.verdict.headline}</h2>
+    ${(d.verdict.paragraphs||[]).map(p=>`<p>${p}</p>`).join('')}
+    <div class="scorebig">${(d.verdict.scoreboxes||[]).map(s=>`<div class="scorebox"><div class="sb-lbl">${s.lbl}</div><div class="sb-num ${s.color||''}" style="font-size:${s.size||'20'}px">${s.val}</div></div>`).join('')}</div>
+    ${d.verdict.handoff?`<div class="handoff"><b>📤 HANDOFF ל-CEO</b><br>${d.verdict.handoff}</div>`:''}
+  </div>`:''}
+</div>
+<div class="footer">${d.footer||''}</div>
+${renderDossiers()}`;
+}
+</script>
+<script src="_agent_graphs.js"></script>
+<script src="_interactions.js"></script>
+</body>
+</html>

@@ -1,0 +1,212 @@
+# PITFALLS.md
+
+This document lists known repository traps, assumptions, and failure points.
+
+Read when:
+
+- behavior seems inconsistent
+- modifying architecture
+- editing prompts
+- changing portfolio assumptions
+- debugging unusual behavior
+
+---
+
+# Deprecated Components
+
+## app.py
+
+Status:
+
+```text
+DEPRECATED
+```
+
+Do NOT edit.
+
+Do NOT run.
+
+Reason:
+
+Flask implementation is abandoned.
+
+Correct backend:
+
+```text
+serve.ps1
+```
+
+---
+
+## start.bat
+
+Status:
+
+```text
+DEPRECATED
+```
+
+Do NOT use.
+
+Reason:
+
+Starts deprecated Flask app.
+
+Correct startup:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File portfolio\serve.ps1
+```
+
+---
+
+# Portfolio Philosophy
+
+## AI Concentration
+
+Important context:
+
+High AI concentration is intentional.
+
+This is:
+
+```text
+thematic concentration
+```
+
+not automatically:
+
+```text
+portfolio risk mismanagement
+```
+
+Do NOT automatically flag concentration as a flaw.
+
+Evaluate concentration in context.
+
+---
+
+# Markdown Scanning Trap
+
+Avoid broad repository scans.
+
+Do NOT use:
+
+```text
+glob **/*.md
+```
+
+Reason:
+
+May pull irrelevant markdown files.
+
+Can create noisy context.
+
+Can waste tokens.
+
+Prefer targeted reads.
+
+Example:
+
+Read only:
+
+```text
+portfolio/מערכת תיק ההשקעות/
+```
+
+when working with prompts.
+
+Avoid home-directory markdown scanning.
+
+---
+
+# Hebrew Path Handling
+
+Paths containing Hebrew characters should be wrapped in quotes.
+
+Example:
+
+```bash
+"portfolio/מערכת תיק ההשקעות/"
+```
+
+Reason:
+
+Prevents CLI/Bash path parsing issues.
+
+---
+
+# Runtime Data Trap
+
+When server is running:
+
+Avoid manually editing:
+
+```text
+portfolio.json
+```
+
+Reason:
+
+Live pricing cache may become stale.
+
+Prefer REST API updates.
+
+POST/DELETE reset cache automatically.
+
+---
+
+# Report Architecture Trap
+
+Two report patterns exist.
+
+## Legacy (Deprecated)
+
+Standalone report files:
+
+```text
+*_report_*.html
+```
+
+Do NOT create new ones.
+
+Avoid extending legacy pattern.
+
+---
+
+## Preferred Pattern
+
+Use:
+
+```text
+templates/<agent>.html?ticker=<TICKER>
+```
+
+Data source:
+
+```text
+analyses/<TICKER>/<agent>.js
+```
+
+which populates:
+
+```javascript
+window.AGENT_DATA
+```
+
+Prefer reusable templates.
+
+Do not create new standalone reports.
+
+---
+
+# Change Philosophy
+
+Before major changes:
+
+1. Verify architecture
+2. Check downstream compatibility
+3. Prefer minimal diffs
+4. Preserve working behavior
+
+Avoid unnecessary rewrites.

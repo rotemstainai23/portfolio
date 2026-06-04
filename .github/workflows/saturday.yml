@@ -1,0 +1,37 @@
+name: סקנר שבתי — שבת 5:00
+
+on:
+  schedule:
+    - cron: '0 2 * * 6'
+  workflow_dispatch:
+
+jobs:
+  saturday-scanner:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install anthropic requests
+
+      - name: Run scanner
+        env:
+          NTFY_TOPIC:        ${{ secrets.NTFY_TOPIC }}
+          WHATSAPP_PHONE:    ${{ secrets.WHATSAPP_PHONE }}
+          CALLMEBOT_APIKEY:  ${{ secrets.CALLMEBOT_APIKEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python scripts/saturday_scanner.py
+
+      - name: Commit scanner results
+        run: |
+          git config user.name  "portfolio-bot"
+          git config user.email "bot@portfolio"
+          git add scanner-results.json sunday-analysis-target.json || true
+          git diff --staged --quiet || git commit -m "auto: scanner results $(date +%Y-%m-%d)"
+          git push || true

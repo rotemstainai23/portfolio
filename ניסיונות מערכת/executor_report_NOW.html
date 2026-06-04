@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Executor — ServiceNow (NOW)</title>
+<style>
+:root{--bg:#07090f;--surface:#0d1117;--surface2:#111827;--border:#1a2744;--border2:#1e3a5f;
+--text:#dce6f5;--muted:#6b7e9a;--muted2:#8899aa;--blue:#4da6ff;--green:#2ecc71;--red:#e05c5c;
+--orange:#f0a050;--yellow:#f5c842;--purple:#a78bfa;--gold:#d4af37;}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;padding-bottom:40px}
+.topbar{background:linear-gradient(135deg,#15110a,#0a0807);padding:18px 32px;border-bottom:1px solid #3a2a10;
+display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.topbar h1{font-size:21px;color:var(--orange)}
+.topbar .sub{font-size:12px;color:var(--muted);margin-top:4px}
+.stamp{font-size:11px;color:var(--muted);text-align:left;line-height:1.7}
+.stamp b{color:var(--text)}
+.wrap{max-width:1160px;margin:0 auto;padding:24px 32px}
+.inherit{background:rgba(77,166,255,.06);border:1px solid rgba(77,166,255,.25);border-radius:10px;padding:14px 18px;margin-bottom:20px}
+.inherit .ih-title{font-size:12px;color:var(--blue);font-weight:700;margin-bottom:10px}
+.inherit .ih-r{display:flex;align-items:center;gap:9px;font-size:12px;margin-bottom:6px}
+.inherit .ih-r .tx{color:var(--muted2)}.inherit .ih-r .tx b{color:var(--text)}
+.section{background:var(--surface2);border:1px solid var(--border2);border-radius:12px;padding:22px 24px;margin-bottom:20px}
+.section h2{font-size:16px;color:var(--text);margin-bottom:4px;display:flex;align-items:center;gap:8px}
+.section .desc{font-size:12.5px;color:var(--muted2);margin:6px 0 16px;line-height:1.7}
+.bar-accent{width:4px;height:18px;border-radius:2px;display:inline-block}
+.c-blue{color:var(--blue)}.c-green{color:var(--green)}.c-red{color:var(--red)}.c-orange{color:var(--orange)}.c-text{color:var(--text)}.c-yellow{color:var(--yellow)}.c-purple{color:var(--purple)}.c-gold{color:var(--gold)}
+
+.tftabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.tftab{padding:8px 15px;background:var(--surface);border:1px solid var(--border2);border-radius:8px;font-size:12.5px;color:var(--muted2);cursor:pointer;font-weight:600;font-family:inherit}
+.tftab:hover{color:var(--text);border-color:var(--orange)}
+.tftab.active{background:rgba(240,160,80,.14);color:var(--orange);border-color:var(--orange)}
+.toggrow{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:12px;align-items:center}
+.toggroup{display:flex;gap:5px;flex-wrap:wrap;align-items:center;background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:7px 9px}
+.toggroup .gl{font-size:10px;color:var(--muted);margin-left:4px;font-weight:700}
+.tg{padding:5px 10px;border-radius:7px;font-size:11px;cursor:pointer;font-family:inherit;font-weight:600;border:1px solid var(--border2);background:var(--bg);color:var(--muted);display:flex;align-items:center;gap:5px}
+.tg:hover{color:var(--text)}
+.tg.on{color:#07090f}
+.tg .dotc{width:9px;height:9px;border-radius:2px;display:inline-block}
+.tg.on.c-ma20{background:var(--blue)}.tg.on.c-ma50{background:var(--orange)}
+.tg.on.c-ma100{background:var(--purple)}.tg.on.c-ma200{background:var(--gold)}
+.tg.on.c-vol{background:var(--muted2)}.tg.on.c-rsi{background:var(--purple)}
+.tg.on.c-e{background:var(--yellow)}.tg.on.c-eg{background:var(--green)}
+.tg.on.c-stop{background:var(--red)}.tg.on.c-tp{background:var(--blue)}.tg.on.c-sr{background:var(--muted2)}
+.chartbox{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px;position:relative}
+#chartCanvas{width:100%;height:520px;display:block}
+.chart-status{position:absolute;inset:14px;display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--muted);background:var(--surface);border-radius:8px;text-align:center;padding:24px;line-height:1.8}
+.chart-status.hidden{display:none}
+.chartmeta{font-size:11px;color:var(--muted);margin-top:8px;text-align:center}
+.indstrip{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-bottom:14px}
+.indchip{background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:10px 12px}
+.indchip .ic-l{font-size:9.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px}
+.indchip .ic-v{font-size:15px;font-weight:800}
+.indchip .ic-s{font-size:10px;color:var(--muted);margin-top:3px}
+
+.ftiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(232px,1fr));gap:13px}
+.ftile{background:var(--surface);border:1px solid var(--border);border-radius:11px;padding:15px;border-top:3px solid var(--green)}
+.ftile.warn{border-top-color:var(--yellow)}
+.ft-head{display:flex;align-items:center;gap:9px;margin-bottom:10px}
+.ft-ico{width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;background:rgba(46,204,113,.13)}
+.ftile.warn .ft-ico{background:rgba(245,200,66,.14)}
+.ft-name{font-size:13px;font-weight:700;flex:1}
+.ft-badge{font-size:9.5px;font-weight:800;padding:3px 9px;border-radius:9px;background:rgba(46,204,113,.14);color:var(--green)}
+.ftile.warn .ft-badge{background:rgba(245,200,66,.14);color:var(--yellow)}
+.ft-val{font-size:16px;font-weight:800;margin-bottom:3px}
+.ft-detail{font-size:11px;color:var(--muted2);line-height:1.55}
+
+.rrbox{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:18px}
+.rrrow{margin-bottom:15px}.rrrow:last-child{margin-bottom:0}
+.rr-lbl{display:flex;justify-content:space-between;font-size:12px;margin-bottom:6px}
+.rr-lbl .v{font-weight:800}
+.rr-track{height:24px;background:var(--bg);border-radius:6px;overflow:hidden}
+.rr-fill{height:100%;border-radius:6px;display:flex;align-items:center;padding-right:9px;font-size:11px;font-weight:700;color:#07090f}
+.rr-verdict{margin-top:14px;padding:13px 16px;border-radius:9px;background:rgba(46,204,113,.08);border:1px solid rgba(46,204,113,.3);font-size:13px;line-height:1.7}
+.rr-verdict b{color:var(--green)}
+
+.cashbar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;background:var(--surface);border:1px solid var(--border2);border-radius:10px;padding:13px 16px;margin-bottom:14px}
+.cashbar label{font-size:12.5px;color:var(--muted2)}
+.cashbar input{background:var(--bg);border:1px solid var(--border2);border-radius:7px;color:var(--text);font-size:15px;font-weight:800;padding:8px 12px;width:130px;font-family:inherit}
+.cashbar input:focus{outline:none;border-color:var(--orange)}
+.cashbar .hint{font-size:11px;color:var(--muted)}
+.ptable{width:100%;border-collapse:collapse;margin-top:6px}
+.ptable th{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;text-align:right;padding:9px 8px;border-bottom:1px solid var(--border)}
+.ptable td{padding:11px 8px;border-bottom:1px solid var(--bg);font-size:12.5px;font-variant-numeric:tabular-nums;vertical-align:top}
+.ptag{display:inline-block;width:11px;height:11px;border-radius:3px;margin-left:5px;vertical-align:middle}
+.ptable .why{color:var(--muted2);font-size:11px;line-height:1.55;font-variant-numeric:normal}
+
+.verdict{background:linear-gradient(135deg,#0a1a10,#06100a);border:1px solid #1a3a22;border-radius:12px;padding:24px;border-top:3px solid var(--green)}
+.verdict .tag{display:inline-block;background:rgba(46,204,113,.13);color:var(--green);font-size:12px;font-weight:700;padding:5px 14px;border-radius:20px;margin-bottom:14px}
+.verdict h2{font-size:19px;margin-bottom:12px}
+.verdict p{font-size:13px;color:var(--muted2);line-height:1.8;margin-bottom:10px}
+.verdict p b{color:var(--text)}
+.scorebig{display:flex;gap:14px;flex-wrap:wrap;margin-top:14px}
+.scorebox{background:var(--surface);border-radius:10px;padding:15px 18px;flex:1;min-width:130px;text-align:center}
+.scorebox .sb-lbl{font-size:10px;color:var(--muted);margin-bottom:6px}
+.scorebox .sb-num{font-size:20px;font-weight:800}
+
+.handoff{background:var(--surface);border:1px dashed var(--border2);border-radius:10px;padding:18px;font-size:12.5px;color:var(--muted2);line-height:1.85}
+.handoff b{color:var(--text)}
+.servernote{background:rgba(77,166,255,.07);border:1px solid rgba(77,166,255,.25);border-radius:8px;padding:11px 15px;font-size:11.5px;color:var(--muted2);line-height:1.65;margin-bottom:14px}
+.servernote b{color:var(--blue)}
+.footer{max-width:1160px;margin:0 auto;padding:8px 32px;font-size:11px;color:var(--muted);line-height:1.9}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <div><h1>🎯 Executor — ServiceNow</h1>
+  <div class="sub">טיקר: NOW · קצין ביצוע · תזמון ומבנה כניסה</div></div>
+  <div class="stamp">תאריך: <b>24 במאי 2026</b><br>חוליה 4 בשרשרת</div>
+</div>
+
+<div class="wrap">
+
+  <div class="inherit">
+    <div class="ih-title">① אימות קלטים</div>
+    <div class="ih-r"><span>✅</span><span class="tx"><b>אנליסט:</b> איכות 8.0/10 · שווי הוגן בסיס $120 / שורי $143 · מרווח ביטחון ✓</span></div>
+    <div class="ih-r"><span>✅</span><span class="tx"><b>שטן:</b> סיכון 6/10 · תקרה 8% · סיכון שלילי −20% ל-$80</span></div>
+    <div class="ih-r"><span>✅</span><span class="tx"><b>CEO:</b> APPROVED WITH CONDITIONS · 5% · שכבת Growth · בתנאי איזון IBIT</span></div>
+    <div class="ih-r"><span>✅</span><span class="tx"><b>נתוני ביצוע:</b> גרפים חיים דרך השרת</span></div>
+  </div>
+
+  <div class="section">
+    <h2><span class="bar-accent" style="background:var(--blue)"></span>② תמונה טכנית — גרפים חיים</h2>
+    <div class="servernote"><b>📡 הגרפים נטענים דרך שרת הדשבורד.</b> ודא שהשרת רץ (serve.ps1 על localhost:5000).</div>
+    <div class="indstrip">
+      <div class="indchip"><div class="ic-l">מחיר נוכחי</div><div class="ic-v c-orange" id="ind-price">$99.69</div><div class="ic-s">52W: $81–$211</div></div>
+      <div class="indchip"><div class="ic-l">מהשיא</div><div class="ic-v c-red">−53%</div><div class="ic-s">ירידה משמעותית</div></div>
+      <div class="indchip"><div class="ic-l">מהשפל</div><div class="ic-v c-green">+22%</div><div class="ic-s">קרוב לשפל</div></div>
+      <div class="indchip"><div class="ic-l">משטר שוק</div><div class="ic-v c-green">Risk-On</div><div class="ic-s">VIX 17.4 · S&amp;P מעל 200DMA</div></div>
+      <div class="indchip"><div class="ic-l">דוח הבא</div><div class="ic-v c-green">~67 ימים</div><div class="ic-s">Q2 FY26 (~אוגוסט)</div></div>
+      <div class="indchip"><div class="ic-l">Beta היסטורי</div><div class="ic-v c-text">~1.4</div><div class="ic-s">SaaS בעל תנודתיות</div></div>
+    </div>
+
+    <div class="tftabs" id="tftabs">
+      <button class="tftab" data-tf="yearly">שנתי</button>
+      <button class="tftab" data-tf="monthly">חודשי</button>
+      <button class="tftab active" data-tf="weekly">שבועי</button>
+      <button class="tftab" data-tf="daily">יומי</button>
+      <button class="tftab" data-tf="hourly">שעתי</button>
+    </div>
+    <div class="toggrow">
+      <div class="toggroup"><span class="gl">אינדיקטורים</span>
+        <button class="tg c-ma20 on" data-ind="ma20"><span class="dotc" style="background:var(--blue)"></span>MA20</button>
+        <button class="tg c-ma50 on" data-ind="ma50"><span class="dotc" style="background:var(--orange)"></span>MA50</button>
+        <button class="tg c-ma100" data-ind="ma100"><span class="dotc" style="background:var(--purple)"></span>MA100</button>
+        <button class="tg c-ma200 on" data-ind="ma200"><span class="dotc" style="background:var(--gold)"></span>MA200</button>
+        <button class="tg c-vol on" data-ind="volume">ווליום</button>
+        <button class="tg c-rsi on" data-ind="rsi">RSI</button>
+      </div>
+      <div class="toggroup"><span class="gl">תוכנית מסחר</span>
+        <button class="tg c-sr on" data-plan="sr">תמיכה/התנגדות</button>
+        <button class="tg c-e on" data-plan="t1">כניסה 1</button>
+        <button class="tg c-eg on" data-plan="t2">כניסה 2</button>
+        <button class="tg c-eg on" data-plan="t3">כניסה 3</button>
+        <button class="tg c-stop on" data-plan="stop">סטופ</button>
+        <button class="tg c-tp on" data-plan="tp1">TP1</button>
+        <button class="tg c-tp on" data-plan="tp2">TP2</button>
+      </div>
+    </div>
+    <div class="chartbox"><canvas id="chartCanvas"></canvas><div class="chart-status" id="chartStatus">⏳ טוען…</div></div>
+    <div class="chartmeta" id="chartMeta"></div>
+  </div>
+
+  <div class="section">
+    <h2><span class="bar-accent" style="background:var(--green)"></span>③ פילטרים קשיחים</h2>
+    <div class="desc">7 מתוך 8 עוברים. דגל אחד צהוב — סכין נופלת (לכן Scale In, לא Buy Now).</div>
+    <div class="ftiles">
+      <div class="ftile"><div class="ft-head"><div class="ft-ico">📅</div><div class="ft-name">תזמון דוח</div><div class="ft-badge">עבר</div></div>
+        <div class="ft-val">~67 ימים</div><div class="ft-detail">דוח Q2 רחוק — חופש לפעולה.</div></div>
+      <div class="ftile warn"><div class="ft-head"><div class="ft-ico">🔪</div><div class="ft-name">סכין נופלת</div><div class="ft-badge">סומן</div></div>
+        <div class="ft-val">−53% מהשיא · −17% בדוח</div><div class="ft-detail">לא FOMO — אלא ההפך: כניסה בירידה. דורש <b>Scale In</b>, לא פוזיציה מלאה.</div></div>
+      <div class="ftile"><div class="ft-head"><div class="ft-ico">📊</div><div class="ft-name">RSI</div><div class="ft-badge">עבר</div></div>
+        <div class="ft-val">לחיתוך חי</div><div class="ft-detail">לאחר ירידה — RSI סביר באזור 35–45 (לא קנייתֵר, ייתכן קרוב לקנייתֵר-מטה).</div></div>
+      <div class="ftile"><div class="ft-head"><div class="ft-ico">📏</div><div class="ft-name">הרחבה מעל 50DMA</div><div class="ft-badge">עבר</div></div>
+        <div class="ft-val">מתחת ל-50DMA</div><div class="ft-detail">המחיר מתחת ל-MA — לא מורחב כלפי מעלה.</div></div>
+      <div class="ftile"><div class="ft-head"><div class="ft-ico">📦</div><div class="ft-name">נפח</div><div class="ft-badge">N/A</div></div>
+        <div class="ft-val">אין פריצה לאשר</div><div class="ft-detail">קונים חולשה, לא פריצה. דרישת הנפח לא חלה.</div></div>
+      <div class="ftile"><div class="ft-head"><div class="ft-ico">🌐</div><div class="ft-name">משטר שוק</div><div class="ft-badge">Risk-On</div></div>
+        <div class="ft-val">VIX 17.4</div><div class="ft-detail">תומך בפריסה — אך מתון עם SaaS בעת מורד.</div></div>
+      <div class="ftile"><div class="ft-head"><div class="ft-ico">💰</div><div class="ft-name">שווי בכניסה</div><div class="ft-badge">אטרקטיבי</div></div>
+        <div class="ft-val">$100 מול $120</div><div class="ft-detail">−17% מתחת לבסיס — סיווג "אטרקטיבי". <b>מצב שונה לחלוטין מ-Visa.</b></div></div>
+      <div class="ftile"><div class="ft-head"><div class="ft-ico">⚖️</div><div class="ft-name">סיכון/תשואה</div><div class="ft-badge">עבר</div></div>
+        <div class="ft-val">2.2 : 1</div><div class="ft-detail">חוצה את סף ה-2:1 <b>כבר במחיר הנוכחי</b>. בטראנשים עמוקים יותר — &gt;5:1.</div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2><span class="bar-accent" style="background:var(--green)"></span>④ סיכון / תשואה — שער ההכרעה</h2>
+    <div class="desc">תשואה לשווי בסיס ($120) או שורי ($143); סיכון לתרחיש דובי ($80).</div>
+    <div class="rrbox">
+      <div class="rrrow"><div class="rr-lbl"><span>🟢 תשואה — אל $120 (בסיס)</span><span class="v c-green">+20%</span></div>
+        <div class="rr-track"><div class="rr-fill" style="width:50%;background:var(--green)">+$20</div></div></div>
+      <div class="rrrow"><div class="rr-lbl"><span>🟢 תשואה — אל $143 (שורי)</span><span class="v c-green">+43%</span></div>
+        <div class="rr-track"><div class="rr-fill" style="width:100%;background:var(--green)">+$43</div></div></div>
+      <div class="rrrow"><div class="rr-lbl"><span>🔴 סיכון — אל $80 (דובי שטן)</span><span class="v c-red">−20%</span></div>
+        <div class="rr-track"><div class="rr-fill" style="width:46%;background:var(--red)">−$20</div></div></div>
+      <div class="rr-verdict"><b>R/R = 43.5 ÷ 19.7 = 2.21 : 1</b> · עובר את סף ה-2:1 כבר במחיר הנוכחי. בטראנשים נמוכים יותר ה-R/R משתפר דרמטית. <b>זוהי הסיבה שהפסיקה כאן Scale In ולא Wait.</b></div>
+    </div>
+  </div>
+
+  <div class="verdict">
+    <span class="tag">⑤ פסיקת מבצע</span>
+    <h2>✅ Scale In — המתמטיקה עובדת, המבנה מחייב הדרגתיות</h2>
+    <p>
+      בניגוד ל-Visa שקיבלה "המתן" — NOW עוברת את <b>כל המבחנים המספריים</b>. R/R 2.2:1, שווי אטרקטיבי, משטר תומך,
+      דוח רחוק. <b>אך</b> — מניה שירדה 53% היא <b>סכין נופלת</b> שאינה מבטיחה שעצרה לפול. ההגנה: לא להיכנס מלא,
+      להשתמש ב-Scale In עם תמיכות מבניות.
+    </p>
+    <div class="scorebig">
+      <div class="scorebox"><div class="sb-lbl">פסיקה</div><div class="sb-num c-green" style="font-size:15px">Scale In</div></div>
+      <div class="scorebox"><div class="sb-lbl">איכות כניסה</div><div class="sb-num c-green">7/10</div></div>
+      <div class="scorebox"><div class="sb-lbl">R/R נוכחי</div><div class="sb-num c-green">2.2:1</div></div>
+      <div class="scorebox"><div class="sb-lbl">ביטחון</div><div class="sb-num c-yellow" style="font-size:15px">בינוני-גבוה</div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2><span class="bar-accent" style="background:var(--orange)"></span>⑥ תוכנית ביצוע — Scale In · 3 טראנשים</h2>
+    <div class="desc">גודל פוזיציה מאושר ע"י CEO: <b>5% מהתיק (~$96 בתיק $1,924)</b>. ניתן לעדכן בשדה למטה. T1 ניתן לביצוע מיידי כי ה-R/R כבר עובד.</div>
+    <div class="cashbar">
+      <label>💵 סכום מתוכנן לעסקה:</label><span style="color:var(--muted2);font-weight:800">$</span>
+      <input id="cashInput" type="number" min="0" step="10" value="96">
+      <span class="hint">5% מתיק ~$1,924 · מחולק 40/30/30</span>
+    </div>
+    <table class="ptable">
+      <thead><tr><th>יעד</th><th>מחיר</th><th>חלק</th><th>סכום $</th><th>~מניות</th><th>R/R</th><th>הנימוק</th></tr></thead>
+      <tbody id="planBody"></tbody>
+    </table>
+    <div class="desc" style="margin-top:14px;margin-bottom:0">
+      <b>כניסה ממוצעת משוקללת:</b> <span id="avgEntry" style="color:var(--text)">—</span> ·
+      <b>סטופ:</b> <span class="c-red">$75</span> (סגירה מתחת לשפל 52ש' = התזה נשברת) ·
+      <b>יעדי רווח:</b> <span class="c-blue">$130</span> (TP1) ו-<span class="c-purple">$155</span> (TP2).
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="handoff">
+      <b>📤 HANDOFF לוועדת ההשקעות</b><br>
+      חברה: ServiceNow (NOW) · <b>פסיקה:</b> Scale In · <b>איכות כניסה:</b> 7/10 · <b>R/R:</b> 2.2:1<br>
+      <b>תוכנית:</b> T1 40% ב-$100 (מיידי) · T2 30% ב-$90 (תמיכה) · T3 30% ב-$82 (שפל 52ש')<br>
+      <b>סטופ:</b> $75 · <b>TP:</b> $130 / $155<br>
+      <b>סיכון מרכזי:</b> מניה ב-downtrend עלולה לחתוך גם את $75. סטופ ATR יעודכן ע"פ הנתונים החיים בגרף.<br>
+      הסוכן הבא: ועדת השקעות.
+    </div>
+  </div>
+</div>
+
+<div class="footer">מקור: גרפים — Yahoo Finance דרך שרת הדשבורד. רמות תוכנית מבוססות S/R + R/R.</div>
+
+<script>
+'use strict';
+var TICKER='NOW';
+var TF={
+  yearly :{interval:'1mo',range:'max',label:'שנתי · נר חודשי · היסטוריה מלאה'},
+  monthly:{interval:'1wk',range:'5y', label:'חודשי · נר שבועי · 5 שנים'},
+  weekly :{interval:'1d', range:'2y', label:'שבועי · נר יומי · שנתיים'},
+  daily  :{interval:'1d', range:'6mo',label:'יומי · נר יומי · 6 חודשים'},
+  hourly :{interval:'60m',range:'1mo',label:'שעתי · נר שעתי · חודש'}
+};
+var DATA={}, active='weekly';
+var IND={ma20:true,ma50:true,ma100:false,ma200:true,volume:true,rsi:true};
+var PLAN={sr:true,t1:true,t2:true,t3:true,stop:true,tp1:true,tp2:true};
+var tradeCash=96;
+var LV={
+  t1 :{price:100,pct:40,name:'כניסה 1',color:'#f5c842'},
+  t2 :{price:90, pct:30,name:'כניסה 2',color:'#2ecc71'},
+  t3 :{price:82, pct:30,name:'כניסה 3',color:'#2ecc71'},
+  stop:{price:75,name:'סטופ-לוס',color:'#e05c5c'},
+  tp1:{price:130,name:'TP1 — בסיס',color:'#4da6ff'},
+  tp2:{price:155,name:'TP2 — שורי',color:'#a78bfa'}
+};
+var WHY={
+  t1:'מחיר נוכחי. R/R כבר 2.2:1 — עובר את הסף. כניסה ראשונית 40% מיידית כי המתמטיקה תומכת ולא רוצים לפספס מקרה שמחזיר ל-$120+.',
+  t2:'תמיכה עגולה $90, ~10% מתחת. אם נמשיך לרדת, זו רמה ש-AI-fear-traders עוצרים בה. R/R שם ~5:1.',
+  t3:'בדיוק מעל שפל 52ש\' $81. כל הירידה כבר תומחרה. R/R קיצוני 30:1. רק 30% — כי "שפל שנשבר" ייתכן.',
+  stop:'מתחת לשפל 52ש\' = שבירת הרצפה הטכנית. סגירה יומית מתחת $75 = התזה השורית קרסה, סוגרים.',
+  tp1:'שווי הוגן בסיס של האנליסט. לקיחת רווח חלקית.',
+  tp2:'התרחיש השורי — חזרה למכפיל סביר על EPS עתידי. ~50% מהדרך לשיא של 52ש\'.'
+};
+
+function sma(a,p){var o=new Array(a.length).fill(null),s=0,i;for(i=0;i<a.length;i++){s+=a[i];if(i>=p)s-=a[i-p];if(i>=p-1)o[i]=s/p;}return o;}
+function rsi(a,p){var o=new Array(a.length).fill(null);if(a.length<=p)return o;var g=0,l=0,i,d;for(i=1;i<=p;i++){d=a[i]-a[i-1];if(d>=0)g+=d;else l-=d;}g/=p;l/=p;o[p]=100-100/(1+(l===0?100:g/l));for(i=p+1;i<a.length;i++){d=a[i]-a[i-1];g=(g*(p-1)+(d>0?d:0))/p;l=(l*(p-1)+(d<0?-d:0))/p;o[i]=100-100/(1+(l===0?100:g/l));}return o;}
+
+async function fetchTF(tf){
+  var c=TF[tf];
+  var path='v8/finance/chart/'+TICKER+'?interval='+c.interval+'&range='+c.range;
+  var urls=[
+    'http://localhost:5000/api/chart?symbol='+TICKER+'&interval='+c.interval+'&range='+c.range,
+    'https://query1.finance.yahoo.com/'+path,
+    'https://query2.finance.yahoo.com/'+path,
+    'https://corsproxy.io/?'+encodeURIComponent('https://query1.finance.yahoo.com/'+path)
+  ];
+  for(var j=0;j<urls.length;j++){
+    try{var r=await fetch(urls[j],{cache:'no-store'});if(!r.ok)continue;
+      var d=await r.json();var res=d.chart.result[0];var ts=res.timestamp||[];var q=res.indicators.quote[0];var rows=[],i;
+      for(i=0;i<ts.length;i++){if(q.close[i]==null||q.open[i]==null||q.high[i]==null||q.low[i]==null)continue;
+        rows.push([ts[i],q.open[i],q.high[i],q.low[i],q.close[i],q.volume[i]||0]);}
+      if(rows.length>2)return rows;}catch(e){}
+  }
+  return null;
+}
+
+function draw(){
+  var cv=document.getElementById('chartCanvas');var candles=DATA[active];if(!candles)return;
+  var dpr=window.devicePixelRatio||1,W=cv.clientWidth||1000,H=520;
+  cv.width=W*dpr;cv.height=H*dpr;var ctx=cv.getContext('2d');ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,W,H);
+  var padL=8,padR=66,padT=12,axisH=18,gap=12;
+  var subs=[];if(IND.volume)subs.push('vol');if(IND.rsi)subs.push('rsi');var subH=subs.length?72:0;
+  var priceH=H-padT-axisH-subs.length*(subH+gap);
+  var volTop=padT+priceH+gap,rsiTop=volTop+(IND.volume?subH+gap:0);
+  var plotW=W-padL-padR,n=candles.length;var closes=candles.map(function(c){return c[4];});
+  var i,c,hi=-1e18,lo=1e18;
+  for(i=0;i<n;i++){if(candles[i][2]>hi)hi=candles[i][2];if(candles[i][3]<lo)lo=candles[i][3];}
+  var planKeys=['t1','t2','t3','stop','tp1','tp2'];
+  planKeys.forEach(function(k){if(PLAN[k]){var p=LV[k].price;if(p>hi)hi=p;if(p<lo)lo=p;}});
+  if(PLAN.sr){[81,143,211].forEach(function(p){if(p>hi)hi=p;if(p<lo)lo=p;});}
+  var rg=(hi-lo)||1;hi+=rg*0.05;lo-=rg*0.05;
+  var cx=function(idx){return padL+(idx+0.5)*plotW/n;};var py=function(p){return padT+(hi-p)/(hi-lo)*priceH;};
+  var cw=Math.max(1.2,(plotW/n)*0.68);
+  ctx.font='10px Segoe UI';ctx.textBaseline='middle';
+  for(i=0;i<=4;i++){var pp=lo+(hi-lo)*i/4,yy=py(pp);
+    ctx.strokeStyle='rgba(255,255,255,0.05)';ctx.beginPath();ctx.moveTo(padL,yy);ctx.lineTo(padL+plotW,yy);ctx.stroke();
+    ctx.fillStyle='#6b7e9a';ctx.textAlign='left';ctx.fillText('$'+pp.toFixed(0),padL+plotW+6,yy);}
+  for(i=0;i<n;i++){c=candles[i];var up=c[4]>=c[1],col=up?'#2ecc71':'#e05c5c';
+    ctx.strokeStyle=col;ctx.fillStyle=col;ctx.lineWidth=1;
+    ctx.beginPath();ctx.moveTo(cx(i),py(c[2]));ctx.lineTo(cx(i),py(c[3]));ctx.stroke();
+    var yo=py(c[1]),yc=py(c[4]);ctx.fillRect(cx(i)-cw/2,Math.min(yo,yc),cw,Math.max(1,Math.abs(yc-yo)));}
+  function mline(arr,color){ctx.strokeStyle=color;ctx.lineWidth=1.5;ctx.beginPath();var st=false,k;
+    for(k=0;k<n;k++){if(arr[k]==null)continue;var x=cx(k),y=py(arr[k]);if(!st){ctx.moveTo(x,y);st=true;}else ctx.lineTo(x,y);}ctx.stroke();}
+  if(IND.ma20)mline(sma(closes,20),'#4da6ff');
+  if(IND.ma50)mline(sma(closes,50),'#f0a050');
+  if(IND.ma100)mline(sma(closes,100),'#a78bfa');
+  if(IND.ma200)mline(sma(closes,200),'#d4af37');
+  function pline(price,color,dash,label){if(price>hi||price<lo)return;var y=py(price);
+    ctx.strokeStyle=color;ctx.lineWidth=1.5;ctx.setLineDash(dash?[6,4]:[]);
+    ctx.beginPath();ctx.moveTo(padL,y);ctx.lineTo(padL+plotW,y);ctx.stroke();ctx.setLineDash([]);
+    ctx.font='9.5px Segoe UI';var tw=ctx.measureText(label).width+12;
+    ctx.fillStyle=color;ctx.fillRect(padL+3,y-8,tw,16);
+    ctx.fillStyle='#07090f';ctx.textAlign='left';ctx.fillText(label,padL+9,y+1);}
+  if(PLAN.sr){pline(81,'#6b7e9a',true,'תמיכה · שפל 52ש $81');pline(143,'#6b7e9a',true,'התנגדות · יעד אנליסטים $143');}
+  planKeys.forEach(function(k){if(!PLAN[k])return;var L=LV[k],lab;
+    if(k[0]==='t'&&k!=='tp1'&&k!=='tp2'){var amt=Math.round(tradeCash*L.pct/100);var sh=(amt/L.price).toFixed(2);
+      lab=L.name+' · $'+L.price+' · '+L.pct+'% ($'+amt+' ≈ '+sh+' מ\')';pline(L.price,L.color,false,lab);
+    }else if(k==='stop'){pline(L.price,L.color,true,'🛑 סטופ · $'+L.price);
+    }else{pline(L.price,L.color,true,'🎯 '+L.name+' · $'+L.price);}});
+  if(IND.volume){var vmax=0;for(i=0;i<n;i++)if(candles[i][5]>vmax)vmax=candles[i][5];vmax=vmax||1;
+    ctx.fillStyle='#8899aa';ctx.textAlign='left';ctx.font='9px Segoe UI';ctx.fillText('ווליום',padL+4,volTop+8);
+    for(i=0;i<n;i++){c=candles[i];var u=c[4]>=c[1],vh=(c[5]/vmax)*subH;
+      ctx.fillStyle=u?'rgba(46,204,113,0.42)':'rgba(224,92,92,0.42)';
+      ctx.fillRect(cx(i)-cw/2,volTop+subH-vh,cw,vh);}}
+  if(IND.rsi){var rs=rsi(closes,14);
+    [30,50,70].forEach(function(lv){var y=rsiTop+subH-(lv/100)*subH;
+      ctx.strokeStyle=lv===50?'rgba(255,255,255,0.05)':'rgba(245,200,66,0.14)';
+      ctx.beginPath();ctx.moveTo(padL,y);ctx.lineTo(padL+plotW,y);ctx.stroke();
+      ctx.fillStyle='#6b7e9a';ctx.textAlign='left';ctx.fillText(String(lv),padL+plotW+6,y);});
+    ctx.strokeStyle='#a78bfa';ctx.lineWidth=1.5;ctx.beginPath();var st2=false;
+    for(i=0;i<n;i++){if(rs[i]==null)continue;
+      var ry=rsiTop+subH-(Math.max(0,Math.min(100,rs[i]))/100)*subH;
+      if(!st2){ctx.moveTo(cx(i),ry);st2=true;}else ctx.lineTo(cx(i),ry);}
+    ctx.stroke();ctx.fillStyle='#8899aa';ctx.textAlign='left';ctx.font='9px Segoe UI';ctx.fillText('RSI(14)',padL+4,rsiTop+8);}
+  ctx.fillStyle='#6b7e9a';ctx.textAlign='center';ctx.font='9.5px Segoe UI';
+  var step=Math.max(1,Math.floor(n/7));
+  for(i=0;i<n;i+=step){var dt=new Date(candles[i][0]*1000);ctx.fillText((dt.getMonth()+1)+'/'+String(dt.getFullYear()).slice(2),cx(i),H-6);}
+  var last=candles[n-1];document.getElementById('chartMeta').textContent=TF[active].label+' · '+n+' נרות · אחרון $'+last[4].toFixed(2);
+}
+
+function renderPlan(){var body=document.getElementById('planBody');var keys=['t1','t2','t3'],html='',totSh=0,totCost=0;
+  keys.forEach(function(k){var L=LV[k],amt=tradeCash*L.pct/100,sh=amt/L.price;totSh+=sh;totCost+=amt;
+    var up=(120-L.price)/L.price*100,dn=(L.price-80)/L.price*100,rr=(up/dn).toFixed(1);
+    html+='<tr><td><span class="ptag" style="background:'+L.color+'"></span>'+L.name+'</td>'+
+      '<td><b>$'+L.price+'</b></td><td>'+L.pct+'%</td><td>$'+Math.round(amt)+'</td>'+
+      '<td>'+sh.toFixed(2)+'</td><td style="color:'+(rr>=2?'#2ecc71':'#f5c842')+';font-weight:700">'+rr+':1</td>'+
+      '<td class="why">'+WHY[k]+'</td></tr>';});
+  body.innerHTML=html;var avg=totSh>0?totCost/totSh:0;
+  document.getElementById('avgEntry').textContent='$'+avg.toFixed(2)+'  ('+totSh.toFixed(2)+' מניות · $'+Math.round(totCost)+')';}
+
+function setStatus(m){var s=document.getElementById('chartStatus');if(m===null)s.classList.add('hidden');else{s.classList.remove('hidden');s.innerHTML=m;}}
+function bindToggles(){
+  document.querySelectorAll('[data-ind]').forEach(function(b){b.addEventListener('click',function(){var k=b.dataset.ind;IND[k]=!IND[k];b.classList.toggle('on',IND[k]);draw();});});
+  document.querySelectorAll('[data-plan]').forEach(function(b){b.addEventListener('click',function(){var k=b.dataset.plan;PLAN[k]=!PLAN[k];b.classList.toggle('on',PLAN[k]);draw();});});
+  document.querySelectorAll('.tftab').forEach(function(t){t.addEventListener('click',function(){
+    document.querySelectorAll('.tftab').forEach(function(x){x.classList.remove('active');});
+    t.classList.add('active');active=t.dataset.tf;
+    if(DATA[active]){setStatus(null);draw();}else setStatus('⚠️ הטווח לא נטען. רענן (F5).');});});
+  document.getElementById('cashInput').addEventListener('input',function(){var v=parseFloat(this.value);tradeCash=(isNaN(v)||v<0)?0:v;renderPlan();draw();});}
+
+async function init(){bindToggles();renderPlan();setStatus('⏳ טוען נתוני שוק חיים…');
+  var names=Object.keys(TF);var results=await Promise.allSettled(names.map(fetchTF));
+  results.forEach(function(r,i){if(r.status==='fulfilled'&&r.value)DATA[names[i]]=r.value;});
+  if(DATA[active]){setStatus(null);draw();var lp=DATA[active][DATA[active].length-1][4];
+    document.getElementById('ind-price').textContent='$'+lp.toFixed(2);}
+  else if(Object.keys(DATA).length){active=Object.keys(DATA)[0];
+    document.querySelectorAll('.tftab').forEach(function(x){x.classList.toggle('active',x.dataset.tf===active);});
+    setStatus(null);draw();}
+  else{setStatus('⚠️ <b>לא ניתן לטעון.</b><br>ודא ששרת הדשבורד רץ. רענן (F5).');}}
+var rt;window.addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(function(){if(DATA[active])draw();},200);});
+init();
+</script>
+</body>
+</html>

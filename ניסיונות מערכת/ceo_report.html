@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>דוח CEO — ניתוח תיק</title>
+<style>
+:root{
+  --bg:#07090f;--surface:#0d1117;--surface2:#111827;
+  --border:#1a2744;--border2:#1e3a5f;
+  --text:#dce6f5;--muted:#6b7e9a;--muted2:#8899aa;
+  --blue:#4da6ff;--green:#2ecc71;--red:#e05c5c;
+  --orange:#f0a050;--yellow:#f5c842;--purple:#a78bfa;--gold:#d4af37;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;padding-bottom:40px}
+
+/* TOP BAR */
+.topbar{
+  background:linear-gradient(135deg,#101628,#070b14);
+  padding:18px 32px;border-bottom:1px solid var(--border);
+  display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap
+}
+.topbar h1{font-size:21px;color:var(--blue);letter-spacing:-.3px}
+.topbar .sub{font-size:12px;color:var(--muted);margin-top:4px}
+.stamp{font-size:11px;color:var(--muted);text-align:left;line-height:1.7}
+.stamp b{color:var(--text)}
+
+/* LAYOUT */
+.wrap{max-width:1100px;margin:0 auto;padding:24px 32px}
+.section{
+  background:var(--surface2);border:1px solid var(--border2);border-radius:12px;
+  padding:22px 24px;margin-bottom:20px
+}
+.section h2{font-size:16px;color:var(--text);margin-bottom:4px;display:flex;align-items:center;gap:8px}
+.section .desc{font-size:12px;color:var(--muted);margin-bottom:18px;line-height:1.6}
+.bar-accent{width:4px;height:18px;border-radius:2px;display:inline-block}
+
+/* CARDS */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-bottom:20px}
+.card{background:var(--surface2);border:1px solid var(--border2);border-radius:12px;padding:18px}
+.card .lbl{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.7px;margin-bottom:8px}
+.card .val{font-size:24px;font-weight:800;line-height:1}
+.card .sub{font-size:11px;color:var(--muted);margin-top:7px}
+.c-blue{color:var(--blue)}.c-green{color:var(--green)}.c-red{color:var(--red)}
+.c-orange{color:var(--orange)}.c-text{color:var(--text)}
+
+/* DONUT */
+.chart-row{display:flex;gap:30px;align-items:center;flex-wrap:wrap}
+.donut{
+  width:190px;height:190px;border-radius:50%;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;position:relative
+}
+.donut::after{
+  content:'';position:absolute;width:118px;height:118px;border-radius:50%;
+  background:var(--surface2)
+}
+.donut .center{position:relative;z-index:2;text-align:center}
+.donut .center .big{font-size:21px;font-weight:800;color:var(--text)}
+.donut .center .small{font-size:10px;color:var(--muted);margin-top:3px}
+.legend{display:flex;flex-direction:column;gap:11px;flex:1;min-width:240px}
+.leg-item{display:flex;align-items:center;gap:10px;font-size:13px}
+.leg-dot{width:13px;height:13px;border-radius:4px;flex-shrink:0}
+.leg-name{flex:1;color:var(--text)}
+.leg-val{font-weight:700;font-variant-numeric:tabular-nums}
+.leg-tag{font-size:10px;padding:2px 8px;border-radius:10px;font-weight:600}
+
+/* LAYER TABLE */
+.ltable{width:100%;border-collapse:collapse;margin-top:6px}
+.ltable th{
+  font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;
+  text-align:right;padding:8px 10px;border-bottom:1px solid var(--border)
+}
+.ltable td{padding:11px 10px;border-bottom:1px solid var(--bg);font-size:13px}
+.ltable tr:last-child td{border-bottom:none}
+.minibar{height:7px;background:var(--border2);border-radius:4px;overflow:hidden;margin-top:6px}
+.minifill{height:100%;border-radius:4px}
+.status-pill{font-size:11px;font-weight:700;padding:3px 10px;border-radius:11px;white-space:nowrap}
+.s-ok{background:rgba(46,204,113,.14);color:var(--green)}
+.s-warn{background:rgba(245,200,66,.14);color:var(--yellow)}
+.s-bad{background:rgba(224,92,92,.14);color:var(--red)}
+
+/* POSITION BARS */
+.pos-row{display:flex;align-items:center;gap:12px;margin-bottom:11px}
+.pos-sym{width:62px;font-weight:700;color:var(--blue);font-size:14px;flex-shrink:0}
+.pos-track{flex:1;height:26px;background:var(--surface);border-radius:6px;position:relative;overflow:hidden}
+.pos-fill{height:100%;border-radius:6px;display:flex;align-items:center;padding-right:9px;
+  font-size:11px;font-weight:700;color:#07090f;transition:.4s;min-width:42px}
+.pos-meta{width:160px;flex-shrink:0;font-size:11px;color:var(--muted);text-align:left}
+.cap-badge{font-size:9px;font-weight:700;padding:2px 7px;border-radius:8px;
+  background:rgba(224,92,92,.16);color:var(--red);margin-right:6px}
+.cap-ok{background:rgba(46,204,113,.13);color:var(--green)}
+.cap-edge{background:rgba(245,200,66,.14);color:var(--yellow)}
+.scale-note{font-size:10px;color:var(--muted);margin-top:4px}
+
+/* FLAG CARDS */
+.flag{
+  background:var(--surface);border-radius:10px;padding:15px 17px;margin-bottom:12px;
+  border-right:4px solid var(--muted);display:flex;gap:14px;align-items:flex-start
+}
+.flag.red{border-right-color:var(--red)}
+.flag.yellow{border-right-color:var(--yellow)}
+.flag .rank{
+  font-size:16px;font-weight:800;width:34px;height:34px;border-radius:8px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center
+}
+.flag.red .rank{background:rgba(224,92,92,.14);color:var(--red)}
+.flag.yellow .rank{background:rgba(245,200,66,.14);color:var(--yellow)}
+.flag .body h3{font-size:14px;margin-bottom:5px;color:var(--text)}
+.flag .body p{font-size:12.5px;color:var(--muted2);line-height:1.65}
+
+/* VERDICT */
+.verdict{
+  background:linear-gradient(135deg,#10182a,#0a0e18);
+  border:1px solid var(--border2);border-radius:12px;padding:24px;
+  border-top:3px solid var(--orange)
+}
+.verdict .tag{
+  display:inline-block;background:rgba(240,160,80,.14);color:var(--orange);
+  font-size:12px;font-weight:700;padding:5px 14px;border-radius:20px;margin-bottom:14px
+}
+.verdict h2{font-size:18px;color:var(--text);margin-bottom:12px}
+.verdict p{font-size:13.5px;color:var(--muted2);line-height:1.8;margin-bottom:10px}
+.verdict .next{
+  background:var(--surface);border-radius:8px;padding:13px 16px;margin-top:14px;
+  font-size:13px;color:var(--text);border-right:3px solid var(--blue)
+}
+
+/* FOOTER */
+.footer{
+  max-width:1100px;margin:0 auto;padding:8px 32px;
+  font-size:11px;color:var(--muted);line-height:1.8
+}
+.footer b{color:var(--muted2)}
+.disclaimer{
+  background:rgba(224,92,92,.06);border:1px solid rgba(224,92,92,.2);
+  border-radius:8px;padding:12px 16px;font-size:11.5px;color:var(--muted2);
+  line-height:1.7;margin-top:8px
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div>
+    <h1>📈 דוח CEO — ניתוח תיק</h1>
+    <div class="sub">קריאת אדריכל התיק · מבוסס מחירי שוק חיים</div>
+  </div>
+  <div class="stamp">
+    תאריך: <b>22 במאי 2026</b><br>
+    שווי תיק: <b>$1,924</b> · 11 פוזיציות
+  </div>
+</div>
+
+<div class="wrap">
+
+  <!-- SUMMARY CARDS -->
+  <div class="cards">
+    <div class="card">
+      <div class="lbl">שווי תיק כולל</div>
+      <div class="val c-blue">$1,924</div>
+      <div class="sub">אחזקות $1,853 · מזומן $71</div>
+    </div>
+    <div class="card">
+      <div class="lbl">שכבות בתוך היעד</div>
+      <div class="val c-orange">1 / 4</div>
+      <div class="sub">רק Stability תקין</div>
+    </div>
+    <div class="card">
+      <div class="lbl">פוזיציות מעל התקרה</div>
+      <div class="val c-red">2</div>
+      <div class="sub">IBIT · NVDA</div>
+    </div>
+    <div class="card">
+      <div class="lbl">פסיקת מצב</div>
+      <div class="val c-orange">איזון מחדש</div>
+      <div class="sub">נדרש לפני קנייה חדשה</div>
+    </div>
+  </div>
+
+  <!-- LAYER ALLOCATION -->
+  <div class="section">
+    <h2><span class="bar-accent" style="background:var(--blue)"></span>הקצאת שכבות מול היעדים</h2>
+    <div class="desc">
+      ה-CEO בונה תיק 3-שכבתי: בסיס יציב, מנוע צמיחה גדול, וזנב ספקולטיבי קטן.
+      כך נראית ההקצאה בפועל היום מול היעדים שבחוקת התיק.
+    </div>
+    <div class="chart-row">
+      <div class="donut" style="background:conic-gradient(
+        var(--green) 0 31.14%,
+        var(--blue) 31.14% 78.93%,
+        var(--orange) 78.93% 96.32%,
+        var(--muted) 96.32% 100%)">
+        <div class="center">
+          <div class="big">11</div>
+          <div class="small">פוזיציות</div>
+        </div>
+      </div>
+      <div class="legend">
+        <div class="leg-item">
+          <span class="leg-dot" style="background:var(--green)"></span>
+          <span class="leg-name">🛡️ Stability — יציבות</span>
+          <span class="leg-val">31.1%</span>
+          <span class="leg-tag s-ok">בתוך היעד</span>
+        </div>
+        <div class="leg-item">
+          <span class="leg-dot" style="background:var(--blue)"></span>
+          <span class="leg-name">🚀 Growth — צמיחה</span>
+          <span class="leg-val">47.8%</span>
+          <span class="leg-tag s-bad">מתחת ליעד</span>
+        </div>
+        <div class="leg-item">
+          <span class="leg-dot" style="background:var(--orange)"></span>
+          <span class="leg-name">🎲 Speculation — ספקולציה</span>
+          <span class="leg-val">17.4%</span>
+          <span class="leg-tag s-bad">מעל היעד</span>
+        </div>
+        <div class="leg-item">
+          <span class="leg-dot" style="background:var(--muted)"></span>
+          <span class="leg-name">💵 Cash — מזומן</span>
+          <span class="leg-val">3.7%</span>
+          <span class="leg-tag s-warn">מתחת ליעד</span>
+        </div>
+      </div>
+    </div>
+
+    <table class="ltable">
+      <thead><tr>
+        <th>שכבה</th><th>קיים</th><th>יעד</th><th style="width:38%">מיקום מול היעד</th><th>סטטוס</th>
+      </tr></thead>
+      <tbody>
+        <tr>
+          <td>🛡️ Stability</td><td><b>31.1%</b></td><td>25–35%</td>
+          <td><div class="minibar"><div class="minifill" style="width:48%;background:var(--green)"></div></div></td>
+          <td><span class="status-pill s-ok">🟢 תקין</span></td>
+        </tr>
+        <tr>
+          <td>🚀 Growth</td><td><b>47.8%</b></td><td>55–65%</td>
+          <td><div class="minibar"><div class="minifill" style="width:74%;background:var(--red)"></div></div></td>
+          <td><span class="status-pill s-bad">🔴 חסר ~10%</span></td>
+        </tr>
+        <tr>
+          <td>🎲 Speculation</td><td><b>17.4%</b></td><td>5–10%</td>
+          <td><div class="minibar"><div class="minifill" style="width:100%;background:var(--red)"></div></div></td>
+          <td><span class="status-pill s-bad">🔴 פי ~2</span></td>
+        </tr>
+        <tr>
+          <td>💵 Cash</td><td><b>3.7%</b></td><td>5–10%</td>
+          <td><div class="minibar"><div class="minifill" style="width:18%;background:var(--yellow)"></div></div></td>
+          <td><span class="status-pill s-warn">🟡 דק מדי</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- POSITION WEIGHTS -->
+  <div class="section">
+    <h2><span class="bar-accent" style="background:var(--orange)"></span>משקל פוזיציות מול תקרות</h2>
+    <div class="desc">
+      תקרת פוזיציה בחוקה: 12% לשכבות Stability/Growth, 4% לשכבת Speculation.
+      פוזיציה אדומה = חרגה מהתקרה שלה.
+    </div>
+
+    <div class="pos-row">
+      <div class="pos-sym">NVDA</div>
+      <div class="pos-track"><div class="pos-fill" style="width:89%;background:var(--red)">14.3%</div></div>
+      <div class="pos-meta"><span class="cap-badge">מעל תקרה 12%</span>Growth</div>
+    </div>
+    <div class="pos-row">
+      <div class="pos-sym">IBIT</div>
+      <div class="pos-track"><div class="pos-fill" style="width:68%;background:var(--red)">10.9%</div></div>
+      <div class="pos-meta"><span class="cap-badge">פי 2.7 מתקרה 4%</span>Spec</div>
+    </div>
+    <div class="pos-row">
+      <div class="pos-sym">MSFT</div>
+      <div class="pos-track"><div class="pos-fill" style="width:65%;background:var(--green)">10.5%</div></div>
+      <div class="pos-meta"><span class="cap-badge cap-ok">תקין</span>Stability</div>
+    </div>
+    <div class="pos-row">
+      <div class="pos-sym">META</div>
+      <div class="pos-track"><div class="pos-fill" style="width:65%;background:var(--blue)">10.4%</div></div>
+      <div class="pos-meta"><span class="cap-badge cap-ok">תקין</span>Growth</div>
+    </div>
+    <div class="pos-row">
+      <div class="pos-sym">GOOG</div>
+      <div class="pos-track"><div class="pos-fill" style="width:65%;background:var(--green)">10.4%</div></div>
+      <div class="pos-meta"><span class="cap-badge cap-ok">תקין</span>Stability</div>
+    </div>
+    <div class="pos-row">
+      <div class="pos-sym">GLDM</div>
+      <div class="pos-track"><div class="pos-fill" style="width:64%;background:var(--green)">10.3%</div></div>
+      <div class="pos-meta"><span class="cap-badge cap-ok">תקין</span>Stability</div>
+    </div>
+    <div class="pos-row">
+      <div class="pos-sym">AVGO</div>
+      <div class="pos-track"><div class="pos-fill" style="width:48%;background:var(--blue)">7.7%</div></div>
+      <div class="pos-meta"><span class="cap-badge cap-ok">תקין</span>Growth</div>
+    </div>
+    <div class="pos-row">
+      <div class="pos-sym">VST</div>
+      <div class="pos-track"><div class="pos-fill" style="width:48%;background:var(--blue)">7.7%</div></div>
+      <div class="pos-meta"><span class="cap-badge cap-ok">תקין</span>Growth</div>
+    </div>
+    <div class="pos-row">
+      <div class="pos-sym">MU</div>
+      <div class="pos-track"><div class="pos-fill" style="width:47%;background:var(--blue)">7.6%</div></div>
+      <div class="pos-meta"><span class="cap-badge cap-ok">תקין</span>Growth</div>
+    </div>
+    <div class="pos-row">
+      <div class="pos-sym">OKLO</div>
+      <div class="pos-track"><div class="pos-fill" style="width:25%;background:var(--orange)">4.0%</div></div>
+      <div class="pos-meta"><span class="cap-badge cap-edge">על גבול 4%</span>Spec</div>
+    </div>
+    <div class="pos-row">
+      <div class="pos-sym">APLD</div>
+      <div class="pos-track"><div class="pos-fill" style="width:16%;background:var(--orange)">2.5%</div></div>
+      <div class="pos-meta"><span class="cap-badge cap-ok">תקין</span>Spec</div>
+    </div>
+    <div class="scale-note">הסקאלה: רוחב מלא = 16% מהתיק.</div>
+  </div>
+
+  <!-- THEME CONCENTRATION -->
+  <div class="section">
+    <h2><span class="bar-accent" style="background:var(--purple)"></span>ריכוז לפי תמה</h2>
+    <div class="desc">
+      הריכוז ב-AI מכוון ומבוסס אמונה — זה לא הדגל. שים לב: הגיוון האמיתי בתיק הוא
+      רק זהב + ביטקוין + מזומן (~25%). כל השאר תמה אחת.
+    </div>
+    <div class="chart-row">
+      <div class="donut" style="background:conic-gradient(
+        var(--blue) 0 63.40%,
+        var(--orange) 63.40% 75.13%,
+        var(--yellow) 75.13% 86.04%,
+        var(--gold) 86.04% 96.32%,
+        var(--muted) 96.32% 100%)">
+        <div class="center">
+          <div class="big">~75%</div>
+          <div class="small">חשיפת AI רחבה</div>
+        </div>
+      </div>
+      <div class="legend">
+        <div class="leg-item">
+          <span class="leg-dot" style="background:var(--blue)"></span>
+          <span class="leg-name">🧠 AI / שבבים / ענן</span>
+          <span class="leg-val">63.4%</span>
+        </div>
+        <div class="leg-item">
+          <span class="leg-dot" style="background:var(--orange)"></span>
+          <span class="leg-name">⚡ אנרגיה גרעינית ל-AI</span>
+          <span class="leg-val">11.7%</span>
+        </div>
+        <div class="leg-item">
+          <span class="leg-dot" style="background:var(--yellow)"></span>
+          <span class="leg-name">₿ קריפטו (IBIT)</span>
+          <span class="leg-val">10.9%</span>
+        </div>
+        <div class="leg-item">
+          <span class="leg-dot" style="background:var(--gold)"></span>
+          <span class="leg-name">🥇 זהב (GLDM)</span>
+          <span class="leg-val">10.3%</span>
+        </div>
+        <div class="leg-item">
+          <span class="leg-dot" style="background:var(--muted)"></span>
+          <span class="leg-name">💵 מזומן</span>
+          <span class="leg-val">3.7%</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FLAGS -->
+  <div class="section">
+    <h2><span class="bar-accent" style="background:var(--red)"></span>דגלים — לפי סדר חומרה</h2>
+    <div class="desc">מה ה-CEO היה מסמן בתיק במצבו הנוכחי.</div>
+
+    <div class="flag red">
+      <div class="rank">1</div>
+      <div class="body">
+        <h3>🔴 IBIT הוא 10.9% מהתיק — חריגה מבנית חמורה</h3>
+        <p>פוזיציה ספקולטיבית בודדת מוגבלת ל-4% בחוקה. IBIT הוא פי 2.7 מהתקרה.
+        ביטקוין רץ חזק ואיש לא קיצץ — "מנצח לא-מקוצץ" שהפך לסיכון מוסווה. זה הממצא מספר 1.</p>
+      </div>
+    </div>
+    <div class="flag red">
+      <div class="rank">2</div>
+      <div class="body">
+        <h3>🔴 NVDA הוא 14.3% — מעל תקרת הצמיחה (12%)</h3>
+        <p>פוזיציית איכות, אך עדיין חריגה ממשמעת הגודל. אותה סיבה: הצלחה שלא קוצצה בחזרה לתקרה.</p>
+      </div>
+    </div>
+    <div class="flag yellow">
+      <div class="rank">3</div>
+      <div class="body">
+        <h3>🟡 שכבת הספקולציה ב-17.4% במקום 5–10%</h3>
+        <p>כמעט כל החריגה היא IBIT. תיקון IBIT לבדו כמעט מחזיר את השכבה ליעד.</p>
+      </div>
+    </div>
+    <div class="flag yellow">
+      <div class="rank">4</div>
+      <div class="body">
+        <h3>🟡 צמיחה חסרה (47.8%) ומזומן דק (3.7%)</h3>
+        <p>תואם את התוכנית שלך — הון עתידי מיועד לצמיחה. לא טעות, אלא תיק שעדיין נבנה.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- VERDICT -->
+  <div class="verdict">
+    <span class="tag">פסיקת CEO · מצב תיק</span>
+    <h2>התיק בריא בתזה — אך סטה במבנה</h2>
+    <p>
+      ה-CEO מנסה לבנות תיק צמיחה אגרסיבי אך ממושמע. הפער כרגע אינו בתזה
+      (הריכוז ב-AI מכוון ושלך) — אלא <b>במשמעת הגודל</b>: שתי הצלחות (IBIT, NVDA)
+      תפחו מעבר לתקרות שלהן כי לא קוצצו, וזה דחק את שכבת הצמיחה מתחת ליעד.
+    </p>
+    <p>
+      במשפט אחד: שכבת הספקולציה — בעיקר ביטקוין — היא מה שדורש תשומת לב מיידית,
+      עוד לפני שמוסיפים פוזיציה חדשה כלשהי.
+    </p>
+    <div class="next">
+      <b>הצעד הבא:</b> איזון מחדש לפני כל קנייה. השאלה הראשונה — IBIT ב-11%:
+      מכוון כמו ריכוז ה-AI, או פשוט רץ ונשכח?
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  <b>מקורות נתונים:</b> מחירים — Yahoo Finance (22.5.2026), שלושה אומתו במקור שני (WebSearch).
+  אחזקות וכמויות — portfolio.json.<br>
+  <div class="disclaimer">
+    ⚠️ <b>הסתייגות:</b> מחירי הקנייה ב-portfolio.json אינם אמינים (GOOG $30, META $51, AVGO מחיר טרום-פיצול) —
+    לכן דוח זה אינו מציג רווח/הפסד. כל האחוזים מבוססים על שווי שוק נוכחי בלבד, שהוא מדויק.
+  </div>
+</div>
+
+</body>
+</html>

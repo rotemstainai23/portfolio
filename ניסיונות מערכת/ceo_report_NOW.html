@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CEO — ServiceNow (NOW)</title>
+<style>
+:root{--bg:#07090f;--surface:#0d1117;--surface2:#111827;--border:#1a2744;--border2:#1e3a5f;
+--text:#dce6f5;--muted:#6b7e9a;--muted2:#8899aa;--blue:#4da6ff;--green:#2ecc71;--red:#e05c5c;
+--orange:#f0a050;--yellow:#f5c842;--purple:#a78bfa;--gold:#d4af37;}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;padding-bottom:40px}
+.topbar{background:linear-gradient(135deg,#101628,#070b14);padding:18px 32px;border-bottom:1px solid var(--border);
+display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.topbar h1{font-size:21px;color:var(--blue)}
+.topbar .sub{font-size:12px;color:var(--muted);margin-top:4px}
+.stamp{font-size:11px;color:var(--muted);text-align:left;line-height:1.7}
+.stamp b{color:var(--text)}
+.wrap{max-width:1100px;margin:0 auto;padding:24px 32px}
+.inherit{background:rgba(77,166,255,.06);border:1px solid rgba(77,166,255,.25);border-radius:10px;padding:14px 18px;margin-bottom:20px}
+.inherit .ih-title{font-size:12px;color:var(--blue);font-weight:700;margin-bottom:10px}
+.inherit .ih-r{display:flex;align-items:flex-start;gap:9px;font-size:12px;margin-bottom:7px}
+.inherit .ih-r .tx{color:var(--muted2);line-height:1.6}.inherit .ih-r .tx b{color:var(--text)}
+.section{background:var(--surface2);border:1px solid var(--border2);border-radius:12px;padding:22px 24px;margin-bottom:20px}
+.section h2{font-size:16px;color:var(--text);margin-bottom:4px;display:flex;align-items:center;gap:8px}
+.section .desc{font-size:12.5px;color:var(--muted2);margin:6px 0 16px;line-height:1.7}
+.bar-accent{width:4px;height:18px;border-radius:2px;display:inline-block}
+.c-blue{color:var(--blue)}.c-green{color:var(--green)}.c-red{color:var(--red)}.c-orange{color:var(--orange)}.c-text{color:var(--text)}.c-yellow{color:var(--yellow)}
+
+.ltable{width:100%;border-collapse:collapse;margin-top:6px}
+.ltable th{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;text-align:right;padding:8px 10px;border-bottom:1px solid var(--border)}
+.ltable td{padding:11px 10px;border-bottom:1px solid var(--bg);font-size:13px}
+.minibar{height:7px;background:var(--border2);border-radius:4px;overflow:hidden;margin-top:6px}
+.minifill{height:100%;border-radius:4px}
+.status-pill{font-size:11px;font-weight:700;padding:3px 10px;border-radius:11px;white-space:nowrap}
+.s-ok{background:rgba(46,204,113,.14);color:var(--green)}
+.s-warn{background:rgba(245,200,66,.14);color:var(--yellow)}
+.s-bad{background:rgba(224,92,92,.14);color:var(--red)}
+
+.bias{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.biascard{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px;border-top:3px solid var(--green)}
+.biascard.warn{border-top-color:var(--yellow)}
+.biascard h4{font-size:13px;color:var(--text);margin-bottom:5px}
+.biascard p{font-size:11.5px;color:var(--muted2);line-height:1.55}
+
+.opp{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:15px;margin-bottom:10px}
+.opp h4{font-size:13px;color:var(--text);margin-bottom:5px}
+.opp .rank{display:inline-block;background:rgba(77,166,255,.13);color:var(--blue);font-size:10px;font-weight:800;padding:2px 8px;border-radius:6px;margin-left:8px}
+.opp p{font-size:11.5px;color:var(--muted2);line-height:1.55}
+
+.flag{background:var(--surface);border-radius:10px;padding:12px 16px;margin-bottom:9px;border-right:4px solid var(--yellow);font-size:12.5px;color:var(--muted2);line-height:1.6}
+.flag b{color:var(--text)}
+
+.verdict{background:linear-gradient(135deg,#10182a,#0a0e18);border:1px solid var(--border2);border-radius:12px;padding:24px;border-top:3px solid var(--yellow)}
+.verdict .tag{display:inline-block;background:rgba(245,200,66,.13);color:var(--yellow);font-size:12px;font-weight:700;padding:5px 14px;border-radius:20px;margin-bottom:14px}
+.verdict h2{font-size:19px;margin-bottom:12px}
+.verdict p{font-size:13px;color:var(--muted2);line-height:1.8;margin-bottom:10px}
+.verdict p b{color:var(--text)}
+.scorebig{display:flex;gap:14px;flex-wrap:wrap;margin-top:14px}
+.scorebox{background:var(--surface);border-radius:10px;padding:15px 18px;flex:1;min-width:135px;text-align:center}
+.scorebox .sb-lbl{font-size:10px;color:var(--muted);margin-bottom:6px}
+.scorebox .sb-num{font-size:20px;font-weight:800}
+
+.handoff{background:var(--surface);border:1px dashed var(--border2);border-radius:10px;padding:18px;margin-top:16px;font-size:12.5px;color:var(--muted2);line-height:1.85}
+.handoff b{color:var(--text)}
+.footer{max-width:1100px;margin:0 auto;padding:8px 32px;font-size:11px;color:var(--muted);line-height:1.9}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <div><h1>👔 CEO — ServiceNow</h1>
+  <div class="sub">טיקר: NOW · אדריכל תיק · משימה: האם זה משפר את התיק כולו</div></div>
+  <div class="stamp">תאריך: <b>24 במאי 2026</b><br>חוליה 3 בשרשרת</div>
+</div>
+
+<div class="wrap">
+
+  <div class="inherit">
+    <div class="ih-title">① אימות קלטים</div>
+    <div class="ih-r"><span>✅</span><span class="tx"><b>אנליסט:</b> איכות 8.0/10 · שווי הוגן בסיס $120 / שורי $143 · מרווח ביטחון ✓</span></div>
+    <div class="ih-r"><span>✅</span><span class="tx"><b>שטן:</b> סיכון 6/10 · תקרת פוזיציה 8% · הסיכון העיקרי — איום AI מבני</span></div>
+    <div class="ih-r"><span>✅</span><span class="tx"><b>תמונת תיק:</b> סה"כ ~$1,924 · מזומן 3.7% · AI/Tech 75% · IBIT 11% (חורג מתקרה)</span></div>
+  </div>
+
+  <!-- LAYER FIT -->
+  <div class="section">
+    <h2><span class="bar-accent" style="background:var(--blue)"></span>② התאמה לתיק — שכבה והקצאה</h2>
+    <div class="desc">NOW = צמיחה דו-ספרתית גבוהה עם FCF חזק → <b>שכבת Growth</b>. בודקים אם זה משפר או מחמיר את המבנה.</div>
+    <table class="ltable">
+      <thead><tr><th>שכבה</th><th>קיים</th><th>יעד</th><th>סטטוס</th><th>השפעת הוספת NOW (5%)</th></tr></thead>
+      <tbody>
+        <tr><td>🛡️ Stability</td><td><b>31.1%</b></td><td>25–35%</td>
+          <td><span class="status-pill s-ok">🟢 תקין</span></td><td>ללא שינוי</td></tr>
+        <tr><td>🚀 Growth</td><td><b>47.8%</b></td><td>55–65%</td>
+          <td><span class="status-pill s-bad">🔴 חסר ~10%</span></td><td class="c-green">↑ ל-52.8% — מתקרב ליעד</td></tr>
+        <tr><td>🎲 Speculation</td><td><b>17.4%</b></td><td>5–10%</td>
+          <td><span class="status-pill s-bad">🔴 פי 2</span></td><td>ללא שינוי (חייב טיפול נפרד)</td></tr>
+        <tr><td>💵 Cash</td><td><b>3.7%</b></td><td>5–10%</td>
+          <td><span class="status-pill s-warn">🟡 דק</span></td><td class="c-red">↓ ל-—2% (לא ריאלי)</td></tr>
+      </tbody>
+    </table>
+    <div class="desc" style="margin-top:14px;margin-bottom:0">
+      <b>הוספה ל-Growth עקרונית טובה</b> — מתקרב ליעד. אך <b>אין מזומן פנוי</b> לממן 5%; <b>חייבים לקצץ מקור אחר.</b>
+      המקור ההגיוני: <b>קיצוץ IBIT</b> (11% → 4%) משחרר ~$135, מספיק למימון NOW + שיפור Cash.
+    </div>
+  </div>
+
+  <!-- CONCENTRATION -->
+  <div class="section">
+    <h2><span class="bar-accent" style="background:var(--orange)"></span>③ סיכון ריכוז — חפיפה תמטית</h2>
+    <div class="desc">
+      NOW אינה מניית שבבים אך כן <b>מציגה עצמה כ-AI</b> (Now Assist, רכישת Moveworks). חפיפה חלקית.
+    </div>
+    <div class="flag"><b>🟡 חפיפה תמטית קיימת אך לא מלאה.</b> Visa הייתה מגוון אמיתי (תשלומים, אפס AI); NOW היא SaaS-ארגוני שמתחיל לכלול AI — אם הנרטיב יוצלח. הוספת 5% NOW מעלה את חשיפת ה-Tech הכוללת מ-75% ל-~78% — לא קפיצה דרמטית, אך כן ריכוז נוסף.</div>
+    <div class="flag"><b>⚠️ מבחן ההיגיון:</b> 3+ פוזיציות בעלות מאפיין משותף = דגל. בתיק יש כבר MSFT, GOOG, META — שלוש מניות "Big Tech + AI" + עכשיו NOW יהיה רביעית. דורש הצדקה.</div>
+    <div class="desc" style="margin-top:14px;margin-bottom:0">
+      <b>הצדקה אפשרית:</b> NOW פועלת ב-SaaS-ארגוני — לֵבר שונה (תמחור מנוי, NRR, מודולים) מ-Big Tech (פלטפורמות פרסום/ענן/חומרה). זו הוספה <b>לאותו עץ</b> אבל <b>ענף אחר</b>. סביר — אבל אינה גיוון מובהק.
+    </div>
+  </div>
+
+  <!-- OPPORTUNITY COST -->
+  <div class="section">
+    <h2><span class="bar-accent" style="background:var(--purple)"></span>④ עלות הזדמנות — מי השימוש הכי טוב ב-$96?</h2>
+    <div class="opp">
+      <h4>חלופה 1: לקנות NOW (5% מהתיק = ~$96)<span class="rank">המומלצת</span></h4>
+      <p>תוחלת משוקללת לפי השטן: +5.5%. ציון איכות 8/10. מרווח ביטחון אמיתי. מתקן את חיסור Growth.</p>
+    </div>
+    <div class="opp">
+      <h4>חלופה 2: להוסיף לפוזיציה קיימת</h4>
+      <p>NVDA כבר 14.3% (מעל תקרת 12%) — לא. MSFT/GOOG/META — בערך 10% כל אחת, ניתן להוסיף, אך גודל-תנופה נמוך. AVGO/MU/VST — תוספת ל-AI-תמטית, מעמיק ריכוז.</p>
+    </div>
+    <div class="opp">
+      <h4>חלופה 3: להחזיק מזומן בריבית חסרת סיכון</h4>
+      <p>~5% ריבית = ~$5/שנה על $96. בטוח, אך אפסי. אם לא נכנסים לעסקה, החלטה זו נכונה רק אם NOW לא עומדת בסף R/R — והיא עומדת.</p>
+    </div>
+    <div class="opp">
+      <h4>חלופה 4: לחכות לרעיון הבא ברשימת המעקב</h4>
+      <p>Visa ממתינה ל-$287. אין אינדיקציה שתגיע בקרוב. <b>NOW כבר אטרקטיבית עכשיו</b> — חוסר פעולה = ויתור על מצב שכבר התרחש.</p>
+    </div>
+    <div class="desc" style="margin-top:8px;margin-bottom:0">
+      <b>פסיקה:</b> חלופה 1 — NOW — נותנת את התשואה הצפויה הטובה ביותר מותאמת לסיכון.
+    </div>
+  </div>
+
+  <!-- BEHAVIORAL -->
+  <div class="section">
+    <h2><span class="bar-accent" style="background:var(--red)"></span>⑤ ביקורת הטיות התנהגותיות</h2>
+    <div class="bias">
+      <div class="biascard"><h4>FOMO</h4>
+        <p>🟢 לא רלוונטי — הקנייה <b>נגד</b> תנועת המחיר, לא איתה. אין רדיפה.</p></div>
+      <div class="biascard"><h4>Revenge Trade</h4>
+        <p>🟢 לא — אין הפסד אחרון לשחזר.</p></div>
+      <div class="biascard warn"><h4>עיגון (Anchoring)</h4>
+        <p>🟡 <b>סיכון אמיתי.</b> המשתמש עלול לעגן על השיא $211 ולחשוב "חזרה לשם = +110%". האנליסט הניח שווי הוגן רק $120–143 — חצי-דרך.</p></div>
+      <div class="biascard warn"><h4>חיזוק נרטיב AI</h4>
+        <p>🟡 התיק כבר עמוס AI — הקנייה הזו עלולה להיראות "טבעית" כי היא מצטרפת לסיפור שאתה כבר מאמין בו. הצדק <b>למה NOW</b>, לא רק "AI".</p></div>
+      <div class="biascard"><h4>סכין נופלת</h4>
+        <p>🟢 לא דגל פסיכולוגי — דגל טכני. ה-Executor יטפל ב-Scale In.</p></div>
+      <div class="biascard"><h4>ביטחון עצמי יתר</h4>
+        <p>🟢 הציון 8/10 ולא 10. עורך הדין השטן נתן 6/10 סיכון. אין יומרה.</p></div>
+    </div>
+    <div class="desc" style="margin-top:14px;margin-bottom:0">
+      <b>מפסק זרם:</b> 🟢 <b>לא הופעל.</b> אין FOMO, אין revenge, התזה ברורה, אין דחיפות, אין היסטוריה של עסקאות אימפולסיביות.
+    </div>
+  </div>
+
+  <!-- POSITION SIZE -->
+  <div class="section">
+    <h2><span class="bar-accent" style="background:var(--green)"></span>⑥ מנוע גודל פוזיציה</h2>
+    <div class="desc">
+      נוסחה: שכנוע × סיכון × התאמה לתיק. שכנוע גבוה (8.0 איכות, R/R 2.2:1) + סיכון בינוני (6/10 שטן) + התאמה חלקית (חפיפה תמטית).
+    </div>
+    <table class="ltable">
+      <thead><tr><th>אילוץ</th><th>ערך</th><th>הערה</th></tr></thead>
+      <tbody>
+        <tr><td>תקרת שכבה (Growth)</td><td><b>12%</b></td><td>מקסימום חוקתי</td></tr>
+        <tr><td>תקרת שטן (סיכון 6)</td><td><b>8%</b></td><td>קובע — נמוך מהשכבה</td></tr>
+        <tr><td>הפחתה בגין חפיפת AI</td><td><b>−2%</b></td><td>ריכוז תמטי בתיק</td></tr>
+        <tr><td>הפחתה בגין חשיבת-עדר פוטנציאלית</td><td><b>−1%</b></td><td>הנחת AI לא הוטבעה במלואה</td></tr>
+        <tr><td><b>גודל מאושר סופי</b></td><td class="c-green"><b>5%</b></td><td>~$96 על תיק $1,924</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- VERDICT -->
+  <div class="verdict">
+    <span class="tag">⑦ פסיקת CEO סופית</span>
+    <h2>✅ APPROVED WITH CONDITIONS · 5% מהתיק · בתנאי איזון מחדש</h2>
+    <p>
+      Visa קיבלה "המתן" כי המחיר לא נכון. <b>NOW מקבלת "אישור עם תנאים"</b> כי המחיר כן נכון, האיכות גבוהה,
+      וההוספה לשכבת Growth מתקנת חיסור מבני בתיק.
+    </p>
+    <p>
+      <b>שלושה תנאים מחייבים:</b><br>
+      1️⃣ <b>איזון מחדש קודם:</b> קיצוץ IBIT מ-11% ל-~4% (משחרר ~$135). זה גם מתקן את חריגת שכבת הספקולציה.<br>
+      2️⃣ <b>Scale In בלבד:</b> ה-Executor יקבע מבנה טראנשים — אין כניסה מלאה בבת אחת.<br>
+      3️⃣ <b>פוזיציה 5%, לא יותר:</b> תקרה תפעולית; חפיפת ה-AI לא מאפשרת לגדול ל-8%.
+    </p>
+    <div class="scorebig">
+      <div class="scorebox"><div class="sb-lbl">פסיקה</div><div class="sb-num c-green" style="font-size:14px">APPROVED W/ COND</div></div>
+      <div class="scorebox"><div class="sb-lbl">גודל מאושר</div><div class="sb-num c-blue">5%</div></div>
+      <div class="scorebox"><div class="sb-lbl">שכבה</div><div class="sb-num c-blue" style="font-size:15px">Growth</div></div>
+      <div class="scorebox"><div class="sb-lbl">מפסק זרם</div><div class="sb-num c-green" style="font-size:15px">לא הופעל</div></div>
+    </div>
+    <div class="handoff">
+      <b>📤 HANDOFF ל-Executor</b><br>
+      חברה: ServiceNow (NOW) · <b>החלטה:</b> APPROVED WITH CONDITIONS · <b>גודל מאושר:</b> 5% (~$96) · <b>שכבה:</b> Growth<br>
+      <b>סיבת ההחלטה:</b> מתקן חיסור Growth, איכות 8/10, R/R אטרקטיבי, מרווח ביטחון אמיתי.<br>
+      <b>תנאי מקדים:</b> איזון מחדש של IBIT (11% → 4%) למימון.<br>
+      <b>הטיה לעקוב אחריה:</b> עיגון על מחיר השיא ($211). אסור להתפתות לחשוב "+110%".<br>
+      <b>פסיקה צפויה ל-Executor:</b> Scale In (לא Buy Now) — כי כניסה לסכין נופלת דורשת בנייה הדרגתית.
+    </div>
+  </div>
+
+</div>
+<div class="footer">מקור: handoff אנליסט + handoff שטן + טבלת תיק. ה-CEO לא ניתח מחדש את העסק.</div>
+</body>
+</html>

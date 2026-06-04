@@ -1,0 +1,34 @@
+{
+  "ticker": "SOFI",
+  "agent": "ic",
+  "date": "2026-05-30",
+  "verdict": "HOLD",
+  "score": 32,
+  "thesis": "SoFi Technologies היא בנק דיגיטלי אמיתי עם NIM 5.94%, 14.7M חברים, ופיקדונות $40.2B — אך fair value accounting לא הוכחש שורה-שורה (Muddy Waters 17/3/2026), EV שלילי -7.6%, Technology Platform בירידה מבנית לאחר יציאת Chime, ושכבת Speculation בתיק חורגת ב-70% מהתקרה. WATCHLIST עם טריגר $13.50 או הכחשה ספציפית.",
+  "key_risks": [
+    "fair value accounting לא מוכחש ספציפית: discount rate 3.89% < 10Y Treasury; EPS אמיתי אפשרי $0.17-0.27 vs $0.44 מוצג; P/E אמיתי אפשרי 60-90x",
+    "Technology Platform ירידה מבנית: Chime יצאה כי גדלה — structural moat failure; contribution -61%; אין replacement בסדר גודל",
+    "CET1 capital ratio חסר לחלוטין: בנק עם $50.7B assets שגדל 68% YoY ב-Lending — capital adequacy קובע יכולת צמיחה",
+    "Expected Value שלילי -7.6% על בסיס הסתברותי (P(דובי 40%)×-34% + P(אסון 15%)×-67%)",
+    "Speculation overweight בתיק: 16.9% vs. 10% תקרה — כל כניסה אסורה מתמטית לפני איזון"
+  ],
+  "position_size_pct": 0,
+  "valuation_summary": "fair value base $20-24 (upside +10-32% מ-$18.25), אך EV שלילי; כניסה אטרקטיבית בבירור רק ב-$13.50 (P/S ~3.3x, margin of safety אמיתי); fair value restatement scenario: $7-9 (-52-62%)",
+  "entry_exit_plan": "WATCHLIST: טריגר א — ירידה ל-$13.50 עם handoff מלא; טריגר ב — הכחשה שורה-שורה של Muddy Waters + אימות industry comparison; תנאי מקדים: Speculation < 10%, Cash > 5%; kill switch: כל fair value restatement = מחיקה מ-WATCHLIST; Technology < $70M/Q × 2 = הסרה",
+  "handoff_summary": "ועדת ההשקעות מאשרת WATCHLIST על SoFi Technologies ב-$18.25. קונסנזוס מלא בין כל הסוכנים: אין כניסה כרגע. שלושה כשלים מוגדרים: (1) fair value accounting — discount rate 3.89% < 10Y Treasury לא הוכחש, EPS אמיתי אפשרי 35-60% נמוך; (2) Technology Platform ירידה מבנית — לקוחות מצליחים יוצאים כשגדלים, אין Chime replacement; (3) Speculation overweight 16.9% vs. 10% תקרה חוסמת מתמטית כל כניסה. נקודת עיוורון מרכזית זוהתה: fair value methodology לא הושווה לתעשייה (LendingClub, Upstart) — Muddy Waters עשויה לתקוף נורמה ולא חריגה. CET1 חסר לחלוטין. פעולה נדרשת לפני שקילת כניסה: (א) מכור APLD, קצץ IBIT מ-10.3% ל-7.5%, חזק Cash ל-5%+; (ב) הכנס NOW ב-$100; (ג) SOFI ב-WATCHLIST עם טריגר $13.50 או fair value resolution.",
+  "visual_scores": {
+    "risk_reward": {
+      "current_price": 18.25,
+      "fair_value": 22,
+      "trigger_price": 13.5,
+      "stop_price": null,
+      "tp1_price": 24
+    },
+    "agent_scores": {
+      "analyst_score_0_10": 7,
+      "devils_risk_0_10": 7,
+      "ceo_conviction_0_10": 3,
+      "executor_quality_0_10": null
+    }
+  }
+}

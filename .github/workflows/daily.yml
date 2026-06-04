@@ -1,0 +1,30 @@
+name: דוח יומי — שני-שישי 5:00
+
+on:
+  schedule:
+    # ישראל קיץ UTC+3 → 5:00 = 02:00 UTC
+    - cron: '0 2 * * 1-5'
+  workflow_dispatch:
+
+jobs:
+  daily-report:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Run daily report
+        env:
+          NTFY_TOPIC:       ${{ secrets.NTFY_TOPIC }}
+          WHATSAPP_PHONE:   ${{ secrets.WHATSAPP_PHONE }}
+          CALLMEBOT_APIKEY: ${{ secrets.CALLMEBOT_APIKEY }}
+          DASHBOARD_URL:    ${{ secrets.DASHBOARD_URL }}
+        run: python scripts/daily_report.py

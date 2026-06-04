@@ -1,0 +1,19 @@
+{
+  "ticker": "ROCK",
+  "agent": "devils",
+  "date": "2026-06-01",
+  "verdict": "REVIEW",
+  "score": 4,
+  "thesis": "Gibraltar ביצעה הימור ממונף ענק ($1.335B OmniMax, leverage 3.9x, $20M מזומן) על שוק דיור שעדיין לא התאושש. תזה שורית דורשת 5 הנחות בו-זמניות; כישלון 2 מהן = downside 43-80%+. מניה זולה מסיבות לגיטימיות.",
+  "key_risks": [
+    "Covenant breach: EBITDA miss 31% → Net Leverage >5.25x → equity כמעט אפס",
+    "Goodwill impairment: $1.706B אינטנגיבלים = 194% הון עצמי — write-down סביר אם OmniMax מאכזב",
+    "אורגני שלילי בכל הפלחים — OmniMax מסתיר עסק בסיסי מתכווץ; ב-2-3 שנים גם הוא יהיה organic",
+    "FCF guided $143M לא ריאלי: ריבית $58M + capex $46M + integration costs עוד $50-70M = FCF אמיתי $54-104M",
+    "Housing market frozen: mortgage rates 6.5%+, guidance embeds +4-5% growth שQ1 2026 כבר הפריך"
+  ],
+  "position_size_pct": 2.5,
+  "valuation_summary": "EV/EBITDA 7.4x = זול IF guidance מתממש; downside -43% בmiss 17%, -80-99% בcovenantbreach. מחיר אטרקטיבי באמת: $26-28.",
+  "entry_exit_plan": "כניסה ספקולטיבית מקסימום 2.5%: 50% בסביבות $38-39 כעת, 50% נוסף רק אחרי Q2 2026 מאשר FCF חיובי + Gross Margin >24%; Stop loss קשה $32; יעד בסיס $52; יעד שורי $68; יציאה מלאה מיידית אם leverage >4.75x",
+  "handoff_summary": "Gibraltar Industries (ROCK) היא חברת מוצרי בנייה שביצעה הימור ממונף ענק: OmniMax $1.335B ב-Feb 2026, leverage 3.9x, $20M מזומן, $1.7B אינטנגיבלים (194% הון עצמי), וכל שלושת הפלחים בירידה אורגנית. המניה זולה ב-9.56x forward P/E אבל הדיסקאונט מוצדק: EBITDA miss של 17% בלבד מביא equity ל-$22/מניה (-43%); covenant breach (31% miss) = equity כמעט אפס. ציון סיכון עורך דין שטן: 7/10. Kill switch ראשי: Net Leverage >4.75x. CEO Agent: הסיכון להתייחס — האם R/R 7.5% ציפויה מספיק לפוזיציה ב-תיק עם שכבת ספקולציה כבר ב-16.3%?"
+}

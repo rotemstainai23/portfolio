@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>דוח אנליסט — Visa Inc. (V)</title>
+<style>
+:root{
+  --bg:#07090f;--surface:#0d1117;--surface2:#111827;
+  --border:#1a2744;--border2:#1e3a5f;
+  --text:#dce6f5;--muted:#6b7e9a;--muted2:#8899aa;
+  --blue:#4da6ff;--green:#2ecc71;--red:#e05c5c;
+  --orange:#f0a050;--yellow:#f5c842;--purple:#a78bfa;--gold:#d4af37;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;padding-bottom:40px}
+
+.topbar{
+  background:linear-gradient(135deg,#101628,#070b14);
+  padding:18px 32px;border-bottom:1px solid var(--border);
+  display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap
+}
+.topbar h1{font-size:21px;color:var(--blue);letter-spacing:-.3px}
+.topbar .sub{font-size:12px;color:var(--muted);margin-top:4px}
+.stamp{font-size:11px;color:var(--muted);text-align:left;line-height:1.7}
+.stamp b{color:var(--text)}
+
+.wrap{max-width:1100px;margin:0 auto;padding:24px 32px}
+.vbanner{
+  background:rgba(46,204,113,.07);border:1px solid rgba(46,204,113,.25);
+  border-radius:10px;padding:13px 18px;font-size:12px;color:var(--muted2);
+  margin-bottom:20px;line-height:1.75
+}
+.vbanner b{color:var(--green)}
+
+.section{
+  background:var(--surface2);border:1px solid var(--border2);border-radius:12px;
+  padding:22px 24px;margin-bottom:20px
+}
+.section h2{font-size:16px;color:var(--text);margin-bottom:4px;display:flex;align-items:center;gap:8px}
+.section .tagnum{font-size:11px;color:var(--muted);font-weight:400}
+.section .desc{font-size:12.5px;color:var(--muted2);margin:6px 0 18px;line-height:1.7}
+.bar-accent{width:4px;height:18px;border-radius:2px;display:inline-block}
+
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(165px,1fr));gap:13px;margin-bottom:20px}
+.card{background:var(--surface2);border:1px solid var(--border2);border-radius:12px;padding:16px}
+.card .lbl{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.6px;margin-bottom:7px}
+.card .val{font-size:21px;font-weight:800;line-height:1}
+.card .sub{font-size:11px;color:var(--muted);margin-top:6px}
+.c-blue{color:var(--blue)}.c-green{color:var(--green)}.c-red{color:var(--red)}
+.c-orange{color:var(--orange)}.c-text{color:var(--text)}.c-purple{color:var(--purple)}
+
+/* ── BAR CHARTS (rebuilt — true zero baseline, labels outside plot) ── */
+.chartgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:14px}
+.barchart{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:15px 15px 12px}
+.bc-title{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:28px}
+.bc-plot{height:158px;display:flex;align-items:flex-end;gap:16px;border-bottom:2px solid var(--border2)}
+.bc-col{
+  flex:1;border-radius:6px 6px 0 0;min-height:8px;position:relative;
+  display:flex;align-items:flex-end;justify-content:center;padding-bottom:7px
+}
+.bc-val{position:absolute;top:-22px;left:0;right:0;text-align:center;font-size:12.5px;font-weight:800;color:var(--text)}
+.bc-yoy{font-size:9.5px;font-weight:800;color:rgba(7,9,15,.72)}
+.bc-axis{display:flex;gap:16px;margin-top:7px}
+.bc-axis span{flex:1;text-align:center;font-size:10.5px;color:var(--muted)}
+.bc-foot{font-size:10.5px;color:var(--muted);margin-top:10px;text-align:center}
+
+/* HORIZONTAL BARS */
+.hbar{display:flex;align-items:center;gap:12px;margin-bottom:11px}
+.hbar .hb-label{width:150px;flex-shrink:0;font-size:12.5px;color:var(--text)}
+.hbar .hb-track{flex:1;height:22px;background:var(--surface);border-radius:6px;overflow:hidden}
+.hbar .hb-fill{height:100%;border-radius:6px;transition:.4s}
+.hbar .hb-tag{width:118px;flex-shrink:0;font-size:11px;text-align:left}
+.dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-left:5px}
+
+/* STAT BIG */
+.statrow{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
+.statbig{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px}
+.statbig .sb-lbl{font-size:11px;color:var(--muted);margin-bottom:8px}
+.statbig .sb-val{font-size:23px;font-weight:800;color:var(--text)}
+.statbig .sb-grow{font-size:12px;font-weight:700;color:var(--green);margin-top:5px}
+
+/* TABLE */
+.dtable{width:100%;border-collapse:collapse;margin-top:6px}
+.dtable th{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;text-align:right;padding:9px 10px;border-bottom:1px solid var(--border)}
+.dtable td{padding:11px 10px;border-bottom:1px solid var(--bg);font-size:13px;font-variant-numeric:tabular-nums}
+.dtable tr:last-child td{border-bottom:none}
+.dtable .metric{color:var(--muted2);font-variant-numeric:normal}
+.up{color:var(--green)}.down{color:var(--red)}.flat{color:var(--yellow)}
+
+.status-pill{font-size:11px;font-weight:700;padding:3px 10px;border-radius:11px;white-space:nowrap}
+.s-ok{background:rgba(46,204,113,.14);color:var(--green)}
+.s-warn{background:rgba(245,200,66,.14);color:var(--yellow)}
+.s-bad{background:rgba(224,92,92,.14);color:var(--red)}
+
+/* FLAGS */
+.flag{background:var(--surface);border-radius:10px;padding:14px 16px;margin-bottom:11px;
+  border-right:4px solid var(--muted);display:flex;gap:13px;align-items:flex-start}
+.flag.red{border-right-color:var(--red)}
+.flag.yellow{border-right-color:var(--yellow)}
+.flag.green{border-right-color:var(--green)}
+.flag .rank{font-size:15px;font-weight:800;width:32px;height:32px;border-radius:8px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center}
+.flag.red .rank{background:rgba(224,92,92,.14);color:var(--red)}
+.flag.yellow .rank{background:rgba(245,200,66,.14);color:var(--yellow)}
+.flag.green .rank{background:rgba(46,204,113,.14);color:var(--green)}
+.flag .body h3{font-size:13.5px;margin-bottom:4px;color:var(--text)}
+.flag .body p{font-size:12px;color:var(--muted2);line-height:1.6}
+
+/* VALUATION SCENARIO */
+.scen{display:flex;align-items:flex-end;gap:20px;height:175px;padding:0 10px}
+.scen-bar{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%}
+.scen-bar .sc-price{font-size:15px;font-weight:800;margin-bottom:6px}
+.scen-bar .sc-fill{width:100%;border-radius:6px 6px 0 0;display:flex;align-items:flex-start;
+  justify-content:center;padding-top:8px;font-size:11px;font-weight:700;color:#07090f}
+.scen-bar .sc-lbl{font-size:12px;margin-top:8px;font-weight:600}
+.scen-bar .sc-sub{font-size:10px;color:var(--muted);margin-top:2px;text-align:center}
+.curline{font-size:11px;color:var(--muted);text-align:center;margin-top:12px}
+.curline b{color:var(--blue)}
+
+/* VERDICT */
+.verdict{background:linear-gradient(135deg,#10182a,#0a0e18);border:1px solid var(--border2);
+  border-radius:12px;padding:24px;border-top:3px solid var(--green)}
+.verdict .tag{display:inline-block;background:rgba(46,204,113,.13);color:var(--green);
+  font-size:12px;font-weight:700;padding:5px 14px;border-radius:20px;margin-bottom:14px}
+.verdict h2{font-size:18px;color:var(--text);margin-bottom:12px}
+.verdict p{font-size:13px;color:var(--muted2);line-height:1.8;margin-bottom:10px}
+.scorecard{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:14px}
+.scoreitem{background:var(--surface);border-radius:8px;padding:12px;text-align:center}
+.scoreitem .si-lbl{font-size:10px;color:var(--muted);margin-bottom:6px}
+.scoreitem .si-val{font-size:18px;font-weight:800}
+
+.handoff{background:var(--surface);border:1px dashed var(--border2);border-radius:10px;
+  padding:18px;margin-top:16px;font-size:12.5px;color:var(--muted2);line-height:1.8}
+.handoff b{color:var(--text)}
+
+.footer{max-width:1100px;margin:0 auto;padding:8px 32px;font-size:11px;color:var(--muted);line-height:1.9}
+.footer b{color:var(--muted2)}
+.disclaimer{background:rgba(245,200,66,.05);border:1px solid rgba(245,200,66,.18);
+  border-radius:8px;padding:12px 16px;font-size:11.5px;color:var(--muted2);line-height:1.7;margin-top:8px}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div>
+    <h1>🔍 דוח אנליסט פורנזי — Visa Inc.</h1>
+    <div class="sub">טיקר: V · NYSE · מגזר: תשתית תשלומים · אנליסט מאוחד</div>
+  </div>
+  <div class="stamp">
+    תאריך ניתוח: <b>22 במאי 2026</b><br>
+    שנת כספים אחרונה: <b>FY2025</b> (30.9.25) · רבעון אחרון: <b>Q2 FY2026</b>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <div class="vbanner">
+    <b>✅ אימות מקורות — 3 מקורות עצמאיים:</b> stockanalysis.com · finviz.com · הודעות רווחים רשמיות (SEC 8-K).
+    מחיר, שווי שוק, P/E, P/S, ROE וטווח 52 שבועות — תואמים בשלושת המקורות.
+    הכנסות, רווח, EPS ונפחים — אומתו מול ההגשות הרשמיות. macrotrends.net נבדק אך הפך למקור בתשלום — דולג (כלל תקציב-אפס).
+    מחיר נכון לסגירת 21.5.2026.
+  </div>
+
+  <!-- MARKET SNAPSHOT -->
+  <div class="cards">
+    <div class="card"><div class="lbl">מחיר נוכחי</div><div class="val c-blue">$331.12</div><div class="sub">+0.11% ביום</div></div>
+    <div class="card"><div class="lbl">שווי שוק</div><div class="val c-text">$623.8B</div><div class="sub">~1.88B מניות</div></div>
+    <div class="card"><div class="lbl">P/E (TTM)</div><div class="val c-text">~29</div><div class="sub">Forward P/E: ~22–24</div></div>
+    <div class="card"><div class="lbl">טווח 52 שבועות</div><div class="val c-text">$294–376</div><div class="sub">נוכחי באמצע הטווח</div></div>
+    <div class="card"><div class="lbl">קונצנזוס אנליסטים</div><div class="val c-green">$398.7</div><div class="sub">Strong Buy · +20%</div></div>
+    <div class="card"><div class="lbl">תשואת דיבידנד</div><div class="val c-text">~0.8%</div><div class="sub">Beta 0.78</div></div>
+  </div>
+
+  <!-- A.1 BUSINESS MODEL -->
+  <div class="section">
+    <h2><span class="bar-accent" style="background:var(--blue)"></span>א.1 מודל עסקי <span class="tagnum">· איך Visa מרוויחה כסף</span></h2>
+    <div class="desc">
+      Visa היא <b>רשת תשלומים</b> — לא בנק ולא מנפיקת אשראי. היא מפעילה את "כביש המהיר" שדרכו
+      עוברות עסקאות כרטיסים בין הבנק של הקונה לבנק של הסוחר, וגובה עמלה זעירה על כל עסקה.
+      העסק <b>נטול-מלאי, נטול-סיכון אשראי</b>, עם עלות שולית כמעט-אפסית לעסקה נוספת — ולכן מרווח גולמי ~98%.
+      ההכנסה <b>חוזרת ועוקבת אחרי הצריכה העולמית</b>.
+    </div>
+    <div style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px">
+      מנועי הכנסה — Q2 FY2026 (הכנסה ברוטו לפני תמריצי לקוחות)
+    </div>
+    <div class="hbar">
+      <div class="hb-label">עיבוד נתונים</div>
+      <div class="hb-track"><div class="hb-fill" style="width:100%;background:var(--blue)"></div></div>
+      <div class="hb-tag"><b>$5.5B</b> · +18% <span class="dot" style="background:var(--green)"></span></div>
+    </div>
+    <div class="hbar">
+      <div class="hb-label">הכנסות שירות</div>
+      <div class="hb-track"><div class="hb-fill" style="width:91%;background:var(--purple)"></div></div>
+      <div class="hb-tag"><b>$5.0B</b> · +13% <span class="dot" style="background:var(--green)"></span></div>
+    </div>
+    <div class="hbar">
+      <div class="hb-label">עסקאות בינלאומיות</div>
+      <div class="hb-track"><div class="hb-fill" style="width:65%;background:var(--orange)"></div></div>
+      <div class="hb-tag"><b>$3.6B</b> · +10% <span class="dot" style="background:var(--green)"></span></div>
+    </div>
+    <div class="desc" style="margin-top:14px;margin-bottom:0">
+      הכנסה נטו = שלושת המנועים + "הכנסות אחרות" פחות "תמריצי לקוחות" (עמלה שמוחזרת לבנקים — contra-revenue).
+      פירוט "אחרות" ותמריצים — 🔴 לא אומת במספרים מדויקים במקורות החינמיים.
+      <b>עסקאות בינלאומיות = המנוע הרווחי ביותר</b>, ותלוי בתיירות ובמסחר חוצה-גבולות.
+    </div>
+  </div>
+
+  <!-- A.2 GROWTH ENGINES -->
+  <div class="section">
+    <h2><span class="bar-accent" style="background:var(--green)"></span>א.2 מנועי צמיחה <span class="tagnum">· FY2025, צמיחה דולרית קבועה</span></h2>
+    <div class="desc">
+      שלושת המדדים שמניעים את ההכנסה. צמיחה <b>מבנית</b> (דיגיטציה של מזומן, מסחר אלקטרוני, תיירות) —
+      לא מחזורית. כל החלפת מזומן בכרטיס היא צמיחה ש"לא חוזרת אחורה".
+    </div>
+    <div class="statrow">
+      <div class="statbig">
+        <div class="sb-lbl">נפח תשלומים (Payments Volume)</div>
+        <div class="sb-val">$3.7T</div>
+        <div class="sb-grow">▲ +8% FY25 · +9% ברבעון</div>
+      </div>
+      <div class="statbig">
+        <div class="sb-lbl">נפח חוצה-גבולות (Cross-Border)</div>
+        <div class="sb-val">+13%</div>
+        <div class="sb-grow">▲ המנוע החזק ביותר · +12% ברבעון</div>
+      </div>
+      <div class="statbig">
+        <div class="sb-lbl">עסקאות מעובדות (Processed Txns)</div>
+        <div class="sb-val">66B</div>
+        <div class="sb-grow">▲ +9% · רבעוני</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FINANCIAL DASHBOARD -->
+  <div class="section">
+    <h2><span class="bar-accent" style="background:var(--purple)"></span>דשבורד פיננסי — 3 שנים <span class="tagnum">· FY2023 → FY2025 · עמודות מבסיס אפס</span></h2>
+    <div class="desc">
+      צמיחה עקבית של ~11% בהכנסות, רווחיות יוצאת דופן ויצירת מזומן חזקה.
+      הספרה מעל כל עמודה = הערך · הספרה הלבנה בתוך העמודה = שינוי לעומת השנה הקודמת.
+    </div>
+    <div class="chartgrid">
+
+      <div class="barchart">
+        <div class="bc-title">הכנסות נטו ($B)</div>
+        <div class="bc-plot">
+          <div class="bc-col" style="height:82%;background:var(--blue)"><span class="bc-val">32.7</span></div>
+          <div class="bc-col" style="height:90%;background:var(--blue)"><span class="bc-val">35.9</span><span class="bc-yoy">+10%</span></div>
+          <div class="bc-col" style="height:100%;background:var(--blue)"><span class="bc-val">40.0</span><span class="bc-yoy">+11%</span></div>
+        </div>
+        <div class="bc-axis"><span>FY23</span><span>FY24</span><span>FY25</span></div>
+        <div class="bc-foot">↑ צמיחה עקבית ~11%/שנה</div>
+      </div>
+
+      <div class="barchart">
+        <div class="bc-title">רווח תפעולי GAAP ($B)</div>
+        <div class="bc-plot">
+          <div class="bc-col" style="height:87%;background:var(--purple)"><span class="bc-val">21.0</span></div>
+          <div class="bc-col" style="height:98%;background:var(--purple)"><span class="bc-val">23.6</span><span class="bc-yoy">+12%</span></div>
+          <div class="bc-col" style="height:100%;background:var(--orange)"><span class="bc-val">24.0</span><span class="bc-yoy">+2%</span></div>
+        </div>
+        <div class="bc-axis"><span>FY23</span><span>FY24</span><span>FY25</span></div>
+        <div class="bc-foot">→ FY25 כמעט שטוח — הפרשה משפטית, ראה דגל #4</div>
+      </div>
+
+      <div class="barchart">
+        <div class="bc-title">רווח נקי ($B)</div>
+        <div class="bc-plot">
+          <div class="bc-col" style="height:86%;background:var(--green)"><span class="bc-val">17.3</span></div>
+          <div class="bc-col" style="height:98%;background:var(--green)"><span class="bc-val">19.7</span><span class="bc-yoy">+14%</span></div>
+          <div class="bc-col" style="height:100%;background:var(--green)"><span class="bc-val">20.1</span><span class="bc-yoy">+2%</span></div>
+        </div>
+        <div class="bc-axis"><span>FY23</span><span>FY24</span><span>FY25</span></div>
+        <div class="bc-foot">→ FY25 שטוח מאותה סיבה משפטית</div>
+      </div>
+
+      <div class="barchart">
+        <div class="bc-title">תזרים מזומן חופשי ($B)</div>
+        <div class="bc-plot">
+          <div class="bc-col" style="height:91%;background:var(--blue)"><span class="bc-val">19.7</span></div>
+          <div class="bc-col" style="height:87%;background:var(--blue)"><span class="bc-val">18.7</span><span class="bc-yoy">−5%</span></div>
+          <div class="bc-col" style="height:100%;background:var(--blue)"><span class="bc-val">21.6</span><span class="bc-yoy">+15%</span></div>
+        </div>
+        <div class="bc-axis"><span>FY23</span><span>FY24</span><span>FY25</span></div>
+        <div class="bc-foot">↑ מרווח FCF ~54% · חזק</div>
+      </div>
+
+      <div class="barchart">
+        <div class="bc-title">רווח למניה — EPS ($)</div>
+        <div class="bc-plot">
+          <div class="bc-col" style="height:81%;background:var(--gold)"><span class="bc-val">8.28</span></div>
+          <div class="bc-col" style="height:95%;background:var(--gold)"><span class="bc-val">9.73</span><span class="bc-yoy">+18%</span></div>
+          <div class="bc-col" style="height:100%;background:var(--gold)"><span class="bc-val">10.20</span><span class="bc-yoy">+5%</span></div>
+        </div>
+        <div class="bc-axis"><span>FY23</span><span>FY24</span><span>FY25</span></div>
+        <div class="bc-foot">↑ נתמך ע"י רכישות חוזרות</div>
+      </div>
+
+      <div class="barchart">
+        <div class="bc-title">מרווח תפעולי GAAP (%)</div>
+        <div class="bc-plot">
+          <div class="bc-col" style="height:98%;background:var(--green)"><span class="bc-val">64.3</span></div>
+          <div class="bc-col" style="height:100%;background:var(--green)"><span class="bc-val">65.7</span><span class="bc-yoy">+1.4pp</span></div>
+          <div class="bc-col" style="height:91%;background:var(--red)"><span class="bc-val">60.0</span><span class="bc-yoy">−5.7pp</span></div>
+        </div>
+        <div class="bc-axis"><span>FY23</span><span>FY24</span><span>FY25</span></div>
+        <div class="bc-foot">🔴 ירידה GAAP · אך מרווח Non-GAAP יציב ~67%</div>
+      </div>
+
+    </div>
+
+    <table class="dtable" style="margin-top:18px">
+      <thead><tr><th>מדד</th><th>FY2023</th><th>FY2024</th><th>FY2025</th><th>מגמה</th></tr></thead>
+      <tbody>
+        <tr><td class="metric">הכנסות נטו</td><td>$32.7B</td><td>$35.9B</td><td>$40.0B</td><td class="up">↑ +11%/שנה</td></tr>
+        <tr><td class="metric">מרווח תפעולי GAAP</td><td>64.3%</td><td>65.7%</td><td>60.0%</td><td class="down">↓ נסיגה ב-FY25</td></tr>
+        <tr><td class="metric">רווח נקי</td><td>$17.3B</td><td>$19.7B</td><td>$20.1B</td><td class="flat">→ FY25 שטוח</td></tr>
+        <tr><td class="metric">מרווח נקי</td><td>52.9%</td><td>55.0%</td><td>50.1%</td><td class="flat">→ גבוה יוצא דופן</td></tr>
+        <tr><td class="metric">FCF</td><td>$19.7B</td><td>$18.7B</td><td>$21.6B</td><td class="up">↑ חזק</td></tr>
+        <tr><td class="metric">EPS מדולל</td><td>$8.28</td><td>$9.73</td><td>$10.20</td><td class="up">↑ +11%/שנה</td></tr>
+        <tr><td class="metric">חוב נטו</td><td>−$0.3B</td><td>−$5.7B</td><td>−$6.2B</td><td class="up">↑ מזומן נטו</td></tr>
+        <tr><td class="metric">מניות מונפקות</td><td>2,082M</td><td>2,030M</td><td>1,966M</td><td class="up">↓ קטֵן ~3%/שנה</td></tr>
+      </tbody>
+    </table>
+    <div class="desc" style="margin-top:12px;margin-bottom:0">
+      <b>קריאת אנליסט:</b> הרווחים מגובים במזומן אמיתי — FCF ($21.6B) גבוה מהרווח הנקי ($20.1B),
+      סימן לאיכות רווחים גבוהה. החברה ב<b>מזומן נטו</b>. נסיגת המרווח התפעולי GAAP ל-60% ב-FY25
+      <b>אומתה</b> כנובעת מהפרשה משפטית (לא מהרעה תפעולית) — המרווח התפעולי Non-GAAP נשאר יציב סביב ~67%.
+      ראה דגל #4.
+    </div>
+  </div>
+
+  <!-- A.3 MOAT -->
+  <div class="section">
+    <h2><span class="bar-accent" style="background:var(--gold)"></span>א.3 חפיר (יתרון תחרותי) <span class="tagnum">· 8 מנהלי חפיר</span></h2>
+    <div class="desc">
+      החפיר של Visa הוא מהחזקים בשוק. הליבה: <b>אפקט רשת דו-צדדי</b> — יותר מחזיקי כרטיס מושכים יותר
+      סוחרים, ולהפך. מעגל שמתחזק את עצמו וכמעט בלתי-אפשרי לשכפל. השוק כולו דואופול עם Mastercard.
+    </div>
+    <div class="hbar"><div class="hb-label">אפקטי רשת</div><div class="hb-track"><div class="hb-fill" style="width:95%;background:var(--green)"></div></div><div class="hb-tag">🟢 חזק מאוד</div></div>
+    <div class="hbar"><div class="hb-label">כוח מותג</div><div class="hb-track"><div class="hb-fill" style="width:90%;background:var(--green)"></div></div><div class="hb-tag">🟢 חזק</div></div>
+    <div class="hbar"><div class="hb-label">יתרון לגודל</div><div class="hb-track"><div class="hb-fill" style="width:88%;background:var(--green)"></div></div><div class="hb-tag">🟢 חזק</div></div>
+    <div class="hbar"><div class="hb-label">יתרון עלות</div><div class="hb-track"><div class="hb-fill" style="width:90%;background:var(--green)"></div></div><div class="hb-tag">🟢 חזק</div></div>
+    <div class="hbar"><div class="hb-label">יתרון הפצה</div><div class="hb-track"><div class="hb-fill" style="width:85%;background:var(--green)"></div></div><div class="hb-tag">🟢 חזק</div></div>
+    <div class="hbar"><div class="hb-label">עלויות מעבר</div><div class="hb-track"><div class="hb-fill" style="width:60%;background:var(--yellow)"></div></div><div class="hb-tag">🟡 בינוני</div></div>
+    <div class="hbar"><div class="hb-label">IP / טכנולוגיה</div><div class="hb-track"><div class="hb-fill" style="width:60%;background:var(--yellow)"></div></div><div class="hb-tag">🟡 בינוני</div></div>
+    <div class="hbar"><div class="hb-label">חסמים רגולטוריים</div><div class="hb-track"><div class="hb-fill" style="width:55%;background:var(--yellow)"></div></div><div class="hb-tag">🟡 דו-כיווני</div></div>
+    <div class="desc" style="margin-top:14px;margin-bottom:0">
+      <b>מסקנת חפיר: רחב ויציב.</b> האיום העיקרי אינו מתחרה ישיר — אלא <b>רגולציה</b> (תקרות עמלות)
+      ו<b>מסילות תשלום חלופיות</b> (תשלומים מיידיים בנקאיים, A2A). זה דגל — לא משבר.
+    </div>
+  </div>
+
+  <!-- B QUARTERLY -->
+  <div class="section">
+    <h2><span class="bar-accent" style="background:var(--blue)"></span>חלק ב — רבעון אחרון <span class="tagnum">· Q2 FY2026, הסתיים 31.3.2026</span></h2>
+    <div class="desc">הרבעון האחרון היה <b>חזק</b> — האצה לעומת קצב השנה: הכנסות +17% מול +11% שנתי.</div>
+    <div class="cards" style="margin-bottom:0">
+      <div class="card"><div class="lbl">הכנסות נטו</div><div class="val c-green">$11.2B</div><div class="sub">▲ +17% YoY</div></div>
+      <div class="card"><div class="lbl">EPS (GAAP)</div><div class="val c-green">$3.14</div><div class="sub">▲ +36% YoY</div></div>
+      <div class="card"><div class="lbl">EPS (Non-GAAP)</div><div class="val c-green">$3.31</div><div class="sub">▲ +20% YoY</div></div>
+      <div class="card"><div class="lbl">הוחזר לבעלי מניות</div><div class="val c-text">$9.2B</div><div class="sub">$7.9B רכישות + $1.3B דיב'</div></div>
+    </div>
+    <div class="desc" style="margin-top:14px;margin-bottom:0">
+      <b>שים לב:</b> EPS GAAP זינק +36% אך Non-GAAP רק +20%. הפער נובע מכך שבסיס ה-GAAP אשתקד היה
+      <b>מדוכא ע"י הפרשות משפטיות</b> — אותו גורם שדחס את מרווח FY2025. באפריל 2026 אושרה תוכנית
+      רכישה חוזרת חדשה של <b>$20B</b>. 🔴 תמליל שיחת הוועידה המלא לא אותר במקור חינמי — ניתוח טון ההנהלה מוגבל.
+    </div>
+  </div>
+
+  <!-- A.4 STRESS TEST -->
+  <div class="section">
+    <h2><span class="bar-accent" style="background:var(--purple)"></span>א.4 מבחן לחץ מוסדי <span class="tagnum">· ניקוד מתוך 50</span></h2>
+    <div class="desc">ניקוד 5 קטגוריות, כל אחת /10.</div>
+    <div class="hbar"><div class="hb-label">א · מודל עסקי</div><div class="hb-track"><div class="hb-fill" style="width:90%;background:var(--green)"></div></div><div class="hb-tag"><b>9</b>/10 🟢</div></div>
+    <div class="hbar"><div class="hb-label">ב · סיכון ושרשרת</div><div class="hb-track"><div class="hb-fill" style="width:70%;background:var(--yellow)"></div></div><div class="hb-tag"><b>7</b>/10 🟡</div></div>
+    <div class="hbar"><div class="hb-label">ג · יושרה חשבונאית</div><div class="hb-track"><div class="hb-fill" style="width:90%;background:var(--green)"></div></div><div class="hb-tag"><b>9</b>/10 🟢</div></div>
+    <div class="hbar"><div class="hb-label">ד · הנהלה והון</div><div class="hb-track"><div class="hb-fill" style="width:90%;background:var(--green)"></div></div><div class="hb-tag"><b>9</b>/10 🟢</div></div>
+    <div class="hbar"><div class="hb-label">ה · יעילות תפעולית</div><div class="hb-track"><div class="hb-fill" style="width:80%;background:var(--green)"></div></div><div class="hb-tag"><b>8</b>/10 🟢</div></div>
+    <div style="display:flex;align-items:center;gap:14px;margin-top:16px;padding:14px 18px;
+      background:var(--surface);border-radius:10px;border:1px solid rgba(46,204,113,.25)">
+      <div style="font-size:30px;font-weight:800;color:var(--green)">42</div>
+      <div style="font-size:13px;color:var(--muted2);line-height:1.6">
+        <b style="color:var(--text)">סה"כ 42/50 — איכות גבוהה.</b> Visa היא מאיכויות העסק הגבוהות בשוק.
+        הניקוד נמוך מ-50 בעיקר בקטגוריה ב' — חשיפה רגולטורית וליטיגציה גבוהה (אופייני לרשתות תשלום).
+      </div>
+    </div>
+  </div>
+
+  <!-- A.5 RED FLAGS -->
+  <div class="section">
+    <h2><span class="bar-accent" style="background:var(--red)"></span>א.5 דגלים אדומים פורנזיים</h2>
+    <div class="flag yellow"><div class="rank">1</div><div class="body">
+      <h3>🟡 ליטיגציית אנטי-טראסט / עמלות סליקה</h3>
+      <p>Visa בתביעות סוחרים ארוכות-טווח בארה"ב על מבנה עמלות הסליקה (interchange MDL). הפרשות
+      משפטיות חוזרות — למשל הפרשה נוספת של $707M ברבעון שהסתיים 12/2025. סיכון מבני קבוע, לא חולף.</p></div></div>
+    <div class="flag yellow"><div class="rank">2</div><div class="body">
+      <h3>🟡 לחץ רגולטורי על עמלות סליקה</h3>
+      <p>רגולטורים בארה"ב, אירופה ושווקים נוספים לוחצים להוריד עמלות. כל קיצוץ פוגע ישירות במרווח.</p></div></div>
+    <div class="flag yellow"><div class="rank">3</div><div class="body">
+      <h3>🟡 מסילות תשלום חלופיות</h3>
+      <p>תשלומים מיידיים בנקאיים (FedNow בארה"ב, Pix בברזיל, UPI בהודו) ותשלומי A2A מאיימים לעקוף
+      את רשת הכרטיסים בטווח הארוך. דיסאינטרמדיאציה איטית אך אמיתית.</p></div></div>
+    <div class="flag yellow"><div class="rank">4</div><div class="body">
+      <h3>🟡 נסיגת מרווח GAAP ב-FY2025 — מאומת: משפטי, לא תפעולי</h3>
+      <p>הרווח התפעולי GAAP היה כמעט שטוח (+2%) למרות הכנסות +11%, והמרווח ירד מ-66% ל-60%.
+      <b>הסיבה אומתה דרך ה-SEC:</b> הוצאות GAAP עלו 30% "בעיקר בגלל הפרשה משפטית גבוהה יותר וכוח אדם" —
+      אך הוצאות <b>Non-GAAP עלו רק 11%</b>, בקו עם ההכנסות. כלומר הליבה התפעולית בריאה; הדגל הוא
+      שההפרשות המשפטיות הן עלות <b>חוזרת</b> של היות Visa — לא אירוע חד-פעמי.</p></div></div>
+    <div class="flag green"><div class="rank">✓</div><div class="body">
+      <h3>🟢 לא נמצאו דגלים חשבונאיים מהותיים</h3>
+      <p>FCF גבוה מהרווח הנקי, דילול SBC נמוך מאוד (~$0.9B מול $40B הכנסות), מזומן נטו חיובי.
+      איכות חשבונאית גבוהה.</p></div></div>
+  </div>
+
+  <!-- VALUATION -->
+  <div class="section">
+    <h2><span class="bar-accent" style="background:var(--orange)"></span>ג.4 מסגרת שווי <span class="tagnum">· 3 תרחישים</span></h2>
+    <div class="desc">
+      Visa תמיד נסחרת בפרמיה בזכות איכותה. במחיר $331 (Forward P/E ~23) — לא זול ולא בועתי.
+      התרחישים מבוססים על EPS עתידי משוער (~$13.9, בקצה השמרני של טווח האומדנים $13.9–14.9) ומכפיל נורמלי.
+    </div>
+    <div class="scen">
+      <div class="scen-bar">
+        <div class="sc-price c-red">$275</div>
+        <div class="sc-fill" style="height:68%;background:var(--red)">−17%</div>
+        <div class="sc-lbl c-red">🔴 דובי</div>
+        <div class="sc-sub">דירוג-יתר ~20x · רגולציה/האטה</div>
+      </div>
+      <div class="scen-bar">
+        <div class="sc-price c-yellow">$360</div>
+        <div class="sc-fill" style="height:89%;background:var(--yellow)">+9%</div>
+        <div class="sc-lbl c-yellow">🟡 בסיס</div>
+        <div class="sc-sub">צמיחה דו-ספרתית נמוכה · ~26x</div>
+      </div>
+      <div class="scen-bar">
+        <div class="sc-price c-green">$405</div>
+        <div class="sc-fill" style="height:100%;background:var(--green)">+22%</div>
+        <div class="sc-lbl c-green">🟢 שורי</div>
+        <div class="sc-sub">צמיחה אמצע-עשרת · פרמיה נשמרת</div>
+      </div>
+    </div>
+    <div class="curline">מחיר נוכחי: <b>$331.12</b> · קונצנזוס אנליסטים: <b>$398.7</b></div>
+    <div class="desc" style="margin-top:14px;margin-bottom:0">
+      <b>מרווח ביטחון: שולי.</b> עסק יוצא דופן במחיר הוגן-עד-מלא. הסיכון אינו "חברה גרועה" —
+      אלא תשואה ממותנת אם המכפיל יתכווץ.
+    </div>
+  </div>
+
+  <!-- FINAL VERDICT -->
+  <div class="verdict">
+    <span class="tag">ג.8 שיפוט איכות סופי</span>
+    <h2>עסק יוצא דופן · מחיר הוגן · מרווח ביטחון שולי</h2>
+    <p>
+      Visa היא אחד העסקים האיכותיים בשוק: חפיר רחב מבוסס אפקט-רשת, מרווחים תפעוליים (Non-GAAP) של ~67%,
+      המרת מזומן מצוינת, מאזן במזומן-נטו, והנהלה ממושמעת שמקטינה את מספר המניות ~3% בשנה. הרבעון האחרון הראה האצה.
+    </p>
+    <p>
+      <b>הפרדה חשובה:</b> איכות העסק גבוהה מאוד — אך מחיר המניה כבר משקף חלק ניכר מזה.
+      שני הדברים לבדיקה לפני שמסתמכים על התזה: (1) קצב ההפרשות המשפטיות החוזרות, (2) קצב הדיסאינטרמדיאציה
+      ממסילות תשלום חלופיות.
+    </p>
+    <div class="scorecard">
+      <div class="scoreitem"><div class="si-lbl">איכות עסק</div><div class="si-val c-green">9/10</div></div>
+      <div class="scoreitem"><div class="si-lbl">חפיר</div><div class="si-val c-green">9/10</div></div>
+      <div class="scoreitem"><div class="si-lbl">יושרה חשבונאית</div><div class="si-val c-green">9/10</div></div>
+      <div class="scoreitem"><div class="si-lbl">הנהלה</div><div class="si-val c-green">9/10</div></div>
+      <div class="scoreitem"><div class="si-lbl">שווי / מחיר</div><div class="si-val c-yellow">6/10</div></div>
+      <div class="scoreitem"><div class="si-lbl">ציון כולל</div><div class="si-val c-green">8.5/10</div></div>
+    </div>
+    <div class="handoff">
+      <b>📤 HANDOFF לעורך הדין השטן</b><br>
+      חברה: Visa Inc. (V) · מחיר $331.12 · שווי הוגן (בסיס) $360 · ציון איכות 8.5/10<br>
+      <b>ההנחה השבירה ביותר:</b> שהמכפיל הפרמיום (~23x forward) יישמר — תלוי בהמשך צמיחה דו-ספרתית.<br>
+      <b>דגלים שכבר זוהו:</b> הפרשות משפטיות חוזרות (interchange) · לחץ רגולטורי על עמלות · מסילות תשלום חלופיות.<br>
+      <b>תחום הכי תקיף לעורך הדין השטן:</b> סיכון הדיסאינטרמדיאציה ארוך-הטווח + מרווח ביטחון שולי.
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  <b>אימות מקורות (3 מקורות עצמאיים):</b><br>
+  ✅ <b>אומת ב-3 מקורות:</b> מחיר, שווי שוק, P/E, P/S, ROE, טווח 52ש' — stockanalysis.com + finviz.com + Yahoo Finance.<br>
+  ✅ <b>אומת מול הגשות רשמיות:</b> הכנסות/רווח/EPS/נפחים FY2025 ו-Q2 FY2026 + סיבת נסיגת המרווח (הפרשה משפטית) — הודעות רווחים SEC 8-K.<br>
+  ⚠️ <b>פער בין מקורות:</b> ROIC — 31% (stockanalysis) מול 38% (finviz), הבדל שיטת חישוב; הוצג כטווח. אומדני EPS עתידי נעים $13.9–14.9.<br>
+  ⚠️ <b>מקור יחיד:</b> EV/EBITDA היסטורי — stockanalysis.com בלבד.<br>
+  🔴 <b>לא אותר:</b> פירוט "הכנסות אחרות"/"תמריצי לקוחות" · תמליל שיחת ועידה מלא.<br>
+  <div class="disclaimer">
+    ⚠️ <b>הסתייגות:</b> דוח זה הופק ממקורות חינמיים בלבד — לא נעשה שימוש בכלי או מנוי בתשלום
+    (macrotrends.net נבדק אך דורש כעת תשלום, ולכן דולג). הערכות השווי הן תרחישים אנליטיים, לא תחזית.
+    אינו ייעוץ השקעות. נתונים נכונים ל-22.5.2026.
+  </div>
+</div>
+
+</body>
+</html>

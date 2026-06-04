@@ -1,0 +1,16 @@
+{
+  "decisions": [
+    {
+      "id": "DEC-001",
+      "ticker": "RKLB",
+      "date": "2026-05-26",
+      "decision": "BUY-TRANCHE-1",
+      "position_size_pct": 5,
+      "why": "Commercial space leader; Neutron rocket roadmap intact",
+      "biggest_risk": "Neutron delay or SpaceX competitive pressure",
+      "kill_switch": "Neutron slips past 2027 OR dilution >15% in 12mo",
+      "conviction": "High",
+      "original_thesis": "Vertically integrated space company"
+    }
+  ]
+}

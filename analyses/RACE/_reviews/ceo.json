@@ -1,0 +1,18 @@
+{
+  "ticker": "RACE",
+  "agent": "ceo",
+  "date": "2026-06-01",
+  "verdict": "HOLD",
+  "score": 6,
+  "thesis": "Ferrari היא עסק 9/10 במחיר הוגן בנקודת הבינארית הגבוהה ביותר בהיסטוריית המותג: ה-Luce לא הוכיחה מסחרית, EV=$345, R/R=0.38:1. WAIT עד Q2 2026 (אוגוסט) לאישור Luce order intake + EBIT recovery, כניסה ב-$310-320.",
+  "key_risks": [
+    "Luce binary event לא פתור: Q2 2026 הוא הנקודה הראשונה שניתן לאמוד order intent; כניסה לפניה = תשלום מחיר מלא על אי-ודאות מקסימלית",
+    "EV = מחיר נוכחי, R/R שלילי 0.38:1: base case +10% מול downside -26% ל-47%; אין margin of safety ב-$345",
+    "Portfolio structure תחילה: Cash 3.6% מתחת לרצפת 5%, Spec 16.3% פי 1.6 מהתקרה — חייב ריאורגון לפני כל קנייה חדשה",
+    "ריכוז מכפיל-פרמיום: NVDA+META+GOOG+RACE = 43% תיק ב-P/E 23x+, rate shock יפגע כולם בו-זמנית"
+  ],
+  "position_size_pct": 0,
+  "valuation_summary": "fair value $378 base (+10%), bear $255 (-26%), disaster $184 (-47%); EV=$345=מחיר נוכחי; entry target $310-320 post Q2 2026",
+  "entry_exit_plan": "WAIT: כניסה רק אחרי Q2 2026 (אוגוסט) עם Luce order book חיובי + EBIT margin recovery; entry $310-320; stop $275; TP1 $390, TP2 $460; 4% ראשוני, 8% מקסימום; מימון: ריאורגון IBIT בלבד",
+  "handoff_summary": "CEO דוחה כניסה ל-RACE ב-$345 מסיבות מבניות ולא מסיבות עסקיות. העסק מצוין (9/10), אך שלושה חסמים מונעים כניסה עכשיו: (1) Portfolio structure: Cash 3.6% < רצפת 5%, Spec 16.3% = 6.3 נ\"א מעל תקרה — חייב לתקן IBIT (10%→4%) לפני כל קנייה. (2) Timing: Q2 2026 (אוגוסט 2026) הוא הנקודה הבינארית הראשונה לגבי Luce — כניסה לפניה שוות ערך לתשלום premium price על maximum uncertainty. (3) Valuation: R/R 0.38:1 ב-$345 לא מצדיק deployment. פעולה מיידית: קצץ IBIT מ-10% ל-4%, שחרר $119, bring Cash ל-9.6%. לאחר Q2 2026 earnings: אם Luce order intake חיובי + EBIT margin שמור + הנחיות עומדות — כניסה 4% ב-$310-320, scalable ל-8% בנתוני Luce Q4 2026. Executor לא נדרש כעת — ההחלטה היא WAIT עם תאריך חזרה ברור: Q2 2026 earnings release (אוגוסט 2026)."
+}

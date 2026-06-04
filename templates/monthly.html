@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>סגירה חודשית</title>
+<link rel="stylesheet" href="_shared.css">
+<link rel="stylesheet" href="_redesign.css">
+<style>
+/* ── Tabs ─────────────────────────────────────────────── */
+.tabs{display:flex;gap:4px;flex-wrap:wrap;padding:20px 0 0;border-bottom:1px solid var(--glass-border);margin-bottom:28px}
+.tab-btn{padding:8px 18px;font-size:12.5px;font-weight:700;font-family:Heebo,sans-serif;
+  background:transparent;border:1px solid transparent;border-bottom:none;border-radius:10px 10px 0 0;
+  color:var(--muted2);cursor:pointer;transition:.2s;letter-spacing:.2px}
+.tab-btn:hover{color:var(--text);background:var(--glass)}
+.tab-btn.active{background:var(--glass-2);border-color:var(--glass-border);color:var(--text);
+  border-bottom:2px solid var(--brand-purple)}
+.tab-panel{display:none}.tab-panel.active{display:block}
+
+/* ── KPI Cards ───────────────────────────────────────── */
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin-bottom:28px}
+.kpi{background:var(--glass);border:1px solid var(--glass-border);border-radius:16px;
+  padding:18px 20px;position:relative;overflow:hidden}
+.kpi::before{content:'';position:absolute;inset:0;background:var(--glass-hi);opacity:0;transition:.3s}
+.kpi:hover::before{opacity:1}
+.kpi .k-lbl{font-size:10px;font-weight:700;color:var(--muted2);text-transform:uppercase;
+  letter-spacing:.7px;margin-bottom:8px}
+.kpi .k-val{font-size:26px;font-weight:800;line-height:1;color:var(--text)}
+.kpi .k-sub{font-size:11px;color:var(--muted2);margin-top:6px}
+.kpi.accent-purple{border-color:var(--brand-purple-soft);border-right:3px solid var(--brand-purple)}
+.kpi.accent-gold  {border-color:var(--brand-gold-soft);border-right:3px solid var(--brand-gold)}
+
+/* ── Holdings Table ──────────────────────────────────── */
+.h-table{width:100%;border-collapse:collapse}
+.h-table th{font-size:10px;color:var(--muted2);text-transform:uppercase;letter-spacing:.5px;
+  text-align:right;padding:8px 12px;border-bottom:1px solid var(--glass-border);font-weight:700}
+.h-table td{padding:12px 12px;border-bottom:1px solid rgba(255,255,255,.04);
+  font-size:13px;font-variant-numeric:tabular-nums;vertical-align:middle}
+.h-table tr:hover td{background:var(--glass)}
+.tk-cell{font-weight:800;color:var(--text)}
+.company-cell{color:var(--muted2);font-size:12px}
+.layer-pill{display:inline-block;padding:2px 8px;border-radius:8px;font-size:10px;font-weight:700;letter-spacing:.3px}
+.layer-growth    {background:rgba(96,165,250,.12);color:var(--blue);border:1px solid rgba(96,165,250,.25)}
+.layer-stability {background:rgba(52,211,153,.10);color:var(--sig-good);border:1px solid rgba(52,211,153,.22)}
+.layer-speculation{background:rgba(251,113,133,.10);color:var(--sig-bad);border:1px solid rgba(251,113,133,.22)}
+
+/* ── Thesis Status Pills ─────────────────────────────── */
+.status-intact {background:var(--sig-good-soft);color:var(--sig-good);border:1px solid rgba(52,211,153,.3)}
+.status-drift  {background:var(--sig-warn-soft);color:var(--sig-warn);border:1px solid rgba(251,191,36,.3)}
+.status-broken {background:var(--sig-bad-soft);color:var(--sig-bad);border:1px solid rgba(251,113,133,.3)}
+.st-pill{display:inline-block;padding:3px 9px;border-radius:9px;font-size:10.5px;font-weight:700;letter-spacing:.2px}
+
+/* ── Score Ring ──────────────────────────────────────── */
+.score-ring-wrap{display:flex;align-items:center;gap:24px;padding:20px;
+  background:var(--glass);border:1px solid var(--glass-border);border-radius:16px;margin-bottom:20px}
+.score-ring{position:relative;width:90px;height:90px;flex-shrink:0}
+.score-ring svg{transform:rotate(-90deg)}
+.score-ring .sr-val{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  font-size:22px;font-weight:800;color:var(--text)}
+.score-info .si-title{font-size:14px;font-weight:800;color:var(--text);margin-bottom:6px}
+.score-info .si-counts{display:flex;gap:16px;flex-wrap:wrap}
+.si-count span{font-size:20px;font-weight:800}
+.si-count label{font-size:10px;color:var(--muted2);text-transform:uppercase;letter-spacing:.4px;display:block;margin-top:2px}
+
+/* ── Allocation Bars ─────────────────────────────────── */
+.alloc-row{margin-bottom:18px}
+.alloc-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+.alloc-label{font-size:13px;font-weight:700;color:var(--text)}
+.alloc-pcts{font-size:12px;color:var(--muted2);display:flex;gap:16px}
+.alloc-track{height:10px;background:rgba(255,255,255,.06);border-radius:6px;overflow:visible;position:relative;display:flex}
+.alloc-actual{height:100%;border-radius:6px;transition:.5s}
+.alloc-target-marker{position:absolute;top:-4px;width:2px;height:18px;background:var(--muted2);border-radius:1px;opacity:.6}
+.drift-pill{padding:2px 8px;border-radius:8px;font-size:10px;font-weight:700}
+.drift-ok  {background:rgba(52,211,153,.1);color:var(--sig-good)}
+.drift-warn{background:rgba(251,191,36,.1);color:var(--sig-warn)}
+.drift-high{background:rgba(251,113,133,.1);color:var(--sig-bad)}
+
+/* ── Decision Card ───────────────────────────────────── */
+.dec-card{background:var(--glass);border:1px solid var(--glass-border);border-radius:14px;
+  padding:16px 18px;margin-bottom:12px;border-right:3px solid var(--brand-gold)}
+.dec-header{display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap}
+.dec-ticker{font-size:15px;font-weight:800;color:var(--text)}
+.dec-type{font-size:10px;font-weight:700;padding:3px 9px;border-radius:8px;
+  background:var(--brand-gold-soft);color:var(--brand-gold);letter-spacing:.3px}
+.dec-date{font-size:11px;color:var(--muted2);margin-right:auto}
+.dec-body{font-size:12.5px;color:var(--muted2);line-height:1.65}
+.dec-kill{font-size:11px;color:var(--sig-warn);margin-top:6px;
+  padding:5px 10px;background:var(--sig-warn-soft);border-radius:8px;display:inline-block}
+
+/* ── Freshness Chips ─────────────────────────────────── */
+.fresh-grid{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.fresh-chip{display:flex;align-items:center;gap:6px;padding:6px 12px;border-radius:20px;
+  font-size:12px;font-weight:700;border:1px solid}
+.fresh-chip.green{background:var(--sig-good-soft);border-color:rgba(52,211,153,.3);color:var(--sig-good)}
+.fresh-chip.yellow{background:var(--sig-warn-soft);border-color:rgba(251,191,36,.3);color:var(--sig-warn)}
+.fresh-chip.red{background:var(--sig-bad-soft);border-color:rgba(251,113,133,.3);color:var(--sig-bad)}
+.fresh-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.fresh-chip.green .fresh-dot{background:var(--sig-good)}
+.fresh-chip.yellow .fresh-dot{background:var(--sig-warn)}
+.fresh-chip.red .fresh-dot{background:var(--sig-bad)}
+
+/* ── Radar ───────────────────────────────────────────── */
+.hit-gauge-wrap{display:flex;align-items:center;gap:28px;
+  background:var(--glass);border:1px solid var(--glass-border);border-radius:16px;
+  padding:22px 24px;margin-bottom:20px}
+.hit-gauge{position:relative;width:110px;height:110px;flex-shrink:0}
+.hit-gauge svg{transform:rotate(-90deg)}
+.hit-gauge .hg-val{position:absolute;inset:0;display:flex;flex-direction:column;
+  align-items:center;justify-content:center}
+.hg-val .hg-pct{font-size:26px;font-weight:800;color:var(--text)}
+.hg-val .hg-lbl{font-size:10px;color:var(--muted2);letter-spacing:.4px}
+.hit-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;flex:1}
+.hs-item .hs-val{font-size:20px;font-weight:800;color:var(--text)}
+.hs-item .hs-lbl{font-size:10px;color:var(--muted2);text-transform:uppercase;letter-spacing:.4px;margin-top:2px}
+
+.radar-table{width:100%;border-collapse:collapse}
+.radar-table th{font-size:10px;color:var(--muted2);text-transform:uppercase;letter-spacing:.5px;
+  text-align:right;padding:8px 10px;border-bottom:1px solid var(--glass-border)}
+.radar-table td{padding:10px 10px;border-bottom:1px solid rgba(255,255,255,.04);font-size:12.5px}
+.radar-table tr:hover td{background:var(--glass)}
+.outcome-pill{display:inline-block;padding:2px 8px;border-radius:8px;font-size:10px;font-weight:700}
+.outcome-SUCCESS{background:var(--sig-good-soft);color:var(--sig-good)}
+.outcome-FAIL   {background:var(--sig-bad-soft);color:var(--sig-bad)}
+.outcome-PARTIAL{background:var(--sig-warn-soft);color:var(--sig-warn)}
+.outcome-UNKNOWN{background:var(--glass);color:var(--muted2)}
+
+.conv-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:16px}
+.conv-cell{background:var(--glass);border:1px solid var(--glass-border);border-radius:12px;
+  padding:12px;text-align:center}
+.conv-cell .cv-num{font-size:18px;font-weight:800}
+.conv-cell .cv-lbl{font-size:10px;color:var(--muted2);margin-top:4px}
+
+/* ── Close Checklist ─────────────────────────────────── */
+.close-day{background:var(--glass);border:1px solid var(--glass-border);border-radius:16px;
+  padding:18px 22px;margin-bottom:14px}
+.close-day-header{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.day-badge{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;
+  font-size:11px;font-weight:800;flex-shrink:0;letter-spacing:.3px}
+.day-complete{background:var(--sig-good-soft);color:var(--sig-good);border:1px solid rgba(52,211,153,.3)}
+.day-partial {background:var(--sig-warn-soft);color:var(--sig-warn);border:1px solid rgba(251,191,36,.3)}
+.day-blocked {background:var(--sig-bad-soft);color:var(--sig-bad);border:1px solid rgba(251,113,133,.3)}
+.day-pending {background:var(--glass-2);color:var(--muted2);border:1px solid var(--glass-border)}
+.close-day-title{font-size:14px;font-weight:800;color:var(--text)}
+.close-day-note{font-size:12px;color:var(--muted2);margin-top:2px}
+.close-task{display:flex;align-items:flex-start;gap:10px;padding:8px 0;
+  border-bottom:1px solid rgba(255,255,255,.04)}
+.close-task:last-child{border-bottom:none}
+.check-icon{width:18px;height:18px;border-radius:5px;flex-shrink:0;margin-top:1px;
+  display:flex;align-items:center;justify-content:center;font-size:11px}
+.check-done{background:var(--sig-good-soft);color:var(--sig-good);border:1px solid rgba(52,211,153,.3)}
+.check-open{background:var(--glass);border:1px solid var(--glass-border);color:transparent}
+
+/* ── Weekly Trend ────────────────────────────────────── */
+.trend-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-bottom:24px}
+.trend-cell{background:var(--glass);border:1px solid var(--glass-border);border-radius:12px;padding:14px 16px}
+.trend-cell .tc-date{font-size:10px;color:var(--muted2);letter-spacing:.3px;margin-bottom:6px}
+.trend-cell .tc-regime{font-size:11px;font-weight:700;padding:2px 8px;border-radius:6px;
+  display:inline-block;margin-bottom:8px}
+.trend-cell .tc-verdict{font-size:11.5px;color:var(--muted2);line-height:1.5}
+
+/* ── Attribution Waterfall ───────────────────────────── */
+.wf-row{display:flex;align-items:center;gap:10px;padding:7px 0;
+  border-bottom:1px solid rgba(255,255,255,.04)}
+.wf-row:last-child{border-bottom:none}
+.wf-ticker{font-size:13px;font-weight:800;width:62px;flex-shrink:0}
+.wf-layer{font-size:10px;color:var(--muted2);width:88px;flex-shrink:0}
+.wf-bar-wrap{flex:1;height:12px;background:rgba(255,255,255,.05);
+  border-radius:4px;overflow:hidden;position:relative}
+.wf-bar{height:100%;border-radius:4px;min-width:2px;max-width:100%;transition:.4s}
+.wf-bar-pos{background:var(--sig-good);opacity:.8}
+.wf-bar-neg{background:var(--sig-bad);opacity:.8}
+.wf-val{font-size:12px;font-variant-numeric:tabular-nums;width:60px;
+  text-align:left;flex-shrink:0;font-weight:700}
+.wf-total-row{display:flex;align-items:center;gap:10px;padding:9px 0 0;
+  border-top:1px solid var(--glass-border);margin-top:6px}
+.wf-total-row .wf-ticker{color:var(--muted2)}
+
+.drift-decomp-row{background:var(--glass);border:1px solid var(--glass-border);
+  border-radius:14px;padding:14px 18px;margin-bottom:10px}
+.drift-decomp-header{display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap}
+.drift-decomp-layer{font-size:14px;font-weight:800;color:var(--text)}
+.drift-tag{font-size:10px;font-weight:700;padding:3px 9px;border-radius:8px;letter-spacing:.3px}
+.dt-price {background:rgba(96,165,250,.12);color:var(--blue)}
+.dt-volume{background:rgba(251,191,36,.12);color:var(--brand-gold)}
+.dt-total {font-size:11px;color:var(--muted2);margin-right:auto}
+.drift-detail{font-size:12px;color:var(--muted2);line-height:1.6}
+
+.sc-delta-row{display:flex;align-items:center;gap:10px;padding:7px 0;
+  border-bottom:1px solid rgba(255,255,255,.04)}
+.sc-delta-row:last-child{border-bottom:none}
+.sc-lbl{font-size:13px;color:var(--text);flex:1}
+.sc-curr{font-size:13px;font-weight:800;width:52px;text-align:left}
+.sc-delta{font-size:11px;font-weight:700;padding:2px 8px;border-radius:8px;flex-shrink:0}
+.delta-pos{background:rgba(52,211,153,.12);color:var(--sig-good)}
+.delta-neg{background:rgba(251,113,133,.12);color:var(--sig-bad)}
+.delta-neu{background:var(--glass);color:var(--muted2)}
+
+/* ── Next Month ──────────────────────────────────────── */
+.agenda-col{background:var(--glass);border:1px solid var(--glass-border);border-radius:14px;padding:18px 20px}
+.agenda-col h4{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;
+  color:var(--muted2);margin-bottom:12px}
+.agenda-item{font-size:13px;color:var(--text);padding:6px 0;
+  border-bottom:1px solid rgba(255,255,255,.04);display:flex;align-items:center;gap:8px}
+.agenda-item:last-child{border-bottom:none}
+.agenda-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+
+/* ── Section title ───────────────────────────────────── */
+.sec-title{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.6px;
+  color:var(--muted2);margin:22px 0 12px;display:flex;align-items:center;gap:8px}
+
+/* ── Empty state ─────────────────────────────────────── */
+.empty{padding:32px;text-align:center;color:var(--muted2);font-size:13px;
+  background:var(--glass);border:1px solid var(--glass-border);border-radius:14px}
+</style>
+</head>
+<body>
+
+<div class="topbar tb-purple">
+  <div>
+    <h1 class="c-purple">סגירה חודשית</h1>
+    <div class="sub" id="sub-period">טוען נתונים...</div>
+  </div>
+  <div class="stamp" id="stamp"></div>
+</div>
+
+<div class="wrap">
+  <nav class="tabs" id="tabs">
+    <button class="tab-btn active" data-tab="summary">סיכום חודשי</button>
+    <button class="tab-btn" data-tab="holdings">אחזקות</button>
+    <button class="tab-btn" data-tab="reconciliation">Reconciliation</button>
+    <button class="tab-btn" data-tab="decisions">החלטות</button>
+    <button class="tab-btn" data-tab="radar">ביצועי ראדר</button>
+    <button class="tab-btn" data-tab="attribution">ייחוס תשואה</button>
+    <button class="tab-btn" data-tab="checklist">Close Checklist</button>
+  </nav>
+
+  <!-- ── TAB 1: סיכום חודשי ──────────────────────────────── -->
+  <div class="tab-panel active" id="tab-summary">
+    <div class="kpi-grid" id="kpi-grid"></div>
+
+    <div class="sec-title">מגמה שבועית — 4 השבועות האחרונים</div>
+    <div class="trend-grid" id="trend-grid"></div>
+
+    <div class="sec-title">אג'נדה לחודש הבא</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px" id="agenda-grid"></div>
+  </div>
+
+  <!-- ── TAB 2: אחזקות ────────────────────────────────────── -->
+  <div class="tab-panel" id="tab-holdings">
+    <div class="sec-title">אחזקות — ביצועי חודש</div>
+    <div style="overflow-x:auto">
+      <table class="h-table" id="holdings-table">
+        <thead>
+          <tr>
+            <th>טיקר</th><th>חברה</th><th>שכבה</th>
+            <th>מחיר כניסה</th><th>מחיר נוכחי</th>
+            <th>שינוי חודשי</th><th>P&amp;L</th><th>IC</th>
+          </tr>
+        </thead>
+        <tbody id="holdings-tbody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ── TAB 3: Reconciliation ────────────────────────────── -->
+  <div class="tab-panel" id="tab-reconciliation">
+    <div class="sec-title">הקצאת שכבות — actual vs. target</div>
+    <div id="alloc-bars"></div>
+
+    <div class="sec-title">Thesis Adherence</div>
+    <div id="thesis-ring"></div>
+
+    <div class="sec-title">פירוט תזה לפי אחזקה</div>
+    <div style="overflow-x:auto">
+      <table class="h-table" id="thesis-table">
+        <thead>
+          <tr><th>טיקר</th><th>תזה מקורית</th><th>IC Verdict</th><th>סטטוס</th><th>שינוי חודשי</th></tr>
+        </thead>
+        <tbody id="thesis-tbody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ── TAB 4: החלטות ────────────────────────────────────── -->
+  <div class="tab-panel" id="tab-decisions">
+    <div class="sec-title">החלטות החודש</div>
+    <div id="decisions-list"></div>
+
+    <div class="sec-title">רענון ניתוחים</div>
+    <div class="fresh-grid" id="fresh-grid"></div>
+  </div>
+
+  <!-- ── TAB 5: ביצועי ראדר ────────────────────────────────── -->
+  <div class="tab-panel" id="tab-radar">
+    <div id="hit-gauge-block"></div>
+
+    <div class="sec-title">דיוק לפי רמת conviction</div>
+    <div class="conv-grid" id="conv-grid"></div>
+
+    <div class="sec-title">כל ההמלצות — תוצאות</div>
+    <div style="overflow-x:auto">
+      <table class="radar-table" id="radar-table">
+        <thead>
+          <tr>
+            <th>טיקר</th><th>תאריך</th><th>Conviction</th>
+            <th>מחיר כניסה</th><th>מחיר נוכחי</th>
+            <th>תשואה</th><th>תוצאה</th><th>קטליסט</th>
+          </tr>
+        </thead>
+        <tbody id="radar-tbody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ── TAB 6: ייחוס תשואה ─────────────────────────────────── -->
+  <div class="tab-panel" id="tab-attribution">
+    <div class="sec-title">Waterfall — תרומת אחזקות לתשואה חודשית</div>
+    <div id="wf-holdings"></div>
+
+    <div class="sec-title">תרומה לפי שכבה</div>
+    <div id="wf-layers"></div>
+
+    <div class="sec-title">פירוק drift — Price Effect vs Volume Effect</div>
+    <div id="drift-decomp"></div>
+
+    <div class="sec-title">ביצועי ראדר — שינוי מחודש קודם</div>
+    <div id="scanner-delta"></div>
+
+    <div class="sec-title">Thesis Score — שינוי מחודש קודם</div>
+    <div id="thesis-delta"></div>
+  </div>
+
+  <!-- ── TAB 7: Close Checklist ────────────────────────────── -->
+  <div class="tab-panel" id="tab-checklist">
+    <div class="sec-title">לוח Close — 5 ימים</div>
+    <div id="close-checklist"></div>
+  </div>
+
+</div><!-- /wrap -->
+
+<script>
+// ── טעינת נתונים ────────────────────────────────────────────────────────────
+
+function getPeriodParam(){
+  const p = new URLSearchParams(location.search).get('period');
+  return p || (window.MONTHLY_DATA && window.MONTHLY_DATA.period) || null;
+}
+
+async function loadData(period) {
+  // נסה לטעון קובץ JS ספציפי
+  if (period) {
+    return new Promise(resolve => {
+      const s = document.createElement('script');
+      s.src = `../analyses/_monthly/${period}/monthly_close.js`;
+      s.onload = () => resolve(window.MONTHLY_DATA || null);
+      s.onerror = () => resolve(window.MONTHLY_DATA || null);
+      document.head.appendChild(s);
+    });
+  }
+  return window.MONTHLY_DATA || null;
+}
+
+// ── עזרים ───────────────────────────────────────────────────────────────────
+
+const fmt  = (n, d=2) => n == null ? 'N/A' : Number(n).toFixed(d);
+const fmtPct = n => n == null ? 'N/A' : `${n >= 0 ? '+' : ''}${fmt(n)}%`;
+const fmtILS = n => n == null ? 'N/A' : `$${Number(n).toLocaleString('he-IL',{minimumFractionDigits:0})}`;
+
+function colorClass(n) {
+  if (n == null) return '';
+  return n > 0 ? 'c-green' : n < 0 ? 'c-red' : 'c-muted';
+}
+
+function svgCircle(pct, color, size=90, stroke=9) {
+  const r   = (size - stroke) / 2;
+  const circ = 2 * Math.PI * r;
+  const dash = circ * Math.min(pct, 100) / 100;
+  return `<svg width="${size}" height="${size}" viewBox="0 0 ${size} ${size}">
+    <circle cx="${size/2}" cy="${size/2}" r="${r}"
+      fill="none" stroke="rgba(255,255,255,.07)" stroke-width="${stroke}"/>
+    <circle cx="${size/2}" cy="${size/2}" r="${r}"
+      fill="none" stroke="${color}" stroke-width="${stroke}"
+      stroke-dasharray="${dash} ${circ}" stroke-linecap="round"/>
+  </svg>`;
+}
+
+// ── Tab switching ────────────────────────────────────────────────────────────
+
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+  });
+});
+
+// ── Render functions ─────────────────────────────────────────────────────────
+
+function renderHeader(d) {
+  document.getElementById('sub-period').textContent =
+    `תקופה: ${d.period || 'N/A'} | נוצר: ${d.generated || ''}`;
+  const perf = d.portfolio_performance || {};
+  document.getElementById('stamp').innerHTML =
+    `<b>שווי תיק:</b> ${fmtILS(perf.total_current)}<br>` +
+    `<b>שינוי חודשי:</b> ${fmtPct(perf.month_pct)}`;
+}
+
+function renderKPI(d) {
+  const p  = d.portfolio_performance || {};
+  const th = d.thesis_adherence || {};
+  const items = [
+    {lbl:'שינוי חודשי', val: fmtPct(p.month_pct), cls: colorClass(p.month_pct), accent:'accent-purple'},
+    {lbl:'שווי תיק',    val: fmtILS(p.total_current), cls:'c-text'},
+    {lbl:'P&L כולל',   val: fmtILS(p.total_unrealized),cls: colorClass(p.total_unrealized)},
+    {lbl:'מזומן',       val: fmtILS(p.cash),          cls:'c-gold',   accent:'accent-gold'},
+    {lbl:'Thesis Score',val: `${th.score_0_100 ?? 'N/A'}`,cls:'c-purple'},
+    {lbl:'פוזיציות',    val: `${p.num_positions ?? 0}`, cls:'c-text'},
+    {lbl:'הטובה ביותר', val: `${p.best_ticker || ''} ${fmtPct(p.best_pct)}`, cls:'c-green'},
+    {lbl:'הגרועה ביותר',val: `${p.worst_ticker || ''} ${fmtPct(p.worst_pct)}`, cls:'c-red'},
+  ];
+  document.getElementById('kpi-grid').innerHTML = items.map(i =>
+    `<div class="kpi ${i.accent||''}">
+      <div class="k-lbl">${i.lbl}</div>
+      <div class="k-val ${i.cls}">${i.val}</div>
+    </div>`
+  ).join('');
+}
+
+function renderTrend(d) {
+  const trend = d.weekly_trend || [];
+  if (!trend.length) {
+    document.getElementById('trend-grid').innerHTML = '<div class="empty">אין ארכיב שבועי עדיין</div>';
+    return;
+  }
+  document.getElementById('trend-grid').innerHTML = trend.map(w => {
+    const regime = w.regime || 'mixed';
+    const cls = regime === 'risk-on' ? 'c-green' : regime === 'risk-off' ? 'c-red' : 'c-yellow';
+    return `<div class="trend-cell">
+      <div class="tc-date">${w.date || ''}</div>
+      <span class="tc-regime" style="background:var(--glass-2);color:var(--text)">${regime}</span>
+      <div class="tc-verdict">${(w.verdict || '').slice(0,100)}${(w.verdict||'').length>100?'...':''}</div>
+    </div>`;
+  }).join('');
+}
+
+function renderAgenda(d) {
+  const ag = d.next_month_agenda || {};
+  const cols = [
+    {title:'לרענן ניתוח', items: ag.refresh_analyses || [], dot:'#fb7185'},
+    {title:'לסקור פוזיציה',items: ag.review_positions || [], dot:'#fbbf24'},
+    {title:'מועמדי ראדר',  items: ag.scanner_targets  || [], dot:'#34d399'},
+  ];
+  document.getElementById('agenda-grid').innerHTML = cols.map(c =>
+    `<div class="agenda-col">
+      <h4>${c.title}</h4>
+      ${c.items.length
+        ? c.items.map(i => `<div class="agenda-item">
+            <span class="agenda-dot" style="background:${c.dot}"></span>${i}</div>`).join('')
+        : '<div style="font-size:12px;color:var(--muted2);padding:6px 0">אין</div>'
+      }
+    </div>`
+  ).join('');
+}
+
+function renderHoldings(d) {
+  const rows = d.holdings_monthly || [];
+  if (!rows.length) {
+    document.getElementById('holdings-tbody').innerHTML =
+      '<tr><td colspan="8" style="text-align:center;color:var(--muted2);padding:24px">אין נתונים</td></tr>';
+    return;
+  }
+  document.getElementById('holdings-tbody').innerHTML = rows.map(h => {
+    const layerCls = h.layer === 'Growth' ? 'layer-growth'
+                   : h.layer === 'Stability' ? 'layer-stability' : 'layer-speculation';
+    const pnl = h.unrealized_pnl || 0;
+    return `<tr>
+      <td class="tk-cell">${h.ticker}</td>
+      <td class="company-cell">${h.company || ''}</td>
+      <td><span class="layer-pill ${layerCls}">${h.layer || ''}</span></td>
+      <td>$${fmt(h.buy_price)}</td>
+      <td>$${fmt(h.current_price)}</td>
+      <td class="${colorClass(h.chg_month_pct)}">${fmtPct(h.chg_month_pct)}</td>
+      <td class="${colorClass(pnl)}">${fmtILS(pnl)}</td>
+      <td><span class="st-pill status-${h.ic_verdict==='HOLD'||h.ic_verdict==='BUY'||h.ic_verdict==='INTACT'?'intact':'drift'}">${h.ic_verdict||''}</span></td>
+    </tr>`;
+  }).join('');
+}
+
+function renderAlloc(d) {
+  const al = d.allocation || {};
+  const actual = al.actual || {};
+  const target = al.target || {};
+  const drift  = al.drift  || {};
+  const layers = Object.keys({...target,...actual});
+
+  const colors = {Growth:'var(--blue)',Stability:'var(--sig-good)',Speculation:'var(--sig-bad)',Cash:'var(--brand-gold)'};
+  document.getElementById('alloc-bars').innerHTML = layers.map(layer => {
+    const act = actual[layer] || 0;
+    const tgt = target[layer] || 0;
+    const dr  = drift[layer]  || 0;
+    const absDr = Math.abs(dr);
+    const drCls = absDr <= 3 ? 'drift-ok' : absDr <= 8 ? 'drift-warn' : 'drift-high';
+    const color = colors[layer] || 'var(--brand-purple)';
+    return `<div class="alloc-row">
+      <div class="alloc-header">
+        <span class="alloc-label">${layer}</span>
+        <div class="alloc-pcts">
+          <span>בפועל: <b style="color:${color}">${act}%</b></span>
+          <span>יעד: <b style="color:var(--muted2)">${tgt}%</b></span>
+          <span class="drift-pill ${drCls}">Drift: ${dr > 0 ? '+' : ''}${dr}%</span>
+        </div>
+      </div>
+      <div class="alloc-track" style="height:12px;background:rgba(255,255,255,.06);border-radius:6px;position:relative">
+        <div style="width:${Math.min(act,100)}%;height:100%;background:${color};border-radius:6px;opacity:.8"></div>
+        <div class="alloc-target-marker" style="right:${Math.min(tgt,100)}%;position:absolute;top:-3px;width:2px;height:18px;background:var(--muted2);border-radius:1px;opacity:.6"></div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function renderThesis(d) {
+  const th = d.thesis_adherence || {};
+  const score = th.score_0_100 || 0;
+  const color = score >= 70 ? 'var(--sig-good)' : score >= 40 ? 'var(--sig-warn)' : 'var(--sig-bad)';
+
+  document.getElementById('thesis-ring').innerHTML =
+    `<div class="score-ring-wrap">
+      <div class="score-ring">
+        ${svgCircle(score, color, 90, 9)}
+        <div class="sr-val">${score}</div>
+      </div>
+      <div class="score-info">
+        <div class="si-title">Thesis Adherence Score</div>
+        <div class="si-counts">
+          <div class="si-count"><span class="c-green">${th.intact||0}</span><label>Intact</label></div>
+          <div class="si-count"><span class="c-yellow">${th.drift||0}</span><label>Drift</label></div>
+          <div class="si-count"><span class="c-red">${th.broken||0}</span><label>Broken</label></div>
+        </div>
+      </div>
+    </div>`;
+
+  const details = d.thesis_detail || [];
+  document.getElementById('thesis-tbody').innerHTML = details.map(r =>
+    `<tr>
+      <td class="tk-cell">${r.ticker}</td>
+      <td style="color:var(--muted2);font-size:12px;max-width:260px">${(r.original_thesis||'N/A').slice(0,120)}</td>
+      <td><span class="st-pill status-${r.status}">${r.ic_verdict||''}</span></td>
+      <td><span class="st-pill status-${r.status}">${r.status}</span></td>
+      <td class="${colorClass(r.chg_month_pct)}">${fmtPct(r.chg_month_pct)}</td>
+    </tr>`
+  ).join('');
+}
+
+function renderDecisions(d) {
+  const decs = d.decisions_this_month || [];
+  const el   = document.getElementById('decisions-list');
+  if (!decs.length) {
+    el.innerHTML = '<div class="empty">אין החלטות החודש</div>';
+  } else {
+    el.innerHTML = decs.map(dec =>
+      `<div class="dec-card">
+        <div class="dec-header">
+          <span class="dec-ticker">${dec.ticker || ''}</span>
+          <span class="dec-type">${dec.decision || ''}</span>
+          <span class="dec-date">${dec.date || ''}</span>
+        </div>
+        <div class="dec-body">${dec.why || ''}</div>
+        ${dec.kill_switch ? `<div class="dec-kill">Kill Switch: ${dec.kill_switch}</div>` : ''}
+      </div>`
+    ).join('');
+  }
+
+  const fresh = d.analysis_freshness || [];
+  document.getElementById('fresh-grid').innerHTML = fresh.map(f =>
+    `<div class="fresh-chip ${f.status}">
+      <div class="fresh-dot"></div>
+      ${f.ticker} — ${f.days_since < 999 ? `${f.days_since}d` : 'N/A'}
+    </div>`
+  ).join('');
+}
+
+function renderRadar(d) {
+  const sp = d.scanner_performance || {};
+  const hr = sp.hit_rate_pct || 0;
+  const color = hr >= 60 ? 'var(--sig-good)' : hr >= 40 ? 'var(--sig-warn)' : 'var(--sig-bad)';
+
+  document.getElementById('hit-gauge-block').innerHTML =
+    `<div class="hit-gauge-wrap">
+      <div class="hit-gauge">
+        ${svgCircle(hr, color, 110, 11)}
+        <div class="hg-val">
+          <span class="hg-pct" style="color:${color}">${hr}%</span>
+          <span class="hg-lbl">Hit Rate</span>
+        </div>
+      </div>
+      <div class="hit-stats">
+        <div class="hs-item"><div class="hs-val">${sp.total_calls||0}</div><div class="hs-lbl">המלצות</div></div>
+        <div class="hs-item"><div class="hs-val c-green">${fmtPct(sp.avg_return_pct)}</div><div class="hs-lbl">תשואה ממוצעת</div></div>
+        <div class="hs-item"><div class="hs-val c-green">${sp.best_ticker||'—'} ${sp.best_return_pct!=null?fmtPct(sp.best_return_pct):''}</div><div class="hs-lbl">הטובה ביותר</div></div>
+        <div class="hs-item"><div class="hs-val c-red">${sp.worst_ticker||'—'} ${sp.worst_return_pct!=null?fmtPct(sp.worst_return_pct):''}</div><div class="hs-lbl">הגרועה ביותר</div></div>
+      </div>
+    </div>`;
+
+  const byConv = sp.by_conviction || {};
+  const convKeys = ['1','2','3','4','5'];
+  document.getElementById('conv-grid').innerHTML = convKeys.map(k => {
+    const pct = byConv[k];
+    const color2 = pct == null ? 'var(--muted2)' : pct >= 60 ? 'var(--sig-good)' : pct >= 40 ? 'var(--sig-warn)' : 'var(--sig-bad)';
+    return `<div class="conv-cell">
+      <div class="cv-num" style="color:${color2}">${pct != null ? pct + '%' : '—'}</div>
+      <div class="cv-lbl">Conv ${k}</div>
+    </div>`;
+  }).join('');
+
+  const recs = d.scanner_recommendations_review || [];
+  document.getElementById('radar-tbody').innerHTML = recs.map(r =>
+    `<tr>
+      <td class="tk-cell">${r.ticker}</td>
+      <td style="color:var(--muted2);font-size:12px">${r.recommended_date||''}</td>
+      <td style="text-align:center">${r.conviction||''}</td>
+      <td>$${fmt(r.entry_price)}</td>
+      <td>$${fmt(r.current_price)}</td>
+      <td class="${colorClass(r.actual_return_pct)}">${fmtPct(r.actual_return_pct)}</td>
+      <td><span class="outcome-pill outcome-${r.outcome}">${r.outcome||'?'}</span></td>
+      <td style="color:var(--muted2);font-size:11.5px;max-width:200px">${(r.catalyst||'').slice(0,80)}</td>
+    </tr>`
+  ).join('') || '<tr><td colspan="8" style="text-align:center;color:var(--muted2);padding:24px">אין נתוני ראדר עדיין — יוצרו בסוף החודש הראשון</td></tr>';
+}
+
+function renderChecklist(d) {
+  const checks = d.close_checklist || [];
+  const dayLabels = {
+    complete: {cls:'day-complete', icon:'check-done', symbol:'✓'},
+    partial:  {cls:'day-partial',  icon:'check-done', symbol:'~'},
+    blocked:  {cls:'day-blocked',  icon:'check-open', symbol:'!'},
+    pending:  {cls:'day-pending',  icon:'check-open', symbol:''},
+  };
+  document.getElementById('close-checklist').innerHTML = checks.map(c => {
+    const state = dayLabels[c.status] || dayLabels.pending;
+    return `<div class="close-day">
+      <div class="close-day-header">
+        <div class="day-badge ${state.cls}">${c.day}</div>
+        <div>
+          <div class="close-day-title">${c.task}</div>
+          ${c.note ? `<div class="close-day-note">${c.note}</div>` : ''}
+        </div>
+        <div style="margin-right:auto">
+          <span class="st-pill ${c.status==='complete'?'status-intact':c.status==='blocked'?'status-broken':'status-drift'}">
+            ${c.status}
+          </span>
+        </div>
+      </div>
+    </div>`;
+  }).join('') || '<div class="empty">אין checklist — הרץ monthly_close.py</div>';
+}
+
+// ── Attribution ──────────────────────────────────────────────────────────────
+
+function renderAttribution(d) {
+  const v = d.variance || {};
+
+  // ── Waterfall: holding contribution ──
+  const holdings = v.holding_attribution || [];
+  const totalPP  = holdings.reduce((s, h) => s + (h.contribution_pp || 0), 0);
+  const maxAbs   = Math.max(...holdings.map(h => Math.abs(h.contribution_pp || 0)), 0.01);
+
+  const wfEl = document.getElementById('wf-holdings');
+  if (!holdings.length) {
+    wfEl.innerHTML = '<div class="empty">אין נתונים — הרץ monthly_close.py</div>';
+  } else {
+    const layerColors = {Growth:'var(--blue)',Stability:'var(--sig-good)',Speculation:'var(--sig-bad)'};
+    wfEl.innerHTML = holdings.map(h => {
+      const pp    = h.contribution_pp || 0;
+      const pct   = Math.min(Math.abs(pp) / maxAbs * 100, 100);
+      const isPos = pp >= 0;
+      const lc    = h.layer || '';
+      return `<div class="wf-row">
+        <div class="wf-ticker">${h.ticker}</div>
+        <div class="wf-layer" style="color:${layerColors[lc]||'var(--muted2)'}">${lc}</div>
+        <div class="wf-bar-wrap">
+          <div class="wf-bar ${isPos?'wf-bar-pos':'wf-bar-neg'}" style="width:${pct}%"></div>
+        </div>
+        <div class="wf-val ${isPos?'c-green':'c-red'}">${pp>0?'+':''}${pp.toFixed(2)}pp</div>
+        <div style="font-size:11px;color:var(--muted2);width:40px;text-align:left">${h.weight_pct}%</div>
+      </div>`;
+    }).join('') +
+    `<div class="wf-total-row">
+      <div class="wf-ticker">סה"כ</div>
+      <div class="wf-layer"></div>
+      <div style="flex:1"></div>
+      <div class="wf-val ${totalPP>=0?'c-green':'c-red'}" style="font-size:14px;font-weight:800">
+        ${totalPP>0?'+':''}${totalPP.toFixed(2)}pp
+      </div>
+      <div style="width:40px"></div>
+    </div>`;
+  }
+
+  // ── Layer attribution ──
+  const layers = v.layer_attribution || {};
+  const lyEl   = document.getElementById('wf-layers');
+  const layerKeys = Object.keys(layers);
+  if (!layerKeys.length) {
+    lyEl.innerHTML = '<div class="empty">אין נתונים</div>';
+  } else {
+    const maxL = Math.max(...layerKeys.map(k => Math.abs(layers[k].contribution_pp||0)), 0.01);
+    lyEl.innerHTML = layerKeys.map(lk => {
+      const la   = layers[lk];
+      const pp   = la.contribution_pp || 0;
+      const pct  = Math.min(Math.abs(pp) / maxL * 100, 100);
+      const isP  = pp >= 0;
+      const lc2  = {Growth:'var(--blue)',Stability:'var(--sig-good)',Speculation:'var(--sig-bad)'}[lk]||'var(--muted2)';
+      return `<div class="wf-row">
+        <div class="wf-ticker" style="color:${lc2}">${lk}</div>
+        <div class="wf-layer">${(la.tickers||[]).join(', ').slice(0,40)}</div>
+        <div class="wf-bar-wrap">
+          <div class="wf-bar ${isP?'wf-bar-pos':'wf-bar-neg'}" style="width:${pct}%"></div>
+        </div>
+        <div class="wf-val ${isP?'c-green':'c-red'}">${pp>0?'+':''}${pp.toFixed(2)}pp</div>
+        <div style="font-size:11px;color:var(--muted2);width:40px;text-align:left">${la.weight_pct||0}%</div>
+      </div>`;
+    }).join('');
+  }
+
+  // ── Allocation variance decomposition ──
+  const av  = v.allocation_variance || {};
+  const avEl= document.getElementById('drift-decomp');
+  const avKeys = Object.keys(av);
+  if (!avKeys.length) {
+    avEl.innerHTML = '<div class="empty">אין נתונים</div>';
+  } else {
+    avEl.innerHTML = avKeys.map(layer => {
+      const a  = av[layer];
+      const td = a.total_drift || 0;
+      const pe = a.price_effect || 0;
+      const ve = a.volume_effect || 0;
+      const absDr = Math.abs(td);
+      const drCls = absDr <= 3 ? 'drift-ok' : absDr <= 8 ? 'drift-warn' : 'drift-high';
+      return `<div class="drift-decomp-row">
+        <div class="drift-decomp-header">
+          <span class="drift-decomp-layer">${layer}</span>
+          <span class="drift-tag dt-price">מחיר: ${pe>0?'+':''}${pe}%</span>
+          <span class="drift-tag dt-volume">קנייה/מכירה: ${ve>0?'+':''}${ve}%</span>
+          <span class="dt-total">Total drift: <b class="${drCls.replace('drift-','c-')==='c-ok'?'c-green':drCls==='drift-warn'?'c-yellow':'c-red'}">${td>0?'+':''}${td}%</b></span>
+        </div>
+        <div class="drift-detail">
+          יעד: <b>${a.target_pct}%</b> | עלות: <b>${a.cost_pct}%</b> | בפועל: <b>${a.actual_pct}%</b>
+        </div>
+      </div>`;
+    }).join('');
+  }
+
+  // ── Scanner variance delta ──
+  const sv  = v.scanner_variance || {};
+  const svEl= document.getElementById('scanner-delta');
+  if (!sv || sv.hit_rate_delta == null) {
+    svEl.innerHTML = '<div class="empty">אין חודש קודם להשוואה</div>';
+  } else {
+    const hd = sv.hit_rate_delta || 0;
+    const hdCls = hd > 0 ? 'delta-pos' : hd < 0 ? 'delta-neg' : 'delta-neu';
+    const convRows = Object.entries(sv.conviction_delta || {}).map(([k, dlt]) => {
+      const dcls = dlt > 0 ? 'delta-pos' : dlt < 0 ? 'delta-neg' : 'delta-neu';
+      return `<div class="sc-delta-row">
+        <div class="sc-lbl">Conviction ${k}</div>
+        <div class="sc-curr c-text">${(sv.hit_rate_current||0)}%</div>
+        <span class="sc-delta ${dcls}">${dlt>0?'+':''}${dlt}pp</span>
+      </div>`;
+    }).join('');
+    svEl.innerHTML = `
+      <div style="background:var(--glass);border:1px solid var(--glass-border);border-radius:14px;padding:16px 18px">
+        <div class="sc-delta-row">
+          <div class="sc-lbl" style="font-weight:800">Hit Rate כולל</div>
+          <div class="sc-curr" style="font-size:15px;font-weight:800">${sv.hit_rate_current||0}%</div>
+          <span class="sc-delta ${hdCls}">${hd>0?'+':''}${hd}pp</span>
+        </div>
+        <div class="sc-delta-row">
+          <div class="sc-lbl">תשואה ממוצעת</div>
+          <div class="sc-curr">${fmtPct(sv.avg_return_delta!=null?sv.avg_return_delta:null)}</div>
+          <span class="sc-delta delta-neu">delta</span>
+        </div>
+        ${convRows}
+      </div>`;
+  }
+
+  // ── Thesis variance delta ──
+  const tv  = v.thesis_variance || {};
+  const tvEl= document.getElementById('thesis-delta');
+  if (!tv || tv.score_delta == null) {
+    tvEl.innerHTML = '<div class="empty">אין חודש קודם להשוואה</div>';
+  } else {
+    const sd = tv.score_delta || 0;
+    const sdCls = sd > 0 ? 'delta-pos' : sd < 0 ? 'delta-neg' : 'delta-neu';
+    tvEl.innerHTML = `
+      <div style="background:var(--glass);border:1px solid var(--glass-border);border-radius:14px;padding:16px 18px">
+        <div class="sc-delta-row">
+          <div class="sc-lbl" style="font-weight:800">Thesis Score</div>
+          <div class="sc-curr" style="font-size:15px;font-weight:800">${tv.score_current||0}</div>
+          <span class="sc-delta ${sdCls}">${sd>0?'+':''}${sd}</span>
+        </div>
+        <div class="sc-delta-row">
+          <div class="sc-lbl">Intact</div>
+          <div class="sc-curr">${tv.score_current||0}</div>
+          <span class="sc-delta ${(tv.intact_delta||0)>0?'delta-pos':(tv.intact_delta||0)<0?'delta-neg':'delta-neu'}">${(tv.intact_delta||0)>0?'+':''}${tv.intact_delta||0}</span>
+        </div>
+        <div class="sc-delta-row">
+          <div class="sc-lbl">Drift</div>
+          <div class="sc-curr"></div>
+          <span class="sc-delta ${(tv.drift_delta||0)<0?'delta-pos':(tv.drift_delta||0)>0?'delta-neg':'delta-neu'}">${(tv.drift_delta||0)>0?'+':''}${tv.drift_delta||0}</span>
+        </div>
+        <div class="sc-delta-row">
+          <div class="sc-lbl">Broken</div>
+          <div class="sc-curr"></div>
+          <span class="sc-delta ${(tv.broken_delta||0)<0?'delta-pos':(tv.broken_delta||0)>0?'delta-neg':'delta-neu'}">${(tv.broken_delta||0)>0?'+':''}${tv.broken_delta||0}</span>
+        </div>
+      </div>`;
+  }
+}
+
+// ── Main ─────────────────────────────────────────────────────────────────────
+
+(async () => {
+  const period = getPeriodParam();
+  const d = await loadData(period);
+  if (!d) {
+    document.querySelector('.wrap').innerHTML =
+      '<div class="empty" style="margin-top:40px">אין נתונים. הרץ:<br><code>python scripts/monthly_close.py</code></div>';
+    return;
+  }
+  renderHeader(d);
+  renderKPI(d);
+  renderTrend(d);
+  renderAgenda(d);
+  renderHoldings(d);
+  renderAlloc(d);
+  renderThesis(d);
+  renderDecisions(d);
+  renderRadar(d);
+  renderAttribution(d);
+  renderChecklist(d);
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+{
+  "ticker": "RACE",
+  "agent": "devils",
+  "date": "2026-06-01",
+  "verdict": "REVIEW",
+  "score": 5,
+  "thesis": "Ferrari היא עסק 9/10 שנסחר ב-33x Forward P/E עם base case upside של 10% בלבד ו-R/R שלילי (0.38:1). ה-Luce controversy מסכנת את ה-brand moat שמצדיק את כל הפרמיה, בעוד סין יורדת מבנית, EV capex €4.29B מכניס FCF risk, ו-EV = מחיר נוכחי — אין margin of safety.",
+  "key_risks": [
+    "Brand DNA dilution (Luce): מניה -8.4% על הכרזת מוצר; 5-seat sedan שנויה במחלוקת ע\"י ex-CEO; ספר הזמנות לסוף 2027 עדיין לא בוחן ביטולים; Q4 2026 הוא הפעם הראשונה שניתן למדוד נאמנות לקוחות",
+    "Valuation: R/R שלילי 0.38:1; EV = מחיר נוכחי; PEG 6.0x; upside base +10% מול downside -26% לדובי, -47% לאסון; לא margin of safety",
+    "EV Capex €4.29B = 2.3x FCF שנתי; אם Luce נכשל זהו sunk cost; capex ramp 2027-2028 ידחוס FCF margin ב-11-16%",
+    "ירידת סין מבנית: -21% FY2024, -13% 9M-2025; common prosperity + anti-Western; אין יכולת הסטת נפח; כיוון לאפס"
+  ],
+  "position_size_pct": 8,
+  "valuation_summary": "fair value $378 base (+10%), bear $255 (-26%), disaster $184 (-47%); EV=$345 = מחיר נוכחי; no margin of safety",
+  "entry_exit_plan": "כניסה רק לאחר Q2 2026 earnings אם Luce order interest מאושר חיובי + EBIT margin recovery; entry zone $310-320; stop $275; TP1 $390, TP2 $460; גודל מקסימלי 8% = ~$159",
+  "handoff_summary": "Ferrari N.V. (RACE) היא עסק חריג (9/10) עם FCF CAGR 19%, מרווח EBITDA 39%, ספר הזמנות לסוף 2027, ו-buyback €3.5B. ה-Devil's Advocate מזהה שלושה אתגרים מרכזיים שהאנליסט הקטין: (1) ה-Luce אינה 'סיכון נקודתי' — היא בחינה קיומית ל-brand moat שמצדיק 30-34x P/E; מניה -8.4% על הכרזת מוצר + ביקורת Montezemolo = שוק מגיב ל-moat threat, לא לסיכון מאקרו. (2) ה-R/R בנוי לרעה: base case +10%, downside -26% ל-47%; EV = מחיר נוכחי; PEG 6.0x; אין margin of safety. (3) EV capex €4.29B = 2.3x FCF שנתי — ב-Luce failure זה sunk cost עם FCF erosion 11-16%. ציון סיכון 5/10 = עד 8% מהתיק. כניסה מומלצת רק לאחר Q2 2026 earnings (אוגוסט 2026) כשיש בהירות על Luce order intake. Kill switch: Luce <100 deliveries ב-Q4 2026 → מכירה מיידית. EBIT margin <27% לשני רבעונים → הפחתה ל-50%. CEO להחליט על גודל פוזיציה בהתחשב בשכבת Growth כבר ב-49.3% + correlation risk של premium-multiple overweight בתיק."
+}

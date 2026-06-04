@@ -1,0 +1,399 @@
+# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working in this repository.
+
+Global rules:
+`~/CLAUDE.md`
+
+Living memory:
+`~/CLAUDE MEMORY/Projects/portfolio/`
+
+Purpose:
+
+- architecture decisions
+- recurring bugs
+- resolved incidents
+- compatibility notes
+- important workflow decisions
+
+Do not store temporary debugging noise.
+
+# Mission
+
+Local personal investment portfolio dashboard.
+
+Purpose:
+
+- Maintain a local portfolio management system
+- Preserve multi-agent investment workflow
+- Avoid breaking compatibility between agents
+- Prefer correctness over speed or cleverness
+
+Primary goal:
+
+**Do not break working systems.**
+
+---
+
+# Critical Rules (Non-Negotiable)
+
+## Source of Truth
+
+`portfolio.json` is the single source of truth (SSOT).
+
+Never invent portfolio state.
+
+Always validate against JSON/API.
+
+---
+
+## Correct Startup
+
+Use ONLY:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File portfolio\serve.ps1
+```
+
+Never use:
+
+- `app.py`
+- `start.bat`
+
+These are deprecated.
+
+---
+
+## Multi-Agent Safety
+
+Agent chain:
+
+```text
+Unified_Analyst
+→ DevilsAdvocate
+→ CEO_Agent
+→ Executor
+→ InvestmentCommittee
+                   ↑
+          TradeRecorder (post-buy)
+```
+
+Critical rule:
+
+**Output of one agent becomes input of the next.**
+
+Never change handoff schemas unilaterally.
+
+If changing:
+
+- output structure
+- field names
+- markdown format
+- expected sections
+
+You MUST verify downstream compatibility.
+
+Preserve chain integrity.
+
+Read:
+
+`docs/AGENT_CHAIN.md`
+
+---
+
+# Repository Architecture
+
+High-level structure:
+
+```text
+serve.ps1                 → backend server + REST API + Yahoo proxy
+portfolio.json            → SSOT
+decision_log.json         → investment decisions log
+portfolio.html            → main dashboard UI
+
+templates/                → reusable reports
+analyses/<TICKER>/        → ticker-specific analysis data
+מערכת תיק ההשקעות/       → master prompts for agents
+docs/                     → detailed documentation
+```
+
+Preferred reporting pattern:
+
+```text
+templates/<agent>.html?ticker=<TICKER>
+```
+
+Avoid legacy standalone report files.
+
+Do not create new legacy reports.
+
+---
+
+# Decision-Making Rules
+
+## Safe Change Protocol
+
+Default workflow:
+
+1. Investigate relevant files only
+2. Explain current behavior
+3. Propose smallest safe change
+4. Assess compatibility risk
+5. Wait for approval
+6. Implement minimal diff
+7. Verify behavior
+
+Never skip steps for non-trivial changes.
+
+## Execution Mode
+
+Default behavior:
+
+- Investigate first
+- Plan second
+- Implement third
+- Verify last
+
+Do not immediately implement large or architectural changes.
+
+Require approval before:
+
+- rewrites
+- structural refactors
+- multi-file architecture changes
+- agent schema changes
+
+Before making changes:
+
+1. Identify affected files
+2. Read only relevant documentation
+3. Verify assumptions against repository
+4. Prefer minimal diffs
+5. Preserve architecture
+6. Preserve backwards compatibility
+7. Avoid unnecessary rewrites
+
+Prefer surgical changes.
+
+Never rewrite working systems without strong justification.
+
+---
+
+# Confidence Rule
+
+If confidence is below 90%:
+
+Stop and ask.
+
+Never guess:
+
+- repository behavior
+- API behavior
+- data structures
+- agent expectations
+
+Verify first.
+
+## Verification Rule
+
+Never assume implementation details. Verify repository behavior before claiming specifics.
+
+---
+
+# Editing Rules
+
+## Anti-Refactor Rule
+
+Do not refactor for cleanliness alone.
+
+Do not rewrite working systems because code looks messy.
+
+Do not modernize architecture unless explicitly requested.
+
+Legacy code that works is preferred over elegant rewrites.
+
+Only modify code required for the task.
+
+Prefer minimal diffs.
+
+## Rollback Thinking
+
+Before editing, ask:
+
+"What can break?"
+
+Prefer reversible changes.
+
+Avoid touching multiple subsystems unless necessary.
+
+When server is running:
+
+Do NOT manually edit:
+
+```text
+portfolio.json
+```
+
+Use API instead.
+
+Reason:
+
+POST/DELETE reset cache automatically.
+
+Manual edits during runtime may produce stale data.
+
+---
+
+# Known Constraints
+
+## UI / Styling
+
+- Hebrew reports = RTL
+- No external libraries
+- Must work offline
+- Prefer CSS-native visualizations
+- Do not introduce Chart.js
+- Follow shared design tokens
+
+If modifying UI:
+
+Read:
+
+`docs/STYLE_GUIDE.md`
+
+---
+
+## Backend / API
+
+Backend implementation:
+
+```text
+serve.ps1
+```
+
+If editing backend or API usage:
+
+Read:
+
+`docs/API.md`
+
+---
+
+## JSON Structures
+
+If editing:
+
+- portfolio.json
+- decision_log.json
+- quick.json
+- serialization logic
+
+Read:
+
+`docs/JSON_SCHEMAS.md`
+
+before making changes.
+
+---
+
+# File Access Rules
+
+Do NOT scan repository broadly.
+
+Avoid:
+
+```text
+glob **/*.md
+```
+
+Do not scan home directory.
+
+Read documentation lazily.
+
+Only load files relevant to current task.
+
+Examples:
+
+UI task
+→ read STYLE_GUIDE only
+
+API task
+→ read API only
+
+Schema task
+→ read JSON_SCHEMAS only
+
+Agent task
+→ read AGENT_CHAIN only
+
+---
+
+# Investment Context
+
+Portfolio intentionally allows thematic concentration.
+
+AI concentration may be intentional strategy.
+
+Do not automatically treat concentration risk as a flaw.
+
+---
+
+# Path Safety
+
+Paths containing Hebrew characters should be wrapped in quotes in Bash/CLI.
+
+Example:
+
+```bash
+"portfolio/מערכת תיק ההשקעות/"
+```
+
+---
+
+# Priority Order
+
+## Context Rule
+
+Read only files relevant to the task. Avoid unnecessary repository exploration.
+
+## Edit Rule
+
+Prefer minimal diffs over rewrites. Change only what is necessary.
+
+## Communication Rule
+
+When proposing changes, include:
+
+1. What changes
+2. Why
+3. Risk level
+4. Affected files
+5. Compatibility risks
+6. Rollback path
+
+Be concise. Default to short answers (max ~5 bullets) unless detailed explanation is explicitly requested.
+
+Always optimize in this order:
+
+1. Correctness
+2. System stability
+3. Agent compatibility
+4. Minimal changes
+5. Maintainability
+6. Performance
+7. Token efficiency
+
+Correctness > cleverness.
+
+# Verification Before Completion
+
+Before marking task complete:
+
+- Verify server starts
+- Verify dashboard renders
+- Verify no console errors
+- Verify JSON integrity
+- Verify API compatibility
+- Verify agent chain compatibility
+
+Never claim success without validation.

@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>דוח שבועי — מנכ"ל</title>
+<link rel="stylesheet" href="_shared.css">
+<link rel="stylesheet" href="_redesign.css">
+<style>
+.wk-header{padding:28px 0 12px;border-bottom:1px solid var(--glass-border);margin-bottom:24px}
+.wk-header h1{font-size:22px;font-weight:800;color:var(--text);margin-bottom:4px}
+.wk-header .wk-date{font-size:13px;color:var(--muted2)}
+.wk-header .wk-verdict{font-size:14px;color:var(--text);margin-top:10px;padding:12px 16px;background:var(--glass);border:1px solid var(--glass-border);border-radius:12px;border-right:4px solid var(--brand-gold);line-height:1.6}
+
+.perf-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin-bottom:24px}
+.perf-cell{background:var(--glass);border:1px solid var(--glass-border);border-radius:12px;padding:14px 16px;text-align:center}
+.perf-cell .pv{font-size:22px;font-weight:800;color:var(--text)}
+.perf-cell .pv.pos{color:var(--sig-good)}
+.perf-cell .pv.neg{color:var(--sig-bad)}
+.perf-cell .pl{font-size:11px;color:var(--muted2);margin-top:4px;text-transform:uppercase;letter-spacing:.4px}
+.regime-badge{display:inline-flex;align-items:center;gap:7px;padding:5px 12px;border-radius:20px;font-size:12px;font-weight:700;letter-spacing:.3px}
+.regime-badge.risk-on{background:rgba(52,211,153,.12);color:var(--sig-good);border:1px solid rgba(52,211,153,.3)}
+.regime-badge.risk-off{background:rgba(239,68,68,.10);color:var(--sig-bad);border:1px solid rgba(239,68,68,.25)}
+.regime-badge.mixed{background:rgba(234,179,8,.10);color:var(--sig-warn);border:1px solid rgba(234,179,8,.25)}
+
+.section-title{font-size:13px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:var(--muted2);margin:20px 0 10px;display:flex;align-items:center;gap:8px}
+.section-title svg{width:15px;height:15px;opacity:.7}
+
+.holding-row{display:grid;grid-template-columns:64px 1fr 80px 80px;gap:0;border-bottom:1px solid var(--glass-border);padding:11px 0;align-items:center}
+.holding-row:first-child{border-top:1px solid var(--glass-border)}
+.holding-row .tk{font-size:13px;font-weight:800;color:var(--text)}
+.holding-row .co{font-size:11px;color:var(--muted2)}
+.holding-row .hn{font-size:12px;color:var(--muted2);line-height:1.5}
+.holding-row .chg{font-size:15px;font-weight:700;text-align:center}
+.holding-row .chg.pos{color:var(--sig-good)}
+.holding-row .chg.neg{color:var(--sig-bad)}
+.holding-row .chg.flat{color:var(--muted2)}
+.pill{display:inline-block;padding:3px 9px;border-radius:10px;font-size:10.5px;font-weight:700;letter-spacing:.3px}
+.pill.intact{background:rgba(52,211,153,.12);color:var(--sig-good);border:1px solid rgba(52,211,153,.25)}
+.pill.review{background:rgba(234,179,8,.10);color:var(--sig-warn);border:1px solid rgba(234,179,8,.25)}
+.pill.watch{background:rgba(239,68,68,.08);color:var(--sig-bad);border:1px solid rgba(239,68,68,.2)}
+
+.macro-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-bottom:16px}
+.macro-cell{background:var(--glass);border:1px solid var(--glass-border);border-radius:11px;padding:12px 14px}
+.macro-cell .mv{font-size:17px;font-weight:700;color:var(--text);margin-bottom:3px}
+.macro-cell .ml{font-size:11px;color:var(--muted2);text-transform:uppercase;letter-spacing:.3px}
+.macro-note{padding:12px 16px;background:var(--glass);border:1px solid var(--glass-border);border-radius:11px;font-size:13px;color:var(--muted2);line-height:1.65}
+
+.risk-row{background:var(--glass);border:1px solid var(--glass-border);border-radius:12px;padding:13px 16px;margin-bottom:9px;display:grid;grid-template-columns:1fr 90px 90px;gap:12px;align-items:start}
+.risk-row .rk-name{font-size:13.5px;font-weight:700;color:var(--text);margin-bottom:4px}
+.risk-row .rk-mit{font-size:12px;color:var(--muted2);line-height:1.5}
+.prob-cell,.imp-cell{text-align:center}
+.prob-cell .cv,.imp-cell .cv{font-size:11px;text-transform:uppercase;letter-spacing:.3px;font-weight:700;padding:3px 8px;border-radius:8px}
+.cv.high{background:rgba(239,68,68,.1);color:var(--sig-bad)}
+.cv.medium{background:rgba(234,179,8,.1);color:var(--sig-warn)}
+.cv.low{background:rgba(52,211,153,.1);color:var(--sig-good)}
+.cv-label{font-size:10px;color:var(--muted2);margin-top:3px;text-transform:uppercase;letter-spacing:.3px}
+
+.opp-card{background:var(--glass);border:1px solid var(--glass-border);border-radius:13px;padding:14px 18px;margin-bottom:10px;border-right:4px solid var(--brand-gold)}
+.opp-card h4{font-size:14px;font-weight:800;color:var(--text);margin-bottom:6px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.opp-card .conv{font-size:11px;background:rgba(139,92,246,.15);color:#a78bfa;border:1px solid rgba(139,92,246,.3);padding:2px 8px;border-radius:8px;font-weight:700}
+.opp-card p{font-size:13px;color:var(--muted2);line-height:1.65}
+.opp-card p b{color:var(--text)}
+
+.scenario-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:11px;margin-top:4px}
+.sc-card{border-radius:13px;padding:16px 18px;border:1px solid var(--glass-border);position:relative;overflow:hidden}
+.sc-card.bull{background:linear-gradient(135deg,rgba(52,211,153,.08),rgba(16,185,129,.04))}
+.sc-card.base{background:var(--glass)}
+.sc-card.bear{background:linear-gradient(135deg,rgba(239,68,68,.07),rgba(220,38,38,.03))}
+.sc-card::before{content:'';position:absolute;top:0;right:0;width:4px;height:100%}
+.sc-card.bull::before{background:var(--grad-good)}
+.sc-card.base::before{background:var(--brand-gold)}
+.sc-card.bear::before{background:var(--grad-bad)}
+.sc-card h5{font-size:12.5px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}
+.sc-card.bull h5{color:var(--sig-good)}
+.sc-card.base h5{color:var(--brand-gold)}
+.sc-card.bear h5{color:var(--sig-bad)}
+.sc-card .prob{font-size:24px;font-weight:800;color:var(--text);margin-bottom:4px}
+.sc-card .trigger{font-size:12px;color:var(--muted2);line-height:1.5}
+.sc-card .outcome{font-size:12.5px;color:var(--text);margin-top:8px;padding-top:8px;border-top:1px solid var(--glass-border);line-height:1.5}
+
+.action-list{list-style:none;padding:0;margin:0}
+.action-list li{padding:10px 14px 10px 0;border-bottom:1px solid var(--glass-border);font-size:13.5px;color:var(--muted2);display:flex;gap:10px;align-items:flex-start;line-height:1.55}
+.action-list li::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--brand-gold);flex-shrink:0;margin-top:5px}
+.action-list li b{color:var(--text)}
+
+@media(max-width:768px){
+  .holding-row{grid-template-columns:60px 1fr 70px;}.holding-row .chg{display:none}
+  .risk-row{grid-template-columns:1fr}
+  .scenario-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div id="root" class="error-box">טוען דוח שבועי…</div>
+
+<script>
+'use strict';
+
+/* --- SVG icons (Lucide, inline) --- */
+const IC = {
+  trending: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>',
+  portfolio:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>',
+  globe:    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>',
+  shield:   '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>',
+  radar:    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19.07 4.93A10 10 0 0 0 6.99 3.34"/><path d="M4 6h.01"/><path d="M2.29 9.62A10 10 0 1 0 21.31 8.35"/><path d="M16.24 7.76A6 6 0 1 0 8.23 16.67"/><path d="M12 18h.01"/><path d="M17.99 11.66A6 6 0 0 1 15.77 16.67"/><path d="m13 12-1 1"/><path d="M13.34 6.37A6 6 0 0 1 16.91 9"/></svg>',
+  calendar: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>',
+  check:    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>'
+};
+
+function pct(v){
+  if(v==null) return '—';
+  const n=parseFloat(v);
+  if(isNaN(n)) return '—';
+  const cls = n>0?'pos':n<0?'neg':'flat';
+  const sign = n>0?'+':'';
+  return `<span class="chg ${cls}">${sign}${n.toFixed(2)}%</span>`;
+}
+function pctPlain(v){
+  if(v==null) return '—';
+  const n=parseFloat(v);
+  if(isNaN(n)) return '—';
+  const cls = n>0?'pos':n<0?'neg':'flat';
+  const sign = n>0?'+':'';
+  return `<span class="${cls}">${sign}${n.toFixed(2)}%</span>`;
+}
+function pillStatus(s){
+  if(!s) return '';
+  const cls = (s||'').toLowerCase();
+  return `<span class="pill ${cls}">${s}</span>`;
+}
+function cvBadge(v){
+  if(!v) return '';
+  return `<span class="cv ${(v||'').toLowerCase()}">${v}</span>`;
+}
+function regimeBadge(r){
+  if(!r) return '';
+  const key = r.toLowerCase().replace(/[- ]/g,'_').replace('risk_on','risk-on').replace('risk_off','risk-off');
+  const map = {'risk-on':'עלייה','risk-off':'סיכון','mixed':'מעורב'};
+  return `<span class="regime-badge ${key}">${map[key]||r}</span>`;
+}
+
+function render(){
+  const d = window.WEEKLY_DATA;
+  if(!d){document.getElementById('root').innerHTML='<b>שגיאה:</b> קובץ נתונים לא נטען.';return;}
+  const root = document.getElementById('root');
+  root.className = 'page-wrap';
+
+  const perf = d.portfolio_performance||{};
+  const macro = d.macro_snapshot||{};
+  const holdings = d.holdings_weekly||[];
+  const risks = d.risk_matrix||[];
+  const opps = d.opportunities||[];
+  const scen = d.scenarios_next_week||{};
+  const actions = d.action_items||[];
+
+  /* --- Header --- */
+  let html = `<div class="wk-header">
+    <div class="wk-date">${d.generated||''} &nbsp;·&nbsp; ${d.week_label||'דוח שבועי'}</div>
+    <h1>דוח מנכ"ל שבועי</h1>
+    ${d.ceo_verdict?`<div class="wk-verdict">${d.ceo_verdict}</div>`:''}
+  </div>`;
+
+  /* --- ביצועי שבוע --- */
+  html += `<div class="section-title">${IC.trending} ביצועי שבוע</div>
+  <div class="perf-row">
+    <div class="perf-cell"><div class="pv">${pctPlain(perf.week_pct)}</div><div class="pl">שינוי שבועי</div></div>
+    <div class="perf-cell"><div class="pv">${pctPlain(perf.ytd_pct)}</div><div class="pl">YTD</div></div>
+    <div class="perf-cell"><div class="pv">${pctPlain(perf.vs_spy_week)}</div><div class="pl">vs S&P 500</div></div>
+    <div class="perf-cell"><div class="pv">${regimeBadge(perf.regime)}</div><div class="pl">רג'ים שוק</div></div>
+  </div>`;
+
+  /* --- אחזקות --- */
+  if(holdings.length){
+    html += `<div class="section-title">${IC.portfolio} סטטוס אחזקות</div>`;
+    holdings.forEach(h=>{
+      const chgClass = (h.price_change_pct||0)>0?'pos':(h.price_change_pct||0)<0?'neg':'flat';
+      const sign = (h.price_change_pct||0)>0?'+':'';
+      html += `<div class="holding-row">
+        <div><div class="tk">${h.ticker||''}</div><div class="co">${h.company||''}</div></div>
+        <div><div class="hn">${h.key_news||h.headline||''}</div>${pillStatus(h.status)}</div>
+        <div class="chg ${chgClass}">${h.price_change_pct!=null?sign+parseFloat(h.price_change_pct).toFixed(2)+'%':'—'}</div>
+        <div style="text-align:center">${pillStatus(h.thesis_check)}</div>
+      </div>`;
+    });
+  }
+
+  /* --- מקרו --- */
+  html += `<div class="section-title">${IC.globe} סנאפשוט מקרו</div>
+  <div class="macro-grid">
+    <div class="macro-cell"><div class="mv">${macro.vix!=null?parseFloat(macro.vix).toFixed(1):'—'}</div><div class="ml">VIX</div></div>
+    <div class="macro-cell"><div class="mv">${pctPlain(macro.spy_week_pct)}</div><div class="ml">SPY שבוע</div></div>
+    <div class="macro-cell"><div class="mv">${pctPlain(macro.qqq_week_pct)}</div><div class="ml">QQQ שבוע</div></div>
+    <div class="macro-cell"><div class="mv">${macro.dxy_trend||'—'}</div><div class="ml">DXY מגמה</div></div>
+    <div class="macro-cell"><div class="mv">${macro.rate_outlook||'—'}</div><div class="ml">ריבית</div></div>
+  </div>
+  ${macro.regime_note?`<div class="macro-note">${macro.regime_note}</div>`:''}`;
+
+  /* --- מטריצת סיכונים --- */
+  if(risks.length){
+    html += `<div class="section-title">${IC.shield} מטריצת סיכונים</div>`;
+    risks.forEach(r=>{
+      html += `<div class="risk-row">
+        <div><div class="rk-name">${r.risk||''}</div><div class="rk-mit">${r.mitigation||''}</div></div>
+        <div class="prob-cell">${cvBadge(r.probability)}<div class="cv-label">הסתברות</div></div>
+        <div class="imp-cell">${cvBadge(r.impact)}<div class="cv-label">השפעה</div></div>
+      </div>`;
+    });
+  }
+
+  /* --- הזדמנויות --- */
+  if(opps.length){
+    html += `<div class="section-title">${IC.radar} הזדמנויות לשבוע הקרוב</div>`;
+    opps.forEach(o=>{
+      html += `<div class="opp-card">
+        <h4>${o.ticker||''} <span class="conv">conviction ${o.conviction||'?'}/5</span> <small style="color:var(--muted2);font-size:11px;font-weight:400">${o.timeframe||''}</small></h4>
+        <p><b>קטליסט:</b> ${o.catalyst||''}</p>
+        ${o.why_not_others?`<p><b>למה דווקא זו:</b> ${o.why_not_others}</p>`:''}
+      </div>`;
+    });
+  }
+
+  /* --- תרחישים --- */
+  if(scen.bull||scen.base||scen.bear){
+    html += `<div class="section-title">${IC.calendar} תרחישים לשבוע הבא</div>
+    <div class="scenario-grid">`;
+    ['bull','base','bear'].forEach(k=>{
+      const s = scen[k];
+      if(!s) return;
+      const labels = {bull:'שור',base:'בסיס',bear:'דוב'};
+      html += `<div class="sc-card ${k}">
+        <h5>${labels[k]}</h5>
+        <div class="prob">${s.probability_pct!=null?s.probability_pct+'%':'—'}</div>
+        <div class="trigger">${s.trigger||''}</div>
+        <div class="outcome">${s.outcome||''}</div>
+      </div>`;
+    });
+    html += `</div>`;
+  }
+
+  /* --- פעולות --- */
+  if(actions.length){
+    html += `<div class="section-title">${IC.check} פעולות נדרשות</div>
+    <ul class="action-list">${actions.map(a=>`<li>${a}</li>`).join('')}</ul>`;
+  }
+
+  root.innerHTML = html;
+}
+
+/* טעינת נתונים */
+const s = document.createElement('script');
+s.src = '../analyses/_weekly/ceo_weekly.js';
+s.onload = render;
+s.onerror = () => {
+  document.getElementById('root').innerHTML = '<b>אין דוח שבועי עדיין.</b><br>הדוח מתעדכן אוטומטית כל יום ראשון ב-5:00.';
+};
+document.head.appendChild(s);
+</script>
+</body>
+</html>
