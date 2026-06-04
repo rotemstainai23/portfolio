@@ -1,0 +1,284 @@
+{
+  "generated": "2026-06-04",
+  "generated_time": "20:35",
+  "market_date": "2026-06-04",
+  "has_alerts": false,
+  "alert_tickers": [],
+  "macro": {
+    "spy_chg_pct": null,
+    "qqq_chg_pct": null,
+    "vix": null
+  },
+  "holdings": [
+    {
+      "ticker": "NVDA",
+      "sector": "AI / Semiconductors",
+      "layer": "Growth",
+      "price": 219.2,
+      "chg_pct": 2.07,
+      "vol_ratio": 0.6,
+      "rsi": 36.4,
+      "w52_pos_pct": 82,
+      "analyst_target": null,
+      "analyst_upside_pct": null,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": [
+        "Apple's Siri Plans Could Depend on Outside AI Power",
+        "3 Stocks Poised to Make Billions from the Anthropic IPO",
+        "Could Buying VOO Today Set You Up for Life?"
+      ]
+    },
+    {
+      "ticker": "MSFT",
+      "sector": "Tech / Cloud / AI",
+      "layer": "Stability",
+      "price": 426.79,
+      "chg_pct": -0.13,
+      "vol_ratio": 0.4,
+      "rsi": 57.6,
+      "w52_pos_pct": 35,
+      "analyst_target": null,
+      "analyst_upside_pct": null,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": []
+    },
+    {
+      "ticker": "GOOG",
+      "sector": "Tech / Search / AI",
+      "layer": "Stability",
+      "price": 368.74,
+      "chg_pct": 3.67,
+      "vol_ratio": 0.8,
+      "rsi": 29.1,
+      "w52_pos_pct": 85,
+      "analyst_target": null,
+      "analyst_upside_pct": null,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": [
+        "3 Stocks Poised to Make Billions from the Anthropic IPO",
+        "Nvidia's biggest challenge may no longer be competition",
+        "Palantir Unveils Google Cloud Partnership At AIPCon"
+      ]
+    },
+    {
+      "ticker": "META",
+      "sector": "Social Media / AI",
+      "layer": "Growth",
+      "price": 629.82,
+      "chg_pct": 1.1,
+      "vol_ratio": 0.8,
+      "rsi": 54.8,
+      "w52_pos_pct": 40,
+      "analyst_target": null,
+      "analyst_upside_pct": null,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": []
+    },
+    {
+      "ticker": "AVGO",
+      "sector": "Semiconductors",
+      "layer": "Growth",
+      "price": 423.43,
+      "chg_pct": -11.64,
+      "vol_ratio": 2.5,
+      "rsi": 45.0,
+      "w52_pos_pct": 72,
+      "analyst_target": null,
+      "analyst_upside_pct": null,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": [
+        "The hardware-software 'divergence' has a chance to narrow",
+        "5-star analyst revamps Broadcom stock price target after earnings",
+        "Why Sandisk Stock Dropped Today"
+      ]
+    },
+    {
+      "ticker": "MU",
+      "sector": "Memory Chips",
+      "layer": "Growth",
+      "price": 1023.31,
+      "chg_pct": -5.21,
+      "vol_ratio": 0.7,
+      "rsi": 71.3,
+      "w52_pos_pct": 93,
+      "analyst_target": null,
+      "analyst_upside_pct": null,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": [
+        "3 Stocks Crushing Nvidia This Year",
+        "Stock Market Today, June 4: Broadcom Drags on Nasdaq at Midday",
+        "Why Micron Stock Crashed Today"
+      ]
+    },
+    {
+      "ticker": "IBIT",
+      "sector": "Crypto",
+      "layer": "Speculation",
+      "price": 35.71,
+      "chg_pct": -3.49,
+      "vol_ratio": 1.2,
+      "rsi": 5.1,
+      "w52_pos_pct": 1,
+      "analyst_target": null,
+      "analyst_upside_pct": null,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": [
+        "The market's risk trade is leaving bitcoin behind",
+        "Strategy Shoots Own Foot: Bitcoin Dive Will Cost It $26 Mil A Year",
+        "HYPE Token ETFs: What Hyperliquid Is and Whether THYP, BHYP, or HYPG Is Worth Buying"
+      ]
+    },
+    {
+      "ticker": "GLDM",
+      "sector": "Commodities / Gold",
+      "layer": "Stability",
+      "price": 88.61,
+      "chg_pct": 0.77,
+      "vol_ratio": 0.6,
+      "rsi": 35.3,
+      "w52_pos_pct": 53,
+      "analyst_target": null,
+      "analyst_upside_pct": null,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": []
+    },
+    {
+      "ticker": "VST",
+      "sector": "Energy / Nuclear",
+      "layer": "Growth",
+      "price": 152.65,
+      "chg_pct": -0.75,
+      "vol_ratio": 0.3,
+      "rsi": 59.7,
+      "w52_pos_pct": 23,
+      "analyst_target": null,
+      "analyst_upside_pct": null,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": []
+    },
+    {
+      "ticker": "APLD",
+      "sector": "AI Infrastructure",
+      "layer": "Speculation",
+      "price": 43.72,
+      "chg_pct": -2.22,
+      "vol_ratio": 0.4,
+      "rsi": 45.9,
+      "w52_pos_pct": 83,
+      "analyst_target": null,
+      "analyst_upside_pct": null,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": [
+        "IREN Stock Rises 60% in 3 Months: Time to Hold or Book Profits?",
+        "IMAX, Magnite, and Applied Digital Shares Are Falling, What You Need To Know",
+        "Why Is Everyone Suddenly Paying Attention to Applied Digital Stock? Here's Why You Should Care."
+      ]
+    },
+    {
+      "ticker": "OKLO",
+      "sector": "Nuclear Energy",
+      "layer": "Speculation",
+      "price": 65.84,
+      "chg_pct": 0.97,
+      "vol_ratio": 0.5,
+      "rsi": 48.4,
+      "w52_pos_pct": 14,
+      "analyst_target": null,
+      "analyst_upside_pct": null,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": []
+    }
+  ],
+  "watchlist_triggers": [],
+  "groq_insights": [],
+  "sector_summary": [
+    {
+      "sector": "AI / Semiconductors",
+      "avg_chg_pct": 2.07,
+      "tickers": [
+        "NVDA"
+      ]
+    },
+    {
+      "sector": "Tech / Cloud / AI",
+      "avg_chg_pct": -0.13,
+      "tickers": [
+        "MSFT"
+      ]
+    },
+    {
+      "sector": "Tech / Search / AI",
+      "avg_chg_pct": 3.67,
+      "tickers": [
+        "GOOG"
+      ]
+    },
+    {
+      "sector": "Social Media / AI",
+      "avg_chg_pct": 1.1,
+      "tickers": [
+        "META"
+      ]
+    },
+    {
+      "sector": "Semiconductors",
+      "avg_chg_pct": -11.64,
+      "tickers": [
+        "AVGO"
+      ]
+    },
+    {
+      "sector": "Memory Chips",
+      "avg_chg_pct": -5.21,
+      "tickers": [
+        "MU"
+      ]
+    },
+    {
+      "sector": "Crypto",
+      "avg_chg_pct": -3.49,
+      "tickers": [
+        "IBIT"
+      ]
+    },
+    {
+      "sector": "Commodities / Gold",
+      "avg_chg_pct": 0.77,
+      "tickers": [
+        "GLDM"
+      ]
+    },
+    {
+      "sector": "Energy / Nuclear",
+      "avg_chg_pct": -0.75,
+      "tickers": [
+        "VST"
+      ]
+    },
+    {
+      "sector": "AI Infrastructure",
+      "avg_chg_pct": -2.22,
+      "tickers": [
+        "APLD"
+      ]
+    },
+    {
+      "sector": "Nuclear Energy",
+      "avg_chg_pct": 0.97,
+      "tickers": [
+        "OKLO"
+      ]
+    }
+  ]
+}

@@ -589,6 +589,16 @@ def api_ceo_weekly_latest():
         return jsonify(json.load(f))
 
 
+@app.route('/api/daily/latest')
+def api_daily_latest():
+    """מחזיר את הדוח היומי האחרון."""
+    p = os.path.join(ROOT, 'analyses', '_daily', 'daily_latest.json')
+    if not os.path.exists(p):
+        return jsonify(None)
+    with open(p, encoding='utf-8') as f:
+        return jsonify(json.load(f))
+
+
 @app.route('/api/monthly-close/latest')
 def api_monthly_close_latest():
     """מחזיר את נתוני הסגירה החודשית האחרונה."""

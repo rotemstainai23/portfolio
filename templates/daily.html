@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>דוח יומי</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #080d1a;
+  --surface: #0e1528;
+  --surface2: rgba(14,21,40,.75);
+  --border: rgba(148,163,184,.07);
+  --border2: rgba(148,163,184,.13);
+  --glass: rgba(148,163,184,.055);
+  --glass-border: rgba(148,163,184,.09);
+  --text: #e2e8f5;
+  --muted: #64748b;
+  --muted2: #94a3b8;
+  --blue: #8b5cf6;
+  --green: #34d399;
+  --red: #fb7185;
+  --orange: #f59e0b;
+  --yellow: #fbbf24;
+  --grad-brand: linear-gradient(135deg,#8b5cf6,#60a5fa);
+  --shadow-sm: 0 2px 8px rgba(0,0,0,.35);
+  --shadow-md: 0 6px 24px rgba(0,0,0,.45),0 1px 4px rgba(0,0,0,.2);
+  --dur: .22s;
+  --ease: cubic-bezier(.4,0,.2,1);
+}
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: Heebo, sans-serif;
+  font-size: 14px;
+  min-height: 100vh;
+}
+
+/* Alert bar */
+.alert-bar {
+  position: sticky; top: 0; z-index: 50;
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 20px;
+  font-size: 13px; font-weight: 700;
+  border-bottom: 1px solid;
+}
+.alert-bar.danger {
+  background: rgba(251,113,133,.12);
+  border-color: rgba(251,113,133,.3);
+  color: var(--red);
+  box-shadow: 0 0 24px rgba(251,113,133,.1);
+}
+
+/* KPI strip */
+.kpi-strip {
+  display: flex; gap: 1px;
+  background: var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.kpi-cell {
+  flex: 1; padding: 14px 18px;
+  background: var(--surface);
+  text-align: center;
+}
+.kpi-cell .val { font-size: 20px; font-weight: 800; }
+.kpi-cell .lbl { font-size: 11px; color: var(--muted); margin-top: 3px; }
+.up  { color: var(--green); }
+.dn  { color: var(--red); }
+.flat{ color: var(--muted2); }
+
+/* Flow diagram */
+.flow-section { padding: 20px 20px 8px; }
+.sec-title {
+  font-size: 11px; color: var(--muted);
+  text-transform: uppercase; letter-spacing: .09em;
+  font-weight: 700; margin-bottom: 12px;
+}
+.flow-row {
+  display: flex; align-items: stretch; gap: 0;
+  overflow-x: auto; padding-bottom: 4px;
+}
+.flow-node {
+  background: var(--glass);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  border-radius: 14px;
+  padding: 12px 16px;
+  min-width: 130px; flex-shrink: 0;
+}
+.flow-node-title {
+  font-size: 10px; color: var(--muted);
+  font-weight: 700; text-transform: uppercase;
+  letter-spacing: .06em; margin-bottom: 6px;
+}
+.flow-node-val { font-size: 14px; font-weight: 800; }
+.flow-node-sub { font-size: 11px; color: var(--muted2); margin-top: 3px; }
+.flow-arrow {
+  display: flex; align-items: center;
+  padding: 0 8px; color: var(--muted);
+  font-size: 18px; flex-shrink: 0;
+}
+
+/* Holdings grid */
+.section-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 18px 20px 10px;
+}
+.daily-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(258px, 1fr));
+  gap: 12px; padding: 0 20px 20px;
+}
+.daily-card {
+  background: var(--glass);
+  backdrop-filter: blur(30px) saturate(180%);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px; padding: 16px;
+  position: relative; overflow: hidden;
+  transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+}
+.daily-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+.daily-card.alert-card {
+  border-color: rgba(251,113,133,.35);
+  box-shadow: 0 0 20px rgba(251,113,133,.07);
+}
+
+.card-header {
+  display: flex; align-items: flex-start;
+  justify-content: space-between; margin-bottom: 10px;
+}
+.card-ticker { font-size: 16px; font-weight: 800; }
+.card-sector { font-size: 10px; color: var(--muted2); margin-top: 2px; }
+.card-price { text-align: left; }
+.card-price .price { font-size: 15px; font-weight: 700; }
+.card-price .chg   { font-size: 13px; font-weight: 700; }
+
+/* Day change bar */
+.chg-bar-wrap {
+  height: 4px; background: rgba(255,255,255,.06);
+  border-radius: 4px; overflow: hidden; margin: 8px 0;
+}
+.chg-bar-fill {
+  height: 100%; border-radius: 4px; width: 0;
+  transition: width .9s cubic-bezier(.34,1.56,.64,1) .2s;
+}
+.chg-bar-fill.up   { background: linear-gradient(90deg,#34d399,#6ee7b7); }
+.chg-bar-fill.dn   { background: linear-gradient(90deg,#fb7185,#fca5a5); }
+.chg-bar-fill.flat { background: rgba(148,163,184,.3); }
+
+/* RSI ring */
+.metrics-row {
+  display: flex; align-items: center; gap: 12px; margin: 10px 0 6px;
+}
+.rsi-ring {
+  width: 46px; height: 46px; border-radius: 50%;
+  display: grid; place-items: center;
+  flex-shrink: 0; position: relative;
+}
+.rsi-ring::before {
+  content: ''; position: absolute; inset: 7px;
+  border-radius: 50%; background: var(--surface);
+}
+.rsi-num {
+  position: relative; font-size: 12px;
+  font-weight: 900; z-index: 1;
+}
+.rsi-lbl { font-size: 10px; color: var(--muted); text-align: center; margin-top: 3px; }
+
+/* 52w bar */
+.w52-row {
+  display: flex; align-items: center; gap: 8px;
+  margin: 6px 0; font-size: 10px; color: var(--muted);
+}
+.w52-track {
+  flex: 1; height: 3px;
+  background: rgba(255,255,255,.06); border-radius: 3px; overflow: hidden;
+}
+.w52-fill {
+  height: 100%; background: var(--grad-brand);
+  border-radius: 3px; width: 0;
+  transition: width .8s var(--ease) .4s;
+}
+
+/* Pills */
+.pills { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 8px; }
+.pill {
+  font-size: 10px; font-weight: 700;
+  padding: 2px 8px; border-radius: 20px; border: 1px solid;
+}
+.pill-vol      { color: var(--blue);   border-color: rgba(139,92,246,.3);  background: rgba(139,92,246,.08); }
+.pill-earn-hot { color: var(--orange); border-color: rgba(245,158,11,.3);  background: rgba(245,158,11,.08); }
+.pill-earn-mid { color: var(--yellow); border-color: rgba(251,191,36,.3);  background: rgba(251,191,36,.08); }
+.pill-earn     { color: var(--muted2); border-color: var(--border2);       background: transparent; }
+.pill-upside   { color: var(--green);  border-color: rgba(52,211,153,.3);  background: rgba(52,211,153,.08); }
+.pill-alert    { color: var(--red);    border-color: rgba(251,113,133,.35); background: rgba(251,113,133,.08); }
+.pill-layer    { color: var(--muted2); border-color: var(--border);        background: transparent; }
+
+/* Sector heatmap */
+.sector-row { display: flex; flex-wrap: wrap; gap: 8px; padding: 0 20px 20px; }
+.sector-pill {
+  border-radius: 20px; padding: 7px 14px;
+  font-size: 12px; font-weight: 700;
+  border: 1px solid transparent;
+  transition: transform .2s; cursor: default;
+}
+.sector-pill:hover { transform: scale(1.04); }
+
+/* Groq panel */
+.groq-panel {
+  margin: 0 20px 20px; padding: 18px 20px;
+  background: linear-gradient(135deg,rgba(139,92,246,.08),rgba(96,165,250,.04));
+  border: 1px solid rgba(139,92,246,.3);
+  border-top: 3px solid var(--blue);
+  border-radius: 16px;
+}
+.groq-header { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
+.groq-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--blue);
+  animation: gPulse 2s ease infinite;
+}
+@keyframes gPulse {
+  0%,100% { opacity:1; transform:scale(1); }
+  50%      { opacity:.5; transform:scale(1.35); }
+}
+.groq-title {
+  font-size: 13px; font-weight: 800;
+  background: var(--grad-brand);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.groq-bullet {
+  display: flex; gap: 10px; align-items: flex-start;
+  padding: 9px 0; border-bottom: 1px solid rgba(139,92,246,.1);
+  font-size: 13px; color: var(--muted2); line-height: 1.65;
+  opacity: 0; animation: insightReveal .5s var(--ease) forwards;
+}
+.groq-bullet:last-child { border-bottom: none; }
+.groq-bdot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--blue); flex-shrink: 0; margin-top: 7px;
+}
+@keyframes insightReveal {
+  from { opacity:0; transform:translateY(8px); }
+  to   { opacity:1; transform:none; }
+}
+
+/* Watchlist triggers */
+.triggers-list { padding: 0 20px 20px; }
+.trigger-item {
+  display: flex; align-items: center; gap: 12px;
+  padding: 10px 14px; border-radius: 12px;
+  background: var(--glass); border: 1px solid var(--glass-border);
+  border-right: 3px solid var(--orange);
+  margin-bottom: 8px; font-size: 13px;
+}
+.trigger-ticker { font-weight: 800; min-width: 56px; }
+.trigger-dist   { margin-right: auto; font-weight: 700; }
+
+/* Empty state */
+.empty-state {
+  display: flex; flex-direction: column; align-items: center;
+  justify-content: center; padding: 70px 20px;
+  color: var(--muted); text-align: center; gap: 12px;
+}
+.empty-state .icon { font-size: 40px; }
+.empty-state .msg  { font-size: 15px; font-weight: 700; color: var(--muted2); }
+.empty-state .sub  { font-size: 12px; }
+</style>
+</head>
+<body>
+<div id="root">
+  <div class="empty-state">
+    <div class="icon">⏳</div>
+    <div class="msg">טוען דוח יומי…</div>
+  </div>
+</div>
+
+<script>
+function pct(v, dec) {
+  dec = dec ?? 1;
+  if (v == null) return '—';
+  return (v > 0 ? '+' : '') + Number(v).toFixed(dec) + '%';
+}
+
+function rsiColor(v) {
+  if (v == null) return 'var(--muted)';
+  if (v <= 35)   return '#34d399';
+  if (v >= 65)   return '#fb7185';
+  return '#f59e0b';
+}
+
+function sectorBg(avg) {
+  if (avg == null) return 'rgba(148,163,184,.1)';
+  var a = Math.min(0.06 + Math.abs(avg) * 0.03, 0.25);
+  return avg > 0
+    ? 'rgba(52,211,153,' + a + ')'
+    : 'rgba(251,113,133,' + a + ')';
+}
+function sectorBorder(avg) {
+  if (avg == null) return 'var(--border2)';
+  var a = Math.min(0.2 + Math.abs(avg) * 0.04, 0.6);
+  return avg > 0
+    ? 'rgba(52,211,153,' + a + ')'
+    : 'rgba(251,113,133,' + a + ')';
+}
+
+function render() {
+  var D = window.DAILY_DATA;
+  if (!D) return;
+
+  var upCount = D.holdings.filter(function(h){ return (h.chg_pct||0) > 0; }).length;
+  var dnCount = D.holdings.filter(function(h){ return (h.chg_pct||0) < 0; }).length;
+  var avgChg  = D.holdings.reduce(function(s,h){ return s + (h.chg_pct||0); }, 0) / (D.holdings.length || 1);
+
+  /* sort sector summary by absolute avg */
+  var topSectors = D.sector_summary.slice().sort(function(a,b){ return Math.abs(b.avg_chg_pct) - Math.abs(a.avg_chg_pct); });
+  var topMover   = D.holdings.slice().sort(function(a,b){ return Math.abs(b.chg_pct||0) - Math.abs(a.chg_pct||0); })[0];
+  var actionText  = D.has_alerts ? D.alert_tickers.join(', ') + ' לבדיקה'
+                  : D.watchlist_triggers.length ? "טריגר ווצ'ליסט"
+                  : 'ללא פעולה';
+  var actionColor = D.has_alerts ? 'var(--red)'
+                  : D.watchlist_triggers.length ? 'var(--orange)'
+                  : 'var(--green)';
+
+  var h = '';
+
+  /* ── Alert bar ── */
+  if (D.has_alerts) {
+    h += '<div class="alert-bar danger">'
+      + '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>'
+      + 'נדרשת בדיקה: ' + D.alert_tickers.join(' · ')
+      + '</div>';
+  }
+
+  /* ── KPI strip ── */
+  var avgCls = avgChg > 0.05 ? 'up' : avgChg < -0.05 ? 'dn' : 'flat';
+  var cntCls = upCount > dnCount ? 'up' : upCount < dnCount ? 'dn' : 'flat';
+  h += '<div class="kpi-strip">'
+    + '<div class="kpi-cell"><div class="val">'  + D.generated      + '</div><div class="lbl">תאריך</div></div>'
+    + '<div class="kpi-cell"><div class="val ' + cntCls + '">' + upCount + ' / ' + dnCount + '</div><div class="lbl">עולות / יורדות</div></div>'
+    + '<div class="kpi-cell"><div class="val ' + avgCls + '">' + pct(avgChg) + '</div><div class="lbl">ממוצע שינוי</div></div>'
+    + '<div class="kpi-cell"><div class="val">'  + D.holdings.length + '</div><div class="lbl">אחזקות</div></div>'
+    + '</div>';
+
+  /* ── Flow diagram ── */
+  var macroVal  = D.macro && D.macro.spy_chg_pct != null ? pct(D.macro.spy_chg_pct) : 'אין נתון';
+  var macroCls  = D.macro && D.macro.spy_chg_pct != null ? (D.macro.spy_chg_pct >= 0 ? 'up' : 'dn') : 'flat';
+  var sec0      = topSectors[0];
+  var secTxt    = sec0 ? sec0.sector : '—';
+  var secSub    = sec0 ? pct(sec0.avg_chg_pct) : '';
+  var secCls    = sec0 && sec0.avg_chg_pct >= 0 ? 'up' : 'dn';
+  var mvCls     = topMover && (topMover.chg_pct||0) >= 0 ? 'up' : 'dn';
+
+  h += '<div class="flow-section">'
+    + '<div class="sec-title">תרשים יום המסחר</div>'
+    + '<div class="flow-row">'
+    + '<div class="flow-node"><div class="flow-node-title">מאקרו</div><div class="flow-node-val ' + macroCls + '">' + macroVal + '</div><div class="flow-node-sub">SPY</div></div>'
+    + '<div class="flow-arrow">›</div>'
+    + '<div class="flow-node"><div class="flow-node-title">סקטור מוביל</div><div class="flow-node-val ' + secCls + '">' + secTxt + '</div><div class="flow-node-sub">' + secSub + '</div></div>'
+    + '<div class="flow-arrow">›</div>'
+    + '<div class="flow-node"><div class="flow-node-title">מניה מובילה</div><div class="flow-node-val ' + mvCls + '">' + (topMover ? topMover.ticker : '—') + '</div><div class="flow-node-sub">' + (topMover ? pct(topMover.chg_pct) : '') + '</div></div>'
+    + '<div class="flow-arrow">›</div>'
+    + '<div class="flow-node"><div class="flow-node-title">פעולה נדרשת</div><div class="flow-node-val" style="color:' + actionColor + '">' + actionText + '</div></div>'
+    + '</div></div>';
+
+  /* ── Holdings grid ── */
+  h += '<div class="section-header"><div class="sec-title" style="margin:0">אחזקות — ' + D.generated_time + '</div></div>'
+    + '<div class="daily-grid">';
+
+  D.holdings.forEach(function(hd) {
+    var chgCls  = (hd.chg_pct||0) > 0 ? 'up' : (hd.chg_pct||0) < 0 ? 'dn' : 'flat';
+    var barW    = Math.min(Math.abs(hd.chg_pct||0) / 5 * 100, 100).toFixed(1);
+    var rsiC    = rsiColor(hd.rsi);
+    var rsiInt  = hd.rsi != null ? Math.round(hd.rsi) : null;
+
+    /* earnings pill */
+    var earnPill = '';
+    if (hd.days_to_earnings != null) {
+      var ec = hd.days_to_earnings <= 7 ? 'pill-earn-hot' : hd.days_to_earnings <= 14 ? 'pill-earn-mid' : 'pill-earn';
+      earnPill = '<span class="pill ' + ec + '">' + hd.days_to_earnings + 'ד לדוח</span>';
+    }
+
+    /* RSI ring */
+    var rsiBlock = '';
+    if (rsiInt != null) {
+      rsiBlock = '<div>'
+        + '<div class="rsi-ring" style="background:conic-gradient(' + rsiC + ' calc(' + rsiInt + '* 1%),rgba(148,163,184,.07) 0)">'
+        + '<span class="rsi-num" style="color:' + rsiC + '">' + rsiInt + '</span>'
+        + '</div>'
+        + '<div class="rsi-lbl">RSI</div>'
+        + '</div>';
+    }
+
+    /* 52w bar */
+    var w52Block = '';
+    if (hd.w52_pos_pct != null) {
+      w52Block = '<div class="w52-row">'
+        + '<span>52w</span>'
+        + '<div class="w52-track"><div class="w52-fill" data-w="' + hd.w52_pos_pct + '" style="width:0"></div></div>'
+        + '<span>' + hd.w52_pos_pct + '%</span>'
+        + '</div>';
+    }
+
+    /* pills */
+    var pills = '';
+    if (hd.vol_ratio != null && hd.vol_ratio >= 1.5)
+      pills += '<span class="pill pill-vol">×' + hd.vol_ratio + ' נפח</span>';
+    if (hd.analyst_upside_pct != null && hd.analyst_upside_pct > 5)
+      pills += '<span class="pill pill-upside">' + pct(hd.analyst_upside_pct, 0) + ' יעד</span>';
+    if (hd.verdict)
+      pills += '<span class="pill pill-alert">' + hd.verdict + '</span>';
+    pills += earnPill;
+    if (hd.layer)
+      pills += '<span class="pill pill-layer">' + hd.layer + '</span>';
+
+    h += '<div class="daily-card' + (hd.verdict ? ' alert-card' : '') + '">'
+      + '<div class="card-header">'
+      + '<div><div class="card-ticker">' + hd.ticker + '</div><div class="card-sector">' + (hd.sector||'') + '</div></div>'
+      + '<div class="card-price"><div class="price">' + (hd.price != null ? '$' + hd.price.toFixed(2) : '—') + '</div><div class="chg ' + chgCls + '">' + pct(hd.chg_pct) + '</div></div>'
+      + '</div>'
+      + '<div class="chg-bar-wrap"><div class="chg-bar-fill ' + chgCls + '" data-w="' + barW + '" style="width:0"></div></div>'
+      + '<div class="metrics-row">'
+      + rsiBlock
+      + '<div style="flex:1">' + w52Block + '<div class="pills">' + pills + '</div></div>'
+      + '</div>'
+      + '</div>';
+  });
+  h += '</div>';
+
+  /* ── Sector heatmap ── */
+  if (D.sector_summary.length > 0) {
+    h += '<div class="section-header"><div class="sec-title" style="margin:0">סקטורים</div></div><div class="sector-row">';
+    D.sector_summary.forEach(function(s) {
+      var bg  = sectorBg(s.avg_chg_pct);
+      var brd = sectorBorder(s.avg_chg_pct);
+      var clr = s.avg_chg_pct >= 0 ? '#34d399' : '#fb7185';
+      h += '<div class="sector-pill" style="background:' + bg + ';border-color:' + brd + ';color:' + clr + '">'
+        + s.sector + ' <span style="opacity:.65">' + pct(s.avg_chg_pct) + '</span>'
+        + '</div>';
+    });
+    h += '</div>';
+  }
+
+  /* ── Groq insights ── */
+  if (D.groq_insights && D.groq_insights.length > 0) {
+    h += '<div class="groq-panel"><div class="groq-header"><div class="groq-dot"></div><div class="groq-title">תובנות AI יומיות</div></div>';
+    D.groq_insights.forEach(function(ins, i) {
+      h += '<div class="groq-bullet" style="animation-delay:' + (i * 0.2 + 0.1) + 's">'
+        + '<div class="groq-bdot"></div>'
+        + '<div>' + ins + '</div>'
+        + '</div>';
+    });
+    h += '</div>';
+  }
+
+  /* ── Watchlist triggers ── */
+  if (D.watchlist_triggers && D.watchlist_triggers.length > 0) {
+    h += '<div class="section-header"><div class="sec-title" style="margin:0">טריגרים — ווצ\'ליסט</div></div><div class="triggers-list">';
+    D.watchlist_triggers.forEach(function(w) {
+      var dc = Math.abs(w.distance_pct) < 1 ? 'var(--red)' : 'var(--orange)';
+      h += '<div class="trigger-item">'
+        + '<span class="trigger-ticker">' + w.ticker + '</span>'
+        + '<span style="color:var(--muted2)">טריגר: <b>$' + w.trigger_price.toFixed(2) + '</b></span>'
+        + '<span style="color:var(--muted2)">כעת: <b>$' + w.current_price.toFixed(2) + '</b></span>'
+        + '<span class="trigger-dist" style="color:' + dc + '">' + pct(w.distance_pct) + '</span>'
+        + '</div>';
+    });
+    h += '</div>';
+  }
+
+  document.getElementById('root').innerHTML = h;
+
+  /* animate bars */
+  requestAnimationFrame(function() {
+    document.querySelectorAll('.chg-bar-fill[data-w]').forEach(function(el) {
+      el.style.width = el.dataset.w + '%';
+    });
+    document.querySelectorAll('.w52-fill[data-w]').forEach(function(el) {
+      el.style.width = el.dataset.w + '%';
+    });
+  });
+}
+
+function showError(msg) {
+  document.getElementById('root').innerHTML = '<div class="empty-state">'
+    + '<div class="icon">📭</div>'
+    + '<div class="msg">' + msg + '</div>'
+    + '<div class="sub">הדוח מתעדכן אוטומטית ב-5:00 בימי שני–שישי</div>'
+    + '</div>';
+}
+
+/* טעינת daily_latest.js */
+(function() {
+  var s  = document.createElement('script');
+  s.src  = '../analyses/_daily/daily_latest.js?_=' + Date.now();
+  s.onload  = function() { window.DAILY_DATA ? render() : showError('daily_latest.js נטען אך DAILY_DATA ריק'); };
+  s.onerror = function() { showError('אין דוח יומי עדיין'); };
+  document.head.appendChild(s);
+})();
+</script>
+</body>
+</html>

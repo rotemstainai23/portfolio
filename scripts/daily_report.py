@@ -5,11 +5,11 @@
 """
 import json
 import os
-import re
 import sys
 import urllib.request
 import xml.etree.ElementTree as ET
 from datetime import datetime, timezone
+from glob import glob as _glob
 
 try:
     import truststore
@@ -21,11 +21,14 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, ROOT)
 
 from notifications import send_notification
+from yahoo_client import get_chart_result, extract_closes, rsi_14
+from groq_client import call_groq, extract_json_array
 
 PORTFOLIO_JSON = os.path.join(ROOT, 'portfolio.json')
 ANALYSES_DIR   = os.path.join(ROOT, 'analyses')
-GROQ_URL       = 'https://api.groq.com/openai/v1/chat/completions'
-GROQ_MODEL     = 'llama-3.3-70b-versatile'
+DAILY_DIR      = os.path.join(ANALYSES_DIR, '_daily')
+DAILY_JS       = os.path.join(DAILY_DIR, 'daily_latest.js')
+DAILY_JSON     = os.path.join(DAILY_DIR, 'daily_latest.json')
 
 COMPETITORS = {
     'NVDA': ['AMD', 'INTC'],
@@ -43,6 +46,7 @@ COMPETITORS = {
 # ── שליפת נתונים ─────────────────────────────────────────────────────────────
 
 def _fetch(url: str, timeout: int = 12) -> str:
+    """wrapper מקומי — משמש רק ל-RSS ו-yfinance. Yahoo v8 דרך yahoo_client."""
     try:
         req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
         with urllib.request.urlopen(req, timeout=timeout) as r:
@@ -53,47 +57,32 @@ def _fetch(url: str, timeout: int = 12) -> str:
 
 def get_enriched_quote(ticker: str) -> dict:
     """מחיר + שינוי יומי + נפח_ratio + RSI מ-Yahoo Finance v8 (חודש אחרון)."""
-    url  = f'https://query1.finance.yahoo.com/v8/finance/chart/{ticker}?interval=1d&range=1mo'
-    html = _fetch(url)
-    if not html:
+    result = get_chart_result(ticker, period='1mo')
+    if not result:
         return {}
     try:
-        data   = json.loads(html)
-        result = data['chart']['result'][0]
-        meta   = result.get('meta', {})
-        quote  = result.get('indicators', {}).get('quote', [{}])[0]
-
-        closes  = [c for c in quote.get('close', [])  if c is not None]
+        meta    = result.get('meta', {})
+        quote   = result.get('indicators', {}).get('quote', [{}])[0]
+        closes  = extract_closes(result)
         volumes = [v for v in quote.get('volume', []) if v is not None]
 
         if len(closes) < 2:
             return {}
 
-        price    = closes[-1]
-        prev     = closes[-2]
-        chg_pct  = round((price / prev - 1) * 100, 2) if prev else 0
+        price   = closes[-1]
+        prev    = closes[-2]
+        chg_pct = round((price / prev - 1) * 100, 2) if prev else 0
 
-        # נפח יום vs ממוצע 30 יום קודמים
         vol_today = volumes[-1] if volumes else None
         vol_hist  = [v for v in volumes[:-1] if v]
         avg_vol   = sum(vol_hist) / len(vol_hist) if vol_hist else None
         vol_ratio = round(vol_today / avg_vol, 1) if (vol_today and avg_vol) else None
 
-        # RSI 14 יום
-        rsi = None
-        if len(closes) >= 15:
-            diffs  = [closes[i] - closes[i-1] for i in range(len(closes)-14, len(closes))]
-            gains  = [max(d, 0) for d in diffs]
-            losses = [max(-d, 0) for d in diffs]
-            ag = sum(gains) / 14
-            al = sum(losses) / 14
-            rsi = round(100 - 100 / (1 + ag / al), 0) if al else 100
-
         return {
             'price':     round(price, 2),
             'chg_pct':   chg_pct,
             'vol_ratio': vol_ratio,
-            'rsi':       rsi,
+            'rsi':       rsi_14(closes),
             'currency':  meta.get('currency', 'USD'),
             'w52_high':  meta.get('fiftyTwoWeekHigh'),
             'w52_low':   meta.get('fiftyTwoWeekLow'),
@@ -169,11 +158,8 @@ def load_reviews(ticker: str) -> dict:
 
 def run_groq_insights(holdings_data: list) -> list:
     """שלח את כל נתוני האחזקות ל-Groq, קבל 3-4 תובנות יומיות."""
-    api_key = os.environ.get('GROQ_API_KEY', '').strip()
-    if not api_key:
+    if not os.environ.get('GROQ_API_KEY'):
         return []
-
-    context = json.dumps(holdings_data, ensure_ascii=False, separators=(',', ':'))
 
     system = """אתה אנליסט תיק השקעות מנוסה. קיבלת נתוני בוקר על תיק מניות.
 
@@ -197,40 +183,12 @@ def run_groq_insights(holdings_data: list) -> list:
 
 פורמט: ["תובנה 1", "תובנה 2", "תובנה 3"]"""
 
-    try:
-        import requests as _req
-        resp = _req.post(
-            GROQ_URL,
-            headers={
-                'Authorization': f'Bearer {api_key}',
-                'Content-Type':  'application/json',
-            },
-            json={
-                'model':       GROQ_MODEL,
-                'messages':    [
-                    {'role': 'system', 'content': system},
-                    {'role': 'user',   'content': context},
-                ],
-                'max_tokens':  600,
-                'temperature': 0.3,
-            },
-            timeout=45,
-        )
-        resp.raise_for_status()
-        raw = resp.json()['choices'][0]['message']['content'].strip()
-        start = raw.find('[')
-        end   = raw.rfind(']')
-        if start == -1 or end == -1:
-            return []
-        raw = raw[start:end+1]
-        raw = re.sub(r'(?<=[^\s,:{"\[])\"(?=[^\s,}:\]\[])', '', raw)
-        results = json.loads(raw)
-        if isinstance(results, list):
-            return [str(r) for r in results if r]
-        return []
-    except Exception as e:
-        print(f'[daily] Groq שגיאה: {e}')
-        return []
+    context = json.dumps(holdings_data, ensure_ascii=False, separators=(',', ':'))
+    raw     = call_groq(system, context, max_tokens=600, timeout=45)
+    results = [str(r) for r in extract_json_array(raw) if r]
+    if not results and raw:
+        print(f'[daily] Groq: לא נמצא JSON. raw={raw[:100]}')
+    return results
 
 
 # ── בניית הודעה ───────────────────────────────────────────────────────────────
@@ -332,10 +290,68 @@ def build_message(portfolio: dict, all_data: list, insights: list) -> str:
     return '\n'.join(lines)
 
 
+# ── שמירת DAILY_DATA ─────────────────────────────────────────────────────────
+
+def archive_daily_js():
+    """מעתיק daily_latest.js לארכיון תאריך — שומר 30 ימי מסחר אחרונים."""
+    if not os.path.exists(DAILY_JS):
+        return
+    os.makedirs(DAILY_DIR, exist_ok=True)
+    date_str = datetime.now().strftime('%Y-%m-%d')
+    dest = os.path.join(DAILY_DIR, f'daily_{date_str}.js')
+    try:
+        with open(DAILY_JS, encoding='utf-8') as f:
+            content = f.read()
+        with open(dest, 'w', encoding='utf-8') as f:
+            f.write(content)
+        archives = sorted(_glob(os.path.join(DAILY_DIR, 'daily_2*.js')))
+        for old in archives[:-30]:
+            os.remove(old)
+        print(f'[daily] ארכב ל-{dest}')
+    except Exception as e:
+        print(f'[daily] שגיאת ארכיב: {e}')
+
+
+def build_sector_summary(portfolio: dict, all_data: list) -> list:
+    """ממוצע שינוי יומי לכל סקטור מהאחזקות."""
+    sectors: dict = {}
+    for h in portfolio.get('holdings', []):
+        ticker = h.get('symbol') or h.get('ticker', '')
+        sector = h.get('sector', 'אחר')
+        d = next((x for x in all_data if x.get('ticker') == ticker), {})
+        chg = d.get('quote', {}).get('chg_pct')
+        if chg is not None:
+            if sector not in sectors:
+                sectors[sector] = {'tickers': [], 'chg_sum': 0.0, 'count': 0}
+            sectors[sector]['tickers'].append(ticker)
+            sectors[sector]['chg_sum'] += chg
+            sectors[sector]['count'] += 1
+    return [
+        {
+            'sector': s,
+            'avg_chg_pct': round(v['chg_sum'] / v['count'], 2),
+            'tickers': v['tickers'],
+        }
+        for s, v in sectors.items() if v['count'] > 0
+    ]
+
+
+def write_daily_js(data: dict):
+    """כותב daily_latest.js (window.DAILY_DATA) ו-daily_latest.json."""
+    os.makedirs(DAILY_DIR, exist_ok=True)
+    js = f'window.DAILY_DATA = {json.dumps(data, ensure_ascii=False, indent=2)};\n'
+    with open(DAILY_JS, 'w', encoding='utf-8') as f:
+        f.write(js)
+    with open(DAILY_JSON, 'w', encoding='utf-8') as f:
+        json.dump(data, f, ensure_ascii=False, indent=2)
+    print(f'[daily] כתב {DAILY_JS} + {DAILY_JSON}')
+
+
 # ── ריצה ─────────────────────────────────────────────────────────────────────
 
 def main():
     print('[daily_report] מתחיל...')
+    archive_daily_js()
     with open(PORTFOLIO_JSON, encoding='utf-8') as f:
         portfolio = json.load(f)
 
@@ -402,8 +418,99 @@ def main():
     insights = run_groq_insights(groq_context)
     print(f'[daily_report] Groq החזיר {len(insights)} תובנות')
 
-    msg    = build_message(portfolio, all_data, insights)
-    result = send_notification(msg, title='דוח בוקר', tags=['sun'])
+    # ── בניית DAILY_DATA ────────────────────────────────────────────────────
+    now = datetime.now()
+    holdings_data_out = []
+    alert_tickers = []
+
+    for h in holdings:
+        ticker = h.get('symbol') or h.get('ticker', '')
+        if not ticker:
+            continue
+        d        = next((x for x in all_data if x.get('ticker') == ticker), {})
+        q        = d.get('quote', {})
+        t        = d.get('target52', {})
+        reviews  = d.get('reviews', {})
+
+        price    = q.get('price')
+        chg_pct  = q.get('chg_pct')
+        w52_high = q.get('w52_high')
+        w52_low  = q.get('w52_low')
+        w52_pos  = None
+        if w52_high and w52_low and w52_high > w52_low and price:
+            w52_pos = int(round((price - w52_low) / (w52_high - w52_low) * 100))
+
+        target = t.get('target')
+        upside = None
+        if target and price:
+            raw = (target / price - 1) * 100
+            if abs(raw) < 200:
+                upside = round(raw, 1)
+
+        verdict = None
+        for rv in reviews.values():
+            if isinstance(rv, dict) and rv.get('verdict') in ('SELL', 'EXIT', 'REVIEW'):
+                verdict = rv.get('verdict')
+                alert_tickers.append(ticker)
+                break
+
+        holdings_data_out.append({
+            'ticker':             ticker,
+            'sector':             h.get('sector', ''),
+            'layer':              h.get('layer', ''),
+            'price':              price,
+            'chg_pct':            chg_pct,
+            'vol_ratio':          q.get('vol_ratio'),
+            'rsi':                q.get('rsi'),
+            'w52_pos_pct':        w52_pos,
+            'analyst_target':     target,
+            'analyst_upside_pct': upside,
+            'days_to_earnings':   t.get('next_earnings'),
+            'verdict':            verdict,
+            'news':               d.get('news', []),
+        })
+
+    wl_triggers = []
+    for w in watchlist:
+        wt     = w.get('symbol') or w.get('ticker', '')
+        trig   = w.get('trigger_price') or w.get('entry_trigger')
+        if not wt or not trig:
+            continue
+        d = next((x for x in all_data if x.get('ticker') == wt), {})
+        cur = d.get('quote', {}).get('price')
+        if cur and abs(cur - float(trig)) / float(trig) < 0.03:
+            wl_triggers.append({
+                'ticker':        wt,
+                'trigger_price': float(trig),
+                'current_price': cur,
+                'distance_pct':  round((cur - float(trig)) / float(trig) * 100, 2),
+            })
+
+    daily_payload = {
+        'generated':          now.strftime('%Y-%m-%d'),
+        'generated_time':     now.strftime('%H:%M'),
+        'market_date':        now.strftime('%Y-%m-%d'),
+        'has_alerts':         len(alert_tickers) > 0,
+        'alert_tickers':      list(set(alert_tickers)),
+        'macro':              {'spy_chg_pct': None, 'qqq_chg_pct': None, 'vix': None},
+        'holdings':           holdings_data_out,
+        'watchlist_triggers': wl_triggers,
+        'groq_insights':      insights,
+        'sector_summary':     build_sector_summary(portfolio, all_data),
+    }
+    write_daily_js(daily_payload)
+
+    # ── שליחת התראה קצרה עם קישור לדשבורד ────────────────────────────────
+    up_count = sum(1 for h in holdings_data_out if (h.get('chg_pct') or 0) > 0)
+    dn_count = sum(1 for h in holdings_data_out if (h.get('chg_pct') or 0) < 0)
+    alert_line = f'🔴 {", ".join(set(alert_tickers))} לבדיקה\n' if alert_tickers else ''
+    summary_line = f'{len(holdings_data_out)} אחזקות | {up_count} עולות / {dn_count} יורדות'
+    notification_body = f'{alert_line}{summary_line}\n\n' + '\n'.join(f'• {i}' for i in insights[:2])
+
+    dashboard_url = os.environ.get('DASHBOARD_URL', '').rstrip('/')
+    report_url = f'{dashboard_url}/templates/daily.html' if dashboard_url else ''
+    result = send_notification(notification_body, title='הדוח היומי מוכן',
+                               tags=['sun', 'chart_increasing'], click_url=report_url)
     print(f'[daily_report] נשלח: {result}')
 
 

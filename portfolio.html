@@ -652,6 +652,10 @@ tbody tr:hover td{background:rgba(139,92,246,.04)}
     <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
     ניתוח
   </div>
+  <div class="tab" id="tab-btn-daily" onclick="switchTab('daily',this)">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+    דוח יומי
+  </div>
 </div>
 
 <!-- HOLDINGS -->
@@ -840,6 +844,15 @@ tbody tr:hover td{background:rgba(139,92,246,.04)}
   <div class="hub-section-title" id="hub-sec-lbl" style="display:none">מניות בתיק</div>
   <div class="ticker-grid" id="hub-grid">
     <div class="hub-loading"><div class="hub-spinner"></div><span>טוען נתוני תיק…</span></div>
+  </div>
+</div>
+
+<!-- ── DAILY TAB ── -->
+<div id="tab-daily" class="tab-content">
+  <div class="tw">
+    <div id="daily-report-frame" style="min-height:500px">
+      <div class="empty"><div class="icon">⏳</div>טוען דוח יומי…</div>
+    </div>
   </div>
 </div>
 
@@ -1497,6 +1510,7 @@ function switchTab(name, el){
   if (name === 'memory') loadMemory();
   if (name === 'scanner') loadScanner();
   if (name === 'hub') loadHubTab();
+  if (name === 'daily') loadDailyTab();
 }
 
 function openModal(id){ $(id).classList.add('open'); }
@@ -2554,6 +2568,27 @@ function buildHubStats(holdings, totalPnl, totalPnlPct) {
       ${buySignals>0?'<span class="hs-change up">▲ חיובי</span>':'<span class="hs-change flat">ניטרלי</span>'}
     </div>`;
 }
+async function loadDailyTab() {
+  const frame = $('daily-report-frame');
+  try {
+    const res  = await fetch('/api/daily/latest', {cache: 'no-store'});
+    const data = await res.json();
+    if (!data) {
+      frame.innerHTML = `<div class="empty">
+        <div class="icon">📭</div>
+        <div style="font-size:15px;font-weight:700;color:var(--muted2);margin-bottom:6px">אין דוח יומי עדיין</div>
+        <div style="font-size:12px;color:var(--muted)">הדוח מתעדכן אוטומטית ב-5:00 בימי שני–שישי</div>
+      </div>`;
+      return;
+    }
+    frame.innerHTML = `<iframe src="/templates/daily.html?_=${Date.now()}"
+      style="width:100%;border:none;min-height:820px;border-radius:14px;display:block"
+      title="דוח יומי"></iframe>`;
+  } catch(err) {
+    frame.innerHTML = `<div class="empty"><div class="icon">⚠️</div>שגיאה: ${err.message}</div>`;
+  }
+}
+
 async function loadHubTab() {
   try {
     const [portRes, pricesRes] = await Promise.all([fetch('/api/portfolio'), fetch('/api/prices')]);
