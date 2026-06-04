@@ -11,6 +11,12 @@ import urllib.request
 import xml.etree.ElementTree as ET
 from datetime import datetime, timezone
 
+try:
+    import truststore
+    truststore.inject_into_ssl()
+except ImportError:
+    pass
+
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, ROOT)
 
@@ -89,65 +95,39 @@ def get_enriched_quote(ticker: str) -> dict:
             'vol_ratio': vol_ratio,
             'rsi':       rsi,
             'currency':  meta.get('currency', 'USD'),
+            'w52_high':  meta.get('fiftyTwoWeekHigh'),
+            'w52_low':   meta.get('fiftyTwoWeekLow'),
         }
     except Exception as e:
         print(f'[daily] quote שגיאה {ticker}: {e}')
         return {}
 
 
-def get_target_and_52w(ticker: str) -> dict:
-    """יעד אנליסטים + 52w range + תאריך רווחים קרוב מ-Yahoo Finance v10."""
-    url  = (f'https://query1.finance.yahoo.com/v10/finance/quoteSummary/{ticker}'
-            f'?modules=summaryDetail,financialData,calendarEvents')
-    html = _fetch(url)
-    if not html:
+# ETFs שאין להם יעד אנליסטים / תאריך רווחים
+_ETF_TICKERS = {'IBIT', 'GLDM', 'SPY', 'QQQ', 'GLD', 'SLV'}
+
+
+def get_target_and_earnings(ticker: str) -> dict:
+    """יעד אנליסטים + תאריך רווחים דרך yfinance (מטפל ב-auth אוטומטית)."""
+    if ticker.upper() in _ETF_TICKERS:
         return {}
     try:
-        data    = json.loads(html)
-        summary = data.get('quoteSummary', {}).get('result', [{}])[0]
-
-        def val(d, k):
-            v = d.get(k, {})
-            if isinstance(v, dict):
-                return v.get('raw') if v.get('raw') is not None else v.get('fmt')
-            return v if v is not None else None
-
-        detail  = summary.get('summaryDetail', {})
-        fin     = summary.get('financialData', {})
-        cal     = summary.get('calendarEvents', {})
-
-        target     = val(fin, 'targetMeanPrice')
-        w52_high   = val(detail, 'fiftyTwoWeekHigh')
-        w52_low    = val(detail, 'fiftyTwoWeekLow')
-
-        # אחוז מיקום ב-52 שבועות
-        w52_pct = None
-        if w52_high and w52_low and w52_high > w52_low:
-            # לא שולפים price פה — ישתמשו מ-get_enriched_quote
-            w52_pct = (w52_high, w52_low)
-
-        # רווחים קרובים
+        import yfinance as _yf
+        info = _yf.Ticker(ticker).info
+        target     = info.get('targetMeanPrice')
+        earnings_ts = info.get('earningsTimestamp')
         next_earnings = None
-        earnings_list = cal.get('earnings', {}).get('earningsDate', [])
-        if earnings_list:
-            item = earnings_list[0]
-            ts   = item.get('raw') if isinstance(item, dict) else item
-            if ts:
-                try:
-                    dt = datetime.fromtimestamp(int(ts), tz=timezone.utc)
-                    days_away = (dt.date() - datetime.now(tz=timezone.utc).date()).days
-                    if 0 <= days_away <= 21:
-                        next_earnings = days_away
-                except Exception:
-                    pass
-
+        if earnings_ts:
+            dt = datetime.fromtimestamp(int(earnings_ts), tz=timezone.utc)
+            days_away = (dt.date() - datetime.now(tz=timezone.utc).date()).days
+            if 0 <= days_away <= 21:
+                next_earnings = days_away
         return {
-            'target':       round(target, 2) if target else None,
-            'w52_range':    w52_pct,
+            'target':        round(float(target), 2) if target else None,
             'next_earnings': next_earnings,
         }
     except Exception as e:
-        print(f'[daily] v10 שגיאה {ticker}: {e}')
+        print(f'[daily] yfinance שגיאה {ticker}: {e}')
         return {}
 
 
@@ -293,13 +273,12 @@ def build_message(portfolio: dict, all_data: list, insights: list) -> str:
             if abs(upside) < 200:
                 line += f' | יעד {upside:+.0f}%'
 
-        # 52w position
-        w52 = t.get('w52_range')
-        if w52 and price:
-            hi, lo = w52
-            if hi > lo:
-                pct = round((price - lo) / (hi - lo) * 100, 0)
-                line += f' | 52w {int(pct)}%'
+        # 52w position — מ-v8 meta (ישיר בתוך quote)
+        w52_high = q.get('w52_high')
+        w52_low  = q.get('w52_low')
+        if w52_high and w52_low and w52_high > w52_low and price:
+            pct = round((price - w52_low) / (w52_high - w52_low) * 100, 0)
+            line += f' | 52w {int(pct)}%'
 
         # רווחים קרובים
         ne = t.get('next_earnings')
@@ -368,7 +347,7 @@ def main():
     for ticker in all_tickers:
         print(f'[daily_report] {ticker}...')
         quote   = get_enriched_quote(ticker)
-        t52     = get_target_and_52w(ticker)
+        t52     = get_target_and_earnings(ticker)
         reviews = load_reviews(ticker)
 
         # חדשות רק אם חריג
