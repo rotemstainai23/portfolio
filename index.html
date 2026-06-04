@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Portfolio">
+<meta name="theme-color" content="#8b5cf6">
+<title>Portfolio OS</title>
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+:root{
+  --bg:#080d1a;--surface:#0e1528;--surface2:rgba(14,21,40,.75);
+  --border:rgba(148,163,184,.07);--border2:rgba(148,163,184,.13);
+  --glass:rgba(148,163,184,.055);--glass-b:rgba(148,163,184,.09);
+  --text:#e2e8f5;--muted:#64748b;--muted2:#94a3b8;
+  --blue:#8b5cf6;--green:#34d399;--red:#fb7185;--orange:#f59e0b;--yellow:#fbbf24;
+  --grad:linear-gradient(135deg,#8b5cf6,#60a5fa);
+  --nav:56px;--hdr:52px;
+  --safe-b:env(safe-area-inset-bottom,0px);
+}
+html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);font-family:Heebo,sans-serif;font-size:14px}
+
+/* ── header ── */
+header{
+  position:fixed;top:0;inset-inline:0;
+  height:var(--hdr);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 18px;padding-top:env(safe-area-inset-top,0px);
+  background:rgba(8,13,26,.92);
+  backdrop-filter:blur(24px) saturate(180%);
+  border-bottom:1px solid var(--border);
+  z-index:100;
+}
+.hdr-title{font-size:16px;font-weight:800;background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.hdr-badge{display:none;background:var(--red);color:#fff;font-size:10px;font-weight:800;border-radius:20px;padding:2px 8px;margin-inline-start:6px;-webkit-text-fill-color:#fff}
+.hdr-badge.show{display:inline-block}
+.hdr-time{font-size:11px;color:var(--muted)}
+
+/* ── content ── */
+#app{
+  position:fixed;
+  top:var(--hdr);
+  inset-inline:0;
+  bottom:calc(var(--nav) + var(--safe-b));
+  overflow-y:auto;
+  -webkit-overflow-scrolling:touch;
+}
+.tab{display:none;padding-bottom:24px;min-height:100%}
+.tab.active{display:block}
+
+/* ── bottom nav ── */
+nav{
+  position:fixed;bottom:0;inset-inline:0;
+  height:calc(var(--nav) + var(--safe-b));
+  padding-bottom:var(--safe-b);
+  background:rgba(8,13,26,.95);
+  backdrop-filter:blur(24px) saturate(180%);
+  border-top:1px solid var(--border);
+  display:flex;align-items:stretch;
+  z-index:100;
+}
+.nav-btn{
+  flex:1;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;gap:4px;
+  background:none;border:none;cursor:pointer;
+  color:var(--muted);transition:color .18s;padding:0;
+  -webkit-appearance:none;
+}
+.nav-btn.active{color:var(--blue)}
+.nav-btn svg{width:20px;height:20px;stroke-width:2}
+.nav-btn span{font-size:10px;font-weight:700;font-family:Heebo,sans-serif}
+.nav-dot{
+  width:4px;height:4px;border-radius:50%;background:var(--blue);
+  position:absolute;bottom:6px;opacity:0;transition:opacity .18s;
+}
+.nav-btn.active .nav-dot{opacity:1}
+
+/* ── cards & grids ── */
+.card{
+  background:var(--glass);backdrop-filter:blur(24px) saturate(180%);
+  border:1px solid var(--glass-b);border-radius:16px;padding:16px;
+  margin:0 14px 10px;transition:transform .2s;
+}
+.card:active{transform:scale(.98)}
+.card.alert{border-color:rgba(251,113,133,.35);box-shadow:0 0 16px rgba(251,113,133,.08)}
+.sec-hdr{padding:16px 16px 8px;font-size:11px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.09em}
+
+/* alert bar */
+.alert-bar{
+  margin:12px 14px;padding:10px 14px;
+  background:rgba(251,113,133,.1);border:1px solid rgba(251,113,133,.28);
+  border-radius:12px;color:var(--red);font-size:12px;font-weight:700;
+  display:flex;align-items:center;gap:8px;
+}
+
+/* KPI strip */
+.kpi-strip{display:flex;gap:1px;background:var(--border);border-bottom:1px solid var(--border);border-top:1px solid var(--border);margin-bottom:12px}
+.kpi{flex:1;padding:12px 8px;background:var(--surface);text-align:center}
+.kpi .v{font-size:18px;font-weight:800}
+.kpi .l{font-size:10px;color:var(--muted);margin-top:2px}
+
+/* flow row */
+.flow-row{display:flex;gap:6px;overflow-x:auto;padding:0 14px 4px;-webkit-overflow-scrolling:touch}
+.flow-row::-webkit-scrollbar{display:none}
+.flow-node{background:var(--glass);border:1px solid var(--glass-b);border-radius:12px;padding:10px 14px;min-width:110px;flex-shrink:0}
+.fn-title{font-size:9px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px}
+.fn-val{font-size:13px;font-weight:800}
+.fn-sub{font-size:10px;color:var(--muted2);margin-top:2px}
+.flow-arr{display:flex;align-items:center;color:var(--muted);font-size:16px;flex-shrink:0;padding-top:12px}
+
+/* holdings card */
+.h-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.h-ticker{font-size:17px;font-weight:800}
+.h-name{font-size:11px;color:var(--muted2)}
+.h-price{font-size:16px;font-weight:700;text-align:left}
+.h-chg{font-size:13px;font-weight:700;text-align:left}
+.bar-track{height:3px;background:rgba(255,255,255,.06);border-radius:3px;overflow:hidden;margin:6px 0}
+.bar-fill{height:100%;border-radius:3px;width:0;transition:width .8s cubic-bezier(.34,1.56,.64,1) .2s}
+.bar-fill.up{background:linear-gradient(90deg,#34d399,#6ee7b7)}
+.bar-fill.dn{background:linear-gradient(90deg,#fb7185,#fca5a5)}
+.bar-fill.flat{background:rgba(148,163,184,.3)}
+.h-meta{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px}
+.pill{font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;border:1px solid}
+.pill-sec{color:var(--muted2);border-color:var(--border2);background:transparent}
+.pill-layer-g{color:#34d399;border-color:rgba(52,211,153,.3);background:rgba(52,211,153,.08)}
+.pill-layer-s{color:#60a5fa;border-color:rgba(96,165,250,.3);background:rgba(96,165,250,.08)}
+.pill-layer-c{color:#8b5cf6;border-color:rgba(139,92,246,.3);background:rgba(139,92,246,.08)}
+.pill-layer-x{color:#f59e0b;border-color:rgba(245,158,11,.3);background:rgba(245,158,11,.08)}
+.pill-rsi-ob{color:#fb7185;border-color:rgba(251,113,133,.3);background:rgba(251,113,133,.08)}
+.pill-rsi-os{color:#34d399;border-color:rgba(52,211,153,.3);background:rgba(52,211,153,.08)}
+.pill-vol{color:#8b5cf6;border-color:rgba(139,92,246,.3);background:rgba(139,92,246,.08)}
+.pill-earn{color:#f59e0b;border-color:rgba(245,158,11,.3);background:rgba(245,158,11,.08)}
+.pill-alert{color:#fb7185;border-color:rgba(251,113,133,.35);background:rgba(251,113,133,.08)}
+
+/* watchlist card */
+.wl-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px}
+.wl-ticker{font-size:16px;font-weight:800}
+.wl-co{font-size:11px;color:var(--muted2);margin-top:1px}
+.wl-verdict{font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px;border:1px solid}
+.verdict-WATCH{color:#34d399;border-color:rgba(52,211,153,.3);background:rgba(52,211,153,.08)}
+.verdict-WAIT{color:#94a3b8;border-color:var(--border2);background:transparent}
+.verdict-SKIP{color:#fb7185;border-color:rgba(251,113,133,.3);background:rgba(251,113,133,.08)}
+.wl-prices{display:flex;gap:16px;margin:8px 0;font-size:13px}
+.wl-trigger-bar{margin:8px 0}
+.wl-thesis{font-size:12px;color:var(--muted2);line-height:1.55;margin-top:8px;padding-top:8px;border-top:1px solid var(--border)}
+
+/* groq panel */
+.groq-panel{margin:0 14px 12px;padding:16px;background:linear-gradient(135deg,rgba(139,92,246,.08),rgba(96,165,250,.04));border:1px solid rgba(139,92,246,.28);border-top:3px solid var(--blue);border-radius:14px}
+.groq-hdr{display:flex;align-items:center;gap:7px;margin-bottom:10px}
+.groq-dot{width:7px;height:7px;border-radius:50%;background:var(--blue);animation:gp 2s ease infinite}
+@keyframes gp{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.4)}}
+.groq-title{font-size:12px;font-weight:800;background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.groq-item{display:flex;gap:9px;padding:8px 0;border-bottom:1px solid rgba(139,92,246,.1);font-size:12.5px;color:var(--muted2);line-height:1.6;opacity:0;animation:ir .4s ease forwards}
+.groq-item:last-child{border:none}
+.groq-dot2{width:5px;height:5px;border-radius:50%;background:var(--blue);flex-shrink:0;margin-top:7px}
+@keyframes ir{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+/* weekly */
+.week-kpi{display:flex;flex-wrap:wrap;gap:8px;padding:0 14px 12px}
+.wkpi{flex:1;min-width:130px;background:var(--glass);border:1px solid var(--glass-b);border-radius:12px;padding:12px;text-align:center}
+.wkpi .v{font-size:20px;font-weight:800}
+.wkpi .l{font-size:10px;color:var(--muted);margin-top:2px}
+.week-item{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border)}
+.week-item:last-child{border:none}
+
+/* RSI ring (inline) */
+.rsi-ring{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;position:relative;flex-shrink:0}
+.rsi-ring::before{content:'';position:absolute;inset:6px;border-radius:50%;background:var(--surface)}
+.rsi-n{position:relative;font-size:11px;font-weight:900;z-index:1}
+
+/* empty & loading */
+.empty{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:60px 24px;color:var(--muted);text-align:center;gap:10px}
+.empty .icon{font-size:36px}
+.empty .msg{font-size:14px;font-weight:700;color:var(--muted2)}
+.empty .sub{font-size:12px}
+.spinner{width:28px;height:28px;border:3px solid var(--border2);border-top-color:var(--blue);border-radius:50%;animation:spin .7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* colors */
+.up{color:var(--green)}.dn{color:var(--red)}.flat{color:var(--muted2)}
+</style>
+</head>
+<body>
+
+<header>
+  <div style="display:flex;align-items:center">
+    <span class="hdr-title">Portfolio OS</span>
+    <span class="hdr-badge" id="alert-badge"></span>
+  </div>
+  <span class="hdr-time" id="hdr-date"></span>
+</header>
+
+<div id="app">
+  <div class="tab active" id="tab-daily">
+    <div class="empty"><div class="spinner"></div></div>
+  </div>
+  <div class="tab" id="tab-holdings">
+    <div class="empty"><div class="spinner"></div></div>
+  </div>
+  <div class="tab" id="tab-watchlist">
+    <div class="empty"><div class="spinner"></div></div>
+  </div>
+  <div class="tab" id="tab-weekly">
+    <div class="empty"><div class="spinner"></div></div>
+  </div>
+</div>
+
+<nav>
+  <button class="nav-btn active" id="nav-daily" onclick="show('daily')">
+    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+    <span>יומי</span>
+    <div class="nav-dot"></div>
+  </button>
+  <button class="nav-btn" id="nav-holdings" onclick="show('holdings')">
+    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg>
+    <span>תיק</span>
+    <div class="nav-dot"></div>
+  </button>
+  <button class="nav-btn" id="nav-watchlist" onclick="show('watchlist')">
+    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+    <span>ווצ'ליסט</span>
+    <div class="nav-dot"></div>
+  </button>
+  <button class="nav-btn" id="nav-weekly" onclick="show('weekly')">
+    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+    <span>שבועי</span>
+    <div class="nav-dot"></div>
+  </button>
+</nav>
+
+<script>
+var _daily = null, _port = null, _weekly = null;
+var _loaded = {};
+
+function $(id){ return document.getElementById(id); }
+
+function pct(v, dec){
+  dec = dec == null ? 1 : dec;
+  if (v == null) return '—';
+  return (v > 0 ? '+' : '') + Number(v).toFixed(dec) + '%';
+}
+function rsiColor(v){
+  if (v == null) return 'var(--muted)';
+  if (v <= 35) return '#34d399';
+  if (v >= 65) return '#fb7185';
+  return '#f59e0b';
+}
+function layerPill(l){
+  if (!l) return '';
+  var cls = l === 'Growth' ? 'pill-layer-g' : l === 'Stability' ? 'pill-layer-s' : l === 'Core' ? 'pill-layer-c' : 'pill-layer-x';
+  return '<span class="pill ' + cls + '">' + l + '</span>';
+}
+
+/* ── navigation ── */
+function show(name){
+  document.querySelectorAll('.tab').forEach(function(t){ t.classList.remove('active'); });
+  document.querySelectorAll('.nav-btn').forEach(function(b){ b.classList.remove('active'); });
+  $('tab-' + name).classList.add('active');
+  $('nav-' + name).classList.add('active');
+  if (!_loaded[name]) { _loaded[name] = true; renderTab(name); }
+  /* smooth scroll to top */
+  $('app').scrollTop = 0;
+}
+
+/* ── data fetch ── */
+async function fetchJSON(path){
+  try {
+    var r = await fetch(path + '?_=' + Date.now(), {cache: 'no-cache'});
+    if (!r.ok) return null;
+    return await r.json();
+  } catch(e){ return null; }
+}
+
+async function loadAll(){
+  var now = new Date();
+  $('hdr-date').textContent = now.toLocaleDateString('he-IL', {weekday:'short', day:'numeric', month:'short'});
+
+  var [d, p, w] = await Promise.all([
+    fetchJSON('analyses/_daily/daily_latest.json'),
+    fetchJSON('portfolio.json'),
+    fetchJSON('analyses/_weekly/ceo_weekly.json'),
+  ]);
+  _daily = d; _port = p; _weekly = w;
+
+  /* alert badge */
+  if (_daily && _daily.has_alerts && _daily.alert_tickers && _daily.alert_tickers.length) {
+    var b = $('alert-badge');
+    b.textContent = _daily.alert_tickers.length;
+    b.classList.add('show');
+  }
+
+  renderTab('daily');
+}
+
+function renderTab(name){
+  if (name === 'daily')     renderDaily();
+  if (name === 'holdings')  renderHoldings();
+  if (name === 'watchlist') renderWatchlist();
+  if (name === 'weekly')    renderWeekly();
+}
+
+/* ── DAILY ── */
+function renderDaily(){
+  var el = $('tab-daily');
+  if (!_daily) {
+    el.innerHTML = '<div class="empty"><div class="icon">📭</div><div class="msg">אין דוח יומי</div><div class="sub">מתעדכן אוטומטית ב-5:00 שני–שישי</div></div>';
+    return;
+  }
+  var D = _daily;
+  var upCount = D.holdings.filter(function(h){ return (h.chg_pct||0) > 0; }).length;
+  var dnCount = D.holdings.filter(function(h){ return (h.chg_pct||0) < 0; }).length;
+  var avgChg  = D.holdings.reduce(function(s,h){ return s+(h.chg_pct||0); },0) / (D.holdings.length||1);
+  var topSec  = D.sector_summary.slice().sort(function(a,b){ return Math.abs(b.avg_chg_pct)-Math.abs(a.avg_chg_pct); })[0];
+  var topMov  = D.holdings.slice().sort(function(a,b){ return Math.abs(b.chg_pct||0)-Math.abs(a.chg_pct||0); })[0];
+  var actTxt  = D.has_alerts ? D.alert_tickers.join(', ') + ' לבדיקה' : D.watchlist_triggers.length ? "טריגר ווצ'ליסט" : 'ללא פעולה';
+  var actClr  = D.has_alerts ? 'var(--red)' : D.watchlist_triggers.length ? 'var(--orange)' : 'var(--green)';
+
+  var h = '';
+
+  /* alert bar */
+  if (D.has_alerts)
+    h += '<div class="alert-bar"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> נדרשת בדיקה: ' + D.alert_tickers.join(' · ') + '</div>';
+
+  /* KPI */
+  var ac = (upCount>dnCount)?'up':(upCount<dnCount)?'dn':'flat';
+  var gc = avgChg>0.05?'up':avgChg<-0.05?'dn':'flat';
+  h += '<div class="kpi-strip">'
+    + '<div class="kpi"><div class="v">' + D.generated + '</div><div class="l">תאריך</div></div>'
+    + '<div class="kpi"><div class="v ' + ac + '">' + upCount + '/' + dnCount + '</div><div class="l">עולות/יורדות</div></div>'
+    + '<div class="kpi"><div class="v ' + gc + '">' + pct(avgChg) + '</div><div class="l">ממוצע</div></div>'
+    + '</div>';
+
+  /* flow */
+  h += '<div style="padding:10px 14px 4px"><div class="sec-hdr" style="padding:0 0 8px">יום המסחר</div></div>'
+    + '<div class="flow-row">'
+    + '<div class="flow-node"><div class="fn-title">מאקרו</div><div class="fn-val flat">—</div><div class="fn-sub">SPY</div></div>'
+    + '<div class="flow-arr">›</div>'
+    + '<div class="flow-node"><div class="fn-title">סקטור</div><div class="fn-val ' + (topSec&&topSec.avg_chg_pct>=0?'up':'dn') + '">' + (topSec?topSec.sector:'—') + '</div><div class="fn-sub">' + (topSec?pct(topSec.avg_chg_pct):'') + '</div></div>'
+    + '<div class="flow-arr">›</div>'
+    + '<div class="flow-node"><div class="fn-title">מוביל</div><div class="fn-val ' + ((topMov&&(topMov.chg_pct||0)>=0)?'up':'dn') + '">' + (topMov?topMov.ticker:'—') + '</div><div class="fn-sub">' + (topMov?pct(topMov.chg_pct):'') + '</div></div>'
+    + '<div class="flow-arr">›</div>'
+    + '<div class="flow-node"><div class="fn-title">פעולה</div><div class="fn-val" style="color:' + actClr + ';font-size:12px">' + actTxt + '</div></div>'
+    + '</div>';
+
+  /* holdings */
+  h += '<div class="sec-hdr">אחזקות — ' + D.generated_time + '</div>';
+  D.holdings.forEach(function(hd){
+    var cls = (hd.chg_pct||0)>0?'up':(hd.chg_pct||0)<0?'dn':'flat';
+    var bw  = Math.min(Math.abs(hd.chg_pct||0)/5*100,100).toFixed(1);
+    var rsi = hd.rsi!=null ? Math.round(hd.rsi) : null;
+    var rc  = rsiColor(hd.rsi);
+    var pills = '';
+    if (hd.sector) pills += '<span class="pill pill-sec">' + hd.sector.split('/')[0].trim() + '</span>';
+    if (hd.layer)  pills += layerPill(hd.layer);
+    if (rsi != null && rsi <= 35) pills += '<span class="pill pill-rsi-os">RSI ' + rsi + ' OS</span>';
+    if (rsi != null && rsi >= 65) pills += '<span class="pill pill-rsi-ob">RSI ' + rsi + ' OB</span>';
+    if (hd.vol_ratio != null && hd.vol_ratio >= 1.5) pills += '<span class="pill pill-vol">×' + hd.vol_ratio + ' נפח</span>';
+    if (hd.days_to_earnings != null && hd.days_to_earnings <= 14) pills += '<span class="pill pill-earn">' + hd.days_to_earnings + 'ד לדוח</span>';
+    if (hd.verdict) pills += '<span class="pill pill-alert">' + hd.verdict + '</span>';
+
+    h += '<div class="card' + (hd.verdict?' alert':'') + '">'
+      + '<div class="h-row">'
+      + '<div><div class="h-ticker">' + hd.ticker + '</div><div class="h-name">' + (hd.sector||'') + '</div></div>'
+      + '<div style="text-align:left"><div class="h-price">' + (hd.price!=null?'$'+hd.price.toFixed(2):'—') + '</div><div class="h-chg ' + cls + '">' + pct(hd.chg_pct) + '</div></div>'
+      + '</div>'
+      + '<div class="bar-track"><div class="bar-fill ' + cls + '" data-w="' + bw + '" style="width:0"></div></div>'
+      + (rsi!=null ? '<div style="display:flex;align-items:center;gap:10px;margin:8px 0 4px">'
+        + '<div class="rsi-ring" style="background:conic-gradient(' + rc + ' calc(' + rsi + '* 1%),rgba(148,163,184,.07) 0)"><span class="rsi-n" style="color:' + rc + '">' + rsi + '</span></div>'
+        + '<div style="flex:1"><div class="bar-track" style="margin:0"><div class="bar-fill flat" style="width:' + (hd.w52_pos_pct||0) + '%"></div></div><div style="font-size:10px;color:var(--muted);margin-top:3px">52w ' + (hd.w52_pos_pct!=null?hd.w52_pos_pct+'%':'—') + '</div></div>'
+        + '</div>' : '')
+      + '<div class="h-meta">' + pills + '</div>'
+      + '</div>';
+  });
+
+  /* groq */
+  if (D.groq_insights && D.groq_insights.length) {
+    h += '<div class="groq-panel"><div class="groq-hdr"><div class="groq-dot"></div><div class="groq-title">תובנות AI יומיות</div></div>';
+    D.groq_insights.forEach(function(ins,i){
+      h += '<div class="groq-item" style="animation-delay:' + (i*.18+.1) + 's"><div class="groq-dot2"></div><div>' + ins + '</div></div>';
+    });
+    h += '</div>';
+  }
+
+  /* watchlist triggers */
+  if (D.watchlist_triggers && D.watchlist_triggers.length) {
+    h += '<div class="sec-hdr">טריגרים</div>';
+    D.watchlist_triggers.forEach(function(w){
+      var dc = Math.abs(w.distance_pct)<1?'var(--red)':'var(--orange)';
+      h += '<div class="card" style="border-right:3px solid var(--orange)">'
+        + '<div style="display:flex;justify-content:space-between;align-items:center">'
+        + '<div><div style="font-size:16px;font-weight:800">' + w.ticker + '</div><div style="font-size:11px;color:var(--muted2)">טריגר $' + w.trigger_price.toFixed(2) + '</div></div>'
+        + '<div style="text-align:left"><div style="font-size:15px;font-weight:700">$' + w.current_price.toFixed(2) + '</div><div style="font-weight:700;color:' + dc + '">' + pct(w.distance_pct) + '</div></div>'
+        + '</div></div>';
+    });
+  }
+
+  el.innerHTML = h;
+  requestAnimationFrame(function(){
+    el.querySelectorAll('.bar-fill[data-w]').forEach(function(e){ e.style.width = e.dataset.w + '%'; });
+  });
+}
+
+/* ── HOLDINGS ── */
+function renderHoldings(){
+  var el = $('tab-holdings');
+  if (!_port) { el.innerHTML = '<div class="empty"><div class="icon">📭</div><div class="msg">אין נתוני תיק</div></div>'; return; }
+
+  /* merge daily prices */
+  var dailyMap = {};
+  if (_daily) _daily.holdings.forEach(function(h){ dailyMap[h.ticker] = h; });
+
+  var holdings = _port.holdings || [];
+  var totalCost = holdings.reduce(function(s,h){ return s + (h.buy_price||0)*(h.quantity||0); }, 0);
+  var cash = _port.cash || 0;
+
+  var h = '<div class="kpi-strip">'
+    + '<div class="kpi"><div class="v">' + holdings.length + '</div><div class="l">אחזקות</div></div>'
+    + '<div class="kpi"><div class="v">$' + Math.round(cash) + '</div><div class="l">מזומן</div></div>'
+    + '<div class="kpi"><div class="v ' + (_daily&&_daily.has_alerts?'dn':'up') + '">' + (_daily&&_daily.has_alerts?'⚠️ סקור':'✓ תקין') + '</div><div class="l">סטטוס</div></div>'
+    + '</div>';
+
+  var staleNote = !_daily ? '' : '';
+  h += '<div class="sec-hdr">אחזקות' + (_daily ? ' · מחירי ' + _daily.generated_time : ' · מחירי כניסה') + '</div>';
+
+  holdings.forEach(function(hd){
+    var tk  = hd.symbol || hd.ticker || '';
+    var d   = dailyMap[tk] || {};
+    var price = d.price != null ? d.price : hd.buy_price;
+    var hasLive = d.price != null;
+    var chg = d.chg_pct;
+    var cls = chg!=null ? (chg>0?'up':chg<0?'dn':'flat') : 'flat';
+    var bw  = chg!=null ? Math.min(Math.abs(chg)/5*100,100).toFixed(1) : 0;
+    var rsi = d.rsi!=null ? Math.round(d.rsi) : null;
+    var rc  = rsiColor(d.rsi);
+
+    var pills = '';
+    if (hd.sector) pills += '<span class="pill pill-sec">' + hd.sector.split('/')[0].trim() + '</span>';
+    if (hd.layer)  pills += layerPill(hd.layer);
+    if (rsi!=null && rsi<=35) pills += '<span class="pill pill-rsi-os">RSI ' + rsi + '</span>';
+    if (rsi!=null && rsi>=65) pills += '<span class="pill pill-rsi-ob">RSI ' + rsi + '</span>';
+    if (d.vol_ratio!=null && d.vol_ratio>=1.5) pills += '<span class="pill pill-vol">×' + d.vol_ratio + '</span>';
+    if (d.days_to_earnings!=null && d.days_to_earnings<=14) pills += '<span class="pill pill-earn">' + d.days_to_earnings + 'ד לדוח</span>';
+
+    var buyInfo = '<span style="font-size:10px;color:var(--muted2)">כניסה $' + hd.buy_price + '</span>';
+    var pnlPct  = hasLive && hd.buy_price ? ((price/hd.buy_price-1)*100).toFixed(1) : null;
+    var pnlEl   = pnlPct!=null ? '<span style="font-size:11px;font-weight:700;color:' + (pnlPct>=0?'var(--green)':'var(--red)') + '">' + (pnlPct>=0?'+':'') + pnlPct + '%</span>' : '';
+
+    h += '<div class="card">'
+      + '<div class="h-row">'
+      + '<div><div class="h-ticker">' + tk + '</div><div class="h-name">' + (hd.name||hd.sector||'') + '</div></div>'
+      + '<div style="text-align:left"><div class="h-price">$' + (price?price.toFixed(2):'—') + '</div>'
+      + (chg!=null ? '<div class="h-chg ' + cls + '">' + pct(chg) + '</div>' : pnlEl)
+      + '</div></div>'
+      + '<div class="bar-track"><div class="bar-fill ' + cls + '" style="width:' + bw + '%"></div></div>'
+      + '<div style="display:flex;justify-content:space-between;align-items:center;margin-top:6px">'
+      + '<div class="h-meta">' + pills + '</div>'
+      + '<div style="display:flex;align-items:center;gap:6px">' + buyInfo + (pnlPct&&hasLive ? pnlEl : '') + '</div>'
+      + '</div></div>';
+  });
+
+  el.innerHTML = h;
+}
+
+/* ── WATCHLIST ── */
+function renderWatchlist(){
+  var el = $('tab-watchlist');
+  if (!_port) { el.innerHTML = '<div class="empty"><div class="icon">📭</div><div class="msg">אין נתונים</div></div>'; return; }
+
+  var dailyMap = {};
+  if (_daily) _daily.holdings.concat(_daily.watchlist_triggers||[]).forEach(function(h){ dailyMap[h.ticker] = h; });
+  /* also map watchlist_triggers */
+  if (_daily && _daily.watchlist_triggers) _daily.watchlist_triggers.forEach(function(t){ dailyMap[t.ticker] = t; });
+
+  var wl = _port.watchlist || [];
+  if (!wl.length) { el.innerHTML = '<div class="empty"><div class="icon">👁️</div><div class="msg">ווצ\'ליסט ריק</div></div>'; return; }
+
+  var h = '<div class="sec-hdr">ווצ\'ליסט — ' + wl.length + ' מניות</div>';
+
+  wl.forEach(function(w){
+    var tk  = w.symbol || w.ticker || '';
+    var d   = dailyMap[tk] || {};
+    var cur = d.current_price || d.price || null;
+    var trig = parseFloat(w.trigger_price) || null;
+    var dist = (cur && trig) ? ((cur - trig) / trig * 100) : null;
+    var distCls = dist==null?'flat': Math.abs(dist)<3?'up':'flat';
+    var verdict = (w.verdict||'WATCH').toUpperCase();
+    var vCls = verdict==='WATCH'?'verdict-WATCH': verdict==='SKIP'?'verdict-SKIP':'verdict-WAIT';
+
+    var trigBar = '';
+    if (cur && trig) {
+      var pos = Math.max(0, Math.min(100, (cur / trig - 0.97) / 0.06 * 100));
+      trigBar = '<div class="wl-trigger-bar">'
+        + '<div class="bar-track"><div class="bar-fill flat" style="width:' + pos.toFixed(0) + '%"></div></div>'
+        + '<div style="display:flex;justify-content:space-between;font-size:10px;color:var(--muted);margin-top:2px"><span>-3%</span><span>טריגר $' + trig.toFixed(2) + '</span><span>+3%</span></div>'
+        + '</div>';
+    }
+
+    h += '<div class="card">'
+      + '<div class="wl-header">'
+      + '<div><div class="wl-ticker">' + tk + '</div><div class="wl-co">' + (w.company||w.name||'') + '</div></div>'
+      + '<div class="wl-verdict ' + vCls + '">' + verdict + '</div>'
+      + '</div>'
+      + '<div class="wl-prices">'
+      + (cur ? '<span>כעת: <b>$' + cur.toFixed(2) + '</b></span>' : '')
+      + (trig ? '<span style="color:var(--muted2)">טריגר: <b>$' + trig.toFixed(2) + '</b></span>' : '')
+      + (dist!=null ? '<span style="font-weight:700;color:' + (Math.abs(dist)<3?'var(--orange)':'var(--muted2)') + '">' + pct(dist) + '</span>' : '')
+      + '</div>'
+      + trigBar
+      + (w.thesis ? '<div class="wl-thesis">' + w.thesis.slice(0, 120) + (w.thesis.length>120?'…':'') + '</div>' : '')
+      + '</div>';
+  });
+
+  el.innerHTML = h;
+}
+
+/* ── WEEKLY ── */
+function renderWeekly(){
+  var el = $('tab-weekly');
+  if (!_weekly) {
+    el.innerHTML = '<div class="empty"><div class="icon">📅</div><div class="msg">אין דוח שבועי</div><div class="sub">מתעדכן כל ראשון 5:00</div></div>';
+    return;
+  }
+  var W = _weekly;
+  var pp = W.portfolio_performance || {};
+  var mac = W.macro_snapshot || {};
+  var items = W.action_items || [];
+  var holdings = W.holdings_weekly || [];
+
+  var h = '<div class="sec-hdr">' + (W.week_label||W.generated||'שבוע') + '</div>';
+
+  /* KPIs */
+  h += '<div class="week-kpi">'
+    + '<div class="wkpi"><div class="v ' + ((pp.week_pct||0)>=0?'up':'dn') + '">' + pct(pp.week_pct) + '</div><div class="l">ביצועי שבוע</div></div>'
+    + '<div class="wkpi"><div class="v ' + ((pp.total_pnl_pct||0)>=0?'up':'dn') + '">' + pct(pp.total_pnl_pct) + '</div><div class="l">סה"כ P&L</div></div>'
+    + '</div>';
+
+  /* macro */
+  if (mac.spy_week_pct != null || mac.vix != null) {
+    h += '<div class="card" style="margin-top:4px">'
+      + '<div style="font-size:11px;color:var(--muted);font-weight:700;margin-bottom:8px">מאקרו</div>'
+      + '<div style="display:flex;gap:16px;font-size:13px">'
+      + (mac.spy_week_pct!=null ? '<div>SPY <span class="' + (mac.spy_week_pct>=0?'up':'dn') + '">' + pct(mac.spy_week_pct) + '</span></div>' : '')
+      + (mac.qqq_week_pct!=null ? '<div>QQQ <span class="' + (mac.qqq_week_pct>=0?'up':'dn') + '">' + pct(mac.qqq_week_pct) + '</span></div>' : '')
+      + (mac.vix!=null ? '<div>VIX <span>' + mac.vix + '</span></div>' : '')
+      + '</div>'
+      + (mac.regime_note ? '<div style="font-size:11px;color:var(--muted2);margin-top:8px">' + mac.regime_note + '</div>' : '')
+      + '</div>';
+  }
+
+  /* holdings weekly */
+  if (holdings.length) {
+    h += '<div class="sec-hdr">אחזקות השבוע</div>'
+      + '<div class="card" style="padding:8px 12px">';
+    holdings.forEach(function(hd){
+      var cls = (hd.price_change_pct||0)>=0?'up':'dn';
+      h += '<div class="week-item">'
+        + '<div style="font-size:14px;font-weight:700">' + hd.ticker + '</div>'
+        + '<div style="font-size:12px;color:var(--muted2);flex:1;padding:0 10px;text-align:center">' + (hd.headline||'').slice(0,40) + '</div>'
+        + '<div class="' + cls + '" style="font-size:14px;font-weight:800">' + pct(hd.price_change_pct) + '</div>'
+        + '</div>';
+    });
+    h += '</div>';
+  }
+
+  /* insights */
+  if (items.length) {
+    h += '<div class="groq-panel">'
+      + '<div class="groq-hdr"><div class="groq-dot"></div><div class="groq-title">תובנות שבועיות</div></div>';
+    items.forEach(function(ins,i){
+      h += '<div class="groq-item" style="animation-delay:' + (i*.15+.1) + 's"><div class="groq-dot2"></div><div>' + ins + '</div></div>';
+    });
+    h += '</div>';
+  }
+
+  el.innerHTML = h;
+}
+
+/* ── register service worker ── */
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('./sw.js').catch(function(){});
+}
+
+/* ── boot ── */
+_loaded['daily'] = true;
+loadAll();
+</script>
+</body>
+</html>
