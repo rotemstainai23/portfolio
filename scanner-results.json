@@ -1,166 +1,35 @@
 [
   {
-    "stock": {
-      "ticker": "XP",
-      "company": "XP Inc.",
-      "sector": "Financial Services / Brazilian Fintech",
-      "marketCap": "$8.6B",
-      "currentPrice": "$16.67"
-    },
-    "conviction_score": 54,
-    "opportunity": {
-      "headline": "Brazilian fintech leader at P/E 8.8x with 21% projected 2026 revenue growth and 46% analyst consensus upside",
-      "what_it_does": "פלטפורמת ניהול השקעות המובילה בברזיל: מאפשרת לאזרחים להשקיע מחוץ לבנקים הממשלתיים ומנהלת BRL 2.1 טריליון בנכסי לקוחות.",
-      "description": "XP Inc. היא פלטפורמת ניהול ההשקעות המובילה בברזיל, עם נכסי לקוחות של BRL 2.1 טריליון (גידול שנתי של 21%). בדוח Q1 2026 החברה עקפה את תחזיות האנליסטים: EPS של R$2.56 לעומת R$2.52 הצפוי, והכנסות של R$4.95 מיליארד לעומת R$4.78 מיליארד הצפויים. מכפיל הרווח הנוכחי של 8.76 (forward: 7.84) יוצר פער ניכר ביחס לצמיחה הצפויה ל-2026 של 21.4%.\n\nהנהלת החברה מפגינה ביטחון עם הכרזה על תוכנית רכישה עצמית חדשה של BRL 1 מיליארד ודיבידנד של BRL 500 מיליון. 13 אנליסטים מכסים את המניה עם המלצת קנייה ויעד ממוצע של $24.37 (46% מעל המחיר הנוכחי).\n\nסיכון עיקרי: חשיפה למטבע הריאל הברזילאי ולמדיניות הריבית של הבנק המרכזי בברזיל. עם זאת, מסלול הורדת הריבית הנוכחי בברזיל תומך בגידול בנכסים המנוהלים.",
-      "why_now": "תאריך Ex-Dividend הוא 10 ביוני 2026 (9 ימים). תוכנית הרכישה העצמית החדשה של BRL 1 מיליארד מייצרת לחץ קנייה מוסדי. המניה קרובה לתחתית 52-השבועות ($15.61 vs $16.67), מה שיוצר פרופיל סיכוי/סיכון נוח.",
-      "discoverySource": ["stockanalysis.com", "Yahoo Finance Q1 2026 Earnings", "MarketBeat Forecast"],
-      "layersTriggered": [
-        "Layer 1: Value + Growth Sweet Spot — P/E 8.76, Revenue Growth 21.4% FY2026E",
-        "Layer 4: Earnings Surprise Pattern — Q1 EPS R$2.56 > R$2.52, Revenue $4.95B > $4.78B",
-        "Layer 5: Value Shield — FCF חיובי, Buyback BRL 1B, Dividend BRL 500M",
-        "Layer 7: Analyst Consensus Gap — Target $24.37 = 46% Upside, 10/13 Buy"
-      ]
-    },
-    "metrics": {
-      "peRatio": "8.76",
-      "pegRatio": "לא מאומת",
-      "revenue_growth_yoy": "9.9% TTM / 21.4% FY2026E",
-      "free_cash_flow": "לא מאומת (Net Income ~$1.0B TTM)",
-      "insider_activity_90d": "No — BRL 1B Corporate Buyback",
-      "analyst_target_upside": "46",
-      "sentiment_score": -2
-    },
-    "catalysts": [
-      {
-        "catalyst": "Ex-Dividend Date June 10 — BRL 500M dividend payment to shareholders",
-        "timeline": "9 days",
-        "probability": "High"
-      },
-      {
-        "catalyst": "BRL 1B share repurchase program — creates sustained institutional buying",
-        "timeline": "30 days ongoing",
-        "probability": "High"
-      },
-      {
-        "catalyst": "Brazilian interest rate easing cycle supports asset platform growth",
-        "timeline": "2-4 weeks",
-        "probability": "Medium"
-      }
-    ],
-    "risks": [
-      "Risk 1: BRL/USD currency risk — 10-20% FX impact possible if Real depreciates",
-      "Risk 2: FY2026 21.4% revenue growth requires H2 acceleration vs 9.9% TTM run rate"
-    ],
-    "discovery_date": "2026-06-01",
-    "next_review": "2026-07-01"
+    "ticker": "CEVA",
+    "company": "Ceva Inc",
+    "catalyst": "AI Double-Tap That Lit Up Cadence",
+    "conviction": 4,
+    "upside_pct": 15,
+    "downside_pct": 8,
+    "timeframe": "1-2 שבועות",
+    "source": "חדשות",
+    "thesis": "CEVA עומדת ליהנות מהצמיחה בתחום ה-AI וה-Edge AI Royalties. החברה מציגה נתונים חזקים ופוטנציאל לצמיחה עתידית."
   },
   {
-    "stock": {
-      "ticker": "ROCK",
-      "company": "Gibraltar Industries, Inc.",
-      "sector": "Industrials / Building Products",
-      "marketCap": "$1.15B",
-      "currentPrice": "$38.65"
-    },
-    "conviction_score": 40,
-    "opportunity": {
-      "headline": "CEO purchases $738K in open market shares after 48% drawdown while industrials sector rallies 22% YTD",
-      "what_it_does": "יצרנית מוצרי בנייה לדיור ותעשייה בארה\"ב: גגות, מסגרות, וחלונות לקבלנים. לאחר רכישת OmniMax (2026) הפכה לשחקן מוביל בסולאר ביתי.",
-      "description": "Gibraltar Industries השלימה ב-2026 רכישה אסטרטגית של OmniMax International ב-$1.335 מיליארד ומכרה את עסקי ה-Renewables ב-$70 מיליון. הכנסות Q1 2026 עלו 44.6% שנה-על-שנה ל-$356 מיליון (לעומת תחזית $329 מיליון). ה-EPS היה מאכזב ($0.45 vs $0.64 צפוי) בשל עלויות אלומיניום, אך ההנהלה ביצעה העלאות מחיר ב-14 מותגים במרץ-אפריל 2026 וצופה שיפור החל מ-Q2.\n\nהסיגנל הקריטי: מנכ\"ל William Bosway רכש מניות בשוק הפתוח בסך $738,833 ב-26 במאי 2026, שבועיים לאחר ה-EPS miss ועם המניה בשפל 52-השבועות. רכישה אישית בסכום זה אחרי ביצועים חלשים מעידה על ביטחון בהתאוששות H2.\n\nמגזר התעשייה עלה 22% מתחילת 2026, בעוד ROCK ירדה 21%. פערים של 43% בין המניה לסקטור שלה מייצגים הזדמנות catch-up פוטנציאלית.",
-      "why_now": "CEO William Bosway השקיע $738,833 מכספו האישי ב-26 במאי 2026, שבועיים אחרי ה-EPS miss. העלאות המחיר מאפריל צפויות להשתקף ב-Q2 (מסתיים 30 יוני 2026). חלון ה-30 ימים מכיל את סוף Q2 ואת הבשלת סינרגיות OmniMax הראשוניות.",
-      "discoverySource": ["Quiver Quantitative Insider Report May 27", "Finviz ROCK Quote", "StockStory Q1 2026 Analysis"],
-      "layersTriggered": [
-        "Layer 3: Insider Conviction — CEO $738,833 open market purchase May 26, 2026",
-        "Layer 6: Sector Rotation Entry — Industrials +22% YTD, ROCK -21% YTD = early entry",
-        "Layer 7: Analyst Consensus Gap — Target $68.67 = 78% Upside, Strong Buy consensus",
-        "Layer 8: Correlation Anomaly — ROCK -21% YTD vs Industrials +22% = 43% gap vs peers"
-      ]
-    },
-    "metrics": {
-      "peRatio": "N/A (acquisition charges)",
-      "pegRatio": "8.15 Forward P/E",
-      "revenue_growth_yoy": "44.6% Q1 YoY (acquisition-driven, organic -3%)",
-      "free_cash_flow": "לא מאומת 2026 (Q1: -$34.6M; FY2023: $205M)",
-      "insider_activity_90d": "Yes — CEO $738,833 on May 26, 2026",
-      "analyst_target_upside": "78",
-      "sentiment_score": -3
-    },
-    "catalysts": [
-      {
-        "catalyst": "Q2 price-material economics expected positive — Mar-Apr price increases kicking in",
-        "timeline": "30 days (Q2 ends June 30)",
-        "probability": "Medium"
-      },
-      {
-        "catalyst": "OmniMax synergy commitment raised to $26M — H1 2026 milestones deliverable",
-        "timeline": "30-45 days",
-        "probability": "Medium"
-      },
-      {
-        "catalyst": "CEO personal investment of $738K signals H2 operational recovery confidence",
-        "timeline": "Already executed May 26",
-        "probability": "High"
-      }
-    ],
-    "risks": [
-      "Risk 1: Q1 FCF negative (-$34.6M operating) — if Q2 doesn't recover, thesis weakens",
-      "Risk 2: Organic revenue -3% YoY — underlying business declining excluding acquisition"
-    ],
-    "discovery_date": "2026-06-01",
-    "next_review": "2026-07-01"
+    "ticker": "ENPH",
+    "company": "Enphase Energy",
+    "catalyst": "Q1 Earnings Beat And PowerMatch Rollout",
+    "conviction": 4,
+    "upside_pct": 12,
+    "downside_pct": 6,
+    "timeframe": "1-2 שבועות",
+    "source": "חדשות",
+    "thesis": "ENPH הציגה תוצאות רבעון חזקות ומימשה את ה-Rollout של PowerMatch. החברה עומדת ליהנות מהצמיחה בתחום האנרגיה הנקייה."
   },
   {
-    "stock": {
-      "ticker": "NIQ",
-      "company": "NIQ Global Intelligence plc",
-      "sector": "Data & Analytics / Consumer Intelligence",
-      "marketCap": "$2.46B",
-      "currentPrice": "$8.34"
-    },
-    "conviction_score": 40,
-    "opportunity": {
-      "headline": "Data intelligence platform at forward P/E 7.75x with $250M guided FCF; stock dropped 9.46% on Q1 earnings beat",
-      "what_it_does": "ספקית נתוני קמעונאות וצרכנות גלובלית: מודדת מכירות ומגמות שוק עבור מותגי FMCG ורשתות שיווק ב-100+ מדינות.",
-      "description": "NIQ Global Intelligence היא חברת ניתוח נתוני צרכנות גלובלית המשרתת מותגי enterprise. המניה ירדה למעלה מ-50% מאז ה-IPO למרות שיפור מתמיד ב-Fundamentals. בדוח Q1 2026 החברה עקפה ציפיות: EPS של $0.15 לעומת $0.10 הצפוי, הכנסות $1.07 מיליארד לעומת $1.05 מיליארד הצפויים. המניה ירדה 9.46% ביום הדוח, מה שיוצר פסיקת sentiment קלאסית.\n\nהחברה מדריכה ל-FCF של $235-250 מיליון ב-2026 ולשיפור שולי EBITDA של 150 נקודות בסיס. תוכנית פרודוקטיביות צפויה לספק חיסכון שנתי של $70-80 מיליון, עם יעד מינוף נטו <3.0x עד סוף 2026.\n\nסיכון עיקרי: חוב כולל של $3.5 מיליארד עם הוצאות ריבית של $58.5 מיליון לרבעון. החוב הוחלף עד אוקטובר 2030, אך מגביל גמישות ההשקעה.",
-      "why_now": "המניה ירדה 9.46% ביום פרסום דוח Q1 שהיה Beat על EPS וגם על הכנסות. Sentiment Mismatch קלאסי: 90% אנליסטים ממליצים קנייה עם יעד $14.85. ירידה חדה על בשורה טובה ב-mid-cap עם כיסוי analyst גבוה מתקנת עצמה בדרך כלל תוך 2-4 שבועות.",
-      "discoverySource": ["StockAnalysis.com NIQ", "Investing.com Q1 2026 Earnings Transcript", "StockTitan NIQ Q1 SEC Filing"],
-      "layersTriggered": [
-        "Layer 5: Value Shield — FCF $264M FY2025, $235-250M guided FY2026; Forward P/E 7.75",
-        "Layer 7: Analyst Consensus Gap — Target $14.85 = 78% Upside, 10/11 analysts Buy",
-        "Layer 8: Correlation Anomaly — -50%+ since IPO; -9.46% on EPS Beat = Sentiment Mismatch"
-      ]
-    },
-    "metrics": {
-      "peRatio": "N/A trailing / 7.75 forward",
-      "pegRatio": "לא מאומת",
-      "revenue_growth_yoy": "8.3% TTM / 6.4-6.7% FY2026 guided",
-      "free_cash_flow": "$264M FY2025 / $235-250M FY2026 guided",
-      "insider_activity_90d": "No",
-      "analyst_target_upside": "78",
-      "sentiment_score": -4
-    },
-    "catalysts": [
-      {
-        "catalyst": "Post-earnings mean reversion — 9.46% drop on beat historically corrects in 2-4 weeks with high analyst coverage",
-        "timeline": "2-4 weeks",
-        "probability": "Medium"
-      },
-      {
-        "catalyst": "Q2 deleveraging progress towards <3.0x net leverage — management credibility catalyst",
-        "timeline": "45-60 days",
-        "probability": "Medium"
-      },
-      {
-        "catalyst": "$70-80M annual productivity savings run rate expected H2 2026",
-        "timeline": "60-90 days",
-        "probability": "Medium"
-      }
-    ],
-    "risks": [
-      "Risk 1: $3.5B debt load — quarterly interest $58.5M constrains flexibility despite 2030 maturity",
-      "Risk 2: Revenue growth only 6-8% — well below Layer 1 threshold; growth story is margin-driven"
-    ],
-    "discovery_date": "2026-06-01",
-    "next_review": "2026-07-01"
+    "ticker": "CRWD",
+    "company": "CrowdStrike",
+    "catalyst": "Q1 Beat Wasn't Big Enough For Some Bulls",
+    "conviction": 4,
+    "upside_pct": 10,
+    "downside_pct": 5,
+    "timeframe": "1-2 שבועות",
+    "source": "חדשות",
+    "thesis": "CRWD הציגה תוצאות רבעון חזקות אך לא מספיק גדולות עבור חלק מהבולים. החברה עומדת ליהנות מהצמיחה בתחום האבטחת סייבר."
   }
 ]

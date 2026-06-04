@@ -16,7 +16,7 @@ sys.path.insert(0, ROOT)
 PORTFOLIO_JSON  = os.path.join(ROOT, 'portfolio.json')
 ANALYSES_DIR    = os.path.join(ROOT, 'analyses')
 
-from notifications import send_both
+from notifications import send_notification
 
 
 # ── טעינת נתוני תיק ─────────────────────────────────────────────────────────
@@ -67,52 +67,43 @@ def get_prices(tickers: list[str]) -> dict:
 
 
 # ── עיצוב הודעה ──────────────────────────────────────────────────────────────
-def build_message(portfolio: dict, prices: dict) -> tuple[str, str]:
-    """מחזיר (full_telegram, short_whatsapp)."""
+def build_message(portfolio: dict, prices: dict) -> str:
+    """בונה הודעת דוח בוקר נקייה ל-ntfy."""
     today    = datetime.now().strftime('%d/%m/%Y')
     holdings = portfolio.get('holdings', [])
 
-    lines_tg = [f'*דוח בוקר — {today}*\n']
-    lines_wa = [f'דוח בוקר {today}\n']
-
+    lines     = [f'דוח בוקר {today}']
     any_alert = False
+
     for h in holdings:
         ticker = h.get('symbol') or h.get('ticker', '')
         if not ticker:
             continue
-        p = prices.get(ticker, {})
+        p        = prices.get(ticker, {})
         price    = p.get('price')
         chg_pct  = p.get('chg_pct')
         reviews  = load_reviews(ticker)
         ic_rv    = reviews.get('ic') or reviews.get('analyst') or {}
-        verdict  = ic_rv.get('verdict', '?')
-        score    = ic_rv.get('score', '?')
+        verdict  = ic_rv.get('verdict', '')
+        score    = ic_rv.get('score', '')
 
         price_str = f'${price:.2f}' if price else '?'
         chg_str   = (f'{chg_pct:+.2f}%' if chg_pct is not None else '?')
-        arrow     = ('↑' if (chg_pct or 0) > 0 else '↓' if (chg_pct or 0) < 0 else '→')
+        arrow     = ('UP' if (chg_pct or 0) > 0.5 else 'DN' if (chg_pct or 0) < -0.5 else '--')
 
-        # kill switch בדיקה
         kill_hit = False
         for agent_rv in reviews.values():
             if isinstance(agent_rv, dict) and agent_rv.get('verdict') in ('SELL', 'EXIT', 'REVIEW'):
                 kill_hit = True
                 break
 
-        line_tg = f'{arrow} *{ticker}* {price_str} ({chg_str}) — {verdict} {score}/100'
-        line_wa = f'{arrow} {ticker} {price_str} ({chg_str}) {verdict}'
-
+        score_str = f' | {score}/100' if score else ''
+        verdict_str = f' {verdict}' if verdict else ''
+        alert_str = ' !! REVIEW' if kill_hit else ''
         if kill_hit:
-            line_tg += ' *⚠ REVIEW*'
-            line_wa += ' !! REVIEW'
             any_alert = True
 
-        thesis = ic_rv.get('thesis', '')
-        if thesis:
-            line_tg += f'\n  _{thesis[:100]}_'
-
-        lines_tg.append(line_tg)
-        lines_wa.append(line_wa)
+        lines.append(f'{arrow} {ticker} {price_str} ({chg_str}){verdict_str}{score_str}{alert_str}')
 
     # watchlist
     watchlist = portfolio.get('watchlist', [])
@@ -125,21 +116,16 @@ def build_message(portfolio: dict, prices: dict) -> tuple[str, str]:
         p = prices.get(ticker, {})
         price = p.get('price')
         if price and abs(price - float(trigger)) / float(trigger) < 0.03:
-            wl_hits.append(f'{ticker} קרוב לטריגר ${trigger} (נוכחי ${price:.2f})')
+            wl_hits.append(f'WATCHLIST: {ticker} קרוב לטריגר ${trigger} (כעת ${price:.2f})')
 
     if wl_hits:
-        lines_tg.append('\n*ווצ\'ליסט — קרוב לטריגר:*')
-        lines_wa.append('\nWATCHLIST:')
-        for hit in wl_hits:
-            lines_tg.append(f'  · {hit}')
-            lines_wa.append(f'  {hit}')
+        lines.append('')
+        lines.extend(wl_hits)
 
     if any_alert:
-        lines_tg.insert(1, '*ALERT: אחזקות לבדיקה — ראה פירוט*\n')
+        lines.insert(1, 'ALERT: יש אחזקות לבדיקה')
 
-    full_tg = '\n'.join(lines_tg)
-    short_wa = '\n'.join(lines_wa)
-    return full_tg, short_wa
+    return '\n'.join(lines)
 
 
 # ── ריצה ─────────────────────────────────────────────────────────────────────
@@ -154,8 +140,8 @@ def main():
     print(f'[daily_report] שולף מחירים ל-{len(all_tickers)} טיקרים...')
     prices = get_prices(all_tickers)
 
-    full_tg, short_wa = build_message(portfolio, prices)
-    result = send_both(short_text=short_wa, full_text=full_tg)
+    msg    = build_message(portfolio, prices)
+    result = send_notification(msg, title='דוח בוקר', tags=['sun'])
     print(f'[daily_report] נשלח: {result}')
 
 

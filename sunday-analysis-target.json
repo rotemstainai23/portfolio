@@ -1,1 +1,11 @@
-{}
+{
+  "ticker": "CEVA",
+  "company": "Ceva Inc",
+  "catalyst": "AI Double-Tap That Lit Up Cadence",
+  "conviction": 4,
+  "upside_pct": 15,
+  "downside_pct": 8,
+  "timeframe": "1-2 שבועות",
+  "source": "חדשות",
+  "thesis": "CEVA עומדת ליהנות מהצמיחה בתחום ה-AI וה-Edge AI Royalties. החברה מציגה נתונים חזקים ופוטנציאל לצמיחה עתידית."
+}
