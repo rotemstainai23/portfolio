@@ -108,7 +108,9 @@ def get_target_and_52w(ticker: str) -> dict:
 
         def val(d, k):
             v = d.get(k, {})
-            return v.get('raw') if isinstance(v, dict) else None
+            if isinstance(v, dict):
+                return v.get('raw') if v.get('raw') is not None else v.get('fmt')
+            return v if v is not None else None
 
         detail  = summary.get('summaryDetail', {})
         fin     = summary.get('financialData', {})
@@ -128,12 +130,16 @@ def get_target_and_52w(ticker: str) -> dict:
         next_earnings = None
         earnings_list = cal.get('earnings', {}).get('earningsDate', [])
         if earnings_list:
-            ts = earnings_list[0].get('raw')
+            item = earnings_list[0]
+            ts   = item.get('raw') if isinstance(item, dict) else item
             if ts:
-                dt = datetime.fromtimestamp(ts, tz=timezone.utc)
-                days_away = (dt.date() - datetime.now(tz=timezone.utc).date()).days
-                if 0 <= days_away <= 21:
-                    next_earnings = days_away
+                try:
+                    dt = datetime.fromtimestamp(int(ts), tz=timezone.utc)
+                    days_away = (dt.date() - datetime.now(tz=timezone.utc).date()).days
+                    if 0 <= days_away <= 21:
+                        next_earnings = days_away
+                except Exception:
+                    pass
 
         return {
             'target':       round(target, 2) if target else None,
@@ -190,16 +196,20 @@ def run_groq_insights(holdings_data: list) -> list:
     context = json.dumps(holdings_data, ensure_ascii=False, separators=(',', ':'))
 
     system = """אתה אנליסט תיק השקעות. קיבלת נתוני בוקר על תיק מניות בפורמט JSON.
-לכל מניה יש: מחיר, שינוי יומי %, נפח ביחס לממוצע (vol_ratio), RSI, יעד אנליסטים, ימים לרווחים, חדשות.
 
-ענה אך ורק ב-JSON תקני — מערך של 3 עד 4 strings קצרים בעברית.
-כל string הוא תובנה אחת (משפט אחד, מקסימום 15 מילים).
-התמקד רק במה שחריג ומשמעותי: נפח גבוה במיוחד, חדשות קטליסט, רווחים קרובים, תנועה חריגה.
-אל תציין מה שגרתי — אם אין חריגות אמיתיות, כתוב תובנה על סקטור או מגמה.
-אסור להשתמש במירכאות כפולות בתוך ערכי ה-strings.
+ענה ב-JSON בלבד — מערך של 3 עד 4 strings בעברית.
+כל string: משפט אחד שמסביר מה קורה, לא רק מחזיר את המספרים.
 
-פורמט:
-["תובנה 1", "תובנה 2", "תובנה 3"]"""
+כללים:
+- אם יש חדשות — ציין את הקטליסט הספציפי שגרם לתנועה
+- תנועה גדולה ללא חדשות — נסח השערה מבוססת סקטור/macro, סמן ב-"ייתכן"
+- vol_ratio>2 עם ירידה = לחץ מכירה חריג — חשוב לציין
+- RSI<25 = oversold קיצוני, RSI>75 = overbought — פרש את המשמעות
+- earnings_days קיים — תמיד אזהרה
+- אל תחזור על המספרים, תפרש אותם
+- אסור מירכאות כפולות בתוך strings
+
+פורמט: ["תובנה 1", "תובנה 2", "תובנה 3"]"""
 
     try:
         import requests as _req
