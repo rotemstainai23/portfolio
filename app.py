@@ -3418,4 +3418,5 @@ if __name__ == '__main__':
     print('  ============================================')
     print()
     threading.Thread(target=_open_browser, daemon=True).start()
-    app.run(host='127.0.0.1', port=5000, debug=False)
+    host = os.environ.get('FLASK_HOST', '127.0.0.1')
+    app.run(host=host, port=5000, debug=False)
