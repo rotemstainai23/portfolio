@@ -17,6 +17,14 @@ try:
 except ImportError:
     pass
 
+# curl_cffi CA bundle לyfinance
+try:
+    import certifi
+    import os as _os
+    _os.environ['CURL_CA_BUNDLE'] = certifi.where()
+except ImportError:
+    pass
+
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, ROOT)
 
