@@ -535,6 +535,151 @@ tbody tr:hover td{background:rgba(139,92,246,.04)}
 .hub-empty{text-align:center;padding:60px 32px;color:var(--muted2);grid-column:1/-1}
 .hub-empty p{font-size:14px;line-height:1.8}
 @media(max-width:760px){.hub-stats,.hub-section-title,.ticker-grid{padding-right:14px;padding-left:14px}.heatmap-container{margin:0 14px}.ticker-grid{grid-template-columns:1fr}}
+
+/* ═══════════════════════════════════════════════════════════════════
+   MOBILE — 767px ומטה
+   ═══════════════════════════════════════════════════════════════════ */
+@media(max-width:767px){
+
+  /* בסיס מגע */
+  button,.tab,.hub-link,.btn,.btn-sm,.qa-btn,.pa-btn,a,th,td,input,select{
+    touch-action:manipulation;
+    -webkit-tap-highlight-color:rgba(139,92,246,.12);
+  }
+
+  /* ── Topbar ── */
+  .topbar{padding:10px 12px;flex-wrap:wrap;gap:6px;min-height:0}
+  .topbar .sub{display:none}
+  .logo{font-size:15px}
+  .topbar-nav{gap:4px;flex-wrap:wrap}
+  .hub-link{padding:8px 10px;font-size:11px;min-height:36px}
+  .live-badge{padding:5px 10px;font-size:10px}
+
+  /* ── KPI Cards: 2 עמודות ── */
+  .cards{grid-template-columns:repeat(2,1fr);padding:8px 10px 6px;gap:7px}
+  .card{padding:11px 12px}
+  .card .val{font-size:18px}
+  .card .lbl{font-size:10px}
+
+  /* ── Tab bar: סקרול אופקי ── */
+  .tabs{
+    overflow-x:auto;flex-wrap:nowrap;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
+    padding:6px 8px 0;gap:2px;
+  }
+  .tabs::-webkit-scrollbar{display:none}
+  .tab{
+    flex-shrink:0;padding:10px 12px;
+    font-size:12px;min-height:40px;
+    white-space:nowrap;border-radius:10px 10px 0 0;
+  }
+  .tab svg{width:11px;height:11px}
+
+  /* ── תוכן טאב ── */
+  .tw{padding:10px 8px}
+  .tw-header{padding:0 4px 10px;flex-wrap:wrap;gap:8px}
+  .tw-title{font-size:14px}
+
+  /* ── כפתורים: מינימום מגע 40px ── */
+  .btn{min-height:40px;padding:10px 16px;font-size:13px}
+  .btn-sm{min-height:36px;padding:8px 12px;font-size:12px}
+  .qa-btn{min-height:40px;padding:9px 12px;font-size:12px}
+  .pa-btn{min-height:36px;padding:8px 10px;font-size:12px}
+
+  /* ── Agent runner ── */
+  .qa-section{flex-wrap:wrap;gap:6px;padding:8px 10px}
+  #run-ticker{width:84px;font-size:12px}
+  .qa-lbl{font-size:11px}
+
+  /* ── טבלאות: סתר עמודות כבדות ── */
+  th{font-size:11px;padding:8px 7px}
+  td{font-size:12px;padding:8px 7px}
+
+  /* Holdings: נותר — Symbol, Price, Day%, P&L%, Actions */
+  #holdings-table th:nth-child(4),#holdings-table td:nth-child(4),
+  #holdings-table th:nth-child(5),#holdings-table td:nth-child(5),
+  #holdings-table th:nth-child(6),#holdings-table td:nth-child(6),
+  #holdings-table th:nth-child(7),#holdings-table td:nth-child(7),
+  #holdings-table th:nth-child(9),#holdings-table td:nth-child(9),
+  #holdings-table th:nth-child(10),#holdings-table td:nth-child(10),
+  #holdings-table th:nth-child(11),#holdings-table td:nth-child(11),
+  #holdings-table th:nth-child(12),#holdings-table td:nth-child(12),
+  #holdings-table th:nth-child(13),#holdings-table td:nth-child(13)
+  {display:none}
+
+  /* Watchlist: נותר — Ticker, Price, Trigger, Distance, Verdict */
+  #watchlist-table th:nth-child(6),#watchlist-table td:nth-child(6),
+  #watchlist-table th:nth-child(7),#watchlist-table td:nth-child(7),
+  #watchlist-table th:nth-child(8),#watchlist-table td:nth-child(8),
+  #watchlist-table th:nth-child(9),#watchlist-table td:nth-child(9),
+  #watchlist-table th:nth-child(10),#watchlist-table td:nth-child(10),
+  #watchlist-table th:nth-child(11),#watchlist-table td:nth-child(11)
+  {display:none}
+
+  /* Trade Log: נותר — Date, Ticker, Action, Price, Confidence, Verdict */
+  #tradelog-table th:nth-child(1),#tradelog-table td:nth-child(1),
+  #tradelog-table th:nth-child(6),#tradelog-table td:nth-child(6),
+  #tradelog-table th:nth-child(7),#tradelog-table td:nth-child(7),
+  #tradelog-table th:nth-child(8),#tradelog-table td:nth-child(8),
+  #tradelog-table th:nth-child(9),#tradelog-table td:nth-child(9),
+  #tradelog-table th:nth-child(11),#tradelog-table td:nth-child(11),
+  #tradelog-table th:nth-child(12),#tradelog-table td:nth-child(12),
+  #tradelog-table th:nth-child(14),#tradelog-table td:nth-child(14),
+  #tradelog-table th:nth-child(15),#tradelog-table td:nth-child(15)
+  {display:none}
+
+  /* ── Modals: bottom sheet ── */
+  .overlay{padding:0;align-items:flex-end}
+  .modal{
+    width:100%!important;
+    max-width:100%!important;
+    max-height:88vh;
+    border-radius:22px 22px 0 0;
+    padding:20px 14px 28px;
+    margin:0;
+  }
+  .form-grid{grid-template-columns:1fr;gap:10px}
+
+  /* ── Grids: single column ── */
+  .reviews-grid{grid-template-columns:1fr}
+  .scanner-grid{grid-template-columns:1fr;padding:0 8px 10px}
+  .pres-grid{grid-template-columns:1fr}
+  .ticker-grid{grid-template-columns:1fr}
+
+  /* ── Search ── */
+  .search-box{width:auto;flex:1;max-width:none;font-size:13px}
+
+  /* ── Memory ── */
+  .mem-snap{flex-direction:column}
+  .mem-snap .ms-main{min-width:0}
+  .mem-hero{padding:14px}
+  .mem-searchbar input{font-size:13px;padding:10px 14px}
+
+  /* ── Font floors: אין טקסט מתחת ל-11px ── */
+  .layer,.action-badge,.qa-lbl,.score{font-size:11px}
+  .m-lbl,.sc-cat-title,.tc-ring-lbl,
+  .prob-High,.prob-Medium,.prob-Low{font-size:11px}
+  .live-badge{font-size:10px}
+
+  /* ── Footer ── */
+  .footer{padding:8px 12px;font-size:12px;flex-wrap:wrap;gap:6px}
+
+  /* ── Empty states ── */
+  .empty{padding:28px 14px;font-size:13px}
+
+  /* ── Score badges ── */
+  .score{width:30px;height:30px;font-size:11px}
+
+  /* ── Scanner controls ── */
+  #sc-sector,#sc-sort{width:auto;flex:1;font-size:12px;min-height:36px}
+
+  /* ── Daily report iframe ── */
+  #daily-report-frame iframe{min-height:600px;border-radius:10px}
+
+  /* ── Reviews grid min card ── */
+  .reviews-grid .rev-card{padding:14px}
+}
 </style>
 </head>
 <body>
@@ -752,7 +897,7 @@ tbody tr:hover td{background:rgba(139,92,246,.04)}
       <button class="btn btn-primary" onclick="openTradeModal()">+ Log Trade</button>
     </div>
     <div class="tbl-wrap">
-      <table>
+      <table id="tradelog-table">
         <thead><tr>
           <th>ID</th><th>Date</th><th>Ticker</th><th>Action</th><th>Price ($)</th>
           <th>Size (%)</th><th>Layer</th><th>Analyst</th><th>Risk</th><th>Confidence</th>
@@ -774,7 +919,7 @@ tbody tr:hover td{background:rgba(139,92,246,.04)}
       <button class="btn btn-primary" onclick="openWatchModal()">+ Add Watch</button>
     </div>
     <div class="tbl-wrap">
-      <table>
+      <table id="watchlist-table">
         <thead><tr>
           <th>Ticker</th><th>Price</th><th>Trigger</th><th>Distance</th>
           <th>Verdict</th><th>Layer</th><th>Analyst</th><th>Risk</th>
