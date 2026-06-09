@@ -1,9 +1,7 @@
 name: דוח יומי — שני-שישי 5:00
 
 on:
-  schedule:
-    # ישראל קיץ UTC+3 → 5:00 = 02:00 UTC
-    - cron: '0 2 * * 1-5'
+  # schedule הושבת — הדוח מתוזמן עכשיו דרך Claude /schedule (סוכן ענן)
   workflow_dispatch:
 
 jobs:
@@ -34,7 +32,7 @@ jobs:
         run: |
           git config user.name "Daily Report Bot"
           git config user.email "bot@portfolio"
-          git add analyses/_daily/
+          git add analyses/_daily/ portfolio.json
           git diff --cached --quiet || git commit -m "chore: daily report $(date +%Y-%m-%d)"
           git push
         env:
