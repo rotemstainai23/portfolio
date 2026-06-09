@@ -129,20 +129,44 @@ def get_target_and_earnings(ticker: str) -> dict:
 
 
 def get_news_headlines(ticker: str, max_items: int = 3) -> list:
-    """כותרות חדשות מ-Yahoo Finance RSS."""
+    """כותרות חדשות + URLs מ-Yahoo Finance RSS. מחזיר [{title, url}]."""
     url  = f'https://feeds.finance.yahoo.com/rss/2.0/headline?s={ticker}&region=US&lang=en-US'
     html = _fetch(url, timeout=8)
     if not html:
         return []
     try:
         root = ET.fromstring(html)
-        return [
-            item.findtext('title', '').strip()
-            for item in root.findall('.//item')[:max_items]
-            if item.findtext('title', '').strip()
-        ]
+        items = []
+        for item in root.findall('.//item')[:max_items]:
+            title = item.findtext('title', '').strip()
+            if not title:
+                continue
+            link = item.findtext('link', '').strip() or item.findtext('guid', '').strip()
+            items.append({'title': title, 'url': link})
+        return items
     except Exception:
         return []
+
+
+def translate_headlines_batch(news_items: list) -> dict:
+    """מתרגם כותרות חדשות לעברית ב-Groq call אחד. מחזיר {original_title: he_title}."""
+    if not news_items or not os.environ.get('GROQ_API_KEY'):
+        return {}
+
+    unique_titles = list(dict.fromkeys(item['title'] for item in news_items if item.get('title')))
+    if not unique_titles:
+        return {}
+
+    system = 'תרגם כותרות חדשות פיננסיות לעברית. החזר JSON array של strings מתורגמים באותו סדר. כותרת אחת לכל string.'
+    user   = json.dumps(unique_titles, ensure_ascii=False)
+    raw    = call_groq(system, user, max_tokens=800, temperature=0.1, timeout=30)
+    translated = extract_json_array(raw)
+
+    if len(translated) != len(unique_titles):
+        print(f'[daily] תרגום: קיבלתי {len(translated)} במקום {len(unique_titles)} — מחזיר מקור')
+        return {}
+
+    return {orig: str(he) for orig, he in zip(unique_titles, translated)}
 
 
 def load_reviews(ticker: str) -> dict:
@@ -421,6 +445,15 @@ def main():
             'competitor_news': d['competitor_news'],
         }
         groq_context.append(entry)
+
+    # תרגום בלוק — כל הכותרות בקריאה אחת לפני insights
+    all_news_items = [item for d in all_data for item in d.get('news', []) if isinstance(item, dict)]
+    print(f'[daily_report] מתרגם {len(all_news_items)} כותרות חדשות...')
+    translations = translate_headlines_batch(all_news_items)
+    for d in all_data:
+        for item in d.get('news', []):
+            if isinstance(item, dict) and item.get('title') in translations:
+                item['title_he'] = translations[item['title']]
 
     print('[daily_report] מריץ Groq insights...')
     insights = run_groq_insights(groq_context)

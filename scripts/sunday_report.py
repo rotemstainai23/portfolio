@@ -1,33 +1,31 @@
 """
-דוח ראשון — 5:00.
-מרכיב דוח CEO שבועי מנתונים קיימים.
-אם יש ANTHROPIC_API_KEY — מריץ CEO_Weekly_Agent לניתוח עמוק.
-בכל מקרה שולח הודעה ומעדכן את ceo_weekly.js.
+דוח CEO שבועי — ראשון 5:00.
+Yahoo Finance (חינם) + scanner-results מיום שבת + Groq synthesis (חינם).
 """
 import json
 import os
 import sys
-import time
-import urllib.request
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timedelta
+from glob import glob as _glob
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, ROOT)
 
-from notifications import send_both
+from notifications import send_notification
+from yahoo_client import get_chart_result, extract_closes
+from groq_client import call_groq, extract_json_array
 
 PORTFOLIO_JSON  = os.path.join(ROOT, 'portfolio.json')
 ANALYSES_DIR    = os.path.join(ROOT, 'analyses')
 SCANNER_RESULTS = os.path.join(ROOT, 'scanner-results.json')
-SUNDAY_TARGET   = os.path.join(ROOT, 'sunday-analysis-target.json')
 WEEKLY_JS       = os.path.join(ANALYSES_DIR, '_weekly', 'ceo_weekly.js')
+WEEKLY_JSON     = os.path.join(ANALYSES_DIR, '_weekly', 'ceo_weekly.json')
 WEEKLY_DIR      = os.path.join(ANALYSES_DIR, '_weekly')
-FLASK_BASE      = os.environ.get('FLASK_BASE', 'http://127.0.0.1:5000')
 
+# ── עזרים ─────────────────────────────────────────────────────────────────────
 
-# ── עזרים ───────────────────────────────────────────────────────────────────
-
-def load_json(path: str, default=None):
+def load_json(path, default=None):
     try:
         with open(path, encoding='utf-8') as f:
             return json.load(f)
@@ -35,132 +33,171 @@ def load_json(path: str, default=None):
         return default if default is not None else {}
 
 
-def get_prices(tickers: list[str]) -> dict:
-    results = {}
-    for ticker in tickers:
-        try:
-            url = (f'https://query1.finance.yahoo.com/v8/finance/chart/{ticker}'
-                   f'?interval=1d&range=7d')
-            req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
-            with urllib.request.urlopen(req, timeout=10) as r:
-                data = json.load(r)
-            meta  = data['chart']['result'][0]['meta']
-            close = data['chart']['result'][0].get('indicators', {}).get('quote', [{}])[0].get('close', [])
-            current  = meta.get('regularMarketPrice', 0)
-            week_ago = close[0] if close else current
-            chg_week = ((current - week_ago) / week_ago * 100) if week_ago else 0
-            results[ticker] = {
-                'price':    round(current, 2),
-                'chg_week': round(chg_week, 2),
-            }
-        except Exception:
-            results[ticker] = {'price': None, 'chg_week': None}
-    return results
+def load_review(ticker):
+    """טוען review קיים לטיקר — ic.json עדיפות, fallback analyst.json."""
+    rev_dir = os.path.join(ANALYSES_DIR, ticker, '_reviews')
+    for fname in ('ic.json', 'analyst.json'):
+        rv = load_json(os.path.join(rev_dir, fname))
+        if rv:
+            return rv
+    return {}
 
 
-# ── בניית דוח ממידע קיים ────────────────────────────────────────────────────
+# ── נתוני שוק ─────────────────────────────────────────────────────────────────
 
-def build_weekly_data_from_files(portfolio: dict, prices: dict) -> dict:
-    """בונה weekly data JSON מנתונים קיימים ללא Claude."""
-    today = datetime.now().strftime('%Y-%m-%d')
-    week_start = (datetime.now() - timedelta(days=6)).strftime('%d/%m')
-    week_end   = datetime.now().strftime('%d/%m')
+def get_price_7d(ticker):
+    """מחיר + שינוי שבועי — עם dual-host fallback + retry מ-yahoo_client."""
+    result = get_chart_result(ticker, period='7d')
+    if not result:
+        return {}
+    meta   = result.get('meta', {})
+    closes = extract_closes(result)
+    current = meta.get('regularMarketPrice') or (closes[-1] if closes else None)
+    if not current or len(closes) < 2:
+        return {}
+    chg_week = round((current / closes[0] - 1) * 100, 1) if closes[0] else 0
+    return {'price': round(current, 2), 'chg_week': chg_week}
 
-    holdings_weekly = []
-    for h in portfolio.get('holdings', []):
+
+def _fetch_all_prices(tickers):
+    """שולף מחירים לכל הטיקרים במקביל (max 2 threads) + מאקרו סדרתי."""
+    prices = {}
+    macro  = {}
+
+    with ThreadPoolExecutor(max_workers=2) as ex:
+        futures = {ex.submit(get_price_7d, t): t for t in tickers}
+        for fut in as_completed(futures):
+            t = futures[fut]
+            prices[t] = fut.result() or {}
+
+    for ticker, key in [('SPY', 'spy'), ('QQQ', 'qqq'), ('^VIX', 'vix')]:
+        d = get_price_7d(ticker)
+        if d:
+            macro[key] = d
+
+    print(f'[sunday] מאקרו: {macro}')
+    return prices, macro
+
+
+def compute_portfolio_stats(holdings, prices):
+    """ערך תיק, P&L שבועי וכולל."""
+    total_value = 0.0
+    total_cost  = 0.0
+    week_pnl    = 0.0
+    for h in holdings:
         ticker = h.get('symbol') or h.get('ticker', '')
-        if not ticker:
-            continue
-        rev_dir = os.path.join(ANALYSES_DIR, ticker, '_reviews')
-        ic_rv   = load_json(os.path.join(rev_dir, 'ic.json'))
-        an_rv   = load_json(os.path.join(rev_dir, 'analyst.json'))
-        rv      = ic_rv if ic_rv else an_rv
-        p       = prices.get(ticker, {})
-
-        holdings_weekly.append({
-            'ticker':           ticker,
-            'company':          rv.get('company', ticker),
-            'price_change_pct': p.get('chg_week'),
-            'status':           rv.get('verdict', 'UNKNOWN'),
-            'headline':         rv.get('handoff_summary', '')[:120],
-            'thesis_check':     'HOLDING' if rv.get('verdict') in ('INTACT', 'BUY') else 'REVIEW',
-            'key_news':         rv.get('thesis', '')[:100],
-        })
-
-    scanner = load_json(SCANNER_RESULTS, default=[])
-    opportunities = [
-        {
-            'ticker':         o.get('ticker'),
-            'catalyst':       o.get('catalyst'),
-            'conviction':     o.get('conviction'),
-            'timeframe':      o.get('timeframe'),
-            'why_not_others': f'R/R {o.get("upside_pct",0)}/{o.get("downside_pct",0)}, {o.get("sector","")}',
-        }
-        for o in sorted(scanner, key=lambda x: x.get('conviction', 0), reverse=True)[:3]
-    ]
-
+        qty    = float(h.get('quantity', 0) or h.get('shares', 0) or 0)
+        cost   = float(h.get('buy_price', 0) or 0)
+        p      = prices.get(ticker, {})
+        price  = p.get('price') or 0
+        chg    = p.get('chg_week') or 0
+        if price and qty:
+            val          = price * qty
+            total_value += val
+            total_cost  += cost * qty
+            week_pnl    += val * chg / 100
+    pnl_pct       = round((total_value - total_cost) / total_cost * 100, 1) if total_cost else 0
+    start_of_week = total_value - week_pnl
+    week_pnl_pct  = round(week_pnl / start_of_week * 100, 1) if start_of_week > 0 else 0
     return {
-        'generated':  today,
-        'week_label': f'שבוע {week_start}-{week_end}',
-        'portfolio_performance': {
-            'week_pct':   None,
-            'ytd_pct':    None,
-            'vs_spy_week': None,
-            'regime':     'mixed',
-            'regime_confidence': 'low',
-        },
-        'holdings_weekly': holdings_weekly,
-        'macro_snapshot':  {
-            'vix': None, 'spy_week_pct': None, 'qqq_week_pct': None,
-            'dxy_trend': 'flat', 'rate_outlook': 'neutral',
-            'regime_note': 'נתוני מקרו לא זמינים — הפעל CEO_Weekly_Agent לניתוח עמוק',
-        },
-        'risk_matrix':   [],
-        'opportunities': opportunities,
-        'scenarios_next_week': {
-            'bull': {'probability_pct': 35, 'trigger': 'ראה CEO_Weekly_Agent', 'outcome': ''},
-            'base': {'probability_pct': 45, 'trigger': 'ראה CEO_Weekly_Agent', 'outcome': ''},
-            'bear': {'probability_pct': 20, 'trigger': 'ראה CEO_Weekly_Agent', 'outcome': ''},
-        },
-        'ceo_verdict':  'דוח בסיסי — הרץ CEO_Weekly_Agent לניתוח מלא',
-        'action_items': [],
+        'total_value':  round(total_value),
+        'total_cost':   round(total_cost),
+        'pnl_pct':      pnl_pct,
+        'week_pnl_pct': week_pnl_pct,
     }
 
 
-def run_ceo_weekly_via_flask() -> dict | None:
-    """מריץ CEO Weekly דרך Flask API (/api/ceo-weekly/run)."""
-    try:
-        req = urllib.request.Request(
-            f'{FLASK_BASE}/api/ceo-weekly/run',
-            data=b'{}',
-            headers={'Content-Type': 'application/json'},
-            method='POST',
-        )
-        with urllib.request.urlopen(req, timeout=15) as r:
-            resp = json.load(r)
-        run_id = resp.get('run_id')
-        if not run_id:
-            return None
-        print(f'[sunday] CEO weekly run_id={run_id} — ממתין...')
-        for _ in range(20):
-            time.sleep(30)
-            try:
-                with urllib.request.urlopen(
-                    f'{FLASK_BASE}/api/run-status/{run_id}', timeout=10
-                ) as sr:
-                    status = json.load(sr)
-                if status.get('status') == 'done':
-                    json_path = WEEKLY_JS.replace('.js', '.json')
-                    return load_json(json_path) or {}
-            except Exception:
-                pass
-    except Exception as e:
-        print(f'[sunday] Flask לא נגיש: {e}')
-    return None
+# ── Groq synthesis ─────────────────────────────────────────────────────────────
+
+def run_groq_synthesis(context_dict):
+    """קריאה אחת ל-Groq — 4 תובנות שבועיות."""
+    if not os.environ.get('GROQ_API_KEY'):
+        print('[sunday] אין GROQ_API_KEY — דולג')
+        return []
+
+    system = """אתה יועץ תיק השקעות שבועי. קבל נתוני ביצועים בJSON וספק בדיוק 4 תובנות.
+
+ענה ב-JSON בלבד, ללא הסברים:
+["תובנה 1", "תובנה 2", "תובנה 3", "תובנה 4"]
+
+מבנה התובנות:
+1. מגמת השבוע: מה הסביר את ביצועי התיק ביחס לשוק
+2. סיכון עיקרי לשבוע הבא: מה עלול להכאיב
+3. הזדמנות הסקנר: האם הקטליסט של ה-top pick עדיין רלוונטי
+4. פעולה ספציפית אחת: מה כדאי לעשות או לעקוב
+
+כל תובנה: 1-2 משפטים בעברית, מבוססת על הנתונים בלבד."""
+
+    raw = call_groq(system, json.dumps(context_dict, ensure_ascii=False),
+                    max_tokens=500, timeout=45)
+    if not raw:
+        return []
+    results = [str(r) for r in extract_json_array(raw) if r]
+    if not results:
+        print(f'[sunday] Groq: לא נמצא JSON array. raw={raw[:200]}')
+    return results
 
 
-def archive_weekly_js() -> None:
-    """ארכב גרסה קודמת של ceo_weekly.js לפני דריסה."""
+# ── פורמט הודעה ───────────────────────────────────────────────────────────────
+
+def format_message(holdings_weekly, stats, macro, scanner_top, insights, failed=None):
+    now        = datetime.now()
+    today      = now.strftime('%d/%m/%Y')
+    week_start = (now - timedelta(days=6)).strftime('%d/%m')
+    lines = [f'דוח שבועי {today} ({week_start}-{now.strftime("%d/%m")})']
+
+    if failed:
+        lines.append(f'נתונים חלקיים: {len(failed)} טיקרים לא נטענו ({", ".join(failed[:3])}{"..." if len(failed) > 3 else ""})')
+
+    val_str  = f'${stats["total_value"]:,}'
+    week_str = f'{stats["week_pnl_pct"]:+.1f}%'
+    pnl_str  = f'{stats["pnl_pct"]:+.1f}%'
+    lines.append(f'תיק: {val_str} ({week_str} שבועי | {pnl_str} כולל)')
+
+    macro_parts = []
+    if macro.get('spy'):
+        macro_parts.append(f'SPY {macro["spy"]["chg_week"]:+.1f}%')
+    if macro.get('qqq'):
+        macro_parts.append(f'QQQ {macro["qqq"]["chg_week"]:+.1f}%')
+    if macro.get('vix'):
+        macro_parts.append(f'VIX {macro["vix"]["price"]:.1f}')
+    if macro_parts:
+        lines.append('מאקרו: ' + ' | '.join(macro_parts))
+
+    lines.append('')
+
+    chunks = []
+    for h in holdings_weekly:
+        tk  = h['ticker']
+        chg = h.get('price_change_pct')
+        chg_str = f'{chg:+.1f}%' if chg is not None else '?'
+        chunks.append(f'{tk:<5} {chg_str}')
+    for i in range(0, len(chunks), 2):
+        lines.append('  '.join(chunks[i:i+2]))
+
+    if scanner_top:
+        lines.append('')
+        lines.append('סקנר שבת:')
+        for i, opp in enumerate(scanner_top[:2], 1):
+            conv = opp.get('conviction', '?')
+            up   = opp.get('upside_pct', '?')
+            cat  = (opp.get('catalyst') or '')[:70]
+            lines.append(f'{i}. {opp.get("ticker")} | {conv}/5 | +{up}%')
+            if cat:
+                lines.append(f'   {cat}')
+
+    if insights:
+        lines.append('')
+        lines.append('תובנות:')
+        for ins in insights:
+            lines.append(f'- {ins}')
+
+    return '\n'.join(lines)
+
+
+# ── ארכיב + JS ────────────────────────────────────────────────────────────────
+
+def archive_weekly_js():
     if not os.path.exists(WEEKLY_JS):
         return
     os.makedirs(WEEKLY_DIR, exist_ok=True)
@@ -171,27 +208,32 @@ def archive_weekly_js() -> None:
             content = f.read()
         with open(dest_path, 'w', encoding='utf-8') as f:
             f.write(content)
-        print(f'[sunday] ארכב weekly ל-{dest_path}')
-        # שמור עד 8 קבצים (2 חודשים)
-        from glob import glob as _glob
         archives = sorted(_glob(os.path.join(WEEKLY_DIR, 'ceo_weekly_*.js')))
         for old in archives[:-8]:
             os.remove(old)
+        print(f'[sunday] ארכב ל-{dest_path}')
     except Exception as e:
         print(f'[sunday] שגיאת ארכיב: {e}')
 
 
-def is_fourth_sunday() -> bool:
-    """True אם היום הוא ה-Sunday הרביעי של החודש (day >= 22)."""
+def write_weekly_js(data):
+    os.makedirs(WEEKLY_DIR, exist_ok=True)
+    js = f'window.WEEKLY_DATA = {json.dumps(data, ensure_ascii=False, indent=2)};\n'
+    with open(WEEKLY_JS, 'w', encoding='utf-8') as f:
+        f.write(js)
+    with open(WEEKLY_JSON, 'w', encoding='utf-8') as f:
+        json.dump(data, f, ensure_ascii=False, indent=2)
+    print(f'[sunday] כתב {WEEKLY_JS} + {WEEKLY_JSON}')
+
+
+def is_fourth_sunday():
     today = datetime.now()
     return today.weekday() == 6 and today.day >= 22
 
 
-def run_monthly_close() -> None:
-    """מריץ סגירת חודש אחרי ה-CEO שבועי."""
+def run_monthly_close():
     try:
-        scripts_dir = os.path.dirname(os.path.abspath(__file__))
-        monthly_script = os.path.join(scripts_dir, 'monthly_close.py')
+        monthly_script = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'monthly_close.py')
         if not os.path.exists(monthly_script):
             print('[sunday] monthly_close.py לא נמצא — דלג')
             return
@@ -204,131 +246,135 @@ def run_monthly_close() -> None:
         print(f'[sunday] שגיאת monthly_close: {e}')
 
 
-def write_weekly_js(data: dict) -> None:
-    """כותב ceo_weekly.js לדשבורד."""
-    os.makedirs(os.path.dirname(WEEKLY_JS), exist_ok=True)
-    js = f'window.WEEKLY_DATA = {json.dumps(data, ensure_ascii=False, indent=2)};\n'
-    with open(WEEKLY_JS, 'w', encoding='utf-8') as f:
-        f.write(js)
-    print(f'[sunday] כתב {WEEKLY_JS}')
-
-
-def build_wow_delta(current_data: dict, prices: dict) -> dict:
-    """
-    מחשב שינוי שבועי: ערך תיק, מניות שזזו הכי הרבה, ו-allocation flags.
-    משתמש ב-chg_week מ-prices ובארכיב הקודם של ceo_weekly.
-    """
-    from glob import glob as _glob
-
-    holdings = current_data.get('holdings_weekly', [])
-    movers = []
-    for h in holdings:
-        tk  = h.get('ticker', '')
-        chg = (prices.get(tk) or {}).get('chg_week')
-        if chg is not None:
-            movers.append({'ticker': tk, 'chg_week': chg})
-    movers.sort(key=lambda x: abs(x['chg_week']), reverse=True)
-
-    # השווה לארכיב השבוע הקודם
-    archives = sorted(_glob(os.path.join(WEEKLY_DIR, 'ceo_weekly_*.js')))
-    prior_value = None
-    if archives:
-        import re as _re
-        try:
-            with open(archives[-1], encoding='utf-8') as f:
-                content = f.read()
-            match = _re.search(r'=\s*(\{[\s\S]*\})\s*;?\s*$', content)
-            if match:
-                import json as _json
-                prior = _json.loads(match.group(1))
-                prior_value = (prior.get('portfolio_performance') or {}).get('total_value')
-        except Exception:
-            pass
-
-    return {
-        'top_movers':    movers[:3],
-        'prior_value':   prior_value,
-    }
-
-
-def format_telegram_message(data: dict) -> tuple[str, str]:
-    today = datetime.now().strftime('%d/%m/%Y')
-    holdings = data.get('holdings_weekly', [])
-
-    wow      = data.get('wow_delta') or {}
-    lines_tg = [f'*דוח CEO שבועי — {today}*\n*{data.get("week_label","")}*\n']
-    lines_wa = [f'דוח CEO שבועי {today}\n']
-
-    # ביצועי אחזקות
-    for h in holdings:
-        tk  = h.get('ticker', '')
-        chg = h.get('price_change_pct')
-        chg_str = (f'{chg:+.1f}%' if chg is not None else '?')
-        st  = h.get('status', '')
-        lines_tg.append(f'· *{tk}* {chg_str} — {st}')
-        lines_wa.append(f'· {tk} {chg_str} {st}')
-
-    # הזדמנויות
-    opps = data.get('opportunities', [])
-    if opps:
-        lines_tg.append('\n*הזדמנויות שבוע:*')
-        lines_wa.append('\nהזדמנויות:')
-        for o in opps[:2]:
-            lines_tg.append(f'· *{o.get("ticker")}* — {o.get("catalyst","")[:80]}')
-            lines_wa.append(f'· {o.get("ticker")} — {o.get("catalyst","")[:60]}')
-
-    # פסיקת מנכ"ל
-    verdict = data.get('ceo_verdict', '')
-    if verdict:
-        lines_tg.append(f'\n*פסיקת מנכ"ל:* {verdict}')
-
-    # שינוי שבועי (top movers)
-    movers = wow.get('top_movers') or []
-    if movers:
-        lines_tg.append('\n*שינויים שבועיים:*')
-        lines_wa.append('\nשינויים:')
-        for mv in movers[:3]:
-            chg_str = f'{mv["chg_week"]:+.1f}%'
-            lines_tg.append(f'· *{mv["ticker"]}* {chg_str}')
-            lines_wa.append(f'· {mv["ticker"]} {chg_str}')
-
-    # לינק לדשבורד
-    dashboard_url = os.environ.get('DASHBOARD_URL', '')
-    if dashboard_url:
-        lines_tg.append(f'\n[פתח דשבורד שבועי]({dashboard_url}/templates/ceo-weekly.html)')
-
-    return '\n'.join(lines_tg), '\n'.join(lines_wa)
-
-
 # ── ריצה ─────────────────────────────────────────────────────────────────────
 
 def main():
     print('[sunday_report] מתחיל...')
     archive_weekly_js()
+
     portfolio = load_json(PORTFOLIO_JSON)
-    all_tickers = [
-        h.get('symbol') or h.get('ticker', '')
-        for h in portfolio.get('holdings', [])
-        if h.get('symbol') or h.get('ticker')
-    ]
-    prices = get_prices(all_tickers)
-    print(f'[sunday_report] שלף מחירים ל-{len(prices)} טיקרים')
+    holdings  = [h for h in portfolio.get('holdings', [])
+                 if h.get('symbol') or h.get('ticker')]
+    tickers   = [h.get('symbol') or h.get('ticker', '') for h in holdings]
 
-    # נסה Flask קודם לניתוח עמוק
-    weekly_data = run_ceo_weekly_via_flask()
+    print(f'[sunday] שולף מחירים ל-{len(tickers)} טיקרים + מאקרו במקביל...')
+    prices, macro = _fetch_all_prices(tickers)
+    for t in tickers:
+        status = f'${prices[t]["price"]}' if prices.get(t) else 'כשל'
+        print(f'[sunday] {t}: {status}')
 
-    # אחרת בנה מנתונים קיימים (חינם)
-    if not weekly_data:
-        print('[sunday_report] בונה דוח בסיסי מנתונים קיימים...')
-        weekly_data = build_weekly_data_from_files(portfolio, prices)
+    failed = [t for t in tickers if not prices.get(t)]
+    if failed:
+        print(f'[sunday] נתונים חסרים: {failed}')
 
-    wow_delta = build_wow_delta(weekly_data, prices)
-    weekly_data['wow_delta'] = wow_delta
-    write_weekly_js(weekly_data)
+    stats = compute_portfolio_stats(holdings, prices)
+    print(f'[sunday] תיק: ${stats["total_value"]:,} ({stats["week_pnl_pct"]:+.1f}% שבועי | {stats["pnl_pct"]:+.1f}% כולל)')
 
-    full_tg, short_wa = format_telegram_message(weekly_data)
-    result = send_both(short_text=short_wa, full_text=full_tg)
-    print(f'[sunday_report] נשלח: {result}')
+    scanner_top = sorted(
+        load_json(SCANNER_RESULTS, default=[]),
+        key=lambda x: x.get('conviction', 0), reverse=True
+    )[:3]
+    print(f'[sunday] סקנר: {len(scanner_top)} הזדמנויות')
+
+    holdings_context = []
+    for ticker, h in zip(tickers, holdings):
+        price = (prices.get(ticker) or {}).get('price') or 0
+        cost  = float(h.get('buy_price') or 0)
+        pnl   = round((price / cost - 1) * 100, 1) if (cost and price) else None
+        holdings_context.append({
+            'ticker':   ticker,
+            'sector':   h.get('sector', ''),
+            'chg_week': (prices.get(ticker) or {}).get('chg_week'),
+            'pnl_pct':  pnl,
+        })
+
+    vix_price = (macro.get('vix') or {}).get('price')
+    spy_chg   = (macro.get('spy') or {}).get('chg_week')
+    qqq_chg   = (macro.get('qqq') or {}).get('chg_week')
+
+    groq_context = {
+        'holdings':    holdings_context,
+        'portfolio':   stats,
+        'macro': {
+            'spy_week_pct': spy_chg,
+            'qqq_week_pct': qqq_chg,
+            'vix':          vix_price,
+        },
+        'scanner_top': [{'ticker': o.get('ticker'),
+                         'catalyst': (o.get('catalyst') or '')[:80],
+                         'conviction': o.get('conviction')} for o in scanner_top],
+    }
+    insights = run_groq_synthesis(groq_context)
+    print(f'[sunday] Groq החזיר {len(insights)} תובנות')
+
+    holdings_weekly = []
+    for ticker, h in zip(tickers, holdings):
+        rv      = load_review(ticker)
+        chg     = (prices.get(ticker) or {}).get('chg_week')
+        verdict = rv.get('verdict', '')
+        holdings_weekly.append({
+            'ticker':           ticker,
+            'company':          rv.get('company', ticker),
+            'price_change_pct': chg,
+            'status':           verdict,
+            'key_news':         rv.get('thesis', '')[:100],
+            'headline':         rv.get('handoff_summary', '')[:120],
+            'thesis_check':     ('HOLDING' if verdict in ('INTACT', 'BUY')
+                                 else ('REVIEW' if verdict else '')),
+        })
+
+    if vix_price is not None:
+        regime = 'risk_on' if vix_price < 20 else ('risk_off' if vix_price > 25 else 'mixed')
+    else:
+        regime = 'mixed'
+
+    regime_note = (f'נתונים חלקיים: {len(tickers)-len(failed)}/{len(tickers)} טיקרים נטענו'
+                   if failed else None)
+
+    vs_spy = round(stats['week_pnl_pct'] - spy_chg, 1) if spy_chg is not None else None
+
+    now = datetime.now()
+    write_weekly_js({
+        'generated':  now.strftime('%Y-%m-%d'),
+        'week_label': (f'שבוע {(now-timedelta(days=6)).strftime("%d/%m")}'
+                       f'-{now.strftime("%d/%m")}'),
+        'ceo_verdict': insights[0] if insights else '',
+        'portfolio_performance': {
+            'total_value':   stats['total_value'],
+            'week_pct':      stats['week_pnl_pct'],
+            'total_pnl_pct': stats['pnl_pct'],
+            'ytd_pct':       None,
+            'vs_spy_week':   vs_spy,
+            'regime':        regime,
+        },
+        'macro_snapshot': {
+            'vix':          vix_price,
+            'spy_week_pct': spy_chg,
+            'qqq_week_pct': qqq_chg,
+            'dxy_trend':    None,
+            'rate_outlook': None,
+            'regime_note':  regime_note,
+        },
+        'holdings_weekly': holdings_weekly,
+        'risk_matrix':     [],
+        'opportunities': [
+            {
+                'ticker':         o.get('ticker'),
+                'conviction':     o.get('conviction'),
+                'timeframe':      o.get('timeframe', '1-2 שבועות'),
+                'catalyst':       o.get('catalyst', ''),
+                'why_not_others': f'R/R {o.get("upside_pct",0)}/{o.get("downside_pct",0)}, {o.get("sector","")}',
+            }
+            for o in scanner_top
+        ],
+        'scenarios_next_week': {},
+        'action_items': insights,
+        'macro':         macro,
+    })
+
+    msg    = format_message(holdings_weekly, stats, macro, scanner_top, insights, failed=failed)
+    result = send_notification(msg, title='דוח שבועי', tags=['chart_with_upwards_trend'])
+    print(f'[sunday] נשלח: {result}')
 
     if is_fourth_sunday():
         print('[sunday_report] Sunday רביעי — מריץ סגירת חודש...')

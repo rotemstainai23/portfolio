@@ -1,8 +1,7 @@
 name: סקנר שבתי — שבת 5:00
 
 on:
-  schedule:
-    - cron: '0 2 * * 6'
+  # schedule הושבת — הסקנר מתוזמן עכשיו דרך Claude /schedule (סוכן ענן)
   workflow_dispatch:
 
 jobs:

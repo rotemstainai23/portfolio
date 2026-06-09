@@ -6,7 +6,6 @@ import json
 import os
 import sys
 import urllib.request
-import urllib.parse
 import xml.etree.ElementTree as ET
 from datetime import datetime, timedelta
 
@@ -14,13 +13,12 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, ROOT)
 
 from notifications import send_notification
+from yahoo_client import get_chart_result, extract_closes, fetch_url, rsi_14
+from groq_client import call_groq, extract_json_array
 
 SCANNER_RESULTS = os.path.join(ROOT, 'scanner-results.json')
 SUNDAY_TARGET   = os.path.join(ROOT, 'sunday-analysis-target.json')
 SCANNER_ARCHIVE = os.path.join(ROOT, 'analyses', '_monthly', '_scanner_archive')
-GROQ_API_KEY    = os.environ.get('GROQ_API_KEY', '')
-GROQ_URL        = 'https://api.groq.com/openai/v1/chat/completions'
-GROQ_MODEL      = 'llama-3.3-70b-versatile'
 
 # יקום מניות לסריקה — מגוון סקטורים
 SCAN_UNIVERSE = [
@@ -44,15 +42,6 @@ SCAN_UNIVERSE = [
 
 # ── שליפת נתונים ─────────────────────────────────────────────────────────────
 
-def fetch_url(url: str, timeout: int = 10) -> str:
-    try:
-        req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
-        with urllib.request.urlopen(req, timeout=timeout) as r:
-            return r.read().decode('utf-8', errors='ignore')
-    except Exception:
-        return ''
-
-
 def get_news_headlines(ticker: str, max_items: int = 5) -> list[str]:
     """חדשות מ-Yahoo Finance RSS."""
     url  = f'https://feeds.finance.yahoo.com/rss/2.0/headline?s={ticker}&region=US&lang=en-US'
@@ -74,17 +63,13 @@ def get_news_headlines(ticker: str, max_items: int = 5) -> list[str]:
 
 
 def get_yahoo_quote(ticker: str) -> dict:
-    """מחיר + נתונים בסיסיים מ-Yahoo Finance v8."""
-    url  = f'https://query1.finance.yahoo.com/v8/finance/chart/{ticker}?interval=1d&range=3mo'
-    html = fetch_url(url, timeout=12)
-    if not html:
+    """מחיר + momentum + RSI מ-Yahoo v8 (3 חודשים) — עם dual-host fallback."""
+    result = get_chart_result(ticker, period='3mo')
+    if not result:
         return {}
     try:
-        data   = json.loads(html)
-        result = data.get('chart', {}).get('result', [{}])[0]
         meta   = result.get('meta', {})
-        closes = result.get('indicators', {}).get('quote', [{}])[0].get('close', [])
-        closes = [c for c in closes if c]
+        closes = extract_closes(result)
         if len(closes) < 5:
             return {}
         price    = closes[-1]
@@ -92,17 +77,11 @@ def get_yahoo_quote(ticker: str) -> dict:
         price_3m = closes[0]
         mom_1m   = round((price / price_1m - 1) * 100, 1) if price_1m else 0
         mom_3m   = round((price / price_3m - 1) * 100, 1) if price_3m else 0
-        # RSI פשוט 14 ימים
-        gains = [max(closes[i]-closes[i-1], 0) for i in range(1, min(15, len(closes)))]
-        losses = [max(closes[i-1]-closes[i], 0) for i in range(1, min(15, len(closes)))]
-        avg_g = sum(gains)/len(gains) if gains else 0
-        avg_l = sum(losses)/len(losses) if losses else 1
-        rsi   = round(100 - 100/(1 + avg_g/avg_l), 1) if avg_l else 50
         return {
             'price':    round(price, 2),
             'mom_1m':   mom_1m,
             'mom_3m':   mom_3m,
-            'rsi':      rsi,
+            'rsi':      rsi_14(closes) or 50,
             'currency': meta.get('currency', 'USD'),
         }
     except Exception:
@@ -111,7 +90,9 @@ def get_yahoo_quote(ticker: str) -> dict:
 
 def get_yahoo_fundamentals(ticker: str) -> dict:
     """נתונים פונדמנטליים מ-Yahoo Finance v10."""
-    url  = f'https://query1.finance.yahoo.com/v10/finance/quoteSummary/{ticker}?modules=summaryDetail,financialData,defaultKeyStatistics'
+    import urllib.parse
+    url  = (f'https://query1.finance.yahoo.com/v10/finance/quoteSummary/'
+            f'{urllib.parse.quote(ticker)}?modules=summaryDetail,financialData,defaultKeyStatistics')
     html = fetch_url(url, timeout=12)
     if not html:
         return {}
@@ -195,8 +176,7 @@ def build_scan_context(holdings: list[str]) -> str:
 
 def run_groq_analysis(context: str) -> list:
     """שלח נתונים ל-Groq וקבל Top 3 בJSON."""
-    api_key = os.environ.get('GROQ_API_KEY') or GROQ_API_KEY
-    if not api_key:
+    if not os.environ.get('GROQ_API_KEY'):
         print('[scanner] אין GROQ_API_KEY')
         return []
 
@@ -225,44 +205,11 @@ def run_groq_analysis(context: str) -> list:
 
 חשוב: אסור להשתמש במירכאות כפולות בתוך ערכי JSON. במקום "דו"ח" כתוב "דוח"."""
 
-    try:
-        import requests as _req
-        resp = _req.post(
-            GROQ_URL,
-            headers={
-                'Authorization': f'Bearer {api_key}',
-                'Content-Type':  'application/json',
-            },
-            json={
-                'model':       GROQ_MODEL,
-                'messages':    [
-                    {'role': 'system', 'content': system},
-                    {'role': 'user',   'content': context},
-                ],
-                'max_tokens':  1500,
-                'temperature': 0.3,
-            },
-            timeout=60,
-        )
-        resp.raise_for_status()
-        raw = resp.json()['choices'][0]['message']['content'].strip()
-        # חלץ JSON — מצא את [ הראשון ו-] האחרון
-        start = raw.find('[')
-        end   = raw.rfind(']')
-        if start == -1 or end == -1:
-            print(f'[scanner] לא נמצא JSON array. raw={raw[:300]}')
-            return []
-        raw = raw[start:end+1]
-        # תקן גרש עברי בתוך strings: "word"text -> wordtext
-        import re as _re
-        raw = _re.sub(r'(?<=[^\s,:{"\[])\"(?=[^\s,}:\]\[])', '', raw)
-        results = json.loads(raw)
-        if isinstance(results, list):
-            return results
-        return []
-    except Exception as e:
-        print(f'[scanner] Groq שגיאה: {e}')
-        return []
+    raw     = call_groq(system, context, max_tokens=1500, timeout=60)
+    results = extract_json_array(raw)
+    if not results and raw:
+        print(f'[scanner] לא נמצא JSON array. raw={raw[:300]}')
+    return [r for r in results if isinstance(r, dict)]
 
 
 # ── ארכיב ────────────────────────────────────────────────────────────────────
