@@ -255,6 +255,52 @@
   .ticker-grid{grid-template-columns:1fr}
   #portfolio-heatmap{height:200px}
 }
+
+/* ===== Mode Banner ===== */
+.mode-banner{
+  margin:0 32px 16px;padding:10px 18px;border-radius:12px;
+  font-size:12px;font-weight:700;display:flex;align-items:center;gap:8px;
+}
+.mode-banner.live{background:var(--sig-good-soft);color:var(--sig-good);border:1px solid rgba(52,211,153,.2)}
+.mode-banner.cloud{background:var(--sig-warn-soft);color:var(--sig-warn);border:1px solid rgba(251,191,36,.2)}
+.mode-banner .mb-dot{width:7px;height:7px;border-radius:50%;background:currentColor;flex-shrink:0}
+
+/* ===== Schedule Table ===== */
+.sched-section{padding:0 32px;margin-bottom:32px}
+.sched-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-top:14px}
+.sched-card{
+  background:var(--glass);border:1px solid var(--glass-border);border-radius:14px;
+  padding:14px 16px;display:flex;flex-direction:column;gap:6px;
+}
+.sched-name{font-size:13px;font-weight:800;color:var(--text)}
+.sched-time{font-size:10px;color:var(--muted2);font-weight:600;letter-spacing:.3px}
+.sched-last{font-size:12px;font-family:'Fira Code',monospace;font-weight:700}
+.sched-last.good{color:var(--sig-good)}.sched-last.warn{color:var(--sig-warn)}.sched-last.bad{color:var(--sig-bad)}.sched-last.neutral{color:var(--muted2)}
+.sched-age{font-size:10px;opacity:.75;font-weight:400}
+.sched-link{
+  display:inline-flex;align-items:center;gap:4px;margin-top:auto;padding:5px 10px;
+  border-radius:8px;font-size:10px;font-weight:700;text-decoration:none;
+  background:var(--glass-2);border:1px solid var(--glass-border);color:var(--muted2);
+  transition:background var(--dur),color var(--dur);align-self:flex-start;
+}
+.sched-link:hover{background:var(--brand-purple-soft);color:var(--brand-purple)}
+@media(max-width:760px){.sched-section{padding:0 14px}}
+
+/* ===== Report Tiles ===== */
+.report-tiles{
+  display:flex;flex-wrap:wrap;gap:10px;
+  padding:0 32px;margin-bottom:28px;
+}
+.rtile{
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+  padding:16px 18px;border-radius:16px;min-width:76px;
+  background:var(--glass);border:1px solid var(--glass-border);
+  text-decoration:none;color:var(--muted2);font-size:11px;font-weight:700;
+  transition:background var(--dur),color var(--dur),transform .2s var(--ease-bounce);
+}
+.rtile:hover{background:var(--brand-purple-soft);color:var(--brand-purple);transform:translateY(-3px)}
+.rtile svg{width:22px;height:22px;flex-shrink:0}
+@media(max-width:760px){.report-tiles{padding:0 14px}}
 </style>
 </head>
 <body>
@@ -283,6 +329,62 @@
   </div>
 </div>
 
+<!-- ===== Mode Banner ===== -->
+<div id="mode-banner" class="mode-banner" style="display:none"></div>
+
+<!-- ===== Report Tiles ===== -->
+<div class="hub-section-title" style="padding:0 32px;margin-bottom:14px">דוחות ומחקר</div>
+<nav class="report-tiles">
+  <a class="rtile" href="daily.html" title="דוח יומי">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+      <rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>
+    </svg>
+    <span>יומי</span>
+  </a>
+  <a class="rtile" href="ceo-weekly.html" title="דוח שבועי">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+      <path d="M3 3v18h18"/><rect x="7" y="11" width="3" height="7"/><rect x="12" y="7" width="3" height="11"/><rect x="17" y="4" width="3" height="14"/>
+    </svg>
+    <span>שבועי</span>
+  </a>
+  <a class="rtile" href="monthly.html" title="סגירה חודשית">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+      <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
+    </svg>
+    <span>חודשי</span>
+  </a>
+  <a class="rtile" href="health_report.html" title="בריאות התיק">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+      <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+    </svg>
+    <span>בריאות</span>
+  </a>
+  <a class="rtile" href="oracle.html" title="אורקל">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+      <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+    </svg>
+    <span>אורקל</span>
+  </a>
+  <a class="rtile" href="propicks.html" title="ProPicks">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+    </svg>
+    <span>ProPicks</span>
+  </a>
+  <a class="rtile" href="financial_statements.html" title="דוחות כספיים">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+      <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/>
+    </svg>
+    <span>כספי</span>
+  </a>
+  <a class="rtile" href="research.html" title="מחקר on-demand">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+      <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35M11 8v6M8 11h6"/>
+    </svg>
+    <span>מחקר</span>
+  </a>
+</nav>
+
 <!-- ===== KPI Stats ===== -->
 <div class="hub-stats" id="hub-stats" style="display:none"></div>
 
@@ -304,6 +406,15 @@
   </div>
 </div>
 
+<!-- ===== Schedule Section ===== -->
+<div class="sched-section">
+  <div class="hub-section-title">לוח תזמון — Jobs מרכזיים</div>
+  <div class="sched-grid" id="sched-grid">
+    <div class="sched-card"><div class="sched-name">טוען…</div></div>
+  </div>
+</div>
+
+<script src="../_data.js"></script>
 <script>
 'use strict';
 
@@ -644,18 +755,33 @@ function buildStats(holdings, totalValue, totalPnl, totalPnlPct) {
     </div>`;
 }
 
+/* ---- Mode Banner ---- */
+function showModeBanner(live) {
+  const el = document.getElementById('mode-banner');
+  if (!el) return;
+  if (live) {
+    el.className = 'mode-banner live';
+    el.innerHTML = '<span class="mb-dot"></span> מצב חי — שרת פעיל, מחירים בזמן אמת';
+  } else {
+    el.className = 'mode-banner cloud';
+    el.innerHTML = '<span class="mb-dot"></span> מצב ענן — נתונים מהדוח האחרון. כפתורי פעולה מושבתים.';
+  }
+  el.style.display = 'flex';
+}
+
 /* ---- Main ---- */
 async function loadHub() {
   startClock();
   try {
-    const [portRes, pricesRes] = await Promise.all([
-      fetch('/api/portfolio'),
-      fetch('/api/prices')
-    ]);
-    if (!portRes.ok) throw new Error('portfolio API error');
-    const portfolio = await portRes.json();
+    const portfolio = await DataLayer.getPortfolio();
+    showModeBanner(portfolio._live);
     let prices = {};
-    try { if (pricesRes.ok) prices = await pricesRes.json(); } catch(e) {}
+    if (portfolio._live) {
+      try {
+        const pr = await fetch('/api/prices');
+        if (pr.ok) prices = await pr.json();
+      } catch(e) {}
+    }
 
     const holdings = portfolio.holdings || [];
 
@@ -709,7 +835,7 @@ async function loadHub() {
       const pnlEl = document.getElementById('cnt-pnl');
       const pctEl = document.getElementById('cnt-pnlpct');
       if (valEl) animateCounter(valEl, totalValue / 1000, '$', 'K', 1, 1400);
-      if (pnlEl) animateCounter(pnlEl, totalPnl, totalPnl >= 0 ? '+$' : '-$', '', 0, 1400);
+      if (pnlEl) animateCounter(pnlEl, Math.abs(totalPnl), totalPnl >= 0 ? '+$' : '-$', '', 0, 1400);
       if (pctEl) animateCounter(pctEl, Math.abs(totalPnlPct), totalPnlPct >= 0 ? '+' : '-', '%', 1, 1400);
     }, 1500);
 
@@ -720,7 +846,56 @@ async function loadHub() {
   }
 }
 
+/* ---- Schedule Table ---- */
+async function loadSchedule() {
+  const grid = document.getElementById('sched-grid');
+  if (!grid) return;
+
+  const today = new Date();
+  function daysSince(d) {
+    if (!d) return null;
+    var n = Math.floor((today - new Date(d)) / 86400000);
+    return isNaN(n) ? null : n;
+  }
+  function cls(d, fresh, aging) {
+    if (d === null) return 'neutral';
+    return d <= fresh ? 'good' : d <= aging ? 'warn' : 'bad';
+  }
+  function age(d) {
+    if (d === null) return '';
+    return d === 0 ? ' (היום)' : ` (לפני ${d} ימים)`;
+  }
+  function card(name, schedule, dateStr, link, freshT, agingT) {
+    const d = daysSince(dateStr);
+    const c = cls(d, freshT, agingT);
+    const lnk = link ? `<a class="sched-link" href="${link}">פתח</a>` : '';
+    return `<div class="sched-card">
+      <div class="sched-name">${name}</div>
+      <div class="sched-time">${schedule}</div>
+      <div class="sched-last ${c}">${dateStr || '—'}<span class="sched-age">${age(d)}</span></div>
+      ${lnk}
+    </div>`;
+  }
+
+  try {
+    const [daily, weekly, health] = await Promise.all([
+      DataLayer.getDaily().catch(() => null),
+      DataLayer.getWeekly().catch(() => null),
+      DataLayer.getHealth().catch(() => null),
+    ]);
+    grid.innerHTML = [
+      card('דוח יומי',   'שני-שישי 05:00', daily?.generated,  'daily.html',        1, 5),
+      card('CEO שבועי',  'ראשון 05:00',    weekly?.generated,  'ceo-weekly.html',   7, 21),
+      card('סקנר שבתי', 'שבת 05:00',      null,               null,                7, 21),
+      card('בריאות תיק','ידני / שבועי',   health?.run_date,   'health_report.html',7, 30),
+    ].join('');
+  } catch(e) {
+    grid.innerHTML = `<div class="sched-card"><div class="sched-name" style="color:var(--sig-bad)">שגיאה בטעינה</div></div>`;
+  }
+}
+
 loadHub();
+loadSchedule();
 </script>
 <script src="_interactions.js"></script>
 </body>

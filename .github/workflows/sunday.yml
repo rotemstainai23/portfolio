@@ -40,5 +40,4 @@ jobs:
           git config user.email "bot@portfolio"
           git remote set-url origin "https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git"
           git add analyses/_weekly/ || true
-          git diff --staged --quiet || git commit -m "auto: CEO weekly report $(date +%Y-%m-%d)"
-          git push
+          git diff --staged --quiet || { git commit -m "auto: CEO weekly report $(date +%Y-%m-%d)" && git push; }

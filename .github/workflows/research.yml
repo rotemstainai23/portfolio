@@ -27,19 +27,20 @@ jobs:
 
       - name: Run research engine
         env:
-          NTFY_TOPIC:    ${{ secrets.NTFY_TOPIC }}
-          GROQ_API_KEY:  ${{ secrets.GROQ_API_KEY }}
-          DASHBOARD_URL: ${{ secrets.DASHBOARD_URL || 'https://rotemstainai23.github.io/portfolio' }}
+          NTFY_TOPIC:     ${{ secrets.NTFY_TOPIC }}
+          GROQ_API_KEY:   ${{ secrets.GROQ_API_KEY }}
+          DASHBOARD_URL:  ${{ secrets.DASHBOARD_URL || 'https://rotemstainai23.github.io/portfolio' }}
           SEC_USER_AGENT: ${{ secrets.SEC_USER_AGENT || 'portfolio research rotemstain23@gmail.com' }}
-        run: python -m engine.run --mode research --ticker "${{ inputs.ticker }}"
+          TICKER:         ${{ inputs.ticker }}
+        run: python -m engine.run --mode research --ticker "$TICKER"
 
       - name: שמירת מחקר ל-git
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TICKER:       ${{ inputs.ticker }}
         run: |
           git config user.name "Research Bot"
           git config user.email "bot@portfolio"
           git remote set-url origin "https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git"
           git add analyses/_research/
-          git diff --cached --quiet || git commit -m "research: ${{ inputs.ticker }} $(date +%Y-%m-%d)"
-          git push
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          git diff --cached --quiet || { git commit -m "research: $TICKER $(date +%Y-%m-%d)" && git push; }

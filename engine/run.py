@@ -12,6 +12,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import re
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
@@ -80,7 +81,7 @@ def _write(ticker: str, payload: dict) -> Path:
 def _notify(ticker: str) -> None:
     """ntfy push כשהמחקר מוכן (fail-soft). נשען על notifications.py של portfolio."""
     try:
-        sys.path.insert(0, str(ROOT))
+        sys.path.append(str(ROOT))  # append ולא insert(0) - לא מסתיר stdlib
         from notifications import send_notification
 
         url = os.environ.get("DASHBOARD_URL", "").rstrip("/")
@@ -93,14 +94,23 @@ def _notify(ticker: str) -> None:
         logger.info("ntfy דולג: %s", exc)
 
 
+def _validate_ticker(raw: str) -> str:
+    """אותיות, ספרות ונקודה בלבד, מקסימום 10 תווים. מונע path traversal."""
+    t = raw.upper().strip()
+    if not re.match(r'^[A-Z][A-Z0-9.]{0,9}$', t):
+        raise SystemExit(f"טיקר לא חוקי: {raw!r}")
+    return t
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(description="מנוע engine - CLI")
     ap.add_argument("--mode", default="research", choices=["research"])
     ap.add_argument("--ticker", required=True)
     args = ap.parse_args()
 
-    payload = research(args.ticker)
-    out_dir = _write(args.ticker, payload)
+    ticker = _validate_ticker(args.ticker)
+    payload = research(ticker)
+    out_dir = _write(ticker, payload)
     logger.info("נכתב: %s", out_dir / "report.json")
     _notify(args.ticker)
 
