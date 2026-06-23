@@ -245,9 +245,20 @@ nav{
 
 <script>
 var _daily = null, _port = null, _weekly = null;
+var _live = {};            // מפת מחירים חיים מה-proxy: {TICKER:{price,chg_pct,prev}}
 var _loaded = {};
 
+/* כתובת Cloudflare Worker למחירים חיים. ניתן לדרוס מההגדרות (localStorage) בלי לערוך קוד. */
+function priceProxy(){ try { return localStorage.getItem('price_proxy_url') || ''; } catch(e){ return ''; } }
+
 function $(id){ return document.getElementById(id); }
+
+/* מחזיר מחיר/שינוי חי אם קיים, אחרת נופל לסנפשוט היומי */
+function liveOr(tk, price, chg){
+  var L = _live[tk];
+  if (L && L.price != null) return { price:L.price, chg: L.chg_pct!=null?L.chg_pct:chg, live:true };
+  return { price:price, chg:chg, live:false };
+}
 
 function pct(v, dec){
   dec = dec == null ? 1 : dec;
@@ -286,9 +297,36 @@ async function fetchJSON(path){
   } catch(e){ return null; }
 }
 
+/* מושך מחירים חיים לכל הטיקרים (אחזקות + ווצ'ליסט) דרך ה-Worker, וממזג ל-_live */
+async function loadLivePrices(){
+  var proxy = priceProxy();
+  if (!proxy) return false;
+  var set = {};
+  (_port && _port.holdings || []).forEach(function(h){ var t=h.symbol||h.ticker; if(t) set[t.toUpperCase()]=1; });
+  (_port && _port.watchlist || []).forEach(function(w){ var t=w.symbol||w.ticker; if(t) set[t.toUpperCase()]=1; });
+  (_daily && _daily.holdings || []).forEach(function(h){ if(h.ticker) set[h.ticker.toUpperCase()]=1; });
+  var syms = Object.keys(set);
+  if (!syms.length) return false;
+  var url = proxy.replace(/\/+$/,'') + '/?quotes=' + encodeURIComponent(syms.join(','));
+  try {
+    var r = await fetch(url, {cache:'no-store'});
+    if (!r.ok) return false;
+    _live = await r.json() || {};
+    return true;
+  } catch(e){ return false; }
+}
+
+/* מסמן בכותרת שמחירים חיים נטענים */
+function setLiveBadge(on){
+  var t = $('hdr-date');
+  if (on) t.innerHTML = '<span style="color:var(--green)">● חי</span> · ' + t.dataset.date;
+}
+
 async function loadAll(){
   var now = new Date();
-  $('hdr-date').textContent = now.toLocaleDateString('he-IL', {weekday:'short', day:'numeric', month:'short'});
+  var dstr = now.toLocaleDateString('he-IL', {weekday:'short', day:'numeric', month:'short'});
+  $('hdr-date').dataset.date = dstr;
+  $('hdr-date').textContent = dstr;
 
   var [d, p, w] = await Promise.all([
     fetchJSON('analyses/_daily/daily_latest.json'),
@@ -305,6 +343,23 @@ async function loadAll(){
   }
 
   renderTab('daily');
+
+  /* מחירים חיים: טען, מזג, רנדר מחדש את הטאב הפעיל, ורענן כל 60 שנ' */
+  if (await loadLivePrices()) {
+    setLiveBadge(true);
+    refreshActiveTab();
+    setInterval(async function(){
+      if (await loadLivePrices()) { setLiveBadge(true); refreshActiveTab(); }
+    }, 60000);
+  }
+}
+
+/* מוצא את הטאב הפעיל ומרנדר אותו מחדש (לאחר עדכון מחירים חיים) */
+function refreshActiveTab(){
+  var active = document.querySelector('.tab.active');
+  if (!active) return;
+  var name = active.id.replace('tab-','');
+  renderTab(name);
 }
 
 function renderTab(name){
@@ -323,11 +378,13 @@ function renderDaily(){
     return;
   }
   var D = _daily;
-  var upCount = D.holdings.filter(function(h){ return (h.chg_pct||0) > 0; }).length;
-  var dnCount = D.holdings.filter(function(h){ return (h.chg_pct||0) < 0; }).length;
-  var avgChg  = D.holdings.reduce(function(s,h){ return s+(h.chg_pct||0); },0) / (D.holdings.length||1);
+  /* מזג מחיר חי לכל אחזקה (שומר rsi/נפח/דוחות מהסנפשוט) */
+  var HD = D.holdings.map(function(h){ var e=liveOr(h.ticker,h.price,h.chg_pct); var c=Object.assign({},h); c.price=e.price; c.chg_pct=e.chg; c._live=e.live; return c; });
+  var upCount = HD.filter(function(h){ return (h.chg_pct||0) > 0; }).length;
+  var dnCount = HD.filter(function(h){ return (h.chg_pct||0) < 0; }).length;
+  var avgChg  = HD.reduce(function(s,h){ return s+(h.chg_pct||0); },0) / (HD.length||1);
   var topSec  = D.sector_summary.slice().sort(function(a,b){ return Math.abs(b.avg_chg_pct)-Math.abs(a.avg_chg_pct); })[0];
-  var topMov  = D.holdings.slice().sort(function(a,b){ return Math.abs(b.chg_pct||0)-Math.abs(a.chg_pct||0); })[0];
+  var topMov  = HD.slice().sort(function(a,b){ return Math.abs(b.chg_pct||0)-Math.abs(a.chg_pct||0); })[0];
   var actTxt  = D.has_alerts ? D.alert_tickers.join(', ') + ' לבדיקה' : (D.watchlist_triggers||[]).length ? "טריגר ווצ'ליסט" : 'ללא פעולה';
   var actClr  = D.has_alerts ? 'var(--red)' : D.watchlist_triggers.length ? 'var(--orange)' : 'var(--green)';
 
@@ -359,8 +416,8 @@ function renderDaily(){
     + '</div>';
 
   /* holdings */
-  h += '<div class="sec-hdr">אחזקות — ' + D.generated_time + '</div>';
-  D.holdings.forEach(function(hd){
+  h += '<div class="sec-hdr">אחזקות — ' + (_live && Object.keys(_live).length ? 'מחיר חי' : D.generated_time) + '</div>';
+  HD.forEach(function(hd){
     var cls = (hd.chg_pct||0)>0?'up':(hd.chg_pct||0)<0?'dn':'flat';
     var bw  = Math.min(Math.abs(hd.chg_pct||0)/5*100,100).toFixed(1);
     var rsi = hd.rsi!=null ? Math.round(hd.rsi) : null;
@@ -426,24 +483,71 @@ function renderHoldings(){
   if (_daily) _daily.holdings.forEach(function(h){ dailyMap[h.ticker] = h; });
 
   var holdings = _port.holdings || [];
-  var totalCost = holdings.reduce(function(s,h){ return s + (h.buy_price||0)*(h.quantity||0); }, 0);
   var cash = _port.cash || 0;
 
+  /* שווי תיק, P&L חי, ושווי לפי שכבה */
+  var mv = 0, cost = 0;
+  var layerVal = {Stability:0, Growth:0, Speculation:0, Core:0};
+  holdings.forEach(function(h){
+    var tk = h.symbol || h.ticker;
+    var e = liveOr(tk, (dailyMap[tk]||{}).price, null);
+    var px = e.price != null ? e.price : h.buy_price;
+    var qty = h.quantity || 0;
+    var val = px * qty;
+    mv += val; cost += (h.buy_price||0) * qty;
+    if (h.layer && layerVal[h.layer] != null) layerVal[h.layer] += val;
+    else if (h.layer) layerVal[h.layer] = val;
+  });
+  var totalVal = mv + cash;
+  var pnl = mv - cost;
+  var pnlPct = cost ? (pnl / cost * 100) : 0;
+  var pc = pnl >= 0 ? 'up' : 'dn';
+
   var h = '<div class="kpi-strip">'
-    + '<div class="kpi"><div class="v">' + holdings.length + '</div><div class="l">אחזקות</div></div>'
-    + '<div class="kpi"><div class="v">$' + Math.round(cash) + '</div><div class="l">מזומן</div></div>'
-    + '<div class="kpi"><div class="v ' + (_daily&&_daily.has_alerts?'dn':'up') + '">' + (_daily&&_daily.has_alerts?'⚠️ סקור':'✓ תקין') + '</div><div class="l">סטטוס</div></div>'
+    + '<div class="kpi"><div class="v">$' + Math.round(totalVal).toLocaleString() + '</div><div class="l">שווי תיק</div></div>'
+    + '<div class="kpi"><div class="v ' + pc + '">' + (pnl>=0?'+':'') + '$' + Math.round(pnl).toLocaleString() + '</div><div class="l">' + pct(pnlPct) + ' P&L</div></div>'
+    + '<div class="kpi"><div class="v">$' + Math.round(cash).toLocaleString() + '</div><div class="l">מזומן</div></div>'
     + '</div>';
 
-  var staleNote = !_daily ? '' : '';
-  h += '<div class="sec-hdr">אחזקות' + (_daily ? ' · מחירי ' + _daily.generated_time : ' · מחירי כניסה') + '</div>';
+  /* התפלגות שכבות מול יעדים (ניהול סיכון) */
+  var layerMeta = {
+    Stability:   {t:'יציבות',  lo:25, hi:35, c:'#60a5fa'},
+    Growth:      {t:'צמיחה',   lo:55, hi:65, c:'#34d399'},
+    Speculation: {t:'ספקולציה',lo:5,  hi:10, c:'#f59e0b'},
+    Core:        {t:'ליבה',    lo:0,  hi:100,c:'#8b5cf6'},
+  };
+  var cashPct = totalVal ? cash/totalVal*100 : 0;
+  var distRows = '';
+  Object.keys(layerMeta).forEach(function(k){
+    if (!layerVal[k]) return;
+    var m = layerMeta[k];
+    var p = totalVal ? layerVal[k]/totalVal*100 : 0;
+    var off = p < m.lo || p > m.hi;
+    distRows += '<div style="margin-bottom:10px">'
+      + '<div style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:4px">'
+      + '<span style="color:var(--muted2);font-weight:700">' + m.t + '</span>'
+      + '<span style="font-weight:800;color:' + (off?'var(--orange)':m.c) + '">' + p.toFixed(1) + '%'
+      + '<span style="color:var(--muted);font-weight:500;font-size:10px"> (' + m.lo + '-' + m.hi + '%)</span></span>'
+      + '</div>'
+      + '<div class="bar-track" style="margin:0"><div class="bar-fill" style="width:' + Math.min(p,100).toFixed(0) + '%;background:' + m.c + '"></div></div>'
+      + '</div>';
+  });
+  distRows += '<div><div style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:4px">'
+    + '<span style="color:var(--muted2);font-weight:700">מזומן</span>'
+    + '<span style="font-weight:800;color:var(--muted2)">' + cashPct.toFixed(1) + '%<span style="color:var(--muted);font-weight:500;font-size:10px"> (5-10%)</span></span></div>'
+    + '<div class="bar-track" style="margin:0"><div class="bar-fill" style="width:' + Math.min(cashPct,100).toFixed(0) + '%;background:rgba(148,163,184,.4)"></div></div></div>';
+  h += '<div class="sec-hdr">התפלגות שכבות</div>'
+    + '<div class="card">' + distRows + '</div>';
+
+  h += '<div class="sec-hdr">אחזקות' + (Object.keys(_live).length ? ' · מחיר חי' : (_daily ? ' · מחירי ' + _daily.generated_time : ' · מחירי כניסה')) + '</div>';
 
   holdings.forEach(function(hd){
     var tk  = hd.symbol || hd.ticker || '';
     var d   = dailyMap[tk] || {};
-    var price = d.price != null ? d.price : hd.buy_price;
-    var hasLive = d.price != null;
-    var chg = d.chg_pct;
+    var e   = liveOr(tk, d.price, d.chg_pct);
+    var price = e.price != null ? e.price : hd.buy_price;
+    var hasLive = e.price != null;
+    var chg = e.chg;
     var cls = chg!=null ? (chg>0?'up':chg<0?'dn':'flat') : 'flat';
     var bw  = chg!=null ? Math.min(Math.abs(chg)/5*100,100).toFixed(1) : 0;
     var rsi = d.rsi!=null ? Math.round(d.rsi) : null;
@@ -495,7 +599,8 @@ function renderWatchlist(){
   wl.forEach(function(w){
     var tk  = w.symbol || w.ticker || '';
     var d   = dailyMap[tk] || {};
-    var cur = d.current_price || d.price || null;
+    var le  = liveOr(tk, d.current_price || d.price, null);
+    var cur = le.price != null ? le.price : (d.current_price || d.price || null);
     var trig = parseFloat(w.trigger_price) || null;
     var dist = (cur && trig) ? ((cur - trig) / trig * 100) : null;
     var distCls = dist==null?'flat': Math.abs(dist)<3?'up':'flat';
