@@ -69,12 +69,23 @@ def research(ticker: str) -> dict:
 
 
 def _write(ticker: str, payload: dict) -> Path:
-    """כותב report.json + report.js (window.RESEARCH_DATA) ל-analyses/_research/<TICKER>/."""
+    """כותב report.json + report.js + מעדכן index.json של כל המחקרים."""
     out_dir = RESEARCH_DIR / ticker.upper()
     out_dir.mkdir(parents=True, exist_ok=True)
     blob = json.dumps(payload, ensure_ascii=False, indent=2)
     (out_dir / "report.json").write_text(blob, encoding="utf-8")
     (out_dir / "report.js").write_text(f"window.RESEARCH_DATA = {blob};\n", encoding="utf-8")
+
+    # index.json — רשימת כל המחקרים הקיימים (עד 50 אחרונים)
+    index_path = RESEARCH_DIR / "index.json"
+    try:
+        existing = json.loads(index_path.read_text(encoding="utf-8")) if index_path.exists() else []
+        existing = [e for e in existing if e.get("ticker") != ticker.upper()]
+        existing.insert(0, {"ticker": ticker.upper(), "generated": payload.get("generated", "")})
+        index_path.write_text(json.dumps(existing[:50], ensure_ascii=False), encoding="utf-8")
+    except Exception:
+        pass
+
     return out_dir
 
 
