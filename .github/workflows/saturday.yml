@@ -5,6 +5,9 @@ on:
     - cron: '0 2 * * 6'   # ~05:00 שעון ישראל, שבת. GitHub cron ב-UTC.
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   saturday-scanner:
     runs-on: ubuntu-latest
@@ -29,9 +32,12 @@ jobs:
         run: python scripts/saturday_scanner.py
 
       - name: Commit scanner results
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config user.name  "portfolio-bot"
           git config user.email "bot@portfolio"
+          git remote set-url origin "https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git"
           git add scanner-results.json sunday-analysis-target.json || true
           git diff --staged --quiet || git commit -m "auto: scanner results $(date +%Y-%m-%d)"
-          git push || true
+          git push

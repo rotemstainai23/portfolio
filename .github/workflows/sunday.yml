@@ -5,6 +5,9 @@ on:
     - cron: '0 2 * * 0'   # ~05:00 שעון ישראל, ראשון. GitHub cron ב-UTC.
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   sunday-report:
     runs-on: ubuntu-latest
@@ -30,9 +33,12 @@ jobs:
         run: python scripts/sunday_report.py
 
       - name: Commit weekly report
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config user.name  "portfolio-bot"
           git config user.email "bot@portfolio"
+          git remote set-url origin "https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git"
           git add analyses/_weekly/ || true
           git diff --staged --quiet || git commit -m "auto: CEO weekly report $(date +%Y-%m-%d)"
-          git push || true
+          git push
