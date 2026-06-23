@@ -526,6 +526,28 @@ def main():
                 'distance_pct':  round((cur - float(trig)) / float(trig) * 100, 2),
             })
 
+    # ── insider enrichment מה-engine (fail-soft) ─────────────────────────────
+    insider_alerts = {}
+    try:
+        from engine.analytics.smartmoney import insider_report as _ir
+        holding_tickers = [h.get('symbol') or h.get('ticker', '') for h in holdings if h.get('symbol') or h.get('ticker')]
+        for _t in holding_tickers:
+            try:
+                rep = _ir(_t, limit=10)
+                summary = rep.get('summary', {})
+                if summary.get('open_market_buy_value', 0) > 10000:
+                    insider_alerts[_t] = {
+                        'buy_val': summary['open_market_buy_value'],
+                        'sell_val': summary.get('open_market_sell_value', 0),
+                        'net': summary.get('net_value', 0),
+                        'verdict': summary.get('verdict', ''),
+                    }
+                    print(f'[daily] insider: {_t} - {summary.get("verdict", "")}')
+            except Exception:
+                pass
+    except ImportError:
+        pass
+
     # מאקרו: SPY/QQQ דרך אותו מקור Yahoo v8 שכבר בשימוש
     _spy = get_enriched_quote('SPY')
     _qqq = get_enriched_quote('QQQ')
@@ -542,6 +564,7 @@ def main():
         'watchlist_triggers': wl_triggers,
         'groq_insights':      insights,
         'sector_summary':     build_sector_summary(portfolio, all_data),
+        'insider_alerts':     insider_alerts,
     }
     write_daily_js(daily_payload)
     archive_daily_js()  # ponytail: אחרי הכתיבה — מארכב את נתוני היום, לא של אתמול

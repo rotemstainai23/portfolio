@@ -340,9 +340,9 @@ function render(D, healthData) {
   var topSectors = D.sector_summary.slice().sort(function(a,b){ return Math.abs(b.avg_chg_pct) - Math.abs(a.avg_chg_pct); });
   var topMover   = D.holdings.slice().sort(function(a,b){ return Math.abs(b.chg_pct||0) - Math.abs(a.chg_pct||0); })[0];
   var actionText  = D.has_alerts ? D.alert_tickers.join(', ') + ' לבדיקה'
-                  : D.watchlist_triggers.length ? "טריגר וואצ'ליסט"
+                  : (D.watchlist_triggers||[]).length ? "טריגר וואצ'ליסט"
                   : 'ללא פעולה';
-  var actionColor = D.has_alerts ? 'var(--red)' : D.watchlist_triggers.length ? 'var(--orange)' : 'var(--green)';
+  var actionColor = D.has_alerts ? 'var(--red)' : (D.watchlist_triggers||[]).length ? 'var(--orange)' : 'var(--green)';
 
   var h = '';
 
@@ -558,6 +558,21 @@ function render(D, healthData) {
       h += '<div class="groq-bullet" style="animation-delay:' + (i * 0.2 + 0.1) + 's">'
         + '<div class="groq-bdot"></div>'
         + '<div>' + escHtml(ins) + '</div>'
+        + '</div>';
+    });
+    h += '</div>';
+  }
+
+  /* ── Insider alerts ── */
+  if (D.insider_alerts && Object.keys(D.insider_alerts).length > 0) {
+    h += '<div class="groq-panel"><div class="groq-header"><div class="groq-dot" style="background:var(--blue)"></div><div class="groq-title">פעילות Insider (SEC Form 4)</div></div>';
+    Object.entries(D.insider_alerts).forEach(function([ticker, a], i) {
+      var netCls = a.net > 0 ? 'var(--green)' : 'var(--red)';
+      var netSign = a.net > 0 ? '+' : '';
+      h += '<div class="groq-bullet" style="animation-delay:' + (i * 0.15) + 's">'
+        + '<div class="groq-bdot" style="background:var(--blue)"></div>'
+        + '<div><b>' + escHtml(ticker) + '</b> ' + escHtml(a.verdict)
+        + ' · נטו: <span style="color:' + netCls + '">' + netSign + '$' + Math.round(a.net).toLocaleString() + '</span></div>'
         + '</div>';
     });
     h += '</div>';
