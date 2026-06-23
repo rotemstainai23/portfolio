@@ -1,0 +1,1211 @@
+window.RESEARCH_DATA = {
+  "ticker": "AAPL",
+  "generated": "2026-06-23T13:35:29+00:00",
+  "snapshot": {
+    "ticker": "AAPL",
+    "price": {
+      "label": "מחיר נוכחי",
+      "value": 296.8900146484375,
+      "unit": "USD",
+      "source": {
+        "name": "Yahoo Finance",
+        "url": "https://finance.yahoo.com/quote/AAPL",
+        "as_of": "2026-06-23"
+      },
+      "note": null
+    },
+    "change_pct": {
+      "label": "שינוי יומי",
+      "value": 0.0,
+      "unit": "%",
+      "source": {
+        "name": "Yahoo Finance",
+        "url": "https://finance.yahoo.com/quote/AAPL",
+        "as_of": "2026-06-23"
+      },
+      "note": null
+    },
+    "currency": "USD"
+  },
+  "summary": {
+    "question": "תן סקירת השקעה מלאה ומאוזנת",
+    "ticker": "AAPL",
+    "summary": "שלום, אני כאן כדי לספק לך סקירה מלאה ומאוזנת על השקעה ב-Apple Inc.\n\n**מבט כללי**: Apple Inc. היא חברה גדולה עם הכנסות של 416.16B$ וצמיחה של 6.4% בשנה. היא מראה סימנים חיוביים של איכות, כגון מרג'ין נקי של 26.9% ו-ROIC (תשואה על השקעה) של 73.2%. אלו הם מספרים מרשימים שמראים על חברה בריאה.\n\n**תמחור**: המכפיל הרווח של Apple Inc. עומד על 39.80x, מכפיל מכירות של 10.48x, ו-EV/EBITDA של 30.38x. כדי להבין אם זה יקר, צריך להשוות את המספרים האלה לעמיתים ולממוצע ההיסטורי. אם המספרים גבוהים מדי, זה עלול להצביע על הערכה יתר.\n\n**יתרון מרכזי**: ה-ROIC הגבוה של 73.2% הוא סימן מצוין לאיכות החברה. זה מראה שהחברה משקיעה את כספה בצורה י",
+    "data_points": [
+      {
+        "label": "הכנסות שנתיות",
+        "value": 416161000000.0,
+        "unit": "USD",
+        "source": {
+          "name": "SEC EDGAR (XBRL)",
+          "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000320193",
+          "as_of": "2025-09-27"
+        },
+        "note": "XBRL RevenueFromContractWithCustomerExcludingAssessedTax, fy=2025"
+      },
+      {
+        "label": "צמיחת הכנסות (שנה/שנה)",
+        "value": 6.4,
+        "unit": "%",
+        "source": {
+          "name": "SEC EDGAR (XBRL)",
+          "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000320193",
+          "as_of": "2025-09-27"
+        },
+        "note": "2024-09-28 -> 2025-09-27"
+      },
+      {
+        "label": "מרג'ין גולמי",
+        "value": 46.9,
+        "unit": "%",
+        "source": {
+          "name": "SEC EDGAR (XBRL)",
+          "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000320193",
+          "as_of": "2025-09-27"
+        },
+        "note": "(הכנסות פחות עלות המכר) חלקי הכנסות"
+      },
+      {
+        "label": "מרג'ין תפעולי",
+        "value": 32.0,
+        "unit": "%",
+        "source": {
+          "name": "SEC EDGAR (XBRL)",
+          "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000320193",
+          "as_of": "2025-09-27"
+        },
+        "note": "רווח תפעולי חלקי הכנסות"
+      },
+      {
+        "label": "מרג'ין נקי",
+        "value": 26.9,
+        "unit": "%",
+        "source": {
+          "name": "SEC EDGAR (XBRL)",
+          "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000320193",
+          "as_of": "2025-09-27"
+        },
+        "note": "רווח נקי חלקי הכנסות"
+      },
+      {
+        "label": "תזרים מזומנים חופשי",
+        "value": 98767000000.0,
+        "unit": "USD",
+        "source": {
+          "name": "SEC EDGAR (XBRL)",
+          "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000320193",
+          "as_of": "2025-09-27"
+        },
+        "note": "תזרים תפעולי פחות capex"
+      },
+      {
+        "label": "ROIC (משוערך)",
+        "value": 73.2,
+        "unit": "%",
+        "source": {
+          "name": "SEC EDGAR (XBRL)",
+          "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000320193",
+          "as_of": "2025-09-27"
+        },
+        "note": "NOPAT חלקי (הון עצמי ועוד חוב פחות מזומן)"
+      },
+      {
+        "label": "שווי שוק",
+        "value": 4360529337986.8164,
+        "unit": "USD",
+        "source": {
+          "name": "Yahoo Finance + SEC EDGAR",
+          "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000320193",
+          "as_of": "2026-06-23"
+        },
+        "note": "מחיר (296.8900146484375) כפול מניות במחזור (14687356000)"
+      },
+      {
+        "label": "מכפיל רווח (P/E)",
+        "value": 39.8,
+        "unit": "x",
+        "source": {
+          "name": "Yahoo Finance + SEC EDGAR",
+          "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000320193",
+          "as_of": "2026-06-23"
+        },
+        "note": "מחיר חלקי רווח מדולל למניה (7.46)"
+      },
+      {
+        "label": "מכפיל מכירות (P/S)",
+        "value": 10.48,
+        "unit": "x",
+        "source": {
+          "name": "Yahoo Finance + SEC EDGAR",
+          "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000320193",
+          "as_of": "2026-06-23"
+        },
+        "note": null
+      },
+      {
+        "label": "EV/EBITDA",
+        "value": 30.38,
+        "unit": "x",
+        "source": {
+          "name": "Yahoo Finance + SEC EDGAR",
+          "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000320193",
+          "as_of": "2026-06-23"
+        },
+        "note": "שווי תאגידי חלקי EBITDA (רווח תפעולי + פחת והפחתות)"
+      }
+    ],
+    "sources": [
+      {
+        "name": "SEC EDGAR (XBRL)",
+        "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000320193",
+        "as_of": "2025-09-27"
+      },
+      {
+        "name": "Yahoo Finance + SEC EDGAR",
+        "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000320193",
+        "as_of": "2026-06-23"
+      }
+    ],
+    "reasoning": [
+      "סווגה כוונת השאלה: quality, valuation.",
+      "נשלפו דוחות כספיים מ-SEC EDGAR וחושבו צמיחה, מרג'ינים ו-ROIC.",
+      "חושבו מכפילי תמחור משילוב מחיר השוק (Yahoo) ונתוני EDGAR.",
+      "איכות הוערכה לפי רמת ה-ROIC והמרג'ין הנקי (סף מקובל ~10%).",
+      "ההסבר נוסח על ידי שכבת ה-LLM על בסיס המספרים המחושבים בלבד."
+    ]
+  },
+  "fundamental": {
+    "ticker": "AAPL",
+    "name": "Apple Inc.",
+    "revenue": {
+      "label": "הכנסות שנתיות",
+      "value": 416161000000.0,
+      "unit": "USD",
+      "source": {
+        "name": "SEC EDGAR (XBRL)",
+        "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000320193",
+        "as_of": "2025-09-27"
+      },
+      "note": "XBRL RevenueFromContractWithCustomerExcludingAssessedTax, fy=2025"
+    },
+    "revenue_growth": {
+      "label": "צמיחת הכנסות (שנה/שנה)",
+      "value": 6.4,
+      "unit": "%",
+      "source": {
+        "name": "SEC EDGAR (XBRL)",
+        "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000320193",
+        "as_of": "2025-09-27"
+      },
+      "note": "2024-09-28 -> 2025-09-27"
+    },
+    "gross_margin": {
+      "label": "מרג'ין גולמי",
+      "value": 46.9,
+      "unit": "%",
+      "source": {
+        "name": "SEC EDGAR (XBRL)",
+        "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000320193",
+        "as_of": "2025-09-27"
+      },
+      "note": "(הכנסות פחות עלות המכר) חלקי הכנסות"
+    },
+    "operating_margin": {
+      "label": "מרג'ין תפעולי",
+      "value": 32.0,
+      "unit": "%",
+      "source": {
+        "name": "SEC EDGAR (XBRL)",
+        "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000320193",
+        "as_of": "2025-09-27"
+      },
+      "note": "רווח תפעולי חלקי הכנסות"
+    },
+    "net_margin": {
+      "label": "מרג'ין נקי",
+      "value": 26.9,
+      "unit": "%",
+      "source": {
+        "name": "SEC EDGAR (XBRL)",
+        "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000320193",
+        "as_of": "2025-09-27"
+      },
+      "note": "רווח נקי חלקי הכנסות"
+    },
+    "fcf": {
+      "label": "תזרים מזומנים חופשי",
+      "value": 98767000000.0,
+      "unit": "USD",
+      "source": {
+        "name": "SEC EDGAR (XBRL)",
+        "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000320193",
+        "as_of": "2025-09-27"
+      },
+      "note": "תזרים תפעולי פחות capex"
+    },
+    "roic": {
+      "label": "ROIC (משוערך)",
+      "value": 73.2,
+      "unit": "%",
+      "source": {
+        "name": "SEC EDGAR (XBRL)",
+        "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000320193",
+        "as_of": "2025-09-27"
+      },
+      "note": "NOPAT חלקי (הון עצמי ועוד חוב פחות מזומן)"
+    },
+    "market_cap": {
+      "label": "שווי שוק",
+      "value": 4360529337986.8164,
+      "unit": "USD",
+      "source": {
+        "name": "Yahoo Finance + SEC EDGAR",
+        "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000320193",
+        "as_of": "2026-06-23"
+      },
+      "note": "מחיר (296.8900146484375) כפול מניות במחזור (14687356000)"
+    },
+    "pe": {
+      "label": "מכפיל רווח (P/E)",
+      "value": 39.8,
+      "unit": "x",
+      "source": {
+        "name": "Yahoo Finance + SEC EDGAR",
+        "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000320193",
+        "as_of": "2026-06-23"
+      },
+      "note": "מחיר חלקי רווח מדולל למניה (7.46)"
+    },
+    "ps": {
+      "label": "מכפיל מכירות (P/S)",
+      "value": 10.48,
+      "unit": "x",
+      "source": {
+        "name": "Yahoo Finance + SEC EDGAR",
+        "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000320193",
+        "as_of": "2026-06-23"
+      },
+      "note": null
+    },
+    "ev_ebitda": {
+      "label": "EV/EBITDA",
+      "value": 30.38,
+      "unit": "x",
+      "source": {
+        "name": "Yahoo Finance + SEC EDGAR",
+        "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000320193",
+        "as_of": "2026-06-23"
+      },
+      "note": "שווי תאגידי חלקי EBITDA (רווח תפעולי + פחת והפחתות)"
+    },
+    "assumptions": [
+      "ROIC: שיעור מס מונח 21%, הון מושקע = הון עצמי + חוב - מזומן"
+    ],
+    "sources": [
+      {
+        "name": "SEC EDGAR (XBRL)",
+        "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000320193",
+        "as_of": "2025-09-27"
+      },
+      {
+        "name": "Yahoo Finance + SEC EDGAR",
+        "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000320193",
+        "as_of": "2026-06-23"
+      }
+    ]
+  },
+  "technical": {
+    "ticker": "AAPL",
+    "last_price": {
+      "label": "מחיר אחרון",
+      "value": 296.89,
+      "unit": "USD",
+      "source": {
+        "name": "Yahoo Finance",
+        "url": "https://finance.yahoo.com/quote/AAPL",
+        "as_of": "2026-06-23"
+      },
+      "note": null
+    },
+    "sma50": {
+      "label": "ממוצע נע 50",
+      "value": 290.1,
+      "unit": "USD",
+      "source": {
+        "name": "Yahoo Finance",
+        "url": "https://finance.yahoo.com/quote/AAPL",
+        "as_of": "2026-06-23"
+      },
+      "note": null
+    },
+    "sma200": {
+      "label": "ממוצע נע 200",
+      "value": 268.38,
+      "unit": "USD",
+      "source": {
+        "name": "Yahoo Finance",
+        "url": "https://finance.yahoo.com/quote/AAPL",
+        "as_of": "2026-06-23"
+      },
+      "note": null
+    },
+    "rsi14": {
+      "label": "RSI(14)",
+      "value": 49.79,
+      "unit": "",
+      "source": {
+        "name": "Yahoo Finance",
+        "url": "https://finance.yahoo.com/quote/AAPL",
+        "as_of": "2026-06-23"
+      },
+      "note": "מעל 70 = קניית יתר, מתחת 30 = מכירת יתר"
+    },
+    "macd": {
+      "label": "MACD",
+      "value": 0.81,
+      "unit": "",
+      "source": {
+        "name": "Yahoo Finance",
+        "url": "https://finance.yahoo.com/quote/AAPL",
+        "as_of": "2026-06-23"
+      },
+      "note": null
+    },
+    "macd_signal": {
+      "label": "קו אות MACD",
+      "value": 2.4,
+      "unit": "",
+      "source": {
+        "name": "Yahoo Finance",
+        "url": "https://finance.yahoo.com/quote/AAPL",
+        "as_of": "2026-06-23"
+      },
+      "note": null
+    },
+    "atr14": {
+      "label": "ATR(14)",
+      "value": 6.71,
+      "unit": "USD",
+      "source": {
+        "name": "Yahoo Finance",
+        "url": "https://finance.yahoo.com/quote/AAPL",
+        "as_of": "2026-06-23"
+      },
+      "note": "תנודתיות ממוצעת יומית"
+    },
+    "trend": "עולה (uptrend)",
+    "support": [
+      287.38,
+      280.39,
+      277.32
+    ],
+    "resistance": [
+      317.4
+    ],
+    "entry_zone": [
+      287.38,
+      290.25
+    ],
+    "exit_zone": [
+      314.23,
+      317.4
+    ],
+    "stop_loss": {
+      "label": "הצעת Stop Loss",
+      "value": 280.67,
+      "unit": "USD",
+      "source": {
+        "name": "Yahoo Finance",
+        "url": "https://finance.yahoo.com/quote/AAPL",
+        "as_of": "2026-06-23"
+      },
+      "note": "תמיכה קרובה פחות ATR אחד"
+    },
+    "sources": [
+      {
+        "name": "Yahoo Finance",
+        "url": "https://finance.yahoo.com/quote/AAPL",
+        "as_of": "2026-06-23"
+      }
+    ]
+  },
+  "dcf": {
+    "ticker": "AAPL",
+    "fcf_base": {
+      "label": "FCF בסיס",
+      "value": 98767000000.0,
+      "unit": "USD",
+      "source": {
+        "name": "SEC EDGAR (XBRL) + מודל DCF",
+        "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000320193",
+        "as_of": "2025-09-27"
+      },
+      "note": null
+    },
+    "enterprise_value": 1967742855851.84,
+    "equity_value": 1930600855851.84,
+    "fair_value_per_share": {
+      "label": "שווי הוגן למניה (DCF)",
+      "value": 131.45,
+      "unit": "USD",
+      "source": {
+        "name": "SEC EDGAR (XBRL) + מודל DCF",
+        "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000320193",
+        "as_of": "2025-09-27"
+      },
+      "note": "ערך הון עצמי חלקי מספר מניות"
+    },
+    "assumptions": {
+      "growth": 0.08,
+      "wacc": 0.09,
+      "terminal_growth": 0.025,
+      "years": 5,
+      "net_debt": 37142000000.0,
+      "note": "הנחות ברירת מחדל ניתנות לכוונון. שווי הוגן רגיש מאוד להנחות."
+    },
+    "projection": [
+      {
+        "year": 1,
+        "fcf": 106668360000.0,
+        "pv": 97860880733.94
+      },
+      {
+        "year": 2,
+        "fcf": 115201828800.0,
+        "pv": 96963074488.68
+      },
+      {
+        "year": 3,
+        "fcf": 124417975104.0,
+        "pv": 96073504997.96
+      },
+      {
+        "year": 4,
+        "fcf": 134371413112.32,
+        "pv": 95192096695.22
+      },
+      {
+        "year": 5,
+        "fcf": 145121126161.31,
+        "pv": 94318774707.19
+      }
+    ],
+    "source": {
+      "name": "SEC EDGAR (XBRL) + מודל DCF",
+      "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000320193",
+      "as_of": "2025-09-27"
+    }
+  },
+  "earnings": {
+    "ticker": "AAPL",
+    "name": "Apple Inc.",
+    "quarterly_revenue": [
+      {
+        "end": "2023-12-30",
+        "fy": 2025,
+        "fp": "Q1",
+        "value": 119575000000.0,
+        "form": "10-Q"
+      },
+      {
+        "end": "2024-03-30",
+        "fy": 2025,
+        "fp": "Q2",
+        "value": 90753000000.0,
+        "form": "10-Q"
+      },
+      {
+        "end": "2024-06-29",
+        "fy": 2025,
+        "fp": "Q3",
+        "value": 85777000000.0,
+        "form": "10-Q"
+      },
+      {
+        "end": "2024-12-28",
+        "fy": 2026,
+        "fp": "Q1",
+        "value": 124300000000.0,
+        "form": "10-Q"
+      },
+      {
+        "end": "2025-03-29",
+        "fy": 2026,
+        "fp": "Q2",
+        "value": 95359000000.0,
+        "form": "10-Q"
+      },
+      {
+        "end": "2025-06-28",
+        "fy": 2025,
+        "fp": "Q3",
+        "value": 94036000000.0,
+        "form": "10-Q"
+      },
+      {
+        "end": "2025-12-27",
+        "fy": 2026,
+        "fp": "Q1",
+        "value": 143756000000.0,
+        "form": "10-Q"
+      },
+      {
+        "end": "2026-03-28",
+        "fy": 2026,
+        "fp": "Q2",
+        "value": 111184000000.0,
+        "form": "10-Q"
+      }
+    ],
+    "quarterly_eps": [
+      {
+        "end": "2023-12-30",
+        "fy": 2025,
+        "fp": "Q1",
+        "value": 2.18,
+        "form": "10-Q"
+      },
+      {
+        "end": "2024-03-30",
+        "fy": 2025,
+        "fp": "Q2",
+        "value": 1.53,
+        "form": "10-Q"
+      },
+      {
+        "end": "2024-06-29",
+        "fy": 2025,
+        "fp": "Q3",
+        "value": 1.4,
+        "form": "10-Q"
+      },
+      {
+        "end": "2024-12-28",
+        "fy": 2026,
+        "fp": "Q1",
+        "value": 2.4,
+        "form": "10-Q"
+      },
+      {
+        "end": "2025-03-29",
+        "fy": 2026,
+        "fp": "Q2",
+        "value": 1.65,
+        "form": "10-Q"
+      },
+      {
+        "end": "2025-06-28",
+        "fy": 2025,
+        "fp": "Q3",
+        "value": 1.57,
+        "form": "10-Q"
+      },
+      {
+        "end": "2025-12-27",
+        "fy": 2026,
+        "fp": "Q1",
+        "value": 2.84,
+        "form": "10-Q"
+      },
+      {
+        "end": "2026-03-28",
+        "fy": 2026,
+        "fp": "Q2",
+        "value": 2.01,
+        "form": "10-Q"
+      }
+    ],
+    "quarterly_net_income": [
+      {
+        "end": "2023-12-30",
+        "fy": 2025,
+        "fp": "Q1",
+        "value": 33916000000.0,
+        "form": "10-Q"
+      },
+      {
+        "end": "2024-03-30",
+        "fy": 2025,
+        "fp": "Q2",
+        "value": 23636000000.0,
+        "form": "10-Q"
+      },
+      {
+        "end": "2024-06-29",
+        "fy": 2025,
+        "fp": "Q3",
+        "value": 21448000000.0,
+        "form": "10-Q"
+      },
+      {
+        "end": "2024-12-28",
+        "fy": 2026,
+        "fp": "Q1",
+        "value": 36330000000.0,
+        "form": "10-Q"
+      },
+      {
+        "end": "2025-03-29",
+        "fy": 2026,
+        "fp": "Q2",
+        "value": 24780000000.0,
+        "form": "10-Q"
+      },
+      {
+        "end": "2025-06-28",
+        "fy": 2025,
+        "fp": "Q3",
+        "value": 23434000000.0,
+        "form": "10-Q"
+      },
+      {
+        "end": "2025-12-27",
+        "fy": 2026,
+        "fp": "Q1",
+        "value": 42097000000.0,
+        "form": "10-Q"
+      },
+      {
+        "end": "2026-03-28",
+        "fy": 2026,
+        "fp": "Q2",
+        "value": 29578000000.0,
+        "form": "10-Q"
+      }
+    ],
+    "revenue_yoy": 16.6,
+    "eps_yoy": 21.8,
+    "latest_quarter": "2026-03-28",
+    "next_earnings_date": "2026-07-30",
+    "source": {
+      "name": "SEC EDGAR (XBRL)",
+      "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000320193",
+      "as_of": "2026-03-28"
+    },
+    "note": "נתוני EPS מדולל והכנסות רבעוניים מדוחות 10-Q/10-K רשמיים. תמלילים ותחזיות אנליסטים אינם זמינים במקור חינמי רשמי ולכן אינם כלולים."
+  },
+  "insider": {
+    "ticker": "AAPL",
+    "name": "Apple Inc.",
+    "summary": {
+      "open_market_buys": 0,
+      "open_market_buy_value": 0,
+      "open_market_sells": 14,
+      "open_market_sell_value": 111739341.32,
+      "net_value": -111739341.32,
+      "verdict": "מכירות בשוק הפתוח (לרוב שגרתי אצל מנהלים, אך ראוי לתשומת לב)"
+    },
+    "transactions": [
+      {
+        "owner": "LEVINSON ARTHUR D",
+        "role": "דירקטור",
+        "date": "2026-05-06",
+        "code": "S",
+        "action": "מכירה בשוק הפתוח",
+        "direction": "sell",
+        "shares": 149527.0,
+        "price": 284.57,
+        "value": 42550898.39,
+        "significance": 85101796.78,
+        "url": "https://www.sec.gov/Archives/edgar/data/320193/000114036126020298/xslF345X06/form4.xml"
+      },
+      {
+        "owner": "LEVINSON ARTHUR D",
+        "role": "דירקטור",
+        "date": "2026-05-06",
+        "code": "S",
+        "action": "מכירה בשוק הפתוח",
+        "direction": "sell",
+        "shares": 100473.0,
+        "price": 285.04,
+        "value": 28638823.92,
+        "significance": 57277647.84,
+        "url": "https://www.sec.gov/Archives/edgar/data/320193/000114036126020298/xslF345X06/form4.xml"
+      },
+      {
+        "owner": "LEVINSON ARTHUR D",
+        "role": "דירקטור",
+        "date": "2026-05-27",
+        "code": "S",
+        "action": "מכירה בשוק הפתוח",
+        "direction": "sell",
+        "shares": 50000.0,
+        "price": 311.02,
+        "value": 15551000.0,
+        "significance": 31102000.0,
+        "url": "https://www.sec.gov/Archives/edgar/data/320193/000114036126023363/xslF345X06/form4.xml"
+      },
+      {
+        "owner": "COOK TIMOTHY D",
+        "role": "Chief Executive Officer",
+        "date": "2026-04-02",
+        "code": "S",
+        "action": "מכירה בשוק הפתוח",
+        "direction": "sell",
+        "shares": 28188.0,
+        "price": 255.17,
+        "value": 7192731.96,
+        "significance": 14385463.92,
+        "url": "https://www.sec.gov/Archives/edgar/data/320193/000114036126013190/xslF345X06/form4.xml"
+      },
+      {
+        "owner": "O'BRIEN DEIRDRE",
+        "role": "Senior Vice President",
+        "date": "2026-04-02",
+        "code": "S",
+        "action": "מכירה בשוק הפתוח",
+        "direction": "sell",
+        "shares": 20338.0,
+        "price": 255.12,
+        "value": 5188630.56,
+        "significance": 10377261.120000001,
+        "url": "https://www.sec.gov/Archives/edgar/data/320193/000114036126013192/xslF345X06/form4.xml"
+      },
+      {
+        "owner": "COOK TIMOTHY D",
+        "role": "Chief Executive Officer",
+        "date": "2026-04-02",
+        "code": "S",
+        "action": "מכירה בשוק הפתוח",
+        "direction": "sell",
+        "shares": 16083.0,
+        "price": 254.37,
+        "value": 4091032.71,
+        "significance": 8182065.42,
+        "url": "https://www.sec.gov/Archives/edgar/data/320193/000114036126013190/xslF345X06/form4.xml"
+      },
+      {
+        "owner": "O'BRIEN DEIRDRE",
+        "role": "Senior Vice President",
+        "date": "2026-04-02",
+        "code": "S",
+        "action": "מכירה בשוק הפתוח",
+        "direction": "sell",
+        "shares": 9664.0,
+        "price": 255.82,
+        "value": 2472244.48,
+        "significance": 4944488.96,
+        "url": "https://www.sec.gov/Archives/edgar/data/320193/000114036126013192/xslF345X06/form4.xml"
+      },
+      {
+        "owner": "COOK TIMOTHY D",
+        "role": "Chief Executive Officer",
+        "date": "2026-04-02",
+        "code": "S",
+        "action": "מכירה בשוק הפתוח",
+        "direction": "sell",
+        "shares": 9147.0,
+        "price": 252.11,
+        "value": 2306050.17,
+        "significance": 4612100.34,
+        "url": "https://www.sec.gov/Archives/edgar/data/320193/000114036126013190/xslF345X06/form4.xml"
+      },
+      {
+        "owner": "COOK TIMOTHY D",
+        "role": "Chief Executive Officer",
+        "date": "2026-04-01",
+        "code": "F",
+        "action": "ניכוי מס במניות",
+        "direction": "routine",
+        "shares": 66627.0,
+        "price": 255.63,
+        "value": 17031860.01,
+        "significance": 3406372.002,
+        "url": "https://www.sec.gov/Archives/edgar/data/320193/000114036126013190/xslF345X06/form4.xml"
+      },
+      {
+        "owner": "COOK TIMOTHY D",
+        "role": "Chief Executive Officer",
+        "date": "2026-04-02",
+        "code": "S",
+        "action": "מכירה בשוק הפתוח",
+        "direction": "sell",
+        "shares": 5087.0,
+        "price": 251.25,
+        "value": 1278108.75,
+        "significance": 2556217.5,
+        "url": "https://www.sec.gov/Archives/edgar/data/320193/000114036126013190/xslF345X06/form4.xml"
+      },
+      {
+        "owner": "COOK TIMOTHY D",
+        "role": "Chief Executive Officer",
+        "date": "2026-04-02",
+        "code": "S",
+        "action": "מכירה בשוק הפתוח",
+        "direction": "sell",
+        "shares": 4566.0,
+        "price": 256.0,
+        "value": 1168896.0,
+        "significance": 2337792.0,
+        "url": "https://www.sec.gov/Archives/edgar/data/320193/000114036126013190/xslF345X06/form4.xml"
+      },
+      {
+        "owner": "O'BRIEN DEIRDRE",
+        "role": "Senior Vice President",
+        "date": "2026-04-01",
+        "code": "F",
+        "action": "ניכוי מס במניות",
+        "direction": "routine",
+        "shares": 34315.0,
+        "price": 255.63,
+        "value": 8771943.45,
+        "significance": 1754388.69,
+        "url": "https://www.sec.gov/Archives/edgar/data/320193/000114036126013192/xslF345X06/form4.xml"
+      },
+      {
+        "owner": "Khan Sabih",
+        "role": "COO",
+        "date": "2026-04-01",
+        "code": "F",
+        "action": "ניכוי מס במניות",
+        "direction": "routine",
+        "shares": 33317.0,
+        "price": 255.63,
+        "value": 8516824.71,
+        "significance": 1703364.9419999998,
+        "url": "https://www.sec.gov/Archives/edgar/data/320193/000114036126013191/xslF345X06/form4.xml"
+      },
+      {
+        "owner": "Newstead Jennifer",
+        "role": "SVP, GC and Secretary",
+        "date": "2026-03-15",
+        "code": "F",
+        "action": "ניכוי מס במניות",
+        "direction": "routine",
+        "shares": 32528.0,
+        "price": 250.12,
+        "value": 8135903.36,
+        "significance": 1627180.6720000003,
+        "url": "https://www.sec.gov/Archives/edgar/data/320193/000178052526000005/xslF345X05/wk-form4_1773786674.xml"
+      },
+      {
+        "owner": "Newstead Jennifer",
+        "role": "SVP, GC and Secretary",
+        "date": "2026-06-15",
+        "code": "F",
+        "action": "ניכוי מס במניות",
+        "direction": "routine",
+        "shares": 16238.0,
+        "price": 296.42,
+        "value": 4813267.96,
+        "significance": 962653.5920000001,
+        "url": "https://www.sec.gov/Archives/edgar/data/320193/000114036126025622/xslF345X06/form4.xml"
+      },
+      {
+        "owner": "COOK TIMOTHY D",
+        "role": "Chief Executive Officer",
+        "date": "2026-04-02",
+        "code": "S",
+        "action": "מכירה בשוק הפתוח",
+        "direction": "sell",
+        "shares": 1878.0,
+        "price": 253.13,
+        "value": 475378.14,
+        "significance": 950756.28,
+        "url": "https://www.sec.gov/Archives/edgar/data/320193/000114036126013190/xslF345X06/form4.xml"
+      },
+      {
+        "owner": "Parekh Kevan",
+        "role": "Senior Vice President, CFO",
+        "date": "2026-04-23",
+        "code": "S",
+        "action": "מכירה בשוק הפתוח",
+        "direction": "sell",
+        "shares": 1534.0,
+        "price": 275.0,
+        "value": 421850.0,
+        "significance": 843700.0,
+        "url": "https://www.sec.gov/Archives/edgar/data/320193/000114036126017175/xslF345X06/form4.xml"
+      },
+      {
+        "owner": "Borders Ben",
+        "role": "Principal Accounting Officer",
+        "date": "2026-05-08",
+        "code": "S",
+        "action": "מכירה בשוק הפתוח",
+        "direction": "sell",
+        "shares": 1274.0,
+        "price": 290.0,
+        "value": 369460.0,
+        "significance": 738920.0,
+        "url": "https://www.sec.gov/Archives/edgar/data/320193/000114036126020871/xslF345X06/form4.xml"
+      },
+      {
+        "owner": "Parekh Kevan",
+        "role": "Senior Vice President, CFO",
+        "date": "2026-04-15",
+        "code": "F",
+        "action": "ניכוי מס במניות",
+        "direction": "routine",
+        "shares": 4793.0,
+        "price": 266.43,
+        "value": 1276998.99,
+        "significance": 255399.798,
+        "url": "https://www.sec.gov/Archives/edgar/data/320193/000114036126015420/xslF345X06/form4.xml"
+      },
+      {
+        "owner": "Borders Ben",
+        "role": "Principal Accounting Officer",
+        "date": "2026-06-16",
+        "code": "S",
+        "action": "מכירה בשוק הפתוח",
+        "direction": "sell",
+        "shares": 116.0,
+        "price": 295.14,
+        "value": 34236.24,
+        "significance": 68472.48,
+        "url": "https://www.sec.gov/Archives/edgar/data/320193/000114036126025620/xslF345X06/form4.xml"
+      },
+      {
+        "owner": "Borders Ben",
+        "role": "Principal Accounting Officer",
+        "date": "2026-04-15",
+        "code": "F",
+        "action": "ניכוי מס במניות",
+        "direction": "routine",
+        "shares": 892.0,
+        "price": 266.43,
+        "value": 237655.56,
+        "significance": 47531.112,
+        "url": "https://www.sec.gov/Archives/edgar/data/320193/000114036126015421/xslF345X06/form4.xml"
+      },
+      {
+        "owner": "Borders Ben",
+        "role": "Principal Accounting Officer",
+        "date": "2026-06-15",
+        "code": "F",
+        "action": "ניכוי מס במניות",
+        "direction": "routine",
+        "shares": 124.0,
+        "price": 296.42,
+        "value": 36756.08,
+        "significance": 7351.216,
+        "url": "https://www.sec.gov/Archives/edgar/data/320193/000114036126025620/xslF345X06/form4.xml"
+      },
+      {
+        "owner": "Newstead Jennifer",
+        "role": "SVP, GC and Secretary",
+        "date": "2026-06-15",
+        "code": "M",
+        "action": "מימוש אופציה",
+        "direction": "routine",
+        "shares": 30104.0,
+        "price": null,
+        "value": null,
+        "significance": 0.0,
+        "url": "https://www.sec.gov/Archives/edgar/data/320193/000114036126025622/xslF345X06/form4.xml"
+      },
+      {
+        "owner": "Borders Ben",
+        "role": "Principal Accounting Officer",
+        "date": "2026-06-15",
+        "code": "M",
+        "action": "מימוש אופציה",
+        "direction": "routine",
+        "shares": 240.0,
+        "price": null,
+        "value": null,
+        "significance": 0.0,
+        "url": "https://www.sec.gov/Archives/edgar/data/320193/000114036126025620/xslF345X06/form4.xml"
+      },
+      {
+        "owner": "LEVINSON ARTHUR D",
+        "role": "דירקטור",
+        "date": "2026-05-27",
+        "code": "G",
+        "action": "מתנה",
+        "direction": "routine",
+        "shares": 65000.0,
+        "price": 0.0,
+        "value": null,
+        "significance": 0.0,
+        "url": "https://www.sec.gov/Archives/edgar/data/320193/000114036126023363/xslF345X06/form4.xml"
+      }
+    ],
+    "source": {
+      "name": "SEC EDGAR (Form 4)",
+      "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&type=4&company=AAPL",
+      "as_of": "2026-05-06"
+    },
+    "note": "עסקאות שוק פתוח (קנייה P / מכירה S) משמעותיות יותר ממענקים ומימושי אופציות."
+  },
+  "news": {
+    "ticker": "AAPL",
+    "items": [
+      {
+        "title": "Synopsys upgraded at Piper Sandler on Intel foundry momentum, Apple opportunity",
+        "url": "https://finance.yahoo.com/markets/stocks/articles/synopsys-upgraded-piper-sandler-intel-125750262.html?.tsrc=rss",
+        "date": "2026-06-23",
+        "summary": "Investing.com -- Piper Sandler upgraded semiconductor design software maker Synopsys to Overweight from Neutral and raised its price target to $550 from $450, citing improving prospects for the company's intellectual property (IP) business as Intel's foundry ambitions gain traction.",
+        "sentiment_score": 4,
+        "sentiment": "חיובי"
+      },
+      {
+        "title": "Apple Explains TV Library Strategy",
+        "url": "https://finance.yahoo.com/media-advertising/articles/apple-explains-tv-library-strategy-123641323.html?.tsrc=rss",
+        "date": "2026-06-23",
+        "summary": "Eddy Cue said Apple chose originals over buying a large back catalog.",
+        "sentiment_score": 0,
+        "sentiment": "ניטרלי"
+      },
+      {
+        "title": "UK tribunal gives go ahead for $4 billion lawsuit against Apple over iCloud services",
+        "url": "https://finance.yahoo.com/technology/articles/uk-tribunal-gives-ahead-4-122216032.html?.tsrc=rss",
+        "date": "2026-06-23",
+        "summary": "Britain's competition tribunal has approved a £3 billion ($4 billion) lawsuit against Apple over its iCloud storage service, ‌consumer group Which?  The Competition Appeal Tribunal granted earlier ​in June a collective proceedings order allowing Which?",
+        "sentiment_score": -2,
+        "sentiment": "שלילי"
+      },
+      {
+        "title": "Tech Weekly: SK Hynix takes the lead, Apple hikes prices",
+        "url": "https://finance.yahoo.com/video/tech-weekly-sk-hynix-takes-101452796.html?.tsrc=rss",
+        "date": "2026-06-23",
+        "summary": "STORY: From SK Hynix taking a lead to Apple's reported price hikes, this is Tech Weekly.:: Tech WeeklySK Hynix overtook rival Samsung Electronics to become South Korea's most valuable listed company.Shares rose high enough to turn SK Hynix into the world's most valuable memory chipmaker.And it dragg",
+        "sentiment_score": 1,
+        "sentiment": "חיובי"
+      },
+      {
+        "title": "Ranking the \"Magnificent Seven\" From Most to Least Attractive, Based on Future Cash Flow",
+        "url": "https://www.fool.com/investing/2026/06/23/ranking-magnificent-seven-most-to-least-attractive/?.tsrc=rss",
+        "date": "2026-06-23",
+        "summary": "Among Nvidia, Alphabet, Apple, Microsoft, Amazon, Tesla, and Meta Platforms, there are two exceptional bargains that have embraced artificial intelligence (AI).",
+        "sentiment_score": 0,
+        "sentiment": "ניטרלי"
+      },
+      {
+        "title": "Jim Cramer Discusses President Trump’s Big Announcement For Apple (AAPL)",
+        "url": "https://finance.yahoo.com/markets/stocks/articles/jim-cramer-discusses-president-trump-065502933.html?.tsrc=rss",
+        "date": "2026-06-23",
+        "summary": "We recently published Jim Cramer Discussed Expensive Phones, A Cheap Stock Sector & These 18 Stocks. Apple Inc. (NASDAQ:AAPL) is one of the stocks discussed by Jim Cramer. Consumer electronics giant Apple Inc. (NASDAQ:AAPL)’s shares are up by 47% over the past year and by 9.9% year-to-date. Several ",
+        "sentiment_score": 0,
+        "sentiment": "ניטרלי"
+      },
+      {
+        "title": "What Dell Stock's AI Order Book Revealed Before The Surge",
+        "url": "https://www.trefis.com/articles/603823/what-dell-stocks-ai-order-book-revealed-before-the-surge/2026-06-22?.tsrc=rss",
+        "date": "2026-06-22",
+        "summary": "Before the stock more than tripled, the company’s official guidance was solid but sleepy, but the real story was hiding in the raw demand figures.",
+        "sentiment_score": 1,
+        "sentiment": "חיובי"
+      },
+      {
+        "title": "10 Words From Apple CEO Tim Cook That Are Music to the Ears of Micron Technology Investors",
+        "url": "https://www.fool.com/investing/2026/06/22/10-words-from-apple-ceo-tim-cook-that-are-music-to/?.tsrc=rss",
+        "date": "2026-06-22",
+        "summary": "Apple effectively confirmed that the memory shortage doesn't appear to be ending anytime soon.",
+        "sentiment_score": 0,
+        "sentiment": "ניטרלי"
+      },
+      {
+        "title": "Memory's price surge threatens Apple's 'magic formula' — and the economy: WSJ reporter",
+        "url": "https://finance.yahoo.com/video/memorys-price-surge-threatens-apples-211614571.html?.tsrc=rss",
+        "date": "2026-06-22",
+        "summary": "Wall Street Journal technology reporter Rolfe Winkler discusses his interview with Apple (AAPL) CEO Tim Cook, who said that rising memory costs have made iPhone price increases \"unavoidable.\"",
+        "sentiment_score": 1,
+        "sentiment": "חיובי"
+      },
+      {
+        "title": "The Best Warren Buffett Dividend Stocks",
+        "url": "https://www.kiplinger.com/investing/stocks/best-warren-buffett-dividend-stocks?.tsrc=rss",
+        "date": "2026-06-22",
+        "summary": "The best Warren Buffett dividend stocks are expected to produce impressive returns for the Berkshire Hathaway equity portfolio. Here are five with healthy yields.",
+        "sentiment_score": 0,
+        "sentiment": "ניטרלי"
+      },
+      {
+        "title": "QQQ vs QQQM: Same Nasdaq-100 Index, One Clear Winner for Long-Term Investors",
+        "url": "http://www.etf.com/sections/news/qqq-vs-qqqm-same-nasdaq-100-index-one-clear-winner-long-term-investors?utm_source=yahoo-finance&utm_medium=rss&utm_campaign=yahoo-finance-rss&.tsrc=rss",
+        "date": "2026-06-22",
+        "summary": "QQQ and QQQM track the identical Nasdaq-100 index. The only material differences are expense ratio, share price, and options liquidity. Here's which one belongs in your portfolio, and why most long-term investors should make the switch.",
+        "sentiment_score": 0,
+        "sentiment": "ניטרלי"
+      },
+      {
+        "title": "Intel’s Surge on an Apple Chip Deal Means Investors Are Betting on Its Foundry, Says Bernstein’s Stacy Rasgon",
+        "url": "https://247wallst.com/investing/2026/06/22/intels-surge-on-an-apple-chip-deal-means-investors-are-betting-on-its-foundry-says-bernsteins-stacy-rasgon/?.tsrc=rss",
+        "date": "2026-06-22",
+        "summary": "Intel (NASDAQ:INTC) ripped higher last week after former President Donald Trump posted on Truth Social that Apple (NASDAQ:AAPL) had agreed to design and manufacture chips with Intel inside the United States. Intel closed up 10.64% at $133.99, with INTC stock now above $140. Bernstein’s Stacy Rasgon,",
+        "sentiment_score": 1,
+        "sentiment": "חיובי"
+      },
+      {
+        "title": "Berkshire Looked Like It Got a Bargain on Alphabet Stock. It Didn’t.",
+        "url": "https://finance.yahoo.com/m/600afe30-39ab-3b53-a180-813130bb2850/berkshire-looked-like-it-got.html?.tsrc=rss",
+        "date": "2026-06-22",
+        "summary": "Alphabet’s big stock drop was spurred by a Google DeepMind scientist who is leaving for Anthropic. His departure is a blow to Alphabet’s AI initiatives.",
+        "sentiment_score": -1,
+        "sentiment": "שלילי"
+      },
+      {
+        "title": "Tim Cook Warns Apple Product Price Hikes Are Unavoidable Due to Higher Chip Costs. What That Means for AAPL Stock.",
+        "url": "https://www.barchart.com/story/news/2588497/tim-cook-warns-apple-product-price-hikes-are-unavoidable-due-to-higher-chip-costs-what-that-means-for-aapl-stock?.tsrc=rss",
+        "date": "2026-06-22",
+        "summary": "Apple's outgoing CEO says the iPhone maker has tried to absorb rising memory chip costs but can no longer protect customers from the financial pressure.",
+        "sentiment_score": -1,
+        "sentiment": "שלילי"
+      },
+      {
+        "title": "Why Apple (AAPL) Is Tying Its AI Comeback to Devices, Services, and Siri",
+        "url": "https://finance.yahoo.com/technology/ai/articles/why-apple-aapl-tying-ai-075229929.html?.tsrc=rss",
+        "date": "2026-06-22",
+        "summary": "Apple Inc. (NASDAQ:AAPL) is one of Kevin O’Leary’s top stock picks for 2026 through the O’Shares U.S. Quality Dividend ETF. The stock made up 5.29% of the ETF as of June 18, 2026. On June 8, 2026, Apple unveiled the next generation of Apple Intelligence and Siri AI across iPhone, iPad, Mac, Apple Wa",
+        "sentiment_score": 1,
+        "sentiment": "חיובי"
+      }
+    ],
+    "count": 15,
+    "positive": 6,
+    "negative": 3,
+    "neutral": 6,
+    "net": 3,
+    "verdict": "סנטימנט חיובי נטו בכותרות האחרונות",
+    "source": {
+      "name": "Yahoo Finance RSS",
+      "url": "https://finance.yahoo.com/quote/AAPL/news",
+      "as_of": "2026-06-23"
+    },
+    "method": "דירוג היוריסטי שקוף מבוסס לקסיקון מילות מפתח (לא LLM)."
+  },
+  "superinvestors": {
+    "ticker": "AAPL",
+    "company": "Apple Inc.",
+    "matched_on": "APPLE",
+    "holders": [
+      {
+        "manager": "Berkshire Hathaway (Warren Buffett)",
+        "issuer": "APPLE INC",
+        "value": 57843260493.0,
+        "shares": 227917808.0,
+        "weight": 21.99,
+        "period": "2026-03-31",
+        "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001067983&type=13F-HR"
+      },
+      {
+        "manager": "Renaissance Technologies",
+        "issuer": "APPLE INC",
+        "value": 780569445.0,
+        "shares": 3075638.0,
+        "weight": 1.22,
+        "period": "2026-03-31",
+        "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001037389&type=13F-HR"
+      },
+      {
+        "manager": "Bridgewater Associates (Ray Dalio)",
+        "issuer": "APPLE INC",
+        "value": 143008635.0,
+        "shares": 563492.0,
+        "weight": 0.64,
+        "period": "2026-03-31",
+        "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001350694&type=13F-HR"
+      }
+    ],
+    "holder_count": 3,
+    "total_value": 58766838573.0,
+    "source": {
+      "name": "SEC EDGAR 13F-HR",
+      "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&type=13F-HR",
+      "as_of": "2026-03-31"
+    },
+    "note": "התאמה לפי שם המנפיק (13F אינו כולל טיקר). נמצאו מחזיקים."
+  }
+};
