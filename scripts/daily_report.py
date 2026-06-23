@@ -383,7 +383,6 @@ def write_daily_js(data: dict):
 
 def main():
     print('[daily_report] מתחיל...')
-    archive_daily_js()
     with open(PORTFOLIO_JSON, encoding='utf-8') as f:
         portfolio = json.load(f)
 
@@ -527,19 +526,25 @@ def main():
                 'distance_pct':  round((cur - float(trig)) / float(trig) * 100, 2),
             })
 
+    # מאקרו: SPY/QQQ דרך אותו מקור Yahoo v8 שכבר בשימוש
+    _spy = get_enriched_quote('SPY')
+    _qqq = get_enriched_quote('QQQ')
+    macro = {'spy_chg_pct': _spy.get('chg_pct'), 'qqq_chg_pct': _qqq.get('chg_pct'), 'vix': None}  # ponytail: VIX צריך טיפול בסימבול ^, נוסיף אם הפאנל דורש
+
     daily_payload = {
         'generated':          now.strftime('%Y-%m-%d'),
         'generated_time':     now.strftime('%H:%M'),
         'market_date':        now.strftime('%Y-%m-%d'),
         'has_alerts':         len(alert_tickers) > 0,
         'alert_tickers':      list(set(alert_tickers)),
-        'macro':              {'spy_chg_pct': None, 'qqq_chg_pct': None, 'vix': None},
+        'macro':              macro,
         'holdings':           holdings_data_out,
         'watchlist_triggers': wl_triggers,
         'groq_insights':      insights,
         'sector_summary':     build_sector_summary(portfolio, all_data),
     }
     write_daily_js(daily_payload)
+    archive_daily_js()  # ponytail: אחרי הכתיבה — מארכב את נתוני היום, לא של אתמול
 
     # ── שליחת התראה קצרה עם קישור לדשבורד ────────────────────────────────
     up_count = sum(1 for h in holdings_data_out if (h.get('chg_pct') or 0) > 0)

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>מחקר מניה on-demand</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+<link href="_shared.css" rel="stylesheet">
+<style>
+  body{font-family:'Heebo',system-ui,sans-serif}
+  .rinput{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:8px}
+  .rinput input{background:var(--surface);border:1px solid var(--border2);border-radius:9px;
+    color:var(--text);padding:11px 14px;font-size:15px;font-family:inherit;width:160px;text-transform:uppercase}
+  .rinput input:focus{outline:2px solid var(--blue);outline-offset:1px}
+  .btn{background:var(--green);color:#07090f;border:none;border-radius:9px;padding:11px 20px;
+    font-size:14px;font-weight:800;font-family:inherit;cursor:pointer;transition:filter .2s}
+  .btn:hover{filter:brightness(1.1)} .btn:disabled{opacity:.5;cursor:not-allowed}
+  .btn.ghost{background:transparent;border:1px solid var(--border2);color:var(--muted2)}
+  .rstatus{font-size:13px;color:var(--muted2);margin:10px 0;min-height:20px;line-height:1.7}
+  .rkv{display:flex;justify-content:space-between;gap:12px;padding:7px 0;border-bottom:1px solid var(--bg);font-size:13px}
+  .rkv .k{color:var(--muted2);flex-shrink:0} .rkv .v{color:var(--text);font-weight:700;font-variant-numeric:tabular-nums;text-align:left;min-width:0;overflow-wrap:anywhere;word-break:break-word}
+  .src{font-size:10px;color:var(--muted)} .src a{color:var(--blue);text-decoration:none;word-break:break-all}
+  .sub-h{font-size:13px;color:var(--blue);font-weight:700;margin:14px 0 6px}
+  .summary-txt{font-size:13.5px;color:var(--text);line-height:1.85;white-space:pre-wrap}
+  @media(max-width:640px){.wrap{padding:16px 14px}.topbar{padding:14px 16px}.rinput input{width:46%}}
+  @media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="topbar tb-blue">
+  <div><h1 class="c-blue">מחקר מניה on-demand</h1>
+  <div class="sub">ניתוח מוסדי מלא בלחיצה, רץ בענן, מגיע לנייד</div></div>
+  <button class="btn ghost" onclick="setupToken()">הגדרת טוקן</button>
+</div>
+
+<div class="wrap">
+  <div class="vbanner">המנוע רץ ב-GitHub Actions ומאחסן JSON סטטי. כל מספר מגיע ממקור רשמי (SEC EDGAR / Yahoo) עם קישור. ה-LLM <b>מסביר בלבד</b>, לעולם לא מחשב מספרים.</div>
+
+  <div class="section">
+    <h2><span class="bar-accent" style="background:var(--green)"></span>בקשת ניתוח</h2>
+    <div class="desc">הקלד טיקר ולחץ. הניתוח רץ בענן (כ-2 דקות) ומגיע אליך כ-push. אפשר גם לסגור את הדף ולחזור.</div>
+    <div class="rinput">
+      <input id="ticker" placeholder="AAPL" autocapitalize="characters" />
+      <button class="btn" id="goBtn" onclick="runResearch()">נתח מניה</button>
+      <button class="btn ghost" onclick="loadExisting()">טען קיים</button>
+    </div>
+    <div class="rstatus" id="status"></div>
+  </div>
+
+  <div id="report"></div>
+</div>
+
+<script>
+// ponytail: טוקן fine-grained (Actions:write על repo אחד) נשמר ב-localStorage של המכשיר האישי.
+// תקרה: מי שניגש לדפדפן הלא-נעול יכול לחלץ אותו. שדרוג עתידי: Cloudflare Worker שמחזיק את הטוקן.
+const REPO = 'rotemstainai23/portfolio';
+const TOKEN_KEY = 'gh_dispatch_token';
+
+function setupToken(){
+  const cur = localStorage.getItem(TOKEN_KEY) || '';
+  const t = prompt('הדבק GitHub fine-grained token (הרשאת Actions: write על repo portfolio בלבד):', cur);
+  if(t !== null){ localStorage.setItem(TOKEN_KEY, t.trim()); setStatus(t.trim() ? 'טוקן נשמר.' : 'טוקן נמחק.'); }
+}
+function setStatus(msg){ document.getElementById('status').textContent = msg; }
+
+async function runResearch(){
+  const ticker = (document.getElementById('ticker').value || '').trim().toUpperCase();
+  if(!ticker){ setStatus('הקלד טיקר.'); return; }
+  const token = localStorage.getItem(TOKEN_KEY);
+  if(!token){ setStatus('אין טוקן. לחץ "הגדרת טוקן" קודם.'); return; }
+
+  const btn = document.getElementById('goBtn'); btn.disabled = true;
+  setStatus('שולח בקשה לענן...');
+  const startedAt = Date.now();
+  try{
+    const r = await fetch(`https://api.github.com/repos/${REPO}/actions/workflows/research.yml/dispatches`,{
+      method:'POST',
+      headers:{'Authorization':`Bearer ${token}`,'Accept':'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28'},
+      body: JSON.stringify({ref:'main', inputs:{ticker}})
+    });
+    if(r.status !== 204){ const txt = await r.text(); setStatus(`הבקשה נכשלה (${r.status}): ${txt.slice(0,120)}`); btn.disabled=false; return; }
+    setStatus('הניתוח רץ בענן. ממתין לתוצאה... (כ-2 דקות, גם push יישלח)');
+    pollReport(ticker, startedAt, btn);
+  }catch(e){ setStatus('שגיאת רשת: '+e.message); btn.disabled=false; }
+}
+
+// polling: התוצאה מופיעה רק אחרי commit + פריסת Pages. מחפשים report טרי יותר מרגע הבקשה.
+function pollReport(ticker, startedAt, btn){
+  let tries = 0;
+  const max = 24; // ~6 דקות ב-15ש
+  const iv = setInterval(async ()=>{
+    tries++;
+    const data = await fetchReport(ticker);
+    if(data && data.generated && new Date(data.generated).getTime() >= startedAt - 60000){
+      clearInterval(iv); btn.disabled=false; setStatus('מוכן.'); render(data); return;
+    }
+    setStatus(`הניתוח רץ בענן... (${tries*15}ש)`);
+    if(tries >= max){ clearInterval(iv); btn.disabled=false; setStatus('לוקח זמן. כשתקבל push, לחץ "טען קיים".'); }
+  }, 15000);
+}
+
+async function fetchReport(ticker){
+  try{
+    const r = await fetch(`../analyses/_research/${ticker}/report.json?t=${Date.now()}`,{cache:'no-store'});
+    if(!r.ok) return null;
+    return await r.json();
+  }catch(e){ return null; }
+}
+
+async function loadExisting(){
+  const ticker = (document.getElementById('ticker').value || '').trim().toUpperCase();
+  if(!ticker){ setStatus('הקלד טיקר.'); return; }
+  setStatus('טוען...');
+  const data = await fetchReport(ticker);
+  if(data){ setStatus('נטען.'); render(data); } else setStatus('לא נמצא מחקר שמור לטיקר הזה.');
+}
+
+// ── renderer גנרי עמיד-לסכמה ──────────────────────────────────────────────
+function isDP(o){ return o && typeof o==='object' && 'value' in o && ('source' in o || 'unit' in o || 'label' in o); }
+function srcHtml(s){ if(!s) return ''; const u=s.url, n=s.name||'מקור'; const as=s.as_of?` · ${s.as_of}`:'';
+  return `<span class="src"> (${u?`<a href="${u}" target="_blank" rel="noopener">${n}</a>`:n}${as})</span>`; }
+function fmtVal(v){ if(v===null||v===undefined) return '—'; if(typeof v==='number') return Number.isInteger(v)?v.toLocaleString():v.toFixed(2);
+  return String(v); }
+
+function renderNode(key, val, depth){
+  if(isDP(val)){
+    return `<div class="rkv"><span class="k">${val.label||key}</span><span class="v">${fmtVal(val.value)}${val.unit?' '+val.unit:''}${srcHtml(val.source)}</span></div>`;
+  }
+  if(Array.isArray(val)){
+    if(!val.length) return '';
+    return `<div class="sub-h">${key}</div>` + val.slice(0,15).map((it,i)=>
+      (typeof it==='object') ? renderObj(it, depth+1) : `<div class="rkv"><span class="k">${i+1}</span><span class="v">${fmtVal(it)}</span></div>`
+    ).join('');
+  }
+  if(val && typeof val==='object') return `<div class="sub-h">${key}</div>` + renderObj(val, depth+1);
+  if(val===null||val==='') return '';
+  return `<div class="rkv"><span class="k">${key}</span><span class="v">${fmtVal(val)}</span></div>`;
+}
+function renderObj(o, depth){
+  if(depth>4) return '';
+  return Object.entries(o).map(([k,v])=>renderNode(k,v,depth)).join('');
+}
+
+const SECTIONS = [
+  ['snapshot','תמונת מצב'],['summary','סיכום מוסבר'],['fundamental','פונדמנטלי'],
+  ['technical','טכני'],['dcf','הערכת שווי DCF'],['earnings','רווחים'],
+  ['insider','בעלי עניין'],['news','חדשות וסנטימנט'],['superinvestors','משקיעי-על (13F)']
+];
+
+function render(data){
+  const el = document.getElementById('report');
+  let html = `<div class="cards">
+    <div class="card"><div class="lbl">טיקר</div><div class="val c-blue">${data.ticker||'—'}</div></div>
+    <div class="card"><div class="lbl">עודכן</div><div class="val c-text" style="font-size:14px">${(data.generated||'').replace('T',' ').slice(0,16)}</div></div>
+  </div>`;
+
+  for(const [key,title] of SECTIONS){
+    const sec = data[key];
+    if(!sec) continue;
+    const accent = sec.error ? 'var(--red)' : 'var(--blue)';
+    let body;
+    if(sec.error){ body = `<div class="rstatus">מקור לא זמין כרגע: ${sec.error}</div>`; }
+    else if(key==='summary'){
+      const txt = sec.answer || sec.summary || sec.explanation || sec.text;
+      body = txt ? `<div class="summary-txt">${String(txt)}</div>` : renderObj(sec,0);
+    } else { body = renderObj(sec,0) || '<div class="rstatus">אין נתונים.</div>'; }
+    html += `<div class="section"><h2><span class="bar-accent" style="background:${accent}"></span>${title}</h2>${body}</div>`;
+  }
+  el.innerHTML = html;
+}
+
+// טען אוטומטית אם הגענו עם ?ticker=XXX (מקישור push)
+(function(){
+  const q = new URLSearchParams(location.search).get('ticker');
+  if(q){ document.getElementById('ticker').value = q.toUpperCase(); loadExisting(); }
+})();
+</script>
+</body>
+</html>

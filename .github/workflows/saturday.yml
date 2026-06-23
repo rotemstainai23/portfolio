@@ -1,7 +1,8 @@
 name: סקנר שבתי — שבת 5:00
 
 on:
-  # schedule הושבת — הסקנר מתוזמן עכשיו דרך Claude /schedule (סוכן ענן)
+  schedule:
+    - cron: '0 2 * * 6'   # ~05:00 שעון ישראל, שבת. GitHub cron ב-UTC.
   workflow_dispatch:
 
 jobs:

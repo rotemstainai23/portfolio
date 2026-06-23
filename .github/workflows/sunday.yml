@@ -1,7 +1,8 @@
 name: דוח CEO שבועי — ראשון 5:00
 
 on:
-  # schedule הושבת — הדוח השבועי מתוזמן עכשיו דרך Claude /schedule (סוכן ענן)
+  schedule:
+    - cron: '0 2 * * 0'   # ~05:00 שעון ישראל, ראשון. GitHub cron ב-UTC.
   workflow_dispatch:
 
 jobs:

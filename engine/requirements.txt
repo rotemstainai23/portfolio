@@ -1,0 +1,8 @@
+# engine - תלויות ריצה (ללא fastapi/uvicorn/anthropic; ה-LLM הוא Groq דרך requests)
+pydantic
+requests
+pandas
+numpy
+yfinance
+truststore
+certifi

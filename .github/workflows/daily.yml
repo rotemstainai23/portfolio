@@ -1,7 +1,9 @@
 name: דוח יומי — שני-שישי 5:00
 
 on:
-  # schedule הושבת — הדוח מתוזמן עכשיו דרך Claude /schedule (סוכן ענן)
+  schedule:
+    # 02:00 UTC = ~05:00 שעון ישראל (קיץ). שני-שישי. GitHub cron ב-UTC; כוונן אם השעה זזה ב-DST.
+    - cron: '0 2 * * 1-5'
   workflow_dispatch:
 
 jobs:
@@ -28,11 +30,14 @@ jobs:
           GROQ_API_KEY:     ${{ secrets.GROQ_API_KEY }}
         run: python scripts/daily_report.py
 
+      - name: צור אינדקס reviews סטטי לענן
+        run: python scripts/build_reviews_index.py
+
       - name: שמירת דוח יומי ל-git
         run: |
           git config user.name "Daily Report Bot"
           git config user.email "bot@portfolio"
-          git add analyses/_daily/ portfolio.json
+          git add analyses/_daily/ portfolio.json analyses/_reviews_index.json
           git diff --cached --quiet || git commit -m "chore: daily report $(date +%Y-%m-%d)"
           git push
         env:

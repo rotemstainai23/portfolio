@@ -1,0 +1,41 @@
+name: מחקר מניה on-demand
+
+on:
+  workflow_dispatch:
+    inputs:
+      ticker:
+        description: 'טיקר לניתוח (לדוגמה AAPL)'
+        required: true
+
+jobs:
+  research:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install -r engine/requirements.txt
+
+      - name: Run research engine
+        env:
+          NTFY_TOPIC:    ${{ secrets.NTFY_TOPIC }}
+          GROQ_API_KEY:  ${{ secrets.GROQ_API_KEY }}
+          DASHBOARD_URL: ${{ secrets.DASHBOARD_URL || 'https://rotemstainai23.github.io/portfolio' }}
+          SEC_USER_AGENT: ${{ secrets.SEC_USER_AGENT || 'portfolio research rotemstain23@gmail.com' }}
+        run: python -m engine.run --mode research --ticker "${{ inputs.ticker }}"
+
+      - name: שמירת מחקר ל-git
+        run: |
+          git config user.name "Research Bot"
+          git config user.email "bot@portfolio"
+          git add analyses/_research/
+          git diff --cached --quiet || git commit -m "research: ${{ inputs.ticker }} $(date +%Y-%m-%d)"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
