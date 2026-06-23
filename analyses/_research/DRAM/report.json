@@ -1,0 +1,324 @@
+{
+  "ticker": "DRAM",
+  "generated": "2026-06-23T13:31:15+00:00",
+  "snapshot": {
+    "ticker": "DRAM",
+    "price": {
+      "label": "מחיר נוכחי",
+      "value": 68.74500274658203,
+      "unit": "USD",
+      "source": {
+        "name": "Yahoo Finance",
+        "url": "https://finance.yahoo.com/quote/DRAM",
+        "as_of": "2026-06-23"
+      },
+      "note": null
+    },
+    "change_pct": {
+      "label": "שינוי יומי",
+      "value": 0.0,
+      "unit": "%",
+      "source": {
+        "name": "Yahoo Finance",
+        "url": "https://finance.yahoo.com/quote/DRAM",
+        "as_of": "2026-06-23"
+      },
+      "note": null
+    },
+    "currency": "USD"
+  },
+  "summary": {
+    "question": "תן סקירת השקעה מלאה ומאוזנת",
+    "ticker": "DRAM",
+    "summary": "שלום, \n\nאני כאן כדי לספק לך סקירה מלאה ומאוזנת על השקעה. \n\nהשקעה היא פעולה שבה אתה משקיע כסף במטרה להרוויח רווחים. ישנם סוגים רבים של השקעות, כגון מניות, איגרות חוב, נדל\"ן ועוד.\n\nיתרון מרכזי של השקעה הוא הפוטנציאל להרוויח רווחים גבוהים. השקעה יכולה לספק לך הכנסה פסיבית, כלומר הכנסה שאינה דורשת מאמץ רב מצדך.\n\nחיסרון מרכזי של השקעה הוא הסיכון. השקעה תמיד כרוכה בסיכון, כיוון שאין הבטחה שתרוויח רווחים. ישנו סיכון שתפסיד כסף, במיוחד אם אינך מבין היטב את ההשקעה או אם אינך מגוון את ההשקעות שלך.\n\nבנוגע ל-DRAM, לא נמצאו מספיק נתונים על מנת לבנות תשובה מבוססת. \n\nבסיכום, השקעה יכולה להיות דרך טובה להרוויח רווחים, אך חשוב להבין היטב את הסיכונים והיתרונות, ולקחת החלטות מושכלות. \n\nהערה: זהו מידע מחקרי בלבד, לא ייעוץ השקעות אישי.",
+    "data_points": [],
+    "sources": [],
+    "reasoning": [
+      "סווגה כוונת השאלה: quality, valuation.",
+      "שליפת נתונים פונדמנטליים נכשלה: הטיקר DRAM לא נמצא במיפוי SEC",
+      "ההסבר נוסח על ידי שכבת ה-LLM על בסיס המספרים המחושבים בלבד."
+    ]
+  },
+  "fundamental": {
+    "error": "הטיקר DRAM לא נמצא במיפוי SEC",
+    "section": "fundamental"
+  },
+  "technical": {
+    "ticker": "DRAM",
+    "last_price": {
+      "label": "מחיר אחרון",
+      "value": 68.75,
+      "unit": "USD",
+      "source": {
+        "name": "Yahoo Finance",
+        "url": "https://finance.yahoo.com/quote/DRAM",
+        "as_of": "2026-06-23"
+      },
+      "note": null
+    },
+    "sma50": {
+      "label": "ממוצע נע 50",
+      "value": 52.57,
+      "unit": "USD",
+      "source": {
+        "name": "Yahoo Finance",
+        "url": "https://finance.yahoo.com/quote/DRAM",
+        "as_of": "2026-06-23"
+      },
+      "note": null
+    },
+    "sma200": {
+      "label": "ממוצע נע 200",
+      "value": null,
+      "unit": "USD",
+      "source": {
+        "name": "Yahoo Finance",
+        "url": "https://finance.yahoo.com/quote/DRAM",
+        "as_of": "2026-06-23"
+      },
+      "note": null
+    },
+    "rsi14": {
+      "label": "RSI(14)",
+      "value": 56.35,
+      "unit": "",
+      "source": {
+        "name": "Yahoo Finance",
+        "url": "https://finance.yahoo.com/quote/DRAM",
+        "as_of": "2026-06-23"
+      },
+      "note": "מעל 70 = קניית יתר, מתחת 30 = מכירת יתר"
+    },
+    "macd": {
+      "label": "MACD",
+      "value": 5.83,
+      "unit": "",
+      "source": {
+        "name": "Yahoo Finance",
+        "url": "https://finance.yahoo.com/quote/DRAM",
+        "as_of": "2026-06-23"
+      },
+      "note": null
+    },
+    "macd_signal": {
+      "label": "קו אות MACD",
+      "value": 5.47,
+      "unit": "",
+      "source": {
+        "name": "Yahoo Finance",
+        "url": "https://finance.yahoo.com/quote/DRAM",
+        "as_of": "2026-06-23"
+      },
+      "note": null
+    },
+    "atr14": {
+      "label": "ATR(14)",
+      "value": 5.45,
+      "unit": "USD",
+      "source": {
+        "name": "Yahoo Finance",
+        "url": "https://finance.yahoo.com/quote/DRAM",
+        "as_of": "2026-06-23"
+      },
+      "note": "תנודתיות ממוצעת יומית"
+    },
+    "trend": null,
+    "support": [
+      56.38,
+      55.38,
+      46.43
+    ],
+    "resistance": [
+      70.15
+    ],
+    "entry_zone": [
+      56.38,
+      56.94
+    ],
+    "exit_zone": [
+      69.45,
+      70.15
+    ],
+    "stop_loss": {
+      "label": "הצעת Stop Loss",
+      "value": 50.93,
+      "unit": "USD",
+      "source": {
+        "name": "Yahoo Finance",
+        "url": "https://finance.yahoo.com/quote/DRAM",
+        "as_of": "2026-06-23"
+      },
+      "note": "תמיכה קרובה פחות ATR אחד"
+    },
+    "sources": [
+      {
+        "name": "Yahoo Finance",
+        "url": "https://finance.yahoo.com/quote/DRAM",
+        "as_of": "2026-06-23"
+      }
+    ]
+  },
+  "dcf": {
+    "error": "הטיקר DRAM לא נמצא במיפוי SEC",
+    "section": "dcf"
+  },
+  "earnings": {
+    "error": "הטיקר DRAM לא נמצא במיפוי SEC",
+    "section": "earnings"
+  },
+  "insider": {
+    "error": "הטיקר DRAM לא נמצא במיפוי SEC",
+    "section": "insider"
+  },
+  "news": {
+    "ticker": "DRAM",
+    "items": [
+      {
+        "title": "AI Memory Bottleneck? These ETFs Let You Buy All the Winners",
+        "url": "https://finance.yahoo.com/markets/stocks/articles/ai-memory-bottleneck-etfs-let-123900189.html?.tsrc=rss",
+        "date": "2026-06-19",
+        "summary": "AI's memory bottleneck is fueling a hardware boom. These ETFs offer diversified exposure to leading memory and storage firms riding the surge.",
+        "sentiment_score": 2,
+        "sentiment": "חיובי"
+      },
+      {
+        "title": "SanDisk Jumps 11%, Western Digital Rises 7% After Apple Flags “Unavoidable” Memory Price Hikes",
+        "url": "https://247wallst.com/investing/2026/06/18/sandisk-jumps-11-western-digital-rises-7-after-apple-flags-unavoidable-memory-price-hikes/?.tsrc=rss",
+        "date": "2026-06-18",
+        "summary": "SanDisk (NASDAQ:SNDK) stock is surging in Thursday trading, up 11% to $2,170. Western Digital (NASDAQ:WDC) stock is also flying, up 7% to roughly $764. The catalyst landed before the open and hit memory and storage names broadly. The trigger came from Apple (NASDAQ:AAPL) CEO Tim Cook, who told the W",
+        "sentiment_score": 2,
+        "sentiment": "חיובי"
+      },
+      {
+        "title": "The AI Trade Is Getting Harder to Pick, But These 3 ETFs Take a Different Route",
+        "url": "https://www.marketbeat.com/articles/the-ai-trade-is-getting-harder-to-pick-but-these-3-etfs-take-a-different-route/?utm_source=yahoofinance&utm_medium=yahoofinance&.tsrc=rss",
+        "date": "2026-06-18",
+        "summary": "To ride the ongoing AI rally amid stock volatility, investors can pivot to a pick-and-shovel ETF strategy focusing on memory chips, power infrastructure, and copper.",
+        "sentiment_score": 1,
+        "sentiment": "חיובי"
+      },
+      {
+        "title": "Semiconductor ETFs 101: DRAM, EUV, SMH, SOXX, SOXL — The Complete Guide for 2026",
+        "url": "http://www.etf.com/sections/equity/semiconductor-etfs-101-dram-euv-smh-soxx-soxl-complete-guide-2026?utm_source=yahoo-finance&utm_medium=rss&utm_campaign=yahoo-finance-rss&.tsrc=rss",
+        "date": "2026-06-12",
+        "summary": "Semiconductor ETFs have been the defining investment story of 2026 — SOXX is up 90%, FTXL has doubled, and DRAM, the AI memory ETF, has grown from a niche fund to nearly $17 billion in assets. But the category has expanded far beyond \"just buy SMH.\" This complete guide covers every major semiconduct",
+        "sentiment_score": 1,
+        "sentiment": "חיובי"
+      },
+      {
+        "title": "Fastest Growing ETFs of 2026",
+        "url": "http://www.etf.com/sections/features/fastest-growing-etfs-2026?utm_source=yahoo-finance&utm_medium=rss&utm_campaign=yahoo-finance-rss&.tsrc=rss",
+        "date": "2026-06-10",
+        "summary": "These ETFs have seen extraordinary growth this year.",
+        "sentiment_score": 1,
+        "sentiment": "חיובי"
+      },
+      {
+        "title": "ETF Investors Shrug Off Friday's Selloff, Pour In $41 Billion",
+        "url": "http://www.etf.com/sections/weekly-etf-flows/etf-investors-shrug-fridays-selloff-pour-41-billion?utm_source=yahoo-finance&utm_medium=rss&utm_campaign=yahoo-finance-rss&.tsrc=rss",
+        "date": "2026-06-08",
+        "summary": "YTD inflows are up to $860 billion.",
+        "sentiment_score": 0,
+        "sentiment": "ניטרלי"
+      },
+      {
+        "title": "ETF League Tables: Roundhill ETFs Register Inflows of $369M",
+        "url": "http://www.etf.com/sections/etf-league-tables/etf-league-tables-roundhill-etfs-register-inflows-369m?utm_source=yahoo-finance&utm_medium=rss&utm_campaign=yahoo-finance-rss&.tsrc=rss",
+        "date": "2026-06-08",
+        "summary": "Table below reflects daily flows on June 5, 2026 and asset totals as of that date.",
+        "sentiment_score": 0,
+        "sentiment": "ניטרלי"
+      },
+      {
+        "title": "Guidance Miss Becomes a Bloodbath: DRAM’s 15% Implosion is At The Center",
+        "url": "https://247wallst.com/investing/2026/06/08/guidance-miss-becomes-a-bloodbath-drams-15-implosion-is-at-the-center/?.tsrc=rss",
+        "date": "2026-06-08",
+        "summary": "The Roundhill Memory ETF (CBOE:DRAM) closed Friday, June 5, 2026 at $55.79, down 15% on the day from a prior close of $65.70. Over the two-day window from June 3 through June 5, the fund dropped 20%, going from $69.71 to that Friday close. If you had $10,000 in DRAM at Wednesday’s open, you had ... ",
+        "sentiment_score": -1,
+        "sentiment": "שלילי"
+      },
+      {
+        "title": "Memory Chip Prices Will Make or Break DRAM ETF Before Year-End 2026",
+        "url": "https://247wallst.com/investing/2026/06/05/memory-chip-prices-will-make-or-break-dram-etf-before-year-end-2026/?.tsrc=rss",
+        "date": "2026-06-05",
+        "summary": "The Roundhill Memory ETF (CBOE:DRAM) is the first U.S.-listed pure-play memory-chip ETF, and it landed in the middle of one of the most violent upcycles the industry has ever seen. DRAM launched on April 2, 2026 with a 0.65% expense ratio, just as Micron Technology (NASDAQ:MU) was approaching a tril",
+        "sentiment_score": 0,
+        "sentiment": "ניטרלי"
+      },
+      {
+        "title": "The Best-Performing AI ETF of the Year Isn't a Pure Chip Play",
+        "url": "http://www.etf.com/sections/features/best-performing-ai-etf-year-isnt-pure-chip-play?utm_source=yahoo-finance&utm_medium=rss&utm_campaign=yahoo-finance-rss&.tsrc=rss",
+        "date": "2026-06-04",
+        "summary": "AIS is up 119% in 2026, ahead of the big semiconductor funds.",
+        "sentiment_score": 0,
+        "sentiment": "ניטרלי"
+      },
+      {
+        "title": "Daily ETF Flows: DRAM Inflows Top $1B",
+        "url": "http://www.etf.com/sections/daily-etf-flows/daily-etf-flows-dram-inflows-top-1b?utm_source=yahoo-finance&utm_medium=rss&utm_campaign=yahoo-finance-rss&.tsrc=rss",
+        "date": "2026-06-04",
+        "summary": "Here are the daily ETF fund flows for June 3, 2026.",
+        "sentiment_score": 1,
+        "sentiment": "חיובי"
+      },
+      {
+        "title": "The Memory Chip ETF That Quietly Returned 134% in 2026 While Investors Chased Nvidia",
+        "url": "https://247wallst.com/investing/2026/06/04/the-memory-chip-etf-that-quietly-returned-134-in-2026-while-investors-chased-nvidia/?.tsrc=rss",
+        "date": "2026-06-04",
+        "summary": "Although 2026 has been a roller coaster year for the markets so far, certain sectors have remained strong. Ironically, while the Magnificent 7 stocks have been volatile due to mixed perception about AI, industries that make AI happen from a mechanical aspect have still remained relatively bullish. T",
+        "sentiment_score": 2,
+        "sentiment": "חיובי"
+      },
+      {
+        "title": "DRAM Ran 128% in 40 Trading Days. Three Stocks Did All the Work.",
+        "url": "https://247wallst.com/investing/2026/06/02/dram-ran-128-in-40-trading-days-three-stocks-did-all-the-work/?.tsrc=rss",
+        "date": "2026-06-02",
+        "summary": "A $10,000 ticket into the Roundhill Memory ETF (CBOE:DRAM) on its first day of trading, April 2, 2026, at the opening NAV of $27.76 would be worth roughly $22,800 on the close Friday, May 29, with the fund at $63.20. That is a 128% price return in 40 trading days, on an unleveraged, plain-vanilla eq",
+        "sentiment_score": 0,
+        "sentiment": "ניטרלי"
+      },
+      {
+        "title": "Why 1 Little-Known ETF Is Riding the AI Chip Shortage",
+        "url": "https://www.marketbeat.com/originals/why-1-little-known-etf-is-riding-the-ai-chip-shortage/?utm_source=yahoofinance&utm_medium=yahoofinance&.tsrc=rss",
+        "date": "2026-06-02",
+        "summary": "DRAM is a popular ETF for the massive growth and demand surrounding AI memory chips, but two stocks in particular help it to stand out.",
+        "sentiment_score": 1,
+        "sentiment": "חיובי"
+      },
+      {
+        "title": "The DRAM Shortage to Extend Into 2028. This Means Micron Stock Could Easily Double From Here.",
+        "url": "https://www.barchart.com/story/news/2223506/the-dram-shortage-to-extend-into-2028-this-means-micron-stock-could-easily-double-from-here?.tsrc=rss",
+        "date": "2026-05-31",
+        "summary": "Memory supply shortage may not be resolved anytime soon, as analysts revise their MU price target upward.",
+        "sentiment_score": 0,
+        "sentiment": "ניטרלי"
+      }
+    ],
+    "count": 15,
+    "positive": 8,
+    "negative": 1,
+    "neutral": 6,
+    "net": 7,
+    "verdict": "סנטימנט חיובי נטו בכותרות האחרונות",
+    "source": {
+      "name": "Yahoo Finance RSS",
+      "url": "https://finance.yahoo.com/quote/DRAM/news",
+      "as_of": "2026-06-19"
+    },
+    "method": "דירוג היוריסטי שקוף מבוסס לקסיקון מילות מפתח (לא LLM)."
+  },
+  "superinvestors": {
+    "ticker": "DRAM",
+    "company": "DRAM",
+    "matched_on": "DRAM",
+    "holders": [],
+    "holder_count": 0,
+    "total_value": 0,
+    "source": {
+      "name": "SEC EDGAR 13F-HR",
+      "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&type=13F-HR",
+      "as_of": null
+    },
+    "note": "התאמה לפי שם המנפיק (13F אינו כולל טיקר). אף אחד ממשקיעי-העל ברשימה לא מחזיק, או שהשם לא הותאם."
+  }
+}
