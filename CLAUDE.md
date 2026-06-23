@@ -14,6 +14,9 @@ SSOT is `portfolio.json` — never invent state, always validate against JSON/AP
 ## Repo Map
 `app.py` Flask API (24+ endpoints — see docs/API.md) + Yahoo proxy + agent runner · `portfolio.json` SSOT · `decision_log.json` · `portfolio.html` dashboard · `obsidian_layer.py` fail-soft vault · `review_layer.py` read-only retrieval · `config.json` runtime flags · `qa_test_suite.py` · `templates/` reports · `analyses/<TICKER>/` (_handoffs/, _reviews/, *.js per agent) · `מערכת תיק ההשקעות/` agent prompts · `docs/` detailed docs · `serve.ps1` legacy stub (9 endpoints only).
 
+**מנוע ענן (GitHub Actions + Pages — ללא תלות ב-app.py):**
+`engine/` מנוע מוסדי: providers (EDGAR/Yahoo/insider/13F) + analytics + agents (Groq LLM) · `scripts/daily_report.py|sunday_report.py|saturday_scanner.py` כותבים JSON סטטי ל-`analyses/` · `.github/workflows/` daily/sunday/saturday (cron 02:00 UTC) + research.yml (workflow_dispatch) · `templates/research.html` PWA on-demand · `index.html` PWA ראשי עם bottom-nav (5 tabs כולל מחקר) · `analyses/_research/index.json` אינדקס מחקרים.
+
 ## Decision Router (read first, every task)
 | Task | Read first | Plan Mode | Sub-agent |
 |------|-----------|-----------|-----------|
@@ -26,6 +29,7 @@ SSOT is `portfolio.json` — never invent state, always validate against JSON/AP
 | Recurring bug / weird behavior | docs/PITFALLS.md | no | - |
 | Review a ticker | - | no | /review skill |
 | Variance / attribution analysis | scripts/variance.py + monthly_close.js | no | /variance-analysis skill |
+| שאלה כללית / ניתוב מניה/תיק | Oracle_Agent.md | no | Oracle |
 
 Never `glob **/*.md` from home; never scan the repo or vault broadly.
 
@@ -50,6 +54,7 @@ Never hand-edit `portfolio.json` while server runs — use the API (POST/DELETE 
 
 ## Multi-Agent Safety
 Chain: Unified_Analyst → DevilsAdvocate → CEO_Agent → Executor → InvestmentCommittee (TradeRecorder post-buy).
+**Oracle** (`מערכת תיק ההשקעות/Oracle_Agent.md`) — יועץ שיחתי read-only בלבד. גישה ב-`/oracle`. לא חלק מהשרשרת, לא כותב לתיק.
 - Never change a handoff schema unilaterally; verify downstream first.
 - Persisted artifacts are canonical: `analyses/<TICKER>/_handoffs/` and `analyses/<TICKER>/<agent>.js`.
 - `מערכת תיק ההשקעות/` is the canonical prompt dir; preserve agent boundaries. Details: docs/AGENT_CHAIN.md.
