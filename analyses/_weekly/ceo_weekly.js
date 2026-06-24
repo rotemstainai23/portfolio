@@ -1,7 +1,7 @@
 window.WEEKLY_DATA = {
-  "generated": "2026-06-23",
-  "week_label": "שבוע 17/06-23/06",
-  "ceo_verdict": "",
+  "generated": "2026-06-24",
+  "week_label": "שבוע 18/06-24/06",
+  "ceo_verdict": "מגמת השבוע: התיק השקעות הראה ביצועים דומים לשוק, עם ירידה קלה בשווי. המניות NVDA, MSFT ו-GOOG היו בין הגורמים העיקריים לירידה.",
   "portfolio_performance": {
     "total_value": 1757,
     "week_pct": 0.1,
@@ -11,7 +11,7 @@ window.WEEKLY_DATA = {
     "regime": "risk_on"
   },
   "macro_snapshot": {
-    "vix": 19.52,
+    "vix": 18.92,
     "spy_week_pct": -1.1,
     "qqq_week_pct": -1.1,
     "dxy_trend": null,
@@ -144,7 +144,12 @@ window.WEEKLY_DATA = {
     }
   ],
   "scenarios_next_week": {},
-  "action_items": [],
+  "action_items": [
+    "מגמת השבוע: התיק השקעות הראה ביצועים דומים לשוק, עם ירידה קלה בשווי. המניות NVDA, MSFT ו-GOOG היו בין הגורמים העיקריים לירידה.",
+    "סיכון עיקרי לשבוע הבא: המשך ירידה במניות הטכנולוגיה, כגון MSFT ו-GOOG, עלול להכאיב את התיק השקעות.",
+    "הזדמנות הסקנר: הקטליסט של CEVA, 'AI Double-Tap That Lit Up Cadence', עדיין רלוונטי ויכול להוות הזדמנות לרווח.",
+    "פעולה ספציפית אחת: כדאי לעקוב אחרי הביצועים של MU, שרשמה עלייה של 7.1% בשבוע האחרון, ולבחון אם היא יכולה להמשיך לרשום עלייה."
+  ],
   "macro": {
     "spy": {
       "price": 733.58,
@@ -155,8 +160,8 @@ window.WEEKLY_DATA = {
       "chg_week": -1.1
     },
     "vix": {
-      "price": 19.52,
-      "chg_week": 20.5
+      "price": 18.92,
+      "chg_week": 15.3
     }
   }
 };
