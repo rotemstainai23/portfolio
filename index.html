@@ -270,12 +270,6 @@ nav{
       <div style="font-size:11px;color:var(--muted);margin-top:5px">ה-Worker מחזיר מחירים חיים בלי שרת מקומי</div>
     </div>
 
-    <div style="margin-bottom:22px">
-      <div style="font-size:11px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px">כתובת שרת Flask (הרצת סוכנים)</div>
-      <input id="cfg-flask" type="url" placeholder="http://192.168.1.x:5000" autocomplete="off" spellcheck="false" style="width:100%;background:var(--surface2);border:1px solid var(--border2);border-radius:10px;color:var(--text);padding:12px 13px;font-size:14px;font-family:Heebo,sans-serif;outline:none;direction:ltr"/>
-      <div style="font-size:11px;color:var(--muted);margin-top:5px">כתובת ה-IP של המחשב ברשת הביתית. דרוש להרצת שרשרת הסוכנים.</div>
-    </div>
-
     <div style="margin-bottom:28px">
       <div style="font-size:11px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px">טוקן GitHub (portfolio-pwa)</div>
       <div style="display:flex;gap:8px">
@@ -312,8 +306,6 @@ var _loaded = {};
 
 /* כתובת Cloudflare Worker למחירים חיים. ניתן לדרוס מההגדרות (localStorage) בלי לערוך קוד. */
 function priceProxy(){ try { return localStorage.getItem('price_proxy_url') || ''; } catch(e){ return ''; } }
-/* כתובת שרת Flask להרצת סוכנים (רשת ביתית). */
-function flaskUrl(){ try { return (localStorage.getItem('flask_server_url') || '').replace(/\/+$/,''); } catch(e){ return ''; } }
 
 function $(id){ return document.getElementById(id); }
 
@@ -762,76 +754,43 @@ function renderWeekly(){
 }
 
 /* ── RESEARCH / ANALYSIS ── */
-var _activeRun = null;
-
 async function renderResearch(){
   var el = $('tab-research');
   var hasToken = false;
-  var hasFlask = false;
   try { hasToken = !!(localStorage.getItem('github_token')||'').trim(); } catch(e){}
-  hasFlask = !!flaskUrl();
 
-  /* ── Agent Runner (Flask) ── */
-  var agentBtns = [
-    {id:'quick',   label:'Quick',   color:'var(--green)'},
-    {id:'analyst', label:'Analyst', color:'var(--blue)'},
-    {id:'devils',  label:'DA',      color:'var(--red)'},
-    {id:'ceo',     label:'CEO',     color:'var(--blue)'},
-    {id:'executor',label:'Exec',    color:'var(--orange)'},
-    {id:'ic',      label:'IC',      color:'var(--green)'},
-    {id:'chain',   label:'Full Chain', color:'var(--blue)'},
-  ];
-
-  var runnerHint = hasFlask
-    ? '<div style="font-size:11px;color:var(--muted2);margin-top:6px">שרת Flask: ' + flaskUrl() + '</div>'
-    : '<div style="font-size:11px;color:var(--orange);margin-top:6px">הגדר כתובת שרת Flask בהגדרות להרצת סוכנים</div>';
-
-  var btnHtml = agentBtns.map(function(b){
-    return '<button onclick="runAgent(\'' + b.id + '\')" style="flex:1;min-width:60px;background:var(--surface2);border:1px solid var(--border2);border-radius:10px;padding:9px 6px;font-size:11px;font-weight:800;font-family:Heebo,sans-serif;cursor:pointer;color:' + b.color + '">' + b.label + '</button>';
-  }).join('');
-
-  var html = '<div class="sec-hdr" style="padding-top:14px">הרצת סוכנים</div>'
+  var html = '<div class="sec-hdr" style="padding-top:14px">ניתוח מניה בענן</div>'
     + '<div class="card">'
-    + '<div style="display:flex;gap:8px;margin-bottom:10px">'
-    + '<input id="run-ticker" placeholder="AAPL" autocapitalize="characters" style="flex:1;background:rgba(148,163,184,.08);border:1px solid var(--border2);border-radius:10px;color:var(--text);padding:10px 13px;font-size:16px;font-weight:800;font-family:Heebo,sans-serif;outline:none" />'
-    + '</div>'
-    + '<div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px">' + btnHtml + '</div>'
-    + runnerHint
-    + '<div id="run-status" style="font-size:12px;font-weight:700;min-height:20px;margin-top:8px;line-height:1.5"></div>'
-    + '</div>';
-
-  /* ── Cloud Research (GitHub Actions) ── */
-  html += '<div class="sec-hdr">מחקר ענן (GitHub Actions)</div>'
-    + '<div class="card">'
-    + '<div style="display:flex;gap:8px;margin-bottom:4px">'
-    + '<input id="research-input" placeholder="AAPL" autocapitalize="characters" style="flex:1;background:rgba(148,163,184,.08);border:1px solid var(--border2);border-radius:10px;color:var(--text);padding:10px 13px;font-size:15px;font-family:Heebo,sans-serif;outline:none" />'
-    + '<button id="research-btn" onclick="goResearch()" style="background:var(--green);color:#07090f;border:none;border-radius:10px;padding:10px 18px;font-size:14px;font-weight:800;font-family:Heebo,sans-serif;cursor:pointer">נתח</button>'
+    + '<div style="display:flex;gap:8px;margin-bottom:8px">'
+    + '<input id="research-input" placeholder="AAPL" autocapitalize="characters" style="flex:1;background:rgba(148,163,184,.08);border:1px solid var(--border2);border-radius:10px;color:var(--text);padding:11px 13px;font-size:16px;font-weight:800;font-family:Heebo,sans-serif;outline:none" />'
+    + '<button id="research-btn" onclick="goResearch()" style="background:var(--blue);color:#fff;border:none;border-radius:10px;padding:11px 20px;font-size:14px;font-weight:800;font-family:Heebo,sans-serif;cursor:pointer">נתח</button>'
     + '</div>'
     + (hasToken
-        ? '<div style="font-size:11px;color:var(--muted2);margin-top:6px">שולח ל-GitHub Actions · תוצאה בעוד 2-3 דק\'</div>'
-        : '<div style="font-size:11px;color:var(--orange);margin-top:6px">הגדר טוקן GitHub בהגדרות</div>')
-    + '<div id="research-status" style="font-size:12px;font-weight:700;min-height:20px;margin-top:8px"></div>'
+        ? '<div style="font-size:11px;color:var(--muted2)">GitHub Actions · Groq · תוצאה בעוד ~3 דק\'</div>'
+        : '<div style="font-size:11px;color:var(--orange)">הגדר טוקן GitHub בהגדרות להפעלת ניתוח</div>')
+    + '<div id="research-status" style="font-size:12px;font-weight:700;min-height:18px;margin-top:8px;line-height:1.5"></div>'
     + '</div>';
 
   el.innerHTML = html;
 
-  /* ── Reviews from index ── */
   var reviews = await fetchJSON('analyses/_reviews_index.json');
   var resIdx   = await fetchJSON('analyses/_research/index.json');
 
   if (reviews && reviews.reviews && reviews.reviews.length) {
     var rvRows = reviews.reviews.slice(0,20).map(function(r){
-      var scoreColor = r.score >= 7 ? 'var(--green)' : r.score >= 5 ? 'var(--orange)' : 'var(--red)';
-      var vColor = (r.verdict||'').toLowerCase().includes('buy') ? 'var(--green)' : (r.verdict||'').toLowerCase().includes('pass') ? 'var(--red)' : 'var(--orange)';
+      var sc = r.score;
+      var scColor = sc >= 7 ? 'var(--green)' : sc >= 5 ? 'var(--orange)' : 'var(--red)';
+      var vd = (r.verdict||'').toUpperCase();
+      var vColor = vd.includes('BUY') ? 'var(--green)' : vd.includes('PASS') || vd.includes('SELL') ? 'var(--red)' : 'var(--orange)';
       return '<a href="templates/ic.html?ticker=' + r.ticker + '" style="display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border);text-decoration:none;color:inherit">'
         + '<span style="font-size:15px;font-weight:800">' + r.ticker + '</span>'
-        + '<div style="display:flex;gap:10px;align-items:center">'
-        + (r.score != null ? '<span style="font-size:13px;font-weight:800;color:' + scoreColor + '">' + r.score + '/10</span>' : '')
-        + '<span style="font-size:11px;font-weight:700;color:' + vColor + '">' + (r.verdict||'') + '</span>'
+        + '<div style="display:flex;align-items:center;gap:10px">'
+        + (sc != null ? '<span style="font-weight:800;color:' + scColor + '">' + sc + '/10</span>' : '')
+        + '<span style="font-size:11px;font-weight:700;color:' + vColor + '">' + vd + '</span>'
         + '</div></a>';
     }).join('');
-    el.innerHTML += '<div class="sec-hdr">ניתוחים IC</div>'
-      + '<div class="card" style="padding:8px 16px">' + rvRows + '</div>';
+    el.innerHTML += '<div class="sec-hdr">IC Reviews</div>'
+      + '<div class="card" style="padding:4px 16px">' + rvRows + '</div>';
   }
 
   if (resIdx && resIdx.length) {
@@ -843,76 +802,7 @@ async function renderResearch(){
         + '</a>';
     }).join('');
     el.innerHTML += '<div class="sec-hdr">מחקרי ענן</div>'
-      + '<div class="card" style="padding:8px 16px">' + rRows + '</div>';
-  }
-}
-
-/* ── Agent runner functions ── */
-async function runAgent(agent, force){
-  var tk = ($('run-ticker') ? $('run-ticker').value : '').trim().toUpperCase();
-  var stat = $('run-status');
-  if (!tk){ if(stat){ stat.style.color='var(--red)'; stat.textContent='הכנס טיקר'; } return; }
-  if (_activeRun){ if(stat){ stat.style.color='var(--orange)'; stat.textContent='הרצה פעילה — חכה לסיום'; } return; }
-
-  var base = flaskUrl();
-  if (!base){ if(stat){ stat.style.color='var(--orange)'; stat.textContent='הגדר Flask URL בהגדרות'; } return; }
-
-  var labels = {quick:'Quick Check',analyst:'Analyst',devils:'Devil\'s Advocate',ceo:'CEO',executor:'Executor',ic:'IC',chain:'Full Chain'};
-  if(stat){ stat.style.color='var(--blue)'; stat.textContent='שולח ' + tk + ' · ' + (labels[agent]||agent) + '...'; }
-
-  try {
-    var r = await fetch(base + '/api/run', {
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({ticker:tk, agent:agent, force:!!force}),
-    });
-    var j = await r.json();
-    if (j.error){ if(stat){ stat.style.color='var(--red)'; stat.textContent='שגיאה: ' + j.error; } return; }
-    if (j.status === 'skipped'){
-      if(stat){ stat.style.color='var(--orange)'; stat.innerHTML = j.message + ' <a href="javascript:void(0)" onclick="runAgent(\'' + agent + '\',true)" style="color:var(--blue)">הפעל בכל זאת</a>'; }
-      return;
-    }
-    _activeRun = j.run_id;
-    pollAgent(j.run_id, tk, labels[agent]||agent, base);
-  } catch(e){
-    if(stat){ stat.style.color='var(--red)'; stat.textContent='שגיאת חיבור: ' + e.message + ' — בדוק שה-Flask פעיל'; }
-  }
-}
-
-async function pollAgent(run_id, tk, label, base){
-  var stat = $('run-status');
-  try {
-    var r = await fetch(base + '/api/run-status/' + run_id);
-    var j = await r.json();
-    var elapsed = j.started ? Math.round((Date.now()-new Date(j.started).getTime())/1000) : 0;
-
-    if (j.status === 'running' || j.status === 'queued'){
-      var step = j.current_agent ? ' · ' + j.current_agent : '';
-      if(stat){ stat.style.color='var(--blue)'; stat.textContent='⏳ ' + tk + ' · ' + label + step + ' · ' + elapsed + 's'; }
-      setTimeout(function(){ pollAgent(run_id, tk, label, base); }, 2500);
-      return;
-    }
-    _activeRun = null;
-    if (j.status === 'done'){
-      var agMap = {analyst:'analyst',devils:'devils',ceo:'ceo',executor:'executor',ic:'ic',quick:'quick_check',chain:'ic'};
-      var page = agMap[label.toLowerCase().replace(/ /g,'_')] || 'analyst';
-      /* match agent name to template */
-      if(label==='Full Chain') page='ic';
-      else if(label==='Analyst') page='analyst';
-      else if(label.includes('Devil')) page='devils';
-      else if(label==='CEO') page='ceo';
-      else if(label==='Executor') page='executor';
-      else if(label==='IC') page='ic';
-      else if(label==='Quick Check') page='quick_check';
-      var link = 'templates/' + page + '.html?ticker=' + tk;
-      if(stat){ stat.style.color='var(--green)'; stat.innerHTML = '✓ ' + tk + ' · ' + label + ' · ' + (j.elapsed||elapsed) + 's — <a href="' + link + '" style="color:var(--blue)">פתח דוח</a>'; }
-      _loaded['research'] = false; /* refresh list */
-    } else {
-      if(stat){ stat.style.color='var(--red)'; stat.textContent='✗ ' + tk + ' · ' + (j.error||j.status); }
-    }
-  } catch(e){
-    _activeRun = null;
-    if(stat){ stat.style.color='var(--red)'; stat.textContent='שגיאת polling: ' + e.message; }
+      + '<div class="card" style="padding:4px 16px">' + rRows + '</div>';
   }
 }
 
@@ -1064,7 +954,6 @@ async function oracleSend(preset){
 function openSettings(){
   try{
     document.getElementById('cfg-proxy').value = localStorage.getItem('price_proxy_url')||'';
-    document.getElementById('cfg-flask').value = localStorage.getItem('flask_server_url')||'';
     document.getElementById('cfg-token').value = localStorage.getItem('github_token')||'';
   }catch(e){}
   document.getElementById('settings-modal').style.display='block';
@@ -1077,9 +966,7 @@ function toggleTokenEye(){
 function saveSettings(){
   try{
     var proxy=document.getElementById('cfg-proxy').value.trim();
-    var flask=document.getElementById('cfg-flask').value.trim();
     var token=document.getElementById('cfg-token').value.trim();
-    if(flask) localStorage.setItem('flask_server_url',flask); else localStorage.removeItem('flask_server_url');
     if(proxy) localStorage.setItem('price_proxy_url',proxy); else localStorage.removeItem('price_proxy_url');
     if(token) localStorage.setItem('github_token',token); else localStorage.removeItem('github_token');
     var s=document.getElementById('cfg-status');
