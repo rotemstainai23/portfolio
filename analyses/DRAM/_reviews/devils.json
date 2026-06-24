@@ -2,9 +2,9 @@
   "ticker": "DRAM",
   "agent": "devils",
   "date": "2026-06-24",
-  "verdict": null,
-  "score": null,
-  "thesis": "[devils: לא התקבל פלט מ-Groq]",
+  "verdict": "PASS",
+  "score": 1.0,
+  "thesis": "## ניתוח המניה DRAM ### ירושת נתוני האנליסט נתונים שהתקבלו מהאנליסט — DRAM",
   "key_risks": [],
   "position_size_pct": null,
   "_cloud": true

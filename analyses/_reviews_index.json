@@ -1,5 +1,5 @@
 {
-  "generated": "2026-06-24T13:40:03Z",
+  "generated": "2026-06-24T14:46:16Z",
   "reviews": [
     {
       "ticker": "AMZN",
@@ -10,10 +10,10 @@
     },
     {
       "ticker": "DRAM",
-      "verdict": null,
-      "score": null,
+      "verdict": "BUY",
+      "score": 2.0,
       "generated": "2026-06-24",
-      "summary": "[ic: לא התקבל פלט מ-Groq]"
+      "summary": "## חוות דעת הוועדה לאחר בחינה מפורטת של כל הנתונים והניתוחים שהוצגו, הוועדה מגיעה למסקנה הבאה: ### תמצית הניתוח"
     },
     {
       "ticker": "IBM",

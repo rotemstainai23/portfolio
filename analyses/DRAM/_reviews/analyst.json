@@ -2,9 +2,9 @@
   "ticker": "DRAM",
   "agent": "analyst",
   "date": "2026-06-24",
-  "verdict": null,
+  "verdict": "PASS",
   "score": null,
-  "thesis": "[analyst: לא התקבל פלט מ-Groq]",
+  "thesis": "**ניתוח מניה: DRAM** **מבוא** במסגרת תפקידי כאנליסט מניות מוסדי, אני עורך ניתוח מפורט של המניה DRAM. הניתוח כולל חלץ ראיות, סינתזה, הערכת שווי ובניית תזת השקעה.",
   "key_risks": [],
   "position_size_pct": null,
   "_cloud": true
