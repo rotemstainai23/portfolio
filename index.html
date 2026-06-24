@@ -218,6 +218,9 @@ nav{
   <div class="tab" id="tab-research">
     <div class="empty"><div class="spinner"></div></div>
   </div>
+  <div class="tab" id="tab-oracle">
+    <div class="empty"><div class="spinner"></div></div>
+  </div>
 </div>
 
 <nav>
@@ -244,6 +247,11 @@ nav{
   <button class="nav-btn" id="nav-research" onclick="show('research')">
     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
     <span>מחקר</span>
+    <div class="nav-dot"></div>
+  </button>
+  <button class="nav-btn" id="nav-oracle" onclick="show('oracle')">
+    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+    <span>אורקל</span>
     <div class="nav-dot"></div>
   </button>
 </nav>
@@ -416,6 +424,7 @@ function renderTab(name){
   if (name === 'watchlist') renderWatchlist();
   if (name === 'weekly')    renderWeekly();
   if (name === 'research')  renderResearch();
+  if (name === 'oracle')    renderOracle();
 }
 
 /* ── DAILY ── */
@@ -822,6 +831,103 @@ async function goResearch(){
     if (stat) { stat.style.color = 'var(--red)'; stat.textContent = 'שגיאת רשת: ' + e.message; }
     if (btn) { btn.disabled = false; btn.textContent = 'נתח'; }
   }
+}
+
+/* ── ORACLE ── */
+var _oracleMsgs = [];
+
+var ORACLE_QUICK = [
+  { icon:'📊', label:'פיזור',     text:'נתח את הפיזור של התיק שלי — שכבות, ריכוז, חשיפה לסיכון. מה בולט?' },
+  { icon:'🚨', label:'בוער?',    text:'מה בתיק צריך תשומת לב עכשיו? מה הכי מסוכן או דחוף?' },
+  { icon:'💡', label:'רעיון',    text:'יש לי רעיון להשקיע במניה חדשה. תנחה אותי מה לבדוק לפני שמריצים שרשרת.' },
+  { icon:'⚖️', label:'לפני החלטה', text:'עזור לי לחשוב על ההחלטה הבאה — מה כדאי לשקול לפני שפועלים?' },
+  { icon:'📈', label:'ביצועים', text:'איך המערכת עובדת? מה המדדים שכדאי לעקוב אחריהם?' },
+  { icon:'🛡️', label:'סיכונים', text:'נתח את ניהול הסיכונים בתיק — stop-loss, גיוון, חשיפה לסקטור.' },
+];
+
+function renderOracle(){
+  var el = $('tab-oracle');
+  var proxy = priceProxy();
+
+  var quickHtml = ORACLE_QUICK.map(function(q){
+    return '<button onclick="oracleSend(' + JSON.stringify(q.text) + ')" class="flow-node" style="border:none;cursor:pointer;min-width:80px;text-align:center">'
+      + '<div style="font-size:18px;margin-bottom:4px">' + q.icon + '</div>'
+      + '<div class="fn-title">' + q.label + '</div>'
+      + '</button>';
+  }).join('');
+
+  el.innerHTML =
+    '<div class="sec-hdr" style="padding-top:14px">האורקל — יועץ אסטרטגי</div>'
+  + '<div class="flow-row" id="oracle-quick" style="padding-bottom:10px">' + quickHtml + '</div>'
+  + '<div id="oracle-msgs" style="padding:0 14px 120px;min-height:160px"></div>'
+  + '<div style="position:sticky;bottom:0;background:var(--bg);border-top:1px solid var(--border);padding:10px 14px">'
+  +   '<div style="display:flex;gap:8px">'
+  +   '<input id="oracle-input" placeholder="שאל את האורקל..." style="flex:1;background:rgba(148,163,184,.08);border:1px solid var(--border2);border-radius:10px;color:var(--text);padding:10px 13px;font-size:14px;font-family:Heebo,sans-serif;outline:none" onkeydown="if(event.key===\'Enter\' && !event.shiftKey){event.preventDefault();oracleSend()}" />'
+  +   '<button onclick="oracleSend()" style="background:var(--blue);color:#fff;border:none;border-radius:10px;padding:10px 16px;font-size:14px;font-weight:800;font-family:Heebo,sans-serif;cursor:pointer">שלח</button>'
+  +   '</div>'
+  + (!proxy ? '<div style="font-size:11px;color:var(--orange);margin-top:6px">הגדר כתובת Worker בהגדרות להפעלת האורקל</div>' : '')
+  + '</div>';
+
+  _renderOracleMsgs();
+}
+
+function _renderOracleMsgs(){
+  var el = $('oracle-msgs');
+  if (!el) return;
+  if (!_oracleMsgs.length) {
+    el.innerHTML = '<div style="text-align:center;color:var(--muted);padding:40px 0;font-size:12px">בחר quick-prompt למעלה או כתוב שאלה</div>';
+    return;
+  }
+  el.innerHTML = _oracleMsgs.map(function(m){
+    var isUser = m.role === 'user';
+    return '<div style="margin:10px 0">'
+      + '<div style="font-size:10px;color:var(--muted);font-weight:700;margin-bottom:4px">' + (isUser ? 'אתה' : 'אורקל') + '</div>'
+      + '<div style="padding:10px 13px;border-radius:14px;font-size:13px;line-height:1.65;white-space:pre-wrap;'
+      + (isUser
+          ? 'background:rgba(139,92,246,.12);border:1px solid rgba(139,92,246,.22)'
+          : 'background:var(--glass);border:1px solid var(--glass-b);color:var(--muted2)')
+      + '">' + m.content + '</div>'
+      + '</div>';
+  }).join('');
+  el.scrollTop = el.scrollHeight;
+  /* גלול את האפליקציה למטה */
+  try { $('app').scrollTop = $('app').scrollHeight; } catch(_){}
+}
+
+async function oracleSend(preset){
+  var inp = $('oracle-input');
+  var msg = (preset || (inp ? inp.value : '')).trim();
+  if (!msg) return;
+  if (inp) inp.value = '';
+
+  var proxy = priceProxy();
+  if (!proxy) { alert('הגדר כתובת Worker בהגדרות תחילה'); return; }
+
+  _oracleMsgs.push({ role:'user', content:msg });
+  _renderOracleMsgs();
+
+  /* indicator טעינה */
+  var msgsEl = $('oracle-msgs');
+  var loader = document.createElement('div');
+  loader.id = 'oracle-loader';
+  loader.style.cssText = 'display:flex;align-items:center;gap:8px;padding:8px 0;color:var(--muted)';
+  loader.innerHTML = '<div class="spinner" style="width:16px;height:16px;border-width:2px"></div><span style="font-size:12px">האורקל חושב...</span>';
+  if (msgsEl) { msgsEl.appendChild(loader); msgsEl.scrollTop = msgsEl.scrollHeight; }
+
+  try {
+    var r = await fetch(proxy.replace(/\/+$/,'') + '/oracle', {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({ messages: _oracleMsgs }),
+    });
+    var ld = $('oracle-loader'); if (ld) ld.remove();
+    var j = await r.json();
+    _oracleMsgs.push({ role:'assistant', content: j.text || ('שגיאה: ' + (j.error||'תגובה ריקה')) });
+  } catch(e) {
+    var ld = $('oracle-loader'); if (ld) ld.remove();
+    _oracleMsgs.push({ role:'assistant', content:'שגיאת רשת: ' + e.message });
+  }
+  _renderOracleMsgs();
 }
 
 /* ── settings modal ── */
