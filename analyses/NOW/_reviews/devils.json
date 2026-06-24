@@ -1,0 +1,14 @@
+{
+  "ticker": "NOW",
+  "agent": "devils",
+  "date": "2026-06-08",
+  "verdict": null,
+  "score": 8,
+  "thesis": "חברה: ServiceNow (NOW) · ציון סיכון: 6/10 · תקרת פוזיציה: 8%הסיכון הגדול ביותר: Agentic AI עוקף את שכבת ה-SaaS.ההנחה השבירה: שעלויות-המעבר מגנות גם מפ",
+  "key_risks": [],
+  "position_size_pct": null,
+  "valuation_summary": null,
+  "entry_exit_plan": null,
+  "handoff_summary": "חברה: ServiceNow (NOW) · ציון סיכון: 6/10 · תקרת פוזיציה: 8%הסיכון הגדול ביותר: Agentic AI עוקף את שכבת ה-SaaS.ההנחה השבירה: שעלויות-המעבר מגנות גם מפני AI agents.סיכון שלילי שווי: −22% ב-18x · −35% ב-15x · −48% במקרה גרוע.FCF \"אמיתי\": $2.62B → תשואה 2.5%.טריגרי KILL SWITCH: (1) cRPO < 15% ל-2 רבעונים · (2) דמו AI שמחליף ITSM.",
+  "_backfilled": true
+}

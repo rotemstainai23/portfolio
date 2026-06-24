@@ -1,0 +1,14 @@
+{
+  "ticker": "IBM",
+  "agent": "ic",
+  "date": "2026-06-08",
+  "verdict": null,
+  "score": null,
+  "thesis": "חברה: IBM · תאריך: 2.6.2026פסיקה: REJECTED · גודל מאושר: 0% · ביטחון: גבוה · קונסנזוס: 4/4פעולה הבאה: לא IBM. גזום Speculation→10%, מלא Cash→6%, השלם ",
+  "key_risks": [],
+  "position_size_pct": 0,
+  "valuation_summary": null,
+  "entry_exit_plan": null,
+  "handoff_summary": "חברה: IBM · תאריך: 2.6.2026פסיקה: REJECTED · גודל מאושר: 0% · ביטחון: גבוה · קונסנזוס: 4/4פעולה הבאה: לא IBM. גזום Speculation→10%, מלא Cash→6%, השלם Growth.בדיקה חוזרת: מחיר $255 / דוח Q2 יולי 2026 / FCF std > $13BKill Switches: FCF std <$11.5B · Infrastructure −10% YoY · חיתוך דיבידנד.",
+  "_backfilled": true
+}

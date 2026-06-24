@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio OS — מדריך למשתמש</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:       #0A0F1E;
+    --surface:  #111827;
+    --surface2: #1a2235;
+    --border:   #1e2d44;
+    --gold:     #F59E0B;
+    --gold2:    #FBBF24;
+    --purple:   #8B5CF6;
+    --purple2:  #A78BFA;
+    --text:     #F1F5F9;
+    --muted:    #94A3B8;
+    --dim:      #475569;
+    --green:    #10B981;
+    --red:      #EF4444;
+    --live:     #22C55E;
+    --cloud:    #F59E0B;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Heebo', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    font-size: 16px;
+    direction: rtl;
+  }
+  a { color: var(--gold); text-decoration: none; }
+  a:hover { color: var(--gold2); }
+  code, .mono {
+    font-family: 'IBM Plex Mono', monospace;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 2px 7px;
+    font-size: 0.85em;
+    color: var(--gold);
+    direction: ltr;
+    display: inline-block;
+  }
+
+  /* ---- ניווט עליון ---- */
+  nav {
+    position: fixed;
+    top: 0; right: 0; left: 0;
+    z-index: 100;
+    background: rgba(10, 15, 30, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+    height: 56px;
+  }
+  .nav-brand {
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: var(--gold);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .nav-brand svg { width: 22px; height: 22px; }
+  .nav-links {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+    font-size: 0.85rem;
+  }
+  .nav-links a { color: var(--muted); transition: color 0.2s; }
+  .nav-links a:hover { color: var(--text); }
+
+  /* ---- פריסה ---- */
+  .page { max-width: 860px; margin: 0 auto; padding: 80px 1.5rem 4rem; }
+
+  /* ---- כותרת ראשית ---- */
+  .hero {
+    text-align: center;
+    padding: 5rem 1rem 4rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 4rem;
+  }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(139, 92, 246, 0.12);
+    border: 1px solid rgba(139, 92, 246, 0.3);
+    border-radius: 20px;
+    padding: 4px 14px;
+    font-size: 0.78rem;
+    color: var(--purple2);
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .hero h1 {
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    font-weight: 800;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+    color: var(--text);
+  }
+  .hero h1 span { color: var(--gold); }
+  .hero p {
+    font-size: 1.15rem;
+    color: var(--muted);
+    max-width: 560px;
+    margin: 0 auto 2.5rem;
+    font-weight: 300;
+  }
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0.65rem 1.5rem;
+    border-radius: 8px;
+    font-family: 'Heebo', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: none;
+    text-decoration: none;
+  }
+  .btn-primary {
+    background: var(--gold);
+    color: #0A0F1E;
+  }
+  .btn-primary:hover { background: var(--gold2); color: #0A0F1E; }
+  .btn-outline {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border);
+  }
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+  /* ---- מקטעים ---- */
+  section { margin-bottom: 5rem; }
+  .section-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--purple2);
+    margin-bottom: 0.6rem;
+  }
+  h2 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    line-height: 1.25;
+  }
+  .section-intro {
+    color: var(--muted);
+    font-size: 1rem;
+    margin-bottom: 2.5rem;
+    max-width: 640px;
+  }
+
+  /* ---- כרטיסי תכונות ---- */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.4rem;
+    transition: border-color 0.2s;
+  }
+  .card:hover { border-color: var(--gold); }
+  .card-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: rgba(245, 158, 11, 0.1);
+    border: 1px solid rgba(245, 158, 11, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    color: var(--gold);
+  }
+  .card-icon svg { width: 20px; height: 20px; }
+  .card h3 { font-size: 1rem; font-weight: 600; margin-bottom: 0.4rem; }
+  .card p { font-size: 0.875rem; color: var(--muted); line-height: 1.6; }
+
+  /* ---- כרטיסי מצב ---- */
+  .mode-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    margin-bottom: 2rem;
+  }
+  .mode-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+  }
+  .mode-card.live { border-color: rgba(34, 197, 94, 0.35); }
+  .mode-card.cloud { border-color: rgba(245, 158, 11, 0.35); }
+  .mode-indicator {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+  }
+  .dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+  }
+  .dot-live { background: var(--live); box-shadow: 0 0 6px var(--live); }
+  .dot-cloud { background: var(--cloud); }
+  .mode-card h3 { font-size: 1rem; font-weight: 600; margin-bottom: 0.4rem; }
+  .mode-card ul {
+    list-style: none;
+    font-size: 0.875rem;
+    color: var(--muted);
+  }
+  .mode-card ul li { padding: 3px 0; }
+  .mode-card ul li::before { content: '›'; margin-left: 6px; color: var(--dim); }
+
+  /* ---- שלבים ---- */
+  .steps { display: flex; flex-direction: column; gap: 0; }
+  .step {
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    gap: 1.25rem;
+    position: relative;
+    padding-bottom: 2rem;
+  }
+  .step:last-child { padding-bottom: 0; }
+  .step-num {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: var(--surface);
+    border: 2px solid var(--gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--gold);
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+  }
+  .step-line {
+    position: absolute;
+    top: 40px;
+    right: 19px;
+    width: 2px;
+    bottom: 0;
+    background: var(--border);
+  }
+  .step:last-child .step-line { display: none; }
+  .step-content { padding-top: 8px; }
+  .step-content h3 { font-size: 1.05rem; font-weight: 600; margin-bottom: 0.35rem; }
+  .step-content p { font-size: 0.9rem; color: var(--muted); margin-bottom: 0.5rem; }
+  .step-content .tip {
+    background: var(--surface2);
+    border-right: 3px solid var(--purple);
+    border-radius: 0 6px 6px 0;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.83rem;
+    color: var(--muted);
+    margin-top: 0.6rem;
+  }
+
+  /* ---- שרשרת סוכנים ---- */
+  .chain {
+    display: flex;
+    align-items: center;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+    margin: 1.5rem 0;
+    overflow-x: auto;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .agent-node {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 90px;
+  }
+  .agent-icon {
+    width: 48px; height: 48px;
+    border-radius: 12px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.4rem;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: var(--gold);
+  }
+  .agent-label { font-size: 0.72rem; color: var(--muted); text-align: center; }
+  .chain-arrow {
+    color: var(--dim);
+    font-size: 1.1rem;
+    margin: 0 0.25rem;
+    padding-bottom: 1.2rem;
+  }
+
+  /* ---- טבלת תזמון ---- */
+  .sched-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.875rem;
+  }
+  .sched-table th {
+    background: var(--surface2);
+    padding: 0.6rem 1rem;
+    text-align: right;
+    color: var(--muted);
+    font-weight: 500;
+    border-bottom: 1px solid var(--border);
+  }
+  .sched-table td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  .sched-table tr:last-child td { border-bottom: none; }
+  .tag {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.72rem;
+    font-weight: 600;
+  }
+  .tag-manual { background: rgba(148, 163, 184, 0.12); color: var(--muted); }
+  .tag-cloud { background: rgba(245, 158, 11, 0.12); color: var(--gold); }
+
+  /* ---- מקטע PWA ---- */
+  .pwa-os {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+  .pwa-block {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+  }
+  .pwa-block h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 1.2rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .pwa-steps { list-style: none; counter-reset: pwa; }
+  .pwa-steps li {
+    counter-increment: pwa;
+    font-size: 0.875rem;
+    color: var(--muted);
+    padding: 0.45rem 0;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  .pwa-steps li::before {
+    content: counter(pwa);
+    min-width: 22px;
+    height: 22px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--gold);
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .pwa-warning {
+    background: rgba(245, 158, 11, 0.07);
+    border: 1px solid rgba(245, 158, 11, 0.25);
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    font-size: 0.83rem;
+    color: #fcd34d;
+    margin-top: 1rem;
+  }
+  .pwa-warning strong { color: var(--gold); }
+
+  /* ---- בלוק כתובת ---- */
+  .url-block {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.9rem 1.25rem;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.9rem;
+    direction: ltr;
+    margin: 1.25rem 0;
+  }
+  .url-block .lock {
+    color: var(--green);
+    font-size: 0.8rem;
+    font-family: 'Heebo', sans-serif;
+    font-weight: 500;
+  }
+  .url-block .addr { color: var(--gold2); }
+
+  /* ---- שאלות נפוצות ---- */
+  .faq { display: flex; flex-direction: column; gap: 0.75rem; }
+  .faq-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .faq-q {
+    padding: 1rem 1.25rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .faq-q::after {
+    content: '+';
+    color: var(--gold);
+    font-size: 1.2rem;
+    font-weight: 400;
+    transition: transform 0.2s;
+  }
+  .faq-q.open::after { transform: rotate(45deg); }
+  .faq-a {
+    display: none;
+    padding: 0 1.25rem 1rem;
+    font-size: 0.875rem;
+    color: var(--muted);
+    border-top: 1px solid var(--border);
+    padding-top: 0.75rem;
+  }
+  .faq-a.show { display: block; }
+
+  /* ---- כותרת תחתונה ---- */
+  footer {
+    text-align: center;
+    padding: 3rem 1rem 4rem;
+    border-top: 1px solid var(--border);
+    color: var(--dim);
+    font-size: 0.82rem;
+  }
+
+  /* ---- מפת ניווט ---- */
+  .nav-map {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+  }
+  .nav-map-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 0.6rem;
+    margin-top: 1rem;
+  }
+  .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0.55rem 0.75rem;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    font-size: 0.85rem;
+    transition: all 0.15s;
+  }
+  .nav-item:hover { border-color: var(--gold); background: rgba(245, 158, 11, 0.05); }
+  .nav-item svg { width: 16px; height: 16px; flex-shrink: 0; }
+  .nav-item .nav-cat {
+    font-size: 0.68rem;
+    color: var(--dim);
+    display: block;
+  }
+
+  @media (max-width: 600px) {
+    .mode-grid { grid-template-columns: 1fr; }
+    .pwa-os { grid-template-columns: 1fr; }
+    .chain { gap: 0.35rem; }
+    nav { padding: 0 1rem; }
+    .nav-links { display: none; }
+    h2 { font-size: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <rect x="3" y="3" width="18" height="18" rx="3"/>
+      <polyline points="7,17 10,13 13,15 17,9"/>
+    </svg>
+    Portfolio OS
+  </div>
+  <ul class="nav-links">
+    <li><a href="#overview">סקירה</a></li>
+    <li><a href="#modes">מצבים</a></li>
+    <li><a href="#usage">שימוש</a></li>
+    <li><a href="#agents">סוכנים</a></li>
+    <li><a href="#schedule">תזמון</a></li>
+    <li><a href="#mobile">מובייל</a></li>
+  </ul>
+</nav>
+
+<div class="page">
+
+  <!-- כותרת ראשית -->
+  <div class="hero" id="top">
+    <div class="hero-badge">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
+      מדריך למשתמש · 2026
+    </div>
+    <h1>מערכת <span>Portfolio OS</span><br>מדריך מלא צעד אחר צעד</h1>
+    <p>מערכת ניתוח השקעות חכמה עם שרשרת סוכני AI, מחירים חיים, ודשבורד שעובד מכל מקום גם כשהמחשב כבוי.</p>
+    <div class="hero-actions">
+      <a href="#mobile" class="btn btn-primary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18.01"/></svg>
+        התקנה על הטלפון
+      </a>
+      <a href="#usage" class="btn btn-outline">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+        הוראות שימוש
+      </a>
+    </div>
+  </div>
+
+  <!-- סקירה -->
+  <section id="overview">
+    <div class="section-label">מה זה?</div>
+    <h2>ארבעה מנועים, דשבורד אחד</h2>
+    <p class="section-intro">מערכת מלאה לניהול תיק השקעות: מחירים חיים, ניתוח AI עמוק, והיסטוריה שנשמרת אוטומטית.</p>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/></svg>
+        </div>
+        <h3>מחירים חיים</h3>
+        <p>שלושה מקורות במקביל: Yahoo, Finviz, Nasdaq. פלבק אוטומטי אם מקור אחד נפל.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        </div>
+        <h3>שרשרת AI</h3>
+        <p>חמישה סוכנים: Analyst, Devil, CEO, Executor, IC. ניתוח מעמיק לכל טיקר.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12" y2="16"/></svg>
+        </div>
+        <h3>ענן ומובייל</h3>
+        <p>GitHub Actions מריץ דוחות גם כשה-PC כבוי. פתוח מהטלפון, ללא תלות.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+        </div>
+        <h3>היסטוריה</h3>
+        <p>כל ניתוח נשמר ב-JSON עם חותמת זמן. ProPicks, בריאות תיק, log החלטות.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- מצבים -->
+  <section id="modes">
+    <div class="section-label">ארכיטקטורה</div>
+    <h2>שני מצבי פעולה</h2>
+    <p class="section-intro">המערכת מזהה אוטומטית אם השרת המקומי פעיל ומתאימה את עצמה. אין צורך להגדיר כלום.</p>
+    <div class="mode-grid">
+      <div class="mode-card live">
+        <div class="mode-indicator" style="color: var(--live)">
+          <span class="dot dot-live"></span>
+          מצב חי (Live)
+        </div>
+        <h3>PC דלוק · שרת רץ</h3>
+        <ul>
+          <li>מחירים בזמן אמת</li>
+          <li>הפעלת ניתוח AI</li>
+          <li>עריכת תיק ורשימת מעקב</li>
+          <li>כל הכפתורים פעילים</li>
+        </ul>
+      </div>
+      <div class="mode-card cloud">
+        <div class="mode-indicator" style="color: var(--cloud)">
+          <span class="dot dot-cloud"></span>
+          מצב ענן (Cloud)
+        </div>
+        <h3>PC כבוי · GitHub Pages</h3>
+        <ul>
+          <li>נתוני הדוח האחרון (מהענן)</li>
+          <li>קריאה בלבד</li>
+          <li>verdicts ותקציר כל טיקר</li>
+          <li>עובד גם מהטלפון</li>
+        </ul>
+      </div>
+    </div>
+    <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 1rem 1.25rem; font-size: 0.875rem; color: var(--muted);">
+      <strong style="color: var(--text)">איך מזהים את המצב?</strong>
+      באנר צבעוני מופיע בראש הדף: ירוק = חי, צהוב = ענן. המעבר אוטומטי תוך 2.5 שניות.
+    </div>
+  </section>
+
+  <!-- מפה -->
+  <section id="map">
+    <div class="section-label">ניווט</div>
+    <h2>מפת האפליקציה</h2>
+    <p class="section-intro">כל הדוחות וכלי הניהול נגישים מהדשבורד הראשי דרך חלוניות.</p>
+    <div class="nav-map">
+      <div style="font-size: 0.8rem; color: var(--muted); margin-bottom: 0.5rem;">
+        <code style="font-size: 0.78rem">127.0.0.1:5000</code> או <code style="font-size: 0.78rem">rotemstainai23.github.io/portfolio</code>
+      </div>
+      <div class="nav-map-grid">
+        <div class="nav-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.8"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          <div><strong>Hub</strong><span class="nav-cat">דשבורד ראשי</span></div>
+        </div>
+        <div class="nav-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.8"><polyline points="23,6 13.5,15.5 8.5,10.5 1,18"/><polyline points="17,6 23,6 23,12"/></svg>
+          <div><strong>Portfolio</strong><span class="nav-cat">תיק + heatmap</span></div>
+        </div>
+        <div class="nav-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.8"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+          <div><strong>יומי</strong><span class="nav-cat">סיכום + טריגרים</span></div>
+        </div>
+        <div class="nav-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          <div><strong>שבועי</strong><span class="nav-cat">CEO · תמונה רחבה</span></div>
+        </div>
+        <div class="nav-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+          <div><strong>חודשי</strong><span class="nav-cat">ביצועים · close</span></div>
+        </div>
+        <div class="nav-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.8"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22,4 12,14.01 9,11.01"/></svg>
+          <div><strong>בריאות</strong><span class="nav-cat">ציון תיק</span></div>
+        </div>
+        <div class="nav-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.8"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          <div><strong>אורקל</strong><span class="nav-cat">ניתוח לפי טיקר</span></div>
+        </div>
+        <div class="nav-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.8"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+          <div><strong>ProPicks</strong><span class="nav-cat">מניות מועדפות</span></div>
+        </div>
+        <div class="nav-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.8"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+          <div><strong>כספי</strong><span class="nav-cat">P&amp;L · trades</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- שימוש -->
+  <section id="usage">
+    <div class="section-label">פתיחת המערכת</div>
+    <h2>הפעלה ראשונה בארבעה שלבים</h2>
+    <p class="section-intro">הרצת השרת המקומי מאפשרת שליטה מלאה עם מחירים חיים ויכולת הפעלת ניתוחים.</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-line"></div>
+        <div class="step-content">
+          <h3>פתח טרמינל בתיקיית הפרויקט</h3>
+          <p>תיקיית הפרויקט נמצאת בנתיב:</p>
+          <code>C:\Users\רותם\portfolio\</code>
+          <div class="tip">ב-Windows Explorer: לחץ על שורת הכתובת, הקלד <code>cmd</code>, Enter.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-line"></div>
+        <div class="step-content">
+          <h3>הפעל את השרת</h3>
+          <p>הפקודה מריצה את Flask על פורט 5000:</p>
+          <code>python app.py</code>
+          <div class="tip">השרת מוכן כשרואים: <span style="color:var(--green);font-size:0.8rem">Running on http://127.0.0.1:5000</span></div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-line"></div>
+        <div class="step-content">
+          <h3>פתח דפדפן</h3>
+          <p>נווט לכתובת המקומית:</p>
+          <div class="url-block">
+            <span class="lock">מקומי</span>
+            <span class="addr">http://127.0.0.1:5000</span>
+          </div>
+          <div class="tip">אל תשתמש ב-<code>localhost</code>, תמיד <code>127.0.0.1</code>.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-line"></div>
+        <div class="step-content">
+          <h3>הדשבורד נטען</h3>
+          <p>הדשבורד הראשי (Hub) מציג: באנר ירוק "מצב חי", ערך התיק הכולל, רשת חלוניות לניווט, ולוח סטטוס עבודות. לחץ על כל חלונית לכניסה לדוח המתאים.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- סוכנים -->
+  <section id="agents">
+    <div class="section-label">ניתוח AI</div>
+    <h2>הפעלת שרשרת הסוכנים</h2>
+    <p class="section-intro">לכל טיקר אפשר להריץ שרשרת ניתוח מלאה בחמישה שלבים. הניתוח שמור ל-14 יום לפני שמציעים לרוץ שוב.</p>
+    <div class="chain" role="img" aria-label="שרשרת סוכני ה-AI: Analyst, Devil, CEO, Executor, IC">
+      <div class="agent-node">
+        <div class="agent-icon">ANA</div>
+        <div class="agent-label">Analyst<br>ניתוח בסיסי</div>
+      </div>
+      <div class="chain-arrow">›</div>
+      <div class="agent-node">
+        <div class="agent-icon">DVL</div>
+        <div class="agent-label">Devil<br>סנגוריה</div>
+      </div>
+      <div class="chain-arrow">›</div>
+      <div class="agent-node">
+        <div class="agent-icon">CEO</div>
+        <div class="agent-label">CEO<br>סינתזה</div>
+      </div>
+      <div class="chain-arrow">›</div>
+      <div class="agent-node">
+        <div class="agent-icon">EXE</div>
+        <div class="agent-label">Executor<br>פעולה</div>
+      </div>
+      <div class="chain-arrow">›</div>
+      <div class="agent-node">
+        <div class="agent-icon">IC</div>
+        <div class="agent-label">IC<br>ועדת השקעות</div>
+      </div>
+    </div>
+    <div class="steps" style="margin-top: 1.5rem">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-line"></div>
+        <div class="step-content">
+          <h3>בחר טיקר בדשבורד הראשי</h3>
+          <p>לחץ על כרטיס הטיקר ב-Hub, או נווט ישירות לעמוד האורקל של המניה.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-line"></div>
+        <div class="step-content">
+          <h3>לחץ "הרץ שרשרת מלאה"</h3>
+          <p>הכפתור שולח בקשה ל-<code>POST /api/run</code>. אם הניתוח עדכני (פחות מ-14 ימים) מופיעה הודעה עם אפשרות לעקוף.</p>
+          <div class="tip">משך ריצה: 3-7 דקות. הדף מתעדכן בזמן אמת.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-line"></div>
+        <div class="step-content">
+          <h3>עקוב אחרי הסטטוס</h3>
+          <p>progress bar מציג את שלב הסוכן הנוכחי. בסיום מופיע verdict צבעוני ועמוד התוצאות נטען.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-line"></div>
+        <div class="step-content">
+          <h3>קרא את הפלט</h3>
+          <p>כל סוכן מספק נקודת מבט שונה. ה-IC מסכם עם verdict סופי: STRONG BUY / BUY / HOLD / SELL. ציון 1-10 מצורף לכל החלטה.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- תזמון -->
+  <section id="schedule">
+    <div class="section-label">אוטומציה</div>
+    <h2>מה רץ אוטומטית?</h2>
+    <p class="section-intro">GitHub Actions מריץ עבודות בענן (ב-Ubuntu) גם כשה-PC כבוי, ודוחף את התוצאות ל-repo.</p>
+    <table class="sched-table">
+      <thead>
+        <tr>
+          <th>עבודה</th>
+          <th>מתי</th>
+          <th>איפה</th>
+          <th>פלט</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>דוח יומי</strong></td>
+          <td>ימים א-ה, 17:00</td>
+          <td><span class="tag tag-cloud">ענן</span></td>
+          <td><code style="font-size:0.75rem">daily_latest.json</code></td>
+        </tr>
+        <tr>
+          <td><strong>שבועי (CEO)</strong></td>
+          <td>שבת, 09:00</td>
+          <td><span class="tag tag-cloud">ענן</span></td>
+          <td><code style="font-size:0.75rem">ceo_weekly.json</code></td>
+        </tr>
+        <tr>
+          <td><strong>סקנר מניות</strong></td>
+          <td>ראשון, 10:00</td>
+          <td><span class="tag tag-cloud">ענן</span></td>
+          <td><code style="font-size:0.75rem">scanner-results.json</code></td>
+        </tr>
+        <tr>
+          <td><strong>אינדקס reviews</strong></td>
+          <td>יחד עם הדוח היומי</td>
+          <td><span class="tag tag-cloud">ענן</span></td>
+          <td><code style="font-size:0.75rem">_reviews_index.json</code></td>
+        </tr>
+        <tr>
+          <td><strong>בריאות תיק</strong></td>
+          <td>ידני</td>
+          <td><span class="tag tag-manual">ידני</span></td>
+          <td>POST /api/portfolio/health</td>
+        </tr>
+        <tr>
+          <td><strong>שרשרת AI לטיקר</strong></td>
+          <td>לפי דרישה</td>
+          <td><span class="tag tag-manual">ידני</span></td>
+          <td><code style="font-size:0.75rem">analyses/TICKER/_reviews/</code></td>
+        </tr>
+      </tbody>
+    </table>
+    <div style="margin-top:1rem; font-size:0.82rem; color:var(--dim)">
+      לוח הסטטוס בדשבורד הראשי מציג מתי כל עבודה רצה לאחרונה ואיזו מהן זקוקה לרענון.
+    </div>
+  </section>
+
+  <!-- מובייל -->
+  <section id="mobile">
+    <div class="section-label">התקנה על הטלפון</div>
+    <h2>PWA — אפליקציה על מסך הבית</h2>
+    <p class="section-intro">המערכת היא Progressive Web App מלאה. ניתן להתקין אותה על הטלפון כאפליקציה עצמאית שעובדת גם ללא חיבור.</p>
+
+    <p style="margin-bottom:0.75rem; font-size:0.9rem; color:var(--muted)"><strong style="color:var(--text)">כתובת הענן (לשמור):</strong></p>
+    <div class="url-block">
+      <span class="lock">HTTPS</span>
+      <span class="addr">https://rotemstainai23.github.io/portfolio/</span>
+    </div>
+
+    <div class="pwa-warning">
+      <strong>דרישה מוקדמת:</strong> לפני שמתקינים, יש להפעיל את GitHub Pages בהגדרות ה-repo:
+      <br>Settings ‹ Pages ‹ Source: Deploy from branch ‹ main / (root) ‹ Save
+    </div>
+
+    <div class="pwa-os" style="margin-top:1.5rem">
+      <div class="pwa-block">
+        <h3>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="1.8"><rect x="5" y="2" width="14" height="20" rx="2"/><circle cx="12" cy="17" r="1"/></svg>
+          Android (Chrome)
+        </h3>
+        <ol class="pwa-steps">
+          <li>פתח Chrome בטלפון</li>
+          <li>נווט לכתובת הענן למעלה</li>
+          <li>הקש על שלוש הנקודות (פינה ימנית עליונה)</li>
+          <li>בחר <strong style="color:var(--text)">"הוסף למסך הבית"</strong></li>
+          <li>אשר את שם האפליקציה ולחץ "הוסף"</li>
+          <li>האייקון יופיע על מסך הבית</li>
+        </ol>
+      </div>
+      <div class="pwa-block">
+        <h3>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--purple2)" stroke-width="1.8"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="9" y1="7" x2="15" y2="7"/></svg>
+          iPhone / iPad (Safari)
+        </h3>
+        <ol class="pwa-steps">
+          <li>פתח <strong style="color:var(--text)">Safari</strong> דווקא (לא Chrome)</li>
+          <li>נווט לכתובת הענן למעלה</li>
+          <li>הקש על כפתור השיתוף (ריבוע עם חץ למעלה) בתחתית</li>
+          <li>גלול ובחר <strong style="color:var(--text)">"הוסף למסך הבית"</strong></li>
+          <li>הקש "הוסף" בפינה ימנית עליונה</li>
+          <li>האייקון יופיע על מסך הבית</li>
+        </ol>
+        <div class="pwa-warning" style="margin-top:0.75rem; font-size:0.78rem">
+          ב-iOS, PWA עובד רק דרך Safari. Chrome ב-iPhone לא תומך ב"הוסף למסך הבית" עם יכולות offline.
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:2rem">
+      <div class="section-label">לאחר ההתקנה</div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22,4 12,14.01 9,11.01"/></svg>
+          </div>
+          <div class="step-line"></div>
+          <div class="step-content">
+            <h3>פתח את האפליקציה ממסך הבית</h3>
+            <p>האפליקציה נפתחת במצב standalone (ללא כרום/ספארי) עם RTL מלא, כמו אפליקציה נייטיב.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div class="step-line"></div>
+          <div class="step-content">
+            <h3>מצב ללא רשת (Offline)</h3>
+            <p>לאחר ביקור ראשון, Service Worker שומר את הדשבורד בזיכרון המכשיר. כנס למצב טיסה ורענן, הנתונים האחרונים יוצגו.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
+          </div>
+          <div class="step-line"></div>
+          <div class="step-content">
+            <h3>עדכונים אוטומטיים</h3>
+            <p>GitHub Actions מריץ את הדוח היומי כל יום ב-17:00. בפתיחת האפליקציה תראה תמיד את הנתונים הכי עדכניים שנדחפו לענן.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- שאלות נפוצות -->
+  <section id="faq">
+    <div class="section-label">שאלות נפוצות</div>
+    <h2>שאלות ותשובות</h2>
+    <div class="faq">
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.classList.toggle('open'); this.nextElementSibling.classList.toggle('show')">
+          הדשבורד מציג "ענן" גם כשהשרת רץ, למה?
+        </div>
+        <div class="faq-a">
+          הדשבורד שולח ping ל-<code>/api/ping</code> עם timeout של 2.5 שניות. אם השרת לקח יותר זמן לעלות, הוא הוחמץ. רענן את הדף (F5) לאחר כמה שניות.
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.classList.toggle('open'); this.nextElementSibling.classList.toggle('show')">
+          לחצתי "הרץ שרשרת" וקיבלתי "ניתוח עדכני". מה עושים?
+        </div>
+        <div class="faq-a">
+          שער הטריות (freshness gate) חוסם ריצה חוזרת פחות מ-14 ימים מהניתוח האחרון. אם רוצים לרוץ בכל זאת, לחץ על הקישור "הפעל בכל זאת" שמופיע בהודעה.
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.classList.toggle('open'); this.nextElementSibling.classList.toggle('show')">
+          GitHub Pages לא מציג כלום, כתובת לא נמצאת.
+        </div>
+        <div class="faq-a">
+          יש להפעיל Pages ידנית פעם אחת: <strong>github.com/rotemstainai23/portfolio ‹ Settings ‹ Pages ‹ Deploy from branch ‹ main / (root) ‹ Save</strong>. לאחר כ-3 דקות הכתובת תהיה פעילה.
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.classList.toggle('open'); this.nextElementSibling.classList.toggle('show')">
+          אין מחירים ב-heatmap במצב ענן, כל הריבועים אפורים.
+        </div>
+        <div class="faq-a">
+          מחירים חיים זמינים רק במצב Live. במצב ענן, ה-heatmap מציג נתוני הדוח היומי האחרון שנדחף ל-repo. אם הדוח ישן יותר מיום, ייתכן שה-Actions לא רץ. בדוק ב-<code>github.com/rotemstainai23/portfolio/actions</code>.
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.classList.toggle('open'); this.nextElementSibling.classList.toggle('show')">
+          האפליקציה לא נשמרת כ-PWA ב-Chrome ב-iPhone.
+        </div>
+        <div class="faq-a">
+          ב-iOS, Chrome ו-Firefox לא תומכים בהתקנת PWA. חייב להשתמש ב-Safari ולבחור "הוסף למסך הבית" מכפתור השיתוף.
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.classList.toggle('open'); this.nextElementSibling.classList.toggle('show')">
+          האם מישהו יכול לראות את האחזקות שלי?
+        </div>
+        <div class="faq-a">
+          ה-repo הוא ציבורי. כל מי שיש לו את הקישור יכול לראות את הנתונים. אם תרצה פרטיות מלאה, ניתן לעבור ל-repo פרטי (GitHub Pro, כ-4 דולר לחודש), ה-Pages עובד גם עם repo פרטי.
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  Portfolio OS — מערכת ניתוח השקעות · בנוי עם Flask + GitHub Actions + PWA
+  <br>מדריך זה מעודכן לגרסת יוני 2026
+</footer>
+
+</body>
+</html>

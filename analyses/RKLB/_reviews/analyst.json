@@ -1,0 +1,14 @@
+{
+  "ticker": "RKLB",
+  "agent": "analyst",
+  "date": "2026-06-08",
+  "verdict": "BUY",
+  "score": null,
+  "thesis": null,
+  "key_risks": [],
+  "position_size_pct": null,
+  "valuation_summary": null,
+  "entry_exit_plan": null,
+  "handoff_summary": null,
+  "_backfilled": true
+}

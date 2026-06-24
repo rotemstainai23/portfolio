@@ -1,0 +1,14 @@
+{
+  "ticker": "IBM",
+  "agent": "ceo",
+  "date": "2026-06-08",
+  "verdict": null,
+  "score": null,
+  "thesis": "חברה: IBM · החלטה: REJECTED · גודל: 0% · שכבה: Stabilityסיבת הדחייה: Stability מלאה, ריכוז AI מוגבר, 0% upside, FOMO גבוה.פעולה במקום זאת: גזום Spec 1",
+  "key_risks": [],
+  "position_size_pct": 0,
+  "valuation_summary": null,
+  "entry_exit_plan": null,
+  "handoff_summary": "חברה: IBM · החלטה: REJECTED · גודל: 0% · שכבה: Stabilityסיבת הדחייה: Stability מלאה, ריכוז AI מוגבר, 0% upside, FOMO גבוה.פעולה במקום זאת: גזום Spec 16%→10%, מלא Cash →6%, השלם Growth.הטיה שזוהתה: FOMO + Narrative Bias — גבוהים.",
+  "_backfilled": true
+}

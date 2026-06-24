@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ProPicks Free - מועמדים</title>
+<link rel="stylesheet" href="_shared.css">
+<link rel="stylesheet" href="_redesign.css">
+<style>
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px 60px}
+/* ── Regime banner ── */
+.regime{display:flex;align-items:center;gap:18px;background:var(--glass);border:1px solid var(--glass-border);
+  border-radius:16px;padding:18px 22px;margin:22px 0 18px;border-right:4px solid var(--brand-purple)}
+.regime-badge{font-size:20px;font-weight:800;padding:8px 18px;border-radius:12px;flex-shrink:0;letter-spacing:.5px}
+.rb-bull{background:rgba(52,211,153,.12);color:var(--sig-good);border:1px solid rgba(52,211,153,.3)}
+.rb-bear{background:rgba(251,113,133,.12);color:var(--sig-bad);border:1px solid rgba(251,113,133,.3)}
+.rb-neutral{background:rgba(251,191,36,.12);color:var(--sig-warn);border:1px solid rgba(251,191,36,.3)}
+.regime-note{font-size:12.5px;color:var(--muted2);line-height:1.6}
+.model-note{font-size:11.5px;color:var(--muted2);background:var(--glass);border:1px dashed var(--glass-border);
+  border-radius:12px;padding:12px 16px;margin-bottom:20px;line-height:1.6}
+/* ── Cards ── */
+.cand-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:16px}
+.cand{background:var(--glass);border:1px solid var(--glass-border);border-radius:16px;padding:18px 20px;position:relative}
+.cand-out{border-right:3px solid var(--sig-good)}
+.cand-neu{border-right:3px solid var(--sig-warn)}
+.cand-under{border-right:3px solid var(--sig-bad);opacity:.72}
+.cand-head{display:flex;align-items:center;gap:10px;margin-bottom:4px;flex-wrap:wrap}
+.cand-tk{font-size:20px;font-weight:800;color:var(--text)}
+.cand-co{font-size:12px;color:var(--muted2)}
+.cand-arch{font-size:10px;font-weight:700;padding:3px 9px;border-radius:8px;
+  background:var(--brand-purple-soft,rgba(167,139,250,.12));color:var(--brand-purple);margin-right:auto}
+.cls-pill{font-size:11px;font-weight:800;padding:4px 11px;border-radius:9px;letter-spacing:.3px}
+.cls-Outperform{background:rgba(52,211,153,.14);color:var(--sig-good);border:1px solid rgba(52,211,153,.3)}
+.cls-Neutral{background:rgba(251,191,36,.12);color:var(--sig-warn);border:1px solid rgba(251,191,36,.3)}
+.cls-Underperform{background:rgba(251,113,133,.12);color:var(--sig-bad);border:1px solid rgba(251,113,133,.3)}
+.comp-row{display:flex;align-items:baseline;gap:8px;margin:10px 0 14px}
+.comp-val{font-size:30px;font-weight:800;line-height:1}
+.comp-lbl{font-size:10px;color:var(--muted2);text-transform:uppercase;letter-spacing:.6px}
+/* ── Factor bars ── */
+.fac{margin-bottom:7px}
+.fac-top{display:flex;justify-content:space-between;font-size:10.5px;color:var(--muted2);margin-bottom:2px}
+.fac-top b{color:var(--text);font-variant-numeric:tabular-nums}
+.fac-track{height:7px;background:rgba(255,255,255,.06);border-radius:5px;overflow:hidden}
+.fac-fill{height:100%;border-radius:5px;transition:.5s}
+.cand-key{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0 10px}
+.kv{font-size:10.5px;color:var(--muted2);background:var(--glass-2,rgba(255,255,255,.04));
+  border:1px solid var(--glass-border);border-radius:7px;padding:3px 8px}
+.kv b{color:var(--text)}
+.cand-risk{font-size:11.5px;color:var(--muted2);line-height:1.55;
+  background:var(--sig-warn-soft,rgba(251,191,36,.07));border-radius:9px;padding:9px 12px;margin-top:6px}
+.cand-src{font-size:9.5px;color:var(--muted2);margin-top:8px;opacity:.7}
+.sec-title{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.6px;
+  color:var(--muted2);margin:26px 0 14px}
+.excluded{font-size:11px;color:var(--muted2);margin-top:24px;line-height:1.7}
+.disclaim{font-size:11px;color:var(--muted2);margin-top:18px;padding:12px 16px;
+  border:1px solid var(--glass-border);border-radius:12px;background:var(--glass);line-height:1.6}
+</style>
+</head>
+<body>
+
+<div class="topbar tb-purple">
+  <div>
+    <h1 class="c-purple">ProPicks Free - מועמדים</h1>
+    <div class="sub" id="sub">טוען נתונים...</div>
+  </div>
+  <div class="stamp" id="stamp"></div>
+</div>
+
+<div class="wrap">
+  <div class="regime" id="regime"></div>
+  <div class="model-note" id="model-note"></div>
+
+  <div class="sec-title">מועמדים מדורגים (composite גבוה -> נמוך)</div>
+  <div class="cand-grid" id="cand-grid"></div>
+
+  <div class="excluded" id="excluded"></div>
+  <div class="disclaim">
+    מודל heuristic שקוף על נתונים חינמיים מאומתים. <b>אינו ייעוץ השקעות.</b>
+    כל מועמד Outperform חייב לעבור את שרשרת הסוכנים (Analyst -> Devil -> CEO -> Executor -> Committee)
+    ולעמוד ב-R/R 2:1 לפני קנייה בפועל. backtest אינו תשואה ממומשת.
+  </div>
+</div>
+
+<script>
+const FAC_COLORS = { value:'#60a5fa', growth:'#34d399', quality:'#a78bfa', momentum:'#fbbf24', risk:'#22d3ee' };
+const FAC_LBL = { value:'ערך', growth:'צמיחה', quality:'איכות', momentum:'מומנטום', risk:'סיכון(הפוך)' };
+
+function load(){
+  const d = window.PROPICKS_DATA;
+  if(!d){ document.getElementById('sub').textContent='אין נתונים. הרץ את הסורק.'; return; }
+
+  document.getElementById('sub').textContent = 'נוצר: ' + d.generated;
+  const out = d.candidates.filter(c=>c.factor_scores.classification==='Outperform').length;
+  document.getElementById('stamp').innerHTML = '<b>מועמדים:</b> '+d.candidates.length+'<br><b>Outperform:</b> '+out;
+
+  const r = d.regime, rc = r.label==='BULL'?'rb-bull':r.label==='BEAR'?'rb-bear':'rb-neutral';
+  document.getElementById('regime').innerHTML =
+    '<div class="regime-badge '+rc+'">'+r.label+'</div><div class="regime-note">'+r.note+'</div>';
+  document.getElementById('model-note').textContent = d.model_note;
+
+  document.getElementById('cand-grid').innerHTML = d.candidates.map(c=>{
+    const fs = c.factor_scores, cls = fs.classification;
+    const cardCls = cls==='Outperform'?'cand-out':cls==='Neutral'?'cand-neu':'cand-under';
+    const compColor = fs.composite>=70?'var(--sig-good)':fs.composite>=45?'var(--sig-warn)':'var(--sig-bad)';
+    const bars = ['value','growth','quality','momentum','risk'].map(f=>
+      '<div class="fac"><div class="fac-top"><span>'+FAC_LBL[f]+'</span><b>'+fs[f]+'</b></div>'+
+      '<div class="fac-track"><div class="fac-fill" style="width:'+fs[f]+'%;background:'+FAC_COLORS[f]+'"></div></div></div>'
+    ).join('');
+    const kv = Object.entries(c.key).map(([k,v])=>'<span class="kv">'+k+': <b>'+v+'</b></span>').join('');
+    return '<div class="cand '+cardCls+'">'+
+      '<div class="cand-head"><span class="cand-tk">'+c.ticker+'</span>'+
+        '<span class="cand-arch">'+c.archetype+'</span></div>'+
+      '<div class="cand-co">'+c.company+' · '+c.sector+' · $'+c.price+'</div>'+
+      '<div class="comp-row"><span class="comp-val" style="color:'+compColor+'">'+fs.composite+'</span>'+
+        '<span class="comp-lbl">composite</span>'+
+        '<span class="cls-pill cls-'+cls+'" style="margin-right:auto">'+cls+'</span></div>'+
+      bars+
+      '<div class="cand-key">'+kv+'</div>'+
+      '<div class="cand-risk">⚠ '+c.risk_flag+'</div>'+
+      '<div class="cand-src">מקור: '+c.source+' · ביטחון: '+c.confidence+'</div>'+
+    '</div>';
+  }).join('');
+
+  document.getElementById('excluded').innerHTML =
+    '<b>הוחרגו (בתיק/watchlist):</b> ' + (d.excluded||[]).join(', ');
+}
+load();
+</script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+{
+  "ticker": "IBM",
+  "agent": "executor",
+  "date": "2026-06-08",
+  "verdict": null,
+  "score": null,
+  "thesis": "חברה: IBM · פסיקה: הימנע · איכות: 1.5/10 · R/R: 0.005:1 (בסיס)תוכנית מותנית: T1 ב-$270 (RSI<50, consolidation 4ש\\",
+  "key_risks": [],
+  "position_size_pct": 0,
+  "valuation_summary": null,
+  "entry_exit_plan": null,
+  "handoff_summary": "חברה: IBM · פסיקה: הימנע · איכות: 1.5/10 · R/R: 0.005:1 (בסיס)תוכנית מותנית: T1 ב-$270 (RSI<50, consolidation 4ש\\",
+  "_backfilled": true
+}

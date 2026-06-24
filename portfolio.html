@@ -700,6 +700,10 @@ tbody tr:hover td{background:rgba(139,92,246,.04)}
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
       ניתוח
     </button>
+    <a href="/oracle" class="hub-link" style="text-decoration:none">
+      <span style="font-size:13px">🔮</span>
+      האורקל
+    </a>
   </div>
 </div>
 
@@ -710,6 +714,8 @@ tbody tr:hover td{background:rgba(139,92,246,.04)}
   <div class="card"><div class="lbl">Unrealized P&amp;L</div><div class="val" id="c-pnl">—</div><div class="sub-val" id="c-pnl-pct"></div></div>
   <div class="card"><div class="lbl">Today's Change</div><div class="val" id="c-today">—</div></div>
   <div class="card"><div class="lbl">Watchlist</div><div class="val c-neutral" id="c-watch">—</div><div class="sub-val" id="c-watch-sub"></div></div>
+  <div class="card" id="c-layers-card" title="הקצאת שכבות לפי שווי שוק"><div class="lbl">Layer Allocation</div><div id="c-layers-bars" style="margin-top:4px"></div></div>
+  <div class="card"><div class="lbl">Avg Scores</div><div id="c-avg-scores" style="font-size:13px;margin-top:4px;line-height:1.8">—</div></div>
 </div>
 
 <div id="alert-banner"></div>
@@ -866,6 +872,42 @@ tbody tr:hover td{background:rgba(139,92,246,.04)}
       <div class="tw-title">מצגות ויזואליות — לכל טיקר וסוכן</div>
       <button class="btn btn-sm btn-edit" onclick="loadPresentations()">רענן</button>
     </div>
+    <!-- דוחות מערכת -->
+    <div style="margin-bottom:18px">
+      <div style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.6px;margin-bottom:10px">דוחות מערכת</div>
+      <div style="display:flex;flex-wrap:wrap;gap:10px">
+        <a href="/templates/financial_statements.html" target="_blank" style="text-decoration:none">
+          <div class="card" style="padding:12px 18px;cursor:pointer;min-width:160px;border-color:rgba(96,165,250,.25)">
+            <div style="font-size:18px;margin-bottom:4px">📊</div>
+            <div style="font-size:12px;font-weight:700;color:var(--blue)">דוחות כספיים</div>
+            <div style="font-size:10px;color:var(--muted);margin-top:2px">SEC XBRL — הכנסות, מאזן, תזרים</div>
+          </div>
+        </a>
+        <a href="/templates/monthly.html" target="_blank" style="text-decoration:none">
+          <div class="card" style="padding:12px 18px;cursor:pointer;min-width:160px;border-color:rgba(52,211,153,.25)">
+            <div style="font-size:18px;margin-bottom:4px">📅</div>
+            <div style="font-size:12px;font-weight:700;color:var(--green)">סגירה חודשית</div>
+            <div style="font-size:10px;color:var(--muted);margin-top:2px">P&amp;L, דריפט הקצאה, adherence</div>
+          </div>
+        </a>
+        <a href="/templates/ceo-weekly.html" target="_blank" style="text-decoration:none">
+          <div class="card" style="padding:12px 18px;cursor:pointer;min-width:160px;border-color:rgba(167,139,250,.25)">
+            <div style="font-size:18px;margin-bottom:4px">📋</div>
+            <div style="font-size:12px;font-weight:700;color:var(--layer-core)">סיכום שבועי CEO</div>
+            <div style="font-size:10px;color:var(--muted);margin-top:2px">ביצועים, החלטות, הזדמנויות</div>
+          </div>
+        </a>
+        <a href="/templates/health_report.html" target="_blank" style="text-decoration:none">
+          <div class="card" style="padding:12px 18px;cursor:pointer;min-width:160px;border-color:rgba(245,158,11,.25)">
+            <div style="font-size:18px;margin-bottom:4px">🩺</div>
+            <div style="font-size:12px;font-weight:700;color:var(--yellow)">בריאות תיק</div>
+            <div style="font-size:10px;color:var(--muted);margin-top:2px">דוח בריאות מלא</div>
+          </div>
+        </a>
+      </div>
+    </div>
+    <!-- מצגות לפי טיקר -->
+    <div style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.6px;margin-bottom:10px">מצגות לפי טיקר</div>
     <div id="pres-grid" class="pres-grid">
       <div class="empty"><div class="icon">⏳</div>טוען...</div>
     </div>
@@ -923,10 +965,10 @@ tbody tr:hover td{background:rgba(139,92,246,.04)}
         <thead><tr>
           <th>Ticker</th><th>Price</th><th>Trigger</th><th>Distance</th>
           <th>Verdict</th><th>Layer</th><th>Analyst</th><th>Risk</th>
-          <th>Thesis</th><th>Status</th><th></th>
+          <th>Thesis</th><th>Fragile Assumption</th><th>Kill Switch</th><th>Status</th><th></th>
         </tr></thead>
         <tbody id="watch-body">
-          <tr><td colspan="11" class="empty"><div class="icon">👁️</div>No watchlist items yet</td></tr>
+          <tr><td colspan="13" class="empty"><div class="icon">👁️</div>No watchlist items yet</td></tr>
         </tbody>
       </table>
     </div>
@@ -1521,6 +1563,43 @@ function renderSummary(){
   $('c-watch').textContent = wl.length;
   $('c-watch').className = 'val '+(alerts?'c-orange':'c-neutral');
   $('c-watch-sub').textContent = alerts ? ('🔔 '+alerts+' בהתראה') : 'מועמדים במעקב';
+
+  // Layer allocation bars
+  const holdings = STATE.holdings||[];
+  const layerColors = {Growth:'#60a5fa',Stability:'#34d399',Speculation:'#f59e0b',Core:'#a78bfa'};
+  const layerTotals = {};
+  let invested = 0;
+  holdings.forEach(h=>{
+    const v = (h.market_value>0 ? h.market_value : (h.buy_price||0)*(h.quantity||0));
+    layerTotals[h.layer||'Other'] = (layerTotals[h.layer||'Other']||0) + v;
+    invested += v;
+  });
+  const barsEl = $('c-layers-bars');
+  if(barsEl && invested>0){
+    barsEl.innerHTML = Object.entries(layerTotals).sort((a,b)=>b[1]-a[1]).map(([lyr,val])=>{
+      const pctVal = (val/invested*100).toFixed(0);
+      const col = layerColors[lyr]||'#94a3b8';
+      return `<div style="margin-bottom:4px">
+        <div style="display:flex;justify-content:space-between;font-size:10px;color:${col};margin-bottom:2px">
+          <span>${lyr}</span><span>${pctVal}%</span>
+        </div>
+        <div style="height:5px;border-radius:3px;background:#1e2640;overflow:hidden">
+          <div style="width:${pctVal}%;height:100%;background:${col};border-radius:3px"></div>
+        </div>
+      </div>`;
+    }).join('');
+  }
+
+  // Avg analyst + risk scores
+  const scored = holdings.filter(h=>h.analyst_score!=null&&h.risk_score!=null);
+  const avgScoresEl = $('c-avg-scores');
+  if(avgScoresEl && scored.length){
+    const avgA = (scored.reduce((s,h)=>s+h.analyst_score,0)/scored.length).toFixed(1);
+    const avgR = (scored.reduce((s,h)=>s+h.risk_score,0)/scored.length).toFixed(1);
+    const aCol = avgA>=7?'#34d399':avgA>=5?'#f59e0b':'#f87171';
+    const rCol = avgR<=4?'#34d399':avgR<=6?'#f59e0b':'#f87171';
+    avgScoresEl.innerHTML = `<span style="color:${aCol}">A: ${avgA}</span> &nbsp; <span style="color:${rCol}">R: ${avgR}</span><div style="font-size:10px;color:var(--muted);margin-top:2px">${scored.length} מניות</div>`;
+  }
 }
 
 function renderHoldings(){
@@ -1611,7 +1690,7 @@ function renderWatchlist(){
   const wl = STATE.watchlist||[];
   const banner = $('alert-banner');
   if(!wl.length){
-    $('watch-body').innerHTML='<tr><td colspan="11" class="empty"><div class="icon">👁️</div>No watchlist items yet.</td></tr>';
+    $('watch-body').innerHTML='<tr><td colspan="13" class="empty"><div class="icon">👁️</div>No watchlist items yet.</td></tr>';
     banner.style.display='none';
     return;
   }
@@ -1641,6 +1720,8 @@ function renderWatchlist(){
       <td>${w.analyst_score!=null?`<span class="score ${analystClass(w.analyst_score)}">${w.analyst_score}</span>`:'—'}</td>
       <td>${w.risk_score!=null?`<span class="score ${riskClass(w.risk_score)}">${w.risk_score}</span>`:'—'}</td>
       <td class="thesis-cell" dir="auto">${w.thesis||'—'}</td>
+      <td class="thesis-cell" dir="auto" title="${(w.fragile_assumption||'').replace(/"/g,'&quot;')}" style="max-width:140px;color:var(--muted2);font-size:11px">${w.fragile_assumption ? '<span style="color:#f59e0b">⚠</span> '+(w.fragile_assumption.length>60?w.fragile_assumption.slice(0,60)+'…':w.fragile_assumption) : '—'}</td>
+      <td class="thesis-cell" dir="auto" title="${(w.kill_switch||'').replace(/"/g,'&quot;')}" style="max-width:140px;color:var(--muted2);font-size:11px">${w.kill_switch ? '<span style="color:#ef4444">🔴</span> '+(w.kill_switch.length>60?w.kill_switch.slice(0,60)+'…':w.kill_switch) : '—'}</td>
       <td>${statusHtml}</td>
       <td><button class="btn btn-sm btn-danger" onclick='removeWatch(${JSON.stringify(w.symbol)})'>✕</button></td>
     </tr>`;
@@ -1756,7 +1837,7 @@ async function removeWatch(sym){
 // ── Run Agent (One-Click) ─────────────────────────────────────
 let _activeRun = null;
 
-async function runAgent(agent) {
+async function runAgent(agent, force) {
   const tickerEl = $('run-ticker');
   const ticker   = (tickerEl.value||'').trim().toUpperCase();
   const statusEl = $('run-status');
@@ -1775,10 +1856,14 @@ async function runAgent(agent) {
 
   try {
     const r = await fetch('/api/run',{method:'POST',headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({ticker,agent})});
+      body:JSON.stringify({ticker, agent, force: !!force})});
     const j = await r.json();
     if (j.error) {
       statusEl.innerHTML = `<span style="color:var(--red)">✗ ${j.error}</span>`;
+      return;
+    }
+    if (j.status === 'skipped') {
+      statusEl.innerHTML = `<span style="color:var(--sig-warn)">✓ ${j.message} <a href="#" style="color:inherit;text-decoration:underline" onclick="runAgent('${agent}',true);return false">הפעל בכל זאת</a></span>`;
       return;
     }
     _activeRun = j.run_id;
@@ -2743,7 +2828,7 @@ async function loadDailyTab() {
 
 async function loadHubTab() {
   try {
-    const [portRes, pricesRes] = await Promise.all([fetch('/api/portfolio'), fetch('/api/prices')]);
+    const portRes = await fetch('/api/portfolio');
     if (!portRes.ok) throw new Error('portfolio API error');
     const portfolio = await portRes.json();
     const holdings = portfolio.holdings || [];
@@ -2772,7 +2857,7 @@ async function loadHubTab() {
     setTimeout(() => {
       const ve=$('hub-cnt-value'), pe=$('hub-cnt-pnl'), ppe=$('hub-cnt-pnlpct');
       if(ve) hubAnimateCounter(ve, totalValue/1000, '$', 'K', 1, 1400);
-      if(pe) hubAnimateCounter(pe, totalPnl, totalPnl>=0?'+$':'-$', '', 0, 1400);
+      if(pe) hubAnimateCounter(pe, Math.abs(totalPnl), totalPnl>=0?'+$':'-$', '', 0, 1400);
       if(ppe) hubAnimateCounter(ppe, Math.abs(totalPnlPct), totalPnlPct>=0?'+':'-', '%', 1, 1400);
     }, 200);
   } catch(err) {

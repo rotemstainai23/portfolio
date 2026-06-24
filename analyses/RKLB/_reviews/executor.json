@@ -1,0 +1,14 @@
+{
+  "ticker": "RKLB",
+  "agent": "executor",
+  "date": "2026-06-08",
+  "verdict": null,
+  "score": null,
+  "thesis": null,
+  "key_risks": [],
+  "position_size_pct": null,
+  "valuation_summary": null,
+  "entry_exit_plan": null,
+  "handoff_summary": null,
+  "_backfilled": true
+}

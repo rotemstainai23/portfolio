@@ -1,0 +1,14 @@
+{
+  "ticker": "NOW",
+  "agent": "ic",
+  "date": "2026-06-08",
+  "verdict": "BUY",
+  "score": null,
+  "thesis": "חברה: ServiceNow (NOW) · תאריך: 24.5.2026פסיקה: APPROVED WITH CONDITIONS · גודל מאושר: 5% (~$96) · שכבה: Growth · ביטחון: בינוני-גבוהפעולה ראשונה: איז",
+  "key_risks": [],
+  "position_size_pct": 5,
+  "valuation_summary": null,
+  "entry_exit_plan": null,
+  "handoff_summary": "חברה: ServiceNow (NOW) · תאריך: 24.5.2026פסיקה: APPROVED WITH CONDITIONS · גודל מאושר: 5% (~$96) · שכבה: Growth · ביטחון: בינוני-גבוהפעולה ראשונה: איזון מחדש IBIT 11%→4% (משחרר ~$135). אז BUY-TRANCHE-1 של NOW.שווי הוגן (בסיס): $120 · T2: $90 · T3: $82 · סטופ: $75 · TP1: $130 · TP2: $155תזה: SaaS-ארגוני מצטיין במחיר שמתמחר חששות AI — R/R 2.2:1.הנחה שבירה: שעלויות-המעבר מגנות גם מפני Agentic AI.Kill",
+  "_backfilled": true
+}

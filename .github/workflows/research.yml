@@ -34,6 +34,11 @@ jobs:
           TICKER:         ${{ inputs.ticker }}
         run: python -m engine.run --mode research --ticker "$TICKER"
 
+      - name: עדכן אינדקס מחקרים
+        run: |
+          python scripts/build_reviews_index.py
+          python scripts/build_research_index.py
+
       - name: שמירת מחקר ל-git
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -42,5 +47,5 @@ jobs:
           git config user.name "Research Bot"
           git config user.email "bot@portfolio"
           git remote set-url origin "https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git"
-          git add analyses/_research/
+          git add analyses/_research/ analyses/_reviews_index.json
           git diff --cached --quiet || { git commit -m "research: $TICKER $(date +%Y-%m-%d)" && git push; }

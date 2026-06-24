@@ -7,6 +7,8 @@ venv/
 
 # סודות — אל תעלה לגיט
 notifications_config.json
+decision_log.json
+config.json
 
 # לוגים
 *.log

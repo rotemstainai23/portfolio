@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>האורקל — יועץ אסטרטגי</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #070c18; font-family: 'Heebo', sans-serif; }
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: #1a3055; border-radius: 2px; }
+  @keyframes pulse { 0%,100%{opacity:.4} 50%{opacity:1} }
+  @keyframes spin { to { transform: rotate(360deg); } }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="text/babel">
+const { useState, useRef, useEffect } = React;
+
+const QUICK = [
+  { icon: "📊", label: "פיזור התיק",       text: "נתח את הפיזור של התיק שלי — שכבות, ריכוז, חשיפה לסיכון. מה בולט?" },
+  { icon: "📰", label: "חדשות היום",        text: "מה חדש היום בשוק שרלוונטי לתיק שלי? חפש חדשות על הפוזיציות שלי." },
+  { icon: "💡", label: "רעיון חדש",         text: "יש לי רעיון להשקיע במניה חדשה. תנחה אותי מה לבדוק לפני שמריצים שרשרת." },
+  { icon: "🚨", label: "מה בוער?",          text: "מה בתיק שלי צריך תשומת לב עכשיו? מה הכי מסוכן או דחוף?" },
+  { icon: "⚖️", label: "לפני החלטה",       text: "עזור לי לחשוב על ההחלטה הבאה — מה כדאי לשקול לפני שפועלים?" },
+  { icon: "📈", label: "ביצועי המערכת",    text: "איך אני יודע אם המערכת עובדת טוב? מה המדדים שכדאי לעקוב אחריהם?" },
+  { icon: "🎯", label: "עקביות אסטרטגית", text: "האם הפוזיציות הנוכחיות עקביות עם האסטרטגיה? יש סתירות?" },
+  { icon: "🛡️", label: "ניהול סיכונים",   text: "נתח את ניהול הסיכונים בתיק — stop-loss, גיוון, חשיפה לסקטור." },
+];
+
+function renderMd(text) {
+  if (!text) return "";
+  return text
+    .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+    .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
+    .replace(/\*(.*?)\*/g, "<em>$1</em>")
+    .replace(/`([^`]+)`/g, `<code style="background:#1a2f4e;padding:1px 5px;border-radius:3px;font-size:11px;font-family:monospace">$1</code>`)
+    .replace(/^### (.+)$/gm, `<div style="color:#f0c040;font-weight:700;font-size:13px;margin:10px 0 4px">$1</div>`)
+    .replace(/^## (.+)$/gm,  `<div style="color:#f0c040;font-weight:700;font-size:14px;margin:12px 0 4px">$1</div>`)
+    .replace(/^# (.+)$/gm,   `<div style="color:#f0c040;font-weight:700;font-size:16px;margin:14px 0 6px">$1</div>`)
+    .replace(/^- (.+)$/gm,   `<div style="padding:1px 0">• $1</div>`)
+    .replace(/^\d+\. (.+)$/gm,`<div style="padding:1px 0">$1</div>`)
+    .replace(/\n/g, "<br/>");
+}
+
+const C = {
+  bg:      "#070c18",
+  surface: "#0d1628",
+  border:  "#1a3055",
+  gold:    "#e8b84b",
+  goldDim: "#a07c2a",
+  text:    "#dde6f0",
+  muted:   "#5a7090",
+  blue:    "#4a90d9",
+  green:   "#3dd68c",
+  red:     "#f06060",
+};
+
+function portfolioStats(data) {
+  const pos   = data?.positions || data?.holdings || [];
+  const cash  = data?.cash || 0;
+  const total = pos.reduce((s, p) => s + (p.current_value || p.value || 0), 0) + cash;
+  const layers = {};
+  pos.forEach(p => {
+    const l = p.layer || p.tier || "?";
+    layers[l] = (layers[l] || 0) + 1;
+  });
+  return {
+    count: pos.length, cash, total: Math.round(total),
+    layers, positions: pos,
+    watchlist: data?.watchlist || [],
+  };
+}
+
+function Oracle() {
+  const [phase,       setPhase]       = useState("loading");
+  const [pfData,      setPfData]      = useState(null);
+  const [loadErr,     setLoadErr]     = useState("");
+  const [messages,    setMessages]    = useState([]);
+  const [draft,       setDraft]       = useState("");
+  const [busy,        setBusy]        = useState(false);
+  const [sideTab,     setSideTab]     = useState("portfolio");
+  const [councilMode, setCouncilMode] = useState(false);
+  const [mobile,      setMobile]      = useState(() => window.innerWidth < 640);
+  const [sideOpen,    setSideOpen]    = useState(false);
+  const chatRef = useRef(null);
+
+  useEffect(() => {
+    const fn = () => setMobile(window.innerWidth < 640);
+    window.addEventListener("resize", fn);
+    return () => window.removeEventListener("resize", fn);
+  }, []);
+
+  useEffect(() => {
+    fetch('/api/portfolio')
+      .then(r => {
+        if (!r.ok) throw new Error(`HTTP ${r.status}`);
+        return r.json();
+      })
+      .then(data => {
+        setPfData(data);
+        const st = portfolioStats(data);
+        const layers = Object.entries(st.layers).map(([k, v]) => `${k}(${v})`).join(", ");
+        setMessages([{
+          from: "oracle",
+          text: `**האורקל מוכן.**\n\nסרקתי את הנתונים:\n- **${st.count} פוזיציות** פעילות\n- **מזומן:** $${st.cash.toLocaleString()}\n- **שווי כולל:** ~$${st.total.toLocaleString()}\n- **שכבות:** ${layers || "לא הוגדרו"}\n- **Watchlist:** ${st.watchlist.length} מניות\n\nאני יכול לחפש חדשות, לנתח את הפיזור, לעזור לפני החלטות, או סתם לחשוב ביחד. **מה בראש?**`,
+        }]);
+        setPhase("chat");
+      })
+      .catch(err => {
+        setLoadErr(`לא ניתן להתחבר לשרת: ${err.message}`);
+        setPhase("error");
+      });
+  }, []);
+
+  useEffect(() => {
+    if (chatRef.current) chatRef.current.scrollTop = chatRef.current.scrollHeight;
+  }, [messages, busy]);
+
+  async function send(override) {
+    const text = override ?? draft;
+    if (!text?.trim() || busy) return;
+    if (!override) setDraft("");
+    const updated = [...messages, { from: "user", text }];
+    setMessages(updated);
+    setBusy(true);
+    const isCouncil = councilMode;
+    try {
+      const apiMsgs = updated.map(m => ({
+        role:    m.from === "oracle" || m.from === "council" ? "assistant" : "user",
+        content: m.text,
+      }));
+      const endpoint = isCouncil ? "/oracle/council" : "/oracle/chat";
+      const res  = await fetch(endpoint, {
+        method:  "POST",
+        headers: { "Content-Type": "application/json" },
+        body:    JSON.stringify({ messages: apiMsgs }),
+      });
+      const json  = await res.json();
+      const reply = json.text || "שגיאה בקבלת תשובה";
+      setMessages(prev => [...prev, { from: isCouncil ? "council" : "oracle", text: reply }]);
+    } catch {
+      setMessages(prev => [...prev, { from: "oracle", text: "❌ שגיאת חיבור — נסה שוב" }]);
+    }
+    setBusy(false);
+  }
+
+  // ── Loading ──────────────────────────────────────────────────────────────
+  if (phase === "loading") return (
+    <div style={{ height:"100vh", background:C.bg, display:"flex", alignItems:"center", justifyContent:"center", flexDirection:"column", gap:16 }}>
+      <div style={{ fontSize:48 }}>🔮</div>
+      <div style={{ color:C.gold, fontSize:20, fontWeight:700 }}>מתחבר למערכת...</div>
+      <div style={{ width:32, height:32, border:`3px solid ${C.border}`, borderTopColor:C.gold, borderRadius:"50%", animation:"spin 0.9s linear infinite" }} />
+    </div>
+  );
+
+  // ── Error ────────────────────────────────────────────────────────────────
+  if (phase === "error") return (
+    <div style={{ height:"100vh", background:C.bg, display:"flex", alignItems:"center", justifyContent:"center", flexDirection:"column", gap:16, padding:32 }}>
+      <div style={{ fontSize:48 }}>⚠️</div>
+      <div style={{ color:C.red, fontSize:18, fontWeight:700 }}>לא ניתן להתחבר</div>
+      <div style={{ color:C.muted, fontSize:14, textAlign:"center" }}>{loadErr}</div>
+      <div style={{ color:C.muted, fontSize:13 }}>וודא ש-Flask רץ: <code style={{ color:C.blue }}>python app.py</code></div>
+      <button onClick={() => { setPhase("loading"); setLoadErr(""); location.reload(); }}
+        style={{ marginTop:8, background:C.goldDim, color:"#0a0c10", border:"none", borderRadius:8, padding:"10px 24px", fontSize:14, fontWeight:700, cursor:"pointer", fontFamily:"'Heebo',sans-serif" }}>
+        נסה שוב
+      </button>
+    </div>
+  );
+
+  // ── Chat ─────────────────────────────────────────────────────────────────
+  const st = pfData ? portfolioStats(pfData) : null;
+
+  return (
+    <div style={{ height:"100vh", background:C.bg, fontFamily:"'Heebo',sans-serif", direction:"rtl", display:"flex", overflow:"hidden" }}>
+
+      {/* Sidebar overlay background on mobile */}
+      {mobile && sideOpen && (
+        <div onClick={() => setSideOpen(false)}
+          style={{ position:"fixed", inset:0, background:"rgba(0,0,0,.6)", zIndex:299 }} />
+      )}
+
+      {/* Sidebar */}
+      <div style={{
+        width: mobile ? "80%" : 248,
+        maxWidth: mobile ? 300 : "none",
+        background: C.surface,
+        borderLeft: `1px solid ${C.border}`,
+        display: "flex",
+        flexDirection: "column",
+        flexShrink: 0,
+        ...(mobile ? {
+          position: "fixed",
+          right: 0, top: 0, bottom: 0,
+          zIndex: 300,
+          transform: sideOpen ? "translateX(0)" : "translateX(100%)",
+          transition: "transform 0.25s cubic-bezier(.4,0,.2,1)",
+        } : {}),
+      }}>
+
+        <div style={{ padding:"18px 14px 14px", borderBottom:`1px solid ${C.border}` }}>
+          <div style={{ display:"flex", alignItems:"center", gap:8, marginBottom:8 }}>
+            {mobile && (
+              <button onClick={() => setSideOpen(false)}
+                style={{ background:"none", border:"none", color:C.muted, fontSize:18, cursor:"pointer", padding:"0 4px", lineHeight:1 }}>
+                ✕
+              </button>
+            )}
+            <span style={{ fontSize:20 }}>🔮</span>
+            <span style={{ color:C.gold, fontSize:17, fontWeight:800 }}>האורקל</span>
+          </div>
+          {st && (
+            <div style={{ background:"#0a1220", borderRadius:8, padding:"8px 10px" }}>
+              <div style={{ display:"flex", justifyContent:"space-between", marginBottom:3 }}>
+                <span style={{ color:C.muted, fontSize:11 }}>פוזיציות</span>
+                <span style={{ color:C.text,  fontSize:11, fontWeight:600 }}>{st.count}</span>
+              </div>
+              <div style={{ display:"flex", justifyContent:"space-between", marginBottom:3 }}>
+                <span style={{ color:C.muted, fontSize:11 }}>מזומן</span>
+                <span style={{ color:C.green, fontSize:11, fontWeight:600 }}>${st.cash.toLocaleString()}</span>
+              </div>
+              <div style={{ display:"flex", justifyContent:"space-between" }}>
+                <span style={{ color:C.muted, fontSize:11 }}>שווי כולל</span>
+                <span style={{ color:C.gold,  fontSize:11, fontWeight:600 }}>~${st.total.toLocaleString()}</span>
+              </div>
+            </div>
+          )}
+        </div>
+
+        <div style={{ padding:"10px 14px 6px", display:"flex", gap:6, borderBottom:`1px solid ${C.border}` }}>
+          {[["portfolio","📊 תיק"],["prompts","💬 שאלות"]].map(([id, lbl]) => (
+            <button key={id} onClick={() => setSideTab(id)}
+              style={{ background: sideTab===id?"#162035":"transparent", color: sideTab===id?C.text:C.muted, flex:1, cursor:"pointer", padding:"6px 12px", borderRadius:6, fontSize:12, fontFamily:"'Heebo',sans-serif", border:"none", transition:"all 0.15s" }}>
+              {lbl}
+            </button>
+          ))}
+        </div>
+
+        <div style={{ flex:1, overflowY:"auto", padding:"10px 14px" }}>
+          {sideTab === "portfolio" && st && (
+            <>
+              {Object.keys(st.layers).length > 0 && (
+                <div style={{ marginBottom:12 }}>
+                  <div style={{ color:C.muted, fontSize:10, letterSpacing:0.5, textTransform:"uppercase", marginBottom:6 }}>שכבות</div>
+                  {Object.entries(st.layers).map(([layer, count]) => (
+                    <div key={layer} style={{ display:"flex", justifyContent:"space-between", padding:"3px 0", borderBottom:"1px solid #101e30" }}>
+                      <span style={{ color:"#7090b0", fontSize:12 }}>{layer}</span>
+                      <span style={{ color:C.text,    fontSize:12, fontWeight:600 }}>{count}</span>
+                    </div>
+                  ))}
+                </div>
+              )}
+              <div style={{ color:C.muted, fontSize:10, letterSpacing:0.5, textTransform:"uppercase", marginBottom:6 }}>פוזיציות</div>
+              {st.positions.slice(0, 12).map((p, i) => (
+                <div key={i} style={{ display:"flex", justifyContent:"space-between", padding:"4px 0", borderBottom:"1px solid #101e30" }}>
+                  <span style={{ color:C.blue, fontSize:12, fontWeight:700 }}>{p.ticker || p.symbol || "?"}</span>
+                  <span style={{ color:C.muted, fontSize:11 }}>{p.layer || p.tier || ""}</span>
+                </div>
+              ))}
+              {st.positions.length > 12 && (
+                <div style={{ color:"#2a3a50", fontSize:11, textAlign:"center", paddingTop:4 }}>+{st.positions.length - 12} נוספות</div>
+              )}
+              {st.watchlist.length > 0 && (
+                <div style={{ marginTop:12 }}>
+                  <div style={{ color:C.muted, fontSize:10, letterSpacing:0.5, textTransform:"uppercase", marginBottom:6 }}>watchlist</div>
+                  {st.watchlist.map((t, i) => (
+                    <div key={i} style={{ color:"#5a80a0", fontSize:12, padding:"2px 0" }}>
+                      👁 {typeof t === "string" ? t : (t.ticker || t.symbol || "?")}
+                    </div>
+                  ))}
+                </div>
+              )}
+            </>
+          )}
+          {sideTab === "prompts" && (
+            <>
+              {QUICK.map((q, i) => (
+                <button key={i} onClick={() => send(q.text)} disabled={busy}
+                  style={{ display:"flex", alignItems:"center", gap:6, width:"100%", background:"transparent", border:`1px solid ${C.border}`, borderRadius:7, padding:"7px 9px", marginBottom:6, color:C.muted, fontSize:12, textAlign:"right", cursor:"pointer", fontFamily:"'Heebo',sans-serif" }}>
+                  <span>{q.icon}</span><span>{q.label}</span>
+                </button>
+              ))}
+            </>
+          )}
+        </div>
+
+        <div style={{ padding:"10px 14px", borderTop:`1px solid ${C.border}` }}>
+          <a href="/" style={{ display:"block", textAlign:"center", color:C.muted, fontSize:12, textDecoration:"none", padding:6 }}>← חזרה לדשבורד</a>
+        </div>
+      </div>
+
+      {/* Chat */}
+      <div style={{ flex:1, display:"flex", flexDirection:"column", minWidth:0 }}>
+
+        <div style={{ padding: mobile ? "10px 14px" : "14px 20px", borderBottom:`1px solid ${C.border}`, display:"flex", alignItems:"center", justifyContent:"space-between", gap:8 }}>
+          <div style={{ display:"flex", alignItems:"center", gap: mobile ? 6 : 10, minWidth:0, flex:1 }}>
+            {mobile && (
+              <a href="/" style={{ color:C.muted, textDecoration:"none", fontSize:18, flexShrink:0 }}>←</a>
+            )}
+            <span style={{ fontSize: mobile ? 16 : 18, flexShrink:0 }}>{councilMode ? "⚡" : "🔮"}</span>
+            <div style={{ minWidth:0 }}>
+              <div style={{ color: councilMode ? "#c9a0dc" : C.gold, fontSize: mobile ? 13 : 14, fontWeight:700, whiteSpace: mobile ? "nowrap" : "normal", overflow:"hidden", textOverflow:"ellipsis" }}>
+                {councilMode ? (mobile ? "מועצת יועצים" : "מועצת יועצים — 5 זוויות ניתוח") : "האורקל — יועץ אסטרטגי"}
+              </div>
+              {!mobile && (
+                <div style={{ color:C.muted, fontSize:11 }}>
+                  {councilMode ? "Contrarian · Expansionist · First Principles · Outsider · Executor" : "קריאה-בלבד · גישה לחדשות ולכל נתוני המערכת"}
+                </div>
+              )}
+            </div>
+          </div>
+          <div style={{ display:"flex", alignItems:"center", gap:6, flexShrink:0 }}>
+            {councilMode && !mobile && (
+              <div style={{ background:"#2a1060", border:"1px solid #7b3fce", borderRadius:6, padding:"3px 10px", fontSize:11, color:"#c9a0dc" }}>
+                ⚡ מצב מועצה פעיל
+              </div>
+            )}
+            {mobile && (
+              <button onClick={() => setSideOpen(true)}
+                style={{ background:"transparent", border:`1px solid ${C.border}`, borderRadius:8, padding:"6px 10px", color:C.muted, fontSize:12, cursor:"pointer", fontFamily:"'Heebo',sans-serif", display:"flex", alignItems:"center", gap:4 }}>
+                <span>📊</span><span>תיק</span>
+              </button>
+            )}
+          </div>
+        </div>
+
+        <div ref={chatRef} style={{ flex:1, overflowY:"auto", padding: mobile ? "14px 12px" : "20px 24px", display:"flex", flexDirection:"column", gap: mobile ? 10 : 14 }}>
+          {messages.map((m, i) => {
+            const isBot     = m.from === "oracle" || m.from === "council";
+            const isCouncil = m.from === "council";
+            return (
+              <div key={i} style={{
+                alignSelf:    isBot ? "flex-end" : "flex-start",
+                background:   isBot ? (isCouncil ? "#150d2a" : C.surface) : "#102040",
+                border:       isBot ? `1px solid ${isCouncil ? "#7b3fce" : C.border}` : "none",
+                borderRadius: isBot ? "14px 2px 14px 14px" : "2px 14px 14px 14px",
+                padding:      isBot ? (mobile ? "11px 13px" : "14px 16px") : (mobile ? "9px 12px" : "11px 15px"),
+                maxWidth:     mobile ? "90%" : (isBot ? "82%" : "68%"),
+                fontSize: mobile ? 14 : 13, lineHeight:1.75, color:C.text,
+              }}>
+                {isBot && (
+                  <div style={{ color: isCouncil ? "#c9a0dc" : C.gold, fontSize:11, fontWeight:700, marginBottom:7, opacity:0.9 }}>
+                    {isCouncil ? "⚡ מועצת יועצים" : "🔮 האורקל"}
+                  </div>
+                )}
+                <div dangerouslySetInnerHTML={{ __html: renderMd(m.text) }} />
+              </div>
+            );
+          })}
+          {busy && (
+            <div style={{ alignSelf:"flex-end", background: councilMode ? "#150d2a" : C.surface, border:`1px solid ${councilMode ? "#7b3fce" : C.border}`, borderRadius:"14px 2px 14px 14px", padding: mobile ? "11px 13px" : "14px 16px", maxWidth: mobile ? "80%" : "60%" }}>
+              <div style={{ color: councilMode ? "#c9a0dc" : C.gold, fontSize:11, fontWeight:700, marginBottom:7 }}>
+                {councilMode ? "⚡ מועצת יועצים" : "🔮 האורקל"}
+              </div>
+              <div style={{ color:C.muted, fontSize:13, animation:"pulse 1.5s infinite" }}>
+                {councilMode ? "מנתח מ-5 זוויות..." : "חושב ומחפש..."}
+              </div>
+            </div>
+          )}
+        </div>
+
+        <div style={{ padding: mobile ? "10px 12px" : "14px 20px", borderTop:`1px solid ${C.border}`, background:"#080d1a" }}>
+          <div style={{ display:"flex", gap:6, marginBottom:6, alignItems:"center" }}>
+            <button
+              onClick={() => setCouncilMode(m => !m)}
+              style={{ background: councilMode ? "linear-gradient(135deg,#4a1a8a,#7b3fce)" : "transparent", color: councilMode ? "#e0c8ff" : C.muted, border:`1px solid ${councilMode ? "#9b59b6" : C.border}`, borderRadius:8, padding: mobile ? "6px 10px" : "5px 12px", fontSize: mobile ? 13 : 12, fontWeight: councilMode ? 700 : 400, cursor:"pointer", fontFamily:"'Heebo',sans-serif", transition:"all 0.2s", minHeight: mobile ? 36 : "auto" }}>
+              ⚡ מועצה {councilMode ? "פעיל" : ""}
+            </button>
+            {councilMode && !mobile && (
+              <span style={{ color:"#7b5a9a", fontSize:11, alignSelf:"center" }}>
+                5 יועצים · חיפוש חדשות · פסיקה מסונתזת
+              </span>
+            )}
+          </div>
+          <div style={{ display:"flex", gap: mobile ? 8 : 10, alignItems:"flex-end" }}>
+            <textarea
+              style={{ flex:1, background:C.surface, border:`1px solid ${councilMode ? "#7b3fce" : C.border}`, borderRadius:10, padding: mobile ? "10px 12px" : "10px 14px", color:C.text, fontSize: mobile ? 15 : 13, fontFamily:"'Heebo',sans-serif", resize:"none", direction:"rtl", outline:"none", lineHeight:1.5, transition:"border-color 0.2s" }}
+              value={draft} rows={mobile ? 1 : 2} disabled={busy}
+              placeholder={councilMode ? "שאל את המועצה..." : "שאל את האורקל..."}
+              onChange={e => setDraft(e.target.value)}
+              onKeyDown={e => { if (e.key === "Enter" && !e.shiftKey && !mobile) { e.preventDefault(); send(); } }}
+            />
+            <button onClick={() => send()} disabled={!draft.trim() || busy}
+              style={{ background: !draft.trim()||busy ? "#1a2535" : councilMode ? "linear-gradient(135deg,#4a1a8a,#9b59b6)" : `linear-gradient(135deg,${C.goldDim},${C.gold})`, color: !draft.trim()||busy ? C.muted : "#fff", border:"none", borderRadius:10, padding: mobile ? "10px 16px" : "10px 20px", fontSize: mobile ? 15 : 13, fontWeight:700, cursor: draft&&!busy?"pointer":"not-allowed", fontFamily:"'Heebo',sans-serif", whiteSpace:"nowrap", transition:"all 0.2s", minHeight: mobile ? 44 : "auto" }}>
+              {councilMode ? "⚡" : "שלח"}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<Oracle />);
+</script>
+</body>
+</html>

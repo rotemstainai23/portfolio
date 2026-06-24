@@ -1,0 +1,14 @@
+{
+  "ticker": "NOW",
+  "agent": "executor",
+  "date": "2026-06-08",
+  "verdict": "BUY",
+  "score": null,
+  "thesis": "חברה: ServiceNow (NOW) · פסיקה: Scale In · איכות: 7/10 · R/R: 2.2:1תוכנית: T1 40% ב-$100 (מיידי) · T2 30% ב-$90 (תמיכה) · T3 30% ב-$82 (שפל 52ש\\",
+  "key_risks": [],
+  "position_size_pct": 5,
+  "valuation_summary": null,
+  "entry_exit_plan": null,
+  "handoff_summary": "חברה: ServiceNow (NOW) · פסיקה: Scale In · איכות: 7/10 · R/R: 2.2:1תוכנית: T1 40% ב-$100 (מיידי) · T2 30% ב-$90 (תמיכה) · T3 30% ב-$82 (שפל 52ש\\",
+  "_backfilled": true
+}

@@ -1,12 +1,12 @@
 {
-  "generated": "2026-06-04",
-  "generated_time": "20:35",
-  "market_date": "2026-06-04",
+  "generated": "2026-06-22",
+  "generated_time": "23:54",
+  "market_date": "2026-06-22",
   "has_alerts": false,
   "alert_tickers": [],
   "macro": {
-    "spy_chg_pct": null,
-    "qqq_chg_pct": null,
+    "spy_chg_pct": -0.31,
+    "qqq_chg_pct": -0.36,
     "vix": null
   },
   "holdings": [
@@ -14,30 +14,11 @@
       "ticker": "NVDA",
       "sector": "AI / Semiconductors",
       "layer": "Growth",
-      "price": 219.2,
-      "chg_pct": 2.07,
-      "vol_ratio": 0.6,
-      "rsi": 36.4,
-      "w52_pos_pct": 82,
-      "analyst_target": null,
-      "analyst_upside_pct": null,
-      "days_to_earnings": null,
-      "verdict": null,
-      "news": [
-        "Apple's Siri Plans Could Depend on Outside AI Power",
-        "3 Stocks Poised to Make Billions from the Anthropic IPO",
-        "Could Buying VOO Today Set You Up for Life?"
-      ]
-    },
-    {
-      "ticker": "MSFT",
-      "sector": "Tech / Cloud / AI",
-      "layer": "Stability",
-      "price": 426.79,
-      "chg_pct": -0.13,
-      "vol_ratio": 0.4,
-      "rsi": 57.6,
-      "w52_pos_pct": 35,
+      "price": 208.65,
+      "chg_pct": -0.97,
+      "vol_ratio": 0.7,
+      "rsi": 38.2,
+      "w52_pos_pct": 70,
       "analyst_target": null,
       "analyst_upside_pct": null,
       "days_to_earnings": null,
@@ -45,105 +26,182 @@
       "news": []
     },
     {
-      "ticker": "GOOG",
-      "sector": "Tech / Search / AI",
+      "ticker": "MSFT",
+      "sector": "Tech / Cloud / AI",
       "layer": "Stability",
-      "price": 368.74,
-      "chg_pct": 3.67,
-      "vol_ratio": 0.8,
-      "rsi": 29.1,
-      "w52_pos_pct": 85,
+      "price": 367.34,
+      "chg_pct": -3.18,
+      "vol_ratio": 1.1,
+      "rsi": 9.3,
+      "w52_pos_pct": 6,
       "analyst_target": null,
       "analyst_upside_pct": null,
       "days_to_earnings": null,
       "verdict": null,
       "news": [
-        "3 Stocks Poised to Make Billions from the Anthropic IPO",
-        "Nvidia's biggest challenge may no longer be competition",
-        "Palantir Unveils Google Cloud Partnership At AIPCon"
+        {
+          "title": "Microsoft and Chevron plan one of the largest gas-powered data center projects in US",
+          "url": "https://finance.yahoo.com/energy/articles/microsoft-chevron-plan-one-largest-203719624.html?.tsrc=rss"
+        },
+        {
+          "title": "Stock Market Today: Dow Up As Bessent Makes This Iran Move; SpaceX Craters (Live Coverage)",
+          "url": "https://finance.yahoo.com/m/c412bdd6-ebc8-3b66-bff1-f7992ee433fc/stock-market-today%3A-dow-up-as.html?.tsrc=rss"
+        },
+        {
+          "title": "Oil Giant Emerges As An AI Power Play; Two Key Suppliers Rally",
+          "url": "https://finance.yahoo.com/m/43dd55af-70b2-3c35-993c-e6b266b42249/oil-giant-emerges-as-an-ai.html?.tsrc=rss"
+        }
+      ]
+    },
+    {
+      "ticker": "GOOG",
+      "sector": "Tech / Search / AI",
+      "layer": "Stability",
+      "price": 348.78,
+      "chg_pct": -5.08,
+      "vol_ratio": 1.3,
+      "rsi": 38.0,
+      "w52_pos_pct": 77,
+      "analyst_target": null,
+      "analyst_upside_pct": null,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": [
+        {
+          "title": "Stock Market Today: Dow Up As Bessent Makes This Iran Move; SpaceX Craters (Live Coverage)",
+          "url": "https://finance.yahoo.com/m/c412bdd6-ebc8-3b66-bff1-f7992ee433fc/stock-market-today%3A-dow-up-as.html?.tsrc=rss"
+        },
+        {
+          "title": "US Equity Markets Mixed as Communication Services Stocks Fall, Bond Yields Move Up",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/us-equity-markets-mixed-communication-201424485.html?.tsrc=rss"
+        },
+        {
+          "title": "AI chipmaker Groq confirms $650M raise, re-staffs after Nvidia’s $20B not-acqui-hire deal",
+          "url": "https://finance.yahoo.com/technology/ai/articles/ai-chipmaker-groq-confirms-650m-201358219.html?.tsrc=rss"
+        }
       ]
     },
     {
       "ticker": "META",
       "sector": "Social Media / AI",
       "layer": "Growth",
-      "price": 629.82,
-      "chg_pct": 1.1,
+      "price": 563.85,
+      "chg_pct": -2.32,
       "vol_ratio": 0.8,
-      "rsi": 54.8,
-      "w52_pos_pct": 40,
-      "analyst_target": null,
-      "analyst_upside_pct": null,
-      "days_to_earnings": null,
-      "verdict": null,
-      "news": []
-    },
-    {
-      "ticker": "AVGO",
-      "sector": "Semiconductors",
-      "layer": "Growth",
-      "price": 423.43,
-      "chg_pct": -11.64,
-      "vol_ratio": 2.5,
-      "rsi": 45.0,
-      "w52_pos_pct": 72,
+      "rsi": 40.0,
+      "w52_pos_pct": 16,
       "analyst_target": null,
       "analyst_upside_pct": null,
       "days_to_earnings": null,
       "verdict": null,
       "news": [
-        "The hardware-software 'divergence' has a chance to narrow",
-        "5-star analyst revamps Broadcom stock price target after earnings",
-        "Why Sandisk Stock Dropped Today"
+        {
+          "title": "Alger Russell Innovation Index Updates for Second Quarter 2026",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/alger-russell-innovation-index-updates-203000627.html?.tsrc=rss"
+        },
+        {
+          "title": "Abbvie acquiring Apogee for $10.9B, Coca-Cola vs. IRS in appeals court",
+          "url": "https://finance.yahoo.com/video/abbvie-acquiring-apogee-for-109b-coca-cola-vs-irs-in-appeals-court-194719799.html?.tsrc=rss"
+        },
+        {
+          "title": "QQQ vs QQQM: Same Nasdaq-100 Index, One Clear Winner for Long-Term Investors",
+          "url": "http://www.etf.com/sections/news/qqq-vs-qqqm-same-nasdaq-100-index-one-clear-winner-long-term-investors?utm_source=yahoo-finance&utm_medium=rss&utm_campaign=yahoo-finance-rss&.tsrc=rss"
+        }
+      ]
+    },
+    {
+      "ticker": "AVGO",
+      "sector": "Semiconductors",
+      "layer": "Growth",
+      "price": 392.13,
+      "chg_pct": -4.67,
+      "vol_ratio": 0.6,
+      "rsi": 36.6,
+      "w52_pos_pct": 59,
+      "analyst_target": null,
+      "analyst_upside_pct": null,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": [
+        {
+          "title": "Micron, Anthropic sign AI infrastructure supply agreement",
+          "url": "https://finance.yahoo.com/technology/ai/articles/micron-anthropic-sign-ai-infrastructure-180259668.html?.tsrc=rss"
+        },
+        {
+          "title": "The Billionaire Who Called the 2008 Bubble Just Dumped Google to Buy These 5 AI Hardware Stocks",
+          "url": "https://247wallst.com/investing/2026/06/22/the-billionaire-who-called-the-2008-bubble-just-dumped-google-to-buy-these-5-ai-hardware-stocks/?.tsrc=rss"
+        },
+        {
+          "title": "JPMorgan Says Be an ‘Aggressive Buyer’ of This Beaten-Down AI Stock",
+          "url": "https://247wallst.com/investing/2026/06/22/jpmorgan-says-be-an-aggressive-buyer-of-this-beaten-down-ai-stock/?.tsrc=rss"
+        }
       ]
     },
     {
       "ticker": "MU",
       "sector": "Memory Chips",
       "layer": "Growth",
-      "price": 1023.31,
-      "chg_pct": -5.21,
-      "vol_ratio": 0.7,
-      "rsi": 71.3,
-      "w52_pos_pct": 93,
+      "price": 1211.38,
+      "chg_pct": 6.82,
+      "vol_ratio": 0.9,
+      "rsi": 59.9,
+      "w52_pos_pct": 100,
       "analyst_target": null,
       "analyst_upside_pct": null,
       "days_to_earnings": null,
       "verdict": null,
       "news": [
-        "3 Stocks Crushing Nvidia This Year",
-        "Stock Market Today, June 4: Broadcom Drags on Nasdaq at Midday",
-        "Why Micron Stock Crashed Today"
+        {
+          "title": "Micron Earnings Seen Rising 987% Amid AI Megatrend",
+          "url": "https://finance.yahoo.com/m/3e57d44f-b895-3c73-8a2a-8e94c7046d05/micron-earnings-seen-rising.html?.tsrc=rss"
+        },
+        {
+          "title": "Update: Equities Mixed, Oil Drops as US-Iran Talks Move Forward",
+          "url": "https://finance.yahoo.com/markets/articles/equities-mixed-oil-drops-us-203803530.html?.tsrc=rss"
+        },
+        {
+          "title": "Stock Market Today: Dow Up As Bessent Makes This Iran Move; SpaceX Craters (Live Coverage)",
+          "url": "https://finance.yahoo.com/m/c412bdd6-ebc8-3b66-bff1-f7992ee433fc/stock-market-today%3A-dow-up-as.html?.tsrc=rss"
+        }
       ]
     },
     {
       "ticker": "IBIT",
       "sector": "Crypto",
       "layer": "Speculation",
-      "price": 35.71,
-      "chg_pct": -3.49,
-      "vol_ratio": 1.2,
-      "rsi": 5.1,
-      "w52_pos_pct": 1,
+      "price": 36.5,
+      "chg_pct": 2.47,
+      "vol_ratio": 0.7,
+      "rsi": 36.3,
+      "w52_pos_pct": 8,
       "analyst_target": null,
       "analyst_upside_pct": null,
       "days_to_earnings": null,
       "verdict": null,
       "news": [
-        "The market's risk trade is leaving bitcoin behind",
-        "Strategy Shoots Own Foot: Bitcoin Dive Will Cost It $26 Mil A Year",
-        "HYPE Token ETFs: What Hyperliquid Is and Whether THYP, BHYP, or HYPG Is Worth Buying"
+        {
+          "title": "Bitcoin ETF Outflows Hit Record $6.35 Billion: Has Selling Peaked?",
+          "url": "https://beincrypto.com/bitcoin-etf-record-30-day-outflow/?.tsrc=rss"
+        },
+        {
+          "title": "75% of BlackRock IBIT ETF Buyers Were TradFi Virgins: Now They’re Buying SPX Funds",
+          "url": "https://99bitcoins.com/news/bitcoin-btc/blackrock-bitcoin-news-ibit-reverse-adoption-blackrock-crypto-tradfi/?.tsrc=rss"
+        },
+        {
+          "title": "Lower Fee or Bigger Bitcoin ETF Scale? HODL vs. IBIT",
+          "url": "https://www.fool.com/coverage/etfs/2026/06/20/lower-fee-or-bigger-bitcoin-etf-scale-hodl-vs-ibit/?.tsrc=rss"
+        }
       ]
     },
     {
       "ticker": "GLDM",
       "sector": "Commodities / Gold",
       "layer": "Stability",
-      "price": 88.61,
-      "chg_pct": 0.77,
-      "vol_ratio": 0.6,
-      "rsi": 35.3,
-      "w52_pos_pct": 53,
+      "price": 82.92,
+      "chg_pct": -0.62,
+      "vol_ratio": 0.5,
+      "rsi": 33.9,
+      "w52_pos_pct": 41,
       "analyst_target": null,
       "analyst_upside_pct": null,
       "days_to_earnings": null,
@@ -154,128 +212,170 @@
       "ticker": "VST",
       "sector": "Energy / Nuclear",
       "layer": "Growth",
-      "price": 152.65,
-      "chg_pct": -0.75,
-      "vol_ratio": 0.3,
-      "rsi": 59.7,
-      "w52_pos_pct": 23,
-      "analyst_target": null,
-      "analyst_upside_pct": null,
-      "days_to_earnings": null,
-      "verdict": null,
-      "news": []
-    },
-    {
-      "ticker": "APLD",
-      "sector": "AI Infrastructure",
-      "layer": "Speculation",
-      "price": 43.72,
-      "chg_pct": -2.22,
-      "vol_ratio": 0.4,
-      "rsi": 45.9,
-      "w52_pos_pct": 83,
+      "price": 167.26,
+      "chg_pct": 2.14,
+      "vol_ratio": 1.1,
+      "rsi": 62.2,
+      "w52_pos_pct": 40,
       "analyst_target": null,
       "analyst_upside_pct": null,
       "days_to_earnings": null,
       "verdict": null,
       "news": [
-        "IREN Stock Rises 60% in 3 Months: Time to Hold or Book Profits?",
-        "IMAX, Magnite, and Applied Digital Shares Are Falling, What You Need To Know",
-        "Why Is Everyone Suddenly Paying Attention to Applied Digital Stock? Here's Why You Should Care."
+        {
+          "title": "Seaport Research Raises its Price Target on Vistra Corp. (VST)",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/seaport-research-raises-price-target-092231192.html?.tsrc=rss"
+        },
+        {
+          "title": "Jim Cramer on Vistra (VST): “It’s Just Fallen Enough”",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/jim-cramer-vistra-just-fallen-134000588.html?.tsrc=rss"
+        },
+        {
+          "title": "Is Vistra (VST) One of the Stocks with Potential to Explode in 2026?",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/vistra-vst-one-stocks-potential-111508293.html?.tsrc=rss"
+        }
+      ]
+    },
+    {
+      "ticker": "APLD",
+      "sector": "AI Infrastructure",
+      "layer": "Speculation",
+      "price": 45.2,
+      "chg_pct": -2.98,
+      "vol_ratio": 0.8,
+      "rsi": 44.4,
+      "w52_pos_pct": 87,
+      "analyst_target": null,
+      "analyst_upside_pct": null,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": [
+        {
+          "title": "Montana-Dakota Utilities Announces Electric Service Agreement with Applied Digital for Proposed AI Factory",
+          "url": "https://finance.yahoo.com/technology/ai/articles/montana-dakota-utilities-announces-electric-203000075.html?.tsrc=rss"
+        },
+        {
+          "title": "Could Applied Digital (APLD) Stock Triple by 2030?",
+          "url": "https://www.fool.com/investing/2026/06/20/could-applied-digital-apld-stock-triple-by-2030/?.tsrc=rss"
+        },
+        {
+          "title": "This Small AI Infrastructure Company Is Landing Billion-Dollar Contracts",
+          "url": "https://www.barchart.com/story/news/2553820/this-small-ai-infrastructure-company-is-landing-billion-dollar-contracts?.tsrc=rss"
+        }
       ]
     },
     {
       "ticker": "OKLO",
       "sector": "Nuclear Energy",
       "layer": "Speculation",
-      "price": 65.84,
-      "chg_pct": 0.97,
+      "price": 58.4,
+      "chg_pct": -4.53,
       "vol_ratio": 0.5,
-      "rsi": 48.4,
-      "w52_pos_pct": 14,
+      "rsi": 40.6,
+      "w52_pos_pct": 9,
       "analyst_target": null,
       "analyst_upside_pct": null,
       "days_to_earnings": null,
       "verdict": null,
-      "news": []
+      "news": [
+        {
+          "title": "Could SpaceX's IPO Momentum Spill Over to OKLO and NuScale?",
+          "url": "https://finance.yahoo.com/energy/articles/could-spacexs-ipo-momentum-spill-122700613.html?.tsrc=rss"
+        },
+        {
+          "title": "Cameco vs. Centrus Energy: Which Uranium Stock is the Better Buy Now? (Revised)",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/cameco-vs-centrus-energy-uranium-121800042.html?.tsrc=rss"
+        },
+        {
+          "title": "Uranium Deal Powers Up Nuclear Fission Firm Oklo",
+          "url": "https://www.thedailyupside.com/technology/artificial-intelligence/oklo-may-have-solved-its-uranium-sourcing-problem/?.tsrc=rss"
+        }
+      ]
     }
   ],
-  "watchlist_triggers": [],
+  "watchlist_triggers": [
+    {
+      "ticker": "AMZN",
+      "trigger_price": 230.0,
+      "current_price": 232.79,
+      "distance_pct": 1.21
+    }
+  ],
   "groq_insights": [],
   "sector_summary": [
     {
       "sector": "AI / Semiconductors",
-      "avg_chg_pct": 2.07,
+      "avg_chg_pct": -0.97,
       "tickers": [
         "NVDA"
       ]
     },
     {
       "sector": "Tech / Cloud / AI",
-      "avg_chg_pct": -0.13,
+      "avg_chg_pct": -3.18,
       "tickers": [
         "MSFT"
       ]
     },
     {
       "sector": "Tech / Search / AI",
-      "avg_chg_pct": 3.67,
+      "avg_chg_pct": -5.08,
       "tickers": [
         "GOOG"
       ]
     },
     {
       "sector": "Social Media / AI",
-      "avg_chg_pct": 1.1,
+      "avg_chg_pct": -2.32,
       "tickers": [
         "META"
       ]
     },
     {
       "sector": "Semiconductors",
-      "avg_chg_pct": -11.64,
+      "avg_chg_pct": -4.67,
       "tickers": [
         "AVGO"
       ]
     },
     {
       "sector": "Memory Chips",
-      "avg_chg_pct": -5.21,
+      "avg_chg_pct": 6.82,
       "tickers": [
         "MU"
       ]
     },
     {
       "sector": "Crypto",
-      "avg_chg_pct": -3.49,
+      "avg_chg_pct": 2.47,
       "tickers": [
         "IBIT"
       ]
     },
     {
       "sector": "Commodities / Gold",
-      "avg_chg_pct": 0.77,
+      "avg_chg_pct": -0.62,
       "tickers": [
         "GLDM"
       ]
     },
     {
       "sector": "Energy / Nuclear",
-      "avg_chg_pct": -0.75,
+      "avg_chg_pct": 2.14,
       "tickers": [
         "VST"
       ]
     },
     {
       "sector": "AI Infrastructure",
-      "avg_chg_pct": -2.22,
+      "avg_chg_pct": -2.98,
       "tickers": [
         "APLD"
       ]
     },
     {
       "sector": "Nuclear Energy",
-      "avg_chg_pct": 0.97,
+      "avg_chg_pct": -4.53,
       "tickers": [
         "OKLO"
       ]

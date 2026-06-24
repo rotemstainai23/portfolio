@@ -309,9 +309,8 @@ def api_scanner_run():
             portfolio = load_portfolio()
             held = [h['symbol'] for h in portfolio.get('holdings', [])]
             watch = [w['symbol'] for w in portfolio.get('watchlist', [])]
-            ctx_block = f'\n\n## מניות קיימות בתיק (אל תכלול אותן בסריקה)\nHoldings: {", ".join(held)}\nWatchlist: {", ".join(watch)}\n'
-            full_prompt = sys_prompt + ctx_block
-            res = _run_claude(full_prompt, timeout=480)
+            ctx_block = f'## מניות קיימות בתיק (אל תכלול אותן בסריקה)\nHoldings: {", ".join(held)}\nWatchlist: {", ".join(watch)}\n'
+            res = _run_llm(sys_prompt, ctx_block, timeout=480)
             if not res['ok'] or not res['output'].strip():
                 upd(status='failed', error=res.get('error') or 'empty output',
                     finished=datetime.now().isoformat())
@@ -401,14 +400,13 @@ def api_portfolio_health():
             with open(sys_path, encoding='utf-8') as f:
                 sys_prompt = f.read()
             portfolio = load_portfolio()
-            ctx_block = '\n\n' + _build_health_context(portfolio)
-            full_prompt = sys_prompt + ctx_block
+            ctx_block = _build_health_context(portfolio)
             timeout = 480
-            res = _run_claude(full_prompt, timeout=timeout)
+            res = _run_llm(sys_prompt, ctx_block, timeout=timeout)
             # ניסיון נוסף אחד אם נכשל
             if not res['ok'] or not res['output'].strip():
                 print(f'[RETRY] health — {res.get("error","empty output")}')
-                res = _run_claude(full_prompt, timeout=timeout)
+                res = _run_llm(sys_prompt, ctx_block, timeout=timeout)
             if not res['ok'] or not res['output'].strip():
                 upd(status='failed', error=res.get('error') or 'empty output',
                     finished=datetime.now().isoformat())
@@ -540,12 +538,12 @@ def api_ceo_weekly_run():
                     pass
 
             context_parts += ['', '━━━ END OF CONTEXT ━━━']
-            full_prompt = sys_prompt + '\n\n' + '\n'.join(context_parts)
+            _ceo_ctx = '\n'.join(context_parts)
 
-            res = _run_claude(full_prompt, timeout=600)
+            res = _run_llm(sys_prompt, _ceo_ctx, timeout=600)
             if not res['ok'] or not res['output'].strip():
                 print(f'[RETRY] ceo_weekly — {res.get("error","empty output")}')
-                res = _run_claude(full_prompt, timeout=600)
+                res = _run_llm(sys_prompt, _ceo_ctx, timeout=600)
             if not res['ok'] or not res['output'].strip():
                 upd(status='failed', error=res.get('error') or 'empty output',
                     finished=datetime.now().isoformat())
@@ -629,6 +627,114 @@ def serve_template(filename):
 @app.route('/analyses/<path:filename>')
 def serve_analysis(filename):
     return send_from_directory(os.path.join(ROOT, 'analyses'), filename)
+
+
+# ── Oracle: דף + צ'אט ─────────────────────────────────────────────────────────
+
+@app.route('/oracle')
+def oracle_page():
+    return send_from_directory(os.path.join(ROOT, 'templates'), 'oracle.html')
+
+
+@app.route('/oracle/council', methods=['POST'])
+def oracle_council():
+    data     = request.json or {}
+    messages = data.get('messages', [])
+
+    try:
+        with open(os.path.join(ROOT, 'scanner-results.json'), encoding='utf-8') as f:
+            scanner = json.load(f)[:3]
+    except Exception:
+        scanner = []
+    try:
+        with open(DECISIONS_FILE, encoding='utf-8') as f:
+            dl = json.load(f)[-3:]
+    except Exception:
+        dl = []
+
+    ctx = (
+        f"=== PORTFOLIO ===\n{_portfolio_snapshot_compact()}\n\n"
+        f"=== WATCHLIST ===\n{_watchlist_compact()}\n\n"
+        f"=== SCANNER ===\n{json.dumps(scanner, ensure_ascii=False)}\n\n"
+        f"=== DECISION LOG ===\n{json.dumps(dl, ensure_ascii=False)}"
+    )
+
+    council_system = f"""אתה מועצת יועצי השקעות. נתח את השאלה מ-5 זוויות שונות.
+
+לפני הניתוח — אם השאלה נוגעת למניה ספציפית או לאירוע שוק, בצע WebSearch לחדשות רלוונטיות ושלב ממצאים בניתוח.
+
+## נתוני התיק
+{ctx}
+
+## פורמט תשובה (חובה בדיוק):
+
+🔴 **הסקפטן**
+[מה יכול להשתבש, מה מוחמץ, הטיעון הכי חזק נגד — 150 מילים]
+
+🟢 **האופטימיסט**
+[פוטנציאל מוחמץ, תרחיש upside — 150 מילים]
+
+🔵 **מהשורש**
+[מה בעצם מנסים לפתור, האם השאלה נכונה — 100 מילים]
+
+👁 **עיניים טריות**
+[מה קללת הידע מסתירה — 100 מילים]
+
+⚡ **המבצע**
+[צעד ראשון ספציפי ומדיד — 80 מילים]
+
+---
+## פסיקת המועצה
+**מסכימים על:** ...
+**חולקים על:** ...
+**המלצה:** ...
+**צעד ראשון:** ..."""
+
+    history = ''.join([
+        f"{'USER' if m.get('role') == 'user' else 'COUNCIL'}: {m.get('content', '')}\n"
+        for m in messages[:-1]
+    ])
+    last   = messages[-1].get('content', '') if messages else ''
+    result = _run_llm(council_system, f'{history}USER: {last}\nCOUNCIL:', timeout=180)
+    text   = result['output'].strip() if result['ok'] else f'שגיאה: {result.get("error", "")}'
+    return jsonify({'text': text, 'elapsed': result.get('elapsed', 0), 'mode': 'council'})
+
+
+@app.route('/oracle/chat', methods=['POST'])
+def oracle_chat():
+    data     = request.json or {}
+    messages = data.get('messages', [])
+
+    try:
+        with open(os.path.join(ROOT, 'scanner-results.json'), encoding='utf-8') as f:
+            scanner = json.load(f)[:5]
+    except Exception:
+        scanner = []
+    try:
+        with open(DECISIONS_FILE, encoding='utf-8') as f:
+            dl = json.load(f)[-5:]
+    except Exception:
+        dl = []
+
+    ctx = (
+        f"=== PORTFOLIO ===\n{_portfolio_snapshot_compact()}\n\n"
+        f"=== WATCHLIST ===\n{_watchlist_compact()}\n\n"
+        f"=== SCANNER (אחרון) ===\n{json.dumps(scanner, ensure_ascii=False)}\n\n"
+        f"=== DECISION LOG (5 אחרונים) ===\n{json.dumps(dl, ensure_ascii=False)}"
+    )
+
+    oracle_path = os.path.join(PROMPTS_DIR, 'Oracle_Agent.md')
+    with open(oracle_path, encoding='utf-8') as f:
+        system = f.read().replace('{{PORTFOLIO_CONTEXT}}', ctx)
+
+    history = ''.join([
+        f"{'USER' if m.get('role') == 'user' else 'ORACLE'}: {m.get('content', '')}\n"
+        for m in messages[:-1]
+    ])
+    last = messages[-1].get('content', '') if messages else ''
+    result = _run_llm(system, f'{history}USER: {last}\nORACLE:', timeout=120)
+    text   = result['output'].strip() if result['ok'] else f'שגיאה: {result.get("error", "unknown")}'
+    return jsonify({'text': text, 'elapsed': result.get('elapsed', 0)})
 
 
 # ── API: ping ─────────────────────────────────────────────────────────────────
@@ -1538,16 +1644,18 @@ def _build_context(ticker: str, agent: str) -> dict:
     # ── Vault Memory (Phase 2) — compact prior-knowledge injection ───────────
     # vault_reader בונה בלוק ~600-800 תווים: פסיקה, תזה, שווי, סיכונים, היסטוריה.
     # חוסך token-burn על ניתוחים חוזרים. Fail-soft: כישלון מחזיר ''.
-    try:
-        import obsidian_layer as _ol
-        _vault_ctx = _ol.vault_reader.load_ticker_context(ticker)
-        if _vault_ctx:
-            parts += ['', '━━━ VAULT MEMORY — ידע קודם על ' + ticker + ' ━━━', _vault_ctx]
-    except Exception as _ve:
-        # fallback: try legacy section read
-        _obs = _obsidian_read_section(ticker, 'תזה נוכחית') or _obsidian_read_section(ticker, 'Thesis')
-        if _obs:
-            parts += ['', '━━━ OBSIDIAN: תזה ━━━', _obs[:1500]]
+    # מוגבל ל-analyst+devils: שאר הסוכנים מקבלים את ההקשר הזה דרך prior handoffs.
+    if agent in ('analyst', 'devils', 'quick'):
+        try:
+            import obsidian_layer as _ol
+            _vault_ctx = _ol.vault_reader.load_ticker_context(ticker)
+            if _vault_ctx:
+                parts += ['', '━━━ VAULT MEMORY — ידע קודם על ' + ticker + ' ━━━', _vault_ctx]
+        except Exception as _ve:
+            # fallback: try legacy section read
+            _obs = _obsidian_read_section(ticker, 'תזה נוכחית') or _obsidian_read_section(ticker, 'Thesis')
+            if _obs:
+                parts += ['', '━━━ OBSIDIAN: תזה ━━━', _obs[:1500]]
 
     parts += [
         '',
@@ -1569,7 +1677,7 @@ def _build_context(ticker: str, agent: str) -> dict:
 
     context = '\n'.join(parts)
     prompt  = f'{system}\n\n{context}'
-    return {'prompt': prompt, 'token_estimate': len(prompt) // 4}
+    return {'prompt': prompt, 'system': system, 'context': context, 'token_estimate': len(prompt) // 4}
 
 
 def _save_handoff(ticker: str, agent: str, content: str) -> dict:
@@ -2846,6 +2954,48 @@ def _run_claude(prompt: str, timeout: int = 600, quick: bool = False) -> dict:
             pass
 
 
+_GROQ_MODEL = 'llama-3.3-70b-versatile'
+
+
+def _run_groq(system: str, user: str, timeout: int = 600, max_tokens: int = 7000) -> dict:
+    """Groq API (llama-3.3-70b-versatile) — free tier, same return shape as _run_claude."""
+    start   = time.time()
+    api_key = os.environ.get('GROQ_API_KEY', '').strip()
+    if not api_key:
+        return {'ok': False, 'output': '', 'error': 'GROQ_API_KEY not set', 'elapsed': 0}
+    try:
+        resp = _requests.post(
+            'https://api.groq.com/openai/v1/chat/completions',
+            headers={'Authorization': f'Bearer {api_key}', 'Content-Type': 'application/json'},
+            json={
+                'model':       _GROQ_MODEL,
+                'messages':    [
+                    {'role': 'system', 'content': system},
+                    {'role': 'user',   'content': user},
+                ],
+                'max_tokens':  max_tokens,
+                'temperature': 0.3,
+            },
+            timeout=(15, min(timeout, 120)),
+        )
+        resp.raise_for_status()
+        elapsed = time.time() - start
+        content = resp.json()['choices'][0]['message']['content'].strip()
+        return {'ok': True, 'output': content, 'error': '', 'elapsed': elapsed}
+    except Exception as e:
+        return {'ok': False, 'output': '', 'error': str(e), 'elapsed': time.time() - start}
+
+
+def _run_llm(system: str, user: str, timeout: int = 600) -> dict:
+    """Dispatcher: Groq אם GROQ_API_KEY מוגדר ומצליח, אחרת Claude CLI."""
+    if os.environ.get('GROQ_API_KEY', '').strip():
+        result = _run_groq(system, user, timeout=timeout)
+        if result['ok']:
+            return result
+        print(f'[GROQ→CLAUDE FALLBACK] {result.get("error", "empty")}')
+    return _run_claude(f'{system}\n\n{user}', timeout=timeout)
+
+
 def _run_agent_thread(run_id: str, ticker: str, agent: str, chain: bool = False):
     """Background thread: build context → call claude → save → update run state."""
     def update(**kwargs):
@@ -2862,11 +3012,11 @@ def _run_agent_thread(run_id: str, ticker: str, agent: str, chain: bool = False)
                 # AMZN ראינו ~21 דק' עם visual-scores → 1500s budget בטוח.
                 # שאר הסוכנים מסתפקים בברירת המחדל 600s.
                 timeout = 1500 if ag == 'analyst' else 600
-                res = _run_claude(ctx['prompt'], timeout=timeout)
+                res = _run_llm(ctx['system'], ctx['context'], timeout=timeout)
                 # ניסיון נוסף אחד אם נכשל או פלט ריק
                 if not res['ok'] or not res['output'].strip():
                     print(f'[RETRY] {ticker}/{ag} — {res.get("error", "empty output")}')
-                    res = _run_claude(ctx['prompt'], timeout=timeout)
+                    res = _run_llm(ctx['system'], ctx['context'], timeout=timeout)
                 if not res['ok'] or not res['output'].strip():
                     update(status='failed', error=f'{ag}: {res.get("error") or "empty output"}',
                            finished=datetime.now().isoformat())
@@ -2911,11 +3061,11 @@ def _run_agent_thread(run_id: str, ticker: str, agent: str, chain: bool = False)
             # Quick mode: shorter timeout, returns faster
             is_quick = (agent == 'quick')
             timeout = 180 if is_quick else 600
-            res = _run_claude(ctx['prompt'], timeout=timeout)
+            res = _run_llm(ctx['system'], ctx['context'], timeout=timeout)
             # ניסיון נוסף אחד אם נכשל או פלט ריק
             if not res['ok'] or not res['output'].strip():
                 print(f'[RETRY] {ticker}/{agent} — {res.get("error", "empty output")}')
-                res = _run_claude(ctx['prompt'], timeout=timeout)
+                res = _run_llm(ctx['system'], ctx['context'], timeout=timeout)
             if not res['ok'] or not res['output'].strip():
                 update(status='failed', error=res.get('error') or 'empty output',
                        finished=datetime.now().isoformat())
@@ -2933,7 +3083,9 @@ def _run_agent_thread(run_id: str, ticker: str, agent: str, chain: bool = False)
 
 @app.route('/api/run', methods=['POST'])
 def api_run():
-    data   = request.get_json()
+    data = request.get_json()
+    if not data:
+        return jsonify({'error': 'JSON body required'}), 400
     ticker = (data.get('ticker') or '').upper().strip()
     agent  = (data.get('agent')  or '').lower().strip()
     if not ticker:
@@ -2943,6 +3095,30 @@ def api_run():
     is_quick = (agent == 'quick')
     if not chain and not is_quick and agent not in PROMPT_FILES:
         return jsonify({'error': f'unknown agent: {agent}'}), 400
+
+    # ── שער טריות: מניעת ריצה כפולה תוך 14 יום ────────────────────────────
+    # quick תמיד מותר. chain בודק IC (השלב האחרון). force=true עוקף את השער.
+    if not is_quick and not bool(data.get('force')):
+        rv_dir   = os.path.join(ANALYSES_DIR, ticker, '_reviews')
+        check_ag = AGENT_ORDER if chain else [agent]
+        stale    = []
+        for ag in check_ag:
+            rp = os.path.join(rv_dir, f'{ag}.json')
+            if not os.path.exists(rp) or (time.time() - os.path.getmtime(rp)) / 86400 >= 14:
+                stale.append(ag)
+        if not stale:
+            youngest = min(
+                (time.time() - os.path.getmtime(os.path.join(rv_dir, f'{ag}.json'))) / 86400
+                for ag in check_ag
+            )
+            return jsonify({
+                'status':     'skipped',
+                'reason':     'freshness_gate',
+                'ticker':     ticker,
+                'agent':      agent,
+                'days_since': round(youngest, 1),
+                'message':    f'ניתוח {ticker} עדכני ({round(youngest, 1)} ימים). שלח force=true לעקיפה.',
+            }), 200
 
     run_id = f'{ticker}_{agent}_{int(time.time())}'
     with _runs_lock:

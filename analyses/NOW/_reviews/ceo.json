@@ -1,0 +1,14 @@
+{
+  "ticker": "NOW",
+  "agent": "ceo",
+  "date": "2026-06-08",
+  "verdict": "BUY",
+  "score": 8,
+  "thesis": "חברה: ServiceNow (NOW) · החלטה: APPROVED WITH CONDITIONS · גודל: 5% (~$96) · שכבה: Growthסיבת ההחלטה: מתקן חיסור Growth, איכות 8/10, R/R אטרקטיבי.תנאי",
+  "key_risks": [],
+  "position_size_pct": 5,
+  "valuation_summary": null,
+  "entry_exit_plan": null,
+  "handoff_summary": "חברה: ServiceNow (NOW) · החלטה: APPROVED WITH CONDITIONS · גודל: 5% (~$96) · שכבה: Growthסיבת ההחלטה: מתקן חיסור Growth, איכות 8/10, R/R אטרקטיבי.תנאי מקדים: איזון IBIT (11% → 4%) למימון.הטיה לעקוב: עיגון על שיא $211.פסיקה צפויה ל-Executor: Scale In — לא Buy Now.",
+  "_backfilled": true
+}

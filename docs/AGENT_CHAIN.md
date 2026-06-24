@@ -25,18 +25,48 @@ Breaking handoffs may break the entire investment workflow.
 # Agent Chain
 
 ```text
-Unified_Analyst
+Oracle (Meta-Orchestrator — entry point)
+→ Unified_Analyst
 → DevilsAdvocate
 → CEO_Agent
 → Executor
+→ [llm-council — only if IC borderline or STRATEGY/SCOUT mode]
 → InvestmentCommittee
                    ↑
           TradeRecorder (post-buy)
+
+Oracle also routes to:
+  variance-analysis skill  (REVIEW mode / monthly-close)
+  llm-council skill        (SCOUT / DECIDE / STRATEGY modes)
 ```
 
 Execution order matters.
 
 Do not reorder agents without explicit instruction.
+
+## Oracle — Entry Point
+
+Prompt: `מערכת תיק ההשקעות/Oracle_Agent.md`
+
+Oracle reads a Briefing Pack (scanner-results.json + portfolio.json summary + decision_log.json) then routes to the correct mode:
+
+| Mode | When | Tools |
+|------|------|-------|
+| SCOUT | New scanner results — which stock to analyze first | llm-council (prioritization) |
+| ANALYZE | New ticker — full chain | Analyst → DA → CEO → Executor → IC |
+| DECIDE | IC verdict is WAIT or APPROVED WITH CONDITIONS | llm-council (tiebreaker) |
+| REVIEW | Portfolio health / monthly close | variance-analysis |
+| STRATEGY | Portfolio-level strategic question | llm-council (direct) |
+
+## llm-council — Trigger Conditions
+
+Council is expensive (~11x tokens). Run only when:
+- IC confidence < 7/10 or verdict is not APPROVED/REJECTED (DECIDE mode)
+- Ranking multiple scanner opportunities (SCOUT mode)
+- Strategic portfolio question — no specific ticker (STRATEGY mode)
+- User explicitly writes: "council this" / "pressure-test" / "war room"
+
+Never run council on a single-ticker ANALYZE run — the chain already covers multiple perspectives.
 
 ---
 
