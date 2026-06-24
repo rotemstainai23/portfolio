@@ -11,6 +11,7 @@ from __future__ import annotations
 
 import json
 import re
+import time
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
@@ -35,20 +36,33 @@ PROMPT_FILES = {
     "ic":       "InvestmentCommittee_Updated.md",
 }
 
-# טוקנים מקסימליים לכל סוכן (Groq llama-3.3-70b תומך 8k output)
+# ponytail: קצר את הפרומפטים לGROQ_PROMPT_LINES שורות בלבד
+# הפרומפטים המלאים מיועדים לClaude+בראוזר. Groq צריך רק את הRole.
+# Groq free: 6k TPM. 80 שורות × ~10 טוקנים = ~800 in + 2000 out = 2800/קריאה.
+GROQ_PROMPT_LINES = 80
+
 MAX_TOKENS = {
-    "analyst":  4000,
-    "devils":   2500,
+    "analyst":  2000,
+    "devils":   2000,
     "ceo":      2000,
     "executor": 2000,
-    "ic":       3000,
+    "ic":       2000,
 }
+
+# שניות המתנה בין קריאות Groq — מניעת rate-limit (6k TPM)
+INTER_AGENT_SLEEP = 10
 
 
 def _load_prompt(agent: str) -> str:
+    """טוען את הRole בלבד (GROQ_PROMPT_LINES שורות ראשונות).
+
+    הפרומפטים המלאים כוללים הוראות גלישה לClaude; Groq צריך רק את הRole.
+    """
     path = PROMPTS / PROMPT_FILES[agent]
     try:
-        return path.read_text(encoding="utf-8")
+        full = path.read_text(encoding="utf-8")
+        lines = full.splitlines()[:GROQ_PROMPT_LINES]
+        return "\n".join(lines)
     except Exception as exc:
         logger.warning("לא ניתן לטעון פרומפט %s: %s", agent, exc)
         return f"אתה סוכן {agent} לניתוח השקעות. נתח את המניה ובצע את תפקידך."
@@ -214,7 +228,10 @@ def run_chain(ticker: str) -> dict[str, Any]:
     outputs: dict[str, str] = {}
     reviews: dict[str, dict] = {}
 
-    for agent in AGENT_ORDER:
+    for i, agent in enumerate(AGENT_ORDER):
+        if i > 0:
+            logger.info("  המתנה %ds לפני %s (rate-limit)", INTER_AGENT_SLEEP, agent)
+            time.sleep(INTER_AGENT_SLEEP)
         logger.info("  סוכן: %s", agent)
         system  = _load_prompt(agent)
         user    = _build_user_msg(ticker, agent, mkt, outputs)
