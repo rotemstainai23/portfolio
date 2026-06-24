@@ -1,16 +1,16 @@
 {
   "ticker": "DRAM",
-  "generated": "2026-06-23T13:31:15+00:00",
+  "generated": "2026-06-24T13:39:54+00:00",
   "snapshot": {
     "ticker": "DRAM",
     "price": {
       "label": "מחיר נוכחי",
-      "value": 68.74500274658203,
+      "value": 70.1500015258789,
       "unit": "USD",
       "source": {
         "name": "Yahoo Finance",
         "url": "https://finance.yahoo.com/quote/DRAM",
-        "as_of": "2026-06-23"
+        "as_of": "2026-06-24"
       },
       "note": null
     },
@@ -21,7 +21,7 @@
       "source": {
         "name": "Yahoo Finance",
         "url": "https://finance.yahoo.com/quote/DRAM",
-        "as_of": "2026-06-23"
+        "as_of": "2026-06-24"
       },
       "note": null
     },
@@ -30,7 +30,7 @@
   "summary": {
     "question": "תן סקירת השקעה מלאה ומאוזנת",
     "ticker": "DRAM",
-    "summary": "שלום, \n\nאני כאן כדי לספק לך סקירה מלאה ומאוזנת על השקעה. \n\nהשקעה היא פעולה שבה אתה משקיע כסף במטרה להרוויח רווחים. ישנם סוגים רבים של השקעות, כגון מניות, איגרות חוב, נדל\"ן ועוד.\n\nיתרון מרכזי של השקעה הוא הפוטנציאל להרוויח רווחים גבוהים. השקעה יכולה לספק לך הכנסה פסיבית, כלומר הכנסה שאינה דורשת מאמץ רב מצדך.\n\nחיסרון מרכזי של השקעה הוא הסיכון. השקעה תמיד כרוכה בסיכון, כיוון שאין הבטחה שתרוויח רווחים. ישנו סיכון שתפסיד כסף, במיוחד אם אינך מבין היטב את ההשקעה או אם אינך מגוון את ההשקעות שלך.\n\nבנוגע ל-DRAM, לא נמצאו מספיק נתונים על מנת לבנות תשובה מבוססת. \n\nבסיכום, השקעה יכולה להיות דרך טובה להרוויח רווחים, אך חשוב להבין היטב את הסיכונים והיתרונות, ולקחת החלטות מושכלות. \n\nהערה: זהו מידע מחקרי בלבד, לא ייעוץ השקעות אישי.",
+    "summary": "שלום, \n\nאני כאן כדי לעזור לך להבין את המידע המחקרי שאתה צריך. \n\nהנושא שלנו היום הוא השקעה, ואני רוצה להדגיש שזהו מידע מחקרי בלבד, ולא ייעוץ השקעות אישי.\n\nכשמדברים על השקעה, יש הרבה דברים שצריך לקחת בחשבון. אחד הדברים החשובים הוא להבין את הנתונים והמידע שיש לנו.\n\nבמקרה שלנו, לא נמצאו מספיק נתונים עבור DRAM כדי לבנות תשובה מלאה. \n\nיתרון מרכזי של השקעה הוא הפוטנציאל לצמיחה ורווח. \n\nחיסרון מרכזי הוא הסיכון להפסד. \n\nאני מקווה שהמידע הזה עזר לך להבין טוב יותר את הנושא. \n\nאם יש לך עוד שאלות, אנא תרגיש חופשי לשאול.",
     "data_points": [],
     "sources": [],
     "reasoning": [
@@ -47,23 +47,23 @@
     "ticker": "DRAM",
     "last_price": {
       "label": "מחיר אחרון",
-      "value": 68.75,
+      "value": 70.15,
       "unit": "USD",
       "source": {
         "name": "Yahoo Finance",
         "url": "https://finance.yahoo.com/quote/DRAM",
-        "as_of": "2026-06-23"
+        "as_of": "2026-06-24"
       },
       "note": null
     },
     "sma50": {
       "label": "ממוצע נע 50",
-      "value": 52.57,
+      "value": 53.31,
       "unit": "USD",
       "source": {
         "name": "Yahoo Finance",
         "url": "https://finance.yahoo.com/quote/DRAM",
-        "as_of": "2026-06-23"
+        "as_of": "2026-06-24"
       },
       "note": null
     },
@@ -74,51 +74,51 @@
       "source": {
         "name": "Yahoo Finance",
         "url": "https://finance.yahoo.com/quote/DRAM",
-        "as_of": "2026-06-23"
+        "as_of": "2026-06-24"
       },
       "note": null
     },
     "rsi14": {
       "label": "RSI(14)",
-      "value": 56.35,
+      "value": 57.62,
       "unit": "",
       "source": {
         "name": "Yahoo Finance",
         "url": "https://finance.yahoo.com/quote/DRAM",
-        "as_of": "2026-06-23"
+        "as_of": "2026-06-24"
       },
       "note": "מעל 70 = קניית יתר, מתחת 30 = מכירת יתר"
     },
     "macd": {
       "label": "MACD",
-      "value": 5.83,
+      "value": 5.54,
       "unit": "",
       "source": {
         "name": "Yahoo Finance",
         "url": "https://finance.yahoo.com/quote/DRAM",
-        "as_of": "2026-06-23"
+        "as_of": "2026-06-24"
       },
       "note": null
     },
     "macd_signal": {
       "label": "קו אות MACD",
-      "value": 5.47,
+      "value": 5.49,
       "unit": "",
       "source": {
         "name": "Yahoo Finance",
         "url": "https://finance.yahoo.com/quote/DRAM",
-        "as_of": "2026-06-23"
+        "as_of": "2026-06-24"
       },
       "note": null
     },
     "atr14": {
       "label": "ATR(14)",
-      "value": 5.45,
+      "value": 5.24,
       "unit": "USD",
       "source": {
         "name": "Yahoo Finance",
         "url": "https://finance.yahoo.com/quote/DRAM",
-        "as_of": "2026-06-23"
+        "as_of": "2026-06-24"
       },
       "note": "תנודתיות ממוצעת יומית"
     },
@@ -128,25 +128,20 @@
       55.38,
       46.43
     ],
-    "resistance": [
-      70.15
-    ],
+    "resistance": [],
     "entry_zone": [
       56.38,
       56.94
     ],
-    "exit_zone": [
-      69.45,
-      70.15
-    ],
+    "exit_zone": null,
     "stop_loss": {
       "label": "הצעת Stop Loss",
-      "value": 50.93,
+      "value": 51.14,
       "unit": "USD",
       "source": {
         "name": "Yahoo Finance",
         "url": "https://finance.yahoo.com/quote/DRAM",
-        "as_of": "2026-06-23"
+        "as_of": "2026-06-24"
       },
       "note": "תמיכה קרובה פחות ATR אחד"
     },
@@ -154,7 +149,7 @@
       {
         "name": "Yahoo Finance",
         "url": "https://finance.yahoo.com/quote/DRAM",
-        "as_of": "2026-06-23"
+        "as_of": "2026-06-24"
       }
     ]
   },
@@ -173,6 +168,14 @@
   "news": {
     "ticker": "DRAM",
     "items": [
+      {
+        "title": "SanDisk Plunges 11%, Micron and Western Digital Slide 10% as Korean Market Crash Hits Memory Chips",
+        "url": "https://247wallst.com/investing/2026/06/23/sandisk-plunges-11-micron-and-western-digital-slide-10-as-korean-market-crash-hits-memory-chips/?.tsrc=rss",
+        "date": "2026-06-23",
+        "summary": "Shares of SanDisk (NASDAQ:SNDK) are leading a sharp memory-chip selloff Tuesday morning session, with SanDisk stock down 11% to $2,027.50. The decline comes one day after the stock closed at a record high, capping a stunning run higher. Micron Technology (NASDAQ:MU) stock is sliding alongside it, of",
+        "sentiment_score": -1,
+        "sentiment": "שלילי"
+      },
       {
         "title": "AI Memory Bottleneck? These ETFs Let You Buy All the Winners",
         "url": "https://finance.yahoo.com/markets/stocks/articles/ai-memory-bottleneck-etfs-let-123900189.html?.tsrc=rss",
@@ -284,26 +287,18 @@
         "summary": "DRAM is a popular ETF for the massive growth and demand surrounding AI memory chips, but two stocks in particular help it to stand out.",
         "sentiment_score": 1,
         "sentiment": "חיובי"
-      },
-      {
-        "title": "The DRAM Shortage to Extend Into 2028. This Means Micron Stock Could Easily Double From Here.",
-        "url": "https://www.barchart.com/story/news/2223506/the-dram-shortage-to-extend-into-2028-this-means-micron-stock-could-easily-double-from-here?.tsrc=rss",
-        "date": "2026-05-31",
-        "summary": "Memory supply shortage may not be resolved anytime soon, as analysts revise their MU price target upward.",
-        "sentiment_score": 0,
-        "sentiment": "ניטרלי"
       }
     ],
     "count": 15,
     "positive": 8,
-    "negative": 1,
-    "neutral": 6,
-    "net": 7,
+    "negative": 2,
+    "neutral": 5,
+    "net": 6,
     "verdict": "סנטימנט חיובי נטו בכותרות האחרונות",
     "source": {
       "name": "Yahoo Finance RSS",
       "url": "https://finance.yahoo.com/quote/DRAM/news",
-      "as_of": "2026-06-19"
+      "as_of": "2026-06-23"
     },
     "method": "דירוג היוריסטי שקוף מבוסס לקסיקון מילות מפתח (לא LLM)."
   },
