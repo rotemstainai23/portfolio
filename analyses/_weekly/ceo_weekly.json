@@ -1,19 +1,19 @@
 {
   "generated": "2026-06-24",
   "week_label": "שבוע 18/06-24/06",
-  "ceo_verdict": "מגמת השבוע: התיק השקעות הראה ביצועים דומים לשוק, עם ירידה קלה בשווי. המניות NVDA, MSFT ו-GOOG היו בין הגורמים העיקריים לירידה.",
+  "ceo_verdict": "מגמת השבוע: התיק הושפע מירידה במניות הטכנולוגיה, במיוחד NVDA ו-MSFT, שירדו 5.7% בשבוע האחרון.",
   "portfolio_performance": {
-    "total_value": 1757,
-    "week_pct": 0.1,
-    "total_pnl_pct": 9.4,
+    "total_value": 1758,
+    "week_pct": -3.9,
+    "total_pnl_pct": 9.5,
     "ytd_pct": null,
-    "vs_spy_week": 1.2,
+    "vs_spy_week": -1.5,
     "regime": "risk_on"
   },
   "macro_snapshot": {
-    "vix": 18.92,
-    "spy_week_pct": -1.1,
-    "qqq_week_pct": -1.1,
+    "vix": 19.2,
+    "spy_week_pct": -2.4,
+    "qqq_week_pct": -3.6,
     "dxy_trend": null,
     "rate_outlook": null,
     "regime_note": null
@@ -22,7 +22,7 @@
     {
       "ticker": "NVDA",
       "company": "NVDA",
-      "price_change_pct": -2.5,
+      "price_change_pct": -5.7,
       "status": "",
       "key_news": "",
       "headline": "",
@@ -31,7 +31,7 @@
     {
       "ticker": "MSFT",
       "company": "MSFT",
-      "price_change_pct": -4.3,
+      "price_change_pct": -5.7,
       "status": "",
       "key_news": "",
       "headline": "",
@@ -40,7 +40,7 @@
     {
       "ticker": "GOOG",
       "company": "GOOG",
-      "price_change_pct": -3.4,
+      "price_change_pct": -4.4,
       "status": "",
       "key_news": "",
       "headline": "",
@@ -49,7 +49,7 @@
     {
       "ticker": "META",
       "company": "META",
-      "price_change_pct": -0.8,
+      "price_change_pct": -4.5,
       "status": "",
       "key_news": "",
       "headline": "",
@@ -58,7 +58,7 @@
     {
       "ticker": "AVGO",
       "company": "AVGO",
-      "price_change_pct": -0.5,
+      "price_change_pct": -2.1,
       "status": "",
       "key_news": "",
       "headline": "",
@@ -67,7 +67,7 @@
     {
       "ticker": "MU",
       "company": "MU",
-      "price_change_pct": 7.1,
+      "price_change_pct": -1.8,
       "status": "",
       "key_news": "",
       "headline": "",
@@ -76,7 +76,7 @@
     {
       "ticker": "IBIT",
       "company": "IBIT",
-      "price_change_pct": -2.0,
+      "price_change_pct": -7.2,
       "status": "",
       "key_news": "",
       "headline": "",
@@ -85,7 +85,7 @@
     {
       "ticker": "GLDM",
       "company": "GLDM",
-      "price_change_pct": -2.4,
+      "price_change_pct": -7.6,
       "status": "",
       "key_news": "",
       "headline": "",
@@ -94,7 +94,7 @@
     {
       "ticker": "VST",
       "company": "VST",
-      "price_change_pct": 9.7,
+      "price_change_pct": 5.3,
       "status": "",
       "key_news": "",
       "headline": "",
@@ -103,7 +103,7 @@
     {
       "ticker": "APLD",
       "company": "APLD",
-      "price_change_pct": 6.0,
+      "price_change_pct": -5.1,
       "status": "",
       "key_news": "",
       "headline": "",
@@ -112,7 +112,7 @@
     {
       "ticker": "OKLO",
       "company": "OKLO",
-      "price_change_pct": -0.5,
+      "price_change_pct": -8.1,
       "status": "",
       "key_news": "",
       "headline": "",
@@ -145,23 +145,23 @@
   ],
   "scenarios_next_week": {},
   "action_items": [
-    "מגמת השבוע: התיק השקעות הראה ביצועים דומים לשוק, עם ירידה קלה בשווי. המניות NVDA, MSFT ו-GOOG היו בין הגורמים העיקריים לירידה.",
-    "סיכון עיקרי לשבוע הבא: המשך ירידה במניות הטכנולוגיה, כגון MSFT ו-GOOG, עלול להכאיב את התיק השקעות.",
-    "הזדמנות הסקנר: הקטליסט של CEVA, 'AI Double-Tap That Lit Up Cadence', עדיין רלוונטי ויכול להוות הזדמנות לרווח.",
-    "פעולה ספציפית אחת: כדאי לעקוב אחרי הביצועים של MU, שרשמה עלייה של 7.1% בשבוע האחרון, ולבחון אם היא יכולה להמשיך לרשום עלייה."
+    "מגמת השבוע: התיק הושפע מירידה במניות הטכנולוגיה, במיוחד NVDA ו-MSFT, שירדו 5.7% בשבוע האחרון.",
+    "סיכון עיקרי לשבוע הבא: ירידה נוספת במניות הטכנולוגיה עלולה להכאיב את התיק, במיוחד אם QQQ ימשיך לרדת.",
+    "הזדמנות הסקנר: הקטליסט של CEVA, 'AI Double-Tap That Lit Up Cadence', עדיין רלוונטי ויכול להוות הזדמנות לרכישה.",
+    "פעולה ספציפית אחת: כדאי לעקוב אחרי מניית VST, שעלתה 5.3% בשבוע האחרון, ולבדוק אם היא יכולה להמשיך לטפס."
   ],
   "macro": {
     "spy": {
-      "price": 733.58,
-      "chg_week": -1.1
+      "price": 736.75,
+      "chg_week": -2.4
     },
     "qqq": {
-      "price": 713.65,
-      "chg_week": -1.1
+      "price": 717.11,
+      "chg_week": -3.6
     },
     "vix": {
-      "price": 18.92,
-      "chg_week": 15.3
+      "price": 19.2,
+      "chg_week": 17.0
     }
   }
 }
