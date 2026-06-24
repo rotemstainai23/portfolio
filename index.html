@@ -763,18 +763,20 @@ async function renderResearch(){
     + '<div class="card">'
     + '<div style="display:flex;gap:8px;margin-bottom:8px">'
     + '<input id="research-input" placeholder="AAPL" autocapitalize="characters" style="flex:1;background:rgba(148,163,184,.08);border:1px solid var(--border2);border-radius:10px;color:var(--text);padding:11px 13px;font-size:16px;font-weight:800;font-family:Heebo,sans-serif;outline:none" />'
-    + '<button id="research-btn" onclick="goResearch()" style="background:var(--blue);color:#fff;border:none;border-radius:10px;padding:11px 20px;font-size:14px;font-weight:800;font-family:Heebo,sans-serif;cursor:pointer">נתח</button>'
+    + '<button id="research-btn" onclick="goResearch()" style="background:var(--blue);color:#fff;border:none;border-radius:10px;padding:11px 16px;font-size:13px;font-weight:800;font-family:Heebo,sans-serif;cursor:pointer">מחקר</button>'
+    + '<button id="chain-btn" onclick="goChain()" style="background:var(--purple,#7c3aed);color:#fff;border:none;border-radius:10px;padding:11px 16px;font-size:13px;font-weight:800;font-family:Heebo,sans-serif;cursor:pointer">שרשרת</button>'
     + '</div>'
     + (hasToken
-        ? '<div style="font-size:11px;color:var(--muted2)">GitHub Actions · Groq · תוצאה בעוד ~3 דק\'</div>'
-        : '<div style="font-size:11px;color:var(--orange)">הגדר טוקן GitHub בהגדרות להפעלת ניתוח</div>')
+        ? '<div style="font-size:11px;color:var(--muted2)">מחקר ~3 דק\' · שרשרת 5 סוכנים ~10 דק\'</div>'
+        : '<div style="font-size:11px;color:var(--orange)">הגדר טוקן GitHub בהגדרות</div>')
     + '<div id="research-status" style="font-size:12px;font-weight:700;min-height:18px;margin-top:8px;line-height:1.5"></div>'
     + '</div>';
 
   el.innerHTML = html;
 
-  var reviews = await fetchJSON('analyses/_reviews_index.json');
+  var reviews  = await fetchJSON('analyses/_reviews_index.json');
   var resIdx   = await fetchJSON('analyses/_research/index.json');
+  var chainIdx = await fetchJSON('analyses/_chain/index.json');
 
   if (reviews && reviews.reviews && reviews.reviews.length) {
     var rvRows = reviews.reviews.slice(0,20).map(function(r){
@@ -791,6 +793,23 @@ async function renderResearch(){
     }).join('');
     el.innerHTML += '<div class="sec-hdr">IC Reviews</div>'
       + '<div class="card" style="padding:4px 16px">' + rvRows + '</div>';
+  }
+
+  if (chainIdx && chainIdx.length) {
+    var scColor = function(sc){ return sc >= 7 ? 'var(--green)' : sc >= 5 ? 'var(--orange)' : 'var(--red)'; };
+    var vColor  = function(vd){ return (vd||'').includes('BUY') ? 'var(--green)' : (vd||'').includes('PASS') || (vd||'').includes('SELL') ? 'var(--red)' : 'var(--orange)'; };
+    var cRows = chainIdx.slice(0,12).map(function(r){
+      var sc = r.ic_score, vd = (r.ic_verdict||'').toUpperCase();
+      var d = (r.generated||'').slice(0,10);
+      return '<a href="analyses/_chain/' + r.ticker + '/chain.json" style="display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border);text-decoration:none;color:inherit">'
+        + '<div><span style="font-size:15px;font-weight:800">' + r.ticker + '</span><span style="font-size:10px;color:var(--muted2);margin-right:8px">' + d + '</span></div>'
+        + '<div style="display:flex;align-items:center;gap:8px">'
+        + (sc != null ? '<span style="font-weight:800;color:' + scColor(sc) + '">' + sc + '/10</span>' : '')
+        + (vd ? '<span style="font-size:11px;font-weight:700;color:' + vColor(vd) + '">' + vd + '</span>' : '')
+        + '</div></a>';
+    }).join('');
+    el.innerHTML += '<div class="sec-hdr">שרשראות ענן</div>'
+      + '<div class="card" style="padding:4px 16px">' + cRows + '</div>';
   }
 
   if (resIdx && resIdx.length) {
@@ -850,6 +869,51 @@ async function goResearch(){
   } catch(e) {
     if (stat) { stat.style.color = 'var(--red)'; stat.textContent = 'שגיאת רשת: ' + e.message; }
     if (btn) { btn.disabled = false; btn.textContent = 'נתח'; }
+  }
+}
+
+async function goChain(){
+  var t = ($('research-input').value||'').trim().toUpperCase();
+  if (!t) return;
+
+  var token = '';
+  try { token = (localStorage.getItem('github_token')||'').trim(); } catch(e){}
+
+  var btn  = $('chain-btn');
+  var stat = $('research-status');
+
+  if (!token) {
+    if (stat) { stat.style.color = 'var(--orange)'; stat.textContent = 'נדרש טוקן GitHub בהגדרות'; }
+    return;
+  }
+
+  if (btn) { btn.disabled = true; btn.textContent = '...'; }
+  if (stat) { stat.style.color = 'var(--muted2)'; stat.textContent = 'שולח שרשרת...'; }
+
+  try {
+    var r = await fetch(
+      'https://api.github.com/repos/rotemstainai23/portfolio/actions/workflows/chain.yml/dispatches',
+      {
+        method: 'POST',
+        headers: {
+          'Authorization': 'token ' + token,
+          'Accept': 'application/vnd.github+json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ ref: 'main', inputs: { ticker: t } }),
+      }
+    );
+    if (r.status === 204) {
+      if (stat) { stat.style.color = 'var(--green)'; stat.textContent = t + ' — שרשרת 5 סוכנים פעילה. תוצאות בעוד ~10 דק\''; }
+      if (btn) { btn.textContent = 'נשלח'; }
+    } else {
+      var err = {}; try { err = await r.json(); } catch(_){}
+      if (stat) { stat.style.color = 'var(--red)'; stat.textContent = 'שגיאה ' + r.status + ': ' + (err.message || r.statusText); }
+      if (btn) { btn.disabled = false; btn.textContent = 'שרשרת'; }
+    }
+  } catch(e) {
+    if (stat) { stat.style.color = 'var(--red)'; stat.textContent = 'שגיאת רשת: ' + e.message; }
+    if (btn) { btn.disabled = false; btn.textContent = 'שרשרת'; }
   }
 }
 

@@ -19,6 +19,7 @@ from pathlib import Path
 from typing import Any, Callable
 
 from . import db
+from .agents import chain as chain_mod
 from .agents import synthesis
 from .analytics import dcf as dcf_mod
 from .analytics import earnings, fundamentals, sentiment, smartmoney, superinvestors, technical
@@ -115,11 +116,17 @@ def _validate_ticker(raw: str) -> str:
 
 def main() -> None:
     ap = argparse.ArgumentParser(description="מנוע engine - CLI")
-    ap.add_argument("--mode", default="research", choices=["research"])
+    ap.add_argument("--mode", default="research", choices=["research", "chain"])
     ap.add_argument("--ticker", required=True)
     args = ap.parse_args()
 
     ticker = _validate_ticker(args.ticker)
+
+    if args.mode == "chain":
+        chain_mod.run_chain(ticker)
+        _notify(ticker)
+        return
+
     payload = research(ticker)
     out_dir = _write(ticker, payload)
     logger.info("נכתב: %s", out_dir / "report.json")

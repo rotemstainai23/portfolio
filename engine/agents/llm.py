@@ -26,7 +26,7 @@ def llm_available() -> bool:
     return bool(GROQ_API_KEY)
 
 
-def explain(prompt: str, *, heavy: bool = False, system: Optional[str] = None) -> Optional[str]:
+def explain(prompt: str, *, heavy: bool = False, system: Optional[str] = None, max_tokens: int = 1200) -> Optional[str]:
     """מבקש הסבר מה-LLM (Groq). מחזיר None אם אין מפתח או אם הקריאה נכשלה.
 
     הפרמטר heavy נשמר לתאימות חתימה; Groq משתמש במודל יחיד.  # ponytail
@@ -46,10 +46,10 @@ def explain(prompt: str, *, heavy: bool = False, system: Optional[str] = None) -
                     {"role": "system", "content": system or _SYSTEM_GUARD},
                     {"role": "user", "content": prompt},
                 ],
-                "max_tokens": 1200,
+                "max_tokens": max_tokens,
                 "temperature": 0.3,
             },
-            timeout=45,
+            timeout=120,
         )
         resp.raise_for_status()
         return resp.json()["choices"][0]["message"]["content"].strip()

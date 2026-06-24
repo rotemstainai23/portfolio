@@ -1,0 +1,52 @@
+name: שרשרת סוכנים מלאה
+
+on:
+  workflow_dispatch:
+    inputs:
+      ticker:
+        description: 'טיקר לניתוח (לדוגמה AAPL)'
+        required: true
+
+permissions:
+  contents: write
+
+jobs:
+  chain:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install -r engine/requirements.txt
+
+      - name: הרץ שרשרת 5 סוכנים
+        env:
+          NTFY_TOPIC:     ${{ secrets.NTFY_TOPIC }}
+          GROQ_API_KEY:   ${{ secrets.GROQ_API_KEY }}
+          DASHBOARD_URL:  ${{ secrets.DASHBOARD_URL || 'https://rotemstainai23.github.io/portfolio' }}
+          SEC_USER_AGENT: ${{ secrets.SEC_USER_AGENT || 'portfolio research rotemstain23@gmail.com' }}
+          TICKER:         ${{ inputs.ticker }}
+        run: python -m engine.run --mode chain --ticker "$TICKER"
+
+      - name: עדכן אינדקסים
+        run: |
+          python scripts/build_reviews_index.py
+          python scripts/build_chain_index.py
+
+      - name: שמור תוצאות ל-git
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TICKER:       ${{ inputs.ticker }}
+        run: |
+          git config user.name "Chain Bot"
+          git config user.email "bot@portfolio"
+          git remote set-url origin "https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git"
+          git add analyses/_chain/ analyses/_reviews_index.json "analyses/$TICKER/_reviews/"
+          git diff --cached --quiet || { git commit -m "chain: $TICKER $(date +%Y-%m-%d)" && git push; }
