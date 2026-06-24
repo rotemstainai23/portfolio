@@ -1,4 +1,4 @@
-const CACHE = 'portfolio-pwa-v3';
+const CACHE = 'portfolio-pwa-v4';
 /* רק קבצים שבטוח קיימים תמיד נכללים כאן — addAll הוא all-or-nothing.
    _data.js ו-_dashboard.js נכנסים ל-cache אוטומטית דרך ה-network-first handler. */
 const STATIC = [

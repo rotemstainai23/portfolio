@@ -278,6 +278,16 @@ nav{
       <button onclick="testProxy()" style="width:100%;background:var(--surface2);border:1px solid var(--border2);border-radius:10px;padding:12px;font-size:13px;font-weight:700;font-family:Heebo,sans-serif;cursor:pointer;color:var(--muted2)">בדוק Worker (AAPL)</button>
       <div id="cfg-test" style="text-align:center;font-size:12px;margin-top:8px;min-height:18px"></div>
     </div>
+
+    <div style="margin-top:20px;padding-top:18px;border-top:1px solid var(--border)">
+      <div style="font-size:11px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px">הפעלת Workflows ידנית</div>
+      <div style="display:flex;gap:8px">
+        <button onclick="triggerWorkflow('daily.yml','יומי')" style="flex:1;background:var(--surface2);border:1px solid var(--border2);border-radius:10px;padding:11px 8px;font-size:12px;font-weight:700;font-family:Heebo,sans-serif;cursor:pointer;color:var(--muted2)">רענן יומי</button>
+        <button onclick="triggerWorkflow('sunday.yml','שבועי')" style="flex:1;background:var(--surface2);border:1px solid var(--border2);border-radius:10px;padding:11px 8px;font-size:12px;font-weight:700;font-family:Heebo,sans-serif;cursor:pointer;color:var(--muted2)">רענן שבועי</button>
+        <button onclick="triggerWorkflow('saturday.yml','סקנר')" style="flex:1;background:var(--surface2);border:1px solid var(--border2);border-radius:10px;padding:11px 8px;font-size:12px;font-weight:700;font-family:Heebo,sans-serif;cursor:pointer;color:var(--muted2)">סקנר</button>
+      </div>
+      <div id="cfg-wf" style="text-align:center;font-size:12px;margin-top:8px;min-height:18px"></div>
+    </div>
   </div>
 </div>
 
@@ -737,13 +747,19 @@ function renderWeekly(){
 /* ── RESEARCH ── */
 async function renderResearch(){
   var el = $('tab-research');
+  var hasToken = false;
+  try { hasToken = !!(localStorage.getItem('github_token')||'').trim(); } catch(e){}
+
   el.innerHTML = '<div class="card" style="margin:12px 14px">'
     + '<div style="font-size:11px;color:var(--muted);font-weight:700;margin-bottom:10px;text-transform:uppercase;letter-spacing:.06em">מחקר מניה on-demand</div>'
     + '<div style="display:flex;gap:8px;margin-bottom:4px">'
     + '<input id="research-input" placeholder="AAPL" autocapitalize="characters" style="flex:1;background:rgba(148,163,184,.08);border:1px solid var(--border2);border-radius:10px;color:var(--text);padding:10px 13px;font-size:15px;font-family:Heebo,sans-serif;outline:none" />'
-    + '<button onclick="goResearch()" style="background:var(--green);color:#07090f;border:none;border-radius:10px;padding:10px 18px;font-size:14px;font-weight:800;font-family:Heebo,sans-serif;cursor:pointer">נתח</button>'
+    + '<button id="research-btn" onclick="goResearch()" style="background:var(--green);color:#07090f;border:none;border-radius:10px;padding:10px 18px;font-size:14px;font-weight:800;font-family:Heebo,sans-serif;cursor:pointer">נתח</button>'
     + '</div>'
-    + '<div style="font-size:11px;color:var(--muted2);margin-top:6px">הניתוח רץ בענן (~2 דק) ומגיע בהתראה</div>'
+    + (hasToken
+        ? '<div style="font-size:11px;color:var(--muted2);margin-top:6px">שולח ל-GitHub Actions · תוצאה בעוד 2-3 דק\'</div>'
+        : '<div style="font-size:11px;color:var(--orange);margin-top:6px">הגדר טוקן GitHub בהגדרות להפעלת ניתוח בענן</div>')
+    + '<div id="research-status" style="font-size:12px;font-weight:700;min-height:20px;margin-top:8px"></div>'
     + '</div>';
 
   var index = await fetchJSON('analyses/_research/index.json');
@@ -761,10 +777,51 @@ async function renderResearch(){
   }
 }
 
-function goResearch(){
+async function goResearch(){
   var t = ($('research-input').value||'').trim().toUpperCase();
   if (!t) return;
-  window.location.href = 'templates/research.html?ticker=' + encodeURIComponent(t);
+
+  var token = '';
+  try { token = (localStorage.getItem('github_token')||'').trim(); } catch(e){}
+
+  /* ללא טוקן: פתח תוצאה קיימת בלבד */
+  if (!token) {
+    window.location.href = 'templates/research.html?ticker=' + encodeURIComponent(t);
+    return;
+  }
+
+  var btn = $('research-btn');
+  var stat = $('research-status');
+  if (btn) { btn.disabled = true; btn.textContent = '...'; }
+  if (stat) { stat.style.color = 'var(--muted2)'; stat.textContent = 'שולח...'; }
+
+  try {
+    var r = await fetch(
+      'https://api.github.com/repos/rotemstainai23/portfolio/actions/workflows/research.yml/dispatches',
+      {
+        method: 'POST',
+        headers: {
+          'Authorization': 'token ' + token,
+          'Accept': 'application/vnd.github+json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ ref: 'main', inputs: { ticker: t } }),
+      }
+    );
+    if (r.status === 204) {
+      if (stat) { stat.style.color = 'var(--green)'; stat.textContent = t + ' נשלח לענן. תוצאות בעוד 2-3 דק\''; }
+      if (btn) { btn.textContent = 'נשלח'; }
+      /* פתח אוטומטית את דף התוצאות אחרי השהייה */
+      setTimeout(function(){ window.location.href = 'templates/research.html?ticker=' + encodeURIComponent(t); }, 3000);
+    } else {
+      var err = {}; try { err = await r.json(); } catch(_){}
+      if (stat) { stat.style.color = 'var(--red)'; stat.textContent = 'שגיאה ' + r.status + ': ' + (err.message || r.statusText); }
+      if (btn) { btn.disabled = false; btn.textContent = 'נתח'; }
+    }
+  } catch(e) {
+    if (stat) { stat.style.color = 'var(--red)'; stat.textContent = 'שגיאת רשת: ' + e.message; }
+    if (btn) { btn.disabled = false; btn.textContent = 'נתח'; }
+  }
 }
 
 /* ── settings modal ── */
@@ -810,6 +867,27 @@ async function testProxy(){
       stat.style.color='var(--red)'; stat.textContent='תגובה לא תקינה מה-Worker';
     }
   }catch(e){ stat.style.color='var(--red)'; stat.textContent='שגיאה: '+e.message; }
+}
+
+async function triggerWorkflow(workflow, label){
+  var stat=document.getElementById('cfg-wf');
+  var token=''; try{ token=(localStorage.getItem('github_token')||'').trim(); }catch(e){}
+  if(!token){ stat.style.color='var(--red)'; stat.textContent='שמור טוקן GitHub קודם'; return; }
+  stat.style.color='var(--muted2)'; stat.textContent='שולח ' + label + '...';
+  try{
+    var r=await fetch(
+      'https://api.github.com/repos/rotemstainai23/portfolio/actions/workflows/'+workflow+'/dispatches',
+      { method:'POST',
+        headers:{'Authorization':'token '+token,'Accept':'application/vnd.github+json','Content-Type':'application/json'},
+        body:JSON.stringify({ref:'main'}) }
+    );
+    if(r.status===204){
+      stat.style.color='var(--green)'; stat.textContent='Workflow ' + label + ' הופעל בענן';
+    } else {
+      var e={}; try{e=await r.json();}catch(_){}
+      stat.style.color='var(--red)'; stat.textContent='שגיאה '+r.status+': '+(e.message||r.statusText);
+    }
+  }catch(e){ stat.style.color='var(--red)'; stat.textContent='שגיאת רשת: '+e.message; }
 }
 
 /* ── register service worker ── */
