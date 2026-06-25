@@ -1,5 +1,5 @@
 {
-  "generated": "2026-06-25T19:08:39Z",
+  "generated": "2026-06-25T19:24:30Z",
   "reviews": [
     {
       "ticker": "AMZN",
@@ -21,6 +21,13 @@
       "score": null,
       "generated": "2026-06-08",
       "summary": "חברה: IBM · תאריך: 2.6.2026פסיקה: REJECTED · גודל מאושר: 0% · ביטחון: גבוה · קונסנזוס: 4/4פעולה הבאה: לא IBM. גזום Speculation→10%, מלא Cash→6%, השלם "
+    },
+    {
+      "ticker": "MU",
+      "verdict": "BUY",
+      "score": null,
+      "generated": "2026-06-25",
+      "summary": "**ועדת השקעות - ישיבה** **אימות קלטים** * HANDOFF אנליסט: קיבלנו"
     },
     {
       "ticker": "NOW",
