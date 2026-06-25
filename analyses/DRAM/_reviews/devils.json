@@ -1,9 +1,9 @@
 {
   "ticker": "DRAM",
   "agent": "devils",
-  "date": "2026-06-24",
+  "date": "2026-06-25",
   "verdict": "PASS",
-  "score": 1.0,
+  "score": null,
   "thesis": "## ניתוח המניה DRAM ### ירושת נתוני האנליסט נתונים שהתקבלו מהאנליסט — DRAM",
   "key_risks": [],
   "position_size_pct": null,

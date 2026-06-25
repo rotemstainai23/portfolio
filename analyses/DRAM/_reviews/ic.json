@@ -1,10 +1,10 @@
 {
   "ticker": "DRAM",
   "agent": "ic",
-  "date": "2026-06-24",
-  "verdict": "BUY",
-  "score": 2.0,
-  "thesis": "## חוות דעת הוועדה לאחר בחינה מפורטת של כל הנתונים והניתוחים שהוצגו, הוועדה מגיעה למסקנה הבאה: ### תמצית הניתוח",
+  "date": "2026-06-25",
+  "verdict": null,
+  "score": null,
+  "thesis": "[ic: לא התקבל פלט מ-Groq]",
   "key_risks": [],
   "position_size_pct": null,
   "_cloud": true
