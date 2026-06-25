@@ -1,12 +1,12 @@
 {
   "generated": "2026-06-25",
-  "generated_time": "11:59",
+  "generated_time": "19:08",
   "market_date": "2026-06-25",
   "has_alerts": false,
   "alert_tickers": [],
   "macro": {
-    "spy_chg_pct": -0.05,
-    "qqq_chg_pct": -0.42,
+    "spy_chg_pct": -0.04,
+    "qqq_chg_pct": 0.63,
     "vix": null
   },
   "holdings": [
@@ -14,42 +14,55 @@
       "ticker": "NVDA",
       "sector": "AI / Semiconductors",
       "layer": "Growth",
-      "price": 199.0,
-      "chg_pct": -0.52,
-      "vol_ratio": 0.9,
-      "rsi": 38.2,
-      "w52_pos_pct": 56,
+      "price": 194.49,
+      "chg_pct": -2.27,
+      "vol_ratio": 0.6,
+      "rsi": 32.1,
+      "w52_pos_pct": 51,
       "analyst_target": 298.93,
-      "analyst_upside_pct": 50.2,
+      "analyst_upside_pct": 53.7,
       "days_to_earnings": null,
       "verdict": null,
-      "news": []
+      "news": [
+        {
+          "title": "5 Top Google AI Brains Bolted in 7 Days as Gemini Falls Behind, and Alphabet Stock Is Feeling It",
+          "url": "https://247wallst.com/investing/2026/06/25/5-top-google-ai-brains-bolted-in-7-days-as-gemini-falls-behind-and-alphabet-stock-is-feeling-it/?.tsrc=rss"
+        },
+        {
+          "title": "Following the UAE’s Lead, Iraq Warns It Could Leave OPEC. Here’s What That Would Mean for Oil Stocks",
+          "url": "https://www.fool.com/investing/2026/06/25/following-the-uaes-lead-iraq-warns-it-could-leave-opec-heres-what-that-would-mean-for-oil-stocks/?.tsrc=rss"
+        },
+        {
+          "title": "850 Billion Reasons (and Counting) Why Investors Love Apple Stock",
+          "url": "https://www.fool.com/investing/2026/06/25/850-billion-reasons-why-investors-love-apple-stock/?.tsrc=rss"
+        }
+      ]
     },
     {
       "ticker": "MSFT",
       "sector": "Tech / Cloud / AI",
       "layer": "Stability",
-      "price": 365.46,
-      "chg_pct": -2.27,
+      "price": 355.49,
+      "chg_pct": -2.73,
       "vol_ratio": 1.1,
-      "rsi": 17.9,
-      "w52_pos_pct": 5,
-      "analyst_target": 561.39,
-      "analyst_upside_pct": 53.6,
+      "rsi": 15.6,
+      "w52_pos_pct": 3,
+      "analyst_target": 561.11,
+      "analyst_upside_pct": 57.8,
       "days_to_earnings": null,
       "verdict": null,
       "news": [
         {
-          "title": "3 Profitable Stocks with Questionable Fundamentals",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/3-profitable-stocks-questionable-fundamentals-105750187.html?.tsrc=rss"
+          "title": "5 Top Google AI Brains Bolted in 7 Days as Gemini Falls Behind, and Alphabet Stock Is Feeling It",
+          "url": "https://247wallst.com/investing/2026/06/25/5-top-google-ai-brains-bolted-in-7-days-as-gemini-falls-behind-and-alphabet-stock-is-feeling-it/?.tsrc=rss"
         },
         {
-          "title": "Billionaire Bill Gates Has 78% of His Foundation's $34 Billion Portfolio Invested in 4 Fantastic Stocks",
-          "url": "https://www.fool.com/investing/2026/06/25/billionaire-bill-gates-has-78-of-his-foundations-3/?.tsrc=rss"
+          "title": "Stifel Challenges Microsoft Margin Optimism",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/stifel-challenges-microsoft-margin-optimism-184641332.html?.tsrc=rss"
         },
         {
-          "title": "Nvidia Stock Gains Even as AI Chip Competition Hots Up",
-          "url": "https://finance.yahoo.com/m/c8b8de49-725d-3517-b850-fc5f2f9f5370/nvidia-stock-gains-even-as-ai.html?.tsrc=rss"
+          "title": "Xbox raises console prices by up to $150 amid memory cost crisis",
+          "url": "https://qz.com/xbox-console-price-increase-150-memory-costs-062526?.tsrc=rss"
         }
       ]
     },
@@ -57,13 +70,13 @@
       "ticker": "GOOG",
       "sector": "Tech / Search / AI",
       "layer": "Stability",
-      "price": 345.04,
-      "chg_pct": -0.3,
-      "vol_ratio": 1.0,
-      "rsi": 43.8,
-      "w52_pos_pct": 75,
+      "price": 340.54,
+      "chg_pct": -1.3,
+      "vol_ratio": 0.6,
+      "rsi": 31.4,
+      "w52_pos_pct": 73,
       "analyst_target": 426.62,
-      "analyst_upside_pct": 23.6,
+      "analyst_upside_pct": 25.3,
       "days_to_earnings": null,
       "verdict": null,
       "news": []
@@ -72,28 +85,41 @@
       "ticker": "META",
       "sector": "Social Media / AI",
       "layer": "Growth",
-      "price": 557.67,
-      "chg_pct": -0.81,
-      "vol_ratio": 0.7,
-      "rsi": 29.6,
-      "w52_pos_pct": 14,
+      "price": 546.09,
+      "chg_pct": -2.08,
+      "vol_ratio": 0.5,
+      "rsi": 25.6,
+      "w52_pos_pct": 9,
       "analyst_target": 827.32,
-      "analyst_upside_pct": 48.4,
+      "analyst_upside_pct": 51.5,
       "days_to_earnings": null,
       "verdict": null,
-      "news": []
+      "news": [
+        {
+          "title": "META Stock Drops For Fourth Session: Meta Recruits Cybersecurity Experts To Fortify AI Agents",
+          "url": "https://stocktwits.com/news-articles/markets/equity/meta-stock-drops-for-fourth-session-meta-recruits-cybersecurity-experts-to-fortify-ai-agents/cZ1GYA5R7Xj?.tsrc=rss"
+        },
+        {
+          "title": "Second Life's 'Second Life,' You'll ReLove It",
+          "url": "https://www.mediapost.com/publications/article/416088/second-lifes-second-life-youll-relove-it.html?.tsrc=rss"
+        },
+        {
+          "title": "Micron overtakes Meta, Tesla in market value amid AI-driven demand",
+          "url": "https://finance.yahoo.com/video/micron-overtakes-meta-tesla-market-182012066.html?.tsrc=rss"
+        }
+      ]
     },
     {
       "ticker": "AVGO",
       "sector": "Semiconductors",
       "layer": "Growth",
-      "price": 382.07,
-      "chg_pct": 0.51,
-      "vol_ratio": 0.8,
-      "rsi": 30.0,
-      "w52_pos_pct": 51,
-      "analyst_target": 523.84,
-      "analyst_upside_pct": 37.1,
+      "price": 378.76,
+      "chg_pct": -0.87,
+      "vol_ratio": 0.4,
+      "rsi": 39.2,
+      "w52_pos_pct": 50,
+      "analyst_target": 523.73,
+      "analyst_upside_pct": 38.3,
       "days_to_earnings": null,
       "verdict": null,
       "news": []
@@ -102,102 +128,106 @@
       "ticker": "MU",
       "sector": "Memory Chips",
       "layer": "Growth",
-      "price": 1048.51,
-      "chg_pct": -0.31,
+      "price": 1214.6,
+      "chg_pct": 15.84,
       "vol_ratio": 1.2,
-      "rsi": 48.5,
-      "w52_pos_pct": 85,
-      "analyst_target": 1048.21,
-      "analyst_upside_pct": -0.0,
+      "rsi": 60.1,
+      "w52_pos_pct": 96,
+      "analyst_target": 1365.08,
+      "analyst_upside_pct": 12.4,
       "days_to_earnings": null,
       "verdict": null,
-      "news": []
+      "news": [
+        {
+          "title": "Micron Earnings Spark Memory Stock Rally",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/micron-earnings-spark-memory-stock-184800280.html?.tsrc=rss"
+        },
+        {
+          "title": "Bank of America Sees Durable Chip Rally Ahead",
+          "url": "https://finance.yahoo.com/technology/articles/bank-america-sees-durable-chip-184701545.html?.tsrc=rss"
+        },
+        {
+          "title": "Sandisk Jumps As Citi Raises Target",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/sandisk-jumps-citi-raises-target-184651490.html?.tsrc=rss"
+        }
+      ]
     },
     {
       "ticker": "IBIT",
       "sector": "Crypto",
       "layer": "Speculation",
-      "price": 33.87,
-      "chg_pct": -4.08,
-      "vol_ratio": 1.6,
-      "rsi": 38.6,
-      "w52_pos_pct": 1,
+      "price": 33.51,
+      "chg_pct": -1.05,
+      "vol_ratio": 1.2,
+      "rsi": 40.4,
+      "w52_pos_pct": 2,
       "analyst_target": null,
       "analyst_upside_pct": null,
-      "days_to_earnings": null,
-      "verdict": null,
-      "news": [
-        {
-          "title": "Crypto News Today (June 25): BTC Crashed Below $60K, Already Back to $61K, More Binance EU Licence Drama, and Standard Chartered Calls for AAVE to Hit $3,500",
-          "url": "https://99bitcoins.com/news/bitcoin-btc/crypto-news-today-june-25-btc-crashed-below-60k-already-back-to-61k-more-binance-eu-licence-drama-and-standard-chartered-calls-for-aave-to-hit-3500/?.tsrc=rss"
-        },
-        {
-          "title": "BlackRock shares surprising portfolio tip for investors",
-          "url": "https://www.thestreet.com/crypto/markets/blackrock-makes-surprising-call-on-higher-investment-returns?.tsrc=rss"
-        },
-        {
-          "title": "Stop Paying a 10% Premium for Bitcoin: Why IBIT Beats MSTR",
-          "url": "https://247wallst.com/investing/2026/06/24/forget-microstrategy-youre-paying-a-15-premium-for-bitcoin-this-fund-holds-at-cost/?.tsrc=rss"
-        }
-      ]
-    },
-    {
-      "ticker": "GLDM",
-      "sector": "Commodities / Gold",
-      "layer": "Stability",
-      "price": 78.89,
-      "chg_pct": -3.01,
-      "vol_ratio": 1.3,
-      "rsi": 28.4,
-      "w52_pos_pct": 32,
-      "analyst_target": null,
-      "analyst_upside_pct": null,
-      "days_to_earnings": null,
-      "verdict": null,
-      "news": [
-        {
-          "title": "The 28% Tax Trap Inside GLD That Your Brokerage Statement Won’t Show",
-          "url": "https://247wallst.com/investing/2026/06/23/the-28-tax-trap-inside-gld-that-your-brokerage-statement-wont-show/?.tsrc=rss"
-        },
-        {
-          "title": "The Roth IRA Trick That Makes This Gold ETF’s 135% Five-Year Run Even Better",
-          "url": "https://247wallst.com/investing/2026/06/23/the-roth-ira-trick-that-makes-this-gold-etfs-135-five-year-run-even-better/?.tsrc=rss"
-        },
-        {
-          "title": "Why Gold ETFs Still Deserve a Place in Long-Term Portfolios",
-          "url": "https://finance.yahoo.com/markets/commodities/articles/why-gold-etfs-still-deserve-140200456.html?.tsrc=rss"
-        }
-      ]
-    },
-    {
-      "ticker": "VST",
-      "sector": "Energy / Nuclear",
-      "layer": "Growth",
-      "price": 162.87,
-      "chg_pct": 0.3,
-      "vol_ratio": 0.8,
-      "rsi": 59.2,
-      "w52_pos_pct": 35,
-      "analyst_target": 223.0,
-      "analyst_upside_pct": 36.9,
       "days_to_earnings": null,
       "verdict": null,
       "news": []
     },
     {
-      "ticker": "APLD",
-      "sector": "AI Infrastructure",
-      "layer": "Speculation",
-      "price": 41.98,
-      "chg_pct": -7.27,
+      "ticker": "GLDM",
+      "sector": "Commodities / Gold",
+      "layer": "Stability",
+      "price": 79.82,
+      "chg_pct": 1.19,
       "vol_ratio": 0.8,
-      "rsi": 44.4,
-      "w52_pos_pct": 79,
-      "analyst_target": 73.36,
-      "analyst_upside_pct": 74.7,
+      "rsi": 29.0,
+      "w52_pos_pct": 34,
+      "analyst_target": null,
+      "analyst_upside_pct": null,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": []
+    },
+    {
+      "ticker": "VST",
+      "sector": "Energy / Nuclear",
+      "layer": "Growth",
+      "price": 168.14,
+      "chg_pct": 3.24,
+      "vol_ratio": 0.5,
+      "rsi": 63.2,
+      "w52_pos_pct": 41,
+      "analyst_target": 222.89,
+      "analyst_upside_pct": 32.6,
       "days_to_earnings": null,
       "verdict": null,
       "news": [
+        {
+          "title": "Vistra Corp. (VST) Is a Trending Stock: Facts to Know Before Betting on It",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/vistra-corp-vst-trending-stock-130006443.html?.tsrc=rss"
+        },
+        {
+          "title": "Vistra Corp. (VST) Advances While Market Declines: Some Information for Investors",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/vistra-corp-vst-advances-while-214503132.html?.tsrc=rss"
+        },
+        {
+          "title": "Here is Why Vistra (VST) is Among the Best Electrical Infrastructure Stocks to Buy in 2026",
+          "url": "https://finance.yahoo.com/energy/articles/why-vistra-vst-among-best-213021599.html?.tsrc=rss"
+        }
+      ]
+    },
+    {
+      "ticker": "APLD",
+      "sector": "AI Infrastructure",
+      "layer": "Speculation",
+      "price": 40.09,
+      "chg_pct": -4.5,
+      "vol_ratio": 0.5,
+      "rsi": 42.2,
+      "w52_pos_pct": 74,
+      "analyst_target": 73.36,
+      "analyst_upside_pct": 83.0,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": [
+        {
+          "title": "Bitcoin Crashes Below $60,000 as Crypto Stocks Enter Free Fall",
+          "url": "https://finance.yahoo.com/markets/crypto/articles/bitcoin-crashes-below-60-000-165954362.html?.tsrc=rss"
+        },
         {
           "title": "NBIS, CRWV, APLD, IREN: Why Are Neocloud Stocks Jumping Premarket?",
           "url": "https://stocktwits.com/news-articles/markets/equity/nbis-crwv-apld-iren-why-are-neocloud-stocks-jumping-premarket/cZ1GaVmR7QF?.tsrc=rss"
@@ -205,10 +235,6 @@
         {
           "title": "Bear of the Day: Applied Digital (APLD)",
           "url": "https://finance.yahoo.com/markets/stocks/articles/bear-day-applied-digital-apld-103000254.html?.tsrc=rss"
-        },
-        {
-          "title": "Cboe Global Markets and Applied Digital have been highlighted as Zacks Bull and Bear of the Day",
-          "url": "https://finance.yahoo.com/markets/options/articles/cboe-global-markets-applied-digital-081300742.html?.tsrc=rss"
         }
       ]
     },
@@ -216,13 +242,13 @@
       "ticker": "OKLO",
       "sector": "Nuclear Energy",
       "layer": "Speculation",
-      "price": 54.06,
-      "chg_pct": -5.47,
-      "vol_ratio": 0.7,
-      "rsi": 34.0,
-      "w52_pos_pct": 6,
+      "price": 51.17,
+      "chg_pct": -5.35,
+      "vol_ratio": 0.5,
+      "rsi": 31.1,
+      "w52_pos_pct": 4,
       "analyst_target": 88.63,
-      "analyst_upside_pct": 63.9,
+      "analyst_upside_pct": 73.2,
       "days_to_earnings": null,
       "verdict": null,
       "news": [
@@ -245,89 +271,89 @@
     {
       "ticker": "AMZN",
       "trigger_price": 230.0,
-      "current_price": 234.27,
-      "distance_pct": 1.86
+      "current_price": 229.01,
+      "distance_pct": -0.43
     }
   ],
   "groq_insights": [
-    "NVDA -0.52%: ייתכן תגובה לאחור לאחר העליות החדות בגזרת המחשוב, או חשש מתחרות עם AVGO",
-    "IBIT -4.08%: ייתכן תגובה לאחור לאחר הירידות החדות במחיר הביטקוין, או חשש מתחרות עם MSTR",
-    "OKLO -5.47%: ייתכן תגובה לאחור לאחר העליות החדות בגזרת האנרגיה, או חשש מתחרות עם CEG ו-SMR"
+    "OKLO -5.35%: ייתכן תגובה לאחור לאחר הירידות החדות בגזרת האנרגיה, או חשש מבדיקות רגולטוריות של SMR",
+    "NVDA+AVGO שתיהן down: מגמת סקטור השבבים בירידה, ייתכן משבר אספקה",
+    "MU +15.84%: תוצאות חיוביות של Micron עשויות להוביל לעלייה במניות הזיכרון, כולל WDC ו-SanDisk"
   ],
   "sector_summary": [
     {
       "sector": "AI / Semiconductors",
-      "avg_chg_pct": -0.52,
+      "avg_chg_pct": -2.27,
       "tickers": [
         "NVDA"
       ]
     },
     {
       "sector": "Tech / Cloud / AI",
-      "avg_chg_pct": -2.27,
+      "avg_chg_pct": -2.73,
       "tickers": [
         "MSFT"
       ]
     },
     {
       "sector": "Tech / Search / AI",
-      "avg_chg_pct": -0.3,
+      "avg_chg_pct": -1.3,
       "tickers": [
         "GOOG"
       ]
     },
     {
       "sector": "Social Media / AI",
-      "avg_chg_pct": -0.81,
+      "avg_chg_pct": -2.08,
       "tickers": [
         "META"
       ]
     },
     {
       "sector": "Semiconductors",
-      "avg_chg_pct": 0.51,
+      "avg_chg_pct": -0.87,
       "tickers": [
         "AVGO"
       ]
     },
     {
       "sector": "Memory Chips",
-      "avg_chg_pct": -0.31,
+      "avg_chg_pct": 15.84,
       "tickers": [
         "MU"
       ]
     },
     {
       "sector": "Crypto",
-      "avg_chg_pct": -4.08,
+      "avg_chg_pct": -1.05,
       "tickers": [
         "IBIT"
       ]
     },
     {
       "sector": "Commodities / Gold",
-      "avg_chg_pct": -3.01,
+      "avg_chg_pct": 1.19,
       "tickers": [
         "GLDM"
       ]
     },
     {
       "sector": "Energy / Nuclear",
-      "avg_chg_pct": 0.3,
+      "avg_chg_pct": 3.24,
       "tickers": [
         "VST"
       ]
     },
     {
       "sector": "AI Infrastructure",
-      "avg_chg_pct": -7.27,
+      "avg_chg_pct": -4.5,
       "tickers": [
         "APLD"
       ]
     },
     {
       "sector": "Nuclear Energy",
-      "avg_chg_pct": -5.47,
+      "avg_chg_pct": -5.35,
       "tickers": [
         "OKLO"
       ]
