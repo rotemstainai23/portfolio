@@ -1,12 +1,12 @@
 {
-  "generated": "2026-06-25",
-  "generated_time": "19:08",
-  "market_date": "2026-06-25",
+  "generated": "2026-06-26",
+  "generated_time": "06:03",
+  "market_date": "2026-06-26",
   "has_alerts": false,
   "alert_tickers": [],
   "macro": {
-    "spy_chg_pct": -0.04,
-    "qqq_chg_pct": 0.63,
+    "spy_chg_pct": 0.14,
+    "qqq_chg_pct": 0.81,
     "vix": null
   },
   "holdings": [
@@ -14,27 +14,27 @@
       "ticker": "NVDA",
       "sector": "AI / Semiconductors",
       "layer": "Growth",
-      "price": 194.49,
-      "chg_pct": -2.27,
-      "vol_ratio": 0.6,
-      "rsi": 32.1,
-      "w52_pos_pct": 51,
+      "price": 195.74,
+      "chg_pct": -1.64,
+      "vol_ratio": 0.9,
+      "rsi": 32.7,
+      "w52_pos_pct": 52,
       "analyst_target": 298.93,
-      "analyst_upside_pct": 53.7,
+      "analyst_upside_pct": 52.7,
       "days_to_earnings": null,
       "verdict": null,
       "news": [
         {
-          "title": "5 Top Google AI Brains Bolted in 7 Days as Gemini Falls Behind, and Alphabet Stock Is Feeling It",
-          "url": "https://247wallst.com/investing/2026/06/25/5-top-google-ai-brains-bolted-in-7-days-as-gemini-falls-behind-and-alphabet-stock-is-feeling-it/?.tsrc=rss"
+          "title": "2 Excellent Stocks to Buy on the Dip",
+          "url": "https://www.fool.com/investing/2026/06/26/2-excellent-stocks-to-buy-on-the-dip/?.tsrc=rss"
         },
         {
-          "title": "Following the UAE’s Lead, Iraq Warns It Could Leave OPEC. Here’s What That Would Mean for Oil Stocks",
-          "url": "https://www.fool.com/investing/2026/06/25/following-the-uaes-lead-iraq-warns-it-could-leave-opec-heres-what-that-would-mean-for-oil-stocks/?.tsrc=rss"
+          "title": "This Stock Has Already Doubled This Year and Is Still Racing Towards a Major Catalyst",
+          "url": "https://www.fool.com/investing/2026/06/26/this-stock-has-already-doubled-this-year-and-it-is/?.tsrc=rss"
         },
         {
-          "title": "850 Billion Reasons (and Counting) Why Investors Love Apple Stock",
-          "url": "https://www.fool.com/investing/2026/06/25/850-billion-reasons-why-investors-love-apple-stock/?.tsrc=rss"
+          "title": "S&P 500 Optimism Has Never Been This High — Market Strategist Explains Why That's Exactly The Problem",
+          "url": "https://stocktwits.com/news-articles/markets/equity/sp500-optimism-has-never-been-this-high/cZ1cfIiR7gd?.tsrc=rss"
         }
       ]
     },
@@ -42,27 +42,27 @@
       "ticker": "MSFT",
       "sector": "Tech / Cloud / AI",
       "layer": "Stability",
-      "price": 355.49,
-      "chg_pct": -2.73,
-      "vol_ratio": 1.1,
-      "rsi": 15.6,
-      "w52_pos_pct": 3,
+      "price": 352.83,
+      "chg_pct": -3.46,
+      "vol_ratio": 1.6,
+      "rsi": 15.3,
+      "w52_pos_pct": 2,
       "analyst_target": 561.11,
-      "analyst_upside_pct": 57.8,
+      "analyst_upside_pct": 59.0,
       "days_to_earnings": null,
       "verdict": null,
       "news": [
         {
-          "title": "5 Top Google AI Brains Bolted in 7 Days as Gemini Falls Behind, and Alphabet Stock Is Feeling It",
-          "url": "https://247wallst.com/investing/2026/06/25/5-top-google-ai-brains-bolted-in-7-days-as-gemini-falls-behind-and-alphabet-stock-is-feeling-it/?.tsrc=rss"
+          "title": "Dow Jones Futures Fall, Techs Tumble After Mixed Market Signals; What To Do Now",
+          "url": "https://finance.yahoo.com/m/39030516-de91-329d-8d9d-9e91b632c186/dow-jones-futures-fall%2C-techs.html?.tsrc=rss"
         },
         {
-          "title": "Stifel Challenges Microsoft Margin Optimism",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/stifel-challenges-microsoft-margin-optimism-184641332.html?.tsrc=rss"
+          "title": "S&P 500 Optimism Has Never Been This High — Market Strategist Explains Why That's Exactly The Problem",
+          "url": "https://stocktwits.com/news-articles/markets/equity/sp500-optimism-has-never-been-this-high/cZ1cfIiR7gd?.tsrc=rss"
         },
         {
-          "title": "Xbox raises console prices by up to $150 amid memory cost crisis",
-          "url": "https://qz.com/xbox-console-price-increase-150-memory-costs-062526?.tsrc=rss"
+          "title": "WinWire Earns Microsoft Frontier Partner Status, Strengthening Its Position as a Leader in Enterprise AI Adoption",
+          "url": "https://finance.yahoo.com/technology/ai/articles/winwire-earns-microsoft-frontier-partner-043000577.html?.tsrc=rss"
         }
       ]
     },
@@ -70,13 +70,13 @@
       "ticker": "GOOG",
       "sector": "Tech / Search / AI",
       "layer": "Stability",
-      "price": 340.54,
-      "chg_pct": -1.3,
-      "vol_ratio": 0.6,
-      "rsi": 31.4,
+      "price": 342.19,
+      "chg_pct": -0.83,
+      "vol_ratio": 1.1,
+      "rsi": 32.1,
       "w52_pos_pct": 73,
       "analyst_target": 426.62,
-      "analyst_upside_pct": 25.3,
+      "analyst_upside_pct": 24.7,
       "days_to_earnings": null,
       "verdict": null,
       "news": []
@@ -85,27 +85,27 @@
       "ticker": "META",
       "sector": "Social Media / AI",
       "layer": "Growth",
-      "price": 546.09,
-      "chg_pct": -2.08,
-      "vol_ratio": 0.5,
-      "rsi": 25.6,
-      "w52_pos_pct": 9,
+      "price": 542.87,
+      "chg_pct": -2.65,
+      "vol_ratio": 0.9,
+      "rsi": 25.2,
+      "w52_pos_pct": 8,
       "analyst_target": 827.32,
-      "analyst_upside_pct": 51.5,
+      "analyst_upside_pct": 52.4,
       "days_to_earnings": null,
       "verdict": null,
       "news": [
         {
-          "title": "META Stock Drops For Fourth Session: Meta Recruits Cybersecurity Experts To Fortify AI Agents",
-          "url": "https://stocktwits.com/news-articles/markets/equity/meta-stock-drops-for-fourth-session-meta-recruits-cybersecurity-experts-to-fortify-ai-agents/cZ1GYA5R7Xj?.tsrc=rss"
+          "title": "A new AI bottleneck is starting to worry investors",
+          "url": "https://www.thestreet.com/technology/a-new-ai-bottleneck-is-starting-to-worry-investors?.tsrc=rss"
         },
         {
-          "title": "Second Life's 'Second Life,' You'll ReLove It",
-          "url": "https://www.mediapost.com/publications/article/416088/second-lifes-second-life-youll-relove-it.html?.tsrc=rss"
+          "title": "Qualcomm's massive AI expansion already has 2 Mag 7 giants on board",
+          "url": "https://www.thestreet.com/investing/stocks/qcom-qualcomm-data-center-push-wins-meta-microsoft-backing?.tsrc=rss"
         },
         {
-          "title": "Micron overtakes Meta, Tesla in market value amid AI-driven demand",
-          "url": "https://finance.yahoo.com/video/micron-overtakes-meta-tesla-market-182012066.html?.tsrc=rss"
+          "title": "Constellation Energy vs. GE Vernova: Which Utilities Stock Is a Better Buy in 2026?",
+          "url": "https://www.fool.com/coverage/better-buy/2026/06/25/constellation-energy-vs-ge-vernova-which-utilities-stock-is-a-better-buy-in-2026/?.tsrc=rss"
         }
       ]
     },
@@ -113,13 +113,13 @@
       "ticker": "AVGO",
       "sector": "Semiconductors",
       "layer": "Growth",
-      "price": 378.76,
-      "chg_pct": -0.87,
-      "vol_ratio": 0.4,
+      "price": 378.91,
+      "chg_pct": -0.83,
+      "vol_ratio": 0.6,
       "rsi": 39.2,
       "w52_pos_pct": 50,
       "analyst_target": 523.73,
-      "analyst_upside_pct": 38.3,
+      "analyst_upside_pct": 38.2,
       "days_to_earnings": null,
       "verdict": null,
       "news": []
@@ -128,27 +128,27 @@
       "ticker": "MU",
       "sector": "Memory Chips",
       "layer": "Growth",
-      "price": 1214.6,
-      "chg_pct": 15.84,
-      "vol_ratio": 1.2,
-      "rsi": 60.1,
+      "price": 1213.56,
+      "chg_pct": 15.74,
+      "vol_ratio": 1.4,
+      "rsi": 60.0,
       "w52_pos_pct": 96,
       "analyst_target": 1365.08,
-      "analyst_upside_pct": 12.4,
+      "analyst_upside_pct": 12.5,
       "days_to_earnings": null,
       "verdict": null,
       "news": [
         {
-          "title": "Micron Earnings Spark Memory Stock Rally",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/micron-earnings-spark-memory-stock-184800280.html?.tsrc=rss"
+          "title": "Dow Jones Futures Fall, Techs Tumble After Mixed Market Signals; What To Do Now",
+          "url": "https://finance.yahoo.com/m/39030516-de91-329d-8d9d-9e91b632c186/dow-jones-futures-fall%2C-techs.html?.tsrc=rss"
         },
         {
-          "title": "Bank of America Sees Durable Chip Rally Ahead",
-          "url": "https://finance.yahoo.com/technology/articles/bank-america-sees-durable-chip-184701545.html?.tsrc=rss"
+          "title": "Micron Breaks the Cycle. Why the Stock Could Still Double From Here.",
+          "url": "https://finance.yahoo.com/m/df0944d7-4669-3c20-ae0b-0c2059fde828/micron-breaks-the-cycle.-why.html?.tsrc=rss"
         },
         {
-          "title": "Sandisk Jumps As Citi Raises Target",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/sandisk-jumps-citi-raises-target-184651490.html?.tsrc=rss"
+          "title": "Citi Raises Sandisk Price Target to $2,500 as SNDK Rallies 4,800% in 12 Months",
+          "url": "https://beincrypto.com/citi-raises-sandisk-price-target-sndk-4800-percent-rally/?.tsrc=rss"
         }
       ]
     },
@@ -156,10 +156,10 @@
       "ticker": "IBIT",
       "sector": "Crypto",
       "layer": "Speculation",
-      "price": 33.51,
-      "chg_pct": -1.05,
-      "vol_ratio": 1.2,
-      "rsi": 40.4,
+      "price": 33.52,
+      "chg_pct": -1.03,
+      "vol_ratio": 1.4,
+      "rsi": 40.5,
       "w52_pos_pct": 2,
       "analyst_target": null,
       "analyst_upside_pct": null,
@@ -171,10 +171,10 @@
       "ticker": "GLDM",
       "sector": "Commodities / Gold",
       "layer": "Stability",
-      "price": 79.82,
-      "chg_pct": 1.19,
-      "vol_ratio": 0.8,
-      "rsi": 29.0,
+      "price": 79.66,
+      "chg_pct": 0.98,
+      "vol_ratio": 1.0,
+      "rsi": 28.5,
       "w52_pos_pct": 34,
       "analyst_target": null,
       "analyst_upside_pct": null,
@@ -186,13 +186,13 @@
       "ticker": "VST",
       "sector": "Energy / Nuclear",
       "layer": "Growth",
-      "price": 168.14,
-      "chg_pct": 3.24,
-      "vol_ratio": 0.5,
-      "rsi": 63.2,
-      "w52_pos_pct": 41,
+      "price": 167.77,
+      "chg_pct": 3.01,
+      "vol_ratio": 0.8,
+      "rsi": 63.0,
+      "w52_pos_pct": 40,
       "analyst_target": 222.89,
-      "analyst_upside_pct": 32.6,
+      "analyst_upside_pct": 32.9,
       "days_to_earnings": null,
       "verdict": null,
       "news": [
@@ -214,27 +214,27 @@
       "ticker": "APLD",
       "sector": "AI Infrastructure",
       "layer": "Speculation",
-      "price": 40.09,
-      "chg_pct": -4.5,
-      "vol_ratio": 0.5,
-      "rsi": 42.2,
-      "w52_pos_pct": 74,
+      "price": 40.95,
+      "chg_pct": -2.45,
+      "vol_ratio": 0.6,
+      "rsi": 43.6,
+      "w52_pos_pct": 77,
       "analyst_target": 73.36,
-      "analyst_upside_pct": 83.0,
+      "analyst_upside_pct": 79.1,
       "days_to_earnings": null,
       "verdict": null,
       "news": [
         {
+          "title": "Applied Digital (APLD) Just Secured Another Major Lease; What It Means for Its AI Infrastructure Ambitions",
+          "url": "https://finance.yahoo.com/technology/ai/articles/applied-digital-apld-just-secured-013536466.html?.tsrc=rss"
+        },
+        {
+          "title": "Is Applied Digital (APLD) The Best AI Infrastructure Stock to Buy According to Situational Awareness?",
+          "url": "https://finance.yahoo.com/technology/ai/articles/applied-digital-apld-best-ai-193929941.html?.tsrc=rss"
+        },
+        {
           "title": "Bitcoin Crashes Below $60,000 as Crypto Stocks Enter Free Fall",
           "url": "https://finance.yahoo.com/markets/crypto/articles/bitcoin-crashes-below-60-000-165954362.html?.tsrc=rss"
-        },
-        {
-          "title": "NBIS, CRWV, APLD, IREN: Why Are Neocloud Stocks Jumping Premarket?",
-          "url": "https://stocktwits.com/news-articles/markets/equity/nbis-crwv-apld-iren-why-are-neocloud-stocks-jumping-premarket/cZ1GaVmR7QF?.tsrc=rss"
-        },
-        {
-          "title": "Bear of the Day: Applied Digital (APLD)",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/bear-day-applied-digital-apld-103000254.html?.tsrc=rss"
         }
       ]
     },
@@ -242,27 +242,27 @@
       "ticker": "OKLO",
       "sector": "Nuclear Energy",
       "layer": "Speculation",
-      "price": 51.17,
-      "chg_pct": -5.35,
-      "vol_ratio": 0.5,
-      "rsi": 31.1,
+      "price": 51.01,
+      "chg_pct": -5.64,
+      "vol_ratio": 0.7,
+      "rsi": 30.9,
       "w52_pos_pct": 4,
       "analyst_target": 88.63,
-      "analyst_upside_pct": 73.2,
+      "analyst_upside_pct": 73.8,
       "days_to_earnings": null,
       "verdict": null,
       "news": [
         {
-          "title": "Why Oklo Stock Keeps Going Down",
-          "url": "https://www.fool.com/investing/2026/06/24/why-oklo-stock-keeps-going-down/?.tsrc=rss"
+          "title": "Should You Forget NuScale Power and Buy Oklo Stock Instead?",
+          "url": "https://www.fool.com/investing/2026/06/25/should-you-forget-stock-a-and-buy-stock-b-instead/?.tsrc=rss"
         },
         {
-          "title": "Agility Robotics goes public with Churchill Capital SPAC merger",
-          "url": "https://qz.com/agility-robotics-spac-merger-churchill-capital-2-5-billion-062426?.tsrc=rss"
+          "title": "Oklo Is Using AI to Design Nuclear Reactors Faster. Here's Why OKLO Stock Deserves a Second Look.",
+          "url": "https://www.fool.com/investing/2026/06/25/oklo-is-using-ai-to-design-nuclear-reactors-faster/?.tsrc=rss"
         },
         {
-          "title": "OKLO's Licensing Strategy Aims to Support Reactor Rollout",
-          "url": "https://finance.yahoo.com/energy/articles/oklos-licensing-strategy-aims-support-122000432.html?.tsrc=rss"
+          "title": "Top Stock Reports for JPMorgan, Novartis & Qualcomm",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/top-stock-reports-jpmorgan-novartis-203300577.html?.tsrc=rss"
         }
       ]
     }
@@ -271,89 +271,89 @@
     {
       "ticker": "AMZN",
       "trigger_price": 230.0,
-      "current_price": 229.01,
-      "distance_pct": -0.43
+      "current_price": 227.01,
+      "distance_pct": -1.3
     }
   ],
   "groq_insights": [
-    "OKLO -5.35%: ייתכן תגובה לאחור לאחר הירידות החדות בגזרת האנרגיה, או חשש מבדיקות רגולטוריות של SMR",
-    "NVDA+AVGO שתיהן down: מגמת סקטור השבבים בירידה, ייתכן משבר אספקה",
-    "MU +15.84%: תוצאות חיוביות של Micron עשויות להוביל לעלייה במניות הזיכרון, כולל WDC ו-SanDisk"
+    "NVDA -1.64%: ייתכן תגובה לאחור בגזרת הטכנולוגיה, AVGO -0.83%: מגמת סקטור דומה",
+    "OKLO -5.64%: ייתכן תגובה לאחור לאחר העליות החדות בגזרת האנרגיה",
+    "MU +15.74%: ייתכן הכרזה על תוצאות חזקות — בדוק חדשות"
   ],
   "sector_summary": [
     {
       "sector": "AI / Semiconductors",
-      "avg_chg_pct": -2.27,
+      "avg_chg_pct": -1.64,
       "tickers": [
         "NVDA"
       ]
     },
     {
       "sector": "Tech / Cloud / AI",
-      "avg_chg_pct": -2.73,
+      "avg_chg_pct": -3.46,
       "tickers": [
         "MSFT"
       ]
     },
     {
       "sector": "Tech / Search / AI",
-      "avg_chg_pct": -1.3,
+      "avg_chg_pct": -0.83,
       "tickers": [
         "GOOG"
       ]
     },
     {
       "sector": "Social Media / AI",
-      "avg_chg_pct": -2.08,
+      "avg_chg_pct": -2.65,
       "tickers": [
         "META"
       ]
     },
     {
       "sector": "Semiconductors",
-      "avg_chg_pct": -0.87,
+      "avg_chg_pct": -0.83,
       "tickers": [
         "AVGO"
       ]
     },
     {
       "sector": "Memory Chips",
-      "avg_chg_pct": 15.84,
+      "avg_chg_pct": 15.74,
       "tickers": [
         "MU"
       ]
     },
     {
       "sector": "Crypto",
-      "avg_chg_pct": -1.05,
+      "avg_chg_pct": -1.03,
       "tickers": [
         "IBIT"
       ]
     },
     {
       "sector": "Commodities / Gold",
-      "avg_chg_pct": 1.19,
+      "avg_chg_pct": 0.98,
       "tickers": [
         "GLDM"
       ]
     },
     {
       "sector": "Energy / Nuclear",
-      "avg_chg_pct": 3.24,
+      "avg_chg_pct": 3.01,
       "tickers": [
         "VST"
       ]
     },
     {
       "sector": "AI Infrastructure",
-      "avg_chg_pct": -4.5,
+      "avg_chg_pct": -2.45,
       "tickers": [
         "APLD"
       ]
     },
     {
       "sector": "Nuclear Energy",
-      "avg_chg_pct": -5.35,
+      "avg_chg_pct": -5.64,
       "tickers": [
         "OKLO"
       ]
