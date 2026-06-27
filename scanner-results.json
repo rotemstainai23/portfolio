@@ -1,35 +1,35 @@
 [
   {
     "ticker": "CEVA",
-    "company": "Ceva Inc",
-    "catalyst": "AI Double-Tap That Lit Up Cadence",
+    "company": "Ceva",
+    "catalyst": "Ceva CEO Amir Panush Named Artificial Intelligence Company CEO of the Year",
     "conviction": 4,
     "upside_pct": 15,
     "downside_pct": 8,
     "timeframe": "1-2 שבועות",
     "source": "חדשות",
-    "thesis": "CEVA עומדת ליהנות מהצמיחה בתחום ה-AI וה-Edge AI Royalties. החברה מציגה נתונים חזקים ופוטנציאל לצמיחה עתידית."
+    "thesis": "Ceva מובילה בתחום הבינטליגנציה המלאכותית וזוכה להכרה עם פרס CEO השנה. החברה ממשיכה לחדור לשווקים חדשים ולהרחיב את הפעילות שלה."
   },
   {
-    "ticker": "ENPH",
-    "company": "Enphase Energy",
-    "catalyst": "Q1 Earnings Beat And PowerMatch Rollout",
+    "ticker": "SNOW",
+    "company": "Snowflake",
+    "catalyst": "GitLab vs Snowflake: Which Technology Stock Is a Better Buy in 2026",
     "conviction": 4,
     "upside_pct": 12,
     "downside_pct": 6,
     "timeframe": "1-2 שבועות",
     "source": "חדשות",
-    "thesis": "ENPH הציגה תוצאות רבעון חזקות ומימשה את ה-Rollout של PowerMatch. החברה עומדת ליהנות מהצמיחה בתחום האנרגיה הנקייה."
+    "thesis": "Snowflake היא חברת טכנולוגיה מובילה בתחום הנתונים והאנליטיקה. החברה ממשיכה לצמוח ולהרחיב את הפעילות שלה."
   },
   {
-    "ticker": "CRWD",
-    "company": "CrowdStrike",
-    "catalyst": "Q1 Beat Wasn't Big Enough For Some Bulls",
+    "ticker": "MRNA",
+    "company": "Moderna",
+    "catalyst": "Moderna rallies after S&P 500 ends lower",
     "conviction": 4,
     "upside_pct": 10,
     "downside_pct": 5,
     "timeframe": "1-2 שבועות",
     "source": "חדשות",
-    "thesis": "CRWD הציגה תוצאות רבעון חזקות אך לא מספיק גדולות עבור חלק מהבולים. החברה עומדת ליהנות מהצמיחה בתחום האבטחת סייבר."
+    "thesis": "Moderna היא חברת ביוטכנולוגיה מובילה בתחום החיסונים והטיפולים. החברה ממשיכה לפתח ולשווק מוצרים חדשים."
   }
 ]
