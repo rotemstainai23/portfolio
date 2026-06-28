@@ -1,19 +1,19 @@
-{
-  "generated": "2026-06-28",
-  "week_label": "שבוע 22/06-28/06",
-  "ceo_verdict": "מגמת השבוע: התיק השקעות ירד ב-3.1% בשבוע, פחות מהמדדים הרחבים SPY ו-QQQ, שירדו 1.6% ו-2.2% בהתאמה.",
+window.WEEKLY_DATA = {
+  "generated": "2026-06-24",
+  "week_label": "שבוע 18/06-24/06",
+  "ceo_verdict": "מגמת השבוע: התיק הושפע מירידה במניות הטכנולוגיה, במיוחד NVDA ו-MSFT, שירדו 5.7% בשבוע האחרון.",
   "portfolio_performance": {
-    "total_value": 1725,
-    "week_pct": -3.1,
-    "total_pnl_pct": 7.5,
+    "total_value": 1758,
+    "week_pct": -3.9,
+    "total_pnl_pct": 9.5,
     "ytd_pct": null,
     "vs_spy_week": -1.5,
     "regime": "risk_on"
   },
   "macro_snapshot": {
-    "vix": 18.41,
-    "spy_week_pct": -1.6,
-    "qqq_week_pct": -2.2,
+    "vix": 19.2,
+    "spy_week_pct": -2.4,
+    "qqq_week_pct": -3.6,
     "dxy_trend": null,
     "rate_outlook": null,
     "regime_note": null
@@ -22,7 +22,7 @@
     {
       "ticker": "NVDA",
       "company": "NVDA",
-      "price_change_pct": -5.9,
+      "price_change_pct": -5.7,
       "status": "",
       "key_news": "",
       "headline": "",
@@ -31,7 +31,7 @@
     {
       "ticker": "MSFT",
       "company": "MSFT",
-      "price_change_pct": -1.6,
+      "price_change_pct": -5.7,
       "status": "",
       "key_news": "",
       "headline": "",
@@ -40,7 +40,7 @@
     {
       "ticker": "GOOG",
       "company": "GOOG",
-      "price_change_pct": -7.6,
+      "price_change_pct": -4.4,
       "status": "",
       "key_news": "",
       "headline": "",
@@ -49,7 +49,7 @@
     {
       "ticker": "META",
       "company": "META",
-      "price_change_pct": -3.1,
+      "price_change_pct": -4.5,
       "status": "",
       "key_news": "",
       "headline": "",
@@ -58,7 +58,7 @@
     {
       "ticker": "AVGO",
       "company": "AVGO",
-      "price_change_pct": -7.1,
+      "price_change_pct": -2.1,
       "status": "",
       "key_news": "",
       "headline": "",
@@ -67,16 +67,16 @@
     {
       "ticker": "MU",
       "company": "MU",
-      "price_change_pct": 8.5,
-      "status": "BUY",
-      "key_news": "**ועדת השקעות - ישיבה** **אימות קלטים** * HANDOFF אנליסט: קיבלנו",
+      "price_change_pct": -1.8,
+      "status": "",
+      "key_news": "",
       "headline": "",
-      "thesis_check": "HOLDING"
+      "thesis_check": ""
     },
     {
       "ticker": "IBIT",
       "company": "IBIT",
-      "price_change_pct": -6.9,
+      "price_change_pct": -7.2,
       "status": "",
       "key_news": "",
       "headline": "",
@@ -85,7 +85,7 @@
     {
       "ticker": "GLDM",
       "company": "GLDM",
-      "price_change_pct": -3.8,
+      "price_change_pct": -7.6,
       "status": "",
       "key_news": "",
       "headline": "",
@@ -94,7 +94,7 @@
     {
       "ticker": "VST",
       "company": "VST",
-      "price_change_pct": 2.9,
+      "price_change_pct": 5.3,
       "status": "",
       "key_news": "",
       "headline": "",
@@ -103,7 +103,7 @@
     {
       "ticker": "APLD",
       "company": "APLD",
-      "price_change_pct": -14.1,
+      "price_change_pct": -5.1,
       "status": "",
       "key_news": "",
       "headline": "",
@@ -112,7 +112,7 @@
     {
       "ticker": "OKLO",
       "company": "OKLO",
-      "price_change_pct": -15.0,
+      "price_change_pct": -8.1,
       "status": "",
       "key_news": "",
       "headline": "",
@@ -125,43 +125,43 @@
       "ticker": "CEVA",
       "conviction": 4,
       "timeframe": "1-2 שבועות",
-      "catalyst": "Ceva CEO Amir Panush Named Artificial Intelligence Company CEO of the Year",
+      "catalyst": "AI Double-Tap That Lit Up Cadence",
       "why_not_others": "R/R 15/8, "
     },
     {
-      "ticker": "SNOW",
+      "ticker": "ENPH",
       "conviction": 4,
       "timeframe": "1-2 שבועות",
-      "catalyst": "GitLab vs Snowflake: Which Technology Stock Is a Better Buy in 2026",
+      "catalyst": "Q1 Earnings Beat And PowerMatch Rollout",
       "why_not_others": "R/R 12/6, "
     },
     {
-      "ticker": "MRNA",
+      "ticker": "CRWD",
       "conviction": 4,
       "timeframe": "1-2 שבועות",
-      "catalyst": "Moderna rallies after S&P 500 ends lower",
+      "catalyst": "Q1 Beat Wasn't Big Enough For Some Bulls",
       "why_not_others": "R/R 10/5, "
     }
   ],
   "scenarios_next_week": {},
   "action_items": [
-    "מגמת השבוע: התיק השקעות ירד ב-3.1% בשבוע, פחות מהמדדים הרחבים SPY ו-QQQ, שירדו 1.6% ו-2.2% בהתאמה.",
-    "סיכון עיקרי לשבוע הבא: המשך ירידה במניות הטכנולוגיה, כגון NVDA, MSFT ו-GOOG, עלול להכאיב את התיק.",
-    "הזדמנות הסקנר: הקטליסט של CEVA, שהוא ה-Top Pick, עדיין רלוונטי, והחברה עשויה להמשיך לצמוח.",
-    "פעולה ספציפית אחת: כדאי לעקוב אחרי הביצועים של MU, שעלה 8.5% בשבוע, ולבדוק האם הוא יכול להמשיך לצמוח."
+    "מגמת השבוע: התיק הושפע מירידה במניות הטכנולוגיה, במיוחד NVDA ו-MSFT, שירדו 5.7% בשבוע האחרון.",
+    "סיכון עיקרי לשבוע הבא: ירידה נוספת במניות הטכנולוגיה עלולה להכאיב את התיק, במיוחד אם QQQ ימשיך לרדת.",
+    "הזדמנות הסקנר: הקטליסט של CEVA, 'AI Double-Tap That Lit Up Cadence', עדיין רלוונטי ויכול להוות הזדמנות לרכישה.",
+    "פעולה ספציפית אחת: כדאי לעקוב אחרי מניית VST, שעלתה 5.3% בשבוע האחרון, ולבדוק אם היא יכולה להמשיך לטפס."
   ],
   "macro": {
     "spy": {
-      "price": 728.99,
-      "chg_week": -1.6
+      "price": 736.75,
+      "chg_week": -2.4
     },
     "qqq": {
-      "price": 706.52,
-      "chg_week": -2.2
+      "price": 717.11,
+      "chg_week": -3.6
     },
     "vix": {
-      "price": 18.41,
-      "chg_week": 12.3
+      "price": 19.2,
+      "chg_week": 17.0
     }
   }
-}
+};
