@@ -94,6 +94,22 @@ async function fetchChart(symbol, interval, range) {
   return null;
 }
 
+/* גיבוי מחיר כש-Yahoo נופל: Stooq CSV חינמי ויציב. מחזיר {price, prev, chg_pct} או null */
+async function fetchStooqQuote(symbol) {
+  try {
+    const s = symbol.toLowerCase().includes(".") ? symbol.toLowerCase() : symbol.toLowerCase() + ".us";
+    const r = await fetch(`https://stooq.com/q/l/?s=${encodeURIComponent(s)}&f=sd2t2ohlcv&h&e=csv`, { cf: { cacheTtl: 60 } });
+    if (!r.ok) return null;
+    const rows = (await r.text()).trim().split("\n");
+    if (rows.length < 2) return null;
+    const cols = rows[1].split(",");        // Symbol,Date,Time,Open,High,Low,Close,Volume
+    const close = parseFloat(cols[6]), open = parseFloat(cols[3]);
+    if (!isFinite(close) || close <= 0) return null;
+    const chg = isFinite(open) && open > 0 ? +(((close / open) - 1) * 100).toFixed(2) : null;
+    return { price: +close.toFixed(2), prev: isFinite(open) ? +open.toFixed(2) : null, chg_pct: chg, currency: "USD", time: null, src: "stooq" };
+  } catch (_) { return null; }
+}
+
 function quoteFromChart(j) {
   const meta = j?.chart?.result?.[0]?.meta;
   if (!meta) return null;
@@ -139,6 +155,8 @@ async function writePortfolioJson(token, content, sha, message) {
     }
   );
   if (!r.ok) {
+    /* 409 = ה-SHA התיישן (עריכה מקבילה מהנייד/Actions). נעילה אופטימית: עדיף לדחות מלדרוס */
+    if (r.status === 409) throw new Error("התיק עודכן במקביל, רענן ונסה שוב");
     const err = await r.json().catch(() => ({}));
     throw new Error(err.message || `GitHub write ${r.status}`);
   }
@@ -357,7 +375,7 @@ export default {
       const out  = {};
       await Promise.all(syms.map(async sym => {
         const j = await fetchChart(sym, "1d", "2d");
-        const q = j ? quoteFromChart(j) : null;
+        const q = (j ? quoteFromChart(j) : null) || await fetchStooqQuote(sym);
         if (q) out[sym] = q;
       }));
       return json(out);
