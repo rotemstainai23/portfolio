@@ -280,6 +280,7 @@ nav{
     </div>
 
     <button onclick="saveSettings()" style="width:100%;background:var(--blue);color:#fff;border:none;border-radius:12px;padding:14px;font-size:16px;font-weight:800;font-family:Heebo,sans-serif;cursor:pointer;margin-bottom:8px">שמור</button>
+    <button onclick="shareSettings()" style="width:100%;background:var(--surface2);border:1px solid var(--border2);border-radius:12px;padding:12px;font-size:14px;font-weight:700;font-family:Heebo,sans-serif;cursor:pointer;color:var(--muted2);margin-bottom:8px">📲 הפק קישור לנייד</button>
     <div id="cfg-status" style="text-align:center;font-size:12px;min-height:20px"></div>
 
     <div style="margin-top:20px;padding-top:18px;border-top:1px solid var(--border)">
@@ -306,6 +307,16 @@ var _loaded = {};
 
 /* כתובת Cloudflare Worker למחירים חיים. ניתן לדרוס מההגדרות (localStorage) בלי לערוך קוד. */
 function priceProxy(){ try { return localStorage.getItem('price_proxy_url') || ''; } catch(e){ return ''; } }
+
+/* מעדכן את שורת הכותרת — תאריך + badge חי אם פעיל */
+function tickDate(){
+  var now  = new Date();
+  var dstr = now.toLocaleDateString('he-IL', {weekday:'short', day:'numeric', month:'short'});
+  var t = $('hdr-date'); if (!t) return;
+  t.dataset.date = dstr;
+  if (t.innerHTML.includes('●')) t.innerHTML = '<span style="color:var(--green)">● חי</span> · ' + dstr;
+  else t.textContent = dstr;
+}
 
 function $(id){ return document.getElementById(id); }
 
@@ -379,10 +390,7 @@ function setLiveBadge(on){
 }
 
 async function loadAll(){
-  var now = new Date();
-  var dstr = now.toLocaleDateString('he-IL', {weekday:'short', day:'numeric', month:'short'});
-  $('hdr-date').dataset.date = dstr;
-  $('hdr-date').textContent = dstr;
+  tickDate();
 
   var [d, p, w] = await Promise.all([
     fetchJSON('analyses/_daily/daily_latest.json'),
@@ -408,6 +416,7 @@ async function loadAll(){
       if (await loadLivePrices()) { setLiveBadge(true); refreshActiveTab(); }
     }, 60000);
   }
+  setInterval(tickDate, 60000);
 }
 
 /* מוצא את הטאב הפעיל ומרנדר אותו מחדש (לאחר עדכון מחירים חיים) */
@@ -596,7 +605,7 @@ function renderHoldings(){
   h += '<div class="sec-hdr">התפלגות שכבות</div>'
     + '<div class="card">' + distRows + '</div>';
 
-  h += '<div class="sec-hdr">אחזקות' + (Object.keys(_live).length ? ' · מחיר חי' : (_daily ? ' · מחירי ' + _daily.generated_time : ' · מחירי כניסה')) + '</div>';
+  h += '<div class="sec-hdr" style="display:flex;justify-content:space-between;align-items:center"><span>אחזקות' + (Object.keys(_live).length ? ' · מחיר חי' : (_daily ? ' · מחירי ' + _daily.generated_time : ' · מחירי כניסה')) + '</span><button onclick="openHoldingModal(null)" style="font-size:12px;font-weight:700;color:var(--blue);background:none;border:1.5px solid var(--blue);border-radius:8px;padding:4px 12px;cursor:pointer;font-family:inherit">+ הוסף</button></div>';
 
   holdings.forEach(function(hd){
     var tk  = hd.symbol || hd.ticker || '';
@@ -631,7 +640,7 @@ function renderHoldings(){
       + '<div class="bar-track"><div class="bar-fill ' + cls + '" style="width:' + bw + '%"></div></div>'
       + '<div style="display:flex;justify-content:space-between;align-items:center;margin-top:6px">'
       + '<div class="h-meta">' + pills + '</div>'
-      + '<div style="display:flex;align-items:center;gap:6px">' + buyInfo + (pnlPct&&hasLive ? pnlEl : '') + '</div>'
+      + '<div style="display:flex;align-items:center;gap:6px">' + buyInfo + (pnlPct&&hasLive ? pnlEl : '') + '<button onclick="openHoldingModal(\'' + tk + '\')" title="עדכן אחזקה" style="background:none;border:none;color:var(--muted);font-size:14px;cursor:pointer;padding:2px 4px;line-height:1">✏️</button></div>'
       + '</div></div>';
   });
 
@@ -798,10 +807,10 @@ async function renderResearch(){
   if (chainIdx && chainIdx.length) {
     var scColor = function(sc){ return sc >= 7 ? 'var(--green)' : sc >= 5 ? 'var(--orange)' : 'var(--red)'; };
     var vColor  = function(vd){ return (vd||'').includes('BUY') ? 'var(--green)' : (vd||'').includes('PASS') || (vd||'').includes('SELL') ? 'var(--red)' : 'var(--orange)'; };
-    var cRows = chainIdx.slice(0,12).map(function(r){
+    var cRows = chainIdx.slice(0,50).map(function(r){
       var sc = r.ic_score, vd = (r.ic_verdict||'').toUpperCase();
       var d = (r.generated||'').slice(0,10);
-      return '<a href="analyses/_chain/' + r.ticker + '/chain.json" style="display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border);text-decoration:none;color:inherit">'
+      return '<a href="templates/chain.html?ticker=' + r.ticker + '" style="display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border);text-decoration:none;color:inherit">'
         + '<div><span style="font-size:15px;font-weight:800">' + r.ticker + '</span><span style="font-size:10px;color:var(--muted2);margin-right:8px">' + d + '</span></div>'
         + '<div style="display:flex;align-items:center;gap:8px">'
         + (sc != null ? '<span style="font-weight:800;color:' + scColor(sc) + '">' + sc + '/10</span>' : '')
@@ -813,7 +822,7 @@ async function renderResearch(){
   }
 
   if (resIdx && resIdx.length) {
-    var rRows = resIdx.slice(0,12).map(function(r){
+    var rRows = resIdx.slice(0,50).map(function(r){
       var d = (r.generated||'').replace('T',' ').slice(0,10);
       return '<a href="templates/research.html?ticker=' + r.ticker + '" style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border);text-decoration:none;color:inherit">'
         + '<span style="font-size:15px;font-weight:800">' + r.ticker + '</span>'
@@ -921,12 +930,12 @@ async function goChain(){
 var _oracleMsgs = [];
 
 var ORACLE_QUICK = [
-  { icon:'📊', label:'פיזור',     text:'נתח את הפיזור של התיק שלי — שכבות, ריכוז, חשיפה לסיכון. מה בולט?' },
-  { icon:'🚨', label:'בוער?',    text:'מה בתיק צריך תשומת לב עכשיו? מה הכי מסוכן או דחוף?' },
-  { icon:'💡', label:'רעיון',    text:'יש לי רעיון להשקיע במניה חדשה. תנחה אותי מה לבדוק לפני שמריצים שרשרת.' },
-  { icon:'⚖️', label:'לפני החלטה', text:'עזור לי לחשוב על ההחלטה הבאה — מה כדאי לשקול לפני שפועלים?' },
-  { icon:'📈', label:'ביצועים', text:'איך המערכת עובדת? מה המדדים שכדאי לעקוב אחריהם?' },
-  { icon:'🛡️', label:'סיכונים', text:'נתח את ניהול הסיכונים בתיק — stop-loss, גיוון, חשיפה לסקטור.' },
+  { icon:'📊', label:'סקירת תיק', text:'סקור את התיק שלי — פיזור שכבות, ריכוז, ביצועים. מה בולט?' },
+  { icon:'🚨', label:'בוער?',     text:'מה בתיק צריך תשומת לב עכשיו? מה הכי מסוכן או דחוף?' },
+  { icon:'➕', label:'הוסף',      text:'הוסף אחזקה: ' },
+  { icon:'✏️', label:'עדכן',      text:'עדכן אחזקה: ' },
+  { icon:'🗑️', label:'מחק',       text:'מחק מהתיק: ' },
+  { icon:'🛡️', label:'סיכונים',  text:'נתח את ניהול הסיכונים בתיק — stop-loss, גיוון, חשיפה לסקטור.' },
 ];
 
 function renderOracle(){
@@ -1002,7 +1011,8 @@ async function oracleSend(preset){
     var r = await fetch(proxy.replace(/\/+$/,'') + '/oracle', {
       method:'POST',
       headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({ messages: _oracleMsgs }),
+      /* 12 הודעות אחרונות בלבד — חוסך טוקנים ב-Groq; הטוקן נדרש לכלי ניהול התיק */
+      body:JSON.stringify({ messages: _oracleMsgs.slice(-12), token: (localStorage.getItem('github_token')||'').trim() }),
     });
     var ld = $('oracle-loader'); if (ld) ld.remove();
     var j = await r.json();
@@ -1023,6 +1033,39 @@ function openSettings(){
   document.getElementById('settings-modal').style.display='block';
 }
 function closeSettings(){ document.getElementById('settings-modal').style.display='none'; }
+
+/* מייצר קישור עם הגדרות מקודדות — פתח בנייד כדי לייבא אוטומטית */
+function shareSettings(){
+  try{
+    var proxy = (document.getElementById('cfg-proxy').value||'').trim() || localStorage.getItem('price_proxy_url')||'';
+    var token = (document.getElementById('cfg-token').value||'').trim() || localStorage.getItem('github_token')||'';
+    if(!proxy && !token){ alert('אין הגדרות לשתף — שמור קודם.'); return; }
+    var data = {};
+    if(proxy) data.proxy = proxy;
+    if(token) data.token = token;
+    var url = location.origin + location.pathname + '#cfg=' + btoa(JSON.stringify(data));
+    if(navigator.clipboard) navigator.clipboard.writeText(url);
+    var s = document.getElementById('cfg-status');
+    s.style.color='var(--green)'; s.textContent='קישור הועתק — פתח בנייד!';
+    setTimeout(function(){ s.textContent=''; }, 3000);
+  }catch(e){ alert('שגיאה: '+e.message); }
+}
+
+/* מייבא הגדרות מה-hash אם קיים (#cfg=BASE64) */
+function importSettingsFromHash(){
+  try{
+    var h = location.hash;
+    if(!h.startsWith('#cfg=')) return;
+    var data = JSON.parse(atob(h.slice(5)));
+    if(data.proxy) localStorage.setItem('price_proxy_url', data.proxy);
+    if(data.token) localStorage.setItem('github_token',   data.token);
+    setTimeout(function(){
+      var s = document.getElementById('cfg-status');
+      if(s){ s.style.color='var(--green)'; s.textContent='הגדרות יובאו אוטומטית!'; setTimeout(function(){ s.textContent=''; },3000); }
+    }, 800);
+  }catch(e){}
+}
+
 function toggleTokenEye(){
   var inp=document.getElementById('cfg-token');
   inp.type=inp.type==='password'?'text':'password';
@@ -1033,8 +1076,13 @@ function saveSettings(){
     var token=document.getElementById('cfg-token').value.trim();
     if(proxy) localStorage.setItem('price_proxy_url',proxy); else localStorage.removeItem('price_proxy_url');
     if(token) localStorage.setItem('github_token',token); else localStorage.removeItem('github_token');
+    var cfgData={};
+    if(proxy) cfgData.proxy=proxy;
+    if(token) cfgData.token=token;
+    if(proxy||token) history.replaceState(null,'',location.pathname+location.search+'#cfg='+btoa(JSON.stringify(cfgData)));
+    else history.replaceState(null,'',location.pathname+location.search);
     var s=document.getElementById('cfg-status');
-    s.style.color='var(--green)'; s.textContent='נשמר בהצלחה!';
+    s.style.color='var(--green)'; s.textContent='נשמר! סמן את הקישור כסימנייה.';
     setTimeout(function(){ s.textContent=''; },2000);
     if(proxy) loadLivePrices().then(function(ok){ if(ok){ setLiveBadge(true); refreshActiveTab(); }});
   }catch(e){
@@ -1080,6 +1128,100 @@ async function triggerWorkflow(workflow, label){
   }catch(e){ stat.style.color='var(--red)'; stat.textContent='שגיאת רשת: '+e.message; }
 }
 
+/* ── Holdings Edit Modal ── */
+var _hmEditing = null;
+
+function openHoldingModal(symbol){
+  _hmEditing = symbol;
+  var isLocal = window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost';
+  var msg = $('hm-msg');
+  var hasTok = false; try { hasTok = !!(localStorage.getItem('github_token')||'').trim(); } catch(e){}
+  msg.textContent = (isLocal || (priceProxy() && hasTok)) ? '' : 'הגדר Worker URL וטוקן GitHub בהגדרות לשמירה מהנייד';
+  msg.style.color = 'var(--orange)';
+  $('hm-delete-btn').style.display = symbol ? 'block' : 'none';
+  $('hm-title').textContent = symbol ? 'עדכן — ' + symbol : 'הוסף אחזקה';
+  if (symbol) {
+    var hd = (_port && _port.holdings || []).find(function(h){ return (h.symbol||h.ticker) === symbol; }) || {};
+    $('hm-symbol').value = symbol; $('hm-symbol').readOnly = true;
+    $('hm-name').value = hd.name || '';
+    $('hm-quantity').value = hd.quantity != null ? hd.quantity : '';
+    $('hm-buy_price').value = hd.buy_price != null ? hd.buy_price : '';
+    $('hm-layer').value = hd.layer || 'Growth';
+    $('hm-sector').value = hd.sector || '';
+    $('hm-notes').value = hd.notes || '';
+  } else {
+    ['hm-symbol','hm-name','hm-quantity','hm-buy_price','hm-sector','hm-notes'].forEach(function(id){ $(id).value = ''; });
+    $('hm-symbol').readOnly = false;
+    $('hm-layer').value = 'Growth';
+  }
+  $('holding-modal').style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+function closeHoldingModal(){
+  $('holding-modal').style.display = 'none';
+  document.body.style.overflow = '';
+}
+async function saveHolding(){
+  var msg = $('hm-msg');
+  var sym = ($('hm-symbol').value||'').trim().toUpperCase();
+  if (!sym){ msg.style.color='var(--red)'; msg.textContent='חסר טיקר'; return; }
+  var body = {
+    symbol: sym,
+    name: ($('hm-name').value||'').trim() || sym,
+    quantity: parseFloat($('hm-quantity').value) || 0,
+    buy_price: parseFloat($('hm-buy_price').value) || 0,
+    layer: $('hm-layer').value,
+    sector: ($('hm-sector').value||'').trim(),
+    notes: ($('hm-notes').value||'').trim(),
+  };
+  var isLocal = window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost';
+  msg.style.color='var(--muted2)'; msg.textContent='שומר...';
+  try {
+    if (isLocal) {
+      var r = await fetch('http://127.0.0.1:5000/api/holdings', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(body)});
+      if (!r.ok) throw new Error(await r.text());
+    } else {
+      var proxy = priceProxy();
+      if (!proxy) throw new Error('הגדר Worker URL בהגדרות');
+      var action = _hmEditing ? 'update' : 'add';
+      var r = await fetch(proxy.replace(/\/+$/,'') + '/portfolio', {
+        method:'POST', headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({ action, holding: body, token: (localStorage.getItem('github_token')||'').trim() })
+      });
+      var j = await r.json();
+      if (j.error) throw new Error(j.error);
+    }
+    if (!_port.holdings) _port.holdings = [];
+    var idx = _port.holdings.findIndex(function(h){ return (h.symbol||h.ticker)===sym; });
+    if (idx >= 0) Object.assign(_port.holdings[idx], body);
+    else _port.holdings.push(body);
+    closeHoldingModal(); renderHoldings();
+  } catch(e){ msg.style.color='var(--red)'; msg.textContent='שגיאה: '+e.message; }
+}
+async function deleteHolding(){
+  var msg = $('hm-msg');
+  if (!_hmEditing || !confirm('למחוק את ' + _hmEditing + ' מהתיק?')) return;
+  var isLocal = window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost';
+  msg.style.color='var(--muted2)'; msg.textContent='מוחק...';
+  try {
+    if (isLocal) {
+      var r = await fetch('http://127.0.0.1:5000/api/holdings/' + _hmEditing, {method:'DELETE'});
+      if (!r.ok) throw new Error(await r.text());
+    } else {
+      var proxy = priceProxy();
+      if (!proxy) throw new Error('הגדר Worker URL בהגדרות');
+      var r = await fetch(proxy.replace(/\/+$/,'') + '/portfolio', {
+        method:'POST', headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({ action:'remove', symbol: _hmEditing, token: (localStorage.getItem('github_token')||'').trim() })
+      });
+      var j = await r.json();
+      if (j.error) throw new Error(j.error);
+    }
+    _port.holdings = (_port.holdings||[]).filter(function(h){ return (h.symbol||h.ticker)!==_hmEditing; });
+    closeHoldingModal(); renderHoldings();
+  } catch(e){ msg.style.color='var(--red)'; msg.textContent='שגיאה: '+e.message; }
+}
+
 /* ── register service worker ── */
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('./sw.js').catch(function(){});
@@ -1087,7 +1229,60 @@ if ('serviceWorker' in navigator) {
 
 /* ── boot ── */
 _loaded['daily'] = true;
+importSettingsFromHash();
 loadAll();
 </script>
+
+<!-- Holdings Modal -->
+<div id="holding-modal" onclick="if(event.target===this)closeHoldingModal()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:999;align-items:flex-start;justify-content:center;padding:24px 16px;overflow-y:auto">
+  <div style="width:100%;max-width:440px;background:var(--surface,#0d1421);border:1px solid rgba(139,92,246,.3);border-radius:20px;padding:24px;margin-top:8px">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px">
+      <h3 id="hm-title" style="font-size:18px;font-weight:800;color:var(--text,#e2e8f0);margin:0">עדכן אחזקה</h3>
+      <button onclick="closeHoldingModal()" style="background:none;border:none;color:var(--muted,#64748b);font-size:22px;cursor:pointer;line-height:1;padding:0">✕</button>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:13px">
+      <div>
+        <label style="font-size:11px;font-weight:700;color:var(--muted2,#94a3b8);display:block;margin-bottom:5px;text-transform:uppercase;letter-spacing:.5px">טיקר</label>
+        <input id="hm-symbol" type="text" placeholder="NVDA" style="width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(139,92,246,.3);border-radius:10px;padding:10px 12px;color:var(--text,#e2e8f0);font-size:15px;font-weight:800;font-family:inherit;box-sizing:border-box">
+      </div>
+      <div>
+        <label style="font-size:11px;font-weight:700;color:var(--muted2,#94a3b8);display:block;margin-bottom:5px;text-transform:uppercase;letter-spacing:.5px">שם חברה</label>
+        <input id="hm-name" type="text" placeholder="NVIDIA Corporation" style="width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:10px 12px;color:var(--text,#e2e8f0);font-size:14px;font-family:inherit;box-sizing:border-box">
+      </div>
+      <div style="display:flex;gap:12px">
+        <div style="flex:1">
+          <label style="font-size:11px;font-weight:700;color:var(--muted2,#94a3b8);display:block;margin-bottom:5px;text-transform:uppercase;letter-spacing:.5px">כמות</label>
+          <input id="hm-quantity" type="number" step="0.0001" placeholder="1.5" style="width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:10px 12px;color:var(--text,#e2e8f0);font-size:14px;font-family:inherit;box-sizing:border-box">
+        </div>
+        <div style="flex:1">
+          <label style="font-size:11px;font-weight:700;color:var(--muted2,#94a3b8);display:block;margin-bottom:5px;text-transform:uppercase;letter-spacing:.5px">מחיר כניסה $</label>
+          <input id="hm-buy_price" type="number" step="0.01" placeholder="175.63" style="width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:10px 12px;color:var(--text,#e2e8f0);font-size:14px;font-family:inherit;box-sizing:border-box">
+        </div>
+      </div>
+      <div>
+        <label style="font-size:11px;font-weight:700;color:var(--muted2,#94a3b8);display:block;margin-bottom:5px;text-transform:uppercase;letter-spacing:.5px">שכבה</label>
+        <select id="hm-layer" style="width:100%;background:rgba(20,30,55,.95);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:10px 12px;color:var(--text,#e2e8f0);font-size:14px;font-family:inherit;box-sizing:border-box">
+          <option value="Growth">Growth — צמיחה</option>
+          <option value="Stability">Stability — יציבות</option>
+          <option value="Speculation">Speculation — ספקולציה</option>
+          <option value="Core">Core — ליבה</option>
+        </select>
+      </div>
+      <div>
+        <label style="font-size:11px;font-weight:700;color:var(--muted2,#94a3b8);display:block;margin-bottom:5px;text-transform:uppercase;letter-spacing:.5px">סקטור</label>
+        <input id="hm-sector" type="text" placeholder="AI / Semiconductors" style="width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:10px 12px;color:var(--text,#e2e8f0);font-size:14px;font-family:inherit;box-sizing:border-box">
+      </div>
+      <div>
+        <label style="font-size:11px;font-weight:700;color:var(--muted2,#94a3b8);display:block;margin-bottom:5px;text-transform:uppercase;letter-spacing:.5px">הערות</label>
+        <textarea id="hm-notes" rows="2" placeholder="..." style="width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:10px 12px;color:var(--text,#e2e8f0);font-size:13px;font-family:inherit;box-sizing:border-box;resize:vertical"></textarea>
+      </div>
+    </div>
+    <div id="hm-msg" style="font-size:12px;color:var(--muted2,#94a3b8);text-align:center;margin-top:10px;min-height:18px"></div>
+    <div style="display:flex;gap:10px;margin-top:16px">
+      <button onclick="saveHolding()" style="flex:1;background:linear-gradient(135deg,#7c3aed,#5b21b6);border:none;border-radius:12px;padding:13px;color:#fff;font-size:15px;font-weight:800;cursor:pointer;font-family:inherit">שמור</button>
+      <button id="hm-delete-btn" onclick="deleteHolding()" style="display:none;background:rgba(251,113,133,.12);border:1.5px solid rgba(251,113,133,.35);border-radius:12px;padding:13px 18px;color:#fb7185;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit">מחק</button>
+    </div>
+  </div>
+</div>
 </body>
 </html>

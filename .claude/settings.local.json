@@ -1,9 +1,11 @@
 {
   "permissions": {
+    "defaultMode": "auto",
     "allow": [
       "Bash(ls -la \"C:\\\\\\\\Users\\\\\\\\רותם\\\\\\\\portfolio\\\\\\\\\")",
       "Bash(Get-Content \"C:\\\\Users\\\\רותם\\\\portfolio\\\\templates\\\\_redesign.css\")",
       "Bash(Measure-Object -Line)"
     ]
-  }
+  },
+  "useAutoModeDuringPlan": true
 }

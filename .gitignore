@@ -19,3 +19,11 @@ config.json
 # IDE
 .vscode/
 .idea/
+
+# פרויקטים ותוצרים מקומיים — לא חלק מהאפליקציה בענן
+Barebone.AI/
+ProPicks-Research/
+data/
+research/
+.pytest_cache/
+.claude/scheduled_tasks.lock
