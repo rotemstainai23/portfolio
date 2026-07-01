@@ -13,7 +13,8 @@
 <script>
 'use strict';
 const params = new URLSearchParams(location.search);
-const ticker = params.get('ticker');
+/* סינון קלט: רק תווי טיקר חוקיים, מונע הזרקה מהכתובת */
+const ticker = (params.get('ticker') || '').toUpperCase().replace(/[^A-Z0-9.\-]/g, '').slice(0, 10);
 if (!ticker) {
   document.getElementById('root').innerHTML = '<b>שגיאה:</b> חסר פרמטר טיקר.<br>פתח עם <code>?ticker=NOW</code> בסוף הכתובת.';
 } else {

@@ -69,7 +69,9 @@
 <div id="root" class="error-box">⏳ טוען…</div>
 <script>
 'use strict';
-const params=new URLSearchParams(location.search);const ticker=params.get('ticker');
+const params=new URLSearchParams(location.search);
+/* סינון קלט: רק תווי טיקר חוקיים, מונע הזרקה מהכתובת */
+const ticker=(params.get('ticker')||'').toUpperCase().replace(/[^A-Z0-9.\-]/g,'').slice(0,10);
 if(!ticker){document.getElementById('root').innerHTML='<b>שגיאה:</b> חסר טיקר.';}
 else{document.title='Executor — '+ticker;const s=document.createElement('script');s.src='../analyses/'+ticker+'/executor.js';s.onload=init;s.onerror=()=>{const s2=document.createElement('script');s2.src='../analyses/'+ticker+'/executor.auto.js';s2.onload=init;s2.onerror=()=>{document.getElementById('root').innerHTML='<b>אין נתונים</b> ל-'+ticker;};document.head.appendChild(s2);};document.head.appendChild(s);}
 

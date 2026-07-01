@@ -54,7 +54,7 @@ Never hand-edit `portfolio.json` while server runs — use the API (POST/DELETE 
 
 ## Multi-Agent Safety
 Chain: Unified_Analyst → DevilsAdvocate → CEO_Agent → Executor → InvestmentCommittee (TradeRecorder post-buy).
-**Oracle** (`מערכת תיק ההשקעות/Oracle_Agent.md`) — יועץ שיחתי read-only בלבד. גישה ב-`/oracle`. לא חלק מהשרשרת, לא כותב לתיק.
+**Oracle** (`מערכת תיק ההשקעות/Oracle_Agent.md`) — יועץ שיחתי. לא חלק מהשרשרת. במסלול הענן (cloudflare/worker.js `/oracle`) יש לו כלי add/update לאחזקות בלבד, מאומתים בטוקן GitHub של המשתמש; מחיקה רק מה-UI (טאב אחזקות), לא מהצ'אט — הגנה מהזרקת פרומפט.
 - Never change a handoff schema unilaterally; verify downstream first.
 - Persisted artifacts are canonical: `analyses/<TICKER>/_handoffs/` and `analyses/<TICKER>/<agent>.js`.
 - `מערכת תיק ההשקעות/` is the canonical prompt dir; preserve agent boundaries. Details: docs/AGENT_CHAIN.md.

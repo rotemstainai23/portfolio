@@ -309,12 +309,13 @@ var _loaded = {};
 function priceProxy(){ try { return localStorage.getItem('price_proxy_url') || ''; } catch(e){ return ''; } }
 
 /* מעדכן את שורת הכותרת — תאריך + badge חי אם פעיל */
+var _liveOn = false;
 function tickDate(){
   var now  = new Date();
   var dstr = now.toLocaleDateString('he-IL', {weekday:'short', day:'numeric', month:'short'});
   var t = $('hdr-date'); if (!t) return;
   t.dataset.date = dstr;
-  if (t.innerHTML.includes('●')) t.innerHTML = '<span style="color:var(--green)">● חי</span> · ' + dstr;
+  if (_liveOn) t.innerHTML = '<span style="color:var(--green)">● חי</span> · ' + dstr;
   else t.textContent = dstr;
 }
 
@@ -385,6 +386,7 @@ async function loadLivePrices(){
 
 /* מסמן בכותרת שמחירים חיים נטענים */
 function setLiveBadge(on){
+  _liveOn = !!on;
   var t = $('hdr-date');
   if (on) t.innerHTML = '<span style="color:var(--green)">● חי</span> · ' + t.dataset.date;
 }
@@ -929,13 +931,13 @@ async function goChain(){
 /* ── ORACLE ── */
 var _oracleMsgs = [];
 
+/* מחיקה אינה זמינה מהצ'אט (הגנה מהזרקת פרומפט), רק מטאב האחזקות */
 var ORACLE_QUICK = [
-  { icon:'📊', label:'סקירת תיק', text:'סקור את התיק שלי — פיזור שכבות, ריכוז, ביצועים. מה בולט?' },
+  { icon:'📊', label:'סקירת תיק', text:'סקור את התיק שלי: פיזור שכבות, ריכוז, ביצועים. מה בולט?' },
   { icon:'🚨', label:'בוער?',     text:'מה בתיק צריך תשומת לב עכשיו? מה הכי מסוכן או דחוף?' },
   { icon:'➕', label:'הוסף',      text:'הוסף אחזקה: ' },
   { icon:'✏️', label:'עדכן',      text:'עדכן אחזקה: ' },
-  { icon:'🗑️', label:'מחק',       text:'מחק מהתיק: ' },
-  { icon:'🛡️', label:'סיכונים',  text:'נתח את ניהול הסיכונים בתיק — stop-loss, גיוון, חשיפה לסקטור.' },
+  { icon:'🛡️', label:'סיכונים',  text:'נתח את ניהול הסיכונים בתיק: stop-loss, גיוון, חשיפה לסקטור.' },
 ];
 
 function renderOracle(){
@@ -1011,7 +1013,7 @@ async function oracleSend(preset){
     var r = await fetch(proxy.replace(/\/+$/,'') + '/oracle', {
       method:'POST',
       headers:{'Content-Type':'application/json'},
-      /* 12 הודעות אחרונות בלבד — חוסך טוקנים ב-Groq; הטוקן נדרש לכלי ניהול התיק */
+      /* 12 הודעות אחרונות בלבד (חוסך טוקנים ב-Groq); הטוקן נדרש לכלי ניהול התיק */
       body:JSON.stringify({ messages: _oracleMsgs.slice(-12), token: (localStorage.getItem('github_token')||'').trim() }),
     });
     var ld = $('oracle-loader'); if (ld) ld.remove();
@@ -1034,7 +1036,7 @@ function openSettings(){
 }
 function closeSettings(){ document.getElementById('settings-modal').style.display='none'; }
 
-/* מייצר קישור עם הגדרות מקודדות — פתח בנייד כדי לייבא אוטומטית */
+/* מייצר קישור עם הגדרות מקודדות; פתיחה בנייד מייבאת אותן (אחרי אישור) */
 function shareSettings(){
   try{
     var proxy = (document.getElementById('cfg-proxy').value||'').trim() || localStorage.getItem('price_proxy_url')||'';
@@ -1051,17 +1053,24 @@ function shareSettings(){
   }catch(e){ alert('שגיאה: '+e.message); }
 }
 
-/* מייבא הגדרות מה-hash אם קיים (#cfg=BASE64) */
+/* מייבא הגדרות מה-hash אם קיים (#cfg=BASE64), עם אישור מפורש: קישור זדוני יכול להחליף proxy ולגנוב טוקן */
 function importSettingsFromHash(){
   try{
     var h = location.hash;
     if(!h.startsWith('#cfg=')) return;
     var data = JSON.parse(atob(h.slice(5)));
+    /* מנקה את ה-hash מיד כדי שהטוקן לא יישאר בהיסטוריית הדפדפן */
+    history.replaceState(null,'',location.pathname+location.search);
+    var desc = [];
+    if(data.proxy) desc.push('Worker: ' + data.proxy);
+    if(data.token) desc.push('טוקן GitHub');
+    if(!desc.length) return;
+    if(!confirm('לייבא הגדרות מהקישור?\n' + desc.join('\n'))) return;
     if(data.proxy) localStorage.setItem('price_proxy_url', data.proxy);
     if(data.token) localStorage.setItem('github_token',   data.token);
     setTimeout(function(){
       var s = document.getElementById('cfg-status');
-      if(s){ s.style.color='var(--green)'; s.textContent='הגדרות יובאו אוטומטית!'; setTimeout(function(){ s.textContent=''; },3000); }
+      if(s){ s.style.color='var(--green)'; s.textContent='הגדרות יובאו!'; setTimeout(function(){ s.textContent=''; },3000); }
     }, 800);
   }catch(e){}
 }
@@ -1076,13 +1085,8 @@ function saveSettings(){
     var token=document.getElementById('cfg-token').value.trim();
     if(proxy) localStorage.setItem('price_proxy_url',proxy); else localStorage.removeItem('price_proxy_url');
     if(token) localStorage.setItem('github_token',token); else localStorage.removeItem('github_token');
-    var cfgData={};
-    if(proxy) cfgData.proxy=proxy;
-    if(token) cfgData.token=token;
-    if(proxy||token) history.replaceState(null,'',location.pathname+location.search+'#cfg='+btoa(JSON.stringify(cfgData)));
-    else history.replaceState(null,'',location.pathname+location.search);
     var s=document.getElementById('cfg-status');
-    s.style.color='var(--green)'; s.textContent='נשמר! סמן את הקישור כסימנייה.';
+    s.style.color='var(--green)'; s.textContent='נשמר בהצלחה!';
     setTimeout(function(){ s.textContent=''; },2000);
     if(proxy) loadLivePrices().then(function(ok){ if(ok){ setLiveBadge(true); refreshActiveTab(); }});
   }catch(e){
@@ -1130,6 +1134,18 @@ async function triggerWorkflow(workflow, label){
 
 /* ── Holdings Edit Modal ── */
 var _hmEditing = null;
+
+/* קריאת ניהול תיק אחת ל-Worker (מסלול נייד), כולל טוקן ואימות שגיאות */
+async function portfolioRemote(payload){
+  var proxy = priceProxy();
+  if (!proxy) throw new Error('הגדר Worker URL בהגדרות');
+  payload.token = (localStorage.getItem('github_token')||'').trim();
+  var r = await fetch(proxy.replace(/\/+$/,'') + '/portfolio', {
+    method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload)
+  });
+  var j = await r.json();
+  if (j.error) throw new Error(j.error);
+}
 
 function openHoldingModal(symbol){
   _hmEditing = symbol;
@@ -1181,15 +1197,7 @@ async function saveHolding(){
       var r = await fetch('http://127.0.0.1:5000/api/holdings', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(body)});
       if (!r.ok) throw new Error(await r.text());
     } else {
-      var proxy = priceProxy();
-      if (!proxy) throw new Error('הגדר Worker URL בהגדרות');
-      var action = _hmEditing ? 'update' : 'add';
-      var r = await fetch(proxy.replace(/\/+$/,'') + '/portfolio', {
-        method:'POST', headers:{'Content-Type':'application/json'},
-        body:JSON.stringify({ action, holding: body, token: (localStorage.getItem('github_token')||'').trim() })
-      });
-      var j = await r.json();
-      if (j.error) throw new Error(j.error);
+      await portfolioRemote({ action: _hmEditing ? 'update' : 'add', holding: body });
     }
     if (!_port.holdings) _port.holdings = [];
     var idx = _port.holdings.findIndex(function(h){ return (h.symbol||h.ticker)===sym; });
@@ -1208,14 +1216,7 @@ async function deleteHolding(){
       var r = await fetch('http://127.0.0.1:5000/api/holdings/' + _hmEditing, {method:'DELETE'});
       if (!r.ok) throw new Error(await r.text());
     } else {
-      var proxy = priceProxy();
-      if (!proxy) throw new Error('הגדר Worker URL בהגדרות');
-      var r = await fetch(proxy.replace(/\/+$/,'') + '/portfolio', {
-        method:'POST', headers:{'Content-Type':'application/json'},
-        body:JSON.stringify({ action:'remove', symbol: _hmEditing, token: (localStorage.getItem('github_token')||'').trim() })
-      });
-      var j = await r.json();
-      if (j.error) throw new Error(j.error);
+      await portfolioRemote({ action:'remove', symbol: _hmEditing });
     }
     _port.holdings = (_port.holdings||[]).filter(function(h){ return (h.symbol||h.ticker)!==_hmEditing; });
     closeHoldingModal(); renderHoldings();

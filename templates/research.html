@@ -65,7 +65,7 @@ function setupToken(){
 function setStatus(msg){ document.getElementById('status').textContent = msg; }
 
 async function runResearch(){
-  const ticker = (document.getElementById('ticker').value || '').trim().toUpperCase();
+  const ticker = (document.getElementById('ticker').value || '').trim().toUpperCase().replace(/[^A-Z0-9.\-]/g, '').slice(0, 10);
   if(!ticker){ setStatus('הקלד טיקר.'); return; }
   const token = localStorage.getItem(TOKEN_KEY);
   if(!token){ setStatus('אין טוקן. לחץ "הגדרת טוקן" קודם.'); return; }
@@ -109,7 +109,7 @@ async function fetchReport(ticker){
 }
 
 async function loadExisting(){
-  const ticker = (document.getElementById('ticker').value || '').trim().toUpperCase();
+  const ticker = (document.getElementById('ticker').value || '').trim().toUpperCase().replace(/[^A-Z0-9.\-]/g, '').slice(0, 10);
   if(!ticker){ setStatus('הקלד טיקר.'); return; }
   setStatus('טוען...');
   const data = await fetchReport(ticker);

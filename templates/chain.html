@@ -40,7 +40,8 @@
 </div>
 <script>
 'use strict';
-var ticker = new URLSearchParams(location.search).get('ticker');
+/* סינון קלט: רק תווי טיקר חוקיים, מונע הזרקת HTML מהכתובת */
+var ticker = (new URLSearchParams(location.search).get('ticker') || '').toUpperCase().replace(/[^A-Z0-9.\-]/g, '').slice(0, 10);
 if (!ticker) {
   document.getElementById('root').innerHTML = '<div style="padding:40px;text-align:center;color:var(--muted2)">חסר טיקר בכתובת (?ticker=XXX)</div>';
 } else {
