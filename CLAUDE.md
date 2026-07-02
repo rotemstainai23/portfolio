@@ -54,7 +54,9 @@ Never hand-edit `portfolio.json` while server runs — use the API (POST/DELETE 
 
 ## Multi-Agent Safety
 Chain: Unified_Analyst → DevilsAdvocate → CEO_Agent → Executor → InvestmentCommittee (TradeRecorder post-buy).
-**Oracle** (`מערכת תיק ההשקעות/Oracle_Agent.md`) — יועץ שיחתי. לא חלק מהשרשרת. במסלול הענן (cloudflare/worker.js `/oracle`) יש לו כלי add/update לאחזקות בלבד, מאומתים בטוקן GitHub של המשתמש; מחיקה רק מה-UI (טאב אחזקות), לא מהצ'אט — הגנה מהזרקת פרומפט.
+**Oracle** (`מערכת תיק ההשקעות/Oracle_Agent.md`) — יועץ שיחתי. לא חלק מהשרשרת. במסלול הענן (cloudflare/worker.js `/oracle`) יש לו כלי add/update לאחזקות בלבד, מאומתים ב-PIN; מחיקה רק מה-UI (טאב אחזקות), לא מהצ'אט — הגנה מהזרקת פרומפט.
+
+**מודל אבטחת ענן (Worker):** ה-Worker מחזיק 3 secrets ב-Cloudflare: `GROQ_API_KEY`, `GH_TOKEN` (fine-grained, contents+workflows write), `APP_PIN`. הטלפון מחזיק רק `price_proxy_url` + `app_pin` ב-localStorage — הטוקן החזק לעולם לא בדפדפן. כל כתיבה/dispatch (`/portfolio`, `/oracle` tool-calls, `/chain`) מאומתת ב-PIN. `/chain` מפעיל workflow מרשימה לבנה (research/chain/daily/sunday/saturday.yml). מחירים: Yahoo v8 עם fallback ל-Stooq CSV.
 - Never change a handoff schema unilaterally; verify downstream first.
 - Persisted artifacts are canonical: `analyses/<TICKER>/_handoffs/` and `analyses/<TICKER>/<agent>.js`.
 - `מערכת תיק ההשקעות/` is the canonical prompt dir; preserve agent boundaries. Details: docs/AGENT_CHAIN.md.

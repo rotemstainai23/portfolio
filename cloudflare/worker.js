@@ -6,8 +6,13 @@
 // POST /chain                  → הרצת שרשרת via GitHub Actions (טוקן GitHub מהלקוח)
 // POST /portfolio              → ניהול אחזקות (add/update/remove); דורש טוקן GitHub מהלקוח
 //
-// Secret יחיד: GROQ_API_KEY (Cloudflare Dashboard → Worker → Settings → Variables).
-// כתיבות לתיק מאומתות בטוקן ה-GitHub של המשתמש שנשלח מהאפליקציה : לא בסוד ב-Worker.
+// Secrets ב-Cloudflare Dashboard → Worker → Settings → Variables:
+//   GROQ_API_KEY : מפתח Groq (לצ'אט האורקל)
+//   GH_TOKEN     : טוקן GitHub fine-grained עם הרשאת contents+workflows write על הריפו
+//   APP_PIN      : קוד סודי קצר שתבחר. הטלפון שולח אותו בכל כתיבה; הטוקן עצמו לא יוצא מה-Worker.
+//
+// מודל אבטחה: הטוקן החזק (GH_TOKEN) חי רק ב-Worker. הטלפון מחזיק רק PIN.
+// אם ה-PIN דולף אפשר לכל היותר לערוך אחזקות; אי אפשר לגעת בטוקן או בריפו הכללי.
 
 const CORS = {
   "Access-Control-Allow-Origin": "*",
@@ -79,6 +84,16 @@ const ORACLE_TOOLS = [
     },
   },
 ];
+
+// ── אימות PIN ─────────────────────────────────────────────────────────────────
+
+/* מחזיר null אם ה-PIN תקין, אחרת Response של שגיאה. חוסם כתיבות מכל מי שאינו המשתמש */
+function pinError(body, env) {
+  if (!env.GH_TOKEN) return json({ error: "GH_TOKEN לא מוגדר ב-Worker" }, 500);
+  if (!env.APP_PIN)  return json({ error: "APP_PIN לא מוגדר ב-Worker" }, 500);
+  if ((body.pin || "").trim() !== env.APP_PIN) return json({ error: "קוד PIN שגוי, בדוק בהגדרות" }, 401);
+  return null;
+}
 
 // ── Yahoo Finance ─────────────────────────────────────────────────────────────
 
@@ -246,8 +261,8 @@ export default {
 
       const body     = await request.json().catch(() => ({}));
       const messages = body.messages || [];
-      /* טוקן GitHub מגיע מהלקוח (localStorage) : ה-Worker לא מחזיק סוד כתיבה לתיק */
-      const ghToken  = (body.token || "").trim();
+      /* כתיבה לתיק דרך האורקל מותרת רק עם PIN תקין; קריאה/שיחה פתוחה */
+      const canWrite = env.GH_TOKEN && env.APP_PIN && (body.pin || "").trim() === env.APP_PIN;
       const ctx      = await buildPortfolioContext();
       const system   = ORACLE_SYSTEM.replace("{{PORTFOLIO_CONTEXT}}", ctx);
 
@@ -276,10 +291,10 @@ export default {
         for (const tc of msg1.tool_calls) {
           let result;
           try {
-            if (!ghToken) throw new Error("אין הרשאת כתיבה: הגדר GitHub token בהגדרות האפליקציה");
+            if (!canWrite) throw new Error("אין הרשאת כתיבה: הזן PIN תקין בהגדרות האפליקציה");
             const args = JSON.parse(tc.function.arguments);
             const action = tc.function.name === "add_holding" ? "add" : "update";
-            if (!portfolio) ({ content: portfolio, sha } = await readPortfolioJson(ghToken));
+            if (!portfolio) ({ content: portfolio, sha } = await readPortfolioJson(env.GH_TOKEN));
             result  = applyPortfolioAction(portfolio, action, args);
             changed = true;
           } catch (e) {
@@ -291,7 +306,7 @@ export default {
         const summary = toolResults.map(t => t.content).join(" · ");
         if (changed) {
           try {
-            await writePortfolioJson(ghToken, portfolio, sha, "oracle: עדכון תיק");
+            await writePortfolioJson(env.GH_TOKEN, portfolio, sha, "oracle: עדכון תיק");
           } catch (e) {
             return json({ text: `הפעולה לא נשמרה (שגיאת GitHub): ${e.message}` });
           }
@@ -317,16 +332,15 @@ export default {
 
     // ── POST /portfolio ───────────────────────────────────────────────────────
     if (url.pathname === "/portfolio" && request.method === "POST") {
-      const body   = await request.json().catch(() => ({}));
-      /* אימות: טוקן GitHub של המשתמש חובה : בלעדיו GitHub ידחה את הכתיבה */
-      const pToken = (body.token || "").trim();
-      if (!pToken) return json({ error: "חסר GitHub token, הגדר בהגדרות האפליקציה" }, 401);
+      const body = await request.json().catch(() => ({}));
+      const bad  = pinError(body, env);
+      if (bad) return bad;
       const action = body.action;
       const args   = body.holding || body;
       try {
-        const { content: portfolio, sha } = await readPortfolioJson(pToken);
+        const { content: portfolio, sha } = await readPortfolioJson(env.GH_TOKEN);
         const result = applyPortfolioAction(portfolio, action, args);
-        await writePortfolioJson(pToken, portfolio, sha, `portfolio: ${action} ${args.symbol||""}`);
+        await writePortfolioJson(env.GH_TOKEN, portfolio, sha, `portfolio: ${action} ${args.symbol||""}`);
         return json({ ok: true, message: result });
       } catch (e) {
         return json({ error: e.message }, 400);
@@ -334,26 +348,32 @@ export default {
     }
 
     // ── POST /chain ───────────────────────────────────────────────────────────
+    // מפעיל workflow מהרשימה המותרת עם GH_TOKEN של ה-Worker, מוגן ב-PIN
     if (url.pathname === "/chain" && request.method === "POST") {
-      const body   = await request.json().catch(() => ({}));
-      const ticker = (body.ticker || "").toUpperCase().trim();
-      const token  = body.token || env.GH_TOKEN || "";
-      if (!ticker) return json({ error: "ticker חסר" }, 400);
-      if (!token)  return json({ error: "GitHub token חסר" }, 400);
+      const body = await request.json().catch(() => ({}));
+      const bad  = pinError(body, env);
+      if (bad) return bad;
+      const ALLOWED = ["research.yml", "chain.yml", "daily.yml", "sunday.yml", "saturday.yml"];
+      const workflow = ALLOWED.includes(body.workflow) ? body.workflow : "research.yml";
+      const ticker   = (body.ticker || "").toUpperCase().trim();
+      const perTicker = workflow === "research.yml" || workflow === "chain.yml";
+      if (perTicker && !ticker) return json({ error: "ticker חסר" }, 400);
+      /* inputs רק לוורקפלואים שמצפים ל-ticker; אחרת GitHub דוחה "Unexpected inputs" */
+      const inputs = perTicker ? { ticker } : {};
 
       const ghRes = await fetch(
-        `https://api.github.com/repos/${GH_REPO}/actions/workflows/research.yml/dispatches`,
+        `https://api.github.com/repos/${GH_REPO}/actions/workflows/${workflow}/dispatches`,
         {
           method: "POST",
           headers: {
-            Authorization: `token ${token}`,
+            Authorization: `token ${env.GH_TOKEN}`,
             Accept: "application/vnd.github+json",
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ ref: "main", inputs: { ticker } }),
+          body: JSON.stringify({ ref: "main", inputs }),
         }
       );
-      if (ghRes.status === 204) return json({ ok: true, ticker });
+      if (ghRes.status === 204) return json({ ok: true, ticker, workflow });
       const err = await ghRes.json().catch(() => ({}));
       return json({ error: err.message || ghRes.statusText }, ghRes.status);
     }
@@ -381,7 +401,7 @@ export default {
       return json(out);
     }
 
-    return json({ ok: true, usage: "?quotes=AAPL,MSFT | ?symbol=AAPL | POST /oracle | POST /chain | POST /portfolio" });
+    return json({ ok: true, usage: "?quotes=AAPL,MSFT | ?symbol=AAPL | POST /oracle | POST /chain | POST /portfolio (PIN)" });
   },
 };
 

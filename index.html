@@ -271,12 +271,12 @@ nav{
     </div>
 
     <div style="margin-bottom:28px">
-      <div style="font-size:11px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px">טוקן GitHub (portfolio-pwa)</div>
+      <div style="font-size:11px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px">קוד PIN (לעדכון התיק והרצת ניתוחים)</div>
       <div style="display:flex;gap:8px">
-        <input id="cfg-token" type="password" placeholder="ghp_..." autocomplete="off" spellcheck="false" style="flex:1;background:var(--surface2);border:1px solid var(--border2);border-radius:10px;color:var(--text);padding:12px 13px;font-size:14px;font-family:Heebo,sans-serif;outline:none;direction:ltr"/>
+        <input id="cfg-pin" type="password" placeholder="הקוד שהגדרת ב-Cloudflare" autocomplete="off" spellcheck="false" style="flex:1;background:var(--surface2);border:1px solid var(--border2);border-radius:10px;color:var(--text);padding:12px 13px;font-size:14px;font-family:Heebo,sans-serif;outline:none;direction:ltr"/>
         <button onclick="toggleTokenEye()" style="background:var(--surface2);border:1px solid var(--border2);border-radius:10px;padding:0 14px;cursor:pointer;color:var(--muted2);font-size:16px">👁</button>
       </div>
-      <div style="font-size:11px;color:var(--muted);margin-top:5px">נשמר ב-localStorage בלבד, לא בגיט. נדרש להפעלת workflows מהנייד.</div>
+      <div style="font-size:11px;color:var(--muted);margin-top:5px">הטוקן של GitHub שמור ב-Worker, לא בטלפון. הטלפון מחזיק רק PIN.</div>
     </div>
 
     <button onclick="saveSettings()" style="width:100%;background:var(--blue);color:#fff;border:none;border-radius:12px;padding:14px;font-size:16px;font-weight:800;font-family:Heebo,sans-serif;cursor:pointer;margin-bottom:8px">שמור</button>
@@ -307,6 +307,8 @@ var _loaded = {};
 
 /* כתובת Cloudflare Worker למחירים חיים. ניתן לדרוס מההגדרות (localStorage) בלי לערוך קוד. */
 function priceProxy(){ try { return localStorage.getItem('price_proxy_url') || ''; } catch(e){ return ''; } }
+/* קוד PIN לכתיבות (נשמר בטלפון); הטוקן החזק חי ב-Worker בלבד */
+function appPin(){ try { return (localStorage.getItem('app_pin') || '').trim(); } catch(e){ return ''; } }
 
 /* מעדכן את שורת הכותרת — תאריך + badge חי אם פעיל */
 var _liveOn = false;
@@ -767,8 +769,7 @@ function renderWeekly(){
 /* ── RESEARCH / ANALYSIS ── */
 async function renderResearch(){
   var el = $('tab-research');
-  var hasToken = false;
-  try { hasToken = !!(localStorage.getItem('github_token')||'').trim(); } catch(e){}
+  var hasToken = !!(priceProxy() && appPin());
 
   var html = '<div class="sec-hdr" style="padding-top:14px">ניתוח מניה בענן</div>'
     + '<div class="card">'
@@ -779,7 +780,7 @@ async function renderResearch(){
     + '</div>'
     + (hasToken
         ? '<div style="font-size:11px;color:var(--muted2)">מחקר ~3 דק\' · שרשרת 5 סוכנים ~10 דק\'</div>'
-        : '<div style="font-size:11px;color:var(--orange)">הגדר טוקן GitHub בהגדרות</div>')
+        : '<div style="font-size:11px;color:var(--orange)">הגדר Worker URL ו-PIN בהגדרות</div>')
     + '<div id="research-status" style="font-size:12px;font-weight:700;min-height:18px;margin-top:8px;line-height:1.5"></div>'
     + '</div>';
 
@@ -836,96 +837,55 @@ async function renderResearch(){
   }
 }
 
-async function goResearch(){
-  var t = ($('research-input').value||'').trim().toUpperCase();
+/* מפעיל workflow דרך ה-Worker (מוגן PIN). הטוקן של GitHub לא נמצא בטלפון */
+async function dispatchWorkflow(workflow, opts){
+  var t = ($('research-input').value||'').trim().toUpperCase().replace(/[^A-Z0-9.\-]/g,'').slice(0,10);
   if (!t) return;
+  var btn = $(opts.btnId), stat = $('research-status');
+  var proxy = priceProxy(), pin = appPin();
 
-  var token = '';
-  try { token = (localStorage.getItem('github_token')||'').trim(); } catch(e){}
-
-  /* ללא טוקן: פתח תוצאה קיימת בלבד */
-  if (!token) {
-    window.location.href = 'templates/research.html?ticker=' + encodeURIComponent(t);
+  /* בלי Worker/PIN: פתח תוצאה קיימת אם אפשר, אחרת בקש הגדרה */
+  if (!proxy || !pin) {
+    if (opts.openIfNoAuth) { window.location.href = 'templates/research.html?ticker=' + encodeURIComponent(t); return; }
+    if (stat) { stat.style.color = 'var(--orange)'; stat.textContent = 'הגדר Worker URL ו-PIN בהגדרות'; }
     return;
   }
 
-  var btn = $('research-btn');
-  var stat = $('research-status');
   if (btn) { btn.disabled = true; btn.textContent = '...'; }
-  if (stat) { stat.style.color = 'var(--muted2)'; stat.textContent = 'שולח...'; }
+  if (stat) { stat.style.color = 'var(--muted2)'; stat.textContent = opts.sending; }
 
   try {
-    var r = await fetch(
-      'https://api.github.com/repos/rotemstainai23/portfolio/actions/workflows/research.yml/dispatches',
-      {
-        method: 'POST',
-        headers: {
-          'Authorization': 'token ' + token,
-          'Accept': 'application/vnd.github+json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ ref: 'main', inputs: { ticker: t } }),
-      }
-    );
-    if (r.status === 204) {
-      if (stat) { stat.style.color = 'var(--green)'; stat.textContent = t + ' נשלח לענן. תוצאות בעוד 2-3 דק\''; }
+    var r = await fetch(proxy.replace(/\/+$/,'') + '/chain', {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({ workflow: workflow, ticker: t, pin: pin }),
+    });
+    var j = await r.json();
+    if (r.ok && j.ok) {
+      if (stat) { stat.style.color = 'var(--green)'; stat.textContent = opts.ok(t); }
       if (btn) { btn.textContent = 'נשלח'; }
-      /* פתח אוטומטית את דף התוצאות אחרי השהייה */
-      setTimeout(function(){ window.location.href = 'templates/research.html?ticker=' + encodeURIComponent(t); }, 3000);
+      if (opts.openAfter) setTimeout(function(){ window.location.href = 'templates/research.html?ticker=' + encodeURIComponent(t); }, 3000);
     } else {
-      var err = {}; try { err = await r.json(); } catch(_){}
-      if (stat) { stat.style.color = 'var(--red)'; stat.textContent = 'שגיאה ' + r.status + ': ' + (err.message || r.statusText); }
-      if (btn) { btn.disabled = false; btn.textContent = 'נתח'; }
+      if (stat) { stat.style.color = 'var(--red)'; stat.textContent = 'שגיאה: ' + (j.error || r.status); }
+      if (btn) { btn.disabled = false; btn.textContent = opts.label; }
     }
   } catch(e) {
     if (stat) { stat.style.color = 'var(--red)'; stat.textContent = 'שגיאת רשת: ' + e.message; }
-    if (btn) { btn.disabled = false; btn.textContent = 'נתח'; }
+    if (btn) { btn.disabled = false; btn.textContent = opts.label; }
   }
 }
 
-async function goChain(){
-  var t = ($('research-input').value||'').trim().toUpperCase();
-  if (!t) return;
+function goResearch(){
+  return dispatchWorkflow('research.yml', {
+    btnId:'research-btn', label:'מחקר', openIfNoAuth:true, openAfter:true,
+    sending:'שולח...', ok:function(t){ return t + ' נשלח לענן. תוצאות בעוד 2-3 דק\''; },
+  });
+}
 
-  var token = '';
-  try { token = (localStorage.getItem('github_token')||'').trim(); } catch(e){}
-
-  var btn  = $('chain-btn');
-  var stat = $('research-status');
-
-  if (!token) {
-    if (stat) { stat.style.color = 'var(--orange)'; stat.textContent = 'נדרש טוקן GitHub בהגדרות'; }
-    return;
-  }
-
-  if (btn) { btn.disabled = true; btn.textContent = '...'; }
-  if (stat) { stat.style.color = 'var(--muted2)'; stat.textContent = 'שולח שרשרת...'; }
-
-  try {
-    var r = await fetch(
-      'https://api.github.com/repos/rotemstainai23/portfolio/actions/workflows/chain.yml/dispatches',
-      {
-        method: 'POST',
-        headers: {
-          'Authorization': 'token ' + token,
-          'Accept': 'application/vnd.github+json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ ref: 'main', inputs: { ticker: t } }),
-      }
-    );
-    if (r.status === 204) {
-      if (stat) { stat.style.color = 'var(--green)'; stat.textContent = t + ' — שרשרת 5 סוכנים פעילה. תוצאות בעוד ~10 דק\''; }
-      if (btn) { btn.textContent = 'נשלח'; }
-    } else {
-      var err = {}; try { err = await r.json(); } catch(_){}
-      if (stat) { stat.style.color = 'var(--red)'; stat.textContent = 'שגיאה ' + r.status + ': ' + (err.message || r.statusText); }
-      if (btn) { btn.disabled = false; btn.textContent = 'שרשרת'; }
-    }
-  } catch(e) {
-    if (stat) { stat.style.color = 'var(--red)'; stat.textContent = 'שגיאת רשת: ' + e.message; }
-    if (btn) { btn.disabled = false; btn.textContent = 'שרשרת'; }
-  }
+function goChain(){
+  return dispatchWorkflow('chain.yml', {
+    btnId:'chain-btn', label:'שרשרת', openIfNoAuth:false, openAfter:false,
+    sending:'שולח שרשרת...', ok:function(t){ return t + ': שרשרת 5 סוכנים פעילה. תוצאות בעוד ~10 דק\''; },
+  });
 }
 
 /* ── ORACLE ── */
@@ -1013,8 +973,8 @@ async function oracleSend(preset){
     var r = await fetch(proxy.replace(/\/+$/,'') + '/oracle', {
       method:'POST',
       headers:{'Content-Type':'application/json'},
-      /* 12 הודעות אחרונות בלבד (חוסך טוקנים ב-Groq); הטוקן נדרש לכלי ניהול התיק */
-      body:JSON.stringify({ messages: _oracleMsgs.slice(-12), token: (localStorage.getItem('github_token')||'').trim() }),
+      /* 12 הודעות אחרונות בלבד (חוסך טוקנים ב-Groq); PIN נדרש לכלי ניהול התיק */
+      body:JSON.stringify({ messages: _oracleMsgs.slice(-12), pin: appPin() }),
     });
     var ld = $('oracle-loader'); if (ld) ld.remove();
     var j = await r.json();
@@ -1030,7 +990,7 @@ async function oracleSend(preset){
 function openSettings(){
   try{
     document.getElementById('cfg-proxy').value = localStorage.getItem('price_proxy_url')||'';
-    document.getElementById('cfg-token').value = localStorage.getItem('github_token')||'';
+    document.getElementById('cfg-pin').value = localStorage.getItem('app_pin')||'';
   }catch(e){}
   document.getElementById('settings-modal').style.display='block';
 }
@@ -1040,15 +1000,15 @@ function closeSettings(){ document.getElementById('settings-modal').style.displa
 function shareSettings(){
   try{
     var proxy = (document.getElementById('cfg-proxy').value||'').trim() || localStorage.getItem('price_proxy_url')||'';
-    var token = (document.getElementById('cfg-token').value||'').trim() || localStorage.getItem('github_token')||'';
-    if(!proxy && !token){ alert('אין הגדרות לשתף — שמור קודם.'); return; }
+    var pin   = (document.getElementById('cfg-pin').value||'').trim() || localStorage.getItem('app_pin')||'';
+    if(!proxy && !pin){ alert('אין הגדרות לשתף, שמור קודם.'); return; }
     var data = {};
     if(proxy) data.proxy = proxy;
-    if(token) data.token = token;
+    if(pin) data.pin = pin;
     var url = location.origin + location.pathname + '#cfg=' + btoa(JSON.stringify(data));
     if(navigator.clipboard) navigator.clipboard.writeText(url);
     var s = document.getElementById('cfg-status');
-    s.style.color='var(--green)'; s.textContent='קישור הועתק — פתח בנייד!';
+    s.style.color='var(--green)'; s.textContent='קישור הועתק, פתח בנייד!';
     setTimeout(function(){ s.textContent=''; }, 3000);
   }catch(e){ alert('שגיאה: '+e.message); }
 }
@@ -1063,11 +1023,11 @@ function importSettingsFromHash(){
     history.replaceState(null,'',location.pathname+location.search);
     var desc = [];
     if(data.proxy) desc.push('Worker: ' + data.proxy);
-    if(data.token) desc.push('טוקן GitHub');
+    if(data.pin) desc.push('קוד PIN');
     if(!desc.length) return;
     if(!confirm('לייבא הגדרות מהקישור?\n' + desc.join('\n'))) return;
     if(data.proxy) localStorage.setItem('price_proxy_url', data.proxy);
-    if(data.token) localStorage.setItem('github_token',   data.token);
+    if(data.pin) localStorage.setItem('app_pin', data.pin);
     setTimeout(function(){
       var s = document.getElementById('cfg-status');
       if(s){ s.style.color='var(--green)'; s.textContent='הגדרות יובאו!'; setTimeout(function(){ s.textContent=''; },3000); }
@@ -1076,15 +1036,15 @@ function importSettingsFromHash(){
 }
 
 function toggleTokenEye(){
-  var inp=document.getElementById('cfg-token');
+  var inp=document.getElementById('cfg-pin');
   inp.type=inp.type==='password'?'text':'password';
 }
 function saveSettings(){
   try{
     var proxy=document.getElementById('cfg-proxy').value.trim();
-    var token=document.getElementById('cfg-token').value.trim();
+    var pin=document.getElementById('cfg-pin').value.trim();
     if(proxy) localStorage.setItem('price_proxy_url',proxy); else localStorage.removeItem('price_proxy_url');
-    if(token) localStorage.setItem('github_token',token); else localStorage.removeItem('github_token');
+    if(pin) localStorage.setItem('app_pin',pin); else localStorage.removeItem('app_pin');
     var s=document.getElementById('cfg-status');
     s.style.color='var(--green)'; s.textContent='נשמר בהצלחה!';
     setTimeout(function(){ s.textContent=''; },2000);
@@ -1113,21 +1073,19 @@ async function testProxy(){
 
 async function triggerWorkflow(workflow, label){
   var stat=document.getElementById('cfg-wf');
-  var token=''; try{ token=(localStorage.getItem('github_token')||'').trim(); }catch(e){}
-  if(!token){ stat.style.color='var(--red)'; stat.textContent='שמור טוקן GitHub קודם'; return; }
+  var proxy=priceProxy(), pin=appPin();
+  if(!proxy || !pin){ stat.style.color='var(--red)'; stat.textContent='הגדר Worker URL ו-PIN קודם'; return; }
   stat.style.color='var(--muted2)'; stat.textContent='שולח ' + label + '...';
   try{
-    var r=await fetch(
-      'https://api.github.com/repos/rotemstainai23/portfolio/actions/workflows/'+workflow+'/dispatches',
-      { method:'POST',
-        headers:{'Authorization':'token '+token,'Accept':'application/vnd.github+json','Content-Type':'application/json'},
-        body:JSON.stringify({ref:'main'}) }
-    );
-    if(r.status===204){
+    var r=await fetch(proxy.replace(/\/+$/,'')+'/chain',{
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({ workflow: workflow, pin: pin })
+    });
+    var j=await r.json();
+    if(r.ok && j.ok){
       stat.style.color='var(--green)'; stat.textContent='Workflow ' + label + ' הופעל בענן';
     } else {
-      var e={}; try{e=await r.json();}catch(_){}
-      stat.style.color='var(--red)'; stat.textContent='שגיאה '+r.status+': '+(e.message||r.statusText);
+      stat.style.color='var(--red)'; stat.textContent='שגיאה: '+(j.error||r.status);
     }
   }catch(e){ stat.style.color='var(--red)'; stat.textContent='שגיאת רשת: '+e.message; }
 }
@@ -1139,7 +1097,7 @@ var _hmEditing = null;
 async function portfolioRemote(payload){
   var proxy = priceProxy();
   if (!proxy) throw new Error('הגדר Worker URL בהגדרות');
-  payload.token = (localStorage.getItem('github_token')||'').trim();
+  payload.pin = appPin();
   var r = await fetch(proxy.replace(/\/+$/,'') + '/portfolio', {
     method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload)
   });
@@ -1151,8 +1109,7 @@ function openHoldingModal(symbol){
   _hmEditing = symbol;
   var isLocal = window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost';
   var msg = $('hm-msg');
-  var hasTok = false; try { hasTok = !!(localStorage.getItem('github_token')||'').trim(); } catch(e){}
-  msg.textContent = (isLocal || (priceProxy() && hasTok)) ? '' : 'הגדר Worker URL וטוקן GitHub בהגדרות לשמירה מהנייד';
+  msg.textContent = (isLocal || (priceProxy() && appPin())) ? '' : 'הגדר Worker URL ו-PIN בהגדרות לשמירה מהנייד';
   msg.style.color = 'var(--orange)';
   $('hm-delete-btn').style.display = symbol ? 'block' : 'none';
   $('hm-title').textContent = symbol ? 'עדכן — ' + symbol : 'הוסף אחזקה';
