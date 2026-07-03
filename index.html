@@ -1181,8 +1181,19 @@ async function deleteHolding(){
 }
 
 /* ── register service worker ── */
+/* עדכון אגרסיבי: מאלץ בדיקת גרסה בכל טעינה, ומרענן אוטומטית פעם אחת כשמגיע SW חדש
+   (בלי זה, PWA מותקן ממשיך להריץ קוד ישן מהמטמון עד שסוגרים ידנית) */
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('./sw.js').catch(function(){});
+  var _swReloaded = false;
+  navigator.serviceWorker.addEventListener('controllerchange', function(){
+    if (_swReloaded) return;
+    _swReloaded = true;
+    window.location.reload();
+  });
+  navigator.serviceWorker.register('./sw.js').then(function(reg){
+    reg.update();
+    setInterval(function(){ reg.update(); }, 60 * 60 * 1000);
+  }).catch(function(){});
 }
 
 /* ── boot ── */
