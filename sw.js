@@ -1,4 +1,4 @@
-const CACHE = 'portfolio-pwa-v4';
+const CACHE = 'portfolio-pwa-v5';
 /* רק קבצים שבטוח קיימים תמיד נכללים כאן — addAll הוא all-or-nothing.
    _data.js ו-_dashboard.js נכנסים ל-cache אוטומטית דרך ה-network-first handler. */
 const STATIC = [
@@ -26,9 +26,10 @@ self.addEventListener('fetch', e => {
   const isData = url.pathname.endsWith('.json') || url.pathname.endsWith('.js');
   const isHTML = e.request.mode === 'navigate' || url.pathname.endsWith('.html') || url.pathname.endsWith('/');
   if (isData || isHTML) {
-    /* network-first לנתונים ו-HTML — כדי שעדכונים תמיד מגיעים, fallback ל-cache אופליין */
+    /* network-first לנתונים ו-HTML, cache:'no-store' עוקף את מטמון ה-HTTP של הדפדפן/GitHub Pages
+       (בלעדיו "network-first" עדיין יכול להחזיר תשובה ישנה שהדפדפן שמר, לא רק מ-Service Worker cache) */
     e.respondWith(
-      fetch(e.request).then(r => {
+      fetch(e.request, { cache: 'no-store' }).then(r => {
         caches.open(CACHE).then(c => c.put(e.request, r.clone()));
         return r;
       }).catch(() => caches.match(e.request))
