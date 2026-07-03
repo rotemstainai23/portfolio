@@ -52,34 +52,32 @@
 </div>
 
 <script>
-// ponytail: טוקן fine-grained (Actions:write על repo אחד) נשמר ב-localStorage של המכשיר האישי.
-// תקרה: מי שניגש לדפדפן הלא-נעול יכול לחלץ אותו. שדרוג עתידי: Cloudflare Worker שמחזיק את הטוקן.
-const REPO = 'rotemstainai23/portfolio';
-const TOKEN_KEY = 'gh_dispatch_token';
+// אימות זהה לאפליקציה הראשית: Worker URL + PIN ב-localStorage (משותף לכל הדפים באותו origin).
+// הטוקן החזק של GitHub לא נוגע בדפדפן בכלל, הוא יושב רק ב-Cloudflare Worker.
+function priceProxy(){ try { return localStorage.getItem('price_proxy_url') || ''; } catch(e){ return ''; } }
+function appPin(){ try { return (localStorage.getItem('app_pin') || '').trim(); } catch(e){ return ''; } }
 
 function setupToken(){
-  const cur = localStorage.getItem(TOKEN_KEY) || '';
-  const t = prompt('הדבק GitHub fine-grained token (הרשאת Actions: write על repo portfolio בלבד):', cur);
-  if(t !== null){ localStorage.setItem(TOKEN_KEY, t.trim()); setStatus(t.trim() ? 'טוקן נשמר.' : 'טוקן נמחק.'); }
+  location.href = '../index.html';
 }
 function setStatus(msg){ document.getElementById('status').textContent = msg; }
 
 async function runResearch(){
   const ticker = (document.getElementById('ticker').value || '').trim().toUpperCase().replace(/[^A-Z0-9.\-]/g, '').slice(0, 10);
   if(!ticker){ setStatus('הקלד טיקר.'); return; }
-  const token = localStorage.getItem(TOKEN_KEY);
-  if(!token){ setStatus('אין טוקן. לחץ "הגדרת טוקן" קודם.'); return; }
+  const proxy = priceProxy(), pin = appPin();
+  if(!proxy || !pin){ setStatus('הגדר Worker URL ו-PIN בהגדרות (מסך הבית).'); return; }
 
   const btn = document.getElementById('goBtn'); btn.disabled = true;
   setStatus('שולח בקשה לענן...');
   const startedAt = Date.now();
   try{
-    const r = await fetch(`https://api.github.com/repos/${REPO}/actions/workflows/research.yml/dispatches`,{
-      method:'POST',
-      headers:{'Authorization':`Bearer ${token}`,'Accept':'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28'},
-      body: JSON.stringify({ref:'main', inputs:{ticker}})
+    const r = await fetch(proxy.replace(/\/+$/,'') + '/chain', {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ workflow:'research.yml', ticker, pin })
     });
-    if(r.status !== 204){ const txt = await r.text(); setStatus(`הבקשה נכשלה (${r.status}): ${txt.slice(0,120)}`); btn.disabled=false; return; }
+    const j = await r.json().catch(()=>({}));
+    if(!r.ok || !j.ok){ setStatus(`הבקשה נכשלה: ${j.error || r.status}`); btn.disabled=false; return; }
     setStatus('הניתוח רץ בענן. ממתין לתוצאה... (כ-2 דקות, גם push יישלח)');
     pollReport(ticker, startedAt, btn);
   }catch(e){ setStatus('שגיאת רשת: '+e.message); btn.disabled=false; }
