@@ -1,35 +1,35 @@
 [
   {
-    "ticker": "CEVA",
-    "company": "Ceva",
-    "catalyst": "Ceva CEO Amir Panush Named Artificial Intelligence Company CEO of the Year",
+    "ticker": "SE",
+    "company": "Sea",
+    "catalyst": "צמיחה מהירה בשוק האסייתי והברזילאי",
     "conviction": 4,
     "upside_pct": 15,
     "downside_pct": 8,
     "timeframe": "1-2 שבועות",
     "source": "חדשות",
-    "thesis": "Ceva מובילה בתחום הבינטליגנציה המלאכותית וזוכה להכרה עם פרס CEO השנה. החברה ממשיכה לחדור לשווקים חדשים ולהרחיב את הפעילות שלה."
+    "thesis": "Sea ממשיכה לצמוח בשוק האסייתי והברזילאי, עם פוטנציאל להמשיך ולגדול בעתיד. החברה מרחיבה את פעילותה בתחום המסחר האלקטרוני והפיננסים, מה שיכול לתרום לצמיחה נוספת."
   },
   {
-    "ticker": "SNOW",
-    "company": "Snowflake",
-    "catalyst": "GitLab vs Snowflake: Which Technology Stock Is a Better Buy in 2026",
+    "ticker": "UPST",
+    "company": "Upstart Holdings",
+    "catalyst": "שילוב AI בתהליכי הלוואה",
     "conviction": 4,
     "upside_pct": 12,
     "downside_pct": 6,
     "timeframe": "1-2 שבועות",
     "source": "חדשות",
-    "thesis": "Snowflake היא חברת טכנולוגיה מובילה בתחום הנתונים והאנליטיקה. החברה ממשיכה לצמוח ולהרחיב את הפעילות שלה."
+    "thesis": "Upstart Holdings משלבת AI בתהליכי הלוואה, מה שיכול לשפר את יעילות החברה ולהביא לצמיחה נוספת. החברה גם מרחיבה את פעילותה בתחום הלוואות, מה שיכול לתרום לצמיחה נוספת."
   },
   {
-    "ticker": "MRNA",
-    "company": "Moderna",
-    "catalyst": "Moderna rallies after S&P 500 ends lower",
+    "ticker": "NVO",
+    "company": "Novo Nordisk",
+    "catalyst": "גידול בשוק הGLP-1",
     "conviction": 4,
     "upside_pct": 10,
     "downside_pct": 5,
     "timeframe": "1-2 שבועות",
     "source": "חדשות",
-    "thesis": "Moderna היא חברת ביוטכנולוגיה מובילה בתחום החיסונים והטיפולים. החברה ממשיכה לפתח ולשווק מוצרים חדשים."
+    "thesis": "Novo Nordisk מובילה בשוק הGLP-1, עם פוטנציאל לגדול עוד יותר. החברה גם מפתחת תרופות חדשות, מה שיכול לתרום לצמיחה נוספת."
   }
 ]
