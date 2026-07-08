@@ -1,0 +1,408 @@
+window.RESEARCH_DATA = {
+  "ticker": "CCJ",
+  "generated": "2026-07-08T11:03:27+00:00",
+  "snapshot": {
+    "ticker": "CCJ",
+    "price": {
+      "label": "מחיר נוכחי",
+      "value": 94.66999816894531,
+      "unit": "USD",
+      "source": {
+        "name": "Yahoo Finance",
+        "url": "https://finance.yahoo.com/quote/CCJ",
+        "as_of": "2026-07-08"
+      },
+      "note": null
+    },
+    "change_pct": {
+      "label": "שינוי יומי",
+      "value": 0.0,
+      "unit": "%",
+      "source": {
+        "name": "Yahoo Finance",
+        "url": "https://finance.yahoo.com/quote/CCJ",
+        "as_of": "2026-07-08"
+      },
+      "note": null
+    },
+    "currency": "USD"
+  },
+  "summary": {
+    "question": "תן סקירת השקעה מלאה ומאוזנת",
+    "ticker": "CCJ",
+    "summary": "שלום, אני כאן כדי לעזור לך להבין את הנושא.\n\nקודם כל, חשוב להבין שהשקעה היא כשאתה משקיע כסף במשהו, כגון חברה, כדי לקבל רווחים.\n\nCAMECO CORPORATION היא חברה, אבל לצערי, לא נמצאו מספיק נתונים עליה כדי לבנות תשובה מלאה.\n\nיתרון: השקעה בחברה יכולה להיות דרך טובה לגרום לכסף שלך לצמוח.\n\nחיסרון: אם אין מספיק מידע, קשה לקבל החלטה נכונה.\n\nאני מקווה שזה עזר, אבל זכור, זה מידע מחקרי בלבד, לא ייעוץ השקעות אישי.",
+    "data_points": [
+      {
+        "label": "שווי שוק",
+        "value": 41224805979.91263,
+        "unit": "USD",
+        "source": {
+          "name": "Yahoo Finance + SEC EDGAR",
+          "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001009001",
+          "as_of": "2026-07-08"
+        },
+        "note": "מחיר (94.66999816894531) כפול מניות במחזור (435457978)"
+      }
+    ],
+    "sources": [
+      {
+        "name": "Yahoo Finance + SEC EDGAR",
+        "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001009001",
+        "as_of": "2026-07-08"
+      }
+    ],
+    "reasoning": [
+      "סווגה כוונת השאלה: quality, valuation.",
+      "ההסבר נוסח על ידי שכבת ה-LLM על בסיס המספרים המחושבים בלבד."
+    ]
+  },
+  "fundamental": {
+    "ticker": "CCJ",
+    "name": "CAMECO CORPORATION",
+    "revenue": null,
+    "revenue_growth": null,
+    "gross_margin": null,
+    "operating_margin": null,
+    "net_margin": null,
+    "fcf": null,
+    "roic": null,
+    "market_cap": {
+      "label": "שווי שוק",
+      "value": 41224805979.91263,
+      "unit": "USD",
+      "source": {
+        "name": "Yahoo Finance + SEC EDGAR",
+        "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001009001",
+        "as_of": "2026-07-08"
+      },
+      "note": "מחיר (94.66999816894531) כפול מניות במחזור (435457978)"
+    },
+    "pe": null,
+    "ps": null,
+    "ev_ebitda": null,
+    "assumptions": [],
+    "sources": [
+      {
+        "name": "Yahoo Finance + SEC EDGAR",
+        "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001009001",
+        "as_of": "2026-07-08"
+      }
+    ]
+  },
+  "technical": {
+    "ticker": "CCJ",
+    "last_price": {
+      "label": "מחיר אחרון",
+      "value": 94.67,
+      "unit": "USD",
+      "source": {
+        "name": "Yahoo Finance",
+        "url": "https://finance.yahoo.com/quote/CCJ",
+        "as_of": "2026-07-07"
+      },
+      "note": null
+    },
+    "sma50": {
+      "label": "ממוצע נע 50",
+      "value": 109.25,
+      "unit": "USD",
+      "source": {
+        "name": "Yahoo Finance",
+        "url": "https://finance.yahoo.com/quote/CCJ",
+        "as_of": "2026-07-07"
+      },
+      "note": null
+    },
+    "sma200": {
+      "label": "ממוצע נע 200",
+      "value": 104.19,
+      "unit": "USD",
+      "source": {
+        "name": "Yahoo Finance",
+        "url": "https://finance.yahoo.com/quote/CCJ",
+        "as_of": "2026-07-07"
+      },
+      "note": null
+    },
+    "rsi14": {
+      "label": "RSI(14)",
+      "value": 35.38,
+      "unit": "",
+      "source": {
+        "name": "Yahoo Finance",
+        "url": "https://finance.yahoo.com/quote/CCJ",
+        "as_of": "2026-07-07"
+      },
+      "note": "מעל 70 = קניית יתר, מתחת 30 = מכירת יתר"
+    },
+    "macd": {
+      "label": "MACD",
+      "value": -3.23,
+      "unit": "",
+      "source": {
+        "name": "Yahoo Finance",
+        "url": "https://finance.yahoo.com/quote/CCJ",
+        "as_of": "2026-07-07"
+      },
+      "note": null
+    },
+    "macd_signal": {
+      "label": "קו אות MACD",
+      "value": -2.42,
+      "unit": "",
+      "source": {
+        "name": "Yahoo Finance",
+        "url": "https://finance.yahoo.com/quote/CCJ",
+        "as_of": "2026-07-07"
+      },
+      "note": null
+    },
+    "atr14": {
+      "label": "ATR(14)",
+      "value": 5.36,
+      "unit": "USD",
+      "source": {
+        "name": "Yahoo Finance",
+        "url": "https://finance.yahoo.com/quote/CCJ",
+        "as_of": "2026-07-07"
+      },
+      "note": "תנודתיות ממוצעת יומית"
+    },
+    "trend": "מעורב (sideways)",
+    "support": [
+      93.83
+    ],
+    "resistance": [
+      100.11,
+      101.28,
+      101.95
+    ],
+    "entry_zone": [
+      93.83,
+      94.77
+    ],
+    "exit_zone": [
+      99.11,
+      100.11
+    ],
+    "stop_loss": {
+      "label": "הצעת Stop Loss",
+      "value": 88.47,
+      "unit": "USD",
+      "source": {
+        "name": "Yahoo Finance",
+        "url": "https://finance.yahoo.com/quote/CCJ",
+        "as_of": "2026-07-07"
+      },
+      "note": "תמיכה קרובה פחות ATR אחד"
+    },
+    "sources": [
+      {
+        "name": "Yahoo Finance",
+        "url": "https://finance.yahoo.com/quote/CCJ",
+        "as_of": "2026-07-07"
+      }
+    ]
+  },
+  "dcf": {
+    "ticker": "CCJ",
+    "error": "אין מספיק נתוני תזרים ב-EDGAR ל-DCF"
+  },
+  "earnings": {
+    "ticker": "CCJ",
+    "name": "CAMECO CORPORATION",
+    "quarterly_revenue": [],
+    "quarterly_eps": [],
+    "quarterly_net_income": [],
+    "revenue_yoy": null,
+    "eps_yoy": null,
+    "latest_quarter": null,
+    "next_earnings_date": "2026-07-31",
+    "source": {
+      "name": "SEC EDGAR (XBRL)",
+      "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001009001",
+      "as_of": null
+    },
+    "note": "נתוני EPS מדולל והכנסות רבעוניים מדוחות 10-Q/10-K רשמיים. תמלילים ותחזיות אנליסטים אינם זמינים במקור חינמי רשמי ולכן אינם כלולים."
+  },
+  "insider": {
+    "ticker": "CCJ",
+    "name": "CAMECO CORP",
+    "summary": {
+      "open_market_buys": 0,
+      "open_market_buy_value": 0,
+      "open_market_sells": 0,
+      "open_market_sell_value": 0,
+      "net_value": 0,
+      "verdict": "פעילות מעורבת / שגרתית"
+    },
+    "transactions": [],
+    "source": {
+      "name": "SEC EDGAR (Form 4)",
+      "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&type=4&company=CCJ",
+      "as_of": null
+    },
+    "note": "עסקאות שוק פתוח (קנייה P / מכירה S) משמעותיות יותר ממענקים ומימושי אופציות."
+  },
+  "news": {
+    "ticker": "CCJ",
+    "items": [
+      {
+        "title": "Cameco (CCJ) Falls More Steeply Than Broader Market: What Investors Need to Know",
+        "url": "https://finance.yahoo.com/markets/stocks/articles/cameco-ccj-falls-more-steeply-215002905.html?.tsrc=rss",
+        "date": "2026-07-07",
+        "summary": "The latest trading day saw Cameco (CCJ) settling at $94.67, representing a -2.9% change from its previous close.",
+        "sentiment_score": -1,
+        "sentiment": "שלילי"
+      },
+      {
+        "title": "Cameco Announces Cigar Lake Suspension: Is Uranium Production at Risk?",
+        "url": "https://finance.yahoo.com/energy/articles/cameco-announces-cigar-lake-suspension-154700386.html?.tsrc=rss",
+        "date": "2026-07-07",
+        "summary": "CCJ suspends Cigar Lake operations after McClean Lake mill issues. The company does not expect any impact on expected output for 2026.",
+        "sentiment_score": -1,
+        "sentiment": "שלילי"
+      },
+      {
+        "title": "AI’s Dirty Little Power Secret Is Turning This Uranium ETF Into a Mainstream Trade",
+        "url": "https://247wallst.com/personal-finance/2026/07/06/ais-dirty-little-power-secret-is-turning-this-uranium-etf-into-a-mainstream-trade/?.tsrc=rss",
+        "date": "2026-07-06",
+        "summary": "The AI infrastructure story has been about chips, but the actual bottleneck is electricity, and that shift has done more for the Global X Uranium ETF (NYSEARCA:URA) than any fund marketing team could have engineered. URA sits at the intersection of two forces the market cannot ignore. Data centers n",
+        "sentiment_score": 0,
+        "sentiment": "ניטרלי"
+      },
+      {
+        "title": "Cameco Corporation (CCJ): 7 Best Fusion Energy Development Stocks to Buy",
+        "url": "https://finance.yahoo.com/energy/articles/cameco-corporation-ccj-7-best-172018020.html?.tsrc=rss",
+        "date": "2026-07-06",
+        "summary": "With a short percentage of shares outstanding of 1.42%, Cameco Corporation (NYSE:CCJ) is among the 7 Best Fusion Energy Development Stocks to Buy. On June 29, RBC Capital raised its price target on Cameco Corporation (NYSE:CCJ) to C$175 from C$160 while maintaining an Outperform rating on the shares",
+        "sentiment_score": 4,
+        "sentiment": "חיובי"
+      },
+      {
+        "title": "CCJ Trades at a Premium Valuation: Buy, Sell or Hold the Stock?",
+        "url": "https://finance.yahoo.com/markets/stocks/articles/ccj-trades-premium-valuation-buy-141500876.html?.tsrc=rss",
+        "date": "2026-07-06",
+        "summary": "Cameco's premium valuation, strong Q1 uranium results, Cigar Lake stake boost and DOE-backed nuclear upside shape its case for waiting.",
+        "sentiment_score": 2,
+        "sentiment": "חיובי"
+      },
+      {
+        "title": "Cameco (TSX:CCO) Stock Looks Overvalued Following Westinghouse Reactor Loan News",
+        "url": "https://finance.yahoo.com/markets/stocks/articles/cameco-tsx-cco-stock-looks-100902767.html?.tsrc=rss",
+        "date": "2026-07-04",
+        "summary": "Cameco stock has delivered very large gains over the past five years, yet its broader valuation checks now lean expensive. The question is whether the recent pullback is offering better value or simply easing off a stretched price. Cameco has returned about 5.2x over the past five years, which sets ",
+        "sentiment_score": 1,
+        "sentiment": "חיובי"
+      },
+      {
+        "title": "Cameco (TSX:CCO) Pauses Cigar Lake Output While Lifting Joint Venture Stake",
+        "url": "https://finance.yahoo.com/markets/stocks/articles/cameco-tsx-cco-pauses-cigar-050732769.html?.tsrc=rss",
+        "date": "2026-07-04",
+        "summary": "Cameco temporarily suspended production at its Cigar Lake uranium mine after an operational outage at the McClean Lake mill. The company also agreed to acquire an additional interest in the Cigar Lake Joint Venture, lifting its ownership to more than 57%. These developments affect one of the world's",
+        "sentiment_score": 0,
+        "sentiment": "ניטרלי"
+      },
+      {
+        "title": "Eagle Plains Partner Refined Energy Announces Final Results for Winter 2026 Drill Program at Dufferin West",
+        "url": "https://finance.yahoo.com/energy/articles/eagle-plains-partner-refined-energy-210000642.html?.tsrc=rss",
+        "date": "2026-07-03",
+        "summary": "CRANBROOK, BC / ACCESS Newswire / July 3, 2026 /Eagle Plains Resources Ltd. (TSXV:EPL)(OTCQB:EGPLF) (\"EPL\" or \"Eagle Plains\") is pleased to announce that partner Refined Energy Corp (CSE: RUU; OTC: RFMCF; FRA: CWA0) (\"Refined\") has received complete ...",
+        "sentiment_score": 0,
+        "sentiment": "ניטרלי"
+      },
+      {
+        "title": "Cameco Closes Deal to Increase Ownership in Cigar Lake Mine",
+        "url": "https://finance.yahoo.com/energy/articles/cameco-closes-deal-increase-ownership-210300023.html?.tsrc=rss",
+        "date": "2026-07-02",
+        "summary": "SASKATOON, Saskatchewan, July 02, 2026--Cameco (TSX: CCO; NYSE: CCJ) today announced that the acquisition of TEPCO Resources Inc.’s 5% participating interest in the Cigar Lake Joint Venture by Cameco and Orano Canada Inc. (Orano) has closed.",
+        "sentiment_score": 0,
+        "sentiment": "ניטרלי"
+      },
+      {
+        "title": "Cameco temporarily suspends Cigar Lake mine operations",
+        "url": "https://www.mining-technology.com/news/cameco-temporarily-suspends-cigar-lake-operations/?.tsrc=rss",
+        "date": "2026-07-02",
+        "summary": "The pause in mining follows operational difficulties with the sulphuric acid plant at the McClean Lake facility.",
+        "sentiment_score": 0,
+        "sentiment": "ניטרלי"
+      },
+      {
+        "title": "RBC Capital Increased its Price Target on Cameco Corporation (CCJ)",
+        "url": "https://finance.yahoo.com/markets/stocks/articles/rbc-capital-increased-price-target-085102217.html?.tsrc=rss",
+        "date": "2026-07-02",
+        "summary": "Cameco Corporation (NYSE:CCJ) is one of the 10 Best AI Power Grid Stocks to Buy According to Analysts. On June 29, RBC Capital raised its price target on Cameco Corporation (NYSE:CCJ) to C$175 from C$160. The firm maintained an “Outperform” rating on the shares. RBC Capital said the company stands t",
+        "sentiment_score": 3,
+        "sentiment": "חיובי"
+      },
+      {
+        "title": "Energy Fuels Slides 18% in Past 3 Months: Exit Now or Stay Put?",
+        "url": "https://finance.yahoo.com/markets/stocks/articles/energy-fuels-slides-18-past-154700704.html?.tsrc=rss",
+        "date": "2026-07-01",
+        "summary": "UUUU's 18% decline in the past three months highlights a key investor dilemma: strong uranium and rare earth growth drivers face valuation, loss and execution risks.",
+        "sentiment_score": -1,
+        "sentiment": "שלילי"
+      },
+      {
+        "title": "TimesSquare Mid Cap Growth Strategy Bets on Cameco Corp. (CCJ), a Uranium Supplier",
+        "url": "https://finance.yahoo.com/markets/stocks/articles/timessquare-mid-cap-growth-strategy-131548570.html?.tsrc=rss",
+        "date": "2026-07-01",
+        "summary": "TimesSquare Capital Management, an equity investment management company, released its “U.S. Mid Cap Growth Strategy” first-quarter 2026 investor letter. A copy of the letter can be downloaded here. The Strategy fell 7.72% (net) in the quarter compared to -6.35% for the Russell Midcap Growth Index. I",
+        "sentiment_score": 3,
+        "sentiment": "חיובי"
+      },
+      {
+        "title": "Can BWX Technologies Benefit From the Commercial Nuclear Revival?",
+        "url": "https://finance.yahoo.com/energy/articles/bwx-technologies-benefit-commercial-nuclear-121100700.html?.tsrc=rss",
+        "date": "2026-07-01",
+        "summary": "BWXT's commercial nuclear business is accelerating with acquisitions, rising backlog, and surging revenues on demand growth for components and nuclear services.",
+        "sentiment_score": 1,
+        "sentiment": "חיובי"
+      },
+      {
+        "title": "Cameco suspends Cigar Lake mining after acid plant outage disrupts ore processing",
+        "url": "https://investorshub.advfn.com/market-news/article/31253/cameco-suspends-cigar-lake-mining-after-acid-plant-outage-disrupts-ore-processing?.tsrc=rss",
+        "date": "2026-07-01",
+        "summary": "Production paused following equipment failure at McClean LakeCameco (NYSE:CCJ) has temporarily halted mining activities at its Cigar Lake uranium operation in northern Saskatchewan after an equipment failure at Orano’s McClean Lake processing facility interrupted ore treatment. The disruption stems ",
+        "sentiment_score": 0,
+        "sentiment": "ניטרלי"
+      }
+    ],
+    "count": 15,
+    "positive": 6,
+    "negative": 3,
+    "neutral": 6,
+    "net": 3,
+    "verdict": "סנטימנט חיובי נטו בכותרות האחרונות",
+    "source": {
+      "name": "Yahoo Finance RSS",
+      "url": "https://finance.yahoo.com/quote/CCJ/news",
+      "as_of": "2026-07-07"
+    },
+    "method": "דירוג היוריסטי שקוף מבוסס לקסיקון מילות מפתח (לא LLM)."
+  },
+  "superinvestors": {
+    "ticker": "CCJ",
+    "company": "CAMECO CORP",
+    "matched_on": "CAMECO",
+    "holders": [
+      {
+        "manager": "Renaissance Technologies",
+        "issuer": "CAMECO CORP",
+        "value": 74350822.0,
+        "shares": 684567.0,
+        "weight": 0.12,
+        "period": "2026-03-31",
+        "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001037389&type=13F-HR"
+      }
+    ],
+    "holder_count": 1,
+    "total_value": 74350822.0,
+    "source": {
+      "name": "SEC EDGAR 13F-HR",
+      "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&type=13F-HR",
+      "as_of": "2026-03-31"
+    },
+    "note": "התאמה לפי שם המנפיק (13F אינו כולל טיקר). נמצאו מחזיקים."
+  }
+};
