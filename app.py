@@ -734,7 +734,43 @@ def oracle_chat():
     last = messages[-1].get('content', '') if messages else ''
     result = _run_llm(system, f'{history}USER: {last}\nORACLE:', timeout=120)
     text   = result['output'].strip() if result['ok'] else f'שגיאה: {result.get("error", "unknown")}'
-    return jsonify({'text': text, 'elapsed': result.get('elapsed', 0)})
+    text, applied = _apply_oracle_holding_updates(text)
+    return jsonify({'text': text, 'elapsed': result.get('elapsed', 0), 'applied': applied})
+
+
+_HOLDING_UPDATE_RE = re.compile(r'```holding-update\s*\n(.*?)```', re.DOTALL)
+
+
+def _apply_oracle_holding_updates(text: str) -> tuple:
+    """מזהה בלוקי ```holding-update``` בתשובת ה-Oracle ומיישם אותם על portfolio.json.
+    זה הערוץ היחיד שדרכו ה-Oracle כותב לתיק - רק כשהמשתמש מדווח על עסקה שכבר בוצעה
+    או מבקש עדכון מטא-דאטה מפורש. רעיונות עסקה חדשים נשארים טקסט בלבד (הצעה, לא ביצוע).
+    """
+    applied = []
+
+    def handle(match):
+        try:
+            data = json.loads(match.group(1))
+        except Exception as e:
+            applied.append({'ok': False, 'error': str(e)})
+            return ''
+        try:
+            if float(data.get('quantity', 1)) == 0:
+                res = _delete_holding(data['symbol'])
+            else:
+                res = _upsert_holding(data)
+            applied.append(res)
+        except Exception as e:
+            applied.append({'ok': False, 'error': str(e), 'symbol': data.get('symbol')})
+        return ''
+
+    cleaned = _HOLDING_UPDATE_RE.sub(handle, text).strip()
+    for a in applied:
+        if a.get('ok'):
+            cleaned += f"\n\n✅ עודכן בתיק: {a['symbol']} ({a['action']})"
+        else:
+            cleaned += f"\n\n⚠️ עדכון התיק נכשל: {a.get('error')}"
+    return cleaned, applied
 
 
 # ── API: ping ─────────────────────────────────────────────────────────────────
@@ -955,13 +991,12 @@ def api_get_holdings():
     return jsonify(load_portfolio().get('holdings', []))
 
 
-@app.route('/api/holdings', methods=['POST'])
-def api_upsert_holding():
+def _upsert_holding(data: dict) -> dict:
+    """מוסיף/מעדכן החזקה ב-portfolio.json. משותף בין ה-API וה-Oracle."""
     global _price_cache
-    data = request.get_json()
-    sym  = data.get('symbol', '').upper()
+    sym = data.get('symbol', '').upper()
     if not sym:
-        return jsonify({'error': 'symbol required'}), 400
+        raise ValueError('symbol required')
 
     portfolio = load_portfolio()
     holdings  = portfolio.setdefault('holdings', [])
@@ -976,7 +1011,7 @@ def api_upsert_holding():
                     h[k] = data[k]
             save_portfolio(portfolio)
             _price_cache.clear()
-            return jsonify({'ok': True, 'action': 'updated'})
+            return {'ok': True, 'action': 'updated', 'symbol': sym}
 
     holdings.append({
         'symbol':        sym,
@@ -991,16 +1026,28 @@ def api_upsert_holding():
     })
     save_portfolio(portfolio)
     _price_cache.clear()
-    return jsonify({'ok': True, 'action': 'added'})
+    return {'ok': True, 'action': 'added', 'symbol': sym}
 
 
-@app.route('/api/holdings/<symbol>', methods=['DELETE'])
-def api_delete_holding(symbol):
+def _delete_holding(symbol: str) -> dict:
     portfolio = load_portfolio()
     portfolio['holdings'] = [h for h in portfolio.get('holdings', [])
                              if h['symbol'] != symbol.upper()]
     save_portfolio(portfolio)
-    return jsonify({'ok': True})
+    return {'ok': True, 'action': 'removed', 'symbol': symbol.upper()}
+
+
+@app.route('/api/holdings', methods=['POST'])
+def api_upsert_holding():
+    data = request.get_json()
+    if not data.get('symbol', '').upper():
+        return jsonify({'error': 'symbol required'}), 400
+    return jsonify(_upsert_holding(data))
+
+
+@app.route('/api/holdings/<symbol>', methods=['DELETE'])
+def api_delete_holding(symbol):
+    return jsonify(_delete_holding(symbol))
 
 
 # ── Watchlist CRUD ────────────────────────────────────────────────────────────
