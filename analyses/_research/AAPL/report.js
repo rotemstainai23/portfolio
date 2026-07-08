@@ -1,16 +1,16 @@
 window.RESEARCH_DATA = {
   "ticker": "AAPL",
-  "generated": "2026-06-23T13:35:29+00:00",
+  "generated": "2026-07-08T10:55:55+00:00",
   "snapshot": {
     "ticker": "AAPL",
     "price": {
       "label": "מחיר נוכחי",
-      "value": 296.8900146484375,
+      "value": 310.6600036621094,
       "unit": "USD",
       "source": {
         "name": "Yahoo Finance",
         "url": "https://finance.yahoo.com/quote/AAPL",
-        "as_of": "2026-06-23"
+        "as_of": "2026-07-08"
       },
       "note": null
     },
@@ -21,7 +21,7 @@ window.RESEARCH_DATA = {
       "source": {
         "name": "Yahoo Finance",
         "url": "https://finance.yahoo.com/quote/AAPL",
-        "as_of": "2026-06-23"
+        "as_of": "2026-07-08"
       },
       "note": null
     },
@@ -30,7 +30,7 @@ window.RESEARCH_DATA = {
   "summary": {
     "question": "תן סקירת השקעה מלאה ומאוזנת",
     "ticker": "AAPL",
-    "summary": "שלום, אני כאן כדי לספק לך סקירה מלאה ומאוזנת על השקעה ב-Apple Inc.\n\n**מבט כללי**: Apple Inc. היא חברה גדולה עם הכנסות של 416.16B$ וצמיחה של 6.4% בשנה. היא מראה סימנים חיוביים של איכות, כגון מרג'ין נקי של 26.9% ו-ROIC (תשואה על השקעה) של 73.2%. אלו הם מספרים מרשימים שמראים על חברה בריאה.\n\n**תמחור**: המכפיל הרווח של Apple Inc. עומד על 39.80x, מכפיל מכירות של 10.48x, ו-EV/EBITDA של 30.38x. כדי להבין אם זה יקר, צריך להשוות את המספרים האלה לעמיתים ולממוצע ההיסטורי. אם המספרים גבוהים מדי, זה עלול להצביע על הערכה יתר.\n\n**יתרון מרכזי**: ה-ROIC הגבוה של 73.2% הוא סימן מצוין לאיכות החברה. זה מראה שהחברה משקיעה את כספה בצורה י",
+    "summary": "סקירת ההשקעה ב-Apple Inc. מציגה תמונה מעניינת. החברה הראתה צמיחה של 6.4% בהכנסות, שהגיעו ל-416.16B$. המרג'ין הנקי עומד על 26.9%, ו-ROIC (תשואה על הון משוקלל) הוא 73.2%. אלו הם סימנים חיוביים לאיכות החברה.\n\nמבחינת תמחור, Apple Inc. נסחרת במכפיל רווח של 41.64x, מכפיל מכירות של 10.96x, ו-EV/EBITDA של 31.78x. כדי להבין אם התמחור הוא יקר, יש להשוותו לעמיתים ולממוצע ההיסטורי.\n\nיתרון מרכזי של השקעה ב-Apple Inc. הוא האיכות הגבוהה של החברה, המשתקפת ב-ROIC ובמרג'ין הנקי. זה מרמז על יכולת חברה לייצר רווחים ולנהל את הון המשוקלל בצורה יעילה.\n\nחיסרון מרכזי הוא התמחור הגבוה, שיכול להפוך את ההשקעה לפחות מושכת עבור משקיעים המחפשים הזדמנויות במחיר נמוך יותר. המכפילים הגבוהים עלולים לרמז על ציפיות גבוהות מהחברה, ואם היא לא תעמוד בציפיות, זה יכול להשפיע לרעה על מחיר המניה.\n\nבסיכום, השקעה ב-Apple Inc. מציעה איכות גבוהה וצמיחה, אך גם תמחור גבוה. החלטה על השקעה צריכה להתבסס על השוואה לעמיתים, ממוצע היסטורי, ועל האסטרטגיה האישית של המשקיע.",
     "data_points": [
       {
         "label": "הכנסות שנתיות",
@@ -111,45 +111,45 @@ window.RESEARCH_DATA = {
       },
       {
         "label": "שווי שוק",
-        "value": 4360529337986.8164,
+        "value": 4562774068746.704,
         "unit": "USD",
         "source": {
           "name": "Yahoo Finance + SEC EDGAR",
           "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000320193",
-          "as_of": "2026-06-23"
+          "as_of": "2026-07-08"
         },
-        "note": "מחיר (296.8900146484375) כפול מניות במחזור (14687356000)"
+        "note": "מחיר (310.6600036621094) כפול מניות במחזור (14687356000)"
       },
       {
         "label": "מכפיל רווח (P/E)",
-        "value": 39.8,
+        "value": 41.64,
         "unit": "x",
         "source": {
           "name": "Yahoo Finance + SEC EDGAR",
           "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000320193",
-          "as_of": "2026-06-23"
+          "as_of": "2026-07-08"
         },
         "note": "מחיר חלקי רווח מדולל למניה (7.46)"
       },
       {
         "label": "מכפיל מכירות (P/S)",
-        "value": 10.48,
+        "value": 10.96,
         "unit": "x",
         "source": {
           "name": "Yahoo Finance + SEC EDGAR",
           "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000320193",
-          "as_of": "2026-06-23"
+          "as_of": "2026-07-08"
         },
         "note": null
       },
       {
         "label": "EV/EBITDA",
-        "value": 30.38,
+        "value": 31.78,
         "unit": "x",
         "source": {
           "name": "Yahoo Finance + SEC EDGAR",
           "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000320193",
-          "as_of": "2026-06-23"
+          "as_of": "2026-07-08"
         },
         "note": "שווי תאגידי חלקי EBITDA (רווח תפעולי + פחת והפחתות)"
       }
@@ -163,7 +163,7 @@ window.RESEARCH_DATA = {
       {
         "name": "Yahoo Finance + SEC EDGAR",
         "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000320193",
-        "as_of": "2026-06-23"
+        "as_of": "2026-07-08"
       }
     ],
     "reasoning": [
@@ -256,45 +256,45 @@ window.RESEARCH_DATA = {
     },
     "market_cap": {
       "label": "שווי שוק",
-      "value": 4360529337986.8164,
+      "value": 4562774068746.704,
       "unit": "USD",
       "source": {
         "name": "Yahoo Finance + SEC EDGAR",
         "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000320193",
-        "as_of": "2026-06-23"
+        "as_of": "2026-07-08"
       },
-      "note": "מחיר (296.8900146484375) כפול מניות במחזור (14687356000)"
+      "note": "מחיר (310.6600036621094) כפול מניות במחזור (14687356000)"
     },
     "pe": {
       "label": "מכפיל רווח (P/E)",
-      "value": 39.8,
+      "value": 41.64,
       "unit": "x",
       "source": {
         "name": "Yahoo Finance + SEC EDGAR",
         "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000320193",
-        "as_of": "2026-06-23"
+        "as_of": "2026-07-08"
       },
       "note": "מחיר חלקי רווח מדולל למניה (7.46)"
     },
     "ps": {
       "label": "מכפיל מכירות (P/S)",
-      "value": 10.48,
+      "value": 10.96,
       "unit": "x",
       "source": {
         "name": "Yahoo Finance + SEC EDGAR",
         "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000320193",
-        "as_of": "2026-06-23"
+        "as_of": "2026-07-08"
       },
       "note": null
     },
     "ev_ebitda": {
       "label": "EV/EBITDA",
-      "value": 30.38,
+      "value": 31.78,
       "unit": "x",
       "source": {
         "name": "Yahoo Finance + SEC EDGAR",
         "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000320193",
-        "as_of": "2026-06-23"
+        "as_of": "2026-07-08"
       },
       "note": "שווי תאגידי חלקי EBITDA (רווח תפעולי + פחת והפחתות)"
     },
@@ -310,7 +310,7 @@ window.RESEARCH_DATA = {
       {
         "name": "Yahoo Finance + SEC EDGAR",
         "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000320193",
-        "as_of": "2026-06-23"
+        "as_of": "2026-07-08"
       }
     ]
   },
@@ -318,93 +318,93 @@ window.RESEARCH_DATA = {
     "ticker": "AAPL",
     "last_price": {
       "label": "מחיר אחרון",
-      "value": 296.89,
+      "value": 310.66,
       "unit": "USD",
       "source": {
         "name": "Yahoo Finance",
         "url": "https://finance.yahoo.com/quote/AAPL",
-        "as_of": "2026-06-23"
+        "as_of": "2026-07-07"
       },
       "note": null
     },
     "sma50": {
       "label": "ממוצע נע 50",
-      "value": 290.1,
+      "value": 295.0,
       "unit": "USD",
       "source": {
         "name": "Yahoo Finance",
         "url": "https://finance.yahoo.com/quote/AAPL",
-        "as_of": "2026-06-23"
+        "as_of": "2026-07-07"
       },
       "note": null
     },
     "sma200": {
       "label": "ממוצע נע 200",
-      "value": 268.38,
+      "value": 271.06,
       "unit": "USD",
       "source": {
         "name": "Yahoo Finance",
         "url": "https://finance.yahoo.com/quote/AAPL",
-        "as_of": "2026-06-23"
+        "as_of": "2026-07-07"
       },
       "note": null
     },
     "rsi14": {
       "label": "RSI(14)",
-      "value": 49.79,
+      "value": 60.67,
       "unit": "",
       "source": {
         "name": "Yahoo Finance",
         "url": "https://finance.yahoo.com/quote/AAPL",
-        "as_of": "2026-06-23"
+        "as_of": "2026-07-07"
       },
       "note": "מעל 70 = קניית יתר, מתחת 30 = מכירת יתר"
     },
     "macd": {
       "label": "MACD",
-      "value": 0.81,
+      "value": 1.95,
       "unit": "",
       "source": {
         "name": "Yahoo Finance",
         "url": "https://finance.yahoo.com/quote/AAPL",
-        "as_of": "2026-06-23"
+        "as_of": "2026-07-07"
       },
       "note": null
     },
     "macd_signal": {
       "label": "קו אות MACD",
-      "value": 2.4,
+      "value": -0.06,
       "unit": "",
       "source": {
         "name": "Yahoo Finance",
         "url": "https://finance.yahoo.com/quote/AAPL",
-        "as_of": "2026-06-23"
+        "as_of": "2026-07-07"
       },
       "note": null
     },
     "atr14": {
       "label": "ATR(14)",
-      "value": 6.71,
+      "value": 8.39,
       "unit": "USD",
       "source": {
         "name": "Yahoo Finance",
         "url": "https://finance.yahoo.com/quote/AAPL",
-        "as_of": "2026-06-23"
+        "as_of": "2026-07-07"
       },
       "note": "תנודתיות ממוצעת יומית"
     },
     "trend": "עולה (uptrend)",
     "support": [
+      302.42,
       287.38,
-      280.39,
-      277.32
+      280.39
     ],
     "resistance": [
       317.4
     ],
     "entry_zone": [
-      287.38,
-      290.25
+      302.42,
+      305.44
     ],
     "exit_zone": [
       314.23,
@@ -412,12 +412,12 @@ window.RESEARCH_DATA = {
     ],
     "stop_loss": {
       "label": "הצעת Stop Loss",
-      "value": 280.67,
+      "value": 294.03,
       "unit": "USD",
       "source": {
         "name": "Yahoo Finance",
         "url": "https://finance.yahoo.com/quote/AAPL",
-        "as_of": "2026-06-23"
+        "as_of": "2026-07-07"
       },
       "note": "תמיכה קרובה פחות ATR אחד"
     },
@@ -425,7 +425,7 @@ window.RESEARCH_DATA = {
       {
         "name": "Yahoo Finance",
         "url": "https://finance.yahoo.com/quote/AAPL",
-        "as_of": "2026-06-23"
+        "as_of": "2026-07-07"
       }
     ]
   },
@@ -1033,136 +1033,136 @@ window.RESEARCH_DATA = {
     "ticker": "AAPL",
     "items": [
       {
-        "title": "Synopsys upgraded at Piper Sandler on Intel foundry momentum, Apple opportunity",
-        "url": "https://finance.yahoo.com/markets/stocks/articles/synopsys-upgraded-piper-sandler-intel-125750262.html?.tsrc=rss",
-        "date": "2026-06-23",
-        "summary": "Investing.com -- Piper Sandler upgraded semiconductor design software maker Synopsys to Overweight from Neutral and raised its price target to $550 from $450, citing improving prospects for the company's intellectual property (IP) business as Intel's foundry ambitions gain traction.",
-        "sentiment_score": 4,
-        "sentiment": "חיובי"
-      },
-      {
-        "title": "Apple Explains TV Library Strategy",
-        "url": "https://finance.yahoo.com/media-advertising/articles/apple-explains-tv-library-strategy-123641323.html?.tsrc=rss",
-        "date": "2026-06-23",
-        "summary": "Eddy Cue said Apple chose originals over buying a large back catalog.",
+        "title": "Apple commits over $30 billion to Broadcom chip deal",
+        "url": "https://finance.yahoo.com/technology/articles/apple-commits-over-30-billion-104155710.html?.tsrc=rss",
+        "date": "2026-07-08",
+        "summary": "Investing.com -- Apple announced Tuesday a multiyear agreement with Broadcom valued at more than $30 billion to design and produce custom silicon components and wireless connectivity technologies for Apple products. The deal will result in the production of more than 15 billion U.S.-made chips and s",
         "sentiment_score": 0,
         "sentiment": "ניטרלי"
       },
       {
-        "title": "UK tribunal gives go ahead for $4 billion lawsuit against Apple over iCloud services",
-        "url": "https://finance.yahoo.com/technology/articles/uk-tribunal-gives-ahead-4-122216032.html?.tsrc=rss",
-        "date": "2026-06-23",
-        "summary": "Britain's competition tribunal has approved a £3 billion ($4 billion) lawsuit against Apple over its iCloud storage service, ‌consumer group Which?  The Competition Appeal Tribunal granted earlier ​in June a collective proceedings order allowing Which?",
-        "sentiment_score": -2,
-        "sentiment": "שלילי"
+        "title": "Apple to spend $30 billion in Broadcom chips deal that will see Colorado factory expand",
+        "url": "https://finance.yahoo.com/technology/articles/apple-spend-30-billion-broadcom-100100178.html?.tsrc=rss",
+        "date": "2026-07-08",
+        "summary": "Apple plans to spend more than $30 billion as part ‌of a chip-supply agreement reached earlier this ‌week with Broadcom that will also see the chipmaker expand a ​factory in Colorado, the companies said on Wednesday.  Broadcom disclosed on Monday it had secured a long-term supply deal through 2031 w",
+        "sentiment_score": 0,
+        "sentiment": "ניטרלי"
       },
       {
-        "title": "Tech Weekly: SK Hynix takes the lead, Apple hikes prices",
-        "url": "https://finance.yahoo.com/video/tech-weekly-sk-hynix-takes-101452796.html?.tsrc=rss",
-        "date": "2026-06-23",
-        "summary": "STORY: From SK Hynix taking a lead to Apple's reported price hikes, this is Tech Weekly.:: Tech WeeklySK Hynix overtook rival Samsung Electronics to become South Korea's most valuable listed company.Shares rose high enough to turn SK Hynix into the world's most valuable memory chipmaker.And it dragg",
+        "title": "Apple's expanded Broadcom deal calls for 15 billion U.S.-made chips",
+        "url": "https://www.axios.com/2026/07/08/apple-broadcom-deal-us-chips#utm_source=yahoo_finance&utm_medium=partner&utm_campaign=subs-partner-yahoo-finance-AI?.tsrc=rss",
+        "date": "2026-07-08",
+        "summary": "Apple said Wednesday it expects to spend over $30 billion in its expanded partnership with Broadcom that will lead to more than 15 billion chips being made in the U.S.",
+        "sentiment_score": 0,
+        "sentiment": "ניטרלי"
+      },
+      {
+        "title": "Apple announces chip deal with Broadcom worth more than $30 billion",
+        "url": "https://finance.yahoo.com/technology/article/apple-announces-chip-deal-with-broadcom-worth-more-than-30-billion-100000097.html?.tsrc=rss",
+        "date": "2026-07-08",
+        "summary": "Apple announced a $30 billion deal with Broadcom.",
+        "sentiment_score": 0,
+        "sentiment": "ניטרלי"
+      },
+      {
+        "title": "Apple to increase spend with Broadcom to produce billions more U.S. chips",
+        "url": "https://finance.yahoo.com/technology/articles/apple-increase-spend-broadcom-produce-100000436.html?.tsrc=rss",
+        "date": "2026-07-08",
+        "summary": "CUPERTINO, Calif., July 08, 2026--Apple® today announced a new multiyear commitment with Broadcom to design and produce custom silicon components and cutting-edge wireless connectivity technologies for a wide range of Apple products. The new agreement, expected to exceed $30 billion, will lead to th",
+        "sentiment_score": 0,
+        "sentiment": "ניטרלי"
+      },
+      {
+        "title": "Warren Buffett's Successor, Greg Abel, Has 30% of Berkshire Hathaway's $343 Billion Investment Portfolio Tied Up in 2 Foundational AI Stocks",
+        "url": "https://www.fool.com/investing/2026/07/08/warren-buffett-abel-30-brka-343-billion-2-ai-stock/?.tsrc=rss",
+        "date": "2026-07-08",
+        "summary": "Berkshire's investment portfolio is getting a tech makeover with Abel at the helm.",
+        "sentiment_score": 0,
+        "sentiment": "ניטרלי"
+      },
+      {
+        "title": "Nvidia’s $1 Trillion Slide Sends Valuation to Pre-AI Boom Levels",
+        "url": "https://finance.yahoo.com/markets/stocks/articles/nvidia-1-trillion-slide-sends-084308296.html?.tsrc=rss",
+        "date": "2026-07-08",
+        "summary": "(Bloomberg) -- After losing roughly $1 trillion in market value in less than two months, Nvidia Corp.’s stock is the cheapest it’s been since before the AI boom kicked off and sent the shares into the stratosphere.Most Read from BloombergGreece Offers Bounty to Catch Ravenous Fish Lured by Warming S",
+        "sentiment_score": 0,
+        "sentiment": "ניטרלי"
+      },
+      {
+        "title": "Apple loses challenges against EU rules to curb Big Tech",
+        "url": "https://finance.yahoo.com/technology/articles/eu-court-rejects-apples-challenge-075945996.html?.tsrc=rss",
+        "date": "2026-07-08",
+        "summary": "Apple lost its challenge on Wednesday against landmark EU rules that designate its app stores and operating system iOS as gatekeepers subject to obligations ‌aimed at giving rivals more room to compete.  The EU Digital Markets Act, which sets out a ‌list of dos and don'ts for Big Tech with the threa",
+        "sentiment_score": 0,
+        "sentiment": "ניטרלי"
+      },
+      {
+        "title": "Can AAPL Stock Return To Record High? JPMorgan Says Price Hikes Won’t Hurt Demand",
+        "url": "https://stocktwits.com/news-articles/markets/equity/can-aapl-stock-return-to-record-high-jp-morgan-says-price-hikes-won-t-hurt-demand/cZmVLESR7N2?.tsrc=rss",
+        "date": "2026-07-08",
+        "summary": "Sales volumes for iPhone, Mac and iPad have a limited relationship with pricing, JPMorgan said, citing past trends.",
+        "sentiment_score": 2,
+        "sentiment": "חיובי"
+      },
+      {
+        "title": "How New Marine and Aviation Updates At Garmin (GRMN) Have Changed Its Investment Story",
+        "url": "https://finance.yahoo.com/markets/stocks/articles/marine-aviation-updates-garmin-grmn-051114233.html?.tsrc=rss",
+        "date": "2026-07-08",
+        "summary": "In early July 2026, Garmin introduced the LiveScope 2 Series of live-scanning sonar transducers and rolled out major Garmin Pilot app enhancements for Apple devices, including a redesigned Flights page and expanded SmartCharts coverage into Canada and Mexico. Together, these marine hardware and avia",
+        "sentiment_score": 0,
+        "sentiment": "ניטרלי"
+      },
+      {
+        "title": "Foldable iPhone May Not Hit Store Shelves Until Months After iPhone 18 Launch, Says Ming-Chi Kuo: Apple Analyst Predicts Strong Demand, Limited Supply",
+        "url": "https://finance.yahoo.com/technology/articles/foldable-iphone-may-not-hit-033104499.html?.tsrc=rss",
+        "date": "2026-07-08",
+        "summary": "Apple Inc.’s long-rumored foldable iPhone could arrive later than the rest of the iPhone 18 lineup, with supply constraints potentially delaying preorders and sales until the fourth quarter of 2026, according to prominent analyst Ming-Chi Kuo. Foldable iPhone Launch Could...",
         "sentiment_score": 1,
         "sentiment": "חיובי"
       },
       {
-        "title": "Ranking the \"Magnificent Seven\" From Most to Least Attractive, Based on Future Cash Flow",
-        "url": "https://www.fool.com/investing/2026/06/23/ranking-magnificent-seven-most-to-least-attractive/?.tsrc=rss",
-        "date": "2026-06-23",
-        "summary": "Among Nvidia, Alphabet, Apple, Microsoft, Amazon, Tesla, and Meta Platforms, there are two exceptional bargains that have embraced artificial intelligence (AI).",
+        "title": "Broadcom extends Apple chip deal through 2031",
+        "url": "https://www.thestreet.com/technology/broadcom-extends-apple-chip-deal-through-2031?.tsrc=rss",
+        "date": "2026-07-08",
+        "summary": "Broadcom Inc. (AVGO) just extended its chip supply agreement with Apple through 2031, according to a regulatory filing reported by Bloomberg. This partnership is not a new development. Apple and Broadcom have a long-standing supply relationship and previously made headlines back in 2023 when Apple .",
         "sentiment_score": 0,
         "sentiment": "ניטרלי"
       },
       {
-        "title": "Jim Cramer Discusses President Trump’s Big Announcement For Apple (AAPL)",
-        "url": "https://finance.yahoo.com/markets/stocks/articles/jim-cramer-discusses-president-trump-065502933.html?.tsrc=rss",
-        "date": "2026-06-23",
-        "summary": "We recently published Jim Cramer Discussed Expensive Phones, A Cheap Stock Sector & These 18 Stocks. Apple Inc. (NASDAQ:AAPL) is one of the stocks discussed by Jim Cramer. Consumer electronics giant Apple Inc. (NASDAQ:AAPL)’s shares are up by 47% over the past year and by 9.9% year-to-date. Several ",
+        "title": "Apple interest thrusts China’s CXMT into memory chip spotlight",
+        "url": "https://finance.yahoo.com/technology/articles/apple-interest-thrusts-china-cxmt-001504803.html?.tsrc=rss",
+        "date": "2026-07-08",
+        "summary": "On a sprawling campus in the eastern Chinese city of Hefei, construction workers are racing to complete a new production line for ChangXin Memory...",
         "sentiment_score": 0,
         "sentiment": "ניטרלי"
       },
       {
-        "title": "What Dell Stock's AI Order Book Revealed Before The Surge",
-        "url": "https://www.trefis.com/articles/603823/what-dell-stocks-ai-order-book-revealed-before-the-surge/2026-06-22?.tsrc=rss",
-        "date": "2026-06-22",
-        "summary": "Before the stock more than tripled, the company’s official guidance was solid but sleepy, but the real story was hiding in the raw demand figures.",
-        "sentiment_score": 1,
-        "sentiment": "חיובי"
-      },
-      {
-        "title": "10 Words From Apple CEO Tim Cook That Are Music to the Ears of Micron Technology Investors",
-        "url": "https://www.fool.com/investing/2026/06/22/10-words-from-apple-ceo-tim-cook-that-are-music-to/?.tsrc=rss",
-        "date": "2026-06-22",
-        "summary": "Apple effectively confirmed that the memory shortage doesn't appear to be ending anytime soon.",
+        "title": "Apple Sales Seen Weathering Hardware Price Increases",
+        "url": "https://finance.yahoo.com/m/bafd8203-4eee-3b56-afec-15f73101607e/apple-sales-seen-weathering.html?.tsrc=rss",
+        "date": "2026-07-07",
+        "summary": "Apple has underappreciated price elasticity of demand that should allow it to weather recent hardware price increases.",
         "sentiment_score": 0,
         "sentiment": "ניטרלי"
       },
       {
-        "title": "Memory's price surge threatens Apple's 'magic formula' — and the economy: WSJ reporter",
-        "url": "https://finance.yahoo.com/video/memorys-price-surge-threatens-apples-211614571.html?.tsrc=rss",
-        "date": "2026-06-22",
-        "summary": "Wall Street Journal technology reporter Rolfe Winkler discusses his interview with Apple (AAPL) CEO Tim Cook, who said that rising memory costs have made iPhone price increases \"unavoidable.\"",
-        "sentiment_score": 1,
-        "sentiment": "חיובי"
-      },
-      {
-        "title": "The Best Warren Buffett Dividend Stocks",
-        "url": "https://www.kiplinger.com/investing/stocks/best-warren-buffett-dividend-stocks?.tsrc=rss",
-        "date": "2026-06-22",
-        "summary": "The best Warren Buffett dividend stocks are expected to produce impressive returns for the Berkshire Hathaway equity portfolio. Here are five with healthy yields.",
+        "title": "SpaceX Joins the Nasdaq-100. Why the Stock Dropped.",
+        "url": "https://finance.yahoo.com/m/3903bd54-50b0-3770-8309-92109d15f7f9/spacex-joins-the-nasdaq-100..html?.tsrc=rss",
+        "date": "2026-07-07",
+        "summary": "SpaceX  trading losses on Tuesday didn’t appear to have much to do with space fundamentals.  Elon Musk’s AI and space company entered the  one of the best-known large-cap growth indexes that tracks the largest nonfinancial companies listed on Nasdaq.  A stock pop was possible, as passive funds snap ",
         "sentiment_score": 0,
         "sentiment": "ניטרלי"
-      },
-      {
-        "title": "QQQ vs QQQM: Same Nasdaq-100 Index, One Clear Winner for Long-Term Investors",
-        "url": "http://www.etf.com/sections/news/qqq-vs-qqqm-same-nasdaq-100-index-one-clear-winner-long-term-investors?utm_source=yahoo-finance&utm_medium=rss&utm_campaign=yahoo-finance-rss&.tsrc=rss",
-        "date": "2026-06-22",
-        "summary": "QQQ and QQQM track the identical Nasdaq-100 index. The only material differences are expense ratio, share price, and options liquidity. Here's which one belongs in your portfolio, and why most long-term investors should make the switch.",
-        "sentiment_score": 0,
-        "sentiment": "ניטרלי"
-      },
-      {
-        "title": "Intel’s Surge on an Apple Chip Deal Means Investors Are Betting on Its Foundry, Says Bernstein’s Stacy Rasgon",
-        "url": "https://247wallst.com/investing/2026/06/22/intels-surge-on-an-apple-chip-deal-means-investors-are-betting-on-its-foundry-says-bernsteins-stacy-rasgon/?.tsrc=rss",
-        "date": "2026-06-22",
-        "summary": "Intel (NASDAQ:INTC) ripped higher last week after former President Donald Trump posted on Truth Social that Apple (NASDAQ:AAPL) had agreed to design and manufacture chips with Intel inside the United States. Intel closed up 10.64% at $133.99, with INTC stock now above $140. Bernstein’s Stacy Rasgon,",
-        "sentiment_score": 1,
-        "sentiment": "חיובי"
-      },
-      {
-        "title": "Berkshire Looked Like It Got a Bargain on Alphabet Stock. It Didn’t.",
-        "url": "https://finance.yahoo.com/m/600afe30-39ab-3b53-a180-813130bb2850/berkshire-looked-like-it-got.html?.tsrc=rss",
-        "date": "2026-06-22",
-        "summary": "Alphabet’s big stock drop was spurred by a Google DeepMind scientist who is leaving for Anthropic. His departure is a blow to Alphabet’s AI initiatives.",
-        "sentiment_score": -1,
-        "sentiment": "שלילי"
-      },
-      {
-        "title": "Tim Cook Warns Apple Product Price Hikes Are Unavoidable Due to Higher Chip Costs. What That Means for AAPL Stock.",
-        "url": "https://www.barchart.com/story/news/2588497/tim-cook-warns-apple-product-price-hikes-are-unavoidable-due-to-higher-chip-costs-what-that-means-for-aapl-stock?.tsrc=rss",
-        "date": "2026-06-22",
-        "summary": "Apple's outgoing CEO says the iPhone maker has tried to absorb rising memory chip costs but can no longer protect customers from the financial pressure.",
-        "sentiment_score": -1,
-        "sentiment": "שלילי"
-      },
-      {
-        "title": "Why Apple (AAPL) Is Tying Its AI Comeback to Devices, Services, and Siri",
-        "url": "https://finance.yahoo.com/technology/ai/articles/why-apple-aapl-tying-ai-075229929.html?.tsrc=rss",
-        "date": "2026-06-22",
-        "summary": "Apple Inc. (NASDAQ:AAPL) is one of Kevin O’Leary’s top stock picks for 2026 through the O’Shares U.S. Quality Dividend ETF. The stock made up 5.29% of the ETF as of June 18, 2026. On June 8, 2026, Apple unveiled the next generation of Apple Intelligence and Siri AI across iPhone, iPad, Mac, Apple Wa",
-        "sentiment_score": 1,
-        "sentiment": "חיובי"
       }
     ],
     "count": 15,
-    "positive": 6,
-    "negative": 3,
-    "neutral": 6,
-    "net": 3,
+    "positive": 2,
+    "negative": 0,
+    "neutral": 13,
+    "net": 2,
     "verdict": "סנטימנט חיובי נטו בכותרות האחרונות",
     "source": {
       "name": "Yahoo Finance RSS",
       "url": "https://finance.yahoo.com/quote/AAPL/news",
-      "as_of": "2026-06-23"
+      "as_of": "2026-07-08"
     },
     "method": "דירוג היוריסטי שקוף מבוסס לקסיקון מילות מפתח (לא LLM)."
   },
