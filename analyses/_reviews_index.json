@@ -1,5 +1,5 @@
 {
-  "generated": "2026-07-08T11:03:38Z",
+  "generated": "2026-07-08T11:05:17Z",
   "reviews": [
     {
       "ticker": "AMZN",
@@ -10,10 +10,10 @@
     },
     {
       "ticker": "CCJ",
-      "verdict": null,
+      "verdict": "BUY",
       "score": null,
       "generated": "2026-07-08",
-      "summary": "[ic: לא התקבל פלט מ-Groq]"
+      "summary": "## סיכום ו-Verdict לאחר בחינת הנתונים הפיננסיים, התעשייתיים והטכניים של CAMECO CORPORATION (CCJ), ולאחר קריאת הדוחות המוגשים על ידי האנליסט, ה-Devil's Advocate, ה-CEO וה-Executor, אני מגיע למסקנה הבאה: ### נקודות חזקות:"
     },
     {
       "ticker": "DRAM",

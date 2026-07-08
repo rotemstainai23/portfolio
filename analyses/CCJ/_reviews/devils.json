@@ -2,9 +2,9 @@
   "ticker": "CCJ",
   "agent": "devils",
   "date": "2026-07-08",
-  "verdict": "BUY",
-  "score": null,
-  "thesis": "**ניתוח מניה: CAMECO CORPORATION (CCJ)** **מבוא** CAMECO CORPORATION (CCJ) היא חברה קנדית העוסקת בכריית אורניום ובייצור דלק גרעיני. החברה נסחרת בבורסה לניירות ערך של ניו יורק (NYSE) ובבורסה לניירות ערך של טורונטו (TSX).",
+  "verdict": "WATCHLIST",
+  "score": 6.0,
+  "thesis": "## ניתוח המניה: CAMECO CORPORATION (CCJ) ### סיכום נתונים * מחיר נוכחי: $94.67",
   "key_risks": [],
   "position_size_pct": null,
   "_cloud": true
