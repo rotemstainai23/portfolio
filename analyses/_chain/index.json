@@ -1,5 +1,11 @@
 [
   {
+    "ticker": "CCJ",
+    "generated": "2026-07-08T11:01:48+00:00",
+    "ic_verdict": null,
+    "ic_score": null
+  },
+  {
     "ticker": "MU",
     "generated": "2026-06-25T19:24:30+00:00",
     "ic_verdict": "BUY",

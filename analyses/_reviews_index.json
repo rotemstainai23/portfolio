@@ -1,5 +1,5 @@
 {
-  "generated": "2026-07-08T11:00:12Z",
+  "generated": "2026-07-08T11:01:48Z",
   "reviews": [
     {
       "ticker": "AMZN",
@@ -7,6 +7,13 @@
       "score": 28,
       "generated": "2026-05-28",
       "summary": "AWS 28% YoY עם RPO $364B מגבה ביקוש מבני, מרווחים בשיא 13.1%. אולם FCF TTM -$2.47B, CapEx $200B FY2026 = FCF FY2026 est. -$37B, clean EPS flat YoY, EV $208 מול מחיר $272 (פרמיה 30.6%), ו-Azure enterprise capture מתחזק."
+    },
+    {
+      "ticker": "CCJ",
+      "verdict": null,
+      "score": null,
+      "generated": "2026-07-08",
+      "summary": "[ic: לא התקבל פלט מ-Groq]"
     },
     {
       "ticker": "DRAM",

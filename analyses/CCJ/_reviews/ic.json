@@ -1,0 +1,11 @@
+{
+  "ticker": "CCJ",
+  "agent": "ic",
+  "date": "2026-07-08",
+  "verdict": null,
+  "score": null,
+  "thesis": "[ic: לא התקבל פלט מ-Groq]",
+  "key_risks": [],
+  "position_size_pct": null,
+  "_cloud": true
+}
