@@ -1,6 +1,6 @@
 window.DAILY_DATA = {
   "generated": "2026-07-08",
-  "generated_time": "05:14",
+  "generated_time": "10:31",
   "market_date": "2026-07-08",
   "has_alerts": false,
   "alert_tickers": [],
@@ -70,16 +70,16 @@ window.DAILY_DATA = {
       "verdict": null,
       "news": [
         {
-          "title": "Why Meta Platforms Finished Down 11% in June",
-          "url": "https://www.fool.com/investing/2026/07/07/why-meta-platforms-finished-down-11-in-june/?.tsrc=rss"
+          "title": "French antitrust watchdog orders Meta to resume talks with media groups over publishing fees",
+          "url": "https://finance.yahoo.com/media-advertising/articles/french-antitrust-watchdog-orders-meta-093634621.html?.tsrc=rss"
         },
         {
-          "title": "How many employees does Meta have in 2026? Its workforce, locations, & layoffs explained",
-          "url": "https://www.thestreet.com/investing/stocks/meta-employees?.tsrc=rss"
+          "title": "Nvidia’s $1 Trillion Slide Sends Valuation to Pre-AI Boom Levels",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/nvidia-1-trillion-slide-sends-084308296.html?.tsrc=rss"
         },
         {
-          "title": "/C O R R E C T I O N -- Lazada Group/",
-          "url": "https://finance.yahoo.com/media-advertising/articles/c-o-r-r-e-020000017.html?.tsrc=rss"
+          "title": "If Meta Pushes Into Cloud Computing, Should Investors Care?",
+          "url": "https://www.fool.com/investing/2026/07/08/if-meta-pushes-into-cloud-computing-should-investo/?.tsrc=rss"
         }
       ]
     },
@@ -113,16 +113,16 @@ window.DAILY_DATA = {
       "verdict": null,
       "news": [
         {
-          "title": "Dow Jones Futures: Oil Prices Keep Rising On Iran News After Samsung Fans AI Fears",
-          "url": "https://finance.yahoo.com/m/066551de-6a59-3094-97bf-62396c58c1ae/dow-jones-futures%3A-oil-prices.html?.tsrc=rss"
+          "title": "Micron Stock Tumbles Deeper Into Bear Market. Is It Time to Worry Yet?",
+          "url": "https://finance.yahoo.com/m/ada59daf-dc8d-3ad4-b87a-1b752a1abe42/micron-stock-tumbles-deeper.html?.tsrc=rss"
         },
         {
-          "title": "Samsung's Preliminary Quarterly Profit Just Jumped 19-Fold -- and Micron Stock Fell on the News. Here's Why.",
-          "url": "https://www.fool.com/investing/2026/07/07/samsungs-preliminary-quarterly-profit-just-jumped/?.tsrc=rss"
+          "title": "MU, Memory Stocks Drop Premarket In Samsung-Triggered Selloff: Poll Shows Most Retail Traders Passing On SK Hynix On Friday",
+          "url": "https://stocktwits.com/news-articles/markets/equity/mu-memory-stocks-drop-premarket-in-samsung-triggered-selloff-poll-shows-most-retail-traders-passing-on-sk-hynix-on-friday/cZmVVLER7NQ?.tsrc=rss"
         },
         {
-          "title": "Ross Gerber Says Chip Sell Off 'a Gift' for Those That Want to Retire Even as SK Hynix US Debut Nears: 'Captured by Very Short-Term Thinking'",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/ross-gerber-says-chip-sell-024729345.html?.tsrc=rss"
+          "title": "Alibaba Stock Leads China AI Rally, Just as U.S. Tech Stumbles",
+          "url": "https://finance.yahoo.com/m/91087fd9-8961-3fd3-b152-7ed7bfb2e4bf/alibaba-stock-leads-china-ai.html?.tsrc=rss"
         }
       ]
     },
@@ -230,9 +230,9 @@ window.DAILY_DATA = {
   ],
   "watchlist_triggers": [],
   "groq_insights": [
-    "NOW +2.59%: עלייה חדה במניה, ייתכן תגובה לחדשות חיוביות בגזרת הטכנולוגיה",
-    "OKLO -7.6%: ירידה חדה במניה, ייתכן תגובה לחדשות שליליות בגזרת האנרגיה",
-    "APLD -8.33%: ירידה חדה במניה, ייתכן תגובה לחדשות שליליות בגזרת הטכנולוגיה"
+    "NOW +2.59%: הסקטור של תוכנה כשירות נראה חזק, ייתכן שיש פוטנציאל לצמיחה",
+    "OKLO -7.6%: ירידה חדה במניה, ייתכן שיש לחץ על הסקטור של אנרגיה גרעינית",
+    "APLD -8.33%: ירידה חדה במניה, ייתכן שיש חששות לגבי היציבות הפיננסית של החברה"
   ],
   "sector_summary": [
     {
