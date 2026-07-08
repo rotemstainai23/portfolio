@@ -27,3 +27,4 @@ data/
 research/
 .pytest_cache/
 .claude/scheduled_tasks.lock
+cloudflare/.wrangler/

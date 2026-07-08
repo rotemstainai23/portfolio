@@ -2,14 +2,14 @@
   {
     "ticker": "CCJ",
     "generated": "2026-07-08T11:05:17+00:00",
-    "ic_verdict": "BUY",
-    "ic_score": null
+    "ic_verdict": "WATCHLIST",
+    "ic_score": 6.0
   },
   {
     "ticker": "MU",
     "generated": "2026-06-25T19:24:30+00:00",
-    "ic_verdict": "BUY",
-    "ic_score": null
+    "ic_verdict": "WATCHLIST",
+    "ic_score": 7.0
   },
   {
     "ticker": "DRAM",

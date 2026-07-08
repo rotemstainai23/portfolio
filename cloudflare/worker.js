@@ -145,7 +145,7 @@ function quoteFromChart(j) {
 async function readPortfolioJson(token) {
   const r = await fetch(
     `https://api.github.com/repos/${GH_REPO}/contents/portfolio.json`,
-    { headers: { Authorization: `token ${token}`, Accept: "application/vnd.github+json" } }
+    { headers: { Authorization: `token ${token}`, Accept: "application/vnd.github+json", "User-Agent": "portfolio-worker" } }
   );
   if (!r.ok) throw new Error(`GitHub ${r.status}: לא ניתן לקרוא portfolio.json`);
   const data  = await r.json();
@@ -165,6 +165,7 @@ async function writePortfolioJson(token, content, sha, message) {
         Authorization: `token ${token}`,
         Accept: "application/vnd.github+json",
         "Content-Type": "application/json",
+        "User-Agent": "portfolio-worker",
       },
       body: JSON.stringify({ message, content: encoded, sha }),
     }
@@ -369,6 +370,7 @@ export default {
             Authorization: `token ${env.GH_TOKEN}`,
             Accept: "application/vnd.github+json",
             "Content-Type": "application/json",
+            "User-Agent": "portfolio-worker",
           },
           body: JSON.stringify({ ref: "main", inputs }),
         }

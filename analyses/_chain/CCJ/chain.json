@@ -15,7 +15,7 @@
       "agent": "analyst",
       "date": "2026-07-08",
       "verdict": "WATCHLIST",
-      "score": null,
+      "score": 7.0,
       "thesis": "**ניתוח מניה: CAMECO CORPORATION (CCJ)** **מבוא** CAMECO CORPORATION (CCJ) היא חברה קנדית העוסקת בכריית אורניום ובייצור דלק גרעיני. בניתוח זה, נבחן את החברה מבחינה פיננסית, תעשייתית וטכנית, על מנת לקבוע האם היא מהווה השקעה מבטיחה.",
       "key_risks": [],
       "position_size_pct": null,
@@ -47,8 +47,8 @@
       "ticker": "CCJ",
       "agent": "executor",
       "date": "2026-07-08",
-      "verdict": "BUY",
-      "score": null,
+      "verdict": "WATCHLIST",
+      "score": 6.0,
       "thesis": "## סיכום והמלצה לאחר בחינת הנתונים הפיננסיים, התעשייתיים והטכניים של CAMECO CORPORATION (CCJ), אני כ-Executor מגיע למסקנה הבאה: ### נתונים פיננסיים:",
       "key_risks": [],
       "position_size_pct": null,
@@ -58,14 +58,14 @@
       "ticker": "CCJ",
       "agent": "ic",
       "date": "2026-07-08",
-      "verdict": "BUY",
-      "score": null,
+      "verdict": "WATCHLIST",
+      "score": 6.0,
       "thesis": "## סיכום ו-Verdict לאחר בחינת הנתונים הפיננסיים, התעשייתיים והטכניים של CAMECO CORPORATION (CCJ), ולאחר קריאת הדוחות המוגשים על ידי האנליסט, ה-Devil's Advocate, ה-CEO וה-Executor, אני מגיע למסקנה הבאה: ### נקודות חזקות:",
       "key_risks": [],
       "position_size_pct": null,
       "_cloud": true
     }
   },
-  "ic_verdict": "BUY",
-  "ic_score": null
+  "ic_verdict": "WATCHLIST",
+  "ic_score": 6.0
 }

@@ -25,8 +25,8 @@
       "ticker": "MU",
       "agent": "devils",
       "date": "2026-06-25",
-      "verdict": "BUY",
-      "score": null,
+      "verdict": "WATCHLIST",
+      "score": 7.0,
       "thesis": "**ניתוח השקעה ב-Micron Technology, Inc. (MU)** **מבוא** Micron Technology, Inc. (MU) היא חברה אמריקאית העוסקת בייצור ושיווק של רכיבים אלקטרוניים, בעיקר זיכרון ואחסון. החברה נסחרת בבורסה לניירות ערך של ניו יורק (NYSE) תחת הסמל MU.",
       "key_risks": [],
       "position_size_pct": null,
@@ -58,14 +58,14 @@
       "ticker": "MU",
       "agent": "ic",
       "date": "2026-06-25",
-      "verdict": "BUY",
-      "score": null,
+      "verdict": "WATCHLIST",
+      "score": 7.0,
       "thesis": "**ועדת השקעות - ישיבה** **אימות קלטים** * HANDOFF אנליסט: קיבלנו",
       "key_risks": [],
       "position_size_pct": null,
       "_cloud": true
     }
   },
-  "ic_verdict": "BUY",
-  "ic_score": null
+  "ic_verdict": "WATCHLIST",
+  "ic_score": 7.0
 }

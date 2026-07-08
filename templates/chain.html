@@ -32,6 +32,11 @@
 .agent-thesis h3,.agent-thesis h4{color:var(--text);font-size:13px;font-weight:800;margin:8px 0 3px}
 .agent-error{display:flex;align-items:center;gap:10px;padding:14px 16px;font-size:13px;color:var(--muted2)}
 .err-dot{width:7px;height:7px;border-radius:50%;background:rgba(251,113,133,.45);flex-shrink:0}
+.md-table{width:100%;border-collapse:collapse;margin:10px 0;font-size:12px}
+.md-table th{color:var(--text);font-weight:800;text-align:right;padding:6px 8px;border-bottom:1px solid var(--glass-border);background:rgba(148,163,184,.06)}
+.md-table td{padding:6px 8px;border-bottom:1px solid var(--glass-border);color:var(--muted2)}
+.md-li{padding:2px 0 2px 4px}
+.consensus{margin:0 16px 14px;overflow-x:auto}
 </style>
 </head>
 <body>
@@ -70,22 +75,51 @@ function extractScore(text){
 }
 function extractVerdict(text){
   if (!text) return null;
-  var t = text.toUpperCase();
-  if (t.includes('WATCHLIST') || t.includes('מעקב')) return 'WATCHLIST';
-  if (t.includes('BUY') || t.includes('קנה') || t.includes('קניה')) return 'BUY';
-  if (t.includes('SELL') || t.includes('מכור')) return 'SELL';
-  if (t.includes('PASS') || t.includes('לא לקנות')) return 'PASS';
+  var m = text.match(/VERDICT\W{0,4}(BUY|SELL|PASS|WATCHLIST|NO[_ ]?ACTION)/i);
+  if (m) return m[1].toUpperCase().replace(' ','_');
+  /* גבולות מילה: buy_price ו"מסקנה" לא נתפסים */
+  var all = text.match(/\b(BUY|SELL|PASS|WATCHLIST|NO[_ ]?ACTION)\b/gi);
+  if (all) return all[all.length-1].toUpperCase().replace(' ','_');
+  if (text.includes('מעקב')) return 'WATCHLIST';
   return null;
 }
 function isError(text){ return !text || (text.startsWith('[') && text.includes('לא התקבל')); }
 
+function mdTable(rows){
+  /* שורת מפריד (|---|---|) נזרקת */
+  rows = rows.filter(function(r){ return !/^\s*\|?[\s\-:|]+\|?\s*$/.test(r); });
+  var html = '<table class="md-table">';
+  rows.forEach(function(r, idx){
+    var cells = r.replace(/^\s*\|/,'').replace(/\|\s*$/,'').split('|');
+    var tag = idx === 0 ? 'th' : 'td';
+    html += '<tr>' + cells.map(function(c){
+      return '<'+tag+'>' + c.trim().replace(/\*\*(.+?)\*\*/g,'<b>$1</b>') + '</'+tag+'>';
+    }).join('') + '</tr>';
+  });
+  return html + '</table>';
+}
+
 function fmtMd(text){
   if (!text) return '';
-  return text
-    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+  var esc = text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  /* חילוץ בלוקי טבלה לפני שאר העיבוד, כדי ש-<br> לא ישבור אותם */
+  var lines = esc.split('\n'), out = [], i = 0;
+  while (i < lines.length){
+    if (/^\s*\|/.test(lines[i])) {
+      var tbl = [];
+      while (i < lines.length && /^\s*\|/.test(lines[i])) { tbl.push(lines[i]); i++; }
+      out.push(mdTable(tbl));
+      continue;
+    }
+    out.push(lines[i]); i++;
+  }
+  return out.join('\n')
     .replace(/^####\s+(.+)$/gm,'<h4>$1</h4>')
     .replace(/^###\s+(.+)$/gm,'<h3>$1</h3>')
+    .replace(/^##\s+(.+)$/gm,'<h3>$1</h3>')
+    .replace(/^\s*[\*\-]\s+(.+)$/gm,'<div class="md-li">• $1</div>')
     .replace(/\*\*(.+?)\*\*/g,'<b>$1</b>')
+    .replace(/(<\/table>)\n/g,'$1')
     .replace(/\n{2,}/g,'</p><p style="margin:0 0 6px">')
     .replace(/\n/g,'<br>');
 }
@@ -114,6 +148,23 @@ function render(data){
     + '<div class="chain-meta">' + date + ' · שרשרת 5 סוכני ענן Groq</div>'
     + icBadge
     + '</div>';
+
+  /* טבלת קונצנזוס: ורדיקט וציון של כל סוכן במבט אחד */
+  var consRows = AGENTS.map(function(ag){
+    var rev = (data.reviews || {})[ag.key] || {};
+    var raw = (data.agents || {})[ag.key] || '';
+    if (isError(raw)) return '<tr><td>' + ag.label + '</td><td colspan="2" style="color:var(--muted)">שגיאה</td></tr>';
+    var v = rev.verdict || extractVerdict(raw);
+    var s = (rev.score != null) ? rev.score : extractScore(raw);
+    return '<tr>'
+      + '<td style="font-weight:800;color:' + ag.color + '">' + ag.label + '</td>'
+      + '<td><span class="agent-verdict ' + verdictCls(v) + '">' + (v || '—') + '</span></td>'
+      + '<td style="font-weight:800;color:' + (s != null ? scColor(s) : 'var(--muted)') + '">' + (s != null ? s + '/10' : '—') + '</td>'
+      + '</tr>';
+  }).join('');
+  html += '<div class="consensus"><table class="md-table">'
+    + '<tr><th>סוכן</th><th>ורדיקט</th><th>ציון</th></tr>' + consRows
+    + '</table></div>';
 
   html += '<div class="agent-grid">';
   AGENTS.forEach(function(ag){
@@ -146,8 +197,9 @@ function render(data){
           + '</div>'
           + '</div>';
       }
-      var thesis = rev.thesis && !rev.thesis.startsWith('[') ? rev.thesis : rawText;
-      html += '<div class="agent-thesis"><p style="margin:0 0 6px">' + fmtMd(thesis) + '</p></div>';
+      /* הפלט המלא של הסוכן; thesis הקטום הוא רק גיבוי */
+      var body = rawText || rev.thesis || '';
+      html += '<div class="agent-thesis"><p style="margin:0 0 6px">' + fmtMd(body) + '</p></div>';
       html += '</div>';
     }
     html += '</div>';

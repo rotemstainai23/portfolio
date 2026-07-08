@@ -102,39 +102,68 @@ def _portfolio_snapshot() -> str:
         return "נתוני תיק לא זמינים"
 
 
+def _dp_val(dp: Any) -> Any:
+    """ערך מתוך DataPoint שעבר model_dump (dict) או מספר גולמי."""
+    if isinstance(dp, dict):
+        return dp.get("value")
+    return dp if isinstance(dp, (int, float)) else None
+
+
+# שדות פונדמנטליים שנשלחים לסוכנים: (מפתח, תווית)
+_FUND_FIELDS = [
+    ("revenue", "הכנסות שנתיות"), ("revenue_growth", "צמיחת הכנסות"),
+    ("gross_margin", "מרווח גולמי"), ("net_margin", "מרווח נקי"),
+    ("fcf", "תזרים חופשי"), ("roic", "ROIC"),
+    ("market_cap", "שווי שוק"), ("pe", "P/E"), ("ev_ebitda", "EV/EBITDA"),
+]
+
+
 def _build_user_msg(ticker: str, agent: str, mkt: dict, prev: dict[str, str]) -> str:
     """בונה הודעת משתמש לסוכן: הקשר שוק + פלטי סוכנים קודמים."""
-    lines = [f"## מניה לניתוח: {ticker}"]
+    today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    lines = [
+        f"## מניה לניתוח: {ticker}",
+        f"חברה: {mkt.get('company', ticker)}",
+        f"תאריך נוכחי: {today}",
+    ]
 
     quote = mkt.get("quote", {})
-    if quote:
-        price  = quote.get("price") or quote.get("regularMarketPrice")
-        cap    = quote.get("marketCap")
-        name   = mkt.get("company", ticker)
-        lines += [
-            f"חברה: {name}",
-            f"מחיר: ${price}" if price else "",
-            f"שווי שוק: ${cap/1e9:.1f}B" if cap else "",
-        ]
+    price = _dp_val(quote.get("price"))
+    if price is not None:
+        lines.append(f"מחיר נוכחי: ${price:,.2f}")
+    chg = _dp_val(quote.get("change_pct"))
+    if chg is not None:
+        lines.append(f"שינוי יומי: {chg:+.2f}%")
 
     fund = mkt.get("fundamentals", {})
     if fund:
         fields = []
-        for k in ["revenue", "net_margin", "roic", "pe", "ev_ebitda"]:
-            dp = fund.get(k, {})
-            v  = dp.get("value") if isinstance(dp, dict) else None
-            u  = dp.get("unit", "") if isinstance(dp, dict) else ""
-            if v is not None:
-                fields.append(f"{k}={v:.1f}{u}")
+        for k, label in _FUND_FIELDS:
+            dp = fund.get(k)
+            v = _dp_val(dp)
+            if v is None:
+                continue
+            u = dp.get("unit", "") if isinstance(dp, dict) else ""
+            if u == "USD":
+                fields.append(f"{label}=${v/1e9:.2f}B")
+            elif u == "%":
+                fields.append(f"{label}={v:.1f}%")
+            else:
+                fields.append(f"{label}={v}{u}")
         if fields:
-            lines.append("פונדמנטלים: " + ", ".join(fields))
+            lines.append("פונדמנטלים (SEC EDGAR): " + ", ".join(fields))
 
     tech = mkt.get("technical", {})
     if tech:
-        rsi = (tech.get("rsi14") or {}).get("value")
+        rsi = _dp_val(tech.get("rsi14"))
         trend = tech.get("trend")
-        if rsi or trend:
-            lines.append(f"טכני: trend={trend}, RSI={rsi:.0f}" if rsi and trend else "")
+        parts = []
+        if trend:
+            parts.append(f"trend={trend}")
+        if rsi is not None:
+            parts.append(f"RSI={rsi:.0f}")
+        if parts:
+            lines.append("טכני: " + ", ".join(parts))
 
     if agent in ("ceo", "executor", "ic"):
         lines += ["", "## תמצית תיק", _portfolio_snapshot()]
@@ -146,33 +175,59 @@ def _build_user_msg(ticker: str, agent: str, mkt: dict, prev: dict[str, str]) ->
             lines.append(f"### {ag}\n{out[:800]}{'...' if len(out) > 800 else ''}")
 
     lines.append(
-        "\n## הוראה\nבצע את תפקידך. פלט מובנה ומפורט בעברית."
-        " כלול verdict ברור (BUY/WATCHLIST/PASS/NO_ACTION) וציון 1-10."
+        "\n## הוראה\n"
+        "בצע את תפקידך בעברית. חוקים מחייבים:\n"
+        "1. השתמש אך ורק בנתונים שסופקו כאן ובפלטי הסוכנים הקודמים. "
+        "אסור להמציא מספרים, שנים או עובדות מהזיכרון שלך. נתון שלא סופק: כתוב 'לא זמין'.\n"
+        "2. פתח בטבלת markdown מסכמת (| מדד | ערך |) של הנתונים המרכזיים שסופקו.\n"
+        "3. סיים בדיוק בשתי שורות אלו, כל אחת בשורה נפרדת:\n"
+        "VERDICT: BUY או WATCHLIST או PASS או NO_ACTION\n"
+        "SCORE: מספר בין 1 ל-10"
     )
     return "\n".join(l for l in lines if l)
 
 
+# טוקן ורדיקט באנגלית עם גבולות מילה (buy_price לא נתפס, מסקנה לא נתפסת)
+_VERDICT_TOKEN = re.compile(r'\b(BUY|SELL|PASS|WATCHLIST|NO[_ ]?ACTION|DANGER)\b', re.IGNORECASE)
+# מילים בעברית עם גבולות (לא substring: "מסקנה" לא תיתפס כ"קנה")
+_HE_VERDICT = re.compile(
+    r'(?<![\w֐-׿])(קנייה|קניה|קנה|מכירה|מכור|מעקב|לא לקנות|ללא פעולה)(?![\w֐-׿])'
+)
+_HE_MAP = {
+    "קנייה": "BUY", "קניה": "BUY", "קנה": "BUY",
+    "מכירה": "SELL", "מכור": "SELL", "מעקב": "WATCHLIST",
+    "לא לקנות": "PASS", "ללא פעולה": "NO_ACTION",
+}
+
+
 def _extract_review(ticker: str, agent: str, output: str) -> dict:
-    """מחלץ verdict וציון מהפלט הגולמי של הסוכן."""
-    verdict_map = {
-        "buy": "BUY", "קנה": "BUY", "קניה": "BUY",
-        "sell": "SELL", "מכור": "SELL",
-        "pass": "PASS", "לא לקנות": "PASS", "skip": "PASS",
-        "watchlist": "WATCHLIST", "מעקב": "WATCHLIST",
-        "no.action": "NO_ACTION", "no action": "NO_ACTION", "ללא פעולה": "NO_ACTION",
-        "danger": "DANGER",
-    }
-    text_lower = output.lower()
+    """מחלץ verdict וציון מהפלט הגולמי של הסוכן.
+
+    סדר עדיפות: שורת VERDICT מפורשת > הטוקן האנגלי האחרון (ההכרעה בסוף
+    הדוח) > מילה עברית שלמה אחרונה.
+    """
     verdict = None
-    for kw, v in verdict_map.items():
-        if kw in text_lower:
-            verdict = v
-            break
+    m = re.search(r'VERDICT\W{0,4}(BUY|SELL|PASS|WATCHLIST|NO[_ ]?ACTION|DANGER)', output, re.IGNORECASE)
+    if m:
+        verdict = m.group(1)
+    else:
+        tokens = _VERDICT_TOKEN.findall(output)
+        if tokens:
+            verdict = tokens[-1]
+        else:
+            he = _HE_VERDICT.findall(output)
+            if he:
+                verdict = _HE_MAP[he[-1]]
+    if verdict:
+        verdict = verdict.upper().replace(" ", "_")
 
     score = None
-    m = re.search(r'(?:ציון|score)[:\s]+(\d+(?:\.\d+)?)\s*/?\s*10', output, re.IGNORECASE)
+    m = (re.search(r'SCORE\W{0,4}(\d+(?:\.\d+)?)', output, re.IGNORECASE)
+         or re.search(r'(?:ציון|score)\W{0,6}(\d+(?:\.\d+)?)\s*(?:/|מתוך)\s*10', output, re.IGNORECASE))
     if m:
         score = float(m.group(1))
+        if not 1 <= score <= 10:
+            score = None
 
     # תמצית: 3 שורות ראשונות שיש בהן תוכן
     lines = [l.strip() for l in output.split("\n") if l.strip()]
