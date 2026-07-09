@@ -1,12 +1,12 @@
 {
-  "generated": "2026-07-08",
-  "generated_time": "10:31",
-  "market_date": "2026-07-08",
+  "generated": "2026-07-09",
+  "generated_time": "05:57",
+  "market_date": "2026-07-09",
   "has_alerts": false,
   "alert_tickers": [],
   "macro": {
-    "spy_chg_pct": -0.48,
-    "qqq_chg_pct": -1.85,
+    "spy_chg_pct": -0.31,
+    "qqq_chg_pct": 0.28,
     "vix": null
   },
   "holdings": [
@@ -14,29 +14,42 @@
       "ticker": "NVDA",
       "sector": "AI / Semiconductors",
       "layer": "Growth",
-      "price": 196.93,
-      "chg_pct": 0.71,
-      "vol_ratio": 0.8,
-      "rsi": 33.5,
-      "w52_pos_pct": 49,
+      "price": 204.12,
+      "chg_pct": 3.65,
+      "vol_ratio": 1.0,
+      "rsi": 46.6,
+      "w52_pos_pct": 57,
       "analyst_target": 301.62,
-      "analyst_upside_pct": 53.2,
+      "analyst_upside_pct": 47.8,
       "days_to_earnings": null,
       "verdict": null,
-      "news": []
+      "news": [
+        {
+          "title": "Here's When Elon Musk Can Sell His Billions of SpaceX Shares",
+          "url": "https://www.fool.com/investing/2026/07/09/heres-when--elon-musk-can-sell-his-billions-of/?.tsrc=rss"
+        },
+        {
+          "title": "Micron Raised Its Guidance on Surging Memory Prices. Here's What It Means for the Stock.",
+          "url": "https://www.fool.com/investing/2026/07/09/micron-raised-its-guidance-on-surging-memory-price/?.tsrc=rss"
+        },
+        {
+          "title": "Dow Jones Futures, Oil Prices Rise Amid Iran News; Nvidia, Valero, Dell, SpaceX In Focus",
+          "url": "https://finance.yahoo.com/m/460a0d08-18ee-3417-83ad-76a56f707497/dow-jones-futures%2C-oil-prices.html?.tsrc=rss"
+        }
+      ]
     },
     {
       "ticker": "MSFT",
       "sector": "Tech / Cloud / AI",
       "layer": "Stability",
-      "price": 388.84,
-      "chg_pct": 0.54,
-      "vol_ratio": 0.6,
-      "rsi": 45.2,
-      "w52_pos_pct": 19,
+      "price": 383.34,
+      "chg_pct": -1.41,
+      "vol_ratio": 0.5,
+      "rsi": 45.4,
+      "w52_pos_pct": 17,
       "analyst_target": 559.93,
-      "analyst_upside_pct": 44.0,
-      "days_to_earnings": null,
+      "analyst_upside_pct": 46.1,
+      "days_to_earnings": 20,
       "verdict": null,
       "news": []
     },
@@ -44,14 +57,14 @@
       "ticker": "GOOG",
       "sector": "Tech / Search / AI",
       "layer": "Stability",
-      "price": 363.62,
-      "chg_pct": -0.35,
-      "vol_ratio": 0.7,
-      "rsi": 48.0,
-      "w52_pos_pct": 82,
+      "price": 358.71,
+      "chg_pct": -1.35,
+      "vol_ratio": 0.6,
+      "rsi": 42.9,
+      "w52_pos_pct": 80,
       "analyst_target": 428.54,
-      "analyst_upside_pct": 17.9,
-      "days_to_earnings": null,
+      "analyst_upside_pct": 19.5,
+      "days_to_earnings": 13,
       "verdict": null,
       "news": []
     },
@@ -59,27 +72,27 @@
       "ticker": "META",
       "sector": "Social Media / AI",
       "layer": "Growth",
-      "price": 615.58,
-      "chg_pct": 2.55,
-      "vol_ratio": 1.0,
-      "rsi": 55.1,
-      "w52_pos_pct": 35,
+      "price": 603.12,
+      "chg_pct": -2.02,
+      "vol_ratio": 0.7,
+      "rsi": 50.7,
+      "w52_pos_pct": 30,
       "analyst_target": 828.17,
-      "analyst_upside_pct": 34.5,
+      "analyst_upside_pct": 37.3,
       "days_to_earnings": null,
       "verdict": null,
       "news": [
         {
-          "title": "French antitrust watchdog orders Meta to resume talks with media groups over publishing fees",
-          "url": "https://finance.yahoo.com/media-advertising/articles/french-antitrust-watchdog-orders-meta-093634621.html?.tsrc=rss"
+          "title": "Mark Zuckerberg Admitted AI Agents \"Hasn't Really Accelerated\" as Meta Stock Dropped 5%",
+          "url": "https://www.fool.com/investing/2026/07/08/mark-zuckerberg-admitted-ai-agents-hasnt-really-ac/?.tsrc=rss"
         },
         {
-          "title": "Nvidia’s $1 Trillion Slide Sends Valuation to Pre-AI Boom Levels",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/nvidia-1-trillion-slide-sends-084308296.html?.tsrc=rss"
+          "title": "$130 Billion in AI Data Centers were Just Blocked. Where Does the AI Boom Go Now",
+          "url": "https://finance.yahoo.com/technology/ai/articles/130-billion-ai-data-centers-000000041.html?.tsrc=rss"
         },
         {
-          "title": "If Meta Pushes Into Cloud Computing, Should Investors Care?",
-          "url": "https://www.fool.com/investing/2026/07/08/if-meta-pushes-into-cloud-computing-should-investo/?.tsrc=rss"
+          "title": "Meta plans billions for first AI data center in Canada, largest outside the US",
+          "url": "https://finance.yahoo.com/technology/ai/articles/meta-plans-billions-first-ai-222054408.html?.tsrc=rss"
         }
       ]
     },
@@ -87,69 +100,82 @@
       "ticker": "AVGO",
       "sector": "Semiconductors",
       "layer": "Growth",
-      "price": 370.78,
-      "chg_pct": -0.83,
-      "vol_ratio": 0.8,
-      "rsi": 42.2,
-      "w52_pos_pct": 45,
+      "price": 388.69,
+      "chg_pct": 4.83,
+      "vol_ratio": 1.0,
+      "rsi": 54.0,
+      "w52_pos_pct": 53,
       "analyst_target": 523.73,
-      "analyst_upside_pct": 41.3,
+      "analyst_upside_pct": 34.7,
       "days_to_earnings": null,
       "verdict": null,
-      "news": []
+      "news": [
+        {
+          "title": "Why Broadcom Stock Rose Today",
+          "url": "https://www.fool.com/investing/2026/07/08/why-broadcom-stock-is-up-today/?.tsrc=rss"
+        },
+        {
+          "title": "Broadcom gets $30 billion Apple boost as valuation debate grows",
+          "url": "https://www.thestreet.com/investing/stocks/broadcom-gets-30-billion-apple-boost-as-valuation-debate-grows?.tsrc=rss"
+        },
+        {
+          "title": "Why Broadcom Stock Fell 15% in June",
+          "url": "https://www.fool.com/investing/2026/07/08/why-broadcom-stock-fell-15-in-june/?.tsrc=rss"
+        }
+      ]
     },
     {
       "ticker": "MU",
       "sector": "Memory Chips",
       "layer": "Growth",
-      "price": 938.38,
-      "chg_pct": -4.71,
-      "vol_ratio": 0.9,
-      "rsi": 41.9,
+      "price": 948.8,
+      "chg_pct": 1.11,
+      "vol_ratio": 0.7,
+      "rsi": 45.8,
       "w52_pos_pct": 73,
       "analyst_target": 1486.0,
-      "analyst_upside_pct": 58.4,
-      "days_to_earnings": null,
-      "verdict": null,
-      "news": [
-        {
-          "title": "Micron Stock Tumbles Deeper Into Bear Market. Is It Time to Worry Yet?",
-          "url": "https://finance.yahoo.com/m/ada59daf-dc8d-3ad4-b87a-1b752a1abe42/micron-stock-tumbles-deeper.html?.tsrc=rss"
-        },
-        {
-          "title": "MU, Memory Stocks Drop Premarket In Samsung-Triggered Selloff: Poll Shows Most Retail Traders Passing On SK Hynix On Friday",
-          "url": "https://stocktwits.com/news-articles/markets/equity/mu-memory-stocks-drop-premarket-in-samsung-triggered-selloff-poll-shows-most-retail-traders-passing-on-sk-hynix-on-friday/cZmVVLER7NQ?.tsrc=rss"
-        },
-        {
-          "title": "Alibaba Stock Leads China AI Rally, Just as U.S. Tech Stumbles",
-          "url": "https://finance.yahoo.com/m/91087fd9-8961-3fd3-b152-7ed7bfb2e4bf/alibaba-stock-leads-china-ai.html?.tsrc=rss"
-        }
-      ]
-    },
-    {
-      "ticker": "IBIT",
-      "sector": "Crypto",
-      "layer": "Speculation",
-      "price": 36.15,
-      "chg_pct": 0.08,
-      "vol_ratio": 0.6,
-      "rsi": 42.3,
-      "w52_pos_pct": 8,
-      "analyst_target": null,
-      "analyst_upside_pct": null,
+      "analyst_upside_pct": 56.6,
       "days_to_earnings": null,
       "verdict": null,
       "news": []
     },
     {
+      "ticker": "IBIT",
+      "sector": "Crypto",
+      "layer": "Speculation",
+      "price": 35.23,
+      "chg_pct": -2.54,
+      "vol_ratio": 0.7,
+      "rsi": 41.0,
+      "w52_pos_pct": 6,
+      "analyst_target": null,
+      "analyst_upside_pct": null,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": [
+        {
+          "title": "Bitmine Immersion Technologies Stock Is Down 46% This Year: Is It Time to Switch to Strategy or Circle Internet Group?",
+          "url": "https://247wallst.com/investing/2026/07/08/bitmine-immersion-technologies-stock-is-down-46-this-year-is-it-time-to-switch-to-strategy-or-circle-internet-group/?.tsrc=rss"
+        },
+        {
+          "title": "Why MSTR Stock Is Down Despite a New Buy Rating",
+          "url": "https://finance.yahoo.com/m/81907a55-fb82-30bd-9298-0dd84e8018be/why-mstr-stock-is-down.html?.tsrc=rss"
+        },
+        {
+          "title": "ETHA vs. IBIT: Does Ethereum or Bitcoin Belong in Your Portfolio?",
+          "url": "https://247wallst.com/investing/etf/2026/07/08/etha-vs-ibit-does-ethereum-or-bitcoin-belong-in-your-portfolio/?.tsrc=rss"
+        }
+      ]
+    },
+    {
       "ticker": "GLDM",
       "sector": "Commodities / Gold",
       "layer": "Stability",
-      "price": 81.41,
-      "chg_pct": -1.19,
-      "vol_ratio": 0.6,
-      "rsi": 35.3,
-      "w52_pos_pct": 37,
+      "price": 80.7,
+      "chg_pct": -0.87,
+      "vol_ratio": 1.1,
+      "rsi": 32.5,
+      "w52_pos_pct": 36,
       "analyst_target": null,
       "analyst_upside_pct": null,
       "days_to_earnings": null,
@@ -160,13 +186,13 @@
       "ticker": "VST",
       "sector": "Energy / Nuclear",
       "layer": "Growth",
-      "price": 155.73,
-      "chg_pct": -0.95,
-      "vol_ratio": 0.7,
-      "rsi": 52.3,
-      "w52_pos_pct": 26,
+      "price": 154.82,
+      "chg_pct": -0.58,
+      "vol_ratio": 0.8,
+      "rsi": 45.7,
+      "w52_pos_pct": 25,
       "analyst_target": 222.89,
-      "analyst_upside_pct": 43.1,
+      "analyst_upside_pct": 44.0,
       "days_to_earnings": null,
       "verdict": null,
       "news": []
@@ -175,16 +201,20 @@
       "ticker": "APLD",
       "sector": "AI Infrastructure",
       "layer": "Speculation",
-      "price": 30.71,
-      "chg_pct": -8.33,
-      "vol_ratio": 0.7,
-      "rsi": 8.1,
-      "w52_pos_pct": 52,
+      "price": 31.44,
+      "chg_pct": 2.38,
+      "vol_ratio": 0.8,
+      "rsi": 11.7,
+      "w52_pos_pct": 54,
       "analyst_target": 73.36,
-      "analyst_upside_pct": 138.9,
+      "analyst_upside_pct": 133.3,
       "days_to_earnings": null,
       "verdict": null,
       "news": [
+        {
+          "title": "TeraWulf Rises 12%, IREN Climbs 7% as AI-Infrastructure Stocks Bounce Back",
+          "url": "https://247wallst.com/investing/2026/07/08/terawulf-rises-12-iren-climbs-7-as-ai-infrastructure-stocks-bounce-back/?.tsrc=rss"
+        },
         {
           "title": "TeraWulf Drops 8% Even as Analysts Raise Price Targets on $19B Anthropic Deal, IREN Falls 7%, Applied Digital Slides 6%",
           "url": "https://247wallst.com/investing/2026/07/07/terawulf-drops-8-even-as-analysts-raise-price-targets-on-19b-anthropic-deal-iren-falls-7-applied-digital-slides-6/?.tsrc=rss"
@@ -192,10 +222,6 @@
         {
           "title": "Is Applied Digital’s (APLD) New 175 MW AI Campus Milestone Redefining Its Core Infrastructure Story?",
           "url": "https://finance.yahoo.com/technology/ai/articles/applied-digital-apld-175-mw-044058594.html?.tsrc=rss"
-        },
-        {
-          "title": "TeraWulf, Anthropic Sign $19 Billion Data Center Lease. Neocloud Stocks Soar.",
-          "url": "https://finance.yahoo.com/m/21a0c327-87ae-3213-b30a-e194f708d278/terawulf%2C-anthropic-sign-%2419.html?.tsrc=rss"
         }
       ]
     },
@@ -203,111 +229,127 @@
       "ticker": "OKLO",
       "sector": "Nuclear Energy",
       "layer": "Speculation",
-      "price": 47.9,
-      "chg_pct": -7.6,
-      "vol_ratio": 1.1,
-      "rsi": 25.3,
+      "price": 47.28,
+      "chg_pct": -1.29,
+      "vol_ratio": 0.7,
+      "rsi": 28.2,
       "w52_pos_pct": 2,
       "analyst_target": 88.63,
-      "analyst_upside_pct": 85.0,
+      "analyst_upside_pct": 87.5,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": []
+    },
+    {
+      "ticker": "DRAM",
+      "sector": "Memory Chips",
+      "layer": "Growth",
+      "price": 62.04,
+      "chg_pct": 2.39,
+      "vol_ratio": 1.1,
+      "rsi": 45.1,
+      "w52_pos_pct": 65,
+      "analyst_target": null,
+      "analyst_upside_pct": null,
       "days_to_earnings": null,
       "verdict": null,
       "news": [
         {
-          "title": "Oklo Inc. (OKLO) A Top Mid-Cap Stock to Own For Decades Following Groves Isotope Test Reactor Approval",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/oklo-inc-oklo-top-mid-223716261.html?.tsrc=rss"
+          "title": "New Memory ETFs Line Up to Challenge Runaway DRAM",
+          "url": "http://www.etf.com/sections/features/new-memory-etfs-line-challenge-runaway-dram?utm_source=yahoo-finance&utm_medium=rss&utm_campaign=yahoo-finance-rss&.tsrc=rss"
         },
         {
-          "title": "ENTRA1 Partnership Strengthens NuScale's Commercial Path",
-          "url": "https://finance.yahoo.com/energy/articles/entra1-partnership-strengthens-nuscales-commercial-125700961.html?.tsrc=rss"
+          "title": "The $2 trillion chip sell-off hits a make-or-break level: Chart of the Day",
+          "url": "https://finance.yahoo.com/markets/article/the-2-trillion-chip-sell-off-hits-a-make-or-break-level-chart-of-the-day-155000822.html?.tsrc=rss"
         },
         {
-          "title": "Standard Nuclear Seeks to Raise $383 Million in US IPO",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/standard-nuclear-seeks-raise-383-120943263.html?.tsrc=rss"
+          "title": "Micron, Samsung, SK Hynix just dragged memory stocks into a bear market",
+          "url": "https://finance.yahoo.com/markets/article/micron-samsung-sk-hynix-just-dragged-memory-stocks-into-a-bear-market-154549356.html?.tsrc=rss"
         }
       ]
     }
   ],
   "watchlist_triggers": [],
   "groq_insights": [
-    "NOW +2.59%: הסקטור של תוכנה כשירות נראה חזק, ייתכן שיש פוטנציאל לצמיחה",
-    "OKLO -7.6%: ירידה חדה במניה, ייתכן שיש לחץ על הסקטור של אנרגיה גרעינית",
-    "APLD -8.33%: ירידה חדה במניה, ייתכן שיש חששות לגבי היציבות הפיננסית של החברה"
+    "NOW -2.66%: ייתכן תגובה לאחור לאחר הירידות בגזרת התוכנה, או חשש מתחרות עם EPAM",
+    "NVDA +3.65%: עלייה חדה במניה, ככל הנראה בגלל הידיעות על Micron והשפעתה על הגזרה",
+    "GOOG -1.35%: ייתכן תגובה לאחור לאחר העליות החדות בגזרת הטכנולוגיה, או חשש מבדיקות רגולטוריות"
   ],
   "sector_summary": [
     {
       "sector": "AI / Semiconductors",
-      "avg_chg_pct": 0.71,
+      "avg_chg_pct": 3.65,
       "tickers": [
         "NVDA"
       ]
     },
     {
       "sector": "Tech / Cloud / AI",
-      "avg_chg_pct": 0.54,
+      "avg_chg_pct": -1.41,
       "tickers": [
         "MSFT"
       ]
     },
     {
       "sector": "Tech / Search / AI",
-      "avg_chg_pct": -0.35,
+      "avg_chg_pct": -1.35,
       "tickers": [
         "GOOG"
       ]
     },
     {
       "sector": "Social Media / AI",
-      "avg_chg_pct": 2.55,
+      "avg_chg_pct": -2.02,
       "tickers": [
         "META"
       ]
     },
     {
       "sector": "Semiconductors",
-      "avg_chg_pct": -0.83,
+      "avg_chg_pct": 4.83,
       "tickers": [
         "AVGO"
       ]
     },
     {
       "sector": "Memory Chips",
-      "avg_chg_pct": -4.71,
+      "avg_chg_pct": 1.75,
       "tickers": [
-        "MU"
+        "MU",
+        "DRAM"
       ]
     },
     {
       "sector": "Crypto",
-      "avg_chg_pct": 0.08,
+      "avg_chg_pct": -2.54,
       "tickers": [
         "IBIT"
       ]
     },
     {
       "sector": "Commodities / Gold",
-      "avg_chg_pct": -1.19,
+      "avg_chg_pct": -0.87,
       "tickers": [
         "GLDM"
       ]
     },
     {
       "sector": "Energy / Nuclear",
-      "avg_chg_pct": -0.95,
+      "avg_chg_pct": -0.58,
       "tickers": [
         "VST"
       ]
     },
     {
       "sector": "AI Infrastructure",
-      "avg_chg_pct": -8.33,
+      "avg_chg_pct": 2.38,
       "tickers": [
         "APLD"
       ]
     },
     {
       "sector": "Nuclear Energy",
-      "avg_chg_pct": -7.6,
+      "avg_chg_pct": -1.29,
       "tickers": [
         "OKLO"
       ]
