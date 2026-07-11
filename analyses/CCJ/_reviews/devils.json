@@ -1,10 +1,10 @@
 {
   "ticker": "CCJ",
   "agent": "devils",
-  "date": "2026-07-08",
+  "date": "2026-07-11",
   "verdict": "WATCHLIST",
-  "score": 6.0,
-  "thesis": "## ניתוח המניה: CAMECO CORPORATION (CCJ) ### סיכום נתונים * מחיר נוכחי: $94.67",
+  "score": 5.0,
+  "thesis": "| מדד | ערך | | --- | --- | | שם חברה | CAMECO CORPORATION |",
   "key_risks": [],
   "position_size_pct": null,
   "_cloud": true

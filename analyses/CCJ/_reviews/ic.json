@@ -1,10 +1,10 @@
 {
   "ticker": "CCJ",
   "agent": "ic",
-  "date": "2026-07-08",
+  "date": "2026-07-11",
   "verdict": "WATCHLIST",
   "score": 6.0,
-  "thesis": "## סיכום ו-Verdict לאחר בחינת הנתונים הפיננסיים, התעשייתיים והטכניים של CAMECO CORPORATION (CCJ), ולאחר קריאת הדוחות המוגשים על ידי האנליסט, ה-Devil's Advocate, ה-CEO וה-Executor, אני מגיע למסקנה הבאה: ### נקודות חזקות:",
+  "thesis": "| מדד | ערך | | --- | --- | | שם חברה | CAMECO CORPORATION |",
   "key_risks": [],
   "position_size_pct": null,
   "_cloud": true
