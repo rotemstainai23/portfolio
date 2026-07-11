@@ -377,7 +377,12 @@ export default {
       );
       if (ghRes.status === 204) return json({ ok: true, ticker, workflow });
       const err = await ghRes.json().catch(() => ({}));
-      return json({ error: err.message || ghRes.statusText }, ghRes.status);
+      /* הודעות מדריכות: 403 כמעט תמיד = לטוקן חסרה הרשאת Actions:write */
+      let msg = err.message || ghRes.statusText;
+      if (ghRes.status === 403) msg = "לטוקן ב-Worker (GH_TOKEN) חסרה הרשאת Actions:write. ב-GitHub ערוך את הטוקן ותן Actions=Read and write + Contents=Read and write, ואז פרוס מחדש את ה-Worker";
+      else if (ghRes.status === 401) msg = "טוקן GitHub לא תקין או פג תוקף (GH_TOKEN ב-Worker). צור טוקן חדש ועדכן ב-Cloudflare";
+      else if (ghRes.status === 404) msg = "הוורקפלואו לא נמצא או שהטוקן לא רואה את הריפו (בדוק שהטוקן על הריפו rotemstainai23/portfolio)";
+      return json({ error: msg }, ghRes.status);
     }
 
     // ── GET /?quotes= / /?symbol= ─────────────────────────────────────────────

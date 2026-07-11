@@ -23,6 +23,16 @@
   .src{font-size:10px;color:var(--muted)} .src a{color:var(--blue);text-decoration:none;word-break:break-all}
   .sub-h{font-size:13px;color:var(--blue);font-weight:700;margin:14px 0 6px}
   .summary-txt{font-size:13.5px;color:var(--text);line-height:1.85;white-space:pre-wrap}
+  /* ── גרפים וטבלאות ── */
+  .viz{margin:6px 0 14px}
+  .viz svg{display:block;max-width:100%;height:auto}
+  .rtable{width:100%;border-collapse:collapse;font-size:12.5px;margin:6px 0 4px;font-variant-numeric:tabular-nums}
+  .rtable th,.rtable td{padding:6px 8px;text-align:left;border-bottom:1px solid var(--bg);white-space:nowrap}
+  .rtable th{color:var(--muted2);font-weight:700;font-size:11px}
+  .rtable td{color:var(--text)}
+  .rtable td:first-child,.rtable th:first-child{text-align:right;color:var(--muted2)}
+  .tscroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .chip{display:inline-block;padding:2px 9px;border-radius:20px;font-size:11px;font-weight:700}
   @media(max-width:640px){.wrap{padding:16px 14px}.topbar{padding:14px 16px}.rinput input{width:46%}}
   @media(prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
@@ -121,6 +131,81 @@ function srcHtml(s){ if(!s) return ''; const u=s.url, n=s.name||'מקור'; cons
 function fmtVal(v){ if(v===null||v===undefined) return '—'; if(typeof v==='number') return Number.isInteger(v)?v.toLocaleString():v.toFixed(2);
   return String(v); }
 
+// ── ויזואליזציה: SVG טהור, בלי ספריות (ponytail: הפלטפורמה מציירת, אפס תלויות) ──
+function num(x){ if(isDP(x)) x=x.value; return (typeof x==='number' && isFinite(x))?x:null; }
+function esc(s){ return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+function compact(n){ if(n==null) return '—'; const a=Math.abs(n);
+  if(a>=1e9) return (n/1e9).toFixed(1)+'B'; if(a>=1e6) return (n/1e6).toFixed(1)+'M'; if(a>=1e3) return (n/1e3).toFixed(1)+'K';
+  return Number.isInteger(n)?String(n):n.toFixed(2); }
+
+/* גרף עכביש: axes = [{label, val, max}]. מנרמל כל ציר ל-0..1 מול ה-max שלו */
+function radar(axes){
+  const cx=140, cy=130, R=95, N=axes.length; if(N<3) return '';
+  const ang=i=>(-Math.PI/2)+i*2*Math.PI/N;
+  const pt=(i,r)=>[cx+r*Math.cos(ang(i)), cy+r*Math.sin(ang(i))];
+  let grid='';
+  for(const f of [0.25,0.5,0.75,1]){
+    grid += `<polygon points="${axes.map((_,i)=>pt(i,R*f).map(v=>v.toFixed(1)).join(',')).join(' ')}" fill="none" stroke="var(--border)" stroke-width="1"/>`;
+  }
+  let spokes='', labels='';
+  axes.forEach((a,i)=>{
+    const [ex,ey]=pt(i,R);
+    spokes += `<line x1="${cx}" y1="${cy}" x2="${ex.toFixed(1)}" y2="${ey.toFixed(1)}" stroke="var(--border)" stroke-width="1"/>`;
+    const [lx,ly]=pt(i,R+18); const anchor = Math.abs(lx-cx)<8?'middle':(lx<cx?'end':'start');
+    labels += `<text x="${lx.toFixed(1)}" y="${(ly+3).toFixed(1)}" font-size="10.5" fill="var(--muted2)" text-anchor="${anchor}">${esc(a.label)}</text>`;
+  });
+  const poly = axes.map((a,i)=>{ const f=Math.max(0,Math.min(1,(a.val||0)/(a.max||1))); return pt(i,R*f).map(v=>v.toFixed(1)).join(','); }).join(' ');
+  const dots = axes.map((a,i)=>{ const f=Math.max(0,Math.min(1,(a.val||0)/(a.max||1))); const [x,y]=pt(i,R*f);
+    return `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="3" fill="var(--blue)"/>`; }).join('');
+  return `<div class="viz"><svg viewBox="0 0 280 260" role="img" aria-label="גרף עכביש איכות פונדמנטלית">
+    ${grid}${spokes}
+    <polygon points="${poly}" fill="var(--blue)" fill-opacity="0.22" stroke="var(--blue)" stroke-width="2"/>
+    ${dots}${labels}</svg></div>`;
+}
+
+/* גרף עמודות: data = [{label, value}]. color = CSS var */
+function bars(data, color, fmt){
+  data = data.filter(d=>d.value!=null); if(!data.length) return '';
+  fmt = fmt || compact;
+  const W=280, H=150, pad=22, n=data.length, bw=Math.min(34,(W-pad)/n*0.68), gap=(W-pad)/n;
+  const vals=data.map(d=>d.value), max=Math.max(...vals,0), min=Math.min(...vals,0), span=(max-min)||1;
+  const y0=H-24 - (0-min)/span*(H-40); // קו אפס
+  let out='';
+  data.forEach((d,i)=>{
+    const x=pad + i*gap + (gap-bw)/2;
+    const h=Math.abs(d.value)/span*(H-40);
+    const y=d.value>=0? y0-h : y0;
+    out += `<rect x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${bw.toFixed(1)}" height="${Math.max(1,h).toFixed(1)}" rx="2" fill="${color}"/>`;
+    out += `<text x="${(x+bw/2).toFixed(1)}" y="${(y-4).toFixed(1)}" font-size="9.5" fill="var(--text)" text-anchor="middle">${esc(fmt(d.value))}</text>`;
+    out += `<text x="${(x+bw/2).toFixed(1)}" y="${(H-8).toFixed(1)}" font-size="9" fill="var(--muted2)" text-anchor="middle">${esc(d.label)}</text>`;
+  });
+  return `<div class="viz"><svg viewBox="0 0 ${W} ${H}" role="img">
+    <line x1="${pad-4}" y1="${y0.toFixed(1)}" x2="${W}" y2="${y0.toFixed(1)}" stroke="var(--border2)" stroke-width="1"/>${out}</svg></div>`;
+}
+
+/* סרגל מחיר: מציב last/sma50/sma200/support/resistance על ציר אופקי */
+function priceGauge(marks){
+  marks = marks.filter(m=>m.v!=null); if(marks.length<2) return '';
+  const W=280, H=76, pad=14, lo=Math.min(...marks.map(m=>m.v)), hi=Math.max(...marks.map(m=>m.v)), span=(hi-lo)||1;
+  const x=v=>pad+(v-lo)/span*(W-2*pad);
+  let out=`<line x1="${pad}" y1="38" x2="${W-pad}" y2="38" stroke="var(--border2)" stroke-width="2"/>`;
+  const seen={}; // הזחת תוויות שלא יתנגשו
+  marks.forEach(m=>{
+    const px=x(m.v), key=Math.round(px/26); const up=seen[key]?!seen[key].up:true; seen[key]={up};
+    const ty=up?20:60, ly=up?14:70;
+    out += `<line x1="${px.toFixed(1)}" y1="30" x2="${px.toFixed(1)}" y2="46" stroke="${m.c}" stroke-width="2.5"/>`;
+    out += `<text x="${px.toFixed(1)}" y="${ty}" font-size="10" font-weight="700" fill="${m.c}" text-anchor="middle">${compact(m.v)}</text>`;
+    out += `<text x="${px.toFixed(1)}" y="${ly}" font-size="8.5" fill="var(--muted2)" text-anchor="middle">${esc(m.label)}</text>`;
+  });
+  return `<div class="viz"><svg viewBox="0 0 ${W} ${H}" role="img" aria-label="רמות מחיר">${out}</svg></div>`;
+}
+
+function table(headers, rows){
+  if(!rows.length) return '';
+  return `<div class="tscroll"><table class="rtable"><thead><tr>${headers.map(h=>`<th>${esc(h)}</th>`).join('')}</tr></thead>`
+    + `<tbody>${rows.map(r=>`<tr>${r.map(c=>`<td>${c==null?'—':esc(c)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`;
+}
+
 function renderNode(key, val, depth){
   if(isDP(val)){
     return `<div class="rkv"><span class="k">${val.label||key}</span><span class="v">${fmtVal(val.value)}${val.unit?' '+val.unit:''}${srcHtml(val.source)}</span></div>`;
@@ -146,6 +231,67 @@ const SECTIONS = [
   ['insider','בעלי עניין'],['news','חדשות וסנטימנט'],['superinvestors','משקיעי-על (13F)']
 ];
 
+function firstNum(){ for(const a of arguments){ const n=num(a); if(n!=null) return n; } return null; }
+
+/* בונה בלוק ויזואלי לכל חתך. מחזיר '' אם אין נתונים לצייר */
+function vizFor(key, sec, data){
+  try{
+    if(key==='fundamental'){
+      const ax=[
+        {label:'רווח גולמי', val:num(sec.gross_margin),    max:60},
+        {label:'רווח תפעולי',val:num(sec.operating_margin),max:45},
+        {label:'רווח נקי',   val:num(sec.net_margin),      max:35},
+        {label:'ROIC',       val:num(sec.roic),            max:80},
+        {label:'צמיחה',      val:num(sec.revenue_growth),  max:30},
+      ].filter(a=>a.val!=null);
+      return ax.length>=3 ? radar(ax) : '';
+    }
+    if(key==='technical'){
+      /* support/resistance עשויים להיות מערך (רמות) או DP; קח את הרמה הקרובה */
+      const lvl=x=>Array.isArray(x)?num(x[0]):num(x);
+      return priceGauge([
+        {label:'תמיכה',   v:lvl(sec.support),    c:'var(--green)'},
+        {label:'SMA200',  v:num(sec.sma200),     c:'var(--muted2)'},
+        {label:'SMA50',   v:num(sec.sma50),      c:'var(--gold)'},
+        {label:'מחיר',    v:num(sec.last_price), c:'var(--blue)'},
+        {label:'התנגדות', v:lvl(sec.resistance), c:'var(--red)'},
+      ]);
+    }
+    if(key==='earnings'){
+      const lbl=q=>(q.fp||'')+"'"+String(q.fy).slice(-2);
+      const rev=(sec.quarterly_revenue||[]).slice(-8).map(q=>({label:lbl(q), value:num(q.value)}));
+      const eps=(sec.quarterly_eps||[]).slice(-8).map(q=>({label:lbl(q), value:num(q.value)}));
+      let h='';
+      if(rev.length) h+='<div class="sub-h">הכנסות רבעוניות</div>'+bars(rev,'var(--blue)');
+      if(eps.length) h+='<div class="sub-h">EPS רבעוני</div>'+bars(eps,'var(--green)',v=>v.toFixed(2));
+      return h;
+    }
+    if(key==='dcf'){
+      const fv=num(sec.fair_value_per_share), px=firstNum(data.technical&&data.technical.last_price, data.snapshot&&data.snapshot.price);
+      let h='';
+      if(fv!=null && px!=null) h+=bars([{label:'שווי הוגן',value:fv},{label:'מחיר נוכחי',value:px}], fv>=px?'var(--green)':'var(--red)', v=>'$'+v.toFixed(0));
+      const proj=(sec.projection||[]).map(p=>['שנה '+p.year, compact(p.fcf), compact(p.pv)]);
+      if(proj.length) h+='<div class="sub-h">תזרים חופשי מהוון (5ש)</div>'+table(['','FCF','ערך נוכחי'],proj);
+      return h;
+    }
+    if(key==='news'){
+      const chips=[['חיובי',sec.positive,'var(--green)'],['ניטרלי',sec.neutral,'var(--muted2)'],['שלילי',sec.negative,'var(--red)']]
+        .filter(x=>x[1]!=null).map(x=>`<span class="chip" style="background:${x[2]};color:#07090f;margin-left:6px">${x[0]}: ${x[1]}</span>`).join('');
+      const rows=(sec.items||[]).slice(0,10).map(it=>[it.date||'', it.sentiment||'', (it.title||'').slice(0,70)]);
+      return (chips?`<div class="viz">${chips}</div>`:'') + (rows.length?table(['תאריך','סנטימנט','כותרת'],rows):'');
+    }
+    if(key==='insider'){
+      const rows=(sec.transactions||[]).slice(0,12).map(t=>[t.date||'', t.role||t.owner||'', t.action||t.code||'', compact(t.shares), t.price!=null?'$'+t.price.toFixed(2):'—']);
+      return rows.length?table(['תאריך','תפקיד','פעולה','מניות','מחיר'],rows):'';
+    }
+    if(key==='superinvestors'){
+      const rows=(sec.holders||[]).map(h=>[h.manager||'', compact(h.value), h.weight!=null?h.weight.toFixed(1)+'%':'—', h.period||'']);
+      return rows.length?table(['מנהל','שווי','משקל','תקופה'],rows):'';
+    }
+  }catch(e){ return ''; }
+  return '';
+}
+
 function render(data){
   const el = document.getElementById('report');
   let html = `<div class="cards">
@@ -162,7 +308,7 @@ function render(data){
     else if(key==='summary'){
       const txt = sec.answer || sec.summary || sec.explanation || sec.text;
       body = txt ? `<div class="summary-txt">${String(txt)}</div>` : renderObj(sec,0);
-    } else { body = renderObj(sec,0) || '<div class="rstatus">אין נתונים.</div>'; }
+    } else { body = vizFor(key,sec,data) + (renderObj(sec,0) || '<div class="rstatus">אין נתונים.</div>'); }
     html += `<div class="section"><h2><span class="bar-accent" style="background:${accent}"></span>${title}</h2>${body}</div>`;
   }
   el.innerHTML = html;
