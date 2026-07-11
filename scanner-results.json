@@ -1,35 +1,35 @@
 [
   {
-    "ticker": "SE",
-    "company": "Sea",
-    "catalyst": "צמיחה מהירה בשוק האסייתי והברזילאי",
-    "conviction": 4,
+    "ticker": "DDOG",
+    "company": "Datadog",
+    "catalyst": "תרחיש AI וענן מועדף על ידי וול סטריט",
+    "conviction": 5,
     "upside_pct": 15,
     "downside_pct": 8,
     "timeframe": "1-2 שבועות",
     "source": "חדשות",
-    "thesis": "Sea ממשיכה לצמוח בשוק האסייתי והברזילאי, עם פוטנציאל להמשיך ולגדול בעתיד. החברה מרחיבה את פעילותה בתחום המסחר האלקטרוני והפיננסים, מה שיכול לתרום לצמיחה נוספת."
+    "thesis": "Datadog מועדף על ידי וול סטריט בגלל תרחיש ה-AI והענן. החברה נהנית מרווחים גבוהים ומומנטום חזק."
   },
   {
-    "ticker": "UPST",
-    "company": "Upstart Holdings",
-    "catalyst": "שילוב AI בתהליכי הלוואה",
-    "conviction": 4,
+    "ticker": "CRWD",
+    "company": "CrowdStrike",
+    "catalyst": "AI ביטחון ופיצול מניות",
+    "conviction": 5,
     "upside_pct": 12,
     "downside_pct": 6,
     "timeframe": "1-2 שבועות",
     "source": "חדשות",
-    "thesis": "Upstart Holdings משלבת AI בתהליכי הלוואה, מה שיכול לשפר את יעילות החברה ולהביא לצמיחה נוספת. החברה גם מרחיבה את פעילותה בתחום הלוואות, מה שיכול לתרום לצמיחה נוספת."
+    "thesis": "CrowdStrike משקיעה ב-AI ביטחון ומתכננת פיצול מניות. החברה נהנית מרווחים גבוהים ומומנטום חזק."
   },
   {
-    "ticker": "NVO",
-    "company": "Novo Nordisk",
-    "catalyst": "גידול בשוק הGLP-1",
+    "ticker": "SE",
+    "company": "Sea Limited",
+    "catalyst": "AI ושווקים מקוונים בדרום-מזרח אסיה",
     "conviction": 4,
     "upside_pct": 10,
     "downside_pct": 5,
     "timeframe": "1-2 שבועות",
     "source": "חדשות",
-    "thesis": "Novo Nordisk מובילה בשוק הGLP-1, עם פוטנציאל לגדול עוד יותר. החברה גם מפתחת תרופות חדשות, מה שיכול לתרום לצמיחה נוספת."
+    "thesis": "Sea Limited מועדף על ידי השווקים בגלל AI ושווקים מקוונים בדרום-מזרח אסיה. החברה נהנית מרווחים גבוהים ומומנטום חזק."
   }
 ]
