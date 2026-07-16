@@ -1,12 +1,12 @@
 {
-  "generated": "2026-07-15",
-  "generated_time": "04:43",
-  "market_date": "2026-07-15",
+  "generated": "2026-07-16",
+  "generated_time": "04:53",
+  "market_date": "2026-07-16",
   "has_alerts": false,
   "alert_tickers": [],
   "macro": {
-    "spy_chg_pct": -0.77,
-    "qqq_chg_pct": -1.9,
+    "spy_chg_pct": 0.4,
+    "qqq_chg_pct": -0.27,
     "vix": null
   },
   "holdings": [
@@ -14,55 +14,42 @@
       "ticker": "NVDA",
       "sector": "AI / Semiconductors",
       "layer": "Growth",
-      "price": 203.53,
-      "chg_pct": -3.52,
-      "vol_ratio": 0.8,
-      "rsi": 45.4,
-      "w52_pos_pct": 54,
+      "price": 212.5,
+      "chg_pct": 0.33,
+      "vol_ratio": 0.9,
+      "rsi": 62.4,
+      "w52_pos_pct": 67,
       "analyst_target": 301.62,
-      "analyst_upside_pct": 48.2,
+      "analyst_upside_pct": 41.9,
       "days_to_earnings": null,
       "verdict": null,
-      "news": [
-        {
-          "title": "Goldman Sachs Says the Crowd Is Wrong on This Beaten-Down Medical Robotics Giant",
-          "url": "https://www.fool.com/investing/2026/07/15/goldman-sachs-says-the-crowd-is-wrong-on-this-beat/?.tsrc=rss"
-        },
-        {
-          "title": "Is JPMorgan Chase a Buy After Its Latest Earnings Report?",
-          "url": "https://www.fool.com/investing/2026/07/14/is-jpmorgan-chase-a-buy-after-its-latest-earnings/?.tsrc=rss"
-        },
-        {
-          "title": "Why Goldman Sachs Stock Jumped Today",
-          "url": "https://www.fool.com/investing/2026/07/14/why-goldman-sachs-stock-is-up-today/?.tsrc=rss"
-        }
-      ]
+      "news": []
     },
     {
       "ticker": "MSFT",
       "sector": "Tech / Cloud / AI",
       "layer": "Stability",
-      "price": 390.99,
-      "chg_pct": 1.53,
-      "vol_ratio": 0.6,
-      "rsi": 62.7,
-      "w52_pos_pct": 20,
+      "price": 395.63,
+      "chg_pct": 2.78,
+      "vol_ratio": 0.8,
+      "rsi": 65.9,
+      "w52_pos_pct": 23,
       "analyst_target": 559.86,
-      "analyst_upside_pct": 43.2,
-      "days_to_earnings": 14,
+      "analyst_upside_pct": 41.5,
+      "days_to_earnings": 13,
       "verdict": null,
       "news": [
         {
-          "title": "Microsoft CEO adds fuel to Palantir CEO’s AI warning",
-          "url": "https://www.thestreet.com/investing/microsoft-ceo-adds-fuel-to-palantir-ceos-ai-warning?.tsrc=rss"
+          "title": "Is the AI Infrastructure Build-Out a Bubble? Here's What the Data Actually Shows.",
+          "url": "https://www.fool.com/investing/2026/07/16/is-the-ai-infrastructure-build-out-a-bubble-heres/?.tsrc=rss"
         },
         {
-          "title": "ADBE, CRM, NOW, MSFT: Software Stocks Fall After IBM Warns Clients Shifting Spending To Servers, Cybersecurity",
-          "url": "https://stocktwits.com/news-articles/markets/equity/adbe-crm-now-msft-software-stocks-fall-after-ibm-warns-clients-shifting-spending-to-servers-cybersecurity/cZZ28PZR7qw?.tsrc=rss"
+          "title": "Microsoft (MSFT) Faces Browser Scrutiny As New York Clouds Data Center Expansion",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/microsoft-msft-faces-browser-scrutiny-021257849.html?.tsrc=rss"
         },
         {
-          "title": "New York Just Banned New AI Data Centers. Here's What It Means for Microsoft, Amazon, and Google.",
-          "url": "https://www.fool.com/investing/2026/07/14/new-york-just-banned-new-ai-data-centers-heres-what-it-means-for-microsoft-amazon-and-google/?.tsrc=rss"
+          "title": "Warren Buffett Just Cut the Bill Gates Foundation From His Annual Donation for the First Time Since 2006. The Missing $4.5 Billion Goes to His Children's Charities.",
+          "url": "https://www.fool.com/investing/2026/07/15/warren-buffett-just-cut-the-bill-gates-foundation/?.tsrc=rss"
         }
       ]
     },
@@ -70,27 +57,27 @@
       "ticker": "GOOG",
       "sector": "Tech / Search / AI",
       "layer": "Stability",
-      "price": 357.33,
-      "chg_pct": 1.9,
-      "vol_ratio": 0.5,
-      "rsi": 58.5,
-      "w52_pos_pct": 79,
+      "price": 370.21,
+      "chg_pct": 3.6,
+      "vol_ratio": 0.9,
+      "rsi": 66.2,
+      "w52_pos_pct": 85,
       "analyst_target": 427.77,
-      "analyst_upside_pct": 19.7,
-      "days_to_earnings": 7,
+      "analyst_upside_pct": 15.5,
+      "days_to_earnings": 6,
       "verdict": null,
       "news": [
         {
-          "title": "Wall Street bank earnings surge, boosted by mega-deals, wild trading",
-          "url": "https://finance.yahoo.com/video/wall-street-bank-earnings-surge-035734098.html?.tsrc=rss"
+          "title": "Is the AI Infrastructure Build-Out a Bubble? Here's What the Data Actually Shows.",
+          "url": "https://www.fool.com/investing/2026/07/16/is-the-ai-infrastructure-build-out-a-bubble-heres/?.tsrc=rss"
         },
         {
-          "title": "New York Just Banned New AI Data Centers. Here's What It Means for Microsoft, Amazon, and Google.",
-          "url": "https://www.fool.com/investing/2026/07/14/new-york-just-banned-new-ai-data-centers-heres-what-it-means-for-microsoft-amazon-and-google/?.tsrc=rss"
+          "title": "Dow Jones Futures: Apple, Google Mask Dell, Sandisk, Micron Sell-Off; J.B. Hunt Jumps Late",
+          "url": "https://finance.yahoo.com/m/9b2a3551-5bcd-34f5-9f61-00ac74d553c1/dow-jones-futures%3A-apple%2C.html?.tsrc=rss"
         },
         {
-          "title": "Should UK Search Data Portability Rules For Google Reshape Alphabet’s Competitive Moat (GOOGL) Narrative?",
-          "url": "https://finance.yahoo.com/technology/articles/uk-search-data-portability-rules-221422433.html?.tsrc=rss"
+          "title": "Google stock price faces major AI test ahead of earnings",
+          "url": "https://www.thestreet.com/investing/google-stock-faces-major-ai-test-earnings-search-chatgpt?.tsrc=rss"
         }
       ]
     },
@@ -98,70 +85,70 @@
       "ticker": "META",
       "sector": "Social Media / AI",
       "layer": "Growth",
-      "price": 661.04,
-      "chg_pct": 0.66,
-      "vol_ratio": 0.8,
-      "rsi": 70.0,
-      "w52_pos_pct": 51,
+      "price": 681.31,
+      "chg_pct": 3.07,
+      "vol_ratio": 0.9,
+      "rsi": 73.5,
+      "w52_pos_pct": 58,
       "analyst_target": 826.63,
-      "analyst_upside_pct": 25.0,
-      "days_to_earnings": 14,
+      "analyst_upside_pct": 21.3,
+      "days_to_earnings": 13,
       "verdict": null,
-      "news": []
+      "news": [
+        {
+          "title": "Is the AI Infrastructure Build-Out a Bubble? Here's What the Data Actually Shows.",
+          "url": "https://www.fool.com/investing/2026/07/16/is-the-ai-infrastructure-build-out-a-bubble-heres/?.tsrc=rss"
+        },
+        {
+          "title": "What Meta, Google, and BlackRock get for training electricians",
+          "url": "https://qz.com/meta-google-blackrock-electrician-training-business-model-071026?.tsrc=rss"
+        },
+        {
+          "title": "Better Artificial Intelligence (AI) Stock: Alphabet Versus Meta Platforms",
+          "url": "https://www.fool.com/investing/2026/07/15/better-ai-stock-alphabet-versus-meta-platforms/?.tsrc=rss"
+        }
+      ]
     },
     {
       "ticker": "AVGO",
       "sector": "Semiconductors",
       "layer": "Growth",
-      "price": 384.05,
-      "chg_pct": -3.98,
-      "vol_ratio": 0.7,
-      "rsi": 46.8,
-      "w52_pos_pct": 50,
+      "price": 394.28,
+      "chg_pct": 1.33,
+      "vol_ratio": 0.6,
+      "rsi": 55.0,
+      "w52_pos_pct": 55,
       "analyst_target": 523.73,
-      "analyst_upside_pct": 36.4,
+      "analyst_upside_pct": 32.8,
       "days_to_earnings": null,
       "verdict": null,
-      "news": [
-        {
-          "title": "Why Broadcom Stock Ticked Higher on Tuesday",
-          "url": "https://www.fool.com/investing/2026/07/14/why-broadcom-stock-ticked-higher-on-tuesday/?.tsrc=rss"
-        },
-        {
-          "title": "Broadcom Inc. (AVGO) Agreement a Strategic Positive for Apple, says Evercore ISI",
-          "url": "https://finance.yahoo.com/technology/articles/broadcom-inc-avgo-agreement-strategic-214435793.html?.tsrc=rss"
-        },
-        {
-          "title": "The Real Risk Inside Broadcom Stock",
-          "url": "https://www.trefis.com/articles/607057/the-real-risk-inside-broadcom-stock/2026-07-14?.tsrc=rss"
-        }
-      ]
+      "news": []
     },
     {
       "ticker": "MU",
       "sector": "Memory Chips",
       "layer": "Growth",
-      "price": 937.0,
-      "chg_pct": -4.32,
-      "vol_ratio": 0.6,
-      "rsi": 32.3,
-      "w52_pos_pct": 72,
+      "price": 904.28,
+      "chg_pct": -8.02,
+      "vol_ratio": 1.0,
+      "rsi": 40.2,
+      "w52_pos_pct": 70,
       "analyst_target": 1486.0,
-      "analyst_upside_pct": 58.6,
+      "analyst_upside_pct": 64.3,
       "days_to_earnings": null,
       "verdict": null,
       "news": [
         {
-          "title": "Micron (MU) Stock May Look Reasonable Despite Fresh AI Expansion Plans",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/micron-mu-stock-may-look-032629369.html?.tsrc=rss"
+          "title": "Dow Jones Futures: Apple, Google Mask Dell, Sandisk, Micron Sell-Off; J.B. Hunt Jumps Late",
+          "url": "https://finance.yahoo.com/m/9b2a3551-5bcd-34f5-9f61-00ac74d553c1/dow-jones-futures%3A-apple%2C.html?.tsrc=rss"
         },
         {
-          "title": "Micron stock jumps as investors look beyond GPUs in AI chip trade",
-          "url": "https://www.thestreet.com/investing/stocks/micron-stock-jumps-as-investors-look-beyond-gpus-in-ai-chip-trade?.tsrc=rss"
+          "title": "Early Q2 Results Reveal a Highly Robust Earnings Landscape",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/early-q2-results-reveal-highly-002000424.html?.tsrc=rss"
         },
         {
-          "title": "Exclusive-AI cloud company CoreWeave explores Wall Street playbook to hedge memory-chip price risk",
-          "url": "https://finance.yahoo.com/markets/options/articles/exclusive-ai-cloud-company-coreweave-235016062.html?.tsrc=rss"
+          "title": "Why Micron (MU) Stock Is Trading Lower Today",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/why-micron-mu-stock-trading-230421565.html?.tsrc=rss"
         }
       ]
     },
@@ -169,39 +156,26 @@
       "ticker": "IBIT",
       "sector": "Crypto",
       "layer": "Speculation",
-      "price": 36.58,
-      "chg_pct": 3.86,
-      "vol_ratio": 1.0,
-      "rsi": 56.1,
+      "price": 36.81,
+      "chg_pct": 0.63,
+      "vol_ratio": 0.7,
+      "rsi": 65.8,
       "w52_pos_pct": 10,
       "analyst_target": null,
       "analyst_upside_pct": null,
       "days_to_earnings": null,
       "verdict": null,
-      "news": [
-        {
-          "title": "Crypto ETFs End 8-Week Outflow Streak With $282M Inflows as Bitcoin and Ethereum Demand Rebounds",
-          "url": "https://www.ccn.com/news/crypto/crypto-etfs-end-8-week-outflow-streak-282m-inflows-bitcoin-ethereum/?.tsrc=rss"
-        },
-        {
-          "title": "Crypto Market Today, July 13: Crypto Slides on Renewed Inflation Fears",
-          "url": "https://www.fool.com/coverage/stock-market-today/2026/07/13/crypto-market-today-july-13-crypto-slides-on-renewed-inflation-fears/?.tsrc=rss"
-        },
-        {
-          "title": "COIN Stock Alert: 3 Reasons Why Coinbase Shares Are In Focus",
-          "url": "https://www.barchart.com/story/news/3255808/coin-stock-alert-3-reasons-why-coinbase-shares-are-in-focus?.tsrc=rss"
-        }
-      ]
+      "news": []
     },
     {
       "ticker": "GLDM",
       "sector": "Commodities / Gold",
       "layer": "Stability",
-      "price": 80.25,
-      "chg_pct": 1.36,
-      "vol_ratio": 0.5,
-      "rsi": 46.2,
-      "w52_pos_pct": 35,
+      "price": 80.24,
+      "chg_pct": -0.01,
+      "vol_ratio": 0.6,
+      "rsi": 55.7,
+      "w52_pos_pct": 34,
       "analyst_target": null,
       "analyst_upside_pct": null,
       "days_to_earnings": null,
@@ -212,13 +186,13 @@
       "ticker": "VST",
       "sector": "Energy / Nuclear",
       "layer": "Growth",
-      "price": 158.43,
-      "chg_pct": 0.2,
+      "price": 160.23,
+      "chg_pct": 1.14,
       "vol_ratio": 1.3,
-      "rsi": 44.5,
-      "w52_pos_pct": 30,
+      "rsi": 46.4,
+      "w52_pos_pct": 32,
       "analyst_target": 222.89,
-      "analyst_upside_pct": 40.7,
+      "analyst_upside_pct": 39.1,
       "days_to_earnings": null,
       "verdict": null,
       "news": []
@@ -227,28 +201,41 @@
       "ticker": "APLD",
       "sector": "AI Infrastructure",
       "layer": "Speculation",
-      "price": 28.47,
-      "chg_pct": -1.28,
-      "vol_ratio": 0.9,
-      "rsi": 9.7,
-      "w52_pos_pct": 46,
+      "price": 29.03,
+      "chg_pct": 1.97,
+      "vol_ratio": 1.0,
+      "rsi": 14.2,
+      "w52_pos_pct": 47,
       "analyst_target": 76.7,
-      "analyst_upside_pct": 169.4,
-      "days_to_earnings": null,
+      "analyst_upside_pct": 164.2,
+      "days_to_earnings": 11,
       "verdict": null,
-      "news": []
+      "news": [
+        {
+          "title": "Applied Digital Sets Fiscal Fourth Quarter and Full Year 2026 Conference Call for Monday, July 27, 2026, at 5:00 p.m. Eastern Time",
+          "url": "https://finance.yahoo.com/technology/ai/articles/applied-digital-sets-fiscal-fourth-200500943.html?.tsrc=rss"
+        },
+        {
+          "title": "Is Applied Digital (APLD) Undervalued As New AI Capacity Comes Online?",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/applied-digital-apld-undervalued-ai-131050388.html?.tsrc=rss"
+        },
+        {
+          "title": "1 Services Stock with Exciting Potential and 2 We Ignore",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/1-services-stock-exciting-potential-093317974.html?.tsrc=rss"
+        }
+      ]
     },
     {
       "ticker": "OKLO",
       "sector": "Nuclear Energy",
       "layer": "Speculation",
-      "price": 46.24,
-      "chg_pct": 0.94,
+      "price": 45.69,
+      "chg_pct": -1.19,
       "vol_ratio": 0.7,
-      "rsi": 24.6,
+      "rsi": 27.9,
       "w52_pos_pct": 1,
       "analyst_target": 86.95,
-      "analyst_upside_pct": 88.0,
+      "analyst_upside_pct": 90.3,
       "days_to_earnings": null,
       "verdict": null,
       "news": []
@@ -257,27 +244,27 @@
       "ticker": "DRAM",
       "sector": "Memory Chips",
       "layer": "Growth",
-      "price": 61.23,
-      "chg_pct": 6.86,
+      "price": 57.4,
+      "chg_pct": -6.26,
       "vol_ratio": 1.3,
-      "rsi": 42.2,
-      "w52_pos_pct": 64,
+      "rsi": 38.4,
+      "w52_pos_pct": 57,
       "analyst_target": null,
       "analyst_upside_pct": null,
       "days_to_earnings": null,
       "verdict": null,
       "news": [
         {
+          "title": "The SOX Index Fell 16% in Less Than a Month",
+          "url": "https://finance.yahoo.com/m/e7233e45-9906-336f-8f6e-f4abe311db2e/the-sox-index-fell-16%25-in.html?.tsrc=rss"
+        },
+        {
+          "title": "Tech Stocks Are on the Rise Despite the Chip Dip",
+          "url": "https://finance.yahoo.com/m/fddbfeca-720a-3171-8cf9-df6fc956262f/tech-stocks-are-on-the-rise.html?.tsrc=rss"
+        },
+        {
           "title": "How to Profit from the End of the AI Trade",
           "url": "https://www.barchart.com/story/news/3281522/how-to-profit-from-the-end-of-the-ai-trade?.tsrc=rss"
-        },
-        {
-          "title": "Investors Buy the Semiconductor Dip in $40 Billion Flows Week",
-          "url": "http://www.etf.com/sections/weekly-etf-flows/investors-buy-semiconductor-dip-40-billion-flows-week?utm_source=yahoo-finance&utm_medium=rss&utm_campaign=yahoo-finance-rss&.tsrc=rss"
-        },
-        {
-          "title": "Micron, SanDisk, Western Digital Fall 6% as SK Hynix’s Weak Outlook Rattles Memory Stocks",
-          "url": "https://247wallst.com/investing/2026/07/13/micron-sandisk-western-digital-fall-6-as-sk-hynixs-weak-outlook-rattles-memory-stocks/?.tsrc=rss"
         }
       ]
     },
@@ -285,76 +272,63 @@
       "ticker": "CCJ",
       "sector": "אנרגיה",
       "layer": "Growth",
-      "price": 90.2,
-      "chg_pct": -6.03,
-      "vol_ratio": 1.4,
-      "rsi": 18.6,
-      "w52_pos_pct": 32,
-      "analyst_target": 132.7,
-      "analyst_upside_pct": 47.1,
-      "days_to_earnings": 16,
+      "price": 90.98,
+      "chg_pct": -0.64,
+      "vol_ratio": 1.2,
+      "rsi": 18.4,
+      "w52_pos_pct": 33,
+      "analyst_target": 132.72,
+      "analyst_upside_pct": 45.9,
+      "days_to_earnings": 15,
       "verdict": null,
-      "news": [
-        {
-          "title": "Cigar Lake Mine Resumes Production",
-          "url": "https://finance.yahoo.com/energy/articles/cigar-lake-mine-resumes-production-022000880.html?.tsrc=rss"
-        },
-        {
-          "title": "UUUU vs. CCJ: Which Uranium Stock Offers the Better Opportunity Today?",
-          "url": "https://finance.yahoo.com/energy/articles/uuuu-vs-ccj-uranium-stock-173600012.html?.tsrc=rss"
-        },
-        {
-          "title": "Cameco (TSX:CCO) Pauses Cigar Lake Mining, Is It Still 28% Below Fair Value?",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/cameco-tsx-cco-pauses-cigar-171207260.html?.tsrc=rss"
-        }
-      ]
+      "news": []
     }
   ],
   "watchlist_triggers": [],
   "groq_insights": [
-    "GOOG +1.9% עם earnings_days=7: ייתכן תגובה לאחור לפני פרסום תוצאות רבעון, במיוחד בסקטור הטכנולוגיה",
-    "NVDA -3.52% ו-AVGO -3.98%: מגמת סקטור חלשה בתעשיית החומרה, ייתכן משבר ארוך טווח",
-    "NOW -5.76% עם earnings_days=7: ייתכן תגובה לאחור לפני פרסום תוצאות רבעון, במיוחד בסקטור התוכנה"
+    "GOOG +3.6%: עלייה חדה לפני פרסום תוצאות רבעון, ייתכן שישפיעו על הסקטור",
+    "APLD +1.97%: עלייה חדה עם נפח גבוה, ייתכן קשור להכרזה על שותפות AI",
+    "MU -8.02%: ירידה חדה, ייתכן מגמה שלילית בסקטור הטכנולוגיה"
   ],
   "sector_summary": [
     {
       "sector": "AI / Semiconductors",
-      "avg_chg_pct": -3.52,
+      "avg_chg_pct": 0.33,
       "tickers": [
         "NVDA"
       ]
     },
     {
       "sector": "Tech / Cloud / AI",
-      "avg_chg_pct": 1.53,
+      "avg_chg_pct": 2.78,
       "tickers": [
         "MSFT"
       ]
     },
     {
       "sector": "Tech / Search / AI",
-      "avg_chg_pct": 1.9,
+      "avg_chg_pct": 3.6,
       "tickers": [
         "GOOG"
       ]
     },
     {
       "sector": "Social Media / AI",
-      "avg_chg_pct": 0.66,
+      "avg_chg_pct": 3.07,
       "tickers": [
         "META"
       ]
     },
     {
       "sector": "Semiconductors",
-      "avg_chg_pct": -3.98,
+      "avg_chg_pct": 1.33,
       "tickers": [
         "AVGO"
       ]
     },
     {
       "sector": "Memory Chips",
-      "avg_chg_pct": 1.27,
+      "avg_chg_pct": -7.14,
       "tickers": [
         "MU",
         "DRAM"
@@ -362,42 +336,42 @@
     },
     {
       "sector": "Crypto",
-      "avg_chg_pct": 3.86,
+      "avg_chg_pct": 0.63,
       "tickers": [
         "IBIT"
       ]
     },
     {
       "sector": "Commodities / Gold",
-      "avg_chg_pct": 1.36,
+      "avg_chg_pct": -0.01,
       "tickers": [
         "GLDM"
       ]
     },
     {
       "sector": "Energy / Nuclear",
-      "avg_chg_pct": 0.2,
+      "avg_chg_pct": 1.14,
       "tickers": [
         "VST"
       ]
     },
     {
       "sector": "AI Infrastructure",
-      "avg_chg_pct": -1.28,
+      "avg_chg_pct": 1.97,
       "tickers": [
         "APLD"
       ]
     },
     {
       "sector": "Nuclear Energy",
-      "avg_chg_pct": 0.94,
+      "avg_chg_pct": -1.19,
       "tickers": [
         "OKLO"
       ]
     },
     {
       "sector": "אנרגיה",
-      "avg_chg_pct": -6.03,
+      "avg_chg_pct": -0.64,
       "tickers": [
         "CCJ"
       ]
