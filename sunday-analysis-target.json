@@ -1,11 +1,11 @@
 {
-  "ticker": "DDOG",
-  "company": "Datadog",
-  "catalyst": "תרחיש AI וענן מועדף על ידי וול סטריט",
+  "ticker": "NET",
+  "company": "Cloudflare",
+  "catalyst": "דוח רווחים קרוב עם ציפיות גבוהות",
   "conviction": 5,
   "upside_pct": 15,
   "downside_pct": 8,
   "timeframe": "1-2 שבועות",
-  "source": "חדשות",
-  "thesis": "Datadog מועדף על ידי וול סטריט בגלל תרחיש ה-AI והענן. החברה נהנית מרווחים גבוהים ומומנטום חזק."
+  "source": "טכני / פונדמנטלי",
+  "thesis": "Cloudflare מציגה רקע חזק עם צמיחה מהירה בשוק הענן. דוח הרווחים הקרוב צפוי להראות הישגים נוספים."
 }

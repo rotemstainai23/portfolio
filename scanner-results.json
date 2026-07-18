@@ -1,35 +1,35 @@
 [
   {
-    "ticker": "DDOG",
-    "company": "Datadog",
-    "catalyst": "תרחיש AI וענן מועדף על ידי וול סטריט",
+    "ticker": "NET",
+    "company": "Cloudflare",
+    "catalyst": "דוח רווחים קרוב עם ציפיות גבוהות",
     "conviction": 5,
     "upside_pct": 15,
     "downside_pct": 8,
     "timeframe": "1-2 שבועות",
-    "source": "חדשות",
-    "thesis": "Datadog מועדף על ידי וול סטריט בגלל תרחיש ה-AI והענן. החברה נהנית מרווחים גבוהים ומומנטום חזק."
+    "source": "טכני / פונדמנטלי",
+    "thesis": "Cloudflare מציגה רקע חזק עם צמיחה מהירה בשוק הענן. דוח הרווחים הקרוב צפוי להראות הישגים נוספים."
   },
   {
-    "ticker": "CRWD",
-    "company": "CrowdStrike",
-    "catalyst": "AI ביטחון ופיצול מניות",
-    "conviction": 5,
+    "ticker": "ZS",
+    "company": "Zscaler",
+    "catalyst": "גידול בדרישה לפתרונות אבטחת סייבר",
+    "conviction": 4,
     "upside_pct": 12,
     "downside_pct": 6,
     "timeframe": "1-2 שבועות",
-    "source": "חדשות",
-    "thesis": "CrowdStrike משקיעה ב-AI ביטחון ומתכננת פיצול מניות. החברה נהנית מרווחים גבוהים ומומנטום חזק."
+    "source": "פונדמנטלי",
+    "thesis": "Zscaler נהנית מגידול בדרישה לפתרונות אבטחת סייבר בשל המעבר לעבודה מרחוק והתפשטות השימוש בענן."
   },
   {
-    "ticker": "SE",
-    "company": "Sea Limited",
-    "catalyst": "AI ושווקים מקוונים בדרום-מזרח אסיה",
+    "ticker": "NICE",
+    "company": "NICE",
+    "catalyst": "שיתוף פעולה חדש עם Banco do Brasil",
     "conviction": 4,
     "upside_pct": 10,
     "downside_pct": 5,
     "timeframe": "1-2 שבועות",
     "source": "חדשות",
-    "thesis": "Sea Limited מועדף על ידי השווקים בגלל AI ושווקים מקוונים בדרום-מזרח אסיה. החברה נהנית מרווחים גבוהים ומומנטום חזק."
+    "thesis": "NICE הודיעה על שיתוף פעולה חדש עם Banco do Brasil, מה שצפוי לתרום לצמיחה עתידית."
   }
 ]
