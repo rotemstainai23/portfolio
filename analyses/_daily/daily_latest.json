@@ -1,12 +1,12 @@
 {
-  "generated": "2026-07-20",
-  "generated_time": "05:32",
-  "market_date": "2026-07-20",
+  "generated": "2026-07-21",
+  "generated_time": "05:14",
+  "market_date": "2026-07-21",
   "has_alerts": false,
   "alert_tickers": [],
   "macro": {
-    "spy_chg_pct": -0.99,
-    "qqq_chg_pct": -1.5,
+    "spy_chg_pct": -0.16,
+    "qqq_chg_pct": 0.1,
     "vix": null
   },
   "holdings": [
@@ -14,55 +14,42 @@
       "ticker": "NVDA",
       "sector": "AI / Semiconductors",
       "layer": "Growth",
-      "price": 202.81,
-      "chg_pct": -2.21,
-      "vol_ratio": 1.0,
-      "rsi": 58.9,
-      "w52_pos_pct": 53,
+      "price": 203.28,
+      "chg_pct": 0.23,
+      "vol_ratio": 0.6,
+      "rsi": 57.5,
+      "w52_pos_pct": 54,
       "analyst_target": 302.31,
-      "analyst_upside_pct": 49.1,
+      "analyst_upside_pct": 48.7,
       "days_to_earnings": null,
       "verdict": null,
-      "news": [
-        {
-          "title": "Where Could Solana Be Headed Over the Next 3 Years?",
-          "url": "https://www.fool.com/investing/2026/07/20/where-could-solana-be-headed-over-the-next-3-years/?.tsrc=rss"
-        },
-        {
-          "title": "Fed Chair Kevin Warsh Vowed to End 5 Years of High Inflation in First Congressional Testimony",
-          "url": "https://www.fool.com/investing/2026/07/20/fed-chair-kevin-warsh-vowed-to-end-5-years-of-high/?.tsrc=rss"
-        },
-        {
-          "title": "Morgan Stanley Set a $300 Price Target on Elon Musk's SpaceX Stock",
-          "url": "https://www.fool.com/investing/2026/07/19/morgan-stanley-set-a-300-price-target-on-elon-musk/?.tsrc=rss"
-        }
-      ]
+      "news": []
     },
     {
       "ticker": "MSFT",
       "sector": "Tech / Cloud / AI",
       "layer": "Stability",
-      "price": 393.82,
-      "chg_pct": -1.82,
-      "vol_ratio": 0.7,
-      "rsi": 63.9,
-      "w52_pos_pct": 22,
-      "analyst_target": 558.21,
-      "analyst_upside_pct": 41.7,
-      "days_to_earnings": 9,
+      "price": 402.29,
+      "chg_pct": 2.15,
+      "vol_ratio": 0.6,
+      "rsi": 71.4,
+      "w52_pos_pct": 26,
+      "analyst_target": 557.79,
+      "analyst_upside_pct": 38.7,
+      "days_to_earnings": 8,
       "verdict": null,
       "news": [
         {
-          "title": "Microsoft (MSFT) Criticizes Anthropic Fable AI While Azure Ties Deepen",
-          "url": "https://finance.yahoo.com/technology/ai/articles/microsoft-msft-criticizes-anthropic-fable-031452921.html?.tsrc=rss"
+          "title": "Global Enterprise Carbon Management Software Market Size/Share Worth USD 42.2 Billion by 2034 at a 9.73% CAGR: Custom Market Insights (Analysis, Outlook, Leaders, Report, Trends, Forecast, Segmentation, Growth, Growth Rate, Value)",
+          "url": "https://finance.yahoo.com/technology/articles/global-enterprise-carbon-management-software-043000990.html?.tsrc=rss"
         },
         {
-          "title": "Elon Musk's Tesla Remains One of the Last Great Founder-Led Tech Giants. Is the Stock a Buy Before July 22?",
-          "url": "https://www.fool.com/investing/2026/07/19/elon-musks-tesla-remains-one-of-the-last-great-fou/?.tsrc=rss"
+          "title": "Emergent Software Secures Growth Investment from Winterbird Partners",
+          "url": "https://finance.yahoo.com/technology/articles/emergent-software-secures-growth-investment-040100401.html?.tsrc=rss"
         },
         {
-          "title": "Apple Just Hit an All-Time High. HSBC Thinks It Can Climb Even Higher",
-          "url": "https://247wallst.com/investing/2026/07/19/apple-just-hit-an-all-time-high-hsbc-thinks-it-can-climb-even-higher/?.tsrc=rss"
+          "title": "AI infrastructure stock surges after landing massive $2.8B win",
+          "url": "https://www.thestreet.com/investing/stocks/iren-limited-stock-surges-2-billion-deal-microsoft-nvidia-perplexity-figure-ai?.tsrc=rss"
         }
       ]
     },
@@ -70,27 +57,27 @@
       "ticker": "GOOG",
       "sector": "Tech / Search / AI",
       "layer": "Stability",
-      "price": 346.12,
-      "chg_pct": -2.17,
-      "vol_ratio": 0.9,
-      "rsi": 56.2,
-      "w52_pos_pct": 73,
-      "analyst_target": 427.77,
-      "analyst_upside_pct": 23.6,
-      "days_to_earnings": 2,
+      "price": 351.37,
+      "chg_pct": 1.52,
+      "vol_ratio": 0.6,
+      "rsi": 50.1,
+      "w52_pos_pct": 76,
+      "analyst_target": 430.07,
+      "analyst_upside_pct": 22.4,
+      "days_to_earnings": 1,
       "verdict": null,
       "news": [
         {
-          "title": "Analysis-Could AI chip boom make ASML Europe's first trillion-dollar firm?",
-          "url": "https://finance.yahoo.com/technology/ai/articles/analysis-could-ai-chip-boom-050243913.html?.tsrc=rss"
+          "title": "Alphabet (GOOGL) To Report Earnings Tomorrow: Here Is What To Expect",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/alphabet-googl-report-earnings-tomorrow-045426883.html?.tsrc=rss"
         },
         {
-          "title": "Dow Jones Futures: Oil Prices Rise Amid Iran News; Google, Tesla Ahead",
-          "url": "https://finance.yahoo.com/m/6c8dacfc-1037-32fc-a343-353600ff0076/dow-jones-futures%3A-oil-prices.html?.tsrc=rss"
+          "title": "Asia stocks up as chip stocks recover, oil eases",
+          "url": "https://finance.yahoo.com/markets/world-indices/articles/asia-stocks-chip-stocks-recover-032902299.html?.tsrc=rss"
         },
         {
-          "title": "Tesla, Alphabet, Intel, GM: Earnings to watch this week",
-          "url": "https://finance.yahoo.com/video/tesla-alphabet-intel-gm-earnings-000000527.html?.tsrc=rss"
+          "title": "Cramer Says Dump Tech Before Intel, Tesla, Alphabet Earnings: Will Inverse-Cramer Strike?",
+          "url": "https://beincrypto.com/cramer-dumps-tech-earnings-week/?.tsrc=rss"
         }
       ]
     },
@@ -98,69 +85,82 @@
       "ticker": "META",
       "sector": "Social Media / AI",
       "layer": "Growth",
-      "price": 646.01,
-      "chg_pct": -2.79,
-      "vol_ratio": 1.1,
-      "rsi": 67.3,
+      "price": 645.85,
+      "chg_pct": -0.02,
+      "vol_ratio": 0.5,
+      "rsi": 65.8,
       "w52_pos_pct": 46,
       "analyst_target": 822.69,
-      "analyst_upside_pct": 27.3,
-      "days_to_earnings": 9,
+      "analyst_upside_pct": 27.4,
+      "days_to_earnings": 8,
       "verdict": null,
-      "news": [
-        {
-          "title": "AMD Stock Rises Overnight: Is Anthropic A New Customer? What A GitHub Code File Reportedly Reveals",
-          "url": "https://stocktwits.com/news-articles/markets/equity/amd-stock-rises-overnight-is-anthropic-a-new-customer-what-a-git-hub-code-file-reportedly-reveals/cZZLYakR7MY?.tsrc=rss"
-        },
-        {
-          "title": "Meta Makes Big Moves Around AI Models and Chip Production",
-          "url": "https://www.fool.com/investing/2026/07/19/meta-makes-big-moves-around-ai-models-and-chip-production/?.tsrc=rss"
-        },
-        {
-          "title": "I Can’t Stop Buying Alphabet Because The AI Talent Narrative is Wrong",
-          "url": "https://247wallst.com/investing/2026/07/19/i-cant-stop-buying-alphabet-because-the-ai-talent-narrative-is-wrong/?.tsrc=rss"
-        }
-      ]
+      "news": []
     },
     {
       "ticker": "AVGO",
       "sector": "Semiconductors",
       "layer": "Growth",
-      "price": 370.83,
-      "chg_pct": -0.97,
-      "vol_ratio": 0.9,
-      "rsi": 52.3,
-      "w52_pos_pct": 44,
+      "price": 378.16,
+      "chg_pct": 1.98,
+      "vol_ratio": 0.6,
+      "rsi": 52.2,
+      "w52_pos_pct": 47,
       "analyst_target": 524.51,
-      "analyst_upside_pct": 41.4,
+      "analyst_upside_pct": 38.7,
       "days_to_earnings": null,
       "verdict": null,
-      "news": []
+      "news": [
+        {
+          "title": "After A Steep Run And A Sharp Drop, Is Marvell Technology Stock A Bet On The AI Buildout?",
+          "url": "https://www.trefis.com/articles/607947/after-a-steep-run-and-a-sharp-drop-is-marvell-technology-stock-a-bet-on-the-ai-buildout/2026-07-20?.tsrc=rss"
+        },
+        {
+          "title": "Claude AI Sells Broadcom (AVGO) Stock",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/claude-ai-sells-broadcom-avgo-224203006.html?.tsrc=rss"
+        },
+        {
+          "title": "Broadcom Inc. (AVGO) Ascends While Market Falls: Some Facts to Note",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/broadcom-inc-avgo-ascends-while-214503477.html?.tsrc=rss"
+        }
+      ]
     },
     {
       "ticker": "MU",
       "sector": "Memory Chips",
       "layer": "Growth",
-      "price": 848.95,
-      "chg_pct": -0.5,
-      "vol_ratio": 1.2,
-      "rsi": 24.0,
-      "w52_pos_pct": 65,
+      "price": 865.46,
+      "chg_pct": 1.94,
+      "vol_ratio": 0.7,
+      "rsi": 24.5,
+      "w52_pos_pct": 66,
       "analyst_target": 1491.95,
-      "analyst_upside_pct": 75.7,
+      "analyst_upside_pct": 72.4,
       "days_to_earnings": null,
       "verdict": null,
-      "news": []
+      "news": [
+        {
+          "title": "MU, SNDK Shake Off 3-Day Memory Slump: Retail Says Demand Narrative Is Intact",
+          "url": "https://stocktwits.com/news-articles/markets/equity/mu-sndk-shake-off-3-day-memory-slump-retail-says-demand-narrative-is-intact/cZZ1DPQR7HK?.tsrc=rss"
+        },
+        {
+          "title": "Dow Jones Futures: Trump Comments Spark Stock Market Losses; Elon Musk-Led SpaceX, Tesla Tumble",
+          "url": "https://finance.yahoo.com/m/6b63c0a6-dc68-3b78-b236-250b091086f3/dow-jones-futures%3A-trump.html?.tsrc=rss"
+        },
+        {
+          "title": "Claude AI Says Michael Burry’s Micron (MU) Warning “Deserves Respect”",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/claude-ai-says-michael-burry-222230187.html?.tsrc=rss"
+        }
+      ]
     },
     {
       "ticker": "IBIT",
       "sector": "Crypto",
       "layer": "Speculation",
-      "price": 36.35,
-      "chg_pct": -0.11,
-      "vol_ratio": 1.2,
-      "rsi": 63.8,
-      "w52_pos_pct": 9,
+      "price": 36.89,
+      "chg_pct": 1.49,
+      "vol_ratio": 0.7,
+      "rsi": 64.6,
+      "w52_pos_pct": 10,
       "analyst_target": null,
       "analyst_upside_pct": null,
       "days_to_earnings": null,
@@ -171,11 +171,11 @@
       "ticker": "GLDM",
       "sector": "Commodities / Gold",
       "layer": "Stability",
-      "price": 79.45,
-      "chg_pct": 0.93,
-      "vol_ratio": 0.9,
-      "rsi": 45.3,
-      "w52_pos_pct": 33,
+      "price": 79.27,
+      "chg_pct": -0.23,
+      "vol_ratio": 0.7,
+      "rsi": 49.2,
+      "w52_pos_pct": 32,
       "analyst_target": null,
       "analyst_upside_pct": null,
       "days_to_earnings": null,
@@ -186,14 +186,14 @@
       "ticker": "VST",
       "sector": "Energy / Nuclear",
       "layer": "Growth",
-      "price": 155.44,
-      "chg_pct": 1.89,
-      "vol_ratio": 1.0,
-      "rsi": 39.5,
-      "w52_pos_pct": 26,
+      "price": 157.99,
+      "chg_pct": 1.64,
+      "vol_ratio": 0.8,
+      "rsi": 44.5,
+      "w52_pos_pct": 29,
       "analyst_target": 223.17,
-      "analyst_upside_pct": 43.6,
-      "days_to_earnings": 18,
+      "analyst_upside_pct": 41.3,
+      "days_to_earnings": 17,
       "verdict": null,
       "news": [
         {
@@ -214,27 +214,27 @@
       "ticker": "APLD",
       "sector": "AI Infrastructure",
       "layer": "Speculation",
-      "price": 25.79,
-      "chg_pct": -2.46,
-      "vol_ratio": 1.3,
-      "rsi": 13.9,
-      "w52_pos_pct": 39,
+      "price": 27.85,
+      "chg_pct": 7.99,
+      "vol_ratio": 1.2,
+      "rsi": 24.2,
+      "w52_pos_pct": 44,
       "analyst_target": 76.7,
-      "analyst_upside_pct": 197.4,
-      "days_to_earnings": 7,
+      "analyst_upside_pct": 175.4,
+      "days_to_earnings": 6,
       "verdict": null,
       "news": [
         {
+          "title": "Applied Digital Sheds 44%: Buy the Dip or Run?",
+          "url": "https://www.trefis.com/articles/607952/applied-digital-sheds-44-buy-the-dip-or-run/2026-07-20?.tsrc=rss"
+        },
+        {
+          "title": "IREN Soars 17%; Applied Digital, TeraWulf, Core Scientific Surge in a Data Center Rebound",
+          "url": "https://247wallst.com/investing/2026/07/20/iren-soars-14-applied-digital-terawulf-core-scientific-surge-in-a-data-center-rebound/?.tsrc=rss"
+        },
+        {
           "title": "CoreWeave vs. Applied Digital: Evaluating Disparities in Revenue Scale for These Artificial Intelligence Companies",
           "url": "https://www.fool.com/coverage/charts/2026/07/19/coreweave-vs-applied-digital-evaluating-disparities-in-revenue-scale-for-these-artificial-intelligence-companies/?.tsrc=rss"
-        },
-        {
-          "title": "Coreweave Down 35% . This Analyst Reiterated His $250 Target Even After ‘Meta Compute’ Was Announced.",
-          "url": "https://247wallst.com/investing/2026/07/17/coreweave-down-35-this-analyst-reiterated-his-250-target-even-after-meta-compute-was-announced/?.tsrc=rss"
-        },
-        {
-          "title": "3 Small-Cap Stocks That Fall Short",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/3-small-cap-stocks-fall-140146907.html?.tsrc=rss"
         }
       ]
     },
@@ -242,13 +242,13 @@
       "ticker": "OKLO",
       "sector": "Nuclear Energy",
       "layer": "Speculation",
-      "price": 41.11,
-      "chg_pct": -1.41,
-      "vol_ratio": 0.9,
-      "rsi": 27.2,
+      "price": 41.51,
+      "chg_pct": 0.97,
+      "vol_ratio": 0.7,
+      "rsi": 17.2,
       "w52_pos_pct": 1,
       "analyst_target": 86.5,
-      "analyst_upside_pct": 110.4,
+      "analyst_upside_pct": 108.4,
       "days_to_earnings": null,
       "verdict": null,
       "news": []
@@ -257,104 +257,78 @@
       "ticker": "DRAM",
       "sector": "Memory Chips",
       "layer": "Growth",
-      "price": 52.72,
-      "chg_pct": 0.73,
-      "vol_ratio": 1.9,
-      "rsi": 29.8,
-      "w52_pos_pct": 48,
+      "price": 53.06,
+      "chg_pct": 0.64,
+      "vol_ratio": 0.6,
+      "rsi": 30.3,
+      "w52_pos_pct": 49,
       "analyst_target": null,
       "analyst_upside_pct": null,
       "days_to_earnings": null,
       "verdict": null,
-      "news": [
-        {
-          "title": "Investors Pour $25B Into Semiconductor ETFs as DRAM Plunges 40%",
-          "url": "http://www.etf.com/sections/features/investors-pour-25b-semiconductor-etfs-dram-plunges-40?utm_source=yahoo-finance&utm_medium=rss&utm_campaign=yahoo-finance-rss&.tsrc=rss"
-        },
-        {
-          "title": "ETF League Tables: Roundhill Pulls In $643M",
-          "url": "http://www.etf.com/sections/etf-league-tables/etf-league-tables-roundhill-pulls-643m?utm_source=yahoo-finance&utm_medium=rss&utm_campaign=yahoo-finance-rss&.tsrc=rss"
-        },
-        {
-          "title": "The SOX Index Fell 16% in Less Than a Month",
-          "url": "https://finance.yahoo.com/m/e7233e45-9906-336f-8f6e-f4abe311db2e/the-sox-index-fell-16%25-in.html?.tsrc=rss"
-        }
-      ]
+      "news": []
     },
     {
       "ticker": "CCJ",
       "sector": "אנרגיה",
       "layer": "Growth",
-      "price": 85.62,
-      "chg_pct": -1.99,
-      "vol_ratio": 1.5,
-      "rsi": 13.9,
-      "w52_pos_pct": 25,
-      "analyst_target": 132.26,
-      "analyst_upside_pct": 54.5,
-      "days_to_earnings": null,
+      "price": 84.85,
+      "chg_pct": -0.9,
+      "vol_ratio": 1.4,
+      "rsi": 14.1,
+      "w52_pos_pct": 24,
+      "analyst_target": 131.67,
+      "analyst_upside_pct": 55.2,
+      "days_to_earnings": 10,
       "verdict": null,
-      "news": [
-        {
-          "title": "America Wants a Uranium Supply Chain and an AI-Ready Reactor Fleet, and One Nasdaq Company Is Trying to Build Both at Once",
-          "url": "https://finance.yahoo.com/energy/articles/america-wants-uranium-supply-chain-123000709.html?.tsrc=rss"
-        },
-        {
-          "title": "Skyharbour, Purecore sign LoI for Yurchison uranium option",
-          "url": "https://www.mining-technology.com/news/skyharbour-purecore-loi-yurchison-uranium-option/?.tsrc=rss"
-        },
-        {
-          "title": "Purecore Signs Letter of Intent with Skyharbour to Option the Yurchison Uranium Property in Athabasca Basin",
-          "url": "https://finance.yahoo.com/energy/articles/purecore-signs-letter-intent-skyharbour-161800369.html?.tsrc=rss"
-        }
-      ]
+      "news": []
     }
   ],
   "watchlist_triggers": [],
   "groq_insights": [
-    "APLD -2.46%: הירידה במניה עשויה להיות הזדמנות קניה עם יתרון עליון של 197.4%",
-    "NOW -0.74%: עם ימים 2 עד דוח רווח, הסקטור של NOW עלול להיפגע מתוצאות",
-    "GOOG -2.17%: הירידה במניה עשויה להיות תגובה לחדשות על AI והשפעתה על החברה"
+    "APLD +7.99%: עלייה חדה במניה, ייתכן ומדובר בתגובה לחדשות על עסקאות AI",
+    "GOOG +1.52%: המניה עומדת לדוח רווחים, יש לעקוב אחר התגובות של השוק",
+    "V +0.56% עם earnings_days=7: יש להיות זהירים בסקטור הפיננסי בשל הדוחות הרווחים הקרובים"
   ],
   "sector_summary": [
     {
       "sector": "AI / Semiconductors",
-      "avg_chg_pct": -2.21,
+      "avg_chg_pct": 0.23,
       "tickers": [
         "NVDA"
       ]
     },
     {
       "sector": "Tech / Cloud / AI",
-      "avg_chg_pct": -1.82,
+      "avg_chg_pct": 2.15,
       "tickers": [
         "MSFT"
       ]
     },
     {
       "sector": "Tech / Search / AI",
-      "avg_chg_pct": -2.17,
+      "avg_chg_pct": 1.52,
       "tickers": [
         "GOOG"
       ]
     },
     {
       "sector": "Social Media / AI",
-      "avg_chg_pct": -2.79,
+      "avg_chg_pct": -0.02,
       "tickers": [
         "META"
       ]
     },
     {
       "sector": "Semiconductors",
-      "avg_chg_pct": -0.97,
+      "avg_chg_pct": 1.98,
       "tickers": [
         "AVGO"
       ]
     },
     {
       "sector": "Memory Chips",
-      "avg_chg_pct": 0.11,
+      "avg_chg_pct": 1.29,
       "tickers": [
         "MU",
         "DRAM"
@@ -362,42 +336,42 @@
     },
     {
       "sector": "Crypto",
-      "avg_chg_pct": -0.11,
+      "avg_chg_pct": 1.49,
       "tickers": [
         "IBIT"
       ]
     },
     {
       "sector": "Commodities / Gold",
-      "avg_chg_pct": 0.93,
+      "avg_chg_pct": -0.23,
       "tickers": [
         "GLDM"
       ]
     },
     {
       "sector": "Energy / Nuclear",
-      "avg_chg_pct": 1.89,
+      "avg_chg_pct": 1.64,
       "tickers": [
         "VST"
       ]
     },
     {
       "sector": "AI Infrastructure",
-      "avg_chg_pct": -2.46,
+      "avg_chg_pct": 7.99,
       "tickers": [
         "APLD"
       ]
     },
     {
       "sector": "Nuclear Energy",
-      "avg_chg_pct": -1.41,
+      "avg_chg_pct": 0.97,
       "tickers": [
         "OKLO"
       ]
     },
     {
       "sector": "אנרגיה",
-      "avg_chg_pct": -1.99,
+      "avg_chg_pct": -0.9,
       "tickers": [
         "CCJ"
       ]
