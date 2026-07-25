@@ -1,35 +1,35 @@
 [
   {
-    "ticker": "NET",
-    "company": "Cloudflare",
+    "ticker": "DDOG",
+    "company": "Datadog",
     "catalyst": "דוח רווחים קרוב עם ציפיות גבוהות",
     "conviction": 5,
     "upside_pct": 15,
     "downside_pct": 8,
     "timeframe": "1-2 שבועות",
-    "source": "טכני / פונדמנטלי",
-    "thesis": "Cloudflare מציגה רקע חזק עם צמיחה מהירה בשוק הענן. דוח הרווחים הקרוב צפוי להראות הישגים נוספים."
+    "source": "טכני",
+    "thesis": "Datadog ממשיכה להפגין תאוצה חזקה בשוק המוצרים שלה וצפויה לדווח על רווחים חזקים. המומנטום החיובי במניה וה-RSI הנמוך יחסית מצביעים על פוטנציאל לעליה נוספת."
   },
   {
-    "ticker": "ZS",
-    "company": "Zscaler",
-    "catalyst": "גידול בדרישה לפתרונות אבטחת סייבר",
+    "ticker": "CRWD",
+    "company": "CrowdStrike",
+    "catalyst": "דוח רווחים וציפיות לגידול",
     "conviction": 4,
     "upside_pct": 12,
     "downside_pct": 6,
     "timeframe": "1-2 שבועות",
     "source": "פונדמנטלי",
-    "thesis": "Zscaler נהנית מגידול בדרישה לפתרונות אבטחת סייבר בשל המעבר לעבודה מרחוק והתפשטות השימוש בענן."
+    "thesis": "CrowdStrike צפויה להמשיך ולגדול בעקבות הביקוש הגובר לפתרונות אבטחת סייבר. החברה הוכיחה יכולת לבצע ולהרחיב את הפעילות שלה."
   },
   {
-    "ticker": "NICE",
-    "company": "NICE",
-    "catalyst": "שיתוף פעולה חדש עם Banco do Brasil",
+    "ticker": "XOM",
+    "company": "Exxon Mobil",
+    "catalyst": "דוח רווחים ומתחים גאופוליטיים",
     "conviction": 4,
     "upside_pct": 10,
     "downside_pct": 5,
     "timeframe": "1-2 שבועות",
     "source": "חדשות",
-    "thesis": "NICE הודיעה על שיתוף פעולה חדש עם Banco do Brasil, מה שצפוי לתרום לצמיחה עתידית."
+    "thesis": "Exxon Mobil עשויה ליהנות מעליה במחירי הנפט עקב מתחים גאופוליטיים. החברה מחזיקה בנכסים משמעותיים ויכולה לנצל את המצב לטובתה."
   }
 ]
