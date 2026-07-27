@@ -1,7 +1,7 @@
 {
-  "generated": "2026-07-24",
-  "generated_time": "05:14",
-  "market_date": "2026-07-24",
+  "generated": "2026-07-27",
+  "generated_time": "05:42",
+  "market_date": "2026-07-27",
   "has_alerts": false,
   "alert_tickers": [],
   "macro": {
@@ -16,7 +16,7 @@
       "layer": "Growth",
       "price": 208.76,
       "chg_pct": -1.56,
-      "vol_ratio": 0.8,
+      "vol_ratio": 0.9,
       "rsi": 62.1,
       "w52_pos_pct": 62,
       "analyst_target": 302.83,
@@ -25,16 +25,16 @@
       "verdict": null,
       "news": [
         {
-          "title": "2 Top Growth Stocks to Buy Right Now Without Any Hesitation",
-          "url": "https://www.fool.com/investing/2026/07/24/2-top-growth-stocks-to-buy-right-now-without-any-h/?.tsrc=rss"
+          "title": "Warren Buffett's Favorite Stock Market Indicator Is Sounding the Alarm. History Suggests Investors Are \"Playing With Fire.\"",
+          "url": "https://www.fool.com/investing/2026/07/27/warren-buffetts-favorite-stock-market-indicator-is/?.tsrc=rss"
         },
         {
-          "title": "Cathie Wood Just Bought More SpaceX Stock. Here's Why I Wouldn't Copy Her",
-          "url": "https://www.fool.com/investing/2026/07/24/cathie-wood-just-bought-more-spacex-stock-heres-wh/?.tsrc=rss"
+          "title": "What's Next For Rigetti Computing Stock?",
+          "url": "https://www.fool.com/investing/2026/07/27/whats-next-for-rigetti-computing-stock/?.tsrc=rss"
         },
         {
-          "title": "Nvidia Stock Is Barely Beating the S&P 500 Index in 2026 Despite Record Revenue. Here's What This Performance Might Suggest.",
-          "url": "https://www.fool.com/investing/2026/07/24/nvidia-stock-is-barely-beating-the-sp-500-index-in/?.tsrc=rss"
+          "title": "Prediction: CEO Andy Jassy Will Raise Amazon's Full-Year 2026 Capex Guide on July 30",
+          "url": "https://www.fool.com/investing/2026/07/27/prediction-ceo-andy-jassy-will-raise-amazons-full/?.tsrc=rss"
         }
       ]
     },
@@ -44,25 +44,25 @@
       "layer": "Stability",
       "price": 381.58,
       "chg_pct": -2.24,
-      "vol_ratio": 0.7,
+      "vol_ratio": 0.6,
       "rsi": 44.3,
       "w52_pos_pct": 16,
       "analyst_target": 556.75,
       "analyst_upside_pct": 45.9,
-      "days_to_earnings": 5,
+      "days_to_earnings": 2,
       "verdict": null,
       "news": [
         {
-          "title": "ORCL Stock Rises After-Hours On Pentagon Deal Worth Up To $7B — Why Retail Sees NOW, PLTR, MSFT And Others Benefiting Too",
-          "url": "https://stocktwits.com/news-articles/markets/equity/orcl-stock-rises-after-hours-pentagon-7-billion-deal-retail-sees-pltr-msft-now-benefit/cZZYfwER7Uq?.tsrc=rss"
+          "title": "Dow Jones Futures Rise, Oil Prices Dive On Iran Hopes; Apple Leads Earnings Wave, Fed Meeting Ahead",
+          "url": "https://finance.yahoo.com/m/56d0a8cb-a014-3c28-a929-8720c9c346e7/dow-jones-futures-rise%2C-oil.html?.tsrc=rss"
         },
         {
-          "title": "AMD's customer list keeps growing, and Nvidia should notice",
-          "url": "https://www.thestreet.com/technology/amd-anthropic-deal-nvidia?.tsrc=rss"
+          "title": "Alphabet, Amazon, and Meta Will Spend Over $500 Billion on AI in 2026. Nvidia Collects a Huge Share.",
+          "url": "https://www.fool.com/investing/2026/07/26/alphabet-amazon-and-meta-will-spend-over-500-billi/?.tsrc=rss"
         },
         {
-          "title": "Amazon vs. Microsoft: Which Cloud Empire Is the Better Buy Now?",
-          "url": "https://www.fool.com/investing/2026/07/23/amazon-vs-microsoft-which-cloud-empire-is-the-bett/?.tsrc=rss"
+          "title": "5 Earnings Reports to Watch as Big Tech’s AI Spending Faces a Test",
+          "url": "https://beincrypto.com/earnings-to-watch-this-week/?.tsrc=rss"
         }
       ]
     },
@@ -72,25 +72,25 @@
       "layer": "Stability",
       "price": 318.34,
       "chg_pct": -6.89,
-      "vol_ratio": 2.1,
+      "vol_ratio": 0.9,
       "rsi": 32.0,
       "w52_pos_pct": 60,
-      "analyst_target": 430.07,
-      "analyst_upside_pct": 35.1,
+      "analyst_target": 421.79,
+      "analyst_upside_pct": 32.5,
       "days_to_earnings": null,
       "verdict": null,
       "news": [
         {
-          "title": "Alphabet Just Revealed a $94 Billion Stake in SpaceX -- and It Can't Sell a Single Share Yet",
-          "url": "https://www.fool.com/investing/2026/07/23/alphabet-just-revealed-a-94-billion-stake-in-space/?.tsrc=rss"
+          "title": "Dow Jones Futures Rise, Oil Prices Dive On Iran Hopes; Apple Leads Earnings Wave, Fed Meeting Ahead",
+          "url": "https://finance.yahoo.com/m/56d0a8cb-a014-3c28-a929-8720c9c346e7/dow-jones-futures-rise%2C-oil.html?.tsrc=rss"
         },
         {
-          "title": "Prediction: This Autonomous Driving Stock Will Be a Much Better Buy Than Tesla Over the Long Term",
-          "url": "https://www.fool.com/investing/2026/07/23/prediction-autonomous-driving-stock-buy-tesla-term/?.tsrc=rss"
+          "title": "Alphabet, Amazon, and Meta Will Spend Over $500 Billion on AI in 2026. Nvidia Collects a Huge Share.",
+          "url": "https://www.fool.com/investing/2026/07/26/alphabet-amazon-and-meta-will-spend-over-500-billi/?.tsrc=rss"
         },
         {
-          "title": "Dow Jones Futures: Market Sells Off On Oil Prices, Google, Tesla; Intel Jumps Late",
-          "url": "https://finance.yahoo.com/m/96fdd7c6-3e7b-334a-a08e-b91b60ced4b6/dow-jones-futures%3A-market.html?.tsrc=rss"
+          "title": "5 Earnings Reports to Watch as Big Tech’s AI Spending Faces a Test",
+          "url": "https://beincrypto.com/earnings-to-watch-this-week/?.tsrc=rss"
         }
       ]
     },
@@ -100,25 +100,25 @@
       "layer": "Growth",
       "price": 606.1,
       "chg_pct": -3.36,
-      "vol_ratio": 0.8,
+      "vol_ratio": 0.6,
       "rsi": 55.2,
       "w52_pos_pct": 31,
-      "analyst_target": 826.01,
+      "analyst_target": 825.84,
       "analyst_upside_pct": 36.3,
-      "days_to_earnings": 5,
+      "days_to_earnings": 2,
       "verdict": null,
       "news": [
         {
-          "title": "2 Hidden Businesses to Watch as AI Keeps Heating Up",
-          "url": "https://www.fool.com/investing/2026/07/23/2-hidden-businesses-to-watch-as-ai-keeps-heating-up/?.tsrc=rss"
+          "title": "Dow Jones Futures Rise, Oil Prices Dive On Iran Hopes; Apple Leads Earnings Wave, Fed Meeting Ahead",
+          "url": "https://finance.yahoo.com/m/56d0a8cb-a014-3c28-a929-8720c9c346e7/dow-jones-futures-rise%2C-oil.html?.tsrc=rss"
         },
         {
-          "title": "Meta faces higher borrowing costs in latest $12bn data centre financing",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/meta-faces-higher-borrowing-costs-000833846.html?.tsrc=rss"
+          "title": "Alphabet, Amazon, and Meta Will Spend Over $500 Billion on AI in 2026. Nvidia Collects a Huge Share.",
+          "url": "https://www.fool.com/investing/2026/07/26/alphabet-amazon-and-meta-will-spend-over-500-billi/?.tsrc=rss"
         },
         {
-          "title": "Europe just fined Google $1 billion, the day before Trump is expected to announce tariffs",
-          "url": "https://www.axios.com/2026/07/23/eu-google-billion-fine-search-play-store#utm_source=yahoo_finance&utm_medium=partner&utm_campaign=subs-partner-yahoo-finance-AI?.tsrc=rss"
+          "title": "5 Earnings Reports to Watch as Big Tech’s AI Spending Faces a Test",
+          "url": "https://beincrypto.com/earnings-to-watch-this-week/?.tsrc=rss"
         }
       ]
     },
@@ -152,16 +152,16 @@
       "verdict": null,
       "news": [
         {
-          "title": "MU Stock Loses Some Steam After Korea Chip Selloff — But Retail Is Eyeing Clean Rebound Above $1,000",
-          "url": "https://stocktwits.com/news-articles/markets/equity/mu-stock-loses-some-steam-after-korea-chip-selloff-but-retail-is-eyeing-clean-rebound-above-1-000/cZZYSgYR7UC?.tsrc=rss"
+          "title": "China memory chipmaker CXMT's shares soar in a blockbuster share listing in Shanghai",
+          "url": "https://finance.yahoo.com/technology/articles/china-memory-chipmaker-cxmt-shares-043327941.html?.tsrc=rss"
         },
         {
-          "title": "Micron (MU) Is Getting A New China AI Demand Signal From Kimi K3",
-          "url": "https://finance.yahoo.com/technology/ai/articles/micron-mu-getting-china-ai-031646978.html?.tsrc=rss"
+          "title": "Chinese chipmaker CXMT soars more than 500% on debut",
+          "url": "https://finance.yahoo.com/technology/articles/chinese-chipmaker-cxmt-soars-more-033846433.html?.tsrc=rss"
         },
         {
-          "title": "Morgan Stanley sends strong verdict on memory stocks",
-          "url": "https://www.thestreet.com/investing/stocks/morgan-stanley-memory-stock-selloff-buying-opportunity-micron?.tsrc=rss"
+          "title": "An $85 Billion Chinese DRAM Rival Starts Trading Monday. Here's What It Means for Micron.",
+          "url": "https://www.fool.com/investing/2026/07/26/an-85-billion-chinese-dram-rival-starts-trading-mo/?.tsrc=rss"
         }
       ]
     },
@@ -180,16 +180,16 @@
       "verdict": null,
       "news": [
         {
-          "title": "BlackRock’s IBIT Leads Nearly $1B Bitcoin ETF Recovery as Inflows Hit 7 Straight Days",
-          "url": "https://247wallst.com/investing/cryptocurrency/2026/07/23/blackrocks-ibit-leads-nearly-1b-bitcoin-etf-recovery-as-inflows-hit-7-straight-days/?.tsrc=rss"
+          "title": "ETF Zoo: Leveraged Lunacy Surpasses $65B in Gains",
+          "url": "http://www.etf.com/sections/podcasts/etf-zoo-leveraged-lunacy-surpasses-65b-gains?utm_source=yahoo-finance&utm_medium=rss&utm_campaign=yahoo-finance-rss&.tsrc=rss"
         },
         {
-          "title": "Crypto Market Today, July 22: Clarity Act Progress Balances Inflation Fears",
-          "url": "https://www.fool.com/coverage/stock-market-today/2026/07/22/crypto-market-today-july-22-clarity-act-progress-balances-inflation-fears/?.tsrc=rss"
+          "title": "Bitcoin ETFs Shed $225M, Snapping Seven-Day Inflow Streak as Iran Tensions Spook Markets",
+          "url": "https://decrypt.co/374260/bitcoin-etfs-shed-225m-snapping-inflow-streak-iran-tensions?.tsrc=rss"
         },
         {
-          "title": "$4.1 billion firm discloses exposure to Bitcoin, XRP, Robinhood",
-          "url": "https://www.thestreet.com/crypto/markets/4-1-billion-firm-discloses-exposure-to-bitcoin-xrp-robinhood?.tsrc=rss"
+          "title": "Seven Straight Bitcoin ETF Inflow Days Recover Just 15% of June’s Losses",
+          "url": "https://99bitcoins.com/news/bitcoin-btc/bitcoin-etf-inflows-seven-day-streak-june-recovery/?.tsrc=rss"
         }
       ]
     },
@@ -199,7 +199,7 @@
       "layer": "Stability",
       "price": 80.11,
       "chg_pct": -1.99,
-      "vol_ratio": 0.7,
+      "vol_ratio": 0.5,
       "rsi": 44.7,
       "w52_pos_pct": 34,
       "analyst_target": null,
@@ -227,12 +227,12 @@
       "layer": "Growth",
       "price": 168.98,
       "chg_pct": 1.34,
-      "vol_ratio": 0.6,
+      "vol_ratio": 0.5,
       "rsi": 72.7,
       "w52_pos_pct": 42,
-      "analyst_target": 223.06,
-      "analyst_upside_pct": 32.0,
-      "days_to_earnings": 14,
+      "analyst_target": 223.39,
+      "analyst_upside_pct": 32.2,
+      "days_to_earnings": 11,
       "verdict": null,
       "news": []
     },
@@ -242,12 +242,12 @@
       "layer": "Speculation",
       "price": 29.89,
       "chg_pct": -0.63,
-      "vol_ratio": 0.7,
+      "vol_ratio": 1.0,
       "rsi": 40.6,
       "w52_pos_pct": 49,
-      "analyst_target": 76.7,
-      "analyst_upside_pct": 156.6,
-      "days_to_earnings": 3,
+      "analyst_target": 73.05,
+      "analyst_upside_pct": 144.4,
+      "days_to_earnings": 0,
       "verdict": null,
       "news": []
     },
@@ -257,7 +257,7 @@
       "layer": "Speculation",
       "price": 44.0,
       "chg_pct": -1.12,
-      "vol_ratio": 0.9,
+      "vol_ratio": 1.1,
       "rsi": 29.1,
       "w52_pos_pct": 3,
       "analyst_target": 86.2,
@@ -272,7 +272,7 @@
       "layer": "Growth",
       "price": 58.3,
       "chg_pct": 0.92,
-      "vol_ratio": 0.7,
+      "vol_ratio": 1.0,
       "rsi": 47.1,
       "w52_pos_pct": 58,
       "analyst_target": null,
@@ -287,12 +287,12 @@
       "layer": "Growth",
       "price": 89.33,
       "chg_pct": -1.15,
-      "vol_ratio": 0.9,
+      "vol_ratio": 1.0,
       "rsi": 35.9,
       "w52_pos_pct": 31,
-      "analyst_target": 131.59,
-      "analyst_upside_pct": 47.3,
-      "days_to_earnings": 7,
+      "analyst_target": 131.53,
+      "analyst_upside_pct": 47.2,
+      "days_to_earnings": 4,
       "verdict": null,
       "news": []
     }
@@ -306,9 +306,9 @@
     }
   ],
   "groq_insights": [
-    "APLD -0.63%: הסקטור הפיננסי עשוי להיפגע מחששות לירידה בביקוש, V עם vol_ratio נמוך עלולה להיות מושפעת",
-    "NVDA -1.56% ו-AVGO -1.09% מראות ירידה, מגמת הסקטור הטכנולוגי עלולה להיות שלילית",
-    "GOOG -6.89%: הירידה החדה עלולה להיות תגובה לחדשות על השקעה ב-SpaceX, תעשיית הטכנולוגיה עשויה להיפגע"
+    "APLD -0.63%: היום האחרון לפני פרסום דוחות רבעוניים, תוצאות הרבעון עשויות להשפיע על מחיר המניה",
+    "MSFT -2.24%: עם ימים ספורים לפני פרסום דוחות רבעוניים, תוצאות הרבעון עשויות להשפיע על מחיר המניה בסקטור הטכנולוגיה",
+    "V -0.51%: עם יום אחד לפני פרסום דוחות רבעוניים, תוצאות הרבעון עשויות להשפיע על מחיר המניה בסקטור התשלומים"
   ],
   "sector_summary": [
     {
