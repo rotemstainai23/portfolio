@@ -1,11 +1,11 @@
 {
-  "ticker": "DDOG",
-  "company": "Datadog",
-  "catalyst": "דוח רווחים קרוב עם ציפיות גבוהות",
-  "conviction": 5,
+  "ticker": "SNOW",
+  "company": "Snowflake Inc",
+  "catalyst": "AI Traction Fuels Snowflake’s Guidance Boost",
+  "conviction": 4,
   "upside_pct": 15,
   "downside_pct": 8,
   "timeframe": "1-2 שבועות",
-  "source": "טכני",
-  "thesis": "Datadog ממשיכה להפגין תאוצה חזקה בשוק המוצרים שלה וצפויה לדווח על רווחים חזקים. המומנטום החיובי במניה וה-RSI הנמוך יחסית מצביעים על פוטנציאל לעליה נוספת."
+  "source": "חדשות",
+  "thesis": "Snowflake מובילה בתחום הנתונים והבינה המלאכותית, עם צמיחה מהירה בהכנסות ורווחים. החברה הודיעה על תחזית הכנסות חדשה ומעודדת, מה שיכול להוביל לעלייה במחיר המניה."
 }
