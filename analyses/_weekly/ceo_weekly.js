@@ -1,19 +1,19 @@
 window.WEEKLY_DATA = {
-  "generated": "2026-07-26",
-  "week_label": "שבוע 20/07-26/07",
-  "ceo_verdict": "מגמת השבוע: התיק השקעות נפגע בשל הירידה במניות הטכנולוגיה, במיוחד GOOG ו-META, שתרמו לירידה של 0.9% בתיק.",
+  "generated": "2026-08-02",
+  "week_label": "שבוע 27/07-02/08",
+  "ceo_verdict": "מגמת השבוע: התיק השקעות הובל על ידי MSFT עם עלייה של 21.8% בשבוע, אך הואט על ידי ירידות ב-NVDA, META ו-MU.",
   "portfolio_performance": {
-    "total_value": 1923,
-    "week_pct": -0.9,
-    "total_pnl_pct": -6.5,
+    "total_value": 1944,
+    "week_pct": 0.3,
+    "total_pnl_pct": -5.4,
     "ytd_pct": null,
-    "vs_spy_week": 0.7,
+    "vs_spy_week": -0.9,
     "regime": "risk_on"
   },
   "macro_snapshot": {
-    "vix": 18.58,
-    "spy_week_pct": -1.6,
-    "qqq_week_pct": -3.1,
+    "vix": 15.99,
+    "spy_week_pct": 1.2,
+    "qqq_week_pct": -0.6,
     "dxy_trend": null,
     "rate_outlook": null,
     "regime_note": null
@@ -22,7 +22,7 @@ window.WEEKLY_DATA = {
     {
       "ticker": "NVDA",
       "company": "NVDA",
-      "price_change_pct": -0.3,
+      "price_change_pct": -3.8,
       "status": "",
       "key_news": "",
       "headline": "",
@@ -31,7 +31,7 @@ window.WEEKLY_DATA = {
     {
       "ticker": "MSFT",
       "company": "MSFT",
-      "price_change_pct": -4.8,
+      "price_change_pct": 21.8,
       "status": "",
       "key_news": "",
       "headline": "",
@@ -40,7 +40,7 @@ window.WEEKLY_DATA = {
     {
       "ticker": "GOOG",
       "company": "GOOG",
-      "price_change_pct": -9.8,
+      "price_change_pct": 12.0,
       "status": "",
       "key_news": "",
       "headline": "",
@@ -49,7 +49,7 @@ window.WEEKLY_DATA = {
     {
       "ticker": "META",
       "company": "META",
-      "price_change_pct": -10.4,
+      "price_change_pct": -8.1,
       "status": "",
       "key_news": "",
       "headline": "",
@@ -58,7 +58,7 @@ window.WEEKLY_DATA = {
     {
       "ticker": "AVGO",
       "company": "AVGO",
-      "price_change_pct": 2.0,
+      "price_change_pct": -0.8,
       "status": "",
       "key_news": "",
       "headline": "",
@@ -67,7 +67,7 @@ window.WEEKLY_DATA = {
     {
       "ticker": "MU",
       "company": "MU",
-      "price_change_pct": 7.9,
+      "price_change_pct": -16.9,
       "status": "WATCHLIST",
       "key_news": "**ועדת השקעות - ישיבה** **אימות קלטים** * HANDOFF אנליסט: קיבלנו",
       "headline": "",
@@ -76,7 +76,7 @@ window.WEEKLY_DATA = {
     {
       "ticker": "IBIT",
       "company": "IBIT",
-      "price_change_pct": -0.1,
+      "price_change_pct": -2.8,
       "status": "",
       "key_news": "",
       "headline": "",
@@ -85,7 +85,7 @@ window.WEEKLY_DATA = {
     {
       "ticker": "GLDM",
       "company": "GLDM",
-      "price_change_pct": 1.9,
+      "price_change_pct": 0.0,
       "status": "",
       "key_news": "",
       "headline": "",
@@ -94,7 +94,7 @@ window.WEEKLY_DATA = {
     {
       "ticker": "VST",
       "company": "VST",
-      "price_change_pct": 7.1,
+      "price_change_pct": -12.3,
       "status": "",
       "key_news": "",
       "headline": "",
@@ -103,7 +103,7 @@ window.WEEKLY_DATA = {
     {
       "ticker": "APLD",
       "company": "APLD",
-      "price_change_pct": 2.8,
+      "price_change_pct": -8.4,
       "status": "",
       "key_news": "",
       "headline": "",
@@ -112,7 +112,7 @@ window.WEEKLY_DATA = {
     {
       "ticker": "OKLO",
       "company": "OKLO",
-      "price_change_pct": -3.5,
+      "price_change_pct": -11.8,
       "status": "",
       "key_news": "",
       "headline": "",
@@ -121,7 +121,7 @@ window.WEEKLY_DATA = {
     {
       "ticker": "DRAM",
       "company": "DRAM",
-      "price_change_pct": 1.6,
+      "price_change_pct": -13.6,
       "status": null,
       "key_news": "[ic: לא התקבל פלט מ-Groq]",
       "headline": "",
@@ -130,7 +130,7 @@ window.WEEKLY_DATA = {
     {
       "ticker": "CCJ",
       "company": "CCJ",
-      "price_change_pct": 0.6,
+      "price_change_pct": -3.3,
       "status": "WATCHLIST",
       "key_news": "| מדד | ערך | | --- | --- | | שם חברה | CAMECO CORPORATION |",
       "headline": "",
@@ -140,46 +140,46 @@ window.WEEKLY_DATA = {
   "risk_matrix": [],
   "opportunities": [
     {
-      "ticker": "DDOG",
-      "conviction": 5,
+      "ticker": "SNOW",
+      "conviction": 4,
       "timeframe": "1-2 שבועות",
-      "catalyst": "דוח רווחים קרוב עם ציפיות גבוהות",
+      "catalyst": "AI Traction Fuels Snowflake’s Guidance Boost",
       "why_not_others": "R/R 15/8, "
     },
     {
-      "ticker": "CRWD",
+      "ticker": "DDOG",
       "conviction": 4,
       "timeframe": "1-2 שבועות",
-      "catalyst": "דוח רווחים וציפיות לגידול",
+      "catalyst": "Datadog Jumped 7.7% Following Upward PT Revisions",
       "why_not_others": "R/R 12/6, "
     },
     {
-      "ticker": "XOM",
+      "ticker": "REGN",
       "conviction": 4,
       "timeframe": "1-2 שבועות",
-      "catalyst": "דוח רווחים ומתחים גאופוליטיים",
+      "catalyst": "REGN Q2 Deep Dive: Pipeline Progress and Product Momentum Drive Outperformance",
       "why_not_others": "R/R 10/5, "
     }
   ],
   "scenarios_next_week": {},
   "action_items": [
-    "מגמת השבוע: התיק השקעות נפגע בשל הירידה במניות הטכנולוגיה, במיוחד GOOG ו-META, שתרמו לירידה של 0.9% בתיק.",
-    "סיכון עיקרי לשבוע הבא: המשך הירידה במניות הטכנולוגיה, במיוחד אם דוחות הרווחים של DDOG ו-CRWD לא יעמדו בציפיות.",
-    "הזדמנות הסקנר: הקטליסט של DDOG, דוח רווחים קרוב עם ציפיות גבוהות, עדיין רלוונטי ויכול להוות הזדמנות לרכישה.",
-    "פעולה ספציפית אחת: כדאי לעקוב אחרי דוחות הרווחים של DDOG ו-CRWD, ולשקול רכישה אם הם יעמדו בציפיות."
+    "מגמת השבוע: התיק השקעות הובל על ידי MSFT עם עלייה של 21.8% בשבוע, אך הואט על ידי ירידות ב-NVDA, META ו-MU.",
+    "סיכון עיקרי לשבוע הבא: הירידות החדות במניות הטכנולוגיה, כגון NVDA ו-META, עלולות להמשיך ולהשפיע לרעה על התיק.",
+    "הזדמנות הסקנר: הקטליסט של SNOW, AI Traction Fuels Snowflake’s Guidance Boost, עדיין רלוונטי ויכול להוות הזדמנות לרכישה.",
+    "פעולה ספציפית אחת: כדאי לעקוב אחרי הביצועים של MSFT ולבחון אפשרות לרכישת מניות נוספות, היות והיא הובילה את התיק בשבוע האחרון."
   ],
   "macro": {
     "spy": {
-      "price": 738.93,
-      "chg_week": -1.6
+      "price": 747.03,
+      "chg_week": 1.2
     },
     "qqq": {
-      "price": 684.23,
-      "chg_week": -3.1
+      "price": 687.99,
+      "chg_week": -0.6
     },
     "vix": {
-      "price": 18.58,
-      "chg_week": 11.1
+      "price": 15.99,
+      "chg_week": -14.5
     }
   }
 };
