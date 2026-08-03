@@ -1,12 +1,12 @@
 {
-  "generated": "2026-07-31",
-  "generated_time": "05:28",
-  "market_date": "2026-07-31",
+  "generated": "2026-08-03",
+  "generated_time": "05:34",
+  "market_date": "2026-08-03",
   "has_alerts": false,
   "alert_tickers": [],
   "macro": {
-    "spy_chg_pct": 1.68,
-    "qqq_chg_pct": 3.3,
+    "spy_chg_pct": 0.72,
+    "qqq_chg_pct": 0.65,
     "vix": null
   },
   "holdings": [
@@ -14,27 +14,27 @@
       "ticker": "NVDA",
       "sector": "AI / Semiconductors",
       "layer": "Growth",
-      "price": 195.04,
-      "chg_pct": 2.65,
-      "vol_ratio": 1.0,
-      "rsi": 37.4,
-      "w52_pos_pct": 43,
+      "price": 200.75,
+      "chg_pct": 2.93,
+      "vol_ratio": 1.1,
+      "rsi": 47.7,
+      "w52_pos_pct": 51,
       "analyst_target": 302.83,
-      "analyst_upside_pct": 55.3,
+      "analyst_upside_pct": 50.8,
       "days_to_earnings": null,
       "verdict": null,
       "news": [
         {
-          "title": "Warren Buffett's 1 Recommendation for Most Investors Turned $10,000 Into More Than $40,000 in 10 Years",
-          "url": "https://www.fool.com/investing/2026/07/31/warren-buffett-recommendation-turned-10000-40000/?.tsrc=rss"
+          "title": "Apple's Hardware Is Ready for On-Device AI and PrismML Just Delivered a Real Breakthrough",
+          "url": "https://www.fool.com/investing/2026/08/03/apples-hardware-is-ready-for-on-device-ai-and-pris/?.tsrc=rss"
         },
         {
-          "title": "Billionaire Bill Ackman Called SpaceX's Starlink a \"Near Monopoly\" in Global Satellite Internet, But Said He Won't Buy the Stock.",
-          "url": "https://www.fool.com/investing/2026/07/31/billionaire-bill-ackman-called-spacexs-starlink-a/?.tsrc=rss"
+          "title": "Down 48%, Is Oracle Stock a Buy Right Now?",
+          "url": "https://www.fool.com/investing/2026/08/03/down-48-is-oracle-stock-a-buy-right-now/?.tsrc=rss"
         },
         {
-          "title": "Jensen Huang Says Memory Is Now AI's Biggest Bottleneck. Here's What That Means for Nvidia.",
-          "url": "https://www.fool.com/investing/2026/07/31/jensen-huang-says-memory-is-now-ais-biggest-bottle/?.tsrc=rss"
+          "title": "The Bond Market Is Doing Something for the First Time in Nearly 20 Years. Here's What It Means for Investors.",
+          "url": "https://www.fool.com/investing/2026/08/02/bond-market-doing-something-first-time-20-years/?.tsrc=rss"
         }
       ]
     },
@@ -42,27 +42,27 @@
       "ticker": "MSFT",
       "sector": "Tech / Cloud / AI",
       "layer": "Stability",
-      "price": 451.1,
-      "chg_pct": 15.51,
-      "vol_ratio": 3.4,
-      "rsi": 73.6,
-      "w52_pos_pct": 49,
-      "analyst_target": 561.58,
-      "analyst_upside_pct": 24.5,
+      "price": 464.72,
+      "chg_pct": 3.02,
+      "vol_ratio": 1.7,
+      "rsi": 75.0,
+      "w52_pos_pct": 56,
+      "analyst_target": 563.05,
+      "analyst_upside_pct": 21.2,
       "days_to_earnings": null,
       "verdict": null,
       "news": [
         {
-          "title": "Dow Jones Futures: Apple, Amazon Diverge Late; What To Do After AI Stocks Surge",
-          "url": "https://finance.yahoo.com/m/410b5188-fada-3c74-b2e7-6fb6f4fcea6e/dow-jones-futures%3A-apple%2C.html?.tsrc=rss"
+          "title": "Why Microsoft Stock Is Surging",
+          "url": "https://www.fool.com/investing/2026/08/02/why-microsoft-stock-is-surging/?.tsrc=rss"
         },
         {
-          "title": "Amazon Stock Pops 9.5% After-Hours as AWS Fuels Earnings Beat: Jim Cramer Calls it 'Astonishing'",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/amazon-stock-pops-9-5-023240167.html?.tsrc=rss"
+          "title": "Why Retail Traders Couldn’t Take Their Eyes Off These Stocks Last Week: AAPL, MSFT, AMZN, META, TSLA",
+          "url": "https://stocktwits.com/news-articles/markets/equity/why-retail-traders-couldn-nott-take-their-eyes-off-these-stocks-last-week-aapl-msft-amzn-meta-tsla/cZoRDhIRJ5m?.tsrc=rss"
         },
         {
-          "title": "IREN Ltd. (IREN) is Gaining Momentum. This Tech Giant May Be Playing a Big Role",
-          "url": "https://finance.yahoo.com/technology/ai/articles/iren-ltd-iren-gaining-momentum-013647455.html?.tsrc=rss"
+          "title": "SpaceX vs. the \"Magnificent Seven\": How the New Nasdaq-100 Member Stacks Up",
+          "url": "https://www.fool.com/investing/2026/08/02/spacex-vs-the-magnificent-seven-how-the-new-nasdaq/?.tsrc=rss"
         }
       ]
     },
@@ -70,42 +70,55 @@
       "ticker": "GOOG",
       "sector": "Tech / Search / AI",
       "layer": "Stability",
-      "price": 333.68,
-      "chg_pct": -0.62,
-      "vol_ratio": 0.9,
-      "rsi": 39.9,
-      "w52_pos_pct": 67,
+      "price": 356.65,
+      "chg_pct": 6.88,
+      "vol_ratio": 1.6,
+      "rsi": 52.4,
+      "w52_pos_pct": 78,
       "analyst_target": 421.79,
-      "analyst_upside_pct": 26.4,
+      "analyst_upside_pct": 18.3,
       "days_to_earnings": null,
       "verdict": null,
-      "news": []
+      "news": [
+        {
+          "title": "SpaceX vs. the \"Magnificent Seven\": How the New Nasdaq-100 Member Stacks Up",
+          "url": "https://www.fool.com/investing/2026/08/02/spacex-vs-the-magnificent-seven-how-the-new-nasdaq/?.tsrc=rss"
+        },
+        {
+          "title": "Big Tech’s $2 trillion AI shakeout just changed everything",
+          "url": "https://www.thestreet.com/investing/big-techs-2-trillion-ai-shakeout-just-changed-everything?.tsrc=rss"
+        },
+        {
+          "title": "Warren Buffett Regretted Not Investing in Alphabet Earlier. New CEO Greg Abel Won't Have the Same Worry.",
+          "url": "https://www.fool.com/investing/2026/08/02/warren-buffett-regretted-not-investing-in-alphabet/?.tsrc=rss"
+        }
+      ]
     },
     {
       "ticker": "META",
       "sector": "Social Media / AI",
       "layer": "Growth",
-      "price": 539.03,
-      "chg_pct": -7.95,
-      "vol_ratio": 2.2,
-      "rsi": 13.7,
-      "w52_pos_pct": 7,
-      "analyst_target": 778.68,
-      "analyst_upside_pct": 44.5,
+      "price": 556.71,
+      "chg_pct": 3.28,
+      "vol_ratio": 1.2,
+      "rsi": 22.9,
+      "w52_pos_pct": 13,
+      "analyst_target": 768.58,
+      "analyst_upside_pct": 38.1,
       "days_to_earnings": null,
       "verdict": null,
       "news": [
         {
-          "title": "Zuckerberg is betting big on a superintelligence future",
-          "url": "https://www.thestreet.com/personalities/zuckerberg-betting-big-on-superintelligence-future?.tsrc=rss"
+          "title": "Why Retail Traders Couldn’t Take Their Eyes Off These Stocks Last Week: AAPL, MSFT, AMZN, META, TSLA",
+          "url": "https://stocktwits.com/news-articles/markets/equity/why-retail-traders-couldn-nott-take-their-eyes-off-these-stocks-last-week-aapl-msft-amzn-meta-tsla/cZoRDhIRJ5m?.tsrc=rss"
         },
         {
-          "title": "Dow Jones Futures: Apple, Amazon Diverge Late; What To Do After AI Stocks Surge",
-          "url": "https://finance.yahoo.com/m/410b5188-fada-3c74-b2e7-6fb6f4fcea6e/dow-jones-futures%3A-apple%2C.html?.tsrc=rss"
+          "title": "Jeff Bezos Backed a $2.6 Billion AI Startup That's Partnering With Nvidia and Meta on New Chip Materials",
+          "url": "https://www.fool.com/investing/2026/08/02/jeff-bezos-backed-a-26-billion-ai-startup-thats-pa/?.tsrc=rss"
         },
         {
-          "title": "Is Meta Platforms (META) Still Undervalued Despite Heavy AI Spending?",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/meta-platforms-meta-still-undervalued-010638373.html?.tsrc=rss"
+          "title": "SpaceX vs. the \"Magnificent Seven\": How the New Nasdaq-100 Member Stacks Up",
+          "url": "https://www.fool.com/investing/2026/08/02/spacex-vs-the-magnificent-seven-how-the-new-nasdaq/?.tsrc=rss"
         }
       ]
     },
@@ -113,55 +126,42 @@
       "ticker": "AVGO",
       "sector": "Semiconductors",
       "layer": "Growth",
-      "price": 387.84,
-      "chg_pct": 4.73,
-      "vol_ratio": 1.1,
-      "rsi": 45.0,
+      "price": 389.28,
+      "chg_pct": 0.37,
+      "vol_ratio": 1.0,
+      "rsi": 52.4,
       "w52_pos_pct": 50,
       "analyst_target": 527.88,
-      "analyst_upside_pct": 36.1,
+      "analyst_upside_pct": 35.6,
       "days_to_earnings": null,
       "verdict": null,
-      "news": [
-        {
-          "title": "Should Samsung’s US$200 Billion AI Chip Pact With Broadcom Reshape Action From AVGO Investors?",
-          "url": "https://finance.yahoo.com/technology/ai/articles/samsung-us-200-billion-ai-220900645.html?.tsrc=rss"
-        },
-        {
-          "title": "Apple commits more than $30 billion to US manufacturing",
-          "url": "https://finance.yahoo.com/video/apple-commits-more-than-30-billion-to-us-manufacturing-220800117.html?.tsrc=rss"
-        },
-        {
-          "title": "Apple Tops Third-Quarter Estimates; IPad, Services Revenue Falls Short",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/apple-tops-third-quarter-estimates-211942912.html?.tsrc=rss"
-        }
-      ]
+      "news": []
     },
     {
       "ticker": "MU",
       "sector": "Memory Chips",
       "layer": "Growth",
-      "price": 874.66,
-      "chg_pct": 18.36,
-      "vol_ratio": 1.3,
-      "rsi": 43.2,
-      "w52_pos_pct": 67,
-      "analyst_target": 1507.38,
-      "analyst_upside_pct": 72.3,
+      "price": 823.03,
+      "chg_pct": -5.9,
+      "vol_ratio": 1.2,
+      "rsi": 42.7,
+      "w52_pos_pct": 62,
+      "analyst_target": 1522.26,
+      "analyst_upside_pct": 85.0,
       "days_to_earnings": null,
       "verdict": null,
       "news": [
         {
-          "title": "MU, SNDK, WDC, SKHY Stock Jump After-Hours — Memory Chipmakers Soar After Amazon, Apple Management Flag Soaring Costs, Supply Crunch",
-          "url": "https://stocktwits.com/news-articles/markets/equity/memory-chipmakers-soar-after-amazon-apple-management-flag-soaring-costs-supply-crunch/cZNEYyrRJ2Q?.tsrc=rss"
+          "title": "MU, SNDK, SKHY, DRAM In Focus: Korean Stocks Dip Again, But Morgan Stanley Sees Sharp Growth Ahead",
+          "url": "https://stocktwits.com/news-articles/markets/equity/mu-sndk-skhy-dram-in-focus-korean-stocks-dip-again-but-morgan-stanley-sees-sharp-growth-ahead/cZoR6JDRJ5o?.tsrc=rss"
         },
         {
-          "title": "AI Chip Selloff Creates Buying Opportunity in Nvidia and Micron Stock",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/ai-chip-selloff-creates-buying-222900764.html?.tsrc=rss"
+          "title": "Micron’s 39% Plunge and SK Hynix, Samsung’s $1.3T Spending Worries US Chipmakers",
+          "url": "https://beincrypto.com/micron-plunge-us-chipmakers-worry/?.tsrc=rss"
         },
         {
-          "title": "Micron Technology (MU) Stock Gets Fair Value Bump As AI Demand And Contracts Draw Praise",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/micron-technology-mu-stock-gets-221028055.html?.tsrc=rss"
+          "title": "Micron Stock Falls. Here’s What’s Overshadowing Big Tech Spending.",
+          "url": "https://finance.yahoo.com/m/7fa3af56-c624-3e1b-95e7-d0de14ed1384/micron-stock-falls.-here%E2%80%99s.html?.tsrc=rss"
         }
       ]
     },
@@ -169,27 +169,27 @@
       "ticker": "IBIT",
       "sector": "Crypto",
       "layer": "Speculation",
-      "price": 36.7,
-      "chg_pct": 1.94,
-      "vol_ratio": 0.9,
-      "rsi": 53.1,
-      "w52_pos_pct": 10,
+      "price": 35.64,
+      "chg_pct": -2.89,
+      "vol_ratio": 1.5,
+      "rsi": 52.7,
+      "w52_pos_pct": 7,
       "analyst_target": null,
       "analyst_upside_pct": null,
       "days_to_earnings": null,
       "verdict": null,
       "news": [
         {
-          "title": "Even the DRAM Bears Are Committed to the Ride",
-          "url": "http://www.etf.com/sections/equity/even-dram-bears-are-committed-ride?utm_source=yahoo-finance&utm_medium=rss&utm_campaign=yahoo-finance-rss&.tsrc=rss"
+          "title": "Is the Quantum Threat to Bitcoin Real or Not? Galaxy Digital Just Pledged $5 Million to Boost Bitcoin's Quantum Resistance.",
+          "url": "https://www.fool.com/investing/2026/08/02/is-the-quantum-threat-to-bitcoin-real-or-not-galax/?.tsrc=rss"
         },
         {
-          "title": "Why Are Ethereum ETF Outperforming Bitcoin ETF in 2026?",
-          "url": "https://cryptonews.com/news/ethereum-etf-inflows-bitcoin-etf-outflows-2026/?.tsrc=rss"
+          "title": "Crypto Market Today, July 31: Bitcoin Slides Below $63,000 and Coinbase Tumbles 10%",
+          "url": "https://www.fool.com/coverage/stock-market-today/2026/07/31/crypto-market-today-july-31-bitcoin-slides-below-usd63-000-and-coinbase-tumbles-10/?.tsrc=rss"
         },
         {
-          "title": "Bitcoin ETFs Bleed While Ethereum Funds Post Third Straight Weekly Inflow",
-          "url": "https://beincrypto.com/bitcoin-etf-outflows-ethereum-etf-inflows/?.tsrc=rss"
+          "title": "BlackRock Bitcoin Buying Rebounds as ETF Investors Sit 22% Underwater",
+          "url": "https://beincrypto.com/blackrock-bitcoin-buying-etf-investors-underwater/?.tsrc=rss"
         }
       ]
     },
@@ -197,72 +197,50 @@
       "ticker": "GLDM",
       "sector": "Commodities / Gold",
       "layer": "Stability",
-      "price": 81.33,
-      "chg_pct": 1.64,
-      "vol_ratio": 0.9,
-      "rsi": 50.2,
-      "w52_pos_pct": 36,
+      "price": 80.14,
+      "chg_pct": -1.46,
+      "vol_ratio": 1.3,
+      "rsi": 54.0,
+      "w52_pos_pct": 33,
       "analyst_target": null,
       "analyst_upside_pct": null,
       "days_to_earnings": null,
       "verdict": null,
-      "news": [
-        {
-          "title": "Gold Just Had Its Worst Quarter Since 2013: 3 Reasons to Buy the Dip With This Dirt-Cheap ETF",
-          "url": "https://247wallst.com/investing/etf/2026/07/28/gold-just-had-its-worst-quarter-since-2013-3-reasons-to-buy-the-dip-with-this-dirt-cheap-etf/?.tsrc=rss"
-        },
-        {
-          "title": "What the Charts Are Saying About the Market Right Now",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/charts-saying-market-now-212100228.html?.tsrc=rss"
-        },
-        {
-          "title": "Beyond GLD: The 0.40% Fee Drag That Is Slowly Bleeding Your Gold Returns",
-          "url": "https://247wallst.com/investing/2026/07/21/beyond-gld-the-0-40-fee-drag-that-is-slowly-bleeding-your-gold-returns/?.tsrc=rss"
-        }
-      ]
+      "news": []
     },
     {
       "ticker": "VST",
       "sector": "Energy / Nuclear",
       "layer": "Growth",
-      "price": 148.62,
-      "chg_pct": 4.07,
+      "price": 148.19,
+      "chg_pct": -0.29,
       "vol_ratio": 1.1,
-      "rsi": 41.3,
+      "rsi": 41.5,
       "w52_pos_pct": 18,
       "analyst_target": 221.94,
-      "analyst_upside_pct": 49.3,
-      "days_to_earnings": 7,
+      "analyst_upside_pct": 49.8,
+      "days_to_earnings": 4,
       "verdict": null,
-      "news": [
-        {
-          "title": "Duke Energy to Release Q2 Earnings: What's in Store for the Stock?",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/duke-energy-release-q2-earnings-163700654.html?.tsrc=rss"
-        },
-        {
-          "title": "Morgan Stanley Sees CIFR, GLXY Upside From ERCOT’s 65 GW Batch Zero",
-          "url": "https://blockspace.media/insight/ercot-batch-zero-morgan-stanley-base-load-2026/?.tsrc=rss"
-        },
-        {
-          "title": "Vistra (VST) Stock Looks Reasonable Following New York Data Center Limits",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/vistra-vst-stock-looks-reasonable-220839951.html?.tsrc=rss"
-        }
-      ]
+      "news": []
     },
     {
       "ticker": "APLD",
       "sector": "AI Infrastructure",
       "layer": "Speculation",
-      "price": 27.97,
-      "chg_pct": 20.46,
-      "vol_ratio": 1.3,
-      "rsi": 43.0,
-      "w52_pos_pct": 42,
-      "analyst_target": 73.32,
-      "analyst_upside_pct": 162.1,
+      "price": 27.39,
+      "chg_pct": -2.07,
+      "vol_ratio": 1.1,
+      "rsi": 46.6,
+      "w52_pos_pct": 39,
+      "analyst_target": 74.14,
+      "analyst_upside_pct": 170.7,
       "days_to_earnings": null,
       "verdict": null,
       "news": [
+        {
+          "title": "Earnings Calendar and Analysis for This Week (August 3-7)",
+          "url": "https://www.kiplinger.com/investing/stocks/17494/next-week-earnings-calendar-stocks?.tsrc=rss"
+        },
         {
           "title": "As Revenue Surges 400%, Is Applied Digital Stock a Buy?",
           "url": "https://www.fool.com/investing/2026/07/30/as-revenue-surges-400-is-applied-digital-stock-a-b/?.tsrc=rss"
@@ -270,10 +248,6 @@
         {
           "title": "Applied Digital Posted a Solid Quarter and the Stock Is Moving Higher. What to Expect Next.",
           "url": "https://www.barchart.com/story/news/3558433/applied-digital-posted-a-solid-quarter-and-the-stock-is-moving-higher-what-to-expect-next?.tsrc=rss"
-        },
-        {
-          "title": "Applied Digital: The AI Selloff May Have Created a 159% Opportunity in This Under-$30 Stock",
-          "url": "https://www.barchart.com/story/news/3556410/applied-digital-the-ai-selloff-may-have-created-a-159-opportunity-in-this-under-30-stock?.tsrc=rss"
         }
       ]
     },
@@ -281,27 +255,27 @@
       "ticker": "OKLO",
       "sector": "Nuclear Energy",
       "layer": "Speculation",
-      "price": 41.09,
-      "chg_pct": 11.54,
-      "vol_ratio": 1.2,
-      "rsi": 35.6,
-      "w52_pos_pct": 3,
+      "price": 38.83,
+      "chg_pct": -5.5,
+      "vol_ratio": 1.0,
+      "rsi": 36.7,
+      "w52_pos_pct": 1,
       "analyst_target": 84.2,
-      "analyst_upside_pct": 104.9,
-      "days_to_earnings": 7,
+      "analyst_upside_pct": 116.8,
+      "days_to_earnings": 4,
       "verdict": null,
       "news": [
         {
-          "title": "Oklo vs. NuScale: Which One Actually Has Paying Customers Lined Up?",
-          "url": "https://www.fool.com/investing/2026/07/30/oklo-vs-nuscale-which-one-actually-has-paying-cust/?.tsrc=rss"
+          "title": "This Is The Best-Performing Nuclear Stock Now Even As Peers Are Losing Value",
+          "url": "https://stocktwits.com/news-articles/markets/equity/this-is-the-best-performing-nuclear-stock-now-even-as-peers-are-losing-value/cZoR6lERJ5q?.tsrc=rss"
         },
         {
-          "title": "This Nuclear Stock Just Dropped Nearly 46% -- Screaming Buy or Warning Sign?",
-          "url": "https://www.fool.com/investing/2026/07/30/this-nuclear-stock-just-dropped-46-screaming/?.tsrc=rss"
+          "title": "Bloom Energy vs. Oklo: Which Power Stock Is a Better Buy in 2026?",
+          "url": "https://www.fool.com/coverage/better-buy/2026/08/02/bloom-energy-vs-oklo-which-power-stock-is-a-better-buy-in-2026/?.tsrc=rss"
         },
         {
-          "title": "Oklo vs. Plug Power: Which Utilities Stock Is a Better Buy in 2026?",
-          "url": "https://www.fool.com/coverage/better-buy/2026/07/29/oklo-vs-plug-power-which-utilities-stock-is-a-better-buy-in-2026/?.tsrc=rss"
+          "title": "What's Inside URA Decides This Dip's Fate",
+          "url": "https://www.trefis.com/articles/609653/whats-inside-ura-decides-this-dips-fate/2026-08-01?.tsrc=rss"
         }
       ]
     },
@@ -309,11 +283,11 @@
       "ticker": "DRAM",
       "sector": "Memory Chips",
       "layer": "Growth",
-      "price": 52.34,
-      "chg_pct": 16.7,
-      "vol_ratio": 1.7,
-      "rsi": 38.8,
-      "w52_pos_pct": 47,
+      "price": 50.37,
+      "chg_pct": -3.76,
+      "vol_ratio": 1.2,
+      "rsi": 42.1,
+      "w52_pos_pct": 44,
       "analyst_target": null,
       "analyst_upside_pct": null,
       "days_to_earnings": null,
@@ -337,84 +311,76 @@
       "ticker": "CCJ",
       "sector": "אנרגיה",
       "layer": "Growth",
-      "price": 88.23,
-      "chg_pct": 4.33,
-      "vol_ratio": 1.1,
-      "rsi": 37.8,
-      "w52_pos_pct": 29,
-      "analyst_target": 132.14,
-      "analyst_upside_pct": 49.8,
-      "days_to_earnings": 0,
+      "price": 86.38,
+      "chg_pct": -2.1,
+      "vol_ratio": 1.5,
+      "rsi": 43.2,
+      "w52_pos_pct": 26,
+      "analyst_target": 133.35,
+      "analyst_upside_pct": 54.4,
+      "days_to_earnings": null,
       "verdict": null,
       "news": [
         {
-          "title": "The Bull Case For Cameco (TSX:CCO) Could Change Following U.S.-Saudi Nuclear Deal Prospects Via Westinghouse",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/bull-case-cameco-tsx-cco-031709917.html?.tsrc=rss"
+          "title": "News of the day: GDP gains, Ontario nickel mine approval, oilpatch growth, ignoring rate hike risk, Cameco's Westinghouse IPO and more",
+          "url": "https://financialpost.com/uncategorized/news-of-the-day-gdp-gains-ontario-nickel-mine-approval-oilpatch-growth-ignoring-rate-hike-risk-camecos-westinghouse-ipo-and-more?.tsrc=rss"
         },
         {
-          "title": "Purecore Signs Definitive Agreement with Skyharbour for Yurchison Uranium Property Option in Athabasca Basin",
-          "url": "https://finance.yahoo.com/energy/articles/purecore-signs-definitive-agreement-skyharbour-150600647.html?.tsrc=rss"
+          "title": "Cameco Corp (CCJ) (Q2 2026) Earnings Call Highlights: Record Uranium Prices and Strategic ...",
+          "url": "https://finance.yahoo.com/energy/articles/cameco-corp-ccj-q2-2026-190111354.html?.tsrc=rss"
         },
         {
-          "title": "Skyharbour Signs Definitive Agreement with Purecore to Option its Yurchison Uranium Property in the Athabasca Basin",
-          "url": "https://finance.yahoo.com/energy/articles/skyharbour-signs-definitive-agreement-purecore-120000484.html?.tsrc=rss"
+          "title": "Westinghouse IPO Could Be America’s Biggest Nuclear Offering Yet",
+          "url": "https://finance.yahoo.com/m/b3cf29b8-c03b-3562-8353-08b68ed765e3/westinghouse-ipo-could-be.html?.tsrc=rss"
         }
       ]
     }
   ],
-  "watchlist_triggers": [
-    {
-      "ticker": "AMZN",
-      "trigger_price": 230.0,
-      "current_price": 235.5,
-      "distance_pct": 2.39
-    }
-  ],
+  "watchlist_triggers": [],
   "groq_insights": [
-    "OKLO +11.54%: ייתכן תגובה חיובית לפני פרסום תוצאות רבעון בתוך 7 ימים, עם זאת יש להתייחס לחדשות על המתחרים בסקטור האנרגיה",
-    "ROCK -0.53%: ייתכן תגובה לאחור לקראת פרסום תוצאות רבעון בתוך 5 ימים, עם זאת יש לבדוק את החדשות על המתחרים בסקטור",
-    "CCJ +4.33%: ייתכן תגובה חיובית לפני פרסום תוצאות רבעון מחר, עם זאת יש להתייחס לחדשות על המתחרים בסקטור האנרגיה",
-    "VST +4.07%: ייתכן תגובה חיובית לפני פרסום תוצאות רבעון בתוך 7 ימים, עם זאת יש לבדוק את החדשות על המתחרים בסקטור האנרגיה"
+    "VST עם earnings_days 4: הסקטור הפיננסי עלול להיפגע מדוחות רווחים חלשים",
+    "OKLO -5.5%: ייתכן תגובה לאחור לאחר העליות החדות בגזרת האנרגיה, או חשש מבדיקות רגולטוריות",
+    "GOOG +6.88%: הסקטור הטכנולוגי ממשיך לצבור תאוצה, כדאי לעקוב אחר חדשות AI"
   ],
   "sector_summary": [
     {
       "sector": "AI / Semiconductors",
-      "avg_chg_pct": 2.65,
+      "avg_chg_pct": 2.93,
       "tickers": [
         "NVDA"
       ]
     },
     {
       "sector": "Tech / Cloud / AI",
-      "avg_chg_pct": 15.51,
+      "avg_chg_pct": 3.02,
       "tickers": [
         "MSFT"
       ]
     },
     {
       "sector": "Tech / Search / AI",
-      "avg_chg_pct": -0.62,
+      "avg_chg_pct": 6.88,
       "tickers": [
         "GOOG"
       ]
     },
     {
       "sector": "Social Media / AI",
-      "avg_chg_pct": -7.95,
+      "avg_chg_pct": 3.28,
       "tickers": [
         "META"
       ]
     },
     {
       "sector": "Semiconductors",
-      "avg_chg_pct": 4.73,
+      "avg_chg_pct": 0.37,
       "tickers": [
         "AVGO"
       ]
     },
     {
       "sector": "Memory Chips",
-      "avg_chg_pct": 17.53,
+      "avg_chg_pct": -4.83,
       "tickers": [
         "MU",
         "DRAM"
@@ -422,42 +388,42 @@
     },
     {
       "sector": "Crypto",
-      "avg_chg_pct": 1.94,
+      "avg_chg_pct": -2.89,
       "tickers": [
         "IBIT"
       ]
     },
     {
       "sector": "Commodities / Gold",
-      "avg_chg_pct": 1.64,
+      "avg_chg_pct": -1.46,
       "tickers": [
         "GLDM"
       ]
     },
     {
       "sector": "Energy / Nuclear",
-      "avg_chg_pct": 4.07,
+      "avg_chg_pct": -0.29,
       "tickers": [
         "VST"
       ]
     },
     {
       "sector": "AI Infrastructure",
-      "avg_chg_pct": 20.46,
+      "avg_chg_pct": -2.07,
       "tickers": [
         "APLD"
       ]
     },
     {
       "sector": "Nuclear Energy",
-      "avg_chg_pct": 11.54,
+      "avg_chg_pct": -5.5,
       "tickers": [
         "OKLO"
       ]
     },
     {
       "sector": "אנרגיה",
-      "avg_chg_pct": 4.33,
+      "avg_chg_pct": -2.1,
       "tickers": [
         "CCJ"
       ]
