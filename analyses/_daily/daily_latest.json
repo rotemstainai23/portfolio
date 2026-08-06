@@ -1,12 +1,12 @@
 {
-  "generated": "2026-08-05",
-  "generated_time": "04:58",
-  "market_date": "2026-08-05",
+  "generated": "2026-08-06",
+  "generated_time": "04:59",
+  "market_date": "2026-08-06",
   "has_alerts": false,
   "alert_tickers": [],
   "macro": {
-    "spy_chg_pct": 1.8,
-    "qqq_chg_pct": 3.4,
+    "spy_chg_pct": -0.2,
+    "qqq_chg_pct": -0.9,
     "vix": null
   },
   "holdings": [
@@ -14,27 +14,27 @@
       "ticker": "NVDA",
       "sector": "AI / Semiconductors",
       "layer": "Growth",
-      "price": 211.94,
-      "chg_pct": 2.56,
-      "vol_ratio": 1.0,
-      "rsi": 49.6,
-      "w52_pos_pct": 66,
+      "price": 206.64,
+      "chg_pct": 2.93,
+      "vol_ratio": 1.2,
+      "rsi": 45.7,
+      "w52_pos_pct": 59,
       "analyst_target": 302.83,
-      "analyst_upside_pct": 42.9,
-      "days_to_earnings": 21,
+      "analyst_upside_pct": 46.5,
+      "days_to_earnings": 20,
       "verdict": null,
       "news": [
         {
-          "title": "AMD Vs. Broadcom: Why Broadcom is Actually Nvidia’s Biggest Problem",
-          "url": "https://247wallst.com/investing/2026/08/05/amd-vs-broadcom-why-broadcom-is-actually-nvidias-biggest-problem/?.tsrc=rss"
+          "title": "Axon Just Delivered a Huge Beat-and-Raise. So Why Is the Stock Down?",
+          "url": "https://www.fool.com/investing/2026/08/06/axon-just-delivered-a-huge-beat-and-raise-so-why-i/?.tsrc=rss"
         },
         {
-          "title": "Hyperscaler Rally: 4 Stocks to Buy Before It's Too Late",
-          "url": "https://www.fool.com/investing/2026/08/04/hyperscaler-rally-4-stocks-to-buy-before-its-too-l/?.tsrc=rss"
+          "title": "Analysis-Samsung, SK Hynix shareholders call for bigger payouts from AI cash mountain",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/analysis-samsung-sk-hynix-shareholders-042824815.html?.tsrc=rss"
         },
         {
-          "title": "Better Robotics Stock: Tesla vs. Nvidia",
-          "url": "https://www.fool.com/investing/2026/08/04/better-robotics-stock-tesla-vs-nvidia/?.tsrc=rss"
+          "title": "Marvell Is Positioned to Absorb a Disproportionate Amount of This AI Capex Surge, So I Keep Buying",
+          "url": "https://247wallst.com/investing/2026/08/06/marvell-is-positioned-to-absorb-a-disproportionate-amount-of-this-ai-capex-surge-so-i-keep-buying/?.tsrc=rss"
         }
       ]
     },
@@ -42,109 +42,122 @@
       "ticker": "MSFT",
       "sector": "Tech / Cloud / AI",
       "layer": "Stability",
-      "price": 492.81,
-      "chg_pct": 1.06,
-      "vol_ratio": 1.3,
-      "rsi": 80.6,
-      "w52_pos_pct": 70,
+      "price": 487.65,
+      "chg_pct": 4.93,
+      "vol_ratio": 0.8,
+      "rsi": 81.3,
+      "w52_pos_pct": 68,
       "analyst_target": 562.73,
-      "analyst_upside_pct": 14.2,
+      "analyst_upside_pct": 15.4,
       "days_to_earnings": null,
       "verdict": null,
-      "news": []
+      "news": [
+        {
+          "title": "IFI TECHSOLUTIONS ACHIEVES MICROSOFT AZURE CLOUD SECURITY SPECIALIZATION",
+          "url": "https://finance.yahoo.com/technology/ai/articles/ifi-techsolutions-achieves-microsoft-azure-043000559.html?.tsrc=rss"
+        },
+        {
+          "title": "Should Henry Schein’s Raised 2026 Sales Growth Guidance Require Action From Henry Schein (HSIC) Investors?",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/henry-schein-raised-2026-sales-011252856.html?.tsrc=rss"
+        },
+        {
+          "title": "Review & Preview: The Dow’s Streak Survives",
+          "url": "https://finance.yahoo.com/m/fbe192c8-7712-33ff-8c8f-1b3d03ab5884/review-%26-preview%3A-the-dow%E2%80%99s.html?.tsrc=rss"
+        }
+      ]
     },
     {
       "ticker": "GOOG",
       "sector": "Tech / Search / AI",
       "layer": "Stability",
-      "price": 375.35,
-      "chg_pct": 0.77,
-      "vol_ratio": 1.0,
-      "rsi": 52.1,
-      "w52_pos_pct": 86,
+      "price": 372.47,
+      "chg_pct": 4.44,
+      "vol_ratio": 1.4,
+      "rsi": 55.7,
+      "w52_pos_pct": 85,
       "analyst_target": 421.79,
-      "analyst_upside_pct": 12.4,
+      "analyst_upside_pct": 13.2,
       "days_to_earnings": null,
       "verdict": null,
-      "news": []
+      "news": [
+        {
+          "title": "Alphabet Post-Earnings Rebound is On: Buy at $363?",
+          "url": "https://247wallst.com/investing/2026/08/05/alphabet-post-earnings-rebound-is-on-buy-at-363/?.tsrc=rss"
+        },
+        {
+          "title": "Alphabet CEO Sundar Pichai Just Made a $200 Billion Infrastructure Move. Nvidia, Micron, and Broadcom Investors Should Rejoice.",
+          "url": "https://www.fool.com/investing/2026/08/05/alphabet-ceo-sundar-pichai-just-made-a-200-billion/?.tsrc=rss"
+        },
+        {
+          "title": "Dow Jones Futures: Nvidia Lifts Dow, But Google, SpaceX Skid; Sandisk, Western Digital Lead Earnings Losers Late",
+          "url": "https://finance.yahoo.com/m/23f39a0c-7e02-33c1-8c52-010f887f1807/dow-jones-futures%3A-nvidia.html?.tsrc=rss"
+        }
+      ]
     },
     {
       "ticker": "META",
       "sector": "Social Media / AI",
       "layer": "Growth",
-      "price": 587.94,
-      "chg_pct": -0.39,
-      "vol_ratio": 0.9,
-      "rsi": 26.2,
+      "price": 590.24,
+      "chg_pct": 6.02,
+      "vol_ratio": 0.8,
+      "rsi": 33.4,
       "w52_pos_pct": 25,
       "analyst_target": 759.41,
-      "analyst_upside_pct": 29.2,
+      "analyst_upside_pct": 28.7,
       "days_to_earnings": null,
       "verdict": null,
-      "news": []
+      "news": [
+        {
+          "title": "News Q4 Earnings Call Highlights",
+          "url": "https://www.marketbeat.com/instant-alerts/news-q4-earnings-call-highlights-2026-08-05/?utm_source=yahoofinance&utm_medium=yahoofinance&.tsrc=rss"
+        },
+        {
+          "title": "Meta Joins OpenAI and Anthropic in AI Cybersecurity Scare After Model Hacks Third Party: 'We Are Currently Investigating…'",
+          "url": "https://finance.yahoo.com/technology/ai/articles/meta-joins-openai-anthropic-ai-021055968.html?.tsrc=rss"
+        },
+        {
+          "title": "Elon Musk’s Controversial X Staffer Steps Back After Nearly 30 Products",
+          "url": "https://beincrypto.com/nikita-bier-steps-back-x-product/?.tsrc=rss"
+        }
+      ]
     },
     {
       "ticker": "AVGO",
       "sector": "Semiconductors",
       "layer": "Growth",
-      "price": 418.16,
-      "chg_pct": 6.61,
-      "vol_ratio": 1.4,
-      "rsi": 59.4,
+      "price": 418.28,
+      "chg_pct": 0.03,
+      "vol_ratio": 0.8,
+      "rsi": 70.5,
       "w52_pos_pct": 64,
       "analyst_target": 527.88,
       "analyst_upside_pct": 26.2,
       "days_to_earnings": null,
       "verdict": null,
-      "news": [
-        {
-          "title": "I’m Buying Broadcom Because It Sucks Up The Hyperscaler AI Capex That Doesn’t Go To Nvidia",
-          "url": "https://247wallst.com/investing/2026/08/05/im-buying-broadcom-because-it-sucks-up-the-hyperscaler-ai-capex-that-doesnt-go-to-nvidia/?.tsrc=rss"
-        },
-        {
-          "title": "AMD Vs. Broadcom: Why Broadcom is Actually Nvidia’s Biggest Problem",
-          "url": "https://247wallst.com/investing/2026/08/05/amd-vs-broadcom-why-broadcom-is-actually-nvidias-biggest-problem/?.tsrc=rss"
-        },
-        {
-          "title": "Marvell Technology Stock Is On Sale, But Is It A Bargain?",
-          "url": "https://www.trefis.com/articles/610005/marvell-technology-stock-is-on-sale-but-is-it-a-bargain/2026-08-04?.tsrc=rss"
-        }
-      ]
+      "news": []
     },
     {
       "ticker": "MU",
       "sector": "Memory Chips",
       "layer": "Growth",
-      "price": 892.67,
-      "chg_pct": 7.62,
-      "vol_ratio": 0.8,
-      "rsi": 49.2,
-      "w52_pos_pct": 68,
+      "price": 829.5,
+      "chg_pct": 0.79,
+      "vol_ratio": 0.7,
+      "rsi": 39.7,
+      "w52_pos_pct": 63,
       "analyst_target": 1507.79,
-      "analyst_upside_pct": 68.9,
+      "analyst_upside_pct": 81.8,
       "days_to_earnings": null,
       "verdict": null,
-      "news": [
-        {
-          "title": "Is SK Hynix Quietly Winning the AI Memory Supercycle Against Micron and Sandisk?",
-          "url": "https://www.fool.com/investing/2026/08/05/is-sk-hynix-quietly-winning-the-ai-memory-supercyc/?.tsrc=rss"
-        },
-        {
-          "title": "Is Micron Stock Going Higher? You Need To Hear What Elon Musk Just Said",
-          "url": "https://www.fool.com/investing/2026/08/04/is-micron-stock-going-higher-you-need-to-hear-what/?.tsrc=rss"
-        },
-        {
-          "title": "SK Hynix Climbs as Investors Bet on Shareholder Return Plan",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/sk-hynix-climbs-investors-bet-023733079.html?.tsrc=rss"
-        }
-      ]
+      "news": []
     },
     {
       "ticker": "IBIT",
       "sector": "Crypto",
       "layer": "Speculation",
-      "price": 36.39,
-      "chg_pct": 0.64,
+      "price": 36.16,
+      "chg_pct": 1.46,
       "vol_ratio": 0.9,
       "rsi": 46.9,
       "w52_pos_pct": 9,
@@ -158,31 +171,48 @@
       "ticker": "GLDM",
       "sector": "Commodities / Gold",
       "layer": "Stability",
-      "price": 80.7,
-      "chg_pct": 0.7,
-      "vol_ratio": 0.8,
-      "rsi": 52.0,
-      "w52_pos_pct": 34,
+      "price": 84.03,
+      "chg_pct": 4.13,
+      "vol_ratio": 1.7,
+      "rsi": 69.6,
+      "w52_pos_pct": 42,
       "analyst_target": null,
       "analyst_upside_pct": null,
       "days_to_earnings": null,
       "verdict": null,
-      "news": []
+      "news": [
+        {
+          "title": "The Cheapest ETFs for Building a Core Portfolio",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/cheapest-etfs-building-core-portfolio-203100733.html?.tsrc=rss"
+        },
+        {
+          "title": "Gold Just Had Its Worst Quarter Since 2013: 3 Reasons to Buy the Dip With This Dirt-Cheap ETF",
+          "url": "https://247wallst.com/investing/etf/2026/07/28/gold-just-had-its-worst-quarter-since-2013-3-reasons-to-buy-the-dip-with-this-dirt-cheap-etf/?.tsrc=rss"
+        },
+        {
+          "title": "What the Charts Are Saying About the Market Right Now",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/charts-saying-market-now-212100228.html?.tsrc=rss"
+        }
+      ]
     },
     {
       "ticker": "VST",
       "sector": "Energy / Nuclear",
       "layer": "Growth",
-      "price": 143.23,
-      "chg_pct": -8.15,
-      "vol_ratio": 2.8,
-      "rsi": 39.0,
-      "w52_pos_pct": 12,
+      "price": 140.58,
+      "chg_pct": -1.85,
+      "vol_ratio": 1.4,
+      "rsi": 41.7,
+      "w52_pos_pct": 9,
       "analyst_target": 221.61,
-      "analyst_upside_pct": 54.7,
-      "days_to_earnings": 2,
+      "analyst_upside_pct": 57.6,
+      "days_to_earnings": 1,
       "verdict": null,
       "news": [
+        {
+          "title": "Nuclear Energy Stocks Rise on Surging Demand for Reliable Clean Power",
+          "url": "https://finance.yahoo.com/energy/articles/nuclear-energy-stocks-rise-surging-172600278.html?.tsrc=rss"
+        },
         {
           "title": "Pinnacle West Q2 Earnings Miss Estimates, Revenues Increase Y/Y",
           "url": "https://finance.yahoo.com/markets/stocks/articles/pinnacle-west-q2-earnings-miss-185400724.html?.tsrc=rss"
@@ -190,10 +220,6 @@
         {
           "title": "PSEG (PEG) Tops Q2 Earnings Estimates",
           "url": "https://finance.yahoo.com/markets/stocks/articles/pseg-peg-tops-q2-earnings-125005513.html?.tsrc=rss"
-        },
-        {
-          "title": "Eversource Energy Q2 Earnings Lag Estimates, Revenues Rise Y/Y",
-          "url": "https://finance.yahoo.com/energy/articles/eversource-energy-q2-earnings-lag-184100346.html?.tsrc=rss"
         }
       ]
     },
@@ -201,16 +227,20 @@
       "ticker": "APLD",
       "sector": "AI Infrastructure",
       "layer": "Speculation",
-      "price": 31.27,
-      "chg_pct": 6.04,
-      "vol_ratio": 1.0,
-      "rsi": 54.6,
-      "w52_pos_pct": 48,
+      "price": 29.87,
+      "chg_pct": -4.48,
+      "vol_ratio": 0.7,
+      "rsi": 57.5,
+      "w52_pos_pct": 44,
       "analyst_target": 74.14,
-      "analyst_upside_pct": 137.1,
+      "analyst_upside_pct": 148.2,
       "days_to_earnings": null,
       "verdict": null,
       "news": [
+        {
+          "title": "CFO Sells $2.6 Million Stock of AI Growth Stock",
+          "url": "https://www.fool.com/coverage/filings/2026/08/05/cfo-sells-usd2-6-million-stock-of-ai-growth-stock/?.tsrc=rss"
+        },
         {
           "title": "Applied Digital Corp (APLD)’s 400% Revenue Surge — Breakout AI Infrastructure Play or Risky Bet?",
           "url": "https://finance.yahoo.com/technology/ai/articles/applied-digital-corp-apld-400-164148284.html?.tsrc=rss"
@@ -218,10 +248,6 @@
         {
           "title": "B. Riley names Core Scientific and Applied Digital top HPC picks after sector selloff",
           "url": "https://blockspace.media/insight/b-riley-core-scientific-applied-digital-top-hpc-picks/?.tsrc=rss"
-        },
-        {
-          "title": "As Revenue Surges 400%, Is Applied Digital Stock a Buy?",
-          "url": "https://www.fool.com/investing/2026/07/30/as-revenue-surges-400-is-applied-digital-stock-a-b/?.tsrc=rss"
         }
       ]
     },
@@ -229,16 +255,20 @@
       "ticker": "OKLO",
       "sector": "Nuclear Energy",
       "layer": "Speculation",
-      "price": 43.33,
-      "chg_pct": 5.12,
-      "vol_ratio": 1.0,
-      "rsi": 46.0,
-      "w52_pos_pct": 4,
+      "price": 41.22,
+      "chg_pct": 6.16,
+      "vol_ratio": 0.6,
+      "rsi": 41.1,
+      "w52_pos_pct": 3,
       "analyst_target": 84.2,
-      "analyst_upside_pct": 94.3,
-      "days_to_earnings": 2,
+      "analyst_upside_pct": 104.3,
+      "days_to_earnings": 1,
       "verdict": null,
       "news": [
+        {
+          "title": "Should You Invest in OKLO Stock Before Q2 Earnings Release?",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/invest-oklo-stock-q2-earnings-125700826.html?.tsrc=rss"
+        },
         {
           "title": "Oklo Reports Earnings on Aug. 7. Here's What Investors Should Be Watching.",
           "url": "https://www.fool.com/investing/2026/08/04/oklos-next-earnings-report-on-aug-7-could-send-the-stock-soaring-heres-why/?.tsrc=rss"
@@ -246,10 +276,6 @@
         {
           "title": "Is Oklo Stock a No-Brainer Buy at Less Than $50?",
           "url": "https://www.fool.com/investing/2026/08/04/is-oklo-stock-a-no-brainer-buy-at-less-than-50/?.tsrc=rss"
-        },
-        {
-          "title": "Got $10,000? Here's How I'd Split It Across These 5 Energy Stocks.",
-          "url": "https://www.fool.com/investing/2026/08/04/got-10k-how-split-it-across-energy-stock/?.tsrc=rss"
         }
       ]
     },
@@ -257,11 +283,11 @@
       "ticker": "DRAM",
       "sector": "Memory Chips",
       "layer": "Growth",
-      "price": 54.89,
-      "chg_pct": 7.35,
-      "vol_ratio": 0.7,
-      "rsi": 46.9,
-      "w52_pos_pct": 52,
+      "price": 51.13,
+      "chg_pct": 1.51,
+      "vol_ratio": 0.5,
+      "rsi": 37.6,
+      "w52_pos_pct": 45,
       "analyst_target": null,
       "analyst_upside_pct": null,
       "days_to_earnings": null,
@@ -285,76 +311,63 @@
       "ticker": "CCJ",
       "sector": "אנרגיה",
       "layer": "Growth",
-      "price": 93.09,
-      "chg_pct": 3.76,
-      "vol_ratio": 1.0,
-      "rsi": 53.2,
-      "w52_pos_pct": 36,
-      "analyst_target": 129.12,
-      "analyst_upside_pct": 38.7,
+      "price": 94.27,
+      "chg_pct": 1.27,
+      "vol_ratio": 0.9,
+      "rsi": 61.4,
+      "w52_pos_pct": 38,
+      "analyst_target": 129.66,
+      "analyst_upside_pct": 37.5,
       "days_to_earnings": null,
       "verdict": null,
-      "news": [
-        {
-          "title": "Energy Fuels Set to Report Q2 Earnings: How to Play the Stock?",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/energy-fuels-set-report-q2-170600925.html?.tsrc=rss"
-        },
-        {
-          "title": "Cosa Announces Results of Partner Funded Airborne Radiometric Survey at the Aurora Uranium Project, Athabasca Basin, Saskatchewan",
-          "url": "https://finance.yahoo.com/energy/articles/cosa-announces-results-partner-funded-120000045.html?.tsrc=rss"
-        },
-        {
-          "title": "Strathmore Prioritizes Agate Project Mineral Resource Development",
-          "url": "https://finance.yahoo.com/energy/articles/strathmore-prioritizes-agate-project-mineral-110000390.html?.tsrc=rss"
-        }
-      ]
+      "news": []
     }
   ],
   "watchlist_triggers": [],
   "groq_insights": [
-    "OKLO +5.12%: הסקטור הגרעיני עומד בפני דוח רבעוני, ייתכן שיהיה לו השפעה על המניה",
-    "DRAM +7.35%: עלייה חדה במניה, ייתכן שתמשיך בעקבות הביקוש הגובר לזיכרון",
-    "AVGO +6.61%: עלייה משמעותית במניה, ייתכן שתמשיך בעקבות הביקוש הגובר לרכיבים אלקטרוניים"
+    "OKLO +6.16%: ייתכן תגובה חיובית לקראת פרסום תוצאות הרבעון השני, או ציפיות לצמיחה בגזרת האנרגיה",
+    "NVDA +2.93%: ייתכן גידול בביקוש למוצרי AI, והחברה עשויה לנצל את המגמה",
+    "VST -1.85%: ייתכן תגובה לאחור לאחר עליות חדות בגזרת האנרגיה, או חשש מתחרות בתעשייה"
   ],
   "sector_summary": [
     {
       "sector": "AI / Semiconductors",
-      "avg_chg_pct": 2.56,
+      "avg_chg_pct": 2.93,
       "tickers": [
         "NVDA"
       ]
     },
     {
       "sector": "Tech / Cloud / AI",
-      "avg_chg_pct": 1.06,
+      "avg_chg_pct": 4.93,
       "tickers": [
         "MSFT"
       ]
     },
     {
       "sector": "Tech / Search / AI",
-      "avg_chg_pct": 0.77,
+      "avg_chg_pct": 4.44,
       "tickers": [
         "GOOG"
       ]
     },
     {
       "sector": "Social Media / AI",
-      "avg_chg_pct": -0.39,
+      "avg_chg_pct": 6.02,
       "tickers": [
         "META"
       ]
     },
     {
       "sector": "Semiconductors",
-      "avg_chg_pct": 6.61,
+      "avg_chg_pct": 0.03,
       "tickers": [
         "AVGO"
       ]
     },
     {
       "sector": "Memory Chips",
-      "avg_chg_pct": 7.48,
+      "avg_chg_pct": 1.15,
       "tickers": [
         "MU",
         "DRAM"
@@ -362,42 +375,42 @@
     },
     {
       "sector": "Crypto",
-      "avg_chg_pct": 0.64,
+      "avg_chg_pct": 1.46,
       "tickers": [
         "IBIT"
       ]
     },
     {
       "sector": "Commodities / Gold",
-      "avg_chg_pct": 0.7,
+      "avg_chg_pct": 4.13,
       "tickers": [
         "GLDM"
       ]
     },
     {
       "sector": "Energy / Nuclear",
-      "avg_chg_pct": -8.15,
+      "avg_chg_pct": -1.85,
       "tickers": [
         "VST"
       ]
     },
     {
       "sector": "AI Infrastructure",
-      "avg_chg_pct": 6.04,
+      "avg_chg_pct": -4.48,
       "tickers": [
         "APLD"
       ]
     },
     {
       "sector": "Nuclear Energy",
-      "avg_chg_pct": 5.12,
+      "avg_chg_pct": 6.16,
       "tickers": [
         "OKLO"
       ]
     },
     {
       "sector": "אנרגיה",
-      "avg_chg_pct": 3.76,
+      "avg_chg_pct": 1.27,
       "tickers": [
         "CCJ"
       ]
