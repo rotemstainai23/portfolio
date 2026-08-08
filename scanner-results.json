@@ -1,35 +1,35 @@
 [
   {
     "ticker": "SNOW",
-    "company": "Snowflake Inc",
-    "catalyst": "AI Traction Fuels Snowflake’s Guidance Boost",
+    "company": "Snowflake",
+    "catalyst": "דוח רווחים קרוב עם ציפיות גבוהות",
     "conviction": 4,
     "upside_pct": 15,
     "downside_pct": 8,
     "timeframe": "1-2 שבועות",
     "source": "חדשות",
-    "thesis": "Snowflake מובילה בתחום הנתונים והבינה המלאכותית, עם צמיחה מהירה בהכנסות ורווחים. החברה הודיעה על תחזית הכנסות חדשה ומעודדת, מה שיכול להוביל לעלייה במחיר המניה."
+    "thesis": "Snowflake מצפה לדוח רווחים חזק עם ציפיות גבוהות מהשוק. המניה נמצאת במגמת עלייה חזקה ויש פוטנציאל להמשך עלייה."
   },
   {
-    "ticker": "DDOG",
-    "company": "Datadog Inc",
-    "catalyst": "Datadog Jumped 7.7% Following Upward PT Revisions",
+    "ticker": "PLTR",
+    "company": "Palantir",
+    "catalyst": "דוח רווחים חזק וציפיות גבוהות",
     "conviction": 4,
     "upside_pct": 12,
     "downside_pct": 6,
     "timeframe": "1-2 שבועות",
     "source": "חדשות",
-    "thesis": "Datadog היא חברה מובילה בתחום הניטור והאנליטיקה, עם צמיחה מהירה בהכנסות ורווחים. העלייה ביעד המחיר של המניה על ידי האנליסטים יכולה להוביל לעלייה נוספת במחיר המניה."
+    "thesis": "Palantir הציגה דוח רווחים חזק ויש ציפיות גבוהות להמשך צמיחה. המניה נמצאת במגמת עלייה חזקה."
   },
   {
-    "ticker": "REGN",
-    "company": "Regeneron Pharmaceuticals Inc",
-    "catalyst": "REGN Q2 Deep Dive: Pipeline Progress and Product Momentum Drive Outperformance",
+    "ticker": "CRWD",
+    "company": "CrowdStrike",
+    "catalyst": "דוח רווחים קרוב עם ציפיות גבוהות",
     "conviction": 4,
     "upside_pct": 10,
     "downside_pct": 5,
     "timeframe": "1-2 שבועות",
     "source": "חדשות",
-    "thesis": "Regeneron היא חברה מובילה בתחום התרופות, עם צמיחה מהירה בהכנסות ורווחים. הדוח הרבעוני האחרון הראה תוצאות חזקות, מה שיכול להוביל לעלייה במחיר המניה."
+    "thesis": "CrowdStrike מצפה לדוח רווחים חזק עם ציפיות גבוהות מהשוק. המניה נמצאת במגמת עלייה חזקה."
   }
 ]
