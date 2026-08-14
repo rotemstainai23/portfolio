@@ -1,12 +1,12 @@
 {
-  "generated": "2026-08-13",
-  "generated_time": "04:02",
-  "market_date": "2026-08-13",
+  "generated": "2026-08-14",
+  "generated_time": "03:58",
+  "market_date": "2026-08-14",
   "has_alerts": false,
   "alert_tickers": [],
   "macro": {
-    "spy_chg_pct": 0.25,
-    "qqq_chg_pct": 0.73,
+    "spy_chg_pct": 0.7,
+    "qqq_chg_pct": 1.16,
     "vix": null
   },
   "holdings": [
@@ -14,69 +14,43 @@
       "ticker": "NVDA",
       "sector": "AI / Semiconductors",
       "layer": "Growth",
-      "price": 224.09,
-      "chg_pct": 3.03,
-      "vol_ratio": 0.9,
-      "rsi": 61.4,
-      "w52_pos_pct": 83,
+      "price": 225.3,
+      "chg_pct": 0.54,
+      "vol_ratio": 0.7,
+      "rsi": 63.9,
+      "w52_pos_pct": 84,
       "analyst_target": 302.83,
-      "analyst_upside_pct": 35.1,
-      "days_to_earnings": 13,
+      "analyst_upside_pct": 34.4,
+      "days_to_earnings": 12,
       "verdict": null,
-      "news": [
-        {
-          "title": "Super Micro Guided Fiscal 2027 Revenue $16 Billion Above Wall Street and Missed the Quarter Anyway",
-          "url": "https://www.fool.com/investing/2026/08/12/super-micro-guided-fiscal-2027-revenue-16-billion/?.tsrc=rss"
-        },
-        {
-          "title": "Michael Burry's Nebius Short Is Underwater After a 454% Revenue Quarter",
-          "url": "https://www.fool.com/investing/2026/08/12/michael-burrys-nebius-short-is-underwater-after-a/?.tsrc=rss"
-        },
-        {
-          "title": "Nvidia’s biggest risk may be coming from inside its customer base",
-          "url": "https://www.thestreet.com/investing/nvidias-biggest-risk-may-be-coming-from-inside-its-customer-base?.tsrc=rss"
-        }
-      ]
+      "news": []
     },
     {
       "ticker": "MSFT",
       "sector": "Tech / Cloud / AI",
       "layer": "Stability",
-      "price": 492.43,
-      "chg_pct": -2.26,
-      "vol_ratio": 0.7,
-      "rsi": 85.9,
-      "w52_pos_pct": 70,
+      "price": 496.88,
+      "chg_pct": 0.9,
+      "vol_ratio": 0.6,
+      "rsi": 86.3,
+      "w52_pos_pct": 72,
       "analyst_target": 567.2,
-      "analyst_upside_pct": 15.2,
+      "analyst_upside_pct": 14.2,
       "days_to_earnings": null,
       "verdict": null,
-      "news": [
-        {
-          "title": "Nvidia’s biggest risk may be coming from inside its customer base",
-          "url": "https://www.thestreet.com/investing/nvidias-biggest-risk-may-be-coming-from-inside-its-customer-base?.tsrc=rss"
-        },
-        {
-          "title": "How Could Blackbaud (BLKB) Change Fundraising Work With Its New AI Integration?",
-          "url": "https://finance.yahoo.com/technology/ai/articles/could-blackbaud-blkb-change-fundraising-021139550.html?.tsrc=rss"
-        },
-        {
-          "title": "The Mega Backdoor Roth: How Tech Workers Add $34,000 Annually to a 401(k) Tax-Free",
-          "url": "https://247wallst.com/personal-finance/2026/08/12/the-mega-backdoor-roth-how-tech-workers-add-34000-annually-to-a-401k-tax-free/?.tsrc=rss"
-        }
-      ]
+      "news": []
     },
     {
       "ticker": "GOOG",
       "sector": "Tech / Search / AI",
       "layer": "Stability",
-      "price": 342.37,
-      "chg_pct": -0.18,
+      "price": 343.94,
+      "chg_pct": 0.46,
       "vol_ratio": 0.7,
-      "rsi": 62.1,
-      "w52_pos_pct": 70,
+      "rsi": 62.5,
+      "w52_pos_pct": 71,
       "analyst_target": 421.79,
-      "analyst_upside_pct": 23.2,
+      "analyst_upside_pct": 22.6,
       "days_to_earnings": null,
       "verdict": null,
       "news": []
@@ -85,27 +59,27 @@
       "ticker": "META",
       "sector": "Social Media / AI",
       "layer": "Growth",
-      "price": 578.85,
-      "chg_pct": -3.38,
-      "vol_ratio": 1.0,
-      "rsi": 41.0,
-      "w52_pos_pct": 21,
+      "price": 594.97,
+      "chg_pct": 2.78,
+      "vol_ratio": 0.6,
+      "rsi": 49.9,
+      "w52_pos_pct": 27,
       "analyst_target": 754.14,
-      "analyst_upside_pct": 30.3,
+      "analyst_upside_pct": 26.8,
       "days_to_earnings": null,
       "verdict": null,
       "news": [
         {
-          "title": "Erock (EROC) Soars 23% as Anthropic Deal Brightens Outlook",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/erock-eroc-soars-23-anthropic-013025539.html?.tsrc=rss"
+          "title": "Meta taps skilled trades workers to power America’s AI infrastructure boom",
+          "url": "https://www.foxbusiness.com/economy/meta-taps-skilled-trades-workers-power-americas-ai-infrastructure-boom?.tsrc=rss"
         },
         {
-          "title": "Credo Brands Marketing Ltd (NSE:MUFTI) (Q1 2027) Earnings Call Highlights: Transformation Phase ...",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/credo-brands-marketing-ltd-nse-011124094.html?.tsrc=rss"
+          "title": "Meta Stock Rises While 756,000 Teen Accounts Come Down",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/meta-stock-rises-while-756-192051221.html?.tsrc=rss"
         },
         {
-          "title": "The Mega Backdoor Roth: How Tech Workers Add $34,000 Annually to a 401(k) Tax-Free",
-          "url": "https://247wallst.com/personal-finance/2026/08/12/the-mega-backdoor-roth-how-tech-workers-add-34000-annually-to-a-401k-tax-free/?.tsrc=rss"
+          "title": "Meta Removes 756,000 Teen Accounts in Australia",
+          "url": "https://finance.yahoo.com/technology/articles/meta-removes-756-000-teen-191828030.html?.tsrc=rss"
         }
       ]
     },
@@ -113,14 +87,14 @@
       "ticker": "AVGO",
       "sector": "Semiconductors",
       "layer": "Growth",
-      "price": 416.05,
-      "chg_pct": -0.01,
-      "vol_ratio": 0.9,
-      "rsi": 62.6,
-      "w52_pos_pct": 63,
+      "price": 417.82,
+      "chg_pct": 0.43,
+      "vol_ratio": 0.7,
+      "rsi": 71.1,
+      "w52_pos_pct": 64,
       "analyst_target": 527.88,
-      "analyst_upside_pct": 26.9,
-      "days_to_earnings": 20,
+      "analyst_upside_pct": 26.3,
+      "days_to_earnings": 19,
       "verdict": null,
       "news": []
     },
@@ -128,27 +102,27 @@
       "ticker": "MU",
       "sector": "Memory Chips",
       "layer": "Growth",
-      "price": 911.29,
-      "chg_pct": 4.92,
+      "price": 949.83,
+      "chg_pct": 4.23,
       "vol_ratio": 0.8,
-      "rsi": 43.3,
-      "w52_pos_pct": 70,
+      "rsi": 52.6,
+      "w52_pos_pct": 73,
       "analyst_target": 1501.98,
-      "analyst_upside_pct": 64.8,
+      "analyst_upside_pct": 58.1,
       "days_to_earnings": null,
       "verdict": null,
       "news": [
         {
-          "title": "Wall Street Analysts Are Predicting a Huge Move for Micron by Mid-2027",
-          "url": "https://www.fool.com/investing/2026/08/12/wall-street-analysts-are-predicting-a-huge-move-fo/?.tsrc=rss"
+          "title": "Is Micron (MU) Using Its New AI Fund to Quietly Redefine Its Memory Strategy?",
+          "url": "https://finance.yahoo.com/technology/ai/articles/micron-mu-using-ai-fund-221458959.html?.tsrc=rss"
         },
         {
-          "title": "Memory Stocks Rally Wednesday: SK Hynix, SanDisk, Micron All Jump. Here’s Why",
-          "url": "https://247wallst.com/investing/2026/08/12/memory-stocks-rally-wednesday-sk-hynix-sandisk-micron-all-jump-heres-why/?.tsrc=rss"
+          "title": "Sandisk, Cisco, Micron, Ondas, Coherent, Cerebras, and More Stocks That Explain Today’s Market",
+          "url": "https://finance.yahoo.com/m/42f56bbe-e1ec-35d1-a55f-0194b473c998/sandisk%2C-cisco%2C-micron%2C.html?.tsrc=rss"
         },
         {
-          "title": "Samsung Sends Fresh Signal to Micron Investors",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/samsung-sends-fresh-signal-micron-201932503.html?.tsrc=rss"
+          "title": "Michael Burry Loads Up On QQQ Puts, Boosts MU Short As He Braces For ‘Larger Fall’ — Here’s What He Did To NVDA, PLTR And TSLA",
+          "url": "https://stocktwits.com/news-articles/markets/equity/michael-burry-loads-up-on-qqq-puts-boosts-mu-short-as-he-braces-for-larger-fall-heres-what-he-did-to-nvda-pltr-and-tsla/cZoqVbeRJLw?.tsrc=rss"
         }
       ]
     },
@@ -156,10 +130,10 @@
       "ticker": "IBIT",
       "sector": "Crypto",
       "layer": "Speculation",
-      "price": 35.89,
-      "chg_pct": -0.14,
+      "price": 35.88,
+      "chg_pct": -0.03,
       "vol_ratio": 0.7,
-      "rsi": 43.5,
+      "rsi": 45.8,
       "w52_pos_pct": 8,
       "analyst_target": null,
       "analyst_upside_pct": null,
@@ -171,41 +145,28 @@
       "ticker": "GLDM",
       "sector": "Commodities / Gold",
       "layer": "Stability",
-      "price": 87.33,
-      "chg_pct": 1.01,
-      "vol_ratio": 1.6,
-      "rsi": 78.8,
-      "w52_pos_pct": 49,
+      "price": 86.05,
+      "chg_pct": -1.47,
+      "vol_ratio": 0.9,
+      "rsi": 71.3,
+      "w52_pos_pct": 46,
       "analyst_target": null,
       "analyst_upside_pct": null,
       "days_to_earnings": null,
       "verdict": null,
-      "news": [
-        {
-          "title": "Gold ETF Rally Gains Momentum: Will It Sustain?",
-          "url": "https://finance.yahoo.com/markets/commodities/articles/gold-etf-rally-gains-momentum-160000754.html?.tsrc=rss"
-        },
-        {
-          "title": "The Cheapest ETFs for Building a Core Portfolio",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/cheapest-etfs-building-core-portfolio-203100733.html?.tsrc=rss"
-        },
-        {
-          "title": "Gold Just Had Its Worst Quarter Since 2013: 3 Reasons to Buy the Dip With This Dirt-Cheap ETF",
-          "url": "https://247wallst.com/investing/etf/2026/07/28/gold-just-had-its-worst-quarter-since-2013-3-reasons-to-buy-the-dip-with-this-dirt-cheap-etf/?.tsrc=rss"
-        }
-      ]
+      "news": []
     },
     {
       "ticker": "VST",
       "sector": "Energy / Nuclear",
       "layer": "Growth",
-      "price": 146.68,
-      "chg_pct": 1.21,
+      "price": 146.4,
+      "chg_pct": -0.19,
       "vol_ratio": 0.5,
-      "rsi": 32.4,
+      "rsi": 35.3,
       "w52_pos_pct": 16,
       "analyst_target": 221.74,
-      "analyst_upside_pct": 51.2,
+      "analyst_upside_pct": 51.5,
       "days_to_earnings": null,
       "verdict": null,
       "news": []
@@ -214,13 +175,13 @@
       "ticker": "APLD",
       "sector": "AI Infrastructure",
       "layer": "Speculation",
-      "price": 31.15,
-      "chg_pct": 4.92,
-      "vol_ratio": 0.9,
-      "rsi": 52.9,
-      "w52_pos_pct": 48,
+      "price": 30.62,
+      "chg_pct": -1.7,
+      "vol_ratio": 0.8,
+      "rsi": 58.9,
+      "w52_pos_pct": 46,
       "analyst_target": 74.23,
-      "analyst_upside_pct": 138.3,
+      "analyst_upside_pct": 142.4,
       "days_to_earnings": null,
       "verdict": null,
       "news": [
@@ -233,8 +194,8 @@
           "url": "https://finance.yahoo.com/markets/stocks/articles/applied-digital-apld-behind-fresh-211057009.html?.tsrc=rss"
         },
         {
-          "title": "CoreWeave’s Record Q2 Supercharges Nebius Stock Ahead Of Earnings — What Does Wall Street Expect Amid Cloud Boom?",
-          "url": "https://stocktwits.com/news-articles/markets/equity/core-weave-s-record-q2-supercharges-nebius-stock-ahead-of-earnings-what-does-wall-street-expect-amid-cloud-boom/cZoFnh8RJXr?.tsrc=rss"
+          "title": "IREN Rallies 6% as Microsoft Signs Off on Horizon 1, NVIDIA Grants Exemplar Cloud Status",
+          "url": "https://247wallst.com/investing/2026/08/13/iren-rallies-6-as-microsoft-signs-off-on-horizon-1-nvidia-grants-exemplar-cloud-status/?.tsrc=rss"
         }
       ]
     },
@@ -242,27 +203,27 @@
       "ticker": "OKLO",
       "sector": "Nuclear Energy",
       "layer": "Speculation",
-      "price": 45.13,
-      "chg_pct": -4.0,
-      "vol_ratio": 0.9,
-      "rsi": 51.5,
-      "w52_pos_pct": 5,
+      "price": 46.45,
+      "chg_pct": 2.92,
+      "vol_ratio": 0.8,
+      "rsi": 59.0,
+      "w52_pos_pct": 6,
       "analyst_target": 79.88,
-      "analyst_upside_pct": 77.0,
+      "analyst_upside_pct": 72.0,
       "days_to_earnings": null,
       "verdict": null,
       "news": [
         {
+          "title": "SpaceX vs. Oklo: Which Disruptive Stock Has More Upside?",
+          "url": "https://www.fool.com/investing/2026/08/13/spacex-vs-oklo-which-disruptive-stock-has-more-ups/?.tsrc=rss"
+        },
+        {
+          "title": "4 Nuclear Stocks Riding the AI Power Boom Into 2027 and Beyond",
+          "url": "https://www.fool.com/investing/2026/08/13/4-nuclear-stocks-riding-the-ai-power-boom-into-202/?.tsrc=rss"
+        },
+        {
           "title": "Oklo Just Made Big Progress With Small Modular Nuclear Reactor Technology. That's Great News for These 2 ETFs.",
           "url": "https://www.fool.com/investing/2026/08/12/oklo-just-made-big-progress-small-modular-nuclear/?.tsrc=rss"
-        },
-        {
-          "title": "Should You Buy, Sell or Hold OKLO Stock Post First Revenues?",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/buy-sell-hold-oklo-stock-121100413.html?.tsrc=rss"
-        },
-        {
-          "title": "Why Oklo (OKLO) Is Up 8.5% After First Criticality And Initial Reactor Sales - And What's Next",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/why-oklo-oklo-8-5-014026517.html?.tsrc=rss"
         }
       ]
     },
@@ -270,23 +231,23 @@
       "ticker": "DRAM",
       "sector": "Memory Chips",
       "layer": "Growth",
-      "price": 54.8,
-      "chg_pct": 7.68,
-      "vol_ratio": 0.7,
-      "rsi": 45.4,
-      "w52_pos_pct": 52,
+      "price": 56.93,
+      "chg_pct": 3.89,
+      "vol_ratio": 1.0,
+      "rsi": 55.3,
+      "w52_pos_pct": 56,
       "analyst_target": null,
       "analyst_upside_pct": null,
       "days_to_earnings": null,
       "verdict": null,
       "news": [
         {
-          "title": "U.S. ETF Investors at Odds: Chasing Returns or Playing the Long Game?",
-          "url": "http://www.etf.com/sections/advisor-center/us-etf-investors-odds-chasing-returns-or-playing-long-game?utm_source=yahoo-finance&utm_medium=rss&utm_campaign=yahoo-finance-rss&.tsrc=rss"
+          "title": "Chip stocks are crashing as the rest of the market barely flinches: AlphaCheck",
+          "url": "https://finance.yahoo.com/markets/article/chip-stocks-are-crashing-as-the-rest-of-the-market-barely-flinches-alphacheck-161342600.html?.tsrc=rss"
         },
         {
-          "title": "ETF League Tables: Roundhill Gains $315M",
-          "url": "http://www.etf.com/sections/etf-league-tables/etf-league-tables-roundhill-gains-315m?utm_source=yahoo-finance&utm_medium=rss&utm_campaign=yahoo-finance-rss&.tsrc=rss"
+          "title": "U.S. ETF Investors at Odds: Chasing Returns or Playing the Long Game?",
+          "url": "http://www.etf.com/sections/advisor-center/us-etf-investors-odds-chasing-returns-or-playing-long-game?utm_source=yahoo-finance&utm_medium=rss&utm_campaign=yahoo-finance-rss&.tsrc=rss"
         },
         {
           "title": "The ETFs Most Exposed to the 2026 Chip Supply Chain Crisis — Winners and Losers",
@@ -298,13 +259,13 @@
       "ticker": "CCJ",
       "sector": "אנרגיה",
       "layer": "Growth",
-      "price": 99.03,
-      "chg_pct": 0.3,
-      "vol_ratio": 0.7,
-      "rsi": 67.7,
-      "w52_pos_pct": 45,
-      "analyst_target": 129.47,
-      "analyst_upside_pct": 30.7,
+      "price": 97.75,
+      "chg_pct": -1.29,
+      "vol_ratio": 0.5,
+      "rsi": 68.2,
+      "w52_pos_pct": 43,
+      "analyst_target": 129.76,
+      "analyst_upside_pct": 32.7,
       "days_to_earnings": null,
       "verdict": null,
       "news": []
@@ -312,49 +273,49 @@
   ],
   "watchlist_triggers": [],
   "groq_insights": [
-    "OKLO -4%: ייתכן תגובה לאחור לאחר העליות החדות בגזרת הגרעין, או חשש מבדיקות רגולטוריות של SMR",
-    "NVDA +3.03% עם נפח גבוה: ייתכן הכרזה על שותפות AI או תוצאות חזקות — בדוק חדשות",
-    "MU +4.92% ו-NVDA +3.03%: מגמת עלייה בסקטור המוליכים למחצה, כדאי לעקוב אחר מניות אחרות בסקטור"
+    "OKLO +2.92%: עלייה במניה עשויה להימשך בגלל התקדמות בטכנולוגיית הכורים הגרעיניים הקטנים",
+    "AVGO +0.43% עם NVDA +0.54%: עלייה במניות הסקטור מרמזת על עניין גובר בטכנולוגיות AI וחומרה",
+    "MU +4.23%: עלייה חדה במניה עשויה להימשך בגלל השקעות בטכנולוגיית AI וזיכרון"
   ],
   "sector_summary": [
     {
       "sector": "AI / Semiconductors",
-      "avg_chg_pct": 3.03,
+      "avg_chg_pct": 0.54,
       "tickers": [
         "NVDA"
       ]
     },
     {
       "sector": "Tech / Cloud / AI",
-      "avg_chg_pct": -2.26,
+      "avg_chg_pct": 0.9,
       "tickers": [
         "MSFT"
       ]
     },
     {
       "sector": "Tech / Search / AI",
-      "avg_chg_pct": -0.18,
+      "avg_chg_pct": 0.46,
       "tickers": [
         "GOOG"
       ]
     },
     {
       "sector": "Social Media / AI",
-      "avg_chg_pct": -3.38,
+      "avg_chg_pct": 2.78,
       "tickers": [
         "META"
       ]
     },
     {
       "sector": "Semiconductors",
-      "avg_chg_pct": -0.01,
+      "avg_chg_pct": 0.43,
       "tickers": [
         "AVGO"
       ]
     },
     {
       "sector": "Memory Chips",
-      "avg_chg_pct": 6.3,
+      "avg_chg_pct": 4.06,
       "tickers": [
         "MU",
         "DRAM"
@@ -362,42 +323,42 @@
     },
     {
       "sector": "Crypto",
-      "avg_chg_pct": -0.14,
+      "avg_chg_pct": -0.03,
       "tickers": [
         "IBIT"
       ]
     },
     {
       "sector": "Commodities / Gold",
-      "avg_chg_pct": 1.01,
+      "avg_chg_pct": -1.47,
       "tickers": [
         "GLDM"
       ]
     },
     {
       "sector": "Energy / Nuclear",
-      "avg_chg_pct": 1.21,
+      "avg_chg_pct": -0.19,
       "tickers": [
         "VST"
       ]
     },
     {
       "sector": "AI Infrastructure",
-      "avg_chg_pct": 4.92,
+      "avg_chg_pct": -1.7,
       "tickers": [
         "APLD"
       ]
     },
     {
       "sector": "Nuclear Energy",
-      "avg_chg_pct": -4.0,
+      "avg_chg_pct": 2.92,
       "tickers": [
         "OKLO"
       ]
     },
     {
       "sector": "אנרגיה",
-      "avg_chg_pct": 0.3,
+      "avg_chg_pct": -1.29,
       "tickers": [
         "CCJ"
       ]
