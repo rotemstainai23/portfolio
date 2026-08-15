@@ -1,35 +1,35 @@
 [
   {
-    "ticker": "SNOW",
-    "company": "Snowflake",
-    "catalyst": "דוח רווחים קרוב עם ציפיות גבוהות",
+    "ticker": "RDW",
+    "company": "Redwire",
+    "catalyst": "רווחים קרובים וחדשות על שיתוף פעולה עם Kanematsu",
     "conviction": 4,
     "upside_pct": 15,
     "downside_pct": 8,
     "timeframe": "1-2 שבועות",
     "source": "חדשות",
-    "thesis": "Snowflake מצפה לדוח רווחים חזק עם ציפיות גבוהות מהשוק. המניה נמצאת במגמת עלייה חזקה ויש פוטנציאל להמשך עלייה."
+    "thesis": "Redwire מציגה רווחים קרובים ושיתוף פעולה חדש עם Kanematsu, מה שיכול להוביל לעלייה במחיר המניה."
   },
   {
-    "ticker": "PLTR",
-    "company": "Palantir",
-    "catalyst": "דוח רווחים חזק וציפיות גבוהות",
+    "ticker": "KTOS",
+    "company": "Kratos",
+    "catalyst": "חדשות על הרחבת עבודות הגנת טילים",
     "conviction": 4,
     "upside_pct": 12,
     "downside_pct": 6,
     "timeframe": "1-2 שבועות",
     "source": "חדשות",
-    "thesis": "Palantir הציגה דוח רווחים חזק ויש ציפיות גבוהות להמשך צמיחה. המניה נמצאת במגמת עלייה חזקה."
+    "thesis": "Kratos מרחיבה את עבודות הגנת הטילים, מה שיכול להוביל לעלייה במחיר המניה."
   },
   {
-    "ticker": "CRWD",
-    "company": "CrowdStrike",
-    "catalyst": "דוח רווחים קרוב עם ציפיות גבוהות",
+    "ticker": "ZS",
+    "company": "Zscaler",
+    "catalyst": "חדשות על התקדמות בתחום האבטחה",
     "conviction": 4,
     "upside_pct": 10,
     "downside_pct": 5,
     "timeframe": "1-2 שבועות",
     "source": "חדשות",
-    "thesis": "CrowdStrike מצפה לדוח רווחים חזק עם ציפיות גבוהות מהשוק. המניה נמצאת במגמת עלייה חזקה."
+    "thesis": "Zscaler מתקדמת בתחום האבטחה, מה שיכול להוביל לעלייה במחיר המניה."
   }
 ]

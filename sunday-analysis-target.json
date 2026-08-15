@@ -1,11 +1,11 @@
 {
-  "ticker": "SNOW",
-  "company": "Snowflake",
-  "catalyst": "דוח רווחים קרוב עם ציפיות גבוהות",
+  "ticker": "RDW",
+  "company": "Redwire",
+  "catalyst": "רווחים קרובים וחדשות על שיתוף פעולה עם Kanematsu",
   "conviction": 4,
   "upside_pct": 15,
   "downside_pct": 8,
   "timeframe": "1-2 שבועות",
   "source": "חדשות",
-  "thesis": "Snowflake מצפה לדוח רווחים חזק עם ציפיות גבוהות מהשוק. המניה נמצאת במגמת עלייה חזקה ויש פוטנציאל להמשך עלייה."
+  "thesis": "Redwire מציגה רווחים קרובים ושיתוף פעולה חדש עם Kanematsu, מה שיכול להוביל לעלייה במחיר המניה."
 }
