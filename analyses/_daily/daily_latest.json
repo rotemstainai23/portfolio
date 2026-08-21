@@ -1,12 +1,12 @@
 {
-  "generated": "2026-08-20",
-  "generated_time": "02:50",
-  "market_date": "2026-08-20",
+  "generated": "2026-08-21",
+  "generated_time": "02:56",
+  "market_date": "2026-08-21",
   "has_alerts": false,
   "alert_tickers": [],
   "macro": {
-    "spy_chg_pct": 0.21,
-    "qqq_chg_pct": -0.2,
+    "spy_chg_pct": -0.84,
+    "qqq_chg_pct": -0.72,
     "vix": null
   },
   "holdings": [
@@ -14,14 +14,14 @@
       "ticker": "NVDA",
       "sector": "AI / Semiconductors",
       "layer": "Growth",
-      "price": 217.56,
-      "chg_pct": -0.99,
+      "price": 216.85,
+      "chg_pct": -0.33,
       "vol_ratio": 0.8,
-      "rsi": 71.9,
-      "w52_pos_pct": 74,
-      "analyst_target": 302.83,
-      "analyst_upside_pct": 39.2,
-      "days_to_earnings": 6,
+      "rsi": 67.4,
+      "w52_pos_pct": 73,
+      "analyst_target": 304.12,
+      "analyst_upside_pct": 40.2,
+      "days_to_earnings": 5,
       "verdict": null,
       "news": []
     },
@@ -29,13 +29,13 @@
       "ticker": "MSFT",
       "sector": "Tech / Cloud / AI",
       "layer": "Stability",
-      "price": 484.31,
-      "chg_pct": 0.56,
+      "price": 481.15,
+      "chg_pct": -0.65,
       "vol_ratio": 0.5,
-      "rsi": 65.9,
-      "w52_pos_pct": 66,
+      "rsi": 58.8,
+      "w52_pos_pct": 65,
       "analyst_target": 569.56,
-      "analyst_upside_pct": 17.6,
+      "analyst_upside_pct": 18.4,
       "days_to_earnings": null,
       "verdict": null,
       "news": []
@@ -44,13 +44,13 @@
       "ticker": "GOOG",
       "sector": "Tech / Search / AI",
       "layer": "Stability",
-      "price": 341.7,
-      "chg_pct": 0.12,
+      "price": 338.2,
+      "chg_pct": -1.02,
       "vol_ratio": 0.7,
-      "rsi": 54.8,
-      "w52_pos_pct": 69,
-      "analyst_target": 421.79,
-      "analyst_upside_pct": 23.4,
+      "rsi": 35.7,
+      "w52_pos_pct": 67,
+      "analyst_target": 422.34,
+      "analyst_upside_pct": 24.9,
       "days_to_earnings": null,
       "verdict": null,
       "news": []
@@ -59,13 +59,13 @@
       "ticker": "META",
       "sector": "Social Media / AI",
       "layer": "Growth",
-      "price": 546.03,
-      "chg_pct": 0.43,
-      "vol_ratio": 1.0,
-      "rsi": 52.3,
-      "w52_pos_pct": 10,
+      "price": 545.83,
+      "chg_pct": -0.04,
+      "vol_ratio": 0.8,
+      "rsi": 46.0,
+      "w52_pos_pct": 9,
       "analyst_target": 754.14,
-      "analyst_upside_pct": 38.1,
+      "analyst_upside_pct": 38.2,
       "days_to_earnings": null,
       "verdict": null,
       "news": []
@@ -74,59 +74,63 @@
       "ticker": "AVGO",
       "sector": "Semiconductors",
       "layer": "Growth",
-      "price": 362.48,
-      "chg_pct": -4.61,
-      "vol_ratio": 1.9,
-      "rsi": 38.3,
+      "price": 364.03,
+      "chg_pct": 0.43,
+      "vol_ratio": 1.0,
+      "rsi": 38.4,
       "w52_pos_pct": 37,
       "analyst_target": 527.88,
-      "analyst_upside_pct": 45.6,
-      "days_to_earnings": 13,
+      "analyst_upside_pct": 45.0,
+      "days_to_earnings": 12,
       "verdict": null,
-      "news": [
-        {
-          "title": "Why Broadcom (AVGO) Stock Is Trading Lower Today",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/why-broadcom-avgo-stock-trading-220602333.html?.tsrc=rss"
-        },
-        {
-          "title": "Broadcom Gets Fresh Google Warning",
-          "url": "https://finance.yahoo.com/technology/ai/articles/broadcom-gets-fresh-google-warning-220417060.html?.tsrc=rss"
-        },
-        {
-          "title": "Broadcom (AVGO) Is Down More Than 20%—Why TD Cowen Still Sees 27% Upside",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/broadcom-avgo-down-more-20-214954022.html?.tsrc=rss"
-        }
-      ]
+      "news": []
     },
     {
       "ticker": "MU",
       "sector": "Memory Chips",
       "layer": "Growth",
-      "price": 937.1,
-      "chg_pct": -0.39,
+      "price": 974.33,
+      "chg_pct": 3.97,
       "vol_ratio": 0.6,
-      "rsi": 58.2,
-      "w52_pos_pct": 72,
-      "analyst_target": 1501.98,
-      "analyst_upside_pct": 60.3,
+      "rsi": 70.7,
+      "w52_pos_pct": 75,
+      "analyst_target": 1521.62,
+      "analyst_upside_pct": 56.2,
       "days_to_earnings": null,
       "verdict": null,
-      "news": []
+      "news": [
+        {
+          "title": "Micron CEO Says AI ‘Can’t Scale’ Without Memory – MU Stock Jumps On $10B Research Lab Initiative",
+          "url": "https://stocktwits.com/news-articles/markets/equity/micron-ceo-says-ai-can-t-scale-without-memory-mu-stock-jumps-on-10-b-research-lab-initiative/cZYBLTPRJZx?.tsrc=rss"
+        },
+        {
+          "title": "Forget Micron for a Minute: This Memory Competitor Just Crossed a Major Profitability Milestone",
+          "url": "https://www.fool.com/investing/2026/08/20/forget-micron-for-a-minute-this-memory-competitor/?.tsrc=rss"
+        },
+        {
+          "title": "The Biggest Risk Facing the Roundhill Memory ETF (DRAM) Right Now",
+          "url": "https://247wallst.com/investing/2026/08/20/the-biggest-risk-facing-the-roundhill-memory-etf-dram-right-now/?.tsrc=rss"
+        }
+      ]
     },
     {
       "ticker": "IBIT",
       "sector": "Crypto",
       "layer": "Speculation",
-      "price": 38.78,
-      "chg_pct": 5.96,
-      "vol_ratio": 4.1,
-      "rsi": 64.8,
-      "w52_pos_pct": 15,
+      "price": 41.2,
+      "chg_pct": 6.24,
+      "vol_ratio": 2.8,
+      "rsi": 83.1,
+      "w52_pos_pct": 21,
       "analyst_target": null,
       "analyst_upside_pct": null,
       "days_to_earnings": null,
       "verdict": null,
       "news": [
+        {
+          "title": "IBIT’s 0.25% Fee Sells Off Bitcoin Daily, and the Prospectus Calls Every Sale a Taxable Event",
+          "url": "https://247wallst.com/investing/etf/2026/08/20/ibits-0-25-fee-sells-off-bitcoin-daily-and-the-prospectus-calls-every-sale-a-taxable-event/?.tsrc=rss"
+        },
         {
           "title": "Billionaire hedge fund manager makes surprising Bitcoin move",
           "url": "https://www.thestreet.com/crypto/markets/billionaire-hedge-fund-manager-makes-surprising-bitcoin-move?.tsrc=rss"
@@ -134,10 +138,6 @@
         {
           "title": "Paul Tudor Jones' Firm Buys Back Into BlackRock Bitcoin ETF After a Year of Selling",
           "url": "https://decrypt.co/375745/paul-tudor-jones-buys-blackrock-bitcoin-etf?.tsrc=rss"
-        },
-        {
-          "title": "Bitwise Cuts 14% of Staff as Crypto Slump Reaches ETF Issuers",
-          "url": "https://decrypt.co/375394/bitwise-cuts-14-of-staff-as-crypto-slump-reaches-etf-issuers?.tsrc=rss"
         }
       ]
     },
@@ -145,41 +145,28 @@
       "ticker": "GLDM",
       "sector": "Commodities / Gold",
       "layer": "Stability",
-      "price": 89.29,
-      "chg_pct": 3.85,
-      "vol_ratio": 1.1,
-      "rsi": 74.1,
-      "w52_pos_pct": 53,
+      "price": 89.59,
+      "chg_pct": 0.34,
+      "vol_ratio": 0.9,
+      "rsi": 80.2,
+      "w52_pos_pct": 54,
       "analyst_target": null,
       "analyst_upside_pct": null,
       "days_to_earnings": null,
       "verdict": null,
-      "news": [
-        {
-          "title": "Gold Just Ripped Higher on an Ugly Jobs Report, and It’s Still Well Off Its Record. Buy GLDM Now?",
-          "url": "https://247wallst.com/investing/etf/2026/08/14/gold-just-ripped-higher-on-an-ugly-jobs-report-and-its-still-well-off-its-record-buy-gldm-now/?.tsrc=rss"
-        },
-        {
-          "title": "Gold ETF Rally Gains Momentum: Will It Sustain?",
-          "url": "https://finance.yahoo.com/markets/commodities/articles/gold-etf-rally-gains-momentum-160000754.html?.tsrc=rss"
-        },
-        {
-          "title": "The Cheapest ETFs for Building a Core Portfolio",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/cheapest-etfs-building-core-portfolio-203100733.html?.tsrc=rss"
-        }
-      ]
+      "news": []
     },
     {
       "ticker": "VST",
       "sector": "Energy / Nuclear",
       "layer": "Growth",
-      "price": 142.7,
-      "chg_pct": 1.55,
+      "price": 138.94,
+      "chg_pct": -2.63,
       "vol_ratio": 0.8,
-      "rsi": 43.1,
-      "w52_pos_pct": 12,
-      "analyst_target": 221.28,
-      "analyst_upside_pct": 55.1,
+      "rsi": 40.0,
+      "w52_pos_pct": 7,
+      "analyst_target": 219.72,
+      "analyst_upside_pct": 58.1,
       "days_to_earnings": null,
       "verdict": null,
       "news": [
@@ -201,13 +188,13 @@
       "ticker": "APLD",
       "sector": "AI Infrastructure",
       "layer": "Speculation",
-      "price": 28.23,
-      "chg_pct": -0.98,
-      "vol_ratio": 0.9,
-      "rsi": 51.0,
-      "w52_pos_pct": 40,
+      "price": 28.65,
+      "chg_pct": 1.49,
+      "vol_ratio": 0.7,
+      "rsi": 54.7,
+      "w52_pos_pct": 41,
       "analyst_target": 74.23,
-      "analyst_upside_pct": 162.9,
+      "analyst_upside_pct": 159.1,
       "days_to_earnings": null,
       "verdict": null,
       "news": []
@@ -216,27 +203,27 @@
       "ticker": "OKLO",
       "sector": "Nuclear Energy",
       "layer": "Speculation",
-      "price": 42.94,
-      "chg_pct": 3.82,
-      "vol_ratio": 0.8,
-      "rsi": 53.0,
-      "w52_pos_pct": 4,
+      "price": 41.66,
+      "chg_pct": -2.98,
+      "vol_ratio": 0.7,
+      "rsi": 54.8,
+      "w52_pos_pct": 3,
       "analyst_target": 79.88,
-      "analyst_upside_pct": 86.0,
+      "analyst_upside_pct": 91.7,
       "days_to_earnings": null,
       "verdict": null,
       "news": [
         {
+          "title": "OKLO Vs SMR Vs NNE: All Three Nuclear Stocks Got A Price Target Cut – But Here’s The One This Analyst Still Favors",
+          "url": "https://stocktwits.com/news-articles/markets/equity/oklo-vs-smr-vs-nne-all-three-nuclear-stocks-got-a-price-target-cut-but-here-s-the-one-this-analyst-still-favors/cZYBWT4RJZv?.tsrc=rss"
+        },
+        {
+          "title": "NuScale Power and Oklo Drop 5%, Centrus Energy Sinks 6%: What’s Behind the Nuclear Stock Selloff?",
+          "url": "https://247wallst.com/investing/2026/08/20/nuscale-power-and-oklo-drop-5-centrus-energy-sinks-6-whats-behind-the-nuclear-stock-selloff/?.tsrc=rss"
+        },
+        {
           "title": "Oklo Vs. X-Energy: Is the New Nuclear IPO the Better Buy?",
           "url": "https://www.fool.com/investing/2026/08/19/oklo-vs-x-energy-is-the-new-nuclear-ipo-the-better/?.tsrc=rss"
-        },
-        {
-          "title": "Nuclear Stocks Plunge Tuesday: Oklo Down 5%, Constellation Energy Down 4%, NuScale Down 5%",
-          "url": "https://247wallst.com/investing/2026/08/18/nuclear-stocks-plunge-tuesday-oklo-down-5-constellation-energy-down-4-nuscale-down-5/?.tsrc=rss"
-        },
-        {
-          "title": "Oklo Built a Nuclear Reactor in 229 Days. Here's Why the CEO Calls It a World Record.",
-          "url": "https://www.fool.com/investing/2026/08/17/oklo-built-a-nuclear-reactor-in-229-days-heres-why/?.tsrc=rss"
         }
       ]
     },
@@ -244,28 +231,41 @@
       "ticker": "DRAM",
       "sector": "Memory Chips",
       "layer": "Growth",
-      "price": 55.14,
-      "chg_pct": 0.07,
-      "vol_ratio": 0.7,
-      "rsi": 55.0,
-      "w52_pos_pct": 53,
+      "price": 57.58,
+      "chg_pct": 4.43,
+      "vol_ratio": 0.5,
+      "rsi": 62.7,
+      "w52_pos_pct": 57,
       "analyst_target": null,
       "analyst_upside_pct": null,
       "days_to_earnings": null,
       "verdict": null,
-      "news": []
+      "news": [
+        {
+          "title": "Chip stocks are crashing as the rest of the market barely flinches: AlphaCheck",
+          "url": "https://finance.yahoo.com/markets/article/chip-stocks-are-crashing-as-the-rest-of-the-market-barely-flinches-alphacheck-161342600.html?.tsrc=rss"
+        },
+        {
+          "title": "U.S. ETF Investors at Odds: Chasing Returns or Playing the Long Game?",
+          "url": "http://www.etf.com/sections/advisor-center/us-etf-investors-odds-chasing-returns-or-playing-long-game?utm_source=yahoo-finance&utm_medium=rss&utm_campaign=yahoo-finance-rss&.tsrc=rss"
+        },
+        {
+          "title": "The ETFs Most Exposed to the 2026 Chip Supply Chain Crisis — Winners and Losers",
+          "url": "http://www.etf.com/sections/news/etfs-most-exposed-2026-chip-supply-chain-crisis-winners-and-losers?utm_source=yahoo-finance&utm_medium=rss&utm_campaign=yahoo-finance-rss&.tsrc=rss"
+        }
+      ]
     },
     {
       "ticker": "CCJ",
       "sector": "אנרגיה",
       "layer": "Growth",
-      "price": 97.98,
-      "chg_pct": 2.03,
-      "vol_ratio": 0.4,
-      "rsi": 71.6,
-      "w52_pos_pct": 42,
-      "analyst_target": 130.79,
-      "analyst_upside_pct": 33.5,
+      "price": 95.59,
+      "chg_pct": -2.44,
+      "vol_ratio": 0.7,
+      "rsi": 69.9,
+      "w52_pos_pct": 37,
+      "analyst_target": 131.24,
+      "analyst_upside_pct": 37.3,
       "days_to_earnings": null,
       "verdict": null,
       "news": [
@@ -289,42 +289,42 @@
   "sector_summary": [
     {
       "sector": "AI / Semiconductors",
-      "avg_chg_pct": -0.99,
+      "avg_chg_pct": -0.33,
       "tickers": [
         "NVDA"
       ]
     },
     {
       "sector": "Tech / Cloud / AI",
-      "avg_chg_pct": 0.56,
+      "avg_chg_pct": -0.65,
       "tickers": [
         "MSFT"
       ]
     },
     {
       "sector": "Tech / Search / AI",
-      "avg_chg_pct": 0.12,
+      "avg_chg_pct": -1.02,
       "tickers": [
         "GOOG"
       ]
     },
     {
       "sector": "Social Media / AI",
-      "avg_chg_pct": 0.43,
+      "avg_chg_pct": -0.04,
       "tickers": [
         "META"
       ]
     },
     {
       "sector": "Semiconductors",
-      "avg_chg_pct": -4.61,
+      "avg_chg_pct": 0.43,
       "tickers": [
         "AVGO"
       ]
     },
     {
       "sector": "Memory Chips",
-      "avg_chg_pct": -0.16,
+      "avg_chg_pct": 4.2,
       "tickers": [
         "MU",
         "DRAM"
@@ -332,42 +332,42 @@
     },
     {
       "sector": "Crypto",
-      "avg_chg_pct": 5.96,
+      "avg_chg_pct": 6.24,
       "tickers": [
         "IBIT"
       ]
     },
     {
       "sector": "Commodities / Gold",
-      "avg_chg_pct": 3.85,
+      "avg_chg_pct": 0.34,
       "tickers": [
         "GLDM"
       ]
     },
     {
       "sector": "Energy / Nuclear",
-      "avg_chg_pct": 1.55,
+      "avg_chg_pct": -2.63,
       "tickers": [
         "VST"
       ]
     },
     {
       "sector": "AI Infrastructure",
-      "avg_chg_pct": -0.98,
+      "avg_chg_pct": 1.49,
       "tickers": [
         "APLD"
       ]
     },
     {
       "sector": "Nuclear Energy",
-      "avg_chg_pct": 3.82,
+      "avg_chg_pct": -2.98,
       "tickers": [
         "OKLO"
       ]
     },
     {
       "sector": "אנרגיה",
-      "avg_chg_pct": 2.03,
+      "avg_chg_pct": -2.44,
       "tickers": [
         "CCJ"
       ]
