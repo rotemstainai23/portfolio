@@ -1,12 +1,12 @@
 {
-  "generated": "2026-08-21",
+  "generated": "2026-08-24",
   "generated_time": "02:56",
-  "market_date": "2026-08-21",
+  "market_date": "2026-08-24",
   "has_alerts": false,
   "alert_tickers": [],
   "macro": {
-    "spy_chg_pct": -0.84,
-    "qqq_chg_pct": -0.72,
+    "spy_chg_pct": 0.41,
+    "qqq_chg_pct": 0.35,
     "vix": null
   },
   "holdings": [
@@ -14,14 +14,14 @@
       "ticker": "NVDA",
       "sector": "AI / Semiconductors",
       "layer": "Growth",
-      "price": 216.85,
-      "chg_pct": -0.33,
+      "price": 214.72,
+      "chg_pct": -0.98,
       "vol_ratio": 0.8,
-      "rsi": 67.4,
-      "w52_pos_pct": 73,
-      "analyst_target": 304.12,
-      "analyst_upside_pct": 40.2,
-      "days_to_earnings": 5,
+      "rsi": 59.5,
+      "w52_pos_pct": 70,
+      "analyst_target": 304.73,
+      "analyst_upside_pct": 41.9,
+      "days_to_earnings": 2,
       "verdict": null,
       "news": []
     },
@@ -29,13 +29,13 @@
       "ticker": "MSFT",
       "sector": "Tech / Cloud / AI",
       "layer": "Stability",
-      "price": 481.15,
-      "chg_pct": -0.65,
-      "vol_ratio": 0.5,
-      "rsi": 58.8,
-      "w52_pos_pct": 65,
-      "analyst_target": 569.56,
-      "analyst_upside_pct": 18.4,
+      "price": 483.24,
+      "chg_pct": 0.43,
+      "vol_ratio": 0.6,
+      "rsi": 47.0,
+      "w52_pos_pct": 66,
+      "analyst_target": 569.45,
+      "analyst_upside_pct": 17.8,
       "days_to_earnings": null,
       "verdict": null,
       "news": []
@@ -44,13 +44,13 @@
       "ticker": "GOOG",
       "sector": "Tech / Search / AI",
       "layer": "Stability",
-      "price": 338.2,
-      "chg_pct": -1.02,
-      "vol_ratio": 0.7,
-      "rsi": 35.7,
-      "w52_pos_pct": 67,
+      "price": 341.75,
+      "chg_pct": 1.05,
+      "vol_ratio": 0.8,
+      "rsi": 20.6,
+      "w52_pos_pct": 68,
       "analyst_target": 422.34,
-      "analyst_upside_pct": 24.9,
+      "analyst_upside_pct": 23.6,
       "days_to_earnings": null,
       "verdict": null,
       "news": []
@@ -59,13 +59,13 @@
       "ticker": "META",
       "sector": "Social Media / AI",
       "layer": "Growth",
-      "price": 545.83,
-      "chg_pct": -0.04,
+      "price": 549.9,
+      "chg_pct": 0.75,
       "vol_ratio": 0.8,
-      "rsi": 46.0,
-      "w52_pos_pct": 9,
+      "rsi": 31.3,
+      "w52_pos_pct": 11,
       "analyst_target": 754.14,
-      "analyst_upside_pct": 38.2,
+      "analyst_upside_pct": 37.1,
       "days_to_earnings": null,
       "verdict": null,
       "news": []
@@ -74,14 +74,14 @@
       "ticker": "AVGO",
       "sector": "Semiconductors",
       "layer": "Growth",
-      "price": 364.03,
-      "chg_pct": 0.43,
+      "price": 368.45,
+      "chg_pct": 1.21,
       "vol_ratio": 1.0,
-      "rsi": 38.4,
-      "w52_pos_pct": 37,
-      "analyst_target": 527.88,
-      "analyst_upside_pct": 45.0,
-      "days_to_earnings": 12,
+      "rsi": 39.2,
+      "w52_pos_pct": 39,
+      "analyst_target": 526.3,
+      "analyst_upside_pct": 42.8,
+      "days_to_earnings": 9,
       "verdict": null,
       "news": []
     },
@@ -89,55 +89,42 @@
       "ticker": "MU",
       "sector": "Memory Chips",
       "layer": "Growth",
-      "price": 974.33,
-      "chg_pct": 3.97,
-      "vol_ratio": 0.6,
-      "rsi": 70.7,
+      "price": 966.78,
+      "chg_pct": -0.77,
+      "vol_ratio": 0.5,
+      "rsi": 68.8,
       "w52_pos_pct": 75,
-      "analyst_target": 1521.62,
-      "analyst_upside_pct": 56.2,
+      "analyst_target": 1515.11,
+      "analyst_upside_pct": 56.7,
       "days_to_earnings": null,
       "verdict": null,
-      "news": [
-        {
-          "title": "Micron CEO Says AI ‘Can’t Scale’ Without Memory – MU Stock Jumps On $10B Research Lab Initiative",
-          "url": "https://stocktwits.com/news-articles/markets/equity/micron-ceo-says-ai-can-t-scale-without-memory-mu-stock-jumps-on-10-b-research-lab-initiative/cZYBLTPRJZx?.tsrc=rss"
-        },
-        {
-          "title": "Forget Micron for a Minute: This Memory Competitor Just Crossed a Major Profitability Milestone",
-          "url": "https://www.fool.com/investing/2026/08/20/forget-micron-for-a-minute-this-memory-competitor/?.tsrc=rss"
-        },
-        {
-          "title": "The Biggest Risk Facing the Roundhill Memory ETF (DRAM) Right Now",
-          "url": "https://247wallst.com/investing/2026/08/20/the-biggest-risk-facing-the-roundhill-memory-etf-dram-right-now/?.tsrc=rss"
-        }
-      ]
+      "news": []
     },
     {
       "ticker": "IBIT",
       "sector": "Crypto",
       "layer": "Speculation",
-      "price": 41.2,
-      "chg_pct": 6.24,
+      "price": 43.68,
+      "chg_pct": 6.02,
       "vol_ratio": 2.8,
-      "rsi": 83.1,
-      "w52_pos_pct": 21,
+      "rsi": 86.3,
+      "w52_pos_pct": 28,
       "analyst_target": null,
       "analyst_upside_pct": null,
       "days_to_earnings": null,
       "verdict": null,
       "news": [
         {
+          "title": "Crypto Skeptic Rashida Tlaib Holds Bitcoin and Ethereum ETFs",
+          "url": "https://beincrypto.com/rashida-tlaib-bitcoin-ethereum-etf-disclosure/?.tsrc=rss"
+        },
+        {
+          "title": "Robinhood Advances 5%, Webull Ticks Up as Bitcoin’s Breakout Lifts Retail Brokerages",
+          "url": "https://247wallst.com/investing/2026/08/21/robinhood-advances-5-webull-ticks-up-as-bitcoins-breakout-lifts-retail-brokerages/?.tsrc=rss"
+        },
+        {
           "title": "IBIT’s 0.25% Fee Sells Off Bitcoin Daily, and the Prospectus Calls Every Sale a Taxable Event",
           "url": "https://247wallst.com/investing/etf/2026/08/20/ibits-0-25-fee-sells-off-bitcoin-daily-and-the-prospectus-calls-every-sale-a-taxable-event/?.tsrc=rss"
-        },
-        {
-          "title": "Billionaire hedge fund manager makes surprising Bitcoin move",
-          "url": "https://www.thestreet.com/crypto/markets/billionaire-hedge-fund-manager-makes-surprising-bitcoin-move?.tsrc=rss"
-        },
-        {
-          "title": "Paul Tudor Jones' Firm Buys Back Into BlackRock Bitcoin ETF After a Year of Selling",
-          "url": "https://decrypt.co/375745/paul-tudor-jones-buys-blackrock-bitcoin-etf?.tsrc=rss"
         }
       ]
     },
@@ -145,96 +132,10 @@
       "ticker": "GLDM",
       "sector": "Commodities / Gold",
       "layer": "Stability",
-      "price": 89.59,
-      "chg_pct": 0.34,
-      "vol_ratio": 0.9,
-      "rsi": 80.2,
-      "w52_pos_pct": 54,
-      "analyst_target": null,
-      "analyst_upside_pct": null,
-      "days_to_earnings": null,
-      "verdict": null,
-      "news": []
-    },
-    {
-      "ticker": "VST",
-      "sector": "Energy / Nuclear",
-      "layer": "Growth",
-      "price": 138.94,
-      "chg_pct": -2.63,
-      "vol_ratio": 0.8,
-      "rsi": 40.0,
-      "w52_pos_pct": 7,
-      "analyst_target": 219.72,
-      "analyst_upside_pct": 58.1,
-      "days_to_earnings": null,
-      "verdict": null,
-      "news": [
-        {
-          "title": "Vistra Is Under $150. Here's Why I Think It Won't Stay That Way.",
-          "url": "https://www.fool.com/investing/2026/08/17/vistra-is-under-150-heres-why-i-think-it-wont-stay/?.tsrc=rss"
-        },
-        {
-          "title": "Vistra (VST) Stock Looks Above Fair Value On Earnings Yet Supported By Demand",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/vistra-vst-stock-looks-above-150910618.html?.tsrc=rss"
-        },
-        {
-          "title": "Vistra (VST) Is Not Just a Power Producer, But an AI Infrastructure Bet",
-          "url": "https://finance.yahoo.com/energy/articles/vistra-vst-not-just-power-002658669.html?.tsrc=rss"
-        }
-      ]
-    },
-    {
-      "ticker": "APLD",
-      "sector": "AI Infrastructure",
-      "layer": "Speculation",
-      "price": 28.65,
-      "chg_pct": 1.49,
-      "vol_ratio": 0.7,
-      "rsi": 54.7,
-      "w52_pos_pct": 41,
-      "analyst_target": 74.23,
-      "analyst_upside_pct": 159.1,
-      "days_to_earnings": null,
-      "verdict": null,
-      "news": []
-    },
-    {
-      "ticker": "OKLO",
-      "sector": "Nuclear Energy",
-      "layer": "Speculation",
-      "price": 41.66,
-      "chg_pct": -2.98,
-      "vol_ratio": 0.7,
-      "rsi": 54.8,
-      "w52_pos_pct": 3,
-      "analyst_target": 79.88,
-      "analyst_upside_pct": 91.7,
-      "days_to_earnings": null,
-      "verdict": null,
-      "news": [
-        {
-          "title": "OKLO Vs SMR Vs NNE: All Three Nuclear Stocks Got A Price Target Cut – But Here’s The One This Analyst Still Favors",
-          "url": "https://stocktwits.com/news-articles/markets/equity/oklo-vs-smr-vs-nne-all-three-nuclear-stocks-got-a-price-target-cut-but-here-s-the-one-this-analyst-still-favors/cZYBWT4RJZv?.tsrc=rss"
-        },
-        {
-          "title": "NuScale Power and Oklo Drop 5%, Centrus Energy Sinks 6%: What’s Behind the Nuclear Stock Selloff?",
-          "url": "https://247wallst.com/investing/2026/08/20/nuscale-power-and-oklo-drop-5-centrus-energy-sinks-6-whats-behind-the-nuclear-stock-selloff/?.tsrc=rss"
-        },
-        {
-          "title": "Oklo Vs. X-Energy: Is the New Nuclear IPO the Better Buy?",
-          "url": "https://www.fool.com/investing/2026/08/19/oklo-vs-x-energy-is-the-new-nuclear-ipo-the-better/?.tsrc=rss"
-        }
-      ]
-    },
-    {
-      "ticker": "DRAM",
-      "sector": "Memory Chips",
-      "layer": "Growth",
-      "price": 57.58,
-      "chg_pct": 4.43,
-      "vol_ratio": 0.5,
-      "rsi": 62.7,
+      "price": 91.32,
+      "chg_pct": 1.93,
+      "vol_ratio": 1.5,
+      "rsi": 82.2,
       "w52_pos_pct": 57,
       "analyst_target": null,
       "analyst_upside_pct": null,
@@ -242,30 +143,116 @@
       "verdict": null,
       "news": [
         {
-          "title": "Chip stocks are crashing as the rest of the market barely flinches: AlphaCheck",
-          "url": "https://finance.yahoo.com/markets/article/chip-stocks-are-crashing-as-the-rest-of-the-market-barely-flinches-alphacheck-161342600.html?.tsrc=rss"
+          "title": "Goldman Targets $5,400 Gold by Year-End: Why GLDM Is the Low-Cost Play",
+          "url": "https://247wallst.com/investing/etf/2026/08/20/goldman-targets-5400-gold-by-year-end-why-gldm-is-the-low-cost-play/?.tsrc=rss"
         },
         {
-          "title": "U.S. ETF Investors at Odds: Chasing Returns or Playing the Long Game?",
-          "url": "http://www.etf.com/sections/advisor-center/us-etf-investors-odds-chasing-returns-or-playing-long-game?utm_source=yahoo-finance&utm_medium=rss&utm_campaign=yahoo-finance-rss&.tsrc=rss"
+          "title": "Gold Just Ripped Higher on an Ugly Jobs Report, and It’s Still Well Off Its Record. Buy GLDM Now?",
+          "url": "https://247wallst.com/investing/etf/2026/08/14/gold-just-ripped-higher-on-an-ugly-jobs-report-and-its-still-well-off-its-record-buy-gldm-now/?.tsrc=rss"
         },
         {
-          "title": "The ETFs Most Exposed to the 2026 Chip Supply Chain Crisis — Winners and Losers",
-          "url": "http://www.etf.com/sections/news/etfs-most-exposed-2026-chip-supply-chain-crisis-winners-and-losers?utm_source=yahoo-finance&utm_medium=rss&utm_campaign=yahoo-finance-rss&.tsrc=rss"
+          "title": "Gold ETF Rally Gains Momentum: Will It Sustain?",
+          "url": "https://finance.yahoo.com/markets/commodities/articles/gold-etf-rally-gains-momentum-160000754.html?.tsrc=rss"
         }
       ]
+    },
+    {
+      "ticker": "VST",
+      "sector": "Energy / Nuclear",
+      "layer": "Growth",
+      "price": 136.21,
+      "chg_pct": -1.96,
+      "vol_ratio": 1.1,
+      "rsi": 26.1,
+      "w52_pos_pct": 4,
+      "analyst_target": 220.56,
+      "analyst_upside_pct": 61.9,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": [
+        {
+          "title": "Vistra Is the Quietest Big Winner of the AI Power Boom. Here's Why.",
+          "url": "https://www.fool.com/investing/2026/08/23/vistra-is-the-quietest-big-winner-of-the-ai-power/?.tsrc=rss"
+        },
+        {
+          "title": "Constellation Energy vs. Vistra: Who Leads the AI Power Revenue Race?",
+          "url": "https://www.fool.com/coverage/charts/2026/08/21/constellation-energy-vs-vistra-who-leads-the-ai-power-revenue-race/?.tsrc=rss"
+        },
+        {
+          "title": "Vistra Is Under $150. Here's Why I Think It Won't Stay That Way.",
+          "url": "https://www.fool.com/investing/2026/08/17/vistra-is-under-150-heres-why-i-think-it-wont-stay/?.tsrc=rss"
+        }
+      ]
+    },
+    {
+      "ticker": "APLD",
+      "sector": "AI Infrastructure",
+      "layer": "Speculation",
+      "price": 27.21,
+      "chg_pct": -5.03,
+      "vol_ratio": 0.9,
+      "rsi": 41.1,
+      "w52_pos_pct": 37,
+      "analyst_target": 74.23,
+      "analyst_upside_pct": 172.8,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": [
+        {
+          "title": "Applied Digital vs. TeraWulf: Which AI Data Center Stock Is the Better Buy?",
+          "url": "https://www.fool.com/investing/2026/08/23/applied-digital-vs-terawulf-which-ai-data-center/?.tsrc=rss"
+        },
+        {
+          "title": "B. Riley keeps $75 Applied Digital target after Polaris Forge 2 site visit",
+          "url": "https://blockspace.media/insight/applied-digital-75-target-polaris-forge/?.tsrc=rss"
+        },
+        {
+          "title": "Famous Hedge Fund Tiger Global Opened a New Position in This 1 AI Stock",
+          "url": "https://www.barchart.com/story/news/3933476/famous-hedge-fund-tiger-global-opened-a-new-position-in-this-1-ai-stock?.tsrc=rss"
+        }
+      ]
+    },
+    {
+      "ticker": "OKLO",
+      "sector": "Nuclear Energy",
+      "layer": "Speculation",
+      "price": 42.09,
+      "chg_pct": 1.03,
+      "vol_ratio": 0.7,
+      "rsi": 51.6,
+      "w52_pos_pct": 3,
+      "analyst_target": 79.88,
+      "analyst_upside_pct": 89.8,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": []
+    },
+    {
+      "ticker": "DRAM",
+      "sector": "Memory Chips",
+      "layer": "Growth",
+      "price": 57.68,
+      "chg_pct": 0.17,
+      "vol_ratio": 0.4,
+      "rsi": 61.8,
+      "w52_pos_pct": 57,
+      "analyst_target": null,
+      "analyst_upside_pct": null,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": []
     },
     {
       "ticker": "CCJ",
       "sector": "אנרגיה",
       "layer": "Growth",
-      "price": 95.59,
-      "chg_pct": -2.44,
-      "vol_ratio": 0.7,
-      "rsi": 69.9,
-      "w52_pos_pct": 37,
-      "analyst_target": 131.24,
-      "analyst_upside_pct": 37.3,
+      "price": 102.51,
+      "chg_pct": 7.24,
+      "vol_ratio": 1.3,
+      "rsi": 73.9,
+      "w52_pos_pct": 47,
+      "analyst_target": 130.65,
+      "analyst_upside_pct": 27.5,
       "days_to_earnings": null,
       "verdict": null,
       "news": [
@@ -289,42 +276,42 @@
   "sector_summary": [
     {
       "sector": "AI / Semiconductors",
-      "avg_chg_pct": -0.33,
+      "avg_chg_pct": -0.98,
       "tickers": [
         "NVDA"
       ]
     },
     {
       "sector": "Tech / Cloud / AI",
-      "avg_chg_pct": -0.65,
+      "avg_chg_pct": 0.43,
       "tickers": [
         "MSFT"
       ]
     },
     {
       "sector": "Tech / Search / AI",
-      "avg_chg_pct": -1.02,
+      "avg_chg_pct": 1.05,
       "tickers": [
         "GOOG"
       ]
     },
     {
       "sector": "Social Media / AI",
-      "avg_chg_pct": -0.04,
+      "avg_chg_pct": 0.75,
       "tickers": [
         "META"
       ]
     },
     {
       "sector": "Semiconductors",
-      "avg_chg_pct": 0.43,
+      "avg_chg_pct": 1.21,
       "tickers": [
         "AVGO"
       ]
     },
     {
       "sector": "Memory Chips",
-      "avg_chg_pct": 4.2,
+      "avg_chg_pct": -0.3,
       "tickers": [
         "MU",
         "DRAM"
@@ -332,42 +319,42 @@
     },
     {
       "sector": "Crypto",
-      "avg_chg_pct": 6.24,
+      "avg_chg_pct": 6.02,
       "tickers": [
         "IBIT"
       ]
     },
     {
       "sector": "Commodities / Gold",
-      "avg_chg_pct": 0.34,
+      "avg_chg_pct": 1.93,
       "tickers": [
         "GLDM"
       ]
     },
     {
       "sector": "Energy / Nuclear",
-      "avg_chg_pct": -2.63,
+      "avg_chg_pct": -1.96,
       "tickers": [
         "VST"
       ]
     },
     {
       "sector": "AI Infrastructure",
-      "avg_chg_pct": 1.49,
+      "avg_chg_pct": -5.03,
       "tickers": [
         "APLD"
       ]
     },
     {
       "sector": "Nuclear Energy",
-      "avg_chg_pct": -2.98,
+      "avg_chg_pct": 1.03,
       "tickers": [
         "OKLO"
       ]
     },
     {
       "sector": "אנרגיה",
-      "avg_chg_pct": -2.44,
+      "avg_chg_pct": 7.24,
       "tickers": [
         "CCJ"
       ]
