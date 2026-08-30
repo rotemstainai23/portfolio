@@ -1,19 +1,19 @@
 window.WEEKLY_DATA = {
-  "generated": "2026-06-28",
-  "week_label": "שבוע 22/06-28/06",
-  "ceo_verdict": "מגמת השבוע: התיק השקעות ירד ב-3.1% בשבוע, פחות מהמדדים הרחבים SPY ו-QQQ, שירדו 1.6% ו-2.2% בהתאמה.",
+  "generated": "2026-08-23",
+  "week_label": "שבוע 17/08-23/08",
+  "ceo_verdict": "",
   "portfolio_performance": {
-    "total_value": 1725,
-    "week_pct": -3.1,
-    "total_pnl_pct": 7.5,
+    "total_value": 2043,
+    "week_pct": -0.8,
+    "total_pnl_pct": -0.6,
     "ytd_pct": null,
-    "vs_spy_week": -1.5,
+    "vs_spy_week": 0.8,
     "regime": "risk_on"
   },
   "macro_snapshot": {
-    "vix": 18.41,
+    "vix": 15.13,
     "spy_week_pct": -1.6,
-    "qqq_week_pct": -2.2,
+    "qqq_week_pct": -2.5,
     "dxy_trend": null,
     "rate_outlook": null,
     "regime_note": null
@@ -22,7 +22,7 @@ window.WEEKLY_DATA = {
     {
       "ticker": "NVDA",
       "company": "NVDA",
-      "price_change_pct": -5.9,
+      "price_change_pct": -4.7,
       "status": "",
       "key_news": "",
       "headline": "",
@@ -31,7 +31,7 @@ window.WEEKLY_DATA = {
     {
       "ticker": "MSFT",
       "company": "MSFT",
-      "price_change_pct": -1.6,
+      "price_change_pct": -2.7,
       "status": "",
       "key_news": "",
       "headline": "",
@@ -40,7 +40,7 @@ window.WEEKLY_DATA = {
     {
       "ticker": "GOOG",
       "company": "GOOG",
-      "price_change_pct": -7.6,
+      "price_change_pct": -0.6,
       "status": "",
       "key_news": "",
       "headline": "",
@@ -49,7 +49,7 @@ window.WEEKLY_DATA = {
     {
       "ticker": "META",
       "company": "META",
-      "price_change_pct": -3.1,
+      "price_change_pct": -7.6,
       "status": "",
       "key_news": "",
       "headline": "",
@@ -58,7 +58,7 @@ window.WEEKLY_DATA = {
     {
       "ticker": "AVGO",
       "company": "AVGO",
-      "price_change_pct": -7.1,
+      "price_change_pct": -11.8,
       "status": "",
       "key_news": "",
       "headline": "",
@@ -67,16 +67,16 @@ window.WEEKLY_DATA = {
     {
       "ticker": "MU",
       "company": "MU",
-      "price_change_pct": 8.5,
-      "status": "BUY",
+      "price_change_pct": 1.8,
+      "status": "WATCHLIST",
       "key_news": "**ועדת השקעות - ישיבה** **אימות קלטים** * HANDOFF אנליסט: קיבלנו",
       "headline": "",
-      "thesis_check": "HOLDING"
+      "thesis_check": "REVIEW"
     },
     {
       "ticker": "IBIT",
       "company": "IBIT",
-      "price_change_pct": -6.9,
+      "price_change_pct": 21.7,
       "status": "",
       "key_news": "",
       "headline": "",
@@ -85,7 +85,7 @@ window.WEEKLY_DATA = {
     {
       "ticker": "GLDM",
       "company": "GLDM",
-      "price_change_pct": -3.8,
+      "price_change_pct": 6.1,
       "status": "",
       "key_news": "",
       "headline": "",
@@ -94,7 +94,7 @@ window.WEEKLY_DATA = {
     {
       "ticker": "VST",
       "company": "VST",
-      "price_change_pct": 2.9,
+      "price_change_pct": -7.0,
       "status": "",
       "key_news": "",
       "headline": "",
@@ -103,7 +103,7 @@ window.WEEKLY_DATA = {
     {
       "ticker": "APLD",
       "company": "APLD",
-      "price_change_pct": -14.1,
+      "price_change_pct": -11.1,
       "status": "",
       "key_news": "",
       "headline": "",
@@ -112,56 +112,69 @@ window.WEEKLY_DATA = {
     {
       "ticker": "OKLO",
       "company": "OKLO",
-      "price_change_pct": -15.0,
+      "price_change_pct": -9.4,
       "status": "",
       "key_news": "",
       "headline": "",
       "thesis_check": ""
+    },
+    {
+      "ticker": "DRAM",
+      "company": "DRAM",
+      "price_change_pct": 1.3,
+      "status": null,
+      "key_news": "[ic: לא התקבל פלט מ-Groq]",
+      "headline": "",
+      "thesis_check": ""
+    },
+    {
+      "ticker": "CCJ",
+      "company": "CCJ",
+      "price_change_pct": 4.9,
+      "status": "WATCHLIST",
+      "key_news": "| מדד | ערך | | --- | --- | | שם חברה | CAMECO CORPORATION |",
+      "headline": "",
+      "thesis_check": "REVIEW"
     }
   ],
   "risk_matrix": [],
   "opportunities": [
     {
-      "ticker": "CEVA",
+      "ticker": "RDW",
       "conviction": 4,
       "timeframe": "1-2 שבועות",
-      "catalyst": "Ceva CEO Amir Panush Named Artificial Intelligence Company CEO of the Year",
+      "catalyst": "רווחים קרובים וחדשות על שיתוף פעולה עם Kanematsu",
       "why_not_others": "R/R 15/8, "
     },
     {
-      "ticker": "SNOW",
+      "ticker": "KTOS",
       "conviction": 4,
       "timeframe": "1-2 שבועות",
-      "catalyst": "GitLab vs Snowflake: Which Technology Stock Is a Better Buy in 2026",
+      "catalyst": "חדשות על הרחבת עבודות הגנת טילים",
       "why_not_others": "R/R 12/6, "
     },
     {
-      "ticker": "MRNA",
+      "ticker": "ZS",
       "conviction": 4,
       "timeframe": "1-2 שבועות",
-      "catalyst": "Moderna rallies after S&P 500 ends lower",
+      "catalyst": "חדשות על התקדמות בתחום האבטחה",
       "why_not_others": "R/R 10/5, "
     }
   ],
   "scenarios_next_week": {},
-  "action_items": [
-    "מגמת השבוע: התיק השקעות ירד ב-3.1% בשבוע, פחות מהמדדים הרחבים SPY ו-QQQ, שירדו 1.6% ו-2.2% בהתאמה.",
-    "סיכון עיקרי לשבוע הבא: המשך ירידה במניות הטכנולוגיה, כגון NVDA, MSFT ו-GOOG, עלול להכאיב את התיק.",
-    "הזדמנות הסקנר: הקטליסט של CEVA, שהוא ה-Top Pick, עדיין רלוונטי, והחברה עשויה להמשיך לצמוח.",
-    "פעולה ספציפית אחת: כדאי לעקוב אחרי הביצועים של MU, שעלה 8.5% בשבוע, ולבדוק האם הוא יכול להמשיך לצמוח."
-  ],
+  "action_items": [],
   "macro": {
     "spy": {
-      "price": 728.99,
+      "price": 765.72,
       "chg_week": -1.6
     },
     "qqq": {
-      "price": 706.52,
-      "chg_week": -2.2
+      "price": 713.44,
+      "chg_week": -2.5
     },
     "vix": {
-      "price": 18.41,
-      "chg_week": 12.3
+      "price": 15.13,
+      "chg_week": 3.4
     }
   }
 };
