@@ -1,12 +1,12 @@
 {
-  "generated": "2026-09-01",
-  "generated_time": "07:01",
-  "market_date": "2026-09-01",
+  "generated": "2026-09-02",
+  "generated_time": "06:39",
+  "market_date": "2026-09-02",
   "has_alerts": false,
   "alert_tickers": [],
   "macro": {
-    "spy_chg_pct": -0.3,
-    "qqq_chg_pct": 0.05,
+    "spy_chg_pct": -0.69,
+    "qqq_chg_pct": -1.27,
     "vix": null
   },
   "holdings": [
@@ -14,28 +14,41 @@
       "ticker": "NVDA",
       "sector": "AI / Semiconductors",
       "layer": "Growth",
-      "price": 220.78,
-      "chg_pct": 1.48,
-      "vol_ratio": 1.0,
-      "rsi": 52.5,
-      "w52_pos_pct": 78,
+      "price": 217.44,
+      "chg_pct": -1.51,
+      "vol_ratio": 0.9,
+      "rsi": 44.6,
+      "w52_pos_pct": 74,
       "analyst_target": 323.42,
-      "analyst_upside_pct": 46.5,
+      "analyst_upside_pct": 48.7,
       "days_to_earnings": null,
       "verdict": null,
-      "news": []
+      "news": [
+        {
+          "title": "Winamp Group Provides an Update on the U.S. Proceedings Involving NVIDIA and Suno",
+          "url": "https://finance.yahoo.com/technology/ai/articles/winamp-group-provides-u-proceedings-063000922.html?.tsrc=rss"
+        },
+        {
+          "title": "Credit Card Delinquencies Run 6.4% at Small Banks and 2.9% Across All of Them",
+          "url": "https://www.fool.com/investing/2026/09/02/credit-card-delinquencies-run-64-at-small-banks-an/?.tsrc=rss"
+        },
+        {
+          "title": "The Stock Market Is Historically Expensive Right Now. Here's Why I'm Still Investing.",
+          "url": "https://www.fool.com/investing/2026/09/02/the-stock-market-is-historically-expensive-right-n/?.tsrc=rss"
+        }
+      ]
     },
     {
       "ticker": "MSFT",
       "sector": "Tech / Cloud / AI",
       "layer": "Stability",
-      "price": 507.29,
-      "chg_pct": -1.22,
-      "vol_ratio": 1.0,
-      "rsi": 52.2,
-      "w52_pos_pct": 77,
+      "price": 501.02,
+      "chg_pct": -1.24,
+      "vol_ratio": 0.7,
+      "rsi": 55.9,
+      "w52_pos_pct": 74,
       "analyst_target": 569.45,
-      "analyst_upside_pct": 12.3,
+      "analyst_upside_pct": 13.7,
       "days_to_earnings": null,
       "verdict": null,
       "news": []
@@ -44,41 +57,28 @@
       "ticker": "GOOG",
       "sector": "Tech / Search / AI",
       "layer": "Stability",
-      "price": 335.41,
-      "chg_pct": -2.18,
-      "vol_ratio": 1.4,
-      "rsi": 39.1,
-      "w52_pos_pct": 65,
+      "price": 332.03,
+      "chg_pct": -1.01,
+      "vol_ratio": 1.0,
+      "rsi": 36.2,
+      "w52_pos_pct": 63,
       "analyst_target": 422.34,
-      "analyst_upside_pct": 25.9,
+      "analyst_upside_pct": 27.2,
       "days_to_earnings": null,
       "verdict": null,
-      "news": [
-        {
-          "title": "OpenAI Shocks the Ad Industry in 200 Days",
-          "url": "https://finance.yahoo.com/media-advertising/articles/openai-shocks-ad-industry-200-022742257.html?.tsrc=rss"
-        },
-        {
-          "title": "Sundar Pichai Says Alphabet Can't Build AI Capacity Fast Enough, and Anthropic Has Secured 5 Gigawatts of It.",
-          "url": "https://www.fool.com/investing/2026/08/31/sundar-pichai-says-alphabet-can-t-build-ai-capacity-fast-enough-and-anthropic-has-secured-5-gigawatts-of-it/?.tsrc=rss"
-        },
-        {
-          "title": "Why Is HUT Stock Rising Nearly 5% In Overnight Trading?",
-          "url": "https://stocktwits.com/news-articles/markets/equity/why-is-hut-stock-rising-nearly-5-in-overnight-trading/cZsocQzRJt5?.tsrc=rss"
-        }
-      ]
+      "news": []
     },
     {
       "ticker": "META",
       "sector": "Social Media / AI",
       "layer": "Growth",
-      "price": 572.34,
-      "chg_pct": -0.98,
-      "vol_ratio": 0.8,
-      "rsi": 40.3,
-      "w52_pos_pct": 19,
+      "price": 578.54,
+      "chg_pct": 1.08,
+      "vol_ratio": 1.0,
+      "rsi": 49.9,
+      "w52_pos_pct": 22,
       "analyst_target": 754.77,
-      "analyst_upside_pct": 31.9,
+      "analyst_upside_pct": 30.5,
       "days_to_earnings": null,
       "verdict": null,
       "news": []
@@ -87,14 +87,14 @@
       "ticker": "AVGO",
       "sector": "Semiconductors",
       "layer": "Growth",
-      "price": 370.34,
-      "chg_pct": 0.42,
-      "vol_ratio": 1.1,
-      "rsi": 26.2,
+      "price": 369.68,
+      "chg_pct": -0.18,
+      "vol_ratio": 1.0,
+      "rsi": 26.1,
       "w52_pos_pct": 40,
       "analyst_target": 525.97,
-      "analyst_upside_pct": 42.0,
-      "days_to_earnings": 1,
+      "analyst_upside_pct": 42.3,
+      "days_to_earnings": 0,
       "verdict": null,
       "news": []
     },
@@ -102,27 +102,27 @@
       "ticker": "MU",
       "sector": "Memory Chips",
       "layer": "Growth",
-      "price": 958.73,
-      "chg_pct": 2.77,
-      "vol_ratio": 0.7,
-      "rsi": 61.9,
-      "w52_pos_pct": 74,
+      "price": 933.44,
+      "chg_pct": -2.64,
+      "vol_ratio": 0.9,
+      "rsi": 53.1,
+      "w52_pos_pct": 72,
       "analyst_target": 1513.41,
-      "analyst_upside_pct": 57.9,
+      "analyst_upside_pct": 62.1,
       "days_to_earnings": null,
       "verdict": null,
       "news": [
         {
-          "title": "MU And SNDK's Nascent Rebound Faces A New Test — China's CXMT Reportedly Makes Major Breakthrough With New AI Memory Chip",
-          "url": "https://stocktwits.com/news-articles/markets/equity/mu-and-sndk-s-nascent-rebound-faces-a-new-test-china-s-cxmt-reportedly-makes-major-breakthrough-with-new-ai-memory-chip/cZso4JERJtO?.tsrc=rss"
+          "title": "Stock Market Today: Nasdaq Ends Lower As Oil Prices Top $90; Micron, Nvidia Shares Wrapped in Red",
+          "url": "https://finance.yahoo.com/m/01f4a532-05e7-3571-8eb1-b7afa3f67969/stock-market-today%3A-nasdaq.html?.tsrc=rss"
         },
         {
-          "title": "How to Play the Micron vs. CXMT Memory-Chip War",
-          "url": "https://finance.yahoo.com/m/4c4c8fde-6994-3181-a95b-ead59b8bbc55/how-to-play-the-micron-vs..html?.tsrc=rss"
+          "title": "Micron Stock Drops as Nearly 10,000 Taiwan Workers Push for Strike",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/micron-stock-drops-nearly-10-202521384.html?.tsrc=rss"
         },
         {
-          "title": "Not Nvidia, Not AMD. Micron Could Be September's Biggest AI Winner or Loser.",
-          "url": "https://www.fool.com/investing/2026/08/31/not-nvidia-not-amd-micron-could-be-septembers-bigg/?.tsrc=rss"
+          "title": "Prediction: This Could Be Micron's Stock Price by the End of 2027 (Hint: It's Above $2,000)",
+          "url": "https://www.fool.com/investing/2026/09/01/microns-stock-price-by-the-end-of-2027/?.tsrc=rss"
         }
       ]
     },
@@ -130,27 +130,27 @@
       "ticker": "IBIT",
       "sector": "Crypto",
       "layer": "Speculation",
-      "price": 44.67,
-      "chg_pct": 1.75,
-      "vol_ratio": 0.8,
-      "rsi": 84.5,
-      "w52_pos_pct": 30,
+      "price": 43.76,
+      "chg_pct": -2.04,
+      "vol_ratio": 0.9,
+      "rsi": 79.1,
+      "w52_pos_pct": 28,
       "analyst_target": null,
       "analyst_upside_pct": null,
       "days_to_earnings": null,
       "verdict": null,
       "news": [
         {
+          "title": "Crypto Stocks Slide as Bitcoin and Ethereum Hold Flat: Circle Internet and Bitmine Fall 4%, Coinbase Drops 3%",
+          "url": "https://247wallst.com/investing/2026/09/01/crypto-stocks-slide-as-bitcoin-and-ethereum-hold-flat-circle-internet-and-bitmine-fall-4-coinbase-drops-3/?.tsrc=rss"
+        },
+        {
+          "title": "Crypto Winter Melts: Biggest Weekly Crypto ETF Buying Spree Since the October Flash Crash",
+          "url": "https://247wallst.com/investing/2026/09/01/crypto-winter-melts-biggest-weekly-crypto-etf-buying-spree-since-the-october-flash-crash/?.tsrc=rss"
+        },
+        {
           "title": "Bitcoin ETFs Pulled In Near $1 Billion Last Week, So Why Is BTC Stuck Below $80,000?",
           "url": "https://beincrypto.com/bitcoin-etf-inflows-price-stuck-80k/?.tsrc=rss"
-        },
-        {
-          "title": "ETHB Emerges as a Favorite Among Ethereum ETFs",
-          "url": "http://www.etf.com/sections/features/ethb-emerges-favorite-among-ethereum-etfs?utm_source=yahoo-finance&utm_medium=rss&utm_campaign=yahoo-finance-rss&.tsrc=rss"
-        },
-        {
-          "title": "Bitcoin ETFs Draw $2.8B in Eight-Day Streak as BTC Tests $80K",
-          "url": "https://decrypt.co/376683/bitcoin-etfs-draw-2-8b-in-eight-day-streak-as-btc-tests-80k?.tsrc=rss"
         }
       ]
     },
@@ -158,11 +158,11 @@
       "ticker": "GLDM",
       "sector": "Commodities / Gold",
       "layer": "Stability",
-      "price": 88.11,
-      "chg_pct": -3.36,
+      "price": 85.59,
+      "chg_pct": -2.86,
       "vol_ratio": 1.3,
-      "rsi": 53.9,
-      "w52_pos_pct": 47,
+      "rsi": 47.7,
+      "w52_pos_pct": 41,
       "analyst_target": null,
       "analyst_upside_pct": null,
       "days_to_earnings": null,
@@ -186,13 +186,13 @@
       "ticker": "VST",
       "sector": "Energy / Nuclear",
       "layer": "Growth",
-      "price": 137.37,
-      "chg_pct": 0.2,
+      "price": 138.08,
+      "chg_pct": 0.52,
       "vol_ratio": 0.9,
-      "rsi": 36.6,
-      "w52_pos_pct": 5,
+      "rsi": 34.2,
+      "w52_pos_pct": 6,
       "analyst_target": 217.42,
-      "analyst_upside_pct": 58.3,
+      "analyst_upside_pct": 57.5,
       "days_to_earnings": null,
       "verdict": null,
       "news": []
@@ -201,41 +201,67 @@
       "ticker": "APLD",
       "sector": "AI Infrastructure",
       "layer": "Speculation",
-      "price": 25.41,
-      "chg_pct": 0.28,
-      "vol_ratio": 0.8,
-      "rsi": 35.1,
-      "w52_pos_pct": 33,
+      "price": 24.29,
+      "chg_pct": -4.41,
+      "vol_ratio": 1.0,
+      "rsi": 25.6,
+      "w52_pos_pct": 30,
       "analyst_target": 74.23,
-      "analyst_upside_pct": 192.1,
+      "analyst_upside_pct": null,
       "days_to_earnings": null,
       "verdict": null,
-      "news": []
+      "news": [
+        {
+          "title": "Applied Digital Drops 4% as Rising Yields Hit AI Infrastructure, Cipher Mining Sinks 6%, Core Scientific Slides 3%",
+          "url": "https://247wallst.com/investing/2026/09/01/applied-digital-drops-4-as-rising-yields-hit-ai-infrastructure-cipher-mining-sinks-6-core-scientific-slides-3/?.tsrc=rss"
+        },
+        {
+          "title": "IREN Limited Keeps Falling: A Respected Ratings Agency Sees 185% Growth Anyway",
+          "url": "https://247wallst.com/investing/2026/08/31/iren-limited-keeps-falling-a-respected-ratings-agency-sees-185-growth-anyway/?.tsrc=rss"
+        },
+        {
+          "title": "Applied Digital (APLD) Stock Looks Strong On Returns But Expensive On Sales",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/applied-digital-apld-stock-looks-170700339.html?.tsrc=rss"
+        }
+      ]
     },
     {
       "ticker": "OKLO",
       "sector": "Nuclear Energy",
       "layer": "Speculation",
-      "price": 40.57,
-      "chg_pct": 1.07,
-      "vol_ratio": 0.6,
-      "rsi": 37.1,
-      "w52_pos_pct": 3,
+      "price": 38.53,
+      "chg_pct": -5.03,
+      "vol_ratio": 0.8,
+      "rsi": 36.9,
+      "w52_pos_pct": 1,
       "analyst_target": 79.88,
-      "analyst_upside_pct": 96.9,
+      "analyst_upside_pct": 107.3,
       "days_to_earnings": null,
       "verdict": null,
-      "news": []
+      "news": [
+        {
+          "title": "OKLO Stock Heads For 4th Week In Red: Insider Sells Shares Worth $74K",
+          "url": "https://stocktwits.com/news-articles/markets/equity/oklo-stock-heads-for-4th-week-in-red-insider-sells-shares-worth-74-k/cZsAidYRJuf?.tsrc=rss"
+        },
+        {
+          "title": "Oklo Sinks 5% as PJM Pulls Its Meta-Backed Ohio Project, NuScale Power Barely Budges",
+          "url": "https://247wallst.com/investing/2026/09/01/oklo-sinks-5-as-pjm-pulls-its-meta-backed-ohio-project-nuscale-power-barely-budges/?.tsrc=rss"
+        },
+        {
+          "title": "Top 3 Nuclear Stocks To Watch In September 2026",
+          "url": "https://finance.yahoo.com/energy/articles/top-3-nuclear-stocks-watch-061313408.html?.tsrc=rss"
+        }
+      ]
     },
     {
       "ticker": "DRAM",
       "sector": "Memory Chips",
       "layer": "Growth",
-      "price": 56.9,
-      "chg_pct": 1.92,
-      "vol_ratio": 0.4,
-      "rsi": 61.8,
-      "w52_pos_pct": 56,
+      "price": 55.06,
+      "chg_pct": -3.23,
+      "vol_ratio": 0.6,
+      "rsi": 50.6,
+      "w52_pos_pct": 52,
       "analyst_target": null,
       "analyst_upside_pct": null,
       "days_to_earnings": null,
@@ -250,8 +276,8 @@
           "url": "https://finance.yahoo.com/m/4c4c8fde-6994-3181-a95b-ead59b8bbc55/how-to-play-the-micron-vs..html?.tsrc=rss"
         },
         {
-          "title": "SK Hynix's $720B AI Memory Expansion: Bet on These ETFs to Capture the Boom",
-          "url": "https://finance.yahoo.com/technology/ai/articles/sk-hynixs-720b-ai-memory-120600144.html?.tsrc=rss"
+          "title": "These 5 ETFs Have Raked in Cash This Year—What Do They All Have in Common?",
+          "url": "https://www.marketbeat.com/articles/these-5-etfs-have-raked-in-cash-this-yearwhat-do-they-all-have-in-common/?utm_source=yahoofinance&utm_medium=yahoofinance&.tsrc=rss"
         }
       ]
     },
@@ -259,13 +285,13 @@
       "ticker": "CCJ",
       "sector": "אנרגיה",
       "layer": "Growth",
-      "price": 98.76,
-      "chg_pct": -7.12,
-      "vol_ratio": 1.1,
-      "rsi": 52.3,
-      "w52_pos_pct": 41,
-      "analyst_target": 129.97,
-      "analyst_upside_pct": 31.6,
+      "price": 96.26,
+      "chg_pct": -2.53,
+      "vol_ratio": 0.8,
+      "rsi": 46.2,
+      "w52_pos_pct": 37,
+      "analyst_target": 129.49,
+      "analyst_upside_pct": 34.5,
       "days_to_earnings": null,
       "verdict": null,
       "news": [
@@ -289,42 +315,42 @@
   "sector_summary": [
     {
       "sector": "AI / Semiconductors",
-      "avg_chg_pct": 1.48,
+      "avg_chg_pct": -1.51,
       "tickers": [
         "NVDA"
       ]
     },
     {
       "sector": "Tech / Cloud / AI",
-      "avg_chg_pct": -1.22,
+      "avg_chg_pct": -1.24,
       "tickers": [
         "MSFT"
       ]
     },
     {
       "sector": "Tech / Search / AI",
-      "avg_chg_pct": -2.18,
+      "avg_chg_pct": -1.01,
       "tickers": [
         "GOOG"
       ]
     },
     {
       "sector": "Social Media / AI",
-      "avg_chg_pct": -0.98,
+      "avg_chg_pct": 1.08,
       "tickers": [
         "META"
       ]
     },
     {
       "sector": "Semiconductors",
-      "avg_chg_pct": 0.42,
+      "avg_chg_pct": -0.18,
       "tickers": [
         "AVGO"
       ]
     },
     {
       "sector": "Memory Chips",
-      "avg_chg_pct": 2.34,
+      "avg_chg_pct": -2.94,
       "tickers": [
         "MU",
         "DRAM"
@@ -332,42 +358,42 @@
     },
     {
       "sector": "Crypto",
-      "avg_chg_pct": 1.75,
+      "avg_chg_pct": -2.04,
       "tickers": [
         "IBIT"
       ]
     },
     {
       "sector": "Commodities / Gold",
-      "avg_chg_pct": -3.36,
+      "avg_chg_pct": -2.86,
       "tickers": [
         "GLDM"
       ]
     },
     {
       "sector": "Energy / Nuclear",
-      "avg_chg_pct": 0.2,
+      "avg_chg_pct": 0.52,
       "tickers": [
         "VST"
       ]
     },
     {
       "sector": "AI Infrastructure",
-      "avg_chg_pct": 0.28,
+      "avg_chg_pct": -4.41,
       "tickers": [
         "APLD"
       ]
     },
     {
       "sector": "Nuclear Energy",
-      "avg_chg_pct": 1.07,
+      "avg_chg_pct": -5.03,
       "tickers": [
         "OKLO"
       ]
     },
     {
       "sector": "אנרגיה",
-      "avg_chg_pct": -7.12,
+      "avg_chg_pct": -2.53,
       "tickers": [
         "CCJ"
       ]
