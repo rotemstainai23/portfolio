@@ -1,7 +1,7 @@
 {
-  "generated": "2026-09-07",
-  "generated_time": "06:50",
-  "market_date": "2026-09-07",
+  "generated": "2026-09-08",
+  "generated_time": "06:46",
+  "market_date": "2026-09-08",
   "has_alerts": false,
   "alert_tickers": [],
   "macro": {
@@ -40,16 +40,16 @@
       "verdict": null,
       "news": [
         {
-          "title": "Microsoft (MSFT)’s Outlook and OpenAI’s ChatGPT Work Both Broke the Same Day",
-          "url": "https://finance.yahoo.com/technology/articles/microsoft-msft-outlook-openai-chatgpt-002934990.html?.tsrc=rss"
+          "title": "Nvidia, Microsoft at Center of $7 Trillion AI Boom",
+          "url": "https://finance.yahoo.com/technology/ai/articles/nvidia-microsoft-center-7-trillion-192652924.html?.tsrc=rss"
         },
         {
-          "title": "Should You Buy Snowflake Stock After Its Recent Surge? The Answer Might Shock You.",
-          "url": "https://www.fool.com/investing/2026/09/06/should-buy-snowflake-stock-surge-answer-shock-you/?.tsrc=rss"
+          "title": "Microsoft Has a $1,000 Problem With Its Next Xbox",
+          "url": "https://finance.yahoo.com/technology/articles/microsoft-1-000-problem-next-192040075.html?.tsrc=rss"
         },
         {
-          "title": "3 Great Quality Stocks To Own In September 2026",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/3-great-quality-stocks-own-201414086.html?.tsrc=rss"
+          "title": "Microsoft Is Close to a New All-Time High. This Number Will Determine If It Keeps Climbing",
+          "url": "https://247wallst.com/investing/2026/09/07/microsoft-is-close-to-a-new-all-time-high-this-number-will-determine-if-it-keeps-climbing/?.tsrc=rss"
         }
       ]
     },
@@ -98,16 +98,16 @@
       "verdict": null,
       "news": [
         {
-          "title": "These AI numbers are getting crazy",
-          "url": "https://finance.yahoo.com/markets/article/these-ai-numbers-are-getting-crazy-123000121.html?.tsrc=rss"
+          "title": "Broadcom’s AI Forecast Suggests Hyperscalers Want More Than Just Nvidia GPUs",
+          "url": "https://finance.yahoo.com/technology/ai/articles/broadcom-ai-forecast-suggests-hyperscalers-211102090.html?.tsrc=rss"
         },
         {
-          "title": "Broadcom And 2 Top Growth Stocks To Watch",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/broadcom-2-top-growth-stocks-121016991.html?.tsrc=rss"
+          "title": "Broadcom Inc. (AVGO)’s AI Opportunity Expands Across AI Infrastructure",
+          "url": "https://finance.yahoo.com/technology/ai/articles/broadcom-inc-avgo-ai-opportunity-181909723.html?.tsrc=rss"
         },
         {
-          "title": "Nvidia’s Hugging Face Deal Is a Hedge against Broadcom’s Custom Silicon Threat",
-          "url": "https://finance.yahoo.com/technology/ai/articles/nvidia-hugging-face-deal-hedge-105111039.html?.tsrc=rss"
+          "title": "Broadcom vs Marvell: One of These AI Chip Stocks Is a Clear Winner",
+          "url": "https://247wallst.com/investing/2026/09/07/broadcom-vs-marvell-one-of-these-ai-chip-stocks-is-a-clear-winner/?.tsrc=rss"
         }
       ]
     },
@@ -126,16 +126,16 @@
       "verdict": null,
       "news": [
         {
-          "title": "Dow Jones Futures Fall With Iran, Apple, Inflation In Focus; Nvidia, Micron, Sandisk Flash Buy Signals",
-          "url": "https://finance.yahoo.com/m/d5001ca0-1c20-3379-83c3-ddca4526f9c2/dow-jones-futures-fall-with.html?.tsrc=rss"
+          "title": "Micron's $50 Billion Guide Gets an 8.3% Signal From Seoul",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/microns-50-billion-guide-gets-215138948.html?.tsrc=rss"
         },
         {
-          "title": "Prediction: Micron Stock Will Skyrocket After Sept. 30",
-          "url": "https://www.fool.com/investing/2026/09/06/prediction-micron-stock-will-skyrocket-after-septe/?.tsrc=rss"
+          "title": "Micron, SanDisk get new aggressive price targets from top analyst",
+          "url": "https://www.thestreet.com/investing/stocks/mu-micron-sndk-sandisk-lynx-research-stock-price-targets-september-2026?.tsrc=rss"
         },
         {
-          "title": "Micron Stock More Than Tripled in 2026. Now Taiwan Strike Threat Could Shake the AI Boom.",
-          "url": "https://www.barchart.com/story/news/4467449/micron-stock-more-than-tripled-in-2026-now-taiwan-strike-threat-could-shake-the-ai-boom?.tsrc=rss"
+          "title": "Is Micron Technology Stock Running Out of Steam?",
+          "url": "https://www.fool.com/investing/2026/09/07/is-micron-technology-stock-running-out-of-steam/?.tsrc=rss"
         }
       ]
     },
@@ -154,16 +154,16 @@
       "verdict": null,
       "news": [
         {
+          "title": "Bitcoin Has No Label but Its Closest Rival Is Gold, BlackRock Exec Says",
+          "url": "https://finance.yahoo.com/markets/crypto/articles/bitcoin-no-label-closest-rival-151524969.html?.tsrc=rss"
+        },
+        {
           "title": "Bitcoin ETF News: BlackRock IBIT Captures 62% of Inflows",
           "url": "https://cryptonews.com/news/bitcoin-etf-ibit-inflows-september/?.tsrc=rss"
         },
         {
           "title": "Crypto Treasury Stocks Rally as Bitcoin Fund Jumps 5%: Strategy Surges 14%, Bitmine Climbs 12%",
           "url": "https://247wallst.com/investing/2026/09/03/crypto-treasury-stocks-rally-as-bitcoin-fund-jumps-5-strategy-surges-14-bitmine-climbs-12/?.tsrc=rss"
-        },
-        {
-          "title": "I Think iShares Bitcoin Trust (IBIT) Is the Best Bitcoin ETF to Buy Right Now",
-          "url": "https://www.fool.com/investing/2026/09/03/ishares-bitcoin-trust-ibit-best-etf-buy-right-now/?.tsrc=rss"
         }
       ]
     },
@@ -218,12 +218,16 @@
       "chg_pct": 1.78,
       "vol_ratio": 0.9,
       "rsi": 34.0,
-      "w52_pos_pct": 35,
+      "w52_pos_pct": 34,
       "analyst_target": 74.23,
       "analyst_upside_pct": 181.5,
       "days_to_earnings": null,
       "verdict": null,
       "news": [
+        {
+          "title": "Applied Digital Won't Collect Most of Its Rent Until 2029. I'd Wait to Buy the Stock.",
+          "url": "https://www.fool.com/investing/2026/09/07/applied-digital-won-t-collect-most-of-its-rent-until-2029-i-d-wait-to-buy-the-stock/?.tsrc=rss"
+        },
         {
           "title": "Analyzing Applied Digital vs. IREN: Accelerating Upward Trajectories vs. Sequential Contractions in Quarterly Revenue Generation",
           "url": "https://www.fool.com/coverage/charts/2026/09/06/analyzing-applied-digital-vs-iren-accelerating-upward-trajectories-vs-sequential-contractions-in-quarterly-revenue-generation/?.tsrc=rss"
@@ -231,10 +235,6 @@
         {
           "title": "Applied Digital vs. IREN: Evaluating the Better Artificial Intelligence Stock to Buy for 2026",
           "url": "https://www.fool.com/coverage/better-buy/2026/09/04/applied-digital-vs-iren-evaluating-the-better-artificial-intelligence-stock-to-buy-for-2026/?.tsrc=rss"
-        },
-        {
-          "title": "What Are You Actually Buying In Applied Digital Stock?",
-          "url": "https://www.trefis.com/articles/614232/what-are-you-actually-buying-in-applied-digital-stock/2026-09-03?.tsrc=rss"
         }
       ]
     },
@@ -253,16 +253,16 @@
       "verdict": null,
       "news": [
         {
+          "title": "Is Oklo at $41 a Bargain or a Trap? Here's the Answer.",
+          "url": "https://www.fool.com/investing/2026/09/07/is-oklo-at-41-a-bargain-or-a-trap-heres-the-answer/?.tsrc=rss"
+        },
+        {
           "title": "Here's Why Oklo Stock Trades at a 900% Premium to NuScale Power",
           "url": "https://www.fool.com/investing/2026/09/06/heres-why-oklo-stock-trades-at-a-900-premium-to-nu/?.tsrc=rss"
         },
         {
           "title": "Nuclear Stock Face-Off: Is NuScale Power or Oklo the Better Buy Right Now?",
           "url": "https://www.fool.com/investing/2026/09/04/nuclear-stock-face-off-nuscale-oklo-better-buy/?.tsrc=rss"
-        },
-        {
-          "title": "Better Small Modular Reactor Stock to Buy After the Sell-Off: Oklo vs. NuScale Power",
-          "url": "https://www.fool.com/investing/2026/09/03/better-small-modular-reactor-stock-to-buy-after/?.tsrc=rss"
         }
       ]
     },
@@ -302,9 +302,9 @@
       "chg_pct": 0.12,
       "vol_ratio": 0.6,
       "rsi": 53.1,
-      "w52_pos_pct": 43,
-      "analyst_target": 130.94,
-      "analyst_upside_pct": 30.0,
+      "w52_pos_pct": 41,
+      "analyst_target": 131.28,
+      "analyst_upside_pct": 30.3,
       "days_to_earnings": null,
       "verdict": null,
       "news": []
