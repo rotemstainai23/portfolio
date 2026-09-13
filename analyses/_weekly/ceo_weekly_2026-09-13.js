@@ -1,19 +1,19 @@
 window.WEEKLY_DATA = {
-  "generated": "2026-07-12",
-  "week_label": "שבוע 06/07-12/07",
-  "ceo_verdict": "מגמת השבוע: התיק השקעות הראה ביצועים טובים יותר מהשוק, עם רווח שבועי של 2.8% לעומת 1.2% ב-SPY.",
+  "generated": "2026-09-06",
+  "week_label": "שבוע 31/08-06/09",
+  "ceo_verdict": "",
   "portfolio_performance": {
-    "total_value": 2016,
-    "week_pct": 2.8,
-    "total_pnl_pct": -2.0,
+    "total_value": 2110,
+    "week_pct": 1.3,
+    "total_pnl_pct": 2.6,
     "ytd_pct": null,
-    "vs_spy_week": 1.6,
+    "vs_spy_week": 1.4,
     "regime": "risk_on"
   },
   "macro_snapshot": {
-    "vix": 15.03,
-    "spy_week_pct": 1.2,
-    "qqq_week_pct": 0.0,
+    "vix": 14.53,
+    "spy_week_pct": -0.1,
+    "qqq_week_pct": -0.3,
     "dxy_trend": null,
     "rate_outlook": null,
     "regime_note": null
@@ -22,7 +22,7 @@ window.WEEKLY_DATA = {
     {
       "ticker": "NVDA",
       "company": "NVDA",
-      "price_change_pct": 6.8,
+      "price_change_pct": 1.0,
       "status": "",
       "key_news": "",
       "headline": "",
@@ -31,7 +31,7 @@ window.WEEKLY_DATA = {
     {
       "ticker": "MSFT",
       "company": "MSFT",
-      "price_change_pct": 0.2,
+      "price_change_pct": -1.1,
       "status": "",
       "key_news": "",
       "headline": "",
@@ -40,7 +40,7 @@ window.WEEKLY_DATA = {
     {
       "ticker": "GOOG",
       "company": "GOOG",
-      "price_change_pct": -0.8,
+      "price_change_pct": -0.7,
       "status": "",
       "key_news": "",
       "headline": "",
@@ -49,7 +49,7 @@ window.WEEKLY_DATA = {
     {
       "ticker": "META",
       "company": "META",
-      "price_change_pct": 9.2,
+      "price_change_pct": 8.0,
       "status": "",
       "key_news": "",
       "headline": "",
@@ -58,7 +58,7 @@ window.WEEKLY_DATA = {
     {
       "ticker": "AVGO",
       "company": "AVGO",
-      "price_change_pct": 8.3,
+      "price_change_pct": -3.7,
       "status": "",
       "key_news": "",
       "headline": "",
@@ -67,7 +67,7 @@ window.WEEKLY_DATA = {
     {
       "ticker": "MU",
       "company": "MU",
-      "price_change_pct": -5.1,
+      "price_change_pct": 8.7,
       "status": "WATCHLIST",
       "key_news": "**ועדת השקעות - ישיבה** **אימות קלטים** * HANDOFF אנליסט: קיבלנו",
       "headline": "",
@@ -76,7 +76,7 @@ window.WEEKLY_DATA = {
     {
       "ticker": "IBIT",
       "company": "IBIT",
-      "price_change_pct": 6.6,
+      "price_change_pct": -0.1,
       "status": "",
       "key_news": "",
       "headline": "",
@@ -85,7 +85,7 @@ window.WEEKLY_DATA = {
     {
       "ticker": "GLDM",
       "company": "GLDM",
-      "price_change_pct": 1.7,
+      "price_change_pct": -3.8,
       "status": "",
       "key_news": "",
       "headline": "",
@@ -94,7 +94,7 @@ window.WEEKLY_DATA = {
     {
       "ticker": "VST",
       "company": "VST",
-      "price_change_pct": 3.7,
+      "price_change_pct": 6.8,
       "status": "",
       "key_news": "",
       "headline": "",
@@ -103,7 +103,7 @@ window.WEEKLY_DATA = {
     {
       "ticker": "APLD",
       "company": "APLD",
-      "price_change_pct": -12.3,
+      "price_change_pct": -3.9,
       "status": "",
       "key_news": "",
       "headline": "",
@@ -112,7 +112,7 @@ window.WEEKLY_DATA = {
     {
       "ticker": "OKLO",
       "company": "OKLO",
-      "price_change_pct": -6.9,
+      "price_change_pct": -3.0,
       "status": "",
       "key_news": "",
       "headline": "",
@@ -121,7 +121,7 @@ window.WEEKLY_DATA = {
     {
       "ticker": "DRAM",
       "company": "DRAM",
-      "price_change_pct": -4.3,
+      "price_change_pct": 5.0,
       "status": null,
       "key_news": "[ic: לא התקבל פלט מ-Groq]",
       "headline": "",
@@ -130,7 +130,7 @@ window.WEEKLY_DATA = {
     {
       "ticker": "CCJ",
       "company": "CCJ",
-      "price_change_pct": -1.4,
+      "price_change_pct": -5.3,
       "status": "WATCHLIST",
       "key_news": "| מדד | ערך | | --- | --- | | שם חברה | CAMECO CORPORATION |",
       "headline": "",
@@ -140,46 +140,41 @@ window.WEEKLY_DATA = {
   "risk_matrix": [],
   "opportunities": [
     {
-      "ticker": "DDOG",
-      "conviction": 5,
+      "ticker": "RDW",
+      "conviction": 4,
       "timeframe": "1-2 שבועות",
-      "catalyst": "תרחיש AI וענן מועדף על ידי וול סטריט",
+      "catalyst": "רווחים קרובים וחדשות על שיתוף פעולה עם Kanematsu",
       "why_not_others": "R/R 15/8, "
     },
     {
-      "ticker": "CRWD",
-      "conviction": 5,
+      "ticker": "KTOS",
+      "conviction": 4,
       "timeframe": "1-2 שבועות",
-      "catalyst": "AI ביטחון ופיצול מניות",
+      "catalyst": "חדשות על הרחבת עבודות הגנת טילים",
       "why_not_others": "R/R 12/6, "
     },
     {
-      "ticker": "SE",
+      "ticker": "ZS",
       "conviction": 4,
       "timeframe": "1-2 שבועות",
-      "catalyst": "AI ושווקים מקוונים בדרום-מזרח אסיה",
+      "catalyst": "חדשות על התקדמות בתחום האבטחה",
       "why_not_others": "R/R 10/5, "
     }
   ],
   "scenarios_next_week": {},
-  "action_items": [
-    "מגמת השבוע: התיק השקעות הראה ביצועים טובים יותר מהשוק, עם רווח שבועי של 2.8% לעומת 1.2% ב-SPY.",
-    "סיכון עיקרי לשבוע הבא: המשך ירידה במניות הטכנולוגיה, כפי שנראה ב-MU ו-DRAM, עלול להשפיע לרעה על התיק.",
-    "הזדמנות הסקנר: הקטליסט של DDOG, תרחיש AI וענן מועדף על ידי וול סטריט, עדיין רלוונטי ויכול להוות הזדמנות לרווח.",
-    "פעולה ספציפית אחת: שקלו להוסיף מניות DDOG לתיק, בשל הקטליסט החזק והרייטינג הגבוה של 5 במערכת הסקנר."
-  ],
+  "action_items": [],
   "macro": {
     "spy": {
-      "price": 754.95,
-      "chg_week": 1.2
+      "price": 770.19,
+      "chg_week": -0.1
     },
     "qqq": {
-      "price": 725.51,
-      "chg_week": 0.0
+      "price": 718.96,
+      "chg_week": -0.3
     },
     "vix": {
-      "price": 15.03,
-      "chg_week": -6.9
+      "price": 14.53,
+      "chg_week": 0.1
     }
   }
 };
