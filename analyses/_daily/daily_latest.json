@@ -1,12 +1,12 @@
 {
-  "generated": "2026-09-16",
-  "generated_time": "07:01",
-  "market_date": "2026-09-16",
+  "generated": "2026-09-17",
+  "generated_time": "06:57",
+  "market_date": "2026-09-17",
   "has_alerts": false,
   "alert_tickers": [],
   "macro": {
-    "spy_chg_pct": -0.46,
-    "qqq_chg_pct": -0.65,
+    "spy_chg_pct": -0.44,
+    "qqq_chg_pct": 0.03,
     "vix": null
   },
   "holdings": [
@@ -14,13 +14,13 @@
       "ticker": "NVDA",
       "sector": "AI / Semiconductors",
       "layer": "Growth",
-      "price": 212.17,
-      "chg_pct": 0.57,
+      "price": 213.9,
+      "chg_pct": 0.82,
       "vol_ratio": 0.7,
-      "rsi": 49.4,
-      "w52_pos_pct": 66,
+      "rsi": 53.0,
+      "w52_pos_pct": 69,
       "analyst_target": 328.66,
-      "analyst_upside_pct": 54.9,
+      "analyst_upside_pct": 53.7,
       "days_to_earnings": null,
       "verdict": null,
       "news": []
@@ -29,41 +29,28 @@
       "ticker": "MSFT",
       "sector": "Tech / Cloud / AI",
       "layer": "Stability",
-      "price": 497.12,
-      "chg_pct": -1.64,
+      "price": 490.3,
+      "chg_pct": -1.37,
       "vol_ratio": 0.8,
-      "rsi": 52.9,
-      "w52_pos_pct": 72,
+      "rsi": 46.8,
+      "w52_pos_pct": 69,
       "analyst_target": 572.92,
-      "analyst_upside_pct": 15.2,
+      "analyst_upside_pct": 16.9,
       "days_to_earnings": null,
       "verdict": null,
-      "news": [
-        {
-          "title": "Top \"Magnificent Seven\" Picks for Patient Long-Term Investors",
-          "url": "https://www.fool.com/investing/2026/09/16/top-magnificent-seven-picks-for-patient-long-term/?.tsrc=rss"
-        },
-        {
-          "title": "Microsoft announces quarterly dividend increase",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/microsoft-announces-quarterly-dividend-increase-220500352.html?.tsrc=rss"
-        },
-        {
-          "title": "Microsoft Pays Out More in Dividends Than It Spends Buying Back Stock. Here's What That Does for Investors.",
-          "url": "https://www.fool.com/investing/2026/09/15/microsoft-pays-out-more-in-dividends-than-it-spends-buying-back-stock-here-s-what-that-has-done-to-the-share-count/?.tsrc=rss"
-        }
-      ]
+      "news": []
     },
     {
       "ticker": "GOOG",
       "sector": "Tech / Search / AI",
       "layer": "Stability",
-      "price": 341.43,
-      "chg_pct": -1.24,
+      "price": 339.36,
+      "chg_pct": -0.61,
       "vol_ratio": 0.8,
-      "rsi": 48.4,
-      "w52_pos_pct": 62,
+      "rsi": 50.2,
+      "w52_pos_pct": 61,
       "analyst_target": 422.34,
-      "analyst_upside_pct": 23.7,
+      "analyst_upside_pct": 24.5,
       "days_to_earnings": null,
       "verdict": null,
       "news": []
@@ -72,13 +59,13 @@
       "ticker": "META",
       "sector": "Social Media / AI",
       "layer": "Growth",
-      "price": 670.24,
-      "chg_pct": 0.7,
-      "vol_ratio": 1.1,
-      "rsi": 84.1,
-      "w52_pos_pct": 55,
+      "price": 673.31,
+      "chg_pct": 0.46,
+      "vol_ratio": 0.9,
+      "rsi": 83.8,
+      "w52_pos_pct": 57,
       "analyst_target": 758.28,
-      "analyst_upside_pct": 13.1,
+      "analyst_upside_pct": 12.6,
       "days_to_earnings": null,
       "verdict": null,
       "news": []
@@ -87,42 +74,29 @@
       "ticker": "AVGO",
       "sector": "Semiconductors",
       "layer": "Growth",
-      "price": 339.27,
-      "chg_pct": -1.58,
-      "vol_ratio": 1.0,
-      "rsi": 38.7,
+      "price": 339.51,
+      "chg_pct": 0.07,
+      "vol_ratio": 0.9,
+      "rsi": 39.5,
       "w52_pos_pct": 24,
       "analyst_target": 531.85,
-      "analyst_upside_pct": 56.8,
+      "analyst_upside_pct": 56.7,
       "days_to_earnings": null,
       "verdict": null,
-      "news": [
-        {
-          "title": "Why Rule Breakers Dig Stocks With Multiple Futures",
-          "url": "https://www.fool.com/investing/2026/09/15/why-rule-breakers-dig-stocks-with-multiple-futures/?.tsrc=rss"
-        },
-        {
-          "title": "Broadcom CEO Doubles Down on Massive AI Growth Target",
-          "url": "https://finance.yahoo.com/technology/ai/articles/broadcom-ceo-doubles-down-massive-192839307.html?.tsrc=rss"
-        },
-        {
-          "title": "Broadcom (AVGO) Could Be 47% Below Fair Value On Buybacks And Revenue Guidance",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/broadcom-avgo-could-47-below-191826056.html?.tsrc=rss"
-        }
-      ]
+      "news": []
     },
     {
       "ticker": "MU",
       "sector": "Memory Chips",
       "layer": "Growth",
-      "price": 927.6,
-      "chg_pct": 0.39,
+      "price": 926.55,
+      "chg_pct": -0.11,
       "vol_ratio": 0.8,
-      "rsi": 49.1,
+      "rsi": 48.0,
       "w52_pos_pct": 70,
       "analyst_target": 1513.11,
-      "analyst_upside_pct": 63.1,
-      "days_to_earnings": 14,
+      "analyst_upside_pct": 63.3,
+      "days_to_earnings": 13,
       "verdict": null,
       "news": []
     },
@@ -130,39 +104,26 @@
       "ticker": "IBIT",
       "sector": "Crypto",
       "layer": "Speculation",
-      "price": 43.11,
-      "chg_pct": -3.64,
-      "vol_ratio": 1.2,
-      "rsi": 43.4,
+      "price": 43.04,
+      "chg_pct": -0.16,
+      "vol_ratio": 0.8,
+      "rsi": 44.0,
       "w52_pos_pct": 26,
       "analyst_target": null,
       "analyst_upside_pct": null,
       "days_to_earnings": null,
       "verdict": null,
-      "news": [
-        {
-          "title": "Zacks Investment Ideas feature highlights: Coinbase, IBIT, ETHA, SOLZ and stablecoin operator Circle",
-          "url": "https://finance.yahoo.com/markets/crypto/articles/zacks-investment-ideas-feature-highlights-142300116.html?.tsrc=rss"
-        },
-        {
-          "title": "Crypto ETF Inflows Hit 10-Month High as $6.8B Floods Into Funds in Six Weeks",
-          "url": "https://www.ccn.com/news/crypto/crypto-etf-inflows-6-8-billion-10-month-high/?.tsrc=rss"
-        },
-        {
-          "title": "Crypto Mining Stocks Fall Harder Than Bitcoin on a Risk-Off Tape: Cipher Mining Sinks 6%, MARA and Riot Drop 4%",
-          "url": "https://247wallst.com/investing/2026/09/10/crypto-mining-stocks-fall-harder-than-bitcoin-on-a-risk-off-tape-cipher-mining-sinks-6-mara-and-riot-drop-4/?.tsrc=rss"
-        }
-      ]
+      "news": []
     },
     {
       "ticker": "GLDM",
       "sector": "Commodities / Gold",
       "layer": "Stability",
-      "price": 85.0,
-      "chg_pct": 0.32,
-      "vol_ratio": 0.5,
-      "rsi": 28.2,
-      "w52_pos_pct": 35,
+      "price": 84.53,
+      "chg_pct": -0.55,
+      "vol_ratio": 1.0,
+      "rsi": 30.0,
+      "w52_pos_pct": 34,
       "analyst_target": null,
       "analyst_upside_pct": null,
       "days_to_earnings": null,
@@ -173,13 +134,13 @@
       "ticker": "VST",
       "sector": "Energy / Nuclear",
       "layer": "Growth",
-      "price": 141.53,
-      "chg_pct": 0.57,
-      "vol_ratio": 1.3,
-      "rsi": 53.8,
-      "w52_pos_pct": 10,
+      "price": 140.39,
+      "chg_pct": -0.81,
+      "vol_ratio": 0.9,
+      "rsi": 50.5,
+      "w52_pos_pct": 9,
       "analyst_target": 217.42,
-      "analyst_upside_pct": 53.6,
+      "analyst_upside_pct": 54.9,
       "days_to_earnings": null,
       "verdict": null,
       "news": []
@@ -188,11 +149,11 @@
       "ticker": "APLD",
       "sector": "AI Infrastructure",
       "layer": "Speculation",
-      "price": 23.42,
-      "chg_pct": -4.72,
-      "vol_ratio": 0.9,
-      "rsi": 33.1,
-      "w52_pos_pct": 14,
+      "price": 24.39,
+      "chg_pct": 4.14,
+      "vol_ratio": 1.3,
+      "rsi": 41.7,
+      "w52_pos_pct": 17,
       "analyst_target": 74.23,
       "analyst_upside_pct": null,
       "days_to_earnings": null,
@@ -216,13 +177,13 @@
       "ticker": "OKLO",
       "sector": "Nuclear Energy",
       "layer": "Speculation",
-      "price": 35.98,
-      "chg_pct": -0.64,
-      "vol_ratio": 0.7,
-      "rsi": 29.8,
+      "price": 35.62,
+      "chg_pct": -1.0,
+      "vol_ratio": 0.8,
+      "rsi": 33.6,
       "w52_pos_pct": 1,
       "analyst_target": 78.69,
-      "analyst_upside_pct": 118.7,
+      "analyst_upside_pct": 120.9,
       "days_to_earnings": null,
       "verdict": null,
       "news": []
@@ -231,11 +192,11 @@
       "ticker": "DRAM",
       "sector": "Memory Chips",
       "layer": "Growth",
-      "price": 55.01,
-      "chg_pct": 0.38,
-      "vol_ratio": 0.6,
-      "rsi": 46.9,
-      "w52_pos_pct": 52,
+      "price": 55.33,
+      "chg_pct": 0.58,
+      "vol_ratio": 0.7,
+      "rsi": 47.3,
+      "w52_pos_pct": 53,
       "analyst_target": null,
       "analyst_upside_pct": null,
       "days_to_earnings": null,
@@ -246,29 +207,16 @@
       "ticker": "CCJ",
       "sector": "אנרגיה",
       "layer": "Growth",
-      "price": 91.21,
-      "chg_pct": -2.2,
+      "price": 90.9,
+      "chg_pct": -0.34,
       "vol_ratio": 0.8,
-      "rsi": 21.8,
+      "rsi": 20.5,
       "w52_pos_pct": 23,
-      "analyst_target": 129.73,
+      "analyst_target": 129.3,
       "analyst_upside_pct": 42.2,
       "days_to_earnings": null,
       "verdict": null,
-      "news": [
-        {
-          "title": "Cameco vs. USA Rare Earth: Which Renewable Energy Stock Is a Better Buy in 2026?",
-          "url": "https://www.fool.com/coverage/better-buy/2026/09/15/cameco-vs-usa-rare-earth-which-renewable-energy-stock-is-a-better-buy-in-2026/?.tsrc=rss"
-        },
-        {
-          "title": "Jim Cramer Favors BWX Technologies (BWXT) Over Cameco (CCJ)",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/jim-cramer-favors-bwx-technologies-212632352.html?.tsrc=rss"
-        },
-        {
-          "title": "Cameco Controls the Uranium Refinery That Puts Canada in the Driver's Seat",
-          "url": "https://www.fool.com/investing/2026/09/13/cameco-controls-the-uranium-refinery-that-puts-can/?.tsrc=rss"
-        }
-      ]
+      "news": []
     }
   ],
   "watchlist_triggers": [],
@@ -276,42 +224,42 @@
   "sector_summary": [
     {
       "sector": "AI / Semiconductors",
-      "avg_chg_pct": 0.57,
+      "avg_chg_pct": 0.82,
       "tickers": [
         "NVDA"
       ]
     },
     {
       "sector": "Tech / Cloud / AI",
-      "avg_chg_pct": -1.64,
+      "avg_chg_pct": -1.37,
       "tickers": [
         "MSFT"
       ]
     },
     {
       "sector": "Tech / Search / AI",
-      "avg_chg_pct": -1.24,
+      "avg_chg_pct": -0.61,
       "tickers": [
         "GOOG"
       ]
     },
     {
       "sector": "Social Media / AI",
-      "avg_chg_pct": 0.7,
+      "avg_chg_pct": 0.46,
       "tickers": [
         "META"
       ]
     },
     {
       "sector": "Semiconductors",
-      "avg_chg_pct": -1.58,
+      "avg_chg_pct": 0.07,
       "tickers": [
         "AVGO"
       ]
     },
     {
       "sector": "Memory Chips",
-      "avg_chg_pct": 0.39,
+      "avg_chg_pct": 0.23,
       "tickers": [
         "MU",
         "DRAM"
@@ -319,42 +267,42 @@
     },
     {
       "sector": "Crypto",
-      "avg_chg_pct": -3.64,
+      "avg_chg_pct": -0.16,
       "tickers": [
         "IBIT"
       ]
     },
     {
       "sector": "Commodities / Gold",
-      "avg_chg_pct": 0.32,
+      "avg_chg_pct": -0.55,
       "tickers": [
         "GLDM"
       ]
     },
     {
       "sector": "Energy / Nuclear",
-      "avg_chg_pct": 0.57,
+      "avg_chg_pct": -0.81,
       "tickers": [
         "VST"
       ]
     },
     {
       "sector": "AI Infrastructure",
-      "avg_chg_pct": -4.72,
+      "avg_chg_pct": 4.14,
       "tickers": [
         "APLD"
       ]
     },
     {
       "sector": "Nuclear Energy",
-      "avg_chg_pct": -0.64,
+      "avg_chg_pct": -1.0,
       "tickers": [
         "OKLO"
       ]
     },
     {
       "sector": "אנרגיה",
-      "avg_chg_pct": -2.2,
+      "avg_chg_pct": -0.34,
       "tickers": [
         "CCJ"
       ]
