@@ -1,12 +1,12 @@
 {
-  "generated": "2026-09-24",
-  "generated_time": "06:59",
-  "market_date": "2026-09-24",
+  "generated": "2026-09-25",
+  "generated_time": "06:54",
+  "market_date": "2026-09-25",
   "has_alerts": false,
   "alert_tickers": [],
   "macro": {
-    "spy_chg_pct": -0.72,
-    "qqq_chg_pct": -0.84,
+    "spy_chg_pct": -0.08,
+    "qqq_chg_pct": -0.01,
     "vix": null
   },
   "holdings": [
@@ -14,13 +14,13 @@
       "ticker": "NVDA",
       "sector": "AI / Semiconductors",
       "layer": "Growth",
-      "price": 225.51,
-      "chg_pct": -1.47,
-      "vol_ratio": 0.7,
-      "rsi": 51.2,
-      "w52_pos_pct": 85,
+      "price": 224.58,
+      "chg_pct": -0.41,
+      "vol_ratio": 0.6,
+      "rsi": 45.6,
+      "w52_pos_pct": 83,
       "analyst_target": 327.7,
-      "analyst_upside_pct": 45.3,
+      "analyst_upside_pct": 45.9,
       "days_to_earnings": null,
       "verdict": null,
       "news": []
@@ -29,13 +29,13 @@
       "ticker": "MSFT",
       "sector": "Tech / Cloud / AI",
       "layer": "Stability",
-      "price": 500.59,
-      "chg_pct": 0.52,
-      "vol_ratio": 0.9,
-      "rsi": 52.2,
-      "w52_pos_pct": 74,
+      "price": 497.93,
+      "chg_pct": -0.53,
+      "vol_ratio": 0.8,
+      "rsi": 41.9,
+      "w52_pos_pct": 73,
       "analyst_target": 577.26,
-      "analyst_upside_pct": 15.3,
+      "analyst_upside_pct": 15.9,
       "days_to_earnings": null,
       "verdict": null,
       "news": []
@@ -44,13 +44,13 @@
       "ticker": "GOOG",
       "sector": "Tech / Search / AI",
       "layer": "Stability",
-      "price": 334.98,
-      "chg_pct": -3.58,
-      "vol_ratio": 1.3,
-      "rsi": 50.9,
-      "w52_pos_pct": 59,
+      "price": 339.01,
+      "chg_pct": 1.2,
+      "vol_ratio": 0.9,
+      "rsi": 49.9,
+      "w52_pos_pct": 61,
       "analyst_target": 422.34,
-      "analyst_upside_pct": 26.1,
+      "analyst_upside_pct": 24.6,
       "days_to_earnings": null,
       "verdict": null,
       "news": []
@@ -59,27 +59,27 @@
       "ticker": "META",
       "sector": "Social Media / AI",
       "layer": "Growth",
-      "price": 744.1,
-      "chg_pct": 1.02,
-      "vol_ratio": 1.5,
-      "rsi": 84.6,
-      "w52_pos_pct": 92,
-      "analyst_target": 770.21,
-      "analyst_upside_pct": 3.5,
+      "price": 777.59,
+      "chg_pct": 4.5,
+      "vol_ratio": 1.6,
+      "rsi": 85.6,
+      "w52_pos_pct": 99,
+      "analyst_target": 786.8,
+      "analyst_upside_pct": 1.2,
       "days_to_earnings": null,
       "verdict": null,
       "news": [
         {
-          "title": "Meta CEO Mark Zuckerberg Admits AI Moved Faster Than Metaverse Vision, Driving Strategy Shift",
-          "url": "https://stocktwits.com/news-articles/markets/equity/meta-ceo-mark-zuckerberg-admits-ai-moved-faster-than-metaverse-vision-driving-strategy-shift/cZM7AQARBBs?.tsrc=rss"
+          "title": "Meta's Muse Agent Makes Waves: Market Snapshot",
+          "url": "https://finance.yahoo.com/video/metas-muse-agent-makes-waves-062946885.html?.tsrc=rss"
         },
         {
-          "title": "SNAP Stock Hits Over 1-Month Low Amid SPECS Backlash — Meta Unveils Cheaper Glasses And Musk Fuels AI FOMO",
-          "url": "https://stocktwits.com/news-articles/markets/equity/snap-stock-specs-backlash-meta-cheaper-glasses-musk-ai-fomo/cZM7qtaRBBr?.tsrc=rss"
+          "title": "'Is AI Gonna Kill Us?’ Mark Zuckerberg Has an Answer — And He’s ‘Quite Optimistic’ About the Future",
+          "url": "https://finance.yahoo.com/technology/ai/articles/ai-gonna-kill-us-mark-045712538.html?.tsrc=rss"
         },
         {
-          "title": "Mark Zuckerberg Says Muse Will Stay Free for 'a Huge Number of Tokens': Walmart, Sephora, Best Buy and More Sign on to Power Shopping",
-          "url": "https://finance.yahoo.com/technology/ai/articles/mark-zuckerberg-says-muse-stay-043750111.html?.tsrc=rss"
+          "title": "Meta Has Lost More Than $85 Billion on Its Glasses and Headsets. Here's What Would Stop It.",
+          "url": "https://www.fool.com/investing/2026/09/25/meta-has-lost-more-than-usd85-billion-on-its-glasses-and-headsets-here-s-what-would-stop-it/?.tsrc=rss"
         }
       ]
     },
@@ -87,67 +87,41 @@
       "ticker": "AVGO",
       "sector": "Semiconductors",
       "layer": "Growth",
-      "price": 354.99,
-      "chg_pct": -2.62,
-      "vol_ratio": 0.9,
-      "rsi": 43.0,
-      "w52_pos_pct": 32,
+      "price": 350.36,
+      "chg_pct": -1.3,
+      "vol_ratio": 0.8,
+      "rsi": 45.9,
+      "w52_pos_pct": 29,
       "analyst_target": 531.85,
-      "analyst_upside_pct": 49.8,
+      "analyst_upside_pct": 51.8,
       "days_to_earnings": null,
       "verdict": null,
-      "news": [
-        {
-          "title": "Where Will Broadcom Stock Be in 5 Years?",
-          "url": "https://www.fool.com/investing/2026/09/24/where-will-broadcom-stock-be-in-5-years/?.tsrc=rss"
-        },
-        {
-          "title": "3 Companies With a Strong History of Dividend Growth",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/3-companies-strong-history-dividend-231500498.html?.tsrc=rss"
-        },
-        {
-          "title": "Broadcom Just Made a Move That Further Solidifies My Decision to Buy on Repeat",
-          "url": "https://247wallst.com/investing/2026/09/23/broadcom-just-made-a-move-that-further-solidifies-my-decision-to-buy-on-repeat/?.tsrc=rss"
-        }
-      ]
+      "news": []
     },
     {
       "ticker": "MU",
       "sector": "Memory Chips",
       "layer": "Growth",
-      "price": 1071.88,
-      "chg_pct": -2.22,
-      "vol_ratio": 0.8,
-      "rsi": 64.2,
-      "w52_pos_pct": 83,
+      "price": 1080.53,
+      "chg_pct": 0.81,
+      "vol_ratio": 0.9,
+      "rsi": 64.8,
+      "w52_pos_pct": 84,
       "analyst_target": 1515.54,
-      "analyst_upside_pct": 41.4,
-      "days_to_earnings": 6,
+      "analyst_upside_pct": 40.3,
+      "days_to_earnings": 5,
       "verdict": null,
-      "news": [
-        {
-          "title": "Top Research Reports for Micron, Costco & Interactive Brokers",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/top-research-reports-micron-costco-210700036.html?.tsrc=rss"
-        },
-        {
-          "title": "Own ON Semiconductor For AI Power, Or Own Micron's Contracts?",
-          "url": "https://www.trefis.com/articles/616324/own-on-semiconductor-for-ai-power-or-own-microns-contracts/2026-09-23?.tsrc=rss"
-        },
-        {
-          "title": "Chip Stocks Drop After Six-Day Climb For SOX Index",
-          "url": "https://finance.yahoo.com/m/18586b4b-e99e-3a53-8fd7-31463ceee1d5/chip-stocks-drop-after.html?.tsrc=rss"
-        }
-      ]
+      "news": []
     },
     {
       "ticker": "IBIT",
       "sector": "Crypto",
       "layer": "Speculation",
-      "price": 47.88,
-      "chg_pct": -1.95,
-      "vol_ratio": 0.8,
-      "rsi": 63.6,
-      "w52_pos_pct": 39,
+      "price": 47.81,
+      "chg_pct": -0.15,
+      "vol_ratio": 0.7,
+      "rsi": 55.8,
+      "w52_pos_pct": 38,
       "analyst_target": null,
       "analyst_upside_pct": null,
       "days_to_earnings": null,
@@ -158,11 +132,11 @@
       "ticker": "GLDM",
       "sector": "Commodities / Gold",
       "layer": "Stability",
-      "price": 84.75,
-      "chg_pct": -1.41,
-      "vol_ratio": 0.7,
-      "rsi": 47.0,
-      "w52_pos_pct": 31,
+      "price": 84.52,
+      "chg_pct": -0.27,
+      "vol_ratio": 0.9,
+      "rsi": 40.8,
+      "w52_pos_pct": 30,
       "analyst_target": null,
       "analyst_upside_pct": null,
       "days_to_earnings": null,
@@ -173,10 +147,10 @@
       "ticker": "VST",
       "sector": "Energy / Nuclear",
       "layer": "Growth",
-      "price": 137.97,
-      "chg_pct": -1.74,
-      "vol_ratio": 1.0,
-      "rsi": 41.6,
+      "price": 137.94,
+      "chg_pct": -0.02,
+      "vol_ratio": 0.8,
+      "rsi": 40.2,
       "w52_pos_pct": 6,
       "analyst_target": 217.58,
       "analyst_upside_pct": 57.7,
@@ -188,13 +162,13 @@
       "ticker": "APLD",
       "sector": "AI Infrastructure",
       "layer": "Speculation",
-      "price": 27.23,
-      "chg_pct": -4.59,
-      "vol_ratio": 0.9,
-      "rsi": 57.2,
-      "w52_pos_pct": 26,
+      "price": 27.06,
+      "chg_pct": -0.62,
+      "vol_ratio": 0.8,
+      "rsi": 53.8,
+      "w52_pos_pct": 25,
       "analyst_target": 66.18,
-      "analyst_upside_pct": 143.0,
+      "analyst_upside_pct": 144.6,
       "days_to_earnings": null,
       "verdict": null,
       "news": []
@@ -203,70 +177,70 @@
       "ticker": "OKLO",
       "sector": "Nuclear Energy",
       "layer": "Speculation",
-      "price": 38.82,
-      "chg_pct": -4.03,
+      "price": 38.29,
+      "chg_pct": -1.37,
       "vol_ratio": 0.7,
-      "rsi": 48.4,
-      "w52_pos_pct": 3,
+      "rsi": 46.4,
+      "w52_pos_pct": 2,
       "analyst_target": 77.12,
-      "analyst_upside_pct": 98.7,
-      "days_to_earnings": null,
-      "verdict": null,
-      "news": [
-        {
-          "title": "Oklo vs. NuScale vs. BWX Technologies: Ranking the 3 Popular Nuclear Stocks From Worst to First",
-          "url": "https://www.fool.com/investing/2026/09/23/oklo-vs-nuscale-vs-bwx-technologies-ranking-the-3/?.tsrc=rss"
-        },
-        {
-          "title": "Should You Forget Nvidia and Buy These 3 Millionaire-Maker AI Infrastructure Stocks Instead?",
-          "url": "https://www.fool.com/investing/2026/09/21/should-you-forget-nvidia-and-buy-these-3-millionai/?.tsrc=rss"
-        },
-        {
-          "title": "This Energy Stock Has 130% Upside Potential",
-          "url": "https://247wallst.com/investing/2026/09/21/oklo-stock-has-a-long-term-energy-story-unlike-almost-anything-else/?.tsrc=rss"
-        }
-      ]
-    },
-    {
-      "ticker": "DRAM",
-      "sector": "Memory Chips",
-      "layer": "Growth",
-      "price": 61.9,
-      "chg_pct": -2.7,
-      "vol_ratio": 0.9,
-      "rsi": 61.8,
-      "w52_pos_pct": 65,
-      "analyst_target": null,
-      "analyst_upside_pct": null,
+      "analyst_upside_pct": 101.4,
       "days_to_earnings": null,
       "verdict": null,
       "news": []
     },
     {
-      "ticker": "CCJ",
-      "sector": "אנרגיה",
+      "ticker": "DRAM",
+      "sector": "Memory Chips",
       "layer": "Growth",
-      "price": 90.8,
-      "chg_pct": -2.61,
-      "vol_ratio": 0.9,
-      "rsi": 38.6,
-      "w52_pos_pct": 23,
-      "analyst_target": 127.98,
-      "analyst_upside_pct": 40.9,
+      "price": 60.72,
+      "chg_pct": -1.91,
+      "vol_ratio": 1.2,
+      "rsi": 59.4,
+      "w52_pos_pct": 63,
+      "analyst_target": null,
+      "analyst_upside_pct": null,
       "days_to_earnings": null,
       "verdict": null,
       "news": [
         {
+          "title": "Forget Betting on Micron Alone: The $26B Memory ETF Owns MU, SK Hynix, and Samsung at a September Discount",
+          "url": "https://247wallst.com/investing/etf/2026/09/24/forget-betting-on-micron-alone-the-26b-memory-etf-owns-mu-sk-hynix-and-samsung-at-a-september-discount/?.tsrc=rss"
+        },
+        {
+          "title": "Stocks Slump as Wall Street Shifts Risk-Off",
+          "url": "https://finance.yahoo.com/m/f5272d73-a59d-3183-95a6-b29eb3c33f44/stocks-slump-as-wall-street.html?.tsrc=rss"
+        },
+        {
+          "title": "Micron Just Rallied 17% in a Month: Take Profits, or Buy More?",
+          "url": "https://247wallst.com/investing/2026/09/24/micron-just-rallied-17-in-a-month-take-profits-or-buy-more/?.tsrc=rss"
+        }
+      ]
+    },
+    {
+      "ticker": "CCJ",
+      "sector": "אנרגיה",
+      "layer": "Growth",
+      "price": 88.12,
+      "chg_pct": -2.95,
+      "vol_ratio": 1.2,
+      "rsi": 34.4,
+      "w52_pos_pct": 18,
+      "analyst_target": 127.59,
+      "analyst_upside_pct": 44.8,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": [
+        {
+          "title": "Here's Why Cameco (CCJ) Fell More Than Broader Market",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/heres-why-cameco-ccj-fell-205003239.html?.tsrc=rss"
+        },
+        {
+          "title": "Is the Options Market Predicting a Spike in Cameco Stock?",
+          "url": "https://finance.yahoo.com/markets/options/articles/options-market-predicting-spike-cameco-105200638.html?.tsrc=rss"
+        },
+        {
           "title": "Cameco vs. MP Materials: Does Uranium or Rare Earths Make a Better Stock Buy in 2026?",
           "url": "https://www.fool.com/coverage/better-buy/2026/09/23/cameco-vs-mp-materials-does-uranium-or-rare-earths-make-a-better-stock-buy-in-2026/?.tsrc=rss"
-        },
-        {
-          "title": "Westinghouse Electric Is Taking Nuclear Back to the Stock Market. At 63, Where He Buys the IPO Decides How Much of His Social Security Turns Taxable.",
-          "url": "https://247wallst.com/personal-finance/social-security/2026/09/22/westinghouse-electric-is-taking-nuclear-back-to-the-stock-market-at-63-where-he-buys-the-ipo-decides-how-much-of-his-social-security-turns-taxable/?.tsrc=rss"
-        },
-        {
-          "title": "Westinghouse Could IPO at a $50 Billion Valuation. Cameco's Stake Alone Would Be Worth $24.5 Billion.",
-          "url": "https://www.fool.com/investing/2026/09/21/westinghouse-could-ipo-at-a-usd50-billion-valuation-cameco-s-stake-alone-would-be-worth-usd24-5-billion/?.tsrc=rss"
         }
       ]
     }
@@ -276,42 +250,42 @@
   "sector_summary": [
     {
       "sector": "AI / Semiconductors",
-      "avg_chg_pct": -1.47,
+      "avg_chg_pct": -0.41,
       "tickers": [
         "NVDA"
       ]
     },
     {
       "sector": "Tech / Cloud / AI",
-      "avg_chg_pct": 0.52,
+      "avg_chg_pct": -0.53,
       "tickers": [
         "MSFT"
       ]
     },
     {
       "sector": "Tech / Search / AI",
-      "avg_chg_pct": -3.58,
+      "avg_chg_pct": 1.2,
       "tickers": [
         "GOOG"
       ]
     },
     {
       "sector": "Social Media / AI",
-      "avg_chg_pct": 1.02,
+      "avg_chg_pct": 4.5,
       "tickers": [
         "META"
       ]
     },
     {
       "sector": "Semiconductors",
-      "avg_chg_pct": -2.62,
+      "avg_chg_pct": -1.3,
       "tickers": [
         "AVGO"
       ]
     },
     {
       "sector": "Memory Chips",
-      "avg_chg_pct": -2.46,
+      "avg_chg_pct": -0.55,
       "tickers": [
         "MU",
         "DRAM"
@@ -319,42 +293,42 @@
     },
     {
       "sector": "Crypto",
-      "avg_chg_pct": -1.95,
+      "avg_chg_pct": -0.15,
       "tickers": [
         "IBIT"
       ]
     },
     {
       "sector": "Commodities / Gold",
-      "avg_chg_pct": -1.41,
+      "avg_chg_pct": -0.27,
       "tickers": [
         "GLDM"
       ]
     },
     {
       "sector": "Energy / Nuclear",
-      "avg_chg_pct": -1.74,
+      "avg_chg_pct": -0.02,
       "tickers": [
         "VST"
       ]
     },
     {
       "sector": "AI Infrastructure",
-      "avg_chg_pct": -4.59,
+      "avg_chg_pct": -0.62,
       "tickers": [
         "APLD"
       ]
     },
     {
       "sector": "Nuclear Energy",
-      "avg_chg_pct": -4.03,
+      "avg_chg_pct": -1.37,
       "tickers": [
         "OKLO"
       ]
     },
     {
       "sector": "אנרגיה",
-      "avg_chg_pct": -2.61,
+      "avg_chg_pct": -2.95,
       "tickers": [
         "CCJ"
       ]
