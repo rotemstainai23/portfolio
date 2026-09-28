@@ -1,12 +1,12 @@
 {
-  "generated": "2026-09-25",
-  "generated_time": "06:54",
-  "market_date": "2026-09-25",
+  "generated": "2026-09-28",
+  "generated_time": "08:01",
+  "market_date": "2026-09-28",
   "has_alerts": false,
   "alert_tickers": [],
   "macro": {
-    "spy_chg_pct": -0.08,
-    "qqq_chg_pct": -0.01,
+    "spy_chg_pct": 0.54,
+    "qqq_chg_pct": 0.46,
     "vix": null
   },
   "holdings": [
@@ -14,13 +14,13 @@
       "ticker": "NVDA",
       "sector": "AI / Semiconductors",
       "layer": "Growth",
-      "price": 224.58,
-      "chg_pct": -0.41,
-      "vol_ratio": 0.6,
-      "rsi": 45.6,
-      "w52_pos_pct": 83,
+      "price": 225.07,
+      "chg_pct": 0.22,
+      "vol_ratio": 0.7,
+      "rsi": 43.7,
+      "w52_pos_pct": 84,
       "analyst_target": 327.7,
-      "analyst_upside_pct": 45.9,
+      "analyst_upside_pct": 45.6,
       "days_to_earnings": null,
       "verdict": null,
       "news": []
@@ -29,28 +29,41 @@
       "ticker": "MSFT",
       "sector": "Tech / Cloud / AI",
       "layer": "Stability",
-      "price": 497.93,
-      "chg_pct": -0.53,
-      "vol_ratio": 0.8,
-      "rsi": 41.9,
-      "w52_pos_pct": 73,
+      "price": 516.17,
+      "chg_pct": 3.66,
+      "vol_ratio": 1.8,
+      "rsi": 59.9,
+      "w52_pos_pct": 82,
       "analyst_target": 577.26,
-      "analyst_upside_pct": 15.9,
+      "analyst_upside_pct": 11.8,
       "days_to_earnings": null,
       "verdict": null,
-      "news": []
+      "news": [
+        {
+          "title": "Bill Gates warns AI global framework talks harder than Cold War-era nuclear negotiations",
+          "url": "https://uk.finance.yahoo.com/news/bill-gates-warns-ai-global-014000975.html?.tsrc=rss"
+        },
+        {
+          "title": "Microsoft (MSFT) Reportedly Plans a Vast Data Center Expansion. Can Azure Justify the Cost?",
+          "url": "https://finance.yahoo.com/technology/ai/articles/microsoft-msft-reportedly-plans-vast-001144437.html?.tsrc=rss"
+        },
+        {
+          "title": "Microsoft (MSFT) Puts GitHub’s Coding Engine Inside the App Office Workers Already Use",
+          "url": "https://finance.yahoo.com/technology/ai/articles/microsoft-msft-puts-github-coding-193953624.html?.tsrc=rss"
+        }
+      ]
     },
     {
       "ticker": "GOOG",
       "sector": "Tech / Search / AI",
       "layer": "Stability",
-      "price": 339.01,
-      "chg_pct": 1.2,
-      "vol_ratio": 0.9,
-      "rsi": 49.9,
-      "w52_pos_pct": 61,
+      "price": 341.08,
+      "chg_pct": 0.61,
+      "vol_ratio": 0.8,
+      "rsi": 54.5,
+      "w52_pos_pct": 62,
       "analyst_target": 422.34,
-      "analyst_upside_pct": 24.6,
+      "analyst_upside_pct": 23.8,
       "days_to_earnings": null,
       "verdict": null,
       "news": []
@@ -59,27 +72,27 @@
       "ticker": "META",
       "sector": "Social Media / AI",
       "layer": "Growth",
-      "price": 777.59,
-      "chg_pct": 4.5,
-      "vol_ratio": 1.6,
-      "rsi": 85.6,
-      "w52_pos_pct": 99,
-      "analyst_target": 786.8,
-      "analyst_upside_pct": 1.2,
+      "price": 751.66,
+      "chg_pct": -3.33,
+      "vol_ratio": 1.1,
+      "rsi": 76.5,
+      "w52_pos_pct": 89,
+      "analyst_target": 790.27,
+      "analyst_upside_pct": 5.1,
       "days_to_earnings": null,
       "verdict": null,
       "news": [
         {
-          "title": "Meta's Muse Agent Makes Waves: Market Snapshot",
-          "url": "https://finance.yahoo.com/video/metas-muse-agent-makes-waves-062946885.html?.tsrc=rss"
+          "title": "Elon Musk Amplifies Privacy Concerns Over Meta’s Muse After Reports Emerge AI Agent Accessed Private Messages",
+          "url": "https://finance.yahoo.com/technology/ai/articles/elon-musk-amplifies-privacy-concerns-051747628.html?.tsrc=rss"
         },
         {
-          "title": "'Is AI Gonna Kill Us?’ Mark Zuckerberg Has an Answer — And He’s ‘Quite Optimistic’ About the Future",
-          "url": "https://finance.yahoo.com/technology/ai/articles/ai-gonna-kill-us-mark-045712538.html?.tsrc=rss"
+          "title": "Does Meta (META)’s Advertising Scale Make Brief Outages Financially Irrelevant?",
+          "url": "https://finance.yahoo.com/media-advertising/articles/does-meta-meta-advertising-scale-015812951.html?.tsrc=rss"
         },
         {
-          "title": "Meta Has Lost More Than $85 Billion on Its Glasses and Headsets. Here's What Would Stop It.",
-          "url": "https://www.fool.com/investing/2026/09/25/meta-has-lost-more-than-usd85-billion-on-its-glasses-and-headsets-here-s-what-would-stop-it/?.tsrc=rss"
+          "title": "META, GOOGL, NVDA, BB, SPCX: Why Retail Traders Couldn’t Take Their Eyes Off These Stocks Last Week",
+          "url": "https://stocktwits.com/news-articles/markets/equity/meta-googl-nvda-bb-spcx-why-retail-traders-couldn-t-take-their-eyes-off-these-stocks-last-week/cZMSQ6MRBff?.tsrc=rss"
         }
       ]
     },
@@ -87,13 +100,13 @@
       "ticker": "AVGO",
       "sector": "Semiconductors",
       "layer": "Growth",
-      "price": 350.36,
-      "chg_pct": -1.3,
-      "vol_ratio": 0.8,
-      "rsi": 45.9,
-      "w52_pos_pct": 29,
+      "price": 352.81,
+      "chg_pct": 0.7,
+      "vol_ratio": 0.6,
+      "rsi": 47.0,
+      "w52_pos_pct": 31,
       "analyst_target": 531.85,
-      "analyst_upside_pct": 51.8,
+      "analyst_upside_pct": 50.7,
       "days_to_earnings": null,
       "verdict": null,
       "news": []
@@ -102,14 +115,14 @@
       "ticker": "MU",
       "sector": "Memory Chips",
       "layer": "Growth",
-      "price": 1080.53,
-      "chg_pct": 0.81,
-      "vol_ratio": 0.9,
-      "rsi": 64.8,
+      "price": 1082.28,
+      "chg_pct": 0.16,
+      "vol_ratio": 0.8,
+      "rsi": 59.2,
       "w52_pos_pct": 84,
       "analyst_target": 1515.54,
-      "analyst_upside_pct": 40.3,
-      "days_to_earnings": 5,
+      "analyst_upside_pct": 40.0,
+      "days_to_earnings": 2,
       "verdict": null,
       "news": []
     },
@@ -117,10 +130,10 @@
       "ticker": "IBIT",
       "sector": "Crypto",
       "layer": "Speculation",
-      "price": 47.81,
-      "chg_pct": -0.15,
+      "price": 47.57,
+      "chg_pct": -0.5,
       "vol_ratio": 0.7,
-      "rsi": 55.8,
+      "rsi": 60.0,
       "w52_pos_pct": 38,
       "analyst_target": null,
       "analyst_upside_pct": null,
@@ -132,11 +145,11 @@
       "ticker": "GLDM",
       "sector": "Commodities / Gold",
       "layer": "Stability",
-      "price": 84.52,
-      "chg_pct": -0.27,
-      "vol_ratio": 0.9,
-      "rsi": 40.8,
-      "w52_pos_pct": 30,
+      "price": 84.89,
+      "chg_pct": 0.44,
+      "vol_ratio": 0.7,
+      "rsi": 37.7,
+      "w52_pos_pct": 27,
       "analyst_target": null,
       "analyst_upside_pct": null,
       "days_to_earnings": null,
@@ -147,13 +160,13 @@
       "ticker": "VST",
       "sector": "Energy / Nuclear",
       "layer": "Growth",
-      "price": 137.94,
-      "chg_pct": -0.02,
-      "vol_ratio": 0.8,
-      "rsi": 40.2,
-      "w52_pos_pct": 6,
+      "price": 138.46,
+      "chg_pct": 0.38,
+      "vol_ratio": 1.1,
+      "rsi": 30.3,
+      "w52_pos_pct": 7,
       "analyst_target": 217.58,
-      "analyst_upside_pct": 57.7,
+      "analyst_upside_pct": 57.1,
       "days_to_earnings": null,
       "verdict": null,
       "news": []
@@ -162,28 +175,41 @@
       "ticker": "APLD",
       "sector": "AI Infrastructure",
       "layer": "Speculation",
-      "price": 27.06,
-      "chg_pct": -0.62,
-      "vol_ratio": 0.8,
-      "rsi": 53.8,
-      "w52_pos_pct": 25,
-      "analyst_target": 66.18,
-      "analyst_upside_pct": 144.6,
+      "price": 26.25,
+      "chg_pct": -2.99,
+      "vol_ratio": 0.9,
+      "rsi": 49.6,
+      "w52_pos_pct": 23,
+      "analyst_target": 66.43,
+      "analyst_upside_pct": 153.1,
       "days_to_earnings": null,
       "verdict": null,
-      "news": []
+      "news": [
+        {
+          "title": "Applied Digital vs. IREN: Which Technology Stock Is a Better Buy in 2026?",
+          "url": "https://www.fool.com/coverage/better-buy/2026/09/24/applied-digital-vs-iren-which-technology-stock-is-a-better-buy-in-2026/?.tsrc=rss"
+        },
+        {
+          "title": "Should You Sell Your APLD Stock Now?",
+          "url": "https://www.trefis.com/articles/616276/should-you-sell-your-apld-stock-now/2026-09-23?.tsrc=rss"
+        },
+        {
+          "title": "Applied Digital (APLD) Stock Sees Fair Value Cut As Analysts Split On AI Buildout",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/applied-digital-apld-stock-sees-032105251.html?.tsrc=rss"
+        }
+      ]
     },
     {
       "ticker": "OKLO",
       "sector": "Nuclear Energy",
       "layer": "Speculation",
-      "price": 38.29,
-      "chg_pct": -1.37,
-      "vol_ratio": 0.7,
-      "rsi": 46.4,
+      "price": 38.04,
+      "chg_pct": -0.65,
+      "vol_ratio": 0.6,
+      "rsi": 42.0,
       "w52_pos_pct": 2,
-      "analyst_target": 77.12,
-      "analyst_upside_pct": 101.4,
+      "analyst_target": 76.42,
+      "analyst_upside_pct": 100.9,
       "days_to_earnings": null,
       "verdict": null,
       "news": []
@@ -192,11 +218,11 @@
       "ticker": "DRAM",
       "sector": "Memory Chips",
       "layer": "Growth",
-      "price": 60.72,
-      "chg_pct": -1.91,
-      "vol_ratio": 1.2,
-      "rsi": 59.4,
-      "w52_pos_pct": 63,
+      "price": 61.91,
+      "chg_pct": 1.96,
+      "vol_ratio": 0.6,
+      "rsi": 54.9,
+      "w52_pos_pct": 65,
       "analyst_target": null,
       "analyst_upside_pct": null,
       "days_to_earnings": null,
@@ -220,29 +246,16 @@
       "ticker": "CCJ",
       "sector": "אנרגיה",
       "layer": "Growth",
-      "price": 88.12,
-      "chg_pct": -2.95,
-      "vol_ratio": 1.2,
-      "rsi": 34.4,
+      "price": 88.07,
+      "chg_pct": -0.06,
+      "vol_ratio": 0.7,
+      "rsi": 24.5,
       "w52_pos_pct": 18,
-      "analyst_target": 127.59,
-      "analyst_upside_pct": 44.8,
+      "analyst_target": 127.61,
+      "analyst_upside_pct": 44.9,
       "days_to_earnings": null,
       "verdict": null,
-      "news": [
-        {
-          "title": "Here's Why Cameco (CCJ) Fell More Than Broader Market",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/heres-why-cameco-ccj-fell-205003239.html?.tsrc=rss"
-        },
-        {
-          "title": "Is the Options Market Predicting a Spike in Cameco Stock?",
-          "url": "https://finance.yahoo.com/markets/options/articles/options-market-predicting-spike-cameco-105200638.html?.tsrc=rss"
-        },
-        {
-          "title": "Cameco vs. MP Materials: Does Uranium or Rare Earths Make a Better Stock Buy in 2026?",
-          "url": "https://www.fool.com/coverage/better-buy/2026/09/23/cameco-vs-mp-materials-does-uranium-or-rare-earths-make-a-better-stock-buy-in-2026/?.tsrc=rss"
-        }
-      ]
+      "news": []
     }
   ],
   "watchlist_triggers": [],
@@ -250,42 +263,42 @@
   "sector_summary": [
     {
       "sector": "AI / Semiconductors",
-      "avg_chg_pct": -0.41,
+      "avg_chg_pct": 0.22,
       "tickers": [
         "NVDA"
       ]
     },
     {
       "sector": "Tech / Cloud / AI",
-      "avg_chg_pct": -0.53,
+      "avg_chg_pct": 3.66,
       "tickers": [
         "MSFT"
       ]
     },
     {
       "sector": "Tech / Search / AI",
-      "avg_chg_pct": 1.2,
+      "avg_chg_pct": 0.61,
       "tickers": [
         "GOOG"
       ]
     },
     {
       "sector": "Social Media / AI",
-      "avg_chg_pct": 4.5,
+      "avg_chg_pct": -3.33,
       "tickers": [
         "META"
       ]
     },
     {
       "sector": "Semiconductors",
-      "avg_chg_pct": -1.3,
+      "avg_chg_pct": 0.7,
       "tickers": [
         "AVGO"
       ]
     },
     {
       "sector": "Memory Chips",
-      "avg_chg_pct": -0.55,
+      "avg_chg_pct": 1.06,
       "tickers": [
         "MU",
         "DRAM"
@@ -293,42 +306,42 @@
     },
     {
       "sector": "Crypto",
-      "avg_chg_pct": -0.15,
+      "avg_chg_pct": -0.5,
       "tickers": [
         "IBIT"
       ]
     },
     {
       "sector": "Commodities / Gold",
-      "avg_chg_pct": -0.27,
+      "avg_chg_pct": 0.44,
       "tickers": [
         "GLDM"
       ]
     },
     {
       "sector": "Energy / Nuclear",
-      "avg_chg_pct": -0.02,
+      "avg_chg_pct": 0.38,
       "tickers": [
         "VST"
       ]
     },
     {
       "sector": "AI Infrastructure",
-      "avg_chg_pct": -0.62,
+      "avg_chg_pct": -2.99,
       "tickers": [
         "APLD"
       ]
     },
     {
       "sector": "Nuclear Energy",
-      "avg_chg_pct": -1.37,
+      "avg_chg_pct": -0.65,
       "tickers": [
         "OKLO"
       ]
     },
     {
       "sector": "אנרגיה",
-      "avg_chg_pct": -2.95,
+      "avg_chg_pct": -0.06,
       "tickers": [
         "CCJ"
       ]
