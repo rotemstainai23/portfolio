@@ -1,12 +1,12 @@
 {
-  "generated": "2026-09-30",
-  "generated_time": "07:45",
-  "market_date": "2026-09-30",
+  "generated": "2026-10-01",
+  "generated_time": "08:04",
+  "market_date": "2026-10-01",
   "has_alerts": false,
   "alert_tickers": [],
   "macro": {
-    "spy_chg_pct": -0.18,
-    "qqq_chg_pct": 0.19,
+    "spy_chg_pct": -0.21,
+    "qqq_chg_pct": 0.25,
     "vix": null
   },
   "holdings": [
@@ -14,13 +14,13 @@
       "ticker": "NVDA",
       "sector": "AI / Semiconductors",
       "layer": "Growth",
-      "price": 227.21,
-      "chg_pct": -0.72,
-      "vol_ratio": 0.9,
-      "rsi": 54.3,
-      "w52_pos_pct": 87,
+      "price": 228.38,
+      "chg_pct": 0.51,
+      "vol_ratio": 1.1,
+      "rsi": 63.7,
+      "w52_pos_pct": 89,
       "analyst_target": 327.7,
-      "analyst_upside_pct": 44.2,
+      "analyst_upside_pct": 43.5,
       "days_to_earnings": null,
       "verdict": null,
       "news": []
@@ -29,13 +29,13 @@
       "ticker": "MSFT",
       "sector": "Tech / Cloud / AI",
       "layer": "Stability",
-      "price": 508.96,
-      "chg_pct": -0.05,
-      "vol_ratio": 1.0,
-      "rsi": 60.5,
-      "w52_pos_pct": 78,
-      "analyst_target": 577.26,
-      "analyst_upside_pct": 13.4,
+      "price": 512.9,
+      "chg_pct": 0.77,
+      "vol_ratio": 1.3,
+      "rsi": 62.0,
+      "w52_pos_pct": 80,
+      "analyst_target": 578.42,
+      "analyst_upside_pct": 12.8,
       "days_to_earnings": null,
       "verdict": null,
       "news": []
@@ -44,13 +44,13 @@
       "ticker": "GOOG",
       "sector": "Tech / Search / AI",
       "layer": "Stability",
-      "price": 337.32,
-      "chg_pct": -0.54,
-      "vol_ratio": 0.8,
-      "rsi": 57.3,
-      "w52_pos_pct": 60,
+      "price": 340.74,
+      "chg_pct": 1.01,
+      "vol_ratio": 1.4,
+      "rsi": 58.3,
+      "w52_pos_pct": 62,
       "analyst_target": 422.34,
-      "analyst_upside_pct": 25.2,
+      "analyst_upside_pct": 23.9,
       "days_to_earnings": null,
       "verdict": null,
       "news": []
@@ -59,27 +59,27 @@
       "ticker": "META",
       "sector": "Social Media / AI",
       "layer": "Growth",
-      "price": 738.79,
-      "chg_pct": 3.24,
-      "vol_ratio": 1.0,
-      "rsi": 65.8,
-      "w52_pos_pct": 84,
+      "price": 725.18,
+      "chg_pct": -1.84,
+      "vol_ratio": 0.8,
+      "rsi": 64.7,
+      "w52_pos_pct": 79,
       "analyst_target": 793.91,
-      "analyst_upside_pct": 7.5,
+      "analyst_upside_pct": 9.5,
       "days_to_earnings": null,
       "verdict": null,
       "news": [
         {
-          "title": "Meta & Anthropic CEOs: 'Whoever wins AI, wins'",
-          "url": "https://finance.yahoo.com/video/meta-anthropic-ceos-whoever-wins-220208252.html?.tsrc=rss"
+          "title": "Meta counted Mark Zuckerberg’s $4.1B stock payout as research pay to claim a $355M tax break — and the IRS wants it back",
+          "url": "https://finance.yahoo.com/economy/policy/articles/meta-counted-mark-zuckerberg-4-040500231.html?.tsrc=rss"
         },
         {
-          "title": "Zacks Investment Ideas feature highlights: Advanced Micro Devices, Micron, Nebius, Alphabet, Meta Platform and Apple",
-          "url": "https://finance.yahoo.com/technology/ai/articles/zacks-investment-ideas-feature-highlights-061700846.html?.tsrc=rss"
+          "title": "Meta reportedly calls its AI data centers ‘pilot models’ — its research tax credits jumped from $700M to $3.9B",
+          "url": "https://finance.yahoo.com/technology/ai/articles/meta-reportedly-calls-ai-data-035500665.html?.tsrc=rss"
         },
         {
-          "title": "Zuckerberg lost $8.9 billion in a day as Meta's AI rally cracked: his net worth fell from $266.4 billion to $257.5 billion as Meta shares dropped about 4% to $749.26 after Goldman Sachs warned AI spenders need about $300 billion a year in AI revenue just to break even.",
-          "url": "https://www.thestreet.com/technology/zuckerberg-meta-ai-spending-loss?.tsrc=rss"
+          "title": "Carvana, CarMax jockey as agentic AI tools look to fix the worst parts of car buying",
+          "url": "https://www.thestreet.com/investing/stocks/carvana-carmax-jockey-as-agentic-ai-tools-look-to-fix-the-worst-parts-of-car-buying?.tsrc=rss"
         }
       ]
     },
@@ -87,42 +87,29 @@
       "ticker": "AVGO",
       "sector": "Semiconductors",
       "layer": "Growth",
-      "price": 355.1,
-      "chg_pct": 1.58,
+      "price": 351.19,
+      "chg_pct": -1.1,
       "vol_ratio": 0.7,
-      "rsi": 44.1,
-      "w52_pos_pct": 32,
+      "rsi": 43.9,
+      "w52_pos_pct": 30,
       "analyst_target": 531.85,
-      "analyst_upside_pct": 49.8,
+      "analyst_upside_pct": 51.4,
       "days_to_earnings": null,
       "verdict": null,
-      "news": [
-        {
-          "title": "3 Dividend ETFs for a 40-Year Retirement. One Has Paid Every Quarter Since 2005",
-          "url": "https://247wallst.com/investing/etf/2026/09/29/3-dividend-etfs-for-a-40-year-retirement-one-has-paid-every-quarter-since-2005/?.tsrc=rss"
-        },
-        {
-          "title": "Broadcom Stock Jumps Nearly 3.2% as $16.7 Billion AI Engine Faces Margin Test",
-          "url": "https://finance.yahoo.com/technology/ai/articles/broadcom-stock-jumps-nearly-3-184641753.html?.tsrc=rss"
-        },
-        {
-          "title": "Reflecting On Processors and Graphics Chips Stocks’ Q2 Earnings: Broadcom (NASDAQ:AVGO)",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/reflecting-processors-graphics-chips-stocks-184002453.html?.tsrc=rss"
-        }
-      ]
+      "news": []
     },
     {
       "ticker": "MU",
       "sector": "Memory Chips",
       "layer": "Growth",
-      "price": 1065.08,
-      "chg_pct": 1.05,
-      "vol_ratio": 0.8,
-      "rsi": 55.3,
-      "w52_pos_pct": 83,
-      "analyst_target": 1520.76,
-      "analyst_upside_pct": 42.8,
-      "days_to_earnings": 0,
+      "price": 1065.11,
+      "chg_pct": 0.0,
+      "vol_ratio": 1.2,
+      "rsi": 64.5,
+      "w52_pos_pct": 82,
+      "analyst_target": 1533.8,
+      "analyst_upside_pct": 44.0,
+      "days_to_earnings": null,
       "verdict": null,
       "news": []
     },
@@ -130,10 +117,10 @@
       "ticker": "IBIT",
       "sector": "Crypto",
       "layer": "Speculation",
-      "price": 47.33,
-      "chg_pct": 0.25,
-      "vol_ratio": 0.5,
-      "rsi": 63.5,
+      "price": 47.34,
+      "chg_pct": 0.02,
+      "vol_ratio": 0.7,
+      "rsi": 67.2,
       "w52_pos_pct": 37,
       "analyst_target": null,
       "analyst_upside_pct": null,
@@ -145,11 +132,11 @@
       "ticker": "GLDM",
       "sector": "Commodities / Gold",
       "layer": "Stability",
-      "price": 82.64,
-      "chg_pct": 1.32,
+      "price": 82.18,
+      "chg_pct": -0.56,
       "vol_ratio": 1.3,
-      "rsi": 33.9,
-      "w52_pos_pct": 21,
+      "rsi": 36.8,
+      "w52_pos_pct": 19,
       "analyst_target": null,
       "analyst_upside_pct": null,
       "days_to_earnings": null,
@@ -160,16 +147,20 @@
       "ticker": "VST",
       "sector": "Energy / Nuclear",
       "layer": "Growth",
-      "price": 140.83,
-      "chg_pct": 2.04,
-      "vol_ratio": 1.1,
-      "rsi": 31.5,
-      "w52_pos_pct": 10,
-      "analyst_target": 217.58,
-      "analyst_upside_pct": 54.5,
+      "price": 138.35,
+      "chg_pct": -1.76,
+      "vol_ratio": 1.7,
+      "rsi": 33.4,
+      "w52_pos_pct": 7,
+      "analyst_target": 212.79,
+      "analyst_upside_pct": 53.8,
       "days_to_earnings": null,
       "verdict": null,
       "news": [
+        {
+          "title": "3 U.S. Utility Stocks Riding the Gas and Nuclear Buildout",
+          "url": "https://finance.yahoo.com/energy/articles/3-u-utility-stocks-riding-042114349.html?.tsrc=rss"
+        },
         {
           "title": "Vistra to Report Third Quarter Results on Nov. 6, 2026",
           "url": "https://finance.yahoo.com/energy/articles/vistra-report-third-quarter-results-213000118.html?.tsrc=rss"
@@ -177,10 +168,6 @@
         {
           "title": "Vistra Corp. (VST) Gains As Market Dips: What You Should Know",
           "url": "https://finance.yahoo.com/markets/stocks/articles/vistra-corp-vst-gains-market-204505195.html?.tsrc=rss"
-        },
-        {
-          "title": "Constellation Energy vs. Vistra: Nuclear's Two Biggest AI Bets, and why I'm Picking One.",
-          "url": "https://www.barchart.com/story/news/4855799/constellation-energy-vs-vistra-nuclear-s-two-biggest-ai-bets-and-why-i-m-picking-one?.tsrc=rss"
         }
       ]
     },
@@ -188,27 +175,27 @@
       "ticker": "APLD",
       "sector": "AI Infrastructure",
       "layer": "Speculation",
-      "price": 25.41,
-      "chg_pct": 3.59,
+      "price": 24.37,
+      "chg_pct": -4.09,
       "vol_ratio": 1.0,
-      "rsi": 44.2,
-      "w52_pos_pct": 20,
+      "rsi": 45.2,
+      "w52_pos_pct": 17,
       "analyst_target": 66.43,
-      "analyst_upside_pct": 161.4,
-      "days_to_earnings": 7,
+      "analyst_upside_pct": 172.6,
+      "days_to_earnings": 6,
       "verdict": null,
       "news": [
         {
+          "title": "Has Buying Applied Digital Stock's Dips Paid Off?",
+          "url": "https://www.trefis.com/articles/616973/has-buying-applied-digital-stocks-dips-paid-off/2026-09-30?.tsrc=rss"
+        },
+        {
+          "title": "Is Applied Digital (APLD) Balancing AI Data Center Ambitions With Funding and Execution Discipline?",
+          "url": "https://finance.yahoo.com/technology/ai/articles/applied-digital-apld-balancing-ai-081046491.html?.tsrc=rss"
+        },
+        {
           "title": "Is Applied Digital (APLD) Above Fair Value After $36B Leases?",
           "url": "https://finance.yahoo.com/markets/stocks/articles/applied-digital-apld-above-fair-180756753.html?.tsrc=rss"
-        },
-        {
-          "title": "New Strong Sell Stocks for September 29th",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/strong-sell-stocks-september-29th-084100999.html?.tsrc=rss"
-        },
-        {
-          "title": "Applied Digital (APLD) Could Be 64% Undervalued As Analysts Split Ahead Of Earnings",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/applied-digital-apld-could-64-070857159.html?.tsrc=rss"
         }
       ]
     },
@@ -216,13 +203,13 @@
       "ticker": "OKLO",
       "sector": "Nuclear Energy",
       "layer": "Speculation",
-      "price": 37.11,
-      "chg_pct": 0.0,
-      "vol_ratio": 0.8,
-      "rsi": 35.2,
+      "price": 37.02,
+      "chg_pct": -0.24,
+      "vol_ratio": 0.7,
+      "rsi": 41.0,
       "w52_pos_pct": 2,
       "analyst_target": 75.78,
-      "analyst_upside_pct": 104.2,
+      "analyst_upside_pct": 104.7,
       "days_to_earnings": null,
       "verdict": null,
       "news": []
@@ -231,11 +218,11 @@
       "ticker": "DRAM",
       "sector": "Memory Chips",
       "layer": "Growth",
-      "price": 61.29,
-      "chg_pct": 2.66,
-      "vol_ratio": 0.8,
-      "rsi": 49.4,
-      "w52_pos_pct": 64,
+      "price": 60.36,
+      "chg_pct": -1.52,
+      "vol_ratio": 1.0,
+      "rsi": 54.0,
+      "w52_pos_pct": 62,
       "analyst_target": null,
       "analyst_upside_pct": null,
       "days_to_earnings": null,
@@ -259,13 +246,13 @@
       "ticker": "CCJ",
       "sector": "אנרגיה",
       "layer": "Growth",
-      "price": 86.88,
-      "chg_pct": -0.18,
-      "vol_ratio": 0.7,
-      "rsi": 20.9,
+      "price": 86.67,
+      "chg_pct": -0.24,
+      "vol_ratio": 1.1,
+      "rsi": 23.8,
       "w52_pos_pct": 16,
-      "analyst_target": 127.32,
-      "analyst_upside_pct": 46.5,
+      "analyst_target": 126.8,
+      "analyst_upside_pct": 46.3,
       "days_to_earnings": null,
       "verdict": null,
       "news": []
@@ -276,42 +263,42 @@
   "sector_summary": [
     {
       "sector": "AI / Semiconductors",
-      "avg_chg_pct": -0.72,
+      "avg_chg_pct": 0.51,
       "tickers": [
         "NVDA"
       ]
     },
     {
       "sector": "Tech / Cloud / AI",
-      "avg_chg_pct": -0.05,
+      "avg_chg_pct": 0.77,
       "tickers": [
         "MSFT"
       ]
     },
     {
       "sector": "Tech / Search / AI",
-      "avg_chg_pct": -0.54,
+      "avg_chg_pct": 1.01,
       "tickers": [
         "GOOG"
       ]
     },
     {
       "sector": "Social Media / AI",
-      "avg_chg_pct": 3.24,
+      "avg_chg_pct": -1.84,
       "tickers": [
         "META"
       ]
     },
     {
       "sector": "Semiconductors",
-      "avg_chg_pct": 1.58,
+      "avg_chg_pct": -1.1,
       "tickers": [
         "AVGO"
       ]
     },
     {
       "sector": "Memory Chips",
-      "avg_chg_pct": 1.85,
+      "avg_chg_pct": -0.76,
       "tickers": [
         "MU",
         "DRAM"
@@ -319,42 +306,42 @@
     },
     {
       "sector": "Crypto",
-      "avg_chg_pct": 0.25,
+      "avg_chg_pct": 0.02,
       "tickers": [
         "IBIT"
       ]
     },
     {
       "sector": "Commodities / Gold",
-      "avg_chg_pct": 1.32,
+      "avg_chg_pct": -0.56,
       "tickers": [
         "GLDM"
       ]
     },
     {
       "sector": "Energy / Nuclear",
-      "avg_chg_pct": 2.04,
+      "avg_chg_pct": -1.76,
       "tickers": [
         "VST"
       ]
     },
     {
       "sector": "AI Infrastructure",
-      "avg_chg_pct": 3.59,
+      "avg_chg_pct": -4.09,
       "tickers": [
         "APLD"
       ]
     },
     {
       "sector": "Nuclear Energy",
-      "avg_chg_pct": 0.0,
+      "avg_chg_pct": -0.24,
       "tickers": [
         "OKLO"
       ]
     },
     {
       "sector": "אנרגיה",
-      "avg_chg_pct": -0.18,
+      "avg_chg_pct": -0.24,
       "tickers": [
         "CCJ"
       ]
