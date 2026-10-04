@@ -1,19 +1,19 @@
 window.WEEKLY_DATA = {
-  "generated": "2026-08-02",
-  "week_label": "שבוע 27/07-02/08",
-  "ceo_verdict": "מגמת השבוע: התיק השקעות הובל על ידי MSFT עם עלייה של 21.8% בשבוע, אך הואט על ידי ירידות ב-NVDA, META ו-MU.",
+  "generated": "2026-09-27",
+  "week_label": "שבוע 21/09-27/09",
+  "ceo_verdict": "",
   "portfolio_performance": {
-    "total_value": 1944,
-    "week_pct": 0.3,
-    "total_pnl_pct": -5.4,
+    "total_value": 2165,
+    "week_pct": 4.2,
+    "total_pnl_pct": 5.3,
     "ytd_pct": null,
-    "vs_spy_week": -0.9,
+    "vs_spy_week": 3.1,
     "regime": "risk_on"
   },
   "macro_snapshot": {
-    "vix": 15.99,
-    "spy_week_pct": 1.2,
-    "qqq_week_pct": -0.6,
+    "vix": 14.87,
+    "spy_week_pct": 1.1,
+    "qqq_week_pct": 3.8,
     "dxy_trend": null,
     "rate_outlook": null,
     "regime_note": null
@@ -22,7 +22,7 @@ window.WEEKLY_DATA = {
     {
       "ticker": "NVDA",
       "company": "NVDA",
-      "price_change_pct": -3.8,
+      "price_change_pct": 2.6,
       "status": "",
       "key_news": "",
       "headline": "",
@@ -31,7 +31,7 @@ window.WEEKLY_DATA = {
     {
       "ticker": "MSFT",
       "company": "MSFT",
-      "price_change_pct": 21.8,
+      "price_change_pct": 3.7,
       "status": "",
       "key_news": "",
       "headline": "",
@@ -40,7 +40,7 @@ window.WEEKLY_DATA = {
     {
       "ticker": "GOOG",
       "company": "GOOG",
-      "price_change_pct": 12.0,
+      "price_change_pct": -0.8,
       "status": "",
       "key_news": "",
       "headline": "",
@@ -49,7 +49,7 @@ window.WEEKLY_DATA = {
     {
       "ticker": "META",
       "company": "META",
-      "price_change_pct": -8.1,
+      "price_change_pct": 10.2,
       "status": "",
       "key_news": "",
       "headline": "",
@@ -58,7 +58,7 @@ window.WEEKLY_DATA = {
     {
       "ticker": "AVGO",
       "company": "AVGO",
-      "price_change_pct": -0.8,
+      "price_change_pct": 1.6,
       "status": "",
       "key_news": "",
       "headline": "",
@@ -67,7 +67,7 @@ window.WEEKLY_DATA = {
     {
       "ticker": "MU",
       "company": "MU",
-      "price_change_pct": -16.9,
+      "price_change_pct": 10.7,
       "status": "WATCHLIST",
       "key_news": "**ועדת השקעות - ישיבה** **אימות קלטים** * HANDOFF אנליסט: קיבלנו",
       "headline": "",
@@ -76,7 +76,7 @@ window.WEEKLY_DATA = {
     {
       "ticker": "IBIT",
       "company": "IBIT",
-      "price_change_pct": -2.8,
+      "price_change_pct": 9.9,
       "status": "",
       "key_news": "",
       "headline": "",
@@ -85,7 +85,7 @@ window.WEEKLY_DATA = {
     {
       "ticker": "GLDM",
       "company": "GLDM",
-      "price_change_pct": 0.0,
+      "price_change_pct": -1.2,
       "status": "",
       "key_news": "",
       "headline": "",
@@ -94,7 +94,7 @@ window.WEEKLY_DATA = {
     {
       "ticker": "VST",
       "company": "VST",
-      "price_change_pct": -12.3,
+      "price_change_pct": -3.6,
       "status": "",
       "key_news": "",
       "headline": "",
@@ -103,7 +103,7 @@ window.WEEKLY_DATA = {
     {
       "ticker": "APLD",
       "company": "APLD",
-      "price_change_pct": -8.4,
+      "price_change_pct": -0.5,
       "status": "",
       "key_news": "",
       "headline": "",
@@ -112,7 +112,7 @@ window.WEEKLY_DATA = {
     {
       "ticker": "OKLO",
       "company": "OKLO",
-      "price_change_pct": -11.8,
+      "price_change_pct": -4.1,
       "status": "",
       "key_news": "",
       "headline": "",
@@ -121,7 +121,7 @@ window.WEEKLY_DATA = {
     {
       "ticker": "DRAM",
       "company": "DRAM",
-      "price_change_pct": -13.6,
+      "price_change_pct": 7.1,
       "status": null,
       "key_news": "[ic: לא התקבל פלט מ-Groq]",
       "headline": "",
@@ -130,7 +130,7 @@ window.WEEKLY_DATA = {
     {
       "ticker": "CCJ",
       "company": "CCJ",
-      "price_change_pct": -3.3,
+      "price_change_pct": -5.1,
       "status": "WATCHLIST",
       "key_news": "| מדד | ערך | | --- | --- | | שם חברה | CAMECO CORPORATION |",
       "headline": "",
@@ -140,46 +140,41 @@ window.WEEKLY_DATA = {
   "risk_matrix": [],
   "opportunities": [
     {
-      "ticker": "SNOW",
+      "ticker": "RDW",
       "conviction": 4,
       "timeframe": "1-2 שבועות",
-      "catalyst": "AI Traction Fuels Snowflake’s Guidance Boost",
+      "catalyst": "רווחים קרובים וחדשות על שיתוף פעולה עם Kanematsu",
       "why_not_others": "R/R 15/8, "
     },
     {
-      "ticker": "DDOG",
+      "ticker": "KTOS",
       "conviction": 4,
       "timeframe": "1-2 שבועות",
-      "catalyst": "Datadog Jumped 7.7% Following Upward PT Revisions",
+      "catalyst": "חדשות על הרחבת עבודות הגנת טילים",
       "why_not_others": "R/R 12/6, "
     },
     {
-      "ticker": "REGN",
+      "ticker": "ZS",
       "conviction": 4,
       "timeframe": "1-2 שבועות",
-      "catalyst": "REGN Q2 Deep Dive: Pipeline Progress and Product Momentum Drive Outperformance",
+      "catalyst": "חדשות על התקדמות בתחום האבטחה",
       "why_not_others": "R/R 10/5, "
     }
   ],
   "scenarios_next_week": {},
-  "action_items": [
-    "מגמת השבוע: התיק השקעות הובל על ידי MSFT עם עלייה של 21.8% בשבוע, אך הואט על ידי ירידות ב-NVDA, META ו-MU.",
-    "סיכון עיקרי לשבוע הבא: הירידות החדות במניות הטכנולוגיה, כגון NVDA ו-META, עלולות להמשיך ולהשפיע לרעה על התיק.",
-    "הזדמנות הסקנר: הקטליסט של SNOW, AI Traction Fuels Snowflake’s Guidance Boost, עדיין רלוונטי ויכול להוות הזדמנות לרכישה.",
-    "פעולה ספציפית אחת: כדאי לעקוב אחרי הביצועים של MSFT ולבחון אפשרות לרכישת מניות נוספות, היות והיא הובילה את התיק בשבוע האחרון."
-  ],
+  "action_items": [],
   "macro": {
     "spy": {
-      "price": 747.03,
-      "chg_week": 1.2
+      "price": 771.35,
+      "chg_week": 1.1
     },
     "qqq": {
-      "price": 687.99,
-      "chg_week": -0.6
+      "price": 744.5,
+      "chg_week": 3.8
     },
     "vix": {
-      "price": 15.99,
-      "chg_week": -14.5
+      "price": 14.87,
+      "chg_week": -3.7
     }
   }
 };
