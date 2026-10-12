@@ -1,0 +1,345 @@
+window.DAILY_DATA = {
+  "generated": "2026-10-12",
+  "generated_time": "08:20",
+  "market_date": "2026-10-12",
+  "has_alerts": false,
+  "alert_tickers": [],
+  "macro": {
+    "spy_chg_pct": 0.6,
+    "qqq_chg_pct": 0.49,
+    "vix": null
+  },
+  "holdings": [
+    {
+      "ticker": "NVDA",
+      "sector": "AI / Semiconductors",
+      "layer": "Growth",
+      "price": 229.28,
+      "chg_pct": -0.52,
+      "vol_ratio": 0.8,
+      "rsi": 52.8,
+      "w52_pos_pct": 82,
+      "analyst_target": 328.72,
+      "analyst_upside_pct": 43.4,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": []
+    },
+    {
+      "ticker": "MSFT",
+      "sector": "Tech / Cloud / AI",
+      "layer": "Stability",
+      "price": 535.07,
+      "chg_pct": 2.38,
+      "vol_ratio": 0.8,
+      "rsi": 72.3,
+      "w52_pos_pct": 91,
+      "analyst_target": 587.63,
+      "analyst_upside_pct": 9.8,
+      "days_to_earnings": 16,
+      "verdict": null,
+      "news": [
+        {
+          "title": "Microsoft Is Down 4%. Here's Why I'm Buying More.",
+          "url": "https://www.fool.com/investing/2026/10/12/microsoft-is-down-4-heres-why-im-buying-more/?.tsrc=rss"
+        },
+        {
+          "title": "3 Tech Stocks Wall Street Upgraded Last Week, and the One I'd Buy First",
+          "url": "https://www.fool.com/investing/2026/10/11/stocks-wall-street-upgraded-last-week-one-id-buy/?.tsrc=rss"
+        },
+        {
+          "title": "Microsoft Needs Azure to Keep Growing Faster Than 40% When It Reports on Oct. 28",
+          "url": "https://www.fool.com/investing/2026/10/11/microsoft-needs-azure-to-keep-growing-faster-than-40-when-it-reports-on-oct-28/?.tsrc=rss"
+        }
+      ]
+    },
+    {
+      "ticker": "GOOG",
+      "sector": "Tech / Search / AI",
+      "layer": "Stability",
+      "price": 347.86,
+      "chg_pct": 0.87,
+      "vol_ratio": 0.6,
+      "rsi": 47.2,
+      "w52_pos_pct": 65,
+      "analyst_target": 420.36,
+      "analyst_upside_pct": 20.8,
+      "days_to_earnings": 16,
+      "verdict": null,
+      "news": []
+    },
+    {
+      "ticker": "META",
+      "sector": "Social Media / AI",
+      "layer": "Growth",
+      "price": 718.67,
+      "chg_pct": -0.31,
+      "vol_ratio": 0.6,
+      "rsi": 43.9,
+      "w52_pos_pct": 76,
+      "analyst_target": 799.34,
+      "analyst_upside_pct": 11.2,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": []
+    },
+    {
+      "ticker": "AVGO",
+      "sector": "Semiconductors",
+      "layer": "Growth",
+      "price": 361.54,
+      "chg_pct": 0.39,
+      "vol_ratio": 0.7,
+      "rsi": 49.4,
+      "w52_pos_pct": 35,
+      "analyst_target": 531.31,
+      "analyst_upside_pct": 47.0,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": []
+    },
+    {
+      "ticker": "MU",
+      "sector": "Memory Chips",
+      "layer": "Growth",
+      "price": 1029.0,
+      "chg_pct": -0.66,
+      "vol_ratio": 0.8,
+      "rsi": 47.6,
+      "w52_pos_pct": 79,
+      "analyst_target": 1555.13,
+      "analyst_upside_pct": 51.1,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": []
+    },
+    {
+      "ticker": "IBIT",
+      "sector": "Crypto",
+      "layer": "Speculation",
+      "price": 46.55,
+      "chg_pct": 0.63,
+      "vol_ratio": 0.5,
+      "rsi": 30.2,
+      "w52_pos_pct": 41,
+      "analyst_target": null,
+      "analyst_upside_pct": null,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": []
+    },
+    {
+      "ticker": "GLDM",
+      "sector": "Commodities / Gold",
+      "layer": "Stability",
+      "price": 82.99,
+      "chg_pct": 1.55,
+      "vol_ratio": 0.5,
+      "rsi": 38.0,
+      "w52_pos_pct": 17,
+      "analyst_target": null,
+      "analyst_upside_pct": null,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": [
+        {
+          "title": "GLD Sells Your Gold Every Month to Pay Itself, and the IRS Can Tax Those Sales at Up to 28%",
+          "url": "https://247wallst.com/investing/etf/2026/09/29/gld-sells-your-gold-every-month-to-pay-itself-and-the-irs-can-tax-those-sales-at-up-to-28/?.tsrc=rss"
+        },
+        {
+          "title": "Gold ETFs Just Had Their 2nd-Biggest Month Ever",
+          "url": "http://www.etf.com/sections/news/gold-etfs-just-had-their-2nd-biggest-month-ever?utm_source=yahoo-finance&utm_medium=rss&utm_campaign=yahoo-finance-rss&.tsrc=rss"
+        },
+        {
+          "title": "North American Gold ETF Buying Jumped From $71 Million to $7.7 Billion in One Month. Can GLDM Hold Up?",
+          "url": "https://247wallst.com/investing/etf/2026/09/17/north-american-gold-etf-buying-jumped-from-71-million-to-7-7-billion-in-one-month-can-gldm-hold-up/?.tsrc=rss"
+        }
+      ]
+    },
+    {
+      "ticker": "VST",
+      "sector": "Energy / Nuclear",
+      "layer": "Growth",
+      "price": 161.48,
+      "chg_pct": 3.42,
+      "vol_ratio": 1.1,
+      "rsi": 69.4,
+      "w52_pos_pct": 34,
+      "analyst_target": 210.25,
+      "analyst_upside_pct": 30.2,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": [
+        {
+          "title": "Is Vistra Stock Increasing Your Market Risk?",
+          "url": "https://www.trefis.com/articles/618177/is-vistra-stock-increasing-your-market-risk/2026-10-09?.tsrc=rss"
+        },
+        {
+          "title": "Vistra Stock Fell 6% in a Day After a 20% Run. Here’s What Its November 6 Report Needs to Show",
+          "url": "https://www.tikr.com/blog/vistra-stock-fell-6-in-a-day-after-a-20-run-heres-what-its-november-6-report-needs-to-show?ref=yahoofinance&.tsrc=rss"
+        },
+        {
+          "title": "Is Vistra Stock A Buy Today After Trailing The Market?",
+          "url": "https://www.trefis.com/articles/617941/is-vistra-stock-a-buy-today-after-trailing-the-market/2026-10-08?.tsrc=rss"
+        }
+      ]
+    },
+    {
+      "ticker": "APLD",
+      "sector": "AI Infrastructure",
+      "layer": "Speculation",
+      "price": 23.68,
+      "chg_pct": -0.71,
+      "vol_ratio": 1.1,
+      "rsi": 29.1,
+      "w52_pos_pct": 15,
+      "analyst_target": 64.03,
+      "analyst_upside_pct": 170.4,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": []
+    },
+    {
+      "ticker": "OKLO",
+      "sector": "Nuclear Energy",
+      "layer": "Speculation",
+      "price": 34.7,
+      "chg_pct": 0.38,
+      "vol_ratio": 0.7,
+      "rsi": 26.5,
+      "w52_pos_pct": 1,
+      "analyst_target": 75.78,
+      "analyst_upside_pct": 118.4,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": []
+    },
+    {
+      "ticker": "DRAM",
+      "sector": "Memory Chips",
+      "layer": "Growth",
+      "price": 57.19,
+      "chg_pct": 0.46,
+      "vol_ratio": 0.6,
+      "rsi": 38.4,
+      "w52_pos_pct": 56,
+      "analyst_target": null,
+      "analyst_upside_pct": null,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": []
+    },
+    {
+      "ticker": "CCJ",
+      "sector": "אנרגיה",
+      "layer": "Growth",
+      "price": 88.06,
+      "chg_pct": 1.08,
+      "vol_ratio": 0.6,
+      "rsi": 39.8,
+      "w52_pos_pct": 18,
+      "analyst_target": 126.7,
+      "analyst_upside_pct": 43.9,
+      "days_to_earnings": 18,
+      "verdict": null,
+      "news": []
+    }
+  ],
+  "watchlist_triggers": [],
+  "groq_insights": [],
+  "sector_summary": [
+    {
+      "sector": "AI / Semiconductors",
+      "avg_chg_pct": -0.52,
+      "tickers": [
+        "NVDA"
+      ]
+    },
+    {
+      "sector": "Tech / Cloud / AI",
+      "avg_chg_pct": 2.38,
+      "tickers": [
+        "MSFT"
+      ]
+    },
+    {
+      "sector": "Tech / Search / AI",
+      "avg_chg_pct": 0.87,
+      "tickers": [
+        "GOOG"
+      ]
+    },
+    {
+      "sector": "Social Media / AI",
+      "avg_chg_pct": -0.31,
+      "tickers": [
+        "META"
+      ]
+    },
+    {
+      "sector": "Semiconductors",
+      "avg_chg_pct": 0.39,
+      "tickers": [
+        "AVGO"
+      ]
+    },
+    {
+      "sector": "Memory Chips",
+      "avg_chg_pct": -0.1,
+      "tickers": [
+        "MU",
+        "DRAM"
+      ]
+    },
+    {
+      "sector": "Crypto",
+      "avg_chg_pct": 0.63,
+      "tickers": [
+        "IBIT"
+      ]
+    },
+    {
+      "sector": "Commodities / Gold",
+      "avg_chg_pct": 1.55,
+      "tickers": [
+        "GLDM"
+      ]
+    },
+    {
+      "sector": "Energy / Nuclear",
+      "avg_chg_pct": 3.42,
+      "tickers": [
+        "VST"
+      ]
+    },
+    {
+      "sector": "AI Infrastructure",
+      "avg_chg_pct": -0.71,
+      "tickers": [
+        "APLD"
+      ]
+    },
+    {
+      "sector": "Nuclear Energy",
+      "avg_chg_pct": 0.38,
+      "tickers": [
+        "OKLO"
+      ]
+    },
+    {
+      "sector": "אנרגיה",
+      "avg_chg_pct": 1.08,
+      "tickers": [
+        "CCJ"
+      ]
+    }
+  ],
+  "insider_alerts": {
+    "VST": {
+      "buy_val": 1173069.25,
+      "sell_val": 24318002.75,
+      "net": -23144933.5,
+      "verdict": "נטו מכירה בשוק הפתוח"
+    }
+  }
+};
