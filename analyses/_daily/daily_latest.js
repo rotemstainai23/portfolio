@@ -1,12 +1,12 @@
 window.DAILY_DATA = {
-  "generated": "2026-10-13",
-  "generated_time": "08:45",
-  "market_date": "2026-10-13",
+  "generated": "2026-10-14",
+  "generated_time": "06:55",
+  "market_date": "2026-10-14",
   "has_alerts": false,
   "alert_tickers": [],
   "macro": {
-    "spy_chg_pct": -0.06,
-    "qqq_chg_pct": -0.7,
+    "spy_chg_pct": -0.01,
+    "qqq_chg_pct": -0.33,
     "vix": null
   },
   "holdings": [
@@ -14,13 +14,13 @@ window.DAILY_DATA = {
       "ticker": "NVDA",
       "sector": "AI / Semiconductors",
       "layer": "Growth",
-      "price": 226.32,
-      "chg_pct": -1.29,
-      "vol_ratio": 0.6,
-      "rsi": 46.4,
-      "w52_pos_pct": 78,
+      "price": 228.52,
+      "chg_pct": 0.97,
+      "vol_ratio": 0.8,
+      "rsi": 54.4,
+      "w52_pos_pct": 81,
       "analyst_target": 328.72,
-      "analyst_upside_pct": 45.2,
+      "analyst_upside_pct": 43.8,
       "days_to_earnings": null,
       "verdict": null,
       "news": []
@@ -29,14 +29,14 @@ window.DAILY_DATA = {
       "ticker": "MSFT",
       "sector": "Tech / Cloud / AI",
       "layer": "Stability",
-      "price": 541.15,
-      "chg_pct": 1.14,
-      "vol_ratio": 0.8,
-      "rsi": 77.9,
-      "w52_pos_pct": 94,
+      "price": 543.45,
+      "chg_pct": 0.43,
+      "vol_ratio": 1.1,
+      "rsi": 77.8,
+      "w52_pos_pct": 95,
       "analyst_target": 589.6,
-      "analyst_upside_pct": 9.0,
-      "days_to_earnings": 15,
+      "analyst_upside_pct": 8.5,
+      "days_to_earnings": 14,
       "verdict": null,
       "news": []
     },
@@ -44,14 +44,14 @@ window.DAILY_DATA = {
       "ticker": "GOOG",
       "sector": "Tech / Search / AI",
       "layer": "Stability",
-      "price": 348.97,
-      "chg_pct": 0.32,
-      "vol_ratio": 0.7,
-      "rsi": 51.5,
+      "price": 349.52,
+      "chg_pct": 0.16,
+      "vol_ratio": 0.9,
+      "rsi": 68.8,
       "w52_pos_pct": 66,
       "analyst_target": 420.36,
-      "analyst_upside_pct": 20.5,
-      "days_to_earnings": 15,
+      "analyst_upside_pct": 20.3,
+      "days_to_earnings": 14,
       "verdict": null,
       "news": []
     },
@@ -59,27 +59,27 @@ window.DAILY_DATA = {
       "ticker": "META",
       "sector": "Social Media / AI",
       "layer": "Growth",
-      "price": 742.96,
-      "chg_pct": 3.38,
-      "vol_ratio": 1.1,
-      "rsi": 51.6,
-      "w52_pos_pct": 86,
-      "analyst_target": 799.0,
-      "analyst_upside_pct": 7.5,
-      "days_to_earnings": 8,
+      "price": 762.5,
+      "chg_pct": 2.63,
+      "vol_ratio": 1.0,
+      "rsi": 54.3,
+      "w52_pos_pct": 93,
+      "analyst_target": 805.5,
+      "analyst_upside_pct": 5.6,
+      "days_to_earnings": 7,
       "verdict": null,
       "news": [
         {
-          "title": "META Stock Dips Overnight After Best Day In Two Weeks: Muse Traction Draws Jim Cramer’s ‘Monster Long’ Call, Dan Ives Sees An AI Edge",
-          "url": "https://stocktwits.com/news-articles/markets/equity/meta-stock-dips-overnight-after-best-day-in-two-weeks-muse-traction-draws-jim-cramer-s-monster-long-call-dan-ives-sees-an-ai-edge/cZxB5UtRB8C?.tsrc=rss"
+          "title": "Alphabet vs. Meta Platforms: Here's What Revenue Trends Tell Investors About These Media Giants Turned Artificial Intelligence Companies",
+          "url": "https://www.fool.com/coverage/charts/2026/10/14/alphabet-vs-meta-platforms-here-s-what-revenue-trends-tell-investors-about-these-media-giants-turned-artificial-intelligence-companies/?.tsrc=rss"
         },
         {
-          "title": "Muse Wonder Lifts Meta Stock 3.4%: Can Subscriptions Pay for Its AI Spending?",
-          "url": "https://beincrypto.com/meta-stock-muse-wonder-ai-spending/?.tsrc=rss"
+          "title": "Dow Jones Futures: Techs Rise After Meta, AMD Lead Buys; ASML, CPI Inflation Due",
+          "url": "https://finance.yahoo.com/m/02b2fe19-36e5-3f96-ac0e-2dc2cf84ceb1/dow-jones-futures%3A-techs-rise.html?.tsrc=rss"
         },
         {
-          "title": "Why Meta (META) Stock Is Up Today",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/why-meta-meta-stock-today-011903744.html?.tsrc=rss"
+          "title": "MIT dropout’s two startups announce shutdown weeks apart",
+          "url": "https://www.thestreet.com/crypto/retail/mit-dropouts-two-startups-announce-shutdown-weeks-apart?.tsrc=rss"
         }
       ]
     },
@@ -87,55 +87,42 @@ window.DAILY_DATA = {
       "ticker": "AVGO",
       "sector": "Semiconductors",
       "layer": "Growth",
-      "price": 354.73,
-      "chg_pct": -1.88,
+      "price": 357.31,
+      "chg_pct": 0.73,
       "vol_ratio": 0.7,
-      "rsi": 44.8,
-      "w52_pos_pct": 32,
+      "rsi": 51.3,
+      "w52_pos_pct": 33,
       "analyst_target": 531.31,
-      "analyst_upside_pct": 49.8,
+      "analyst_upside_pct": 48.7,
       "days_to_earnings": null,
       "verdict": null,
-      "news": [
-        {
-          "title": "AI stocks plunge as tech chief calls market a ‘casino’",
-          "url": "https://uk.finance.yahoo.com/news/ai-stocks-plunge-tech-chief-081541032.html?.tsrc=rss"
-        },
-        {
-          "title": "Broadcom’s AI Durability Warning Triggers Sharp Drop In SK Hynix, Samsung In Korea; Nvidia's China AI Chip Share Falls As Huawei Closes In",
-          "url": "https://stocktwits.com/news-articles/markets/equity/broadcom-s-ai-durability-warning-triggers-sharp-drop-in-sk-hynix-samsung-in-korea-nvidia-s-china-ai-chip-share-falls-as-huawei-closes-in/cZxBJkuRBoJ?.tsrc=rss"
-        },
-        {
-          "title": "Broadcom Introduces VMware HyperArmor, Expanding Hypervisor Security and Protections for VMware Cloud Foundation",
-          "url": "https://finance.yahoo.com/technology/ai/articles/broadcom-introduces-vmware-hyperarmor-expanding-070000343.html?.tsrc=rss"
-        }
-      ]
+      "news": []
     },
     {
       "ticker": "MU",
       "sector": "Memory Chips",
       "layer": "Growth",
-      "price": 989.04,
-      "chg_pct": -3.88,
-      "vol_ratio": 0.9,
-      "rsi": 32.1,
-      "w52_pos_pct": 75,
+      "price": 953.19,
+      "chg_pct": -3.62,
+      "vol_ratio": 1.1,
+      "rsi": 30.9,
+      "w52_pos_pct": 72,
       "analyst_target": 1560.57,
-      "analyst_upside_pct": 57.8,
+      "analyst_upside_pct": 63.7,
       "days_to_earnings": null,
       "verdict": null,
       "news": [
         {
-          "title": "Chip selloff extends as South Korean stock market sinks 6%",
-          "url": "https://finance.yahoo.com/markets/stocks/article/chip-selloff-extends-as-south-korean-stock-market-sinks-6-032602153.html?.tsrc=rss"
+          "title": "ASML Raises Sales Forecast For A Third Time, But Q3 Revenue Miss Sends Stock Lower: Earnings Selloff Spreads To MU, SNDK, INTC",
+          "url": "https://stocktwits.com/news-articles/markets/equity/asml-raises-sales-forecast-for-a-third-time-but-q3-sales-miss-sends-stock-lower-earnings-selloff-spreads-to-mu-sndk-intc/cZxfWHbRBp9?.tsrc=rss"
         },
         {
-          "title": "History Says Micron Stock Saves Its Biggest Gains for the Fourth Quarter. This Year, Its Outlook Points the Same Way.",
-          "url": "https://www.fool.com/investing/2026/10/13/history-says-micron-stock-saves-its-biggest-gains-for-the-fourth-quarter-this-year-its-outlook-points-the-same-way/?.tsrc=rss"
+          "title": "MU Stock Edges Up Overnight: Elon Musk Says Micron Is Being ‘Reasonable’ On Memory Prices While Others Are ‘Extortionate’",
+          "url": "https://stocktwits.com/news-articles/markets/equity/mu-stock-edges-up-overnight-elon-musk-says-micron-is-being-reasonable-on-memory-prices-while-others-are-extortionate/cZxfebxRBYD?.tsrc=rss"
         },
         {
-          "title": "Wall Street’s Biggest Micron Bull Just Raised Its Target Again. It Now Sees the Stock Nearly Tripling",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/wall-street-biggest-micron-bull-212054647.html?.tsrc=rss"
+          "title": "Elon Musk Says Micron Has Been ‘Reasonable’ in Future Pricing Memory Where Others Were ‘Extortionate’ — ‘Customers Won’t Forget’",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/elon-musk-says-micron-reasonable-015622772.html?.tsrc=rss"
         }
       ]
     },
@@ -143,11 +130,11 @@ window.DAILY_DATA = {
       "ticker": "IBIT",
       "sector": "Crypto",
       "layer": "Speculation",
-      "price": 46.86,
-      "chg_pct": 0.67,
-      "vol_ratio": 0.5,
-      "rsi": 34.4,
-      "w52_pos_pct": 42,
+      "price": 47.13,
+      "chg_pct": 0.58,
+      "vol_ratio": 0.6,
+      "rsi": 43.4,
+      "w52_pos_pct": 43,
       "analyst_target": null,
       "analyst_upside_pct": null,
       "days_to_earnings": null,
@@ -158,10 +145,10 @@ window.DAILY_DATA = {
       "ticker": "GLDM",
       "sector": "Commodities / Gold",
       "layer": "Stability",
-      "price": 82.47,
-      "chg_pct": -0.63,
-      "vol_ratio": 0.4,
-      "rsi": 34.5,
+      "price": 82.36,
+      "chg_pct": -0.13,
+      "vol_ratio": 0.7,
+      "rsi": 39.1,
       "w52_pos_pct": 15,
       "analyst_target": null,
       "analyst_upside_pct": null,
@@ -173,27 +160,27 @@ window.DAILY_DATA = {
       "ticker": "VST",
       "sector": "Energy / Nuclear",
       "layer": "Growth",
-      "price": 158.13,
-      "chg_pct": -2.07,
-      "vol_ratio": 0.9,
-      "rsi": 65.7,
-      "w52_pos_pct": 30,
+      "price": 162.36,
+      "chg_pct": 2.68,
+      "vol_ratio": 0.8,
+      "rsi": 71.0,
+      "w52_pos_pct": 35,
       "analyst_target": 210.25,
-      "analyst_upside_pct": 33.0,
+      "analyst_upside_pct": 29.5,
       "days_to_earnings": null,
       "verdict": null,
       "news": [
         {
+          "title": "Vistra Bombed Over The Last Year: One Analyst Says The AI Power Play Will Gain 90% Within a Year",
+          "url": "https://247wallst.com/investing/2026/10/13/vistra-bombed-over-the-last-year-one-analyst-says-the-ai-power-play-will-gain-90-within-a-year/?.tsrc=rss"
+        },
+        {
+          "title": "Constellation's $4.3 Billion Google-Backed Upgrades vs. Vistra's $4.2 Billion Government Loan: Which Nuclear Plan Is Better for Shareholders?",
+          "url": "https://www.fool.com/investing/2026/10/13/constellation-google-upgrades-vistra-nuclear/?.tsrc=rss"
+        },
+        {
           "title": "Stocktwits Power Watch: CEG Bags Google Deal, VST Secures Government Funding, Utility Merger Draws Fire",
           "url": "https://stocktwits.com/news-articles/markets/equity/ai-power-demand-constellation-vistra-nuclear-deals-nextera-dominion-merger/cZxI4mwRBFH?.tsrc=rss"
-        },
-        {
-          "title": "Is Vistra Stock Increasing Your Market Risk?",
-          "url": "https://www.trefis.com/articles/618177/is-vistra-stock-increasing-your-market-risk/2026-10-09?.tsrc=rss"
-        },
-        {
-          "title": "Vistra Stock Fell 6% in a Day After a 20% Run. Here’s What Its November 6 Report Needs to Show",
-          "url": "https://www.tikr.com/blog/vistra-stock-fell-6-in-a-day-after-a-20-run-heres-what-its-november-6-report-needs-to-show?ref=yahoofinance&.tsrc=rss"
         }
       ]
     },
@@ -201,27 +188,27 @@ window.DAILY_DATA = {
       "ticker": "APLD",
       "sector": "AI Infrastructure",
       "layer": "Speculation",
-      "price": 23.25,
-      "chg_pct": -1.82,
-      "vol_ratio": 0.7,
-      "rsi": 25.6,
-      "w52_pos_pct": 13,
+      "price": 22.44,
+      "chg_pct": -3.48,
+      "vol_ratio": 1.3,
+      "rsi": 26.9,
+      "w52_pos_pct": 11,
       "analyst_target": 64.27,
-      "analyst_upside_pct": 176.4,
+      "analyst_upside_pct": 186.4,
       "days_to_earnings": null,
       "verdict": null,
       "news": [
         {
-          "title": "Applied Digital (APLD), Why Is Its Latest Update Drawing Attention?",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/applied-digital-apld-why-latest-081408119.html?.tsrc=rss"
+          "title": "How Much Of Applied Digital’s Fiscal Q1 Revenue Was Rent?",
+          "url": "https://www.trefis.com/articles/618482/how-much-of-applied-digitals-fiscal-q1-revenue-was-rent/2026-10-13?.tsrc=rss"
         },
         {
-          "title": "What Could Derail Applied Digital Stock?",
-          "url": "https://www.trefis.com/articles/618325/what-could-derail-applied-digital-stock/2026-10-12?.tsrc=rss"
+          "title": "Cipher Digital Tumbles 14% on $850M Convertible Note Offering and Share Exchange; Applied Digital Drops 5%",
+          "url": "https://247wallst.com/investing/2026/10/13/cipher-digital-tumbles-14-on-850m-convertible-note-offering-and-share-exchange-applied-digital-drops-5/?.tsrc=rss"
         },
         {
-          "title": "Applied Digital Wants to Add 600 Megawatts in a Year. Can It Pay for It?",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/applied-digital-wants-add-600-212536484.html?.tsrc=rss"
+          "title": "CoreWeave Imploded 20% Over 6 Months: This Analyst Predicts It Will Triple in Price Over the Coming Year",
+          "url": "https://247wallst.com/investing/2026/10/13/coreweave-imploded-20-over-6-months-this-analyst-predicts-it-will-triple-in-price-over-the-coming-year/?.tsrc=rss"
         }
       ]
     },
@@ -229,39 +216,26 @@ window.DAILY_DATA = {
       "ticker": "OKLO",
       "sector": "Nuclear Energy",
       "layer": "Speculation",
-      "price": 32.21,
-      "chg_pct": -7.18,
-      "vol_ratio": 1.0,
-      "rsi": 20.3,
+      "price": 31.78,
+      "chg_pct": -1.33,
+      "vol_ratio": 0.9,
+      "rsi": 22.2,
       "w52_pos_pct": 0,
       "analyst_target": 75.38,
-      "analyst_upside_pct": 134.0,
+      "analyst_upside_pct": 137.2,
       "days_to_earnings": null,
       "verdict": null,
-      "news": [
-        {
-          "title": "NuScale Power Sinks 7% as Nuclear Names Give Back a Month of Ground; Oklo Falls 6%, Centrus Energy Drops 4%",
-          "url": "https://247wallst.com/investing/2026/10/12/nuscale-power-sinks-7-as-nuclear-names-give-back-a-month-of-ground-oklo-falls-6-centrus-energy-drops-4/?.tsrc=rss"
-        },
-        {
-          "title": "3 Dividend Stocks Riding the Same Nuclear Build-Out From Different Angles",
-          "url": "https://www.fool.com/investing/2026/10/12/3-dividend-stocks-riding-the-same-nuclear-build-ou/?.tsrc=rss"
-        },
-        {
-          "title": "3 Stocks To Play The Nuclear Energy Boom",
-          "url": "https://finance.yahoo.com/energy/articles/3-stocks-play-nuclear-energy-230000227.html?.tsrc=rss"
-        }
-      ]
+      "news": []
     },
     {
       "ticker": "DRAM",
       "sector": "Memory Chips",
       "layer": "Growth",
-      "price": 54.72,
-      "chg_pct": -4.32,
-      "vol_ratio": 1.2,
-      "rsi": 26.9,
-      "w52_pos_pct": 52,
+      "price": 52.84,
+      "chg_pct": -3.44,
+      "vol_ratio": 1.6,
+      "rsi": 26.7,
+      "w52_pos_pct": 48,
       "analyst_target": null,
       "analyst_upside_pct": null,
       "days_to_earnings": null,
@@ -285,29 +259,16 @@ window.DAILY_DATA = {
       "ticker": "CCJ",
       "sector": "אנרגיה",
       "layer": "Growth",
-      "price": 86.12,
-      "chg_pct": -2.2,
-      "vol_ratio": 0.5,
-      "rsi": 33.7,
+      "price": 86.15,
+      "chg_pct": 0.03,
+      "vol_ratio": 0.7,
+      "rsi": 39.6,
       "w52_pos_pct": 15,
-      "analyst_target": 126.9,
-      "analyst_upside_pct": 47.4,
-      "days_to_earnings": 17,
+      "analyst_target": 127.43,
+      "analyst_upside_pct": 47.9,
+      "days_to_earnings": 16,
       "verdict": null,
-      "news": [
-        {
-          "title": "Cameco Corporation (CCJ) is Positioned for Long-Term Growth in Nuclear Energy Expansion",
-          "url": "https://finance.yahoo.com/energy/articles/cameco-corporation-ccj-positioned-long-132143900.html?.tsrc=rss"
-        },
-        {
-          "title": "Long-Term Uranium Price Moves Past Its 2007 Peak While Energy Metals Deals Keep Coming",
-          "url": "https://finance.yahoo.com/news/long-term-uranium-price-moves-111500005.html?.tsrc=rss"
-        },
-        {
-          "title": "Cameco’s Uranium Earnings Fell Nearly 40% in Q2 Despite 18% Higher Prices. Here’s Where the Stock Could Go by 2030",
-          "url": "https://www.tikr.com/blog/camecos-uranium-earnings-fell-nearly-40-in-q2-despite-18-higher-prices-heres-where-the-stock-could-go-by-2030?ref=yahoofinance&.tsrc=rss"
-        }
-      ]
+      "news": []
     }
   ],
   "watchlist_triggers": [],
@@ -315,42 +276,42 @@ window.DAILY_DATA = {
   "sector_summary": [
     {
       "sector": "AI / Semiconductors",
-      "avg_chg_pct": -1.29,
+      "avg_chg_pct": 0.97,
       "tickers": [
         "NVDA"
       ]
     },
     {
       "sector": "Tech / Cloud / AI",
-      "avg_chg_pct": 1.14,
+      "avg_chg_pct": 0.43,
       "tickers": [
         "MSFT"
       ]
     },
     {
       "sector": "Tech / Search / AI",
-      "avg_chg_pct": 0.32,
+      "avg_chg_pct": 0.16,
       "tickers": [
         "GOOG"
       ]
     },
     {
       "sector": "Social Media / AI",
-      "avg_chg_pct": 3.38,
+      "avg_chg_pct": 2.63,
       "tickers": [
         "META"
       ]
     },
     {
       "sector": "Semiconductors",
-      "avg_chg_pct": -1.88,
+      "avg_chg_pct": 0.73,
       "tickers": [
         "AVGO"
       ]
     },
     {
       "sector": "Memory Chips",
-      "avg_chg_pct": -4.1,
+      "avg_chg_pct": -3.53,
       "tickers": [
         "MU",
         "DRAM"
@@ -358,42 +319,42 @@ window.DAILY_DATA = {
     },
     {
       "sector": "Crypto",
-      "avg_chg_pct": 0.67,
+      "avg_chg_pct": 0.58,
       "tickers": [
         "IBIT"
       ]
     },
     {
       "sector": "Commodities / Gold",
-      "avg_chg_pct": -0.63,
+      "avg_chg_pct": -0.13,
       "tickers": [
         "GLDM"
       ]
     },
     {
       "sector": "Energy / Nuclear",
-      "avg_chg_pct": -2.07,
+      "avg_chg_pct": 2.68,
       "tickers": [
         "VST"
       ]
     },
     {
       "sector": "AI Infrastructure",
-      "avg_chg_pct": -1.82,
+      "avg_chg_pct": -3.48,
       "tickers": [
         "APLD"
       ]
     },
     {
       "sector": "Nuclear Energy",
-      "avg_chg_pct": -7.18,
+      "avg_chg_pct": -1.33,
       "tickers": [
         "OKLO"
       ]
     },
     {
       "sector": "אנרגיה",
-      "avg_chg_pct": -2.2,
+      "avg_chg_pct": 0.03,
       "tickers": [
         "CCJ"
       ]
