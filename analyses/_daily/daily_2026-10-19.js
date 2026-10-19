@@ -1,0 +1,423 @@
+window.DAILY_DATA = {
+  "generated": "2026-10-19",
+  "generated_time": "07:09",
+  "market_date": "2026-10-19",
+  "has_alerts": false,
+  "alert_tickers": [],
+  "macro": {
+    "spy_chg_pct": -1.11,
+    "qqq_chg_pct": -2.5,
+    "vix": null
+  },
+  "holdings": [
+    {
+      "ticker": "NVDA",
+      "sector": "AI / Semiconductors",
+      "layer": "Growth",
+      "price": 214.13,
+      "chg_pct": -1.43,
+      "vol_ratio": 1.1,
+      "rsi": 32.9,
+      "w52_pos_pct": 63,
+      "analyst_target": 328.72,
+      "analyst_upside_pct": 53.5,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": []
+    },
+    {
+      "ticker": "MSFT",
+      "sector": "Tech / Cloud / AI",
+      "layer": "Stability",
+      "price": 529.05,
+      "chg_pct": -1.93,
+      "vol_ratio": 1.1,
+      "rsi": 63.2,
+      "w52_pos_pct": 88,
+      "analyst_target": 599.24,
+      "analyst_upside_pct": 13.3,
+      "days_to_earnings": 9,
+      "verdict": null,
+      "news": [
+        {
+          "title": "Some Investors Are Questioning the AI Trade. Microsoft Is Bucking the Trend",
+          "url": "https://www.fool.com/investing/2026/10/18/some-investors-are-questioning-the-ai-trade-micros/?.tsrc=rss"
+        },
+        {
+          "title": "Top 3 British Penny Stocks To Watch In October 2026",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/top-3-british-penny-stocks-131011661.html?.tsrc=rss"
+        },
+        {
+          "title": "Microsoft pulls out of UK data centre deal with Nscale, Telegraph reports",
+          "url": "https://finance.yahoo.com/technology/ai/articles/microsoft-pulls-uk-data-centre-095253878.html?.tsrc=rss"
+        }
+      ]
+    },
+    {
+      "ticker": "GOOG",
+      "sector": "Tech / Search / AI",
+      "layer": "Stability",
+      "price": 336.91,
+      "chg_pct": -2.32,
+      "vol_ratio": 1.0,
+      "rsi": 47.5,
+      "w52_pos_pct": 58,
+      "analyst_target": 420.79,
+      "analyst_upside_pct": 24.9,
+      "days_to_earnings": 9,
+      "verdict": null,
+      "news": [
+        {
+          "title": "Trump’s $330 Million White House Ballroom Donor List Reveals Nvidia, Apple and Google Among Top Tech Contributors: Report (UPDATED)",
+          "url": "https://finance.yahoo.com/technology/articles/trump-330-million-white-house-033011715.html?.tsrc=rss"
+        },
+        {
+          "title": "American Electric Power Company (AEP) Faces A 12% Fair Value Gap As Google Deal Lands",
+          "url": "https://finance.yahoo.com/energy/articles/american-electric-power-company-aep-231338036.html?.tsrc=rss"
+        },
+        {
+          "title": "1 Analyst Thinks Alphabet Stock Could Jump 20% on AI Chip Demand. Is He Right?",
+          "url": "https://www.fool.com/investing/2026/10/18/one-analyst-thinks-alphabet-stock-could-jump-20-on/?.tsrc=rss"
+        }
+      ]
+    },
+    {
+      "ticker": "META",
+      "sector": "Social Media / AI",
+      "layer": "Growth",
+      "price": 709.33,
+      "chg_pct": -3.72,
+      "vol_ratio": 0.9,
+      "rsi": 48.2,
+      "w52_pos_pct": 73,
+      "analyst_target": 815.29,
+      "analyst_upside_pct": 14.9,
+      "days_to_earnings": 2,
+      "verdict": null,
+      "news": [
+        {
+          "title": "Stocktwits Tech Watch: Netflix And Meta Report Earnings As Nvidia, Oracle Product Events Loom",
+          "url": "https://stocktwits.com/news-articles/markets/equity/stocktwits-tech-watch-netflix-and-meta-report-earnings-as-nvidia-oracle-product-events-loom/cZx8WbvRBME?.tsrc=rss"
+        },
+        {
+          "title": "No ‘Black Monday’? Nasdaq, S&P 500, Dow Futures Spike As Big Tech Earnings Loom This Week — Retail Stays Cautious",
+          "url": "https://stocktwits.com/news-articles/markets/equity/no-black-monday-nasdaq-s-and-p-500-dow-futures-spike-as-big-tech-earnings-loom-this-week-retail-stays-cautious/cZx8aBfRBt6?.tsrc=rss"
+        },
+        {
+          "title": "Dow Jones Futures Rebound After AI Sell-Off; Meta, SpaceX, Tesla Earnings Key",
+          "url": "https://finance.yahoo.com/m/4342d021-69d3-3aa1-9753-76f72c9ba95d/dow-jones-futures-rebound.html?.tsrc=rss"
+        }
+      ]
+    },
+    {
+      "ticker": "AVGO",
+      "sector": "Semiconductors",
+      "layer": "Growth",
+      "price": 328.75,
+      "chg_pct": -4.52,
+      "vol_ratio": 1.3,
+      "rsi": 40.1,
+      "w52_pos_pct": 19,
+      "analyst_target": 527.59,
+      "analyst_upside_pct": 60.5,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": [
+        {
+          "title": "Nine Companies, Including Broadcom and Verizon, Object to Their Shares Being Tokenized. Can They Stop It?",
+          "url": "https://247wallst.com/investing/cryptocurrency/2026/10/18/nine-companies-including-broadcom-and-verizon-object-to-their-shares-being-tokenized-can-they-stop-it/?.tsrc=rss"
+        },
+        {
+          "title": "What Does Broadcom (AVGO) Face As AI Chip Supply Turns Into A Bottleneck?",
+          "url": "https://finance.yahoo.com/technology/ai/articles/does-broadcom-avgo-face-ai-160933871.html?.tsrc=rss"
+        },
+        {
+          "title": "Broadcom (AVGO) Went Nowhere for a Year. Analysts Think It Is Worth 50% More",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/broadcom-avgo-went-nowhere-analysts-143448009.html?.tsrc=rss"
+        }
+      ]
+    },
+    {
+      "ticker": "MU",
+      "sector": "Memory Chips",
+      "layer": "Growth",
+      "price": 878.84,
+      "chg_pct": -5.63,
+      "vol_ratio": 1.1,
+      "rsi": 27.0,
+      "w52_pos_pct": 65,
+      "analyst_target": 1560.57,
+      "analyst_upside_pct": 77.6,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": [
+        {
+          "title": "INTC, AMD, MU, SNDK: US Chip Stocks Rebound After Worst Week Since March",
+          "url": "https://stocktwits.com/news-articles/markets/equity/intc-amd-mu-sndk-us-chip-stocks-rebound-after-worst-week-since-march/cZx8OKxRBMR?.tsrc=rss"
+        },
+        {
+          "title": "If I Could Only Own 1 Artificial Intelligence (AI) Memory Stock for the Next 5 Years, It Wouldn't Be Micron.",
+          "url": "https://www.fool.com/investing/2026/10/18/if-i-could-only-own-1-artificial-intelligence-ai-m/?.tsrc=rss"
+        },
+        {
+          "title": "Here Is What a $5,000 Investment in Micron Could Be Worth by 2028",
+          "url": "https://www.fool.com/investing/2026/10/18/here-is-what-a-5000-investment-in-micron-could-be/?.tsrc=rss"
+        }
+      ]
+    },
+    {
+      "ticker": "IBIT",
+      "sector": "Crypto",
+      "layer": "Speculation",
+      "price": 46.15,
+      "chg_pct": -0.94,
+      "vol_ratio": 1.1,
+      "rsi": 42.0,
+      "w52_pos_pct": 40,
+      "analyst_target": null,
+      "analyst_upside_pct": null,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": []
+    },
+    {
+      "ticker": "GLDM",
+      "sector": "Commodities / Gold",
+      "layer": "Stability",
+      "price": 82.46,
+      "chg_pct": -0.16,
+      "vol_ratio": 1.2,
+      "rsi": 54.5,
+      "w52_pos_pct": 15,
+      "analyst_target": null,
+      "analyst_upside_pct": null,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": []
+    },
+    {
+      "ticker": "VST",
+      "sector": "Energy / Nuclear",
+      "layer": "Growth",
+      "price": 152.02,
+      "chg_pct": -1.39,
+      "vol_ratio": 0.7,
+      "rsi": 59.7,
+      "w52_pos_pct": 27,
+      "analyst_target": 210.1,
+      "analyst_upside_pct": 38.2,
+      "days_to_earnings": 18,
+      "verdict": null,
+      "news": []
+    },
+    {
+      "ticker": "APLD",
+      "sector": "AI Infrastructure",
+      "layer": "Speculation",
+      "price": 18.05,
+      "chg_pct": -11.48,
+      "vol_ratio": 1.5,
+      "rsi": 23.4,
+      "w52_pos_pct": 1,
+      "analyst_target": 64.27,
+      "analyst_upside_pct": null,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": [
+        {
+          "title": "Applied Digital Sinks 4% as Rotation Out of Debt-Funded AI Builders Extends; TeraWulf Dips 3%, Core Scientific Retreats 2%",
+          "url": "https://247wallst.com/investing/2026/10/16/applied-digital-sinks-4-as-rotation-out-of-debt-funded-ai-builders-extends-terawulf-dips-3-core-scientific-retreats-2/?.tsrc=rss"
+        },
+        {
+          "title": "Applied Digital (APLD) Stock Looks Fully Priced On Current Sales",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/applied-digital-apld-stock-looks-161518047.html?.tsrc=rss"
+        },
+        {
+          "title": "Data Center Stocks Tumble as Financing Costs Draw Scrutiny: Cipher Digital Drops 9%, Applied Digital Falls 6%",
+          "url": "https://247wallst.com/investing/2026/10/15/data-center-stocks-tumble-as-financing-costs-draw-scrutiny-cipher-digital-tumbles-9-applied-digital-falls-6/?.tsrc=rss"
+        }
+      ]
+    },
+    {
+      "ticker": "OKLO",
+      "sector": "Nuclear Energy",
+      "layer": "Speculation",
+      "price": 27.97,
+      "chg_pct": -6.8,
+      "vol_ratio": 0.9,
+      "rsi": 22.6,
+      "w52_pos_pct": 0,
+      "analyst_target": 75.38,
+      "analyst_upside_pct": 169.5,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": [
+        {
+          "title": "Oklo Launched Another $1 Billion Stock Sale. Here's How Much Dilution Shareholders Have Absorbed Since It Went Public.",
+          "url": "https://www.fool.com/investing/2026/10/14/oklo-launched-another-1-billion-stock-sale/?.tsrc=rss"
+        },
+        {
+          "title": "A Year Ago We Said the SMR Rally Was Just Heating Up. Oklo and NuScale Both Fell Sharply.",
+          "url": "https://247wallst.com/investing/2026/10/14/a-year-ago-we-said-the-smr-rally-was-just-heating-up-oklo-and-nuscale-both-fell-sharply/?.tsrc=rss"
+        },
+        {
+          "title": "Google Signed a Deal for Existing Reactors. So Why Did Oklo and NuScale Jump on the Constellation Energy News? The Read-Through Investors Are Missing.",
+          "url": "https://www.fool.com/investing/2026/10/14/google-signed-a-deal-for-existing-reactors-so-why/?.tsrc=rss"
+        }
+      ]
+    },
+    {
+      "ticker": "DRAM",
+      "sector": "Memory Chips",
+      "layer": "Growth",
+      "price": 46.45,
+      "chg_pct": -5.84,
+      "vol_ratio": 1.6,
+      "rsi": 18.9,
+      "w52_pos_pct": 37,
+      "analyst_target": null,
+      "analyst_upside_pct": null,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": [
+        {
+          "title": "Memory stocks slide into another bear market as chip losses near $2.5 trillion: Chart of the Day",
+          "url": "https://finance.yahoo.com/markets/article/memory-stocks-slide-into-another-bear-market-as-chip-losses-near-25-trillion-chart-of-the-day-100000060.html?.tsrc=rss"
+        },
+        {
+          "title": "DRAM ETF Heads For Longest Weekly Losing Streak Since Inception, Roundhill CEO Says ‘Investor Sentiment Has Turned’",
+          "url": "https://stocktwits.com/news-articles/markets/equity/dram-etf-record-weekly-losing-streak-roundhill-ceo-investor-sentiment-has-turned/cZxhcl7RBrQ?.tsrc=rss"
+        },
+        {
+          "title": "Memory Stocks Slide as China’s CXMT Flags Denser Chip Design: Micron and SK Hynix Fall 4%, Western Digital Drops 2%",
+          "url": "https://247wallst.com/investing/2026/10/12/memory-stocks-slide-as-chinas-cxmt-flags-denser-chip-design-micron-and-sk-hynix-fall-4-western-digital-drops-2/?.tsrc=rss"
+        }
+      ]
+    },
+    {
+      "ticker": "CCJ",
+      "sector": "אנרגיה",
+      "layer": "Growth",
+      "price": 81.52,
+      "chg_pct": -2.05,
+      "vol_ratio": 0.8,
+      "rsi": 39.6,
+      "w52_pos_pct": 7,
+      "analyst_target": 128.42,
+      "analyst_upside_pct": 57.5,
+      "days_to_earnings": 11,
+      "verdict": null,
+      "news": [
+        {
+          "title": "Cameco Heads 3 Canadian Nuclear Stocks To Watch",
+          "url": "https://finance.yahoo.com/energy/articles/cameco-heads-3-canadian-nuclear-042102897.html?.tsrc=rss"
+        },
+        {
+          "title": "Cameco Stock Is Down 36% From Its All-Time High. Here's What Needs to Happen to Make It a Buy",
+          "url": "https://www.fool.com/investing/2026/10/16/cameco-stock-is-down-36-from-its-all-time-high/?.tsrc=rss"
+        },
+        {
+          "title": "Why Cameco (CCJ) Dipped More Than Broader Market Today",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/why-cameco-ccj-dipped-more-205004237.html?.tsrc=rss"
+        }
+      ]
+    }
+  ],
+  "watchlist_triggers": [],
+  "groq_insights": [],
+  "sector_summary": [
+    {
+      "sector": "AI / Semiconductors",
+      "avg_chg_pct": -1.43,
+      "tickers": [
+        "NVDA"
+      ]
+    },
+    {
+      "sector": "Tech / Cloud / AI",
+      "avg_chg_pct": -1.93,
+      "tickers": [
+        "MSFT"
+      ]
+    },
+    {
+      "sector": "Tech / Search / AI",
+      "avg_chg_pct": -2.32,
+      "tickers": [
+        "GOOG"
+      ]
+    },
+    {
+      "sector": "Social Media / AI",
+      "avg_chg_pct": -3.72,
+      "tickers": [
+        "META"
+      ]
+    },
+    {
+      "sector": "Semiconductors",
+      "avg_chg_pct": -4.52,
+      "tickers": [
+        "AVGO"
+      ]
+    },
+    {
+      "sector": "Memory Chips",
+      "avg_chg_pct": -5.73,
+      "tickers": [
+        "MU",
+        "DRAM"
+      ]
+    },
+    {
+      "sector": "Crypto",
+      "avg_chg_pct": -0.94,
+      "tickers": [
+        "IBIT"
+      ]
+    },
+    {
+      "sector": "Commodities / Gold",
+      "avg_chg_pct": -0.16,
+      "tickers": [
+        "GLDM"
+      ]
+    },
+    {
+      "sector": "Energy / Nuclear",
+      "avg_chg_pct": -1.39,
+      "tickers": [
+        "VST"
+      ]
+    },
+    {
+      "sector": "AI Infrastructure",
+      "avg_chg_pct": -11.48,
+      "tickers": [
+        "APLD"
+      ]
+    },
+    {
+      "sector": "Nuclear Energy",
+      "avg_chg_pct": -6.8,
+      "tickers": [
+        "OKLO"
+      ]
+    },
+    {
+      "sector": "אנרגיה",
+      "avg_chg_pct": -2.05,
+      "tickers": [
+        "CCJ"
+      ]
+    }
+  ],
+  "insider_alerts": {
+    "VST": {
+      "buy_val": 1173069.25,
+      "sell_val": 24318002.75,
+      "net": -23144933.5,
+      "verdict": "נטו מכירה בשוק הפתוח"
+    }
+  }
+};
