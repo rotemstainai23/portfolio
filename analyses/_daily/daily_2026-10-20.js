@@ -1,0 +1,390 @@
+window.DAILY_DATA = {
+  "generated": "2026-10-20",
+  "generated_time": "06:54",
+  "market_date": "2026-10-20",
+  "has_alerts": false,
+  "alert_tickers": [],
+  "macro": {
+    "spy_chg_pct": 0.42,
+    "qqq_chg_pct": 1.21,
+    "vix": null
+  },
+  "holdings": [
+    {
+      "ticker": "NVDA",
+      "sector": "AI / Semiconductors",
+      "layer": "Growth",
+      "price": 217.09,
+      "chg_pct": 1.38,
+      "vol_ratio": 0.9,
+      "rsi": 38.6,
+      "w52_pos_pct": 67,
+      "analyst_target": 328.72,
+      "analyst_upside_pct": 51.4,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": []
+    },
+    {
+      "ticker": "MSFT",
+      "sector": "Tech / Cloud / AI",
+      "layer": "Stability",
+      "price": 533.52,
+      "chg_pct": 0.84,
+      "vol_ratio": 0.8,
+      "rsi": 65.5,
+      "w52_pos_pct": 90,
+      "analyst_target": 599.28,
+      "analyst_upside_pct": 12.3,
+      "days_to_earnings": 8,
+      "verdict": null,
+      "news": []
+    },
+    {
+      "ticker": "GOOG",
+      "sector": "Tech / Search / AI",
+      "layer": "Stability",
+      "price": 340.16,
+      "chg_pct": 0.96,
+      "vol_ratio": 0.8,
+      "rsi": 53.0,
+      "w52_pos_pct": 60,
+      "analyst_target": 420.79,
+      "analyst_upside_pct": 23.7,
+      "days_to_earnings": 8,
+      "verdict": null,
+      "news": []
+    },
+    {
+      "ticker": "META",
+      "sector": "Social Media / AI",
+      "layer": "Growth",
+      "price": 705.44,
+      "chg_pct": -0.55,
+      "vol_ratio": 0.7,
+      "rsi": 39.2,
+      "w52_pos_pct": 71,
+      "analyst_target": 819.0,
+      "analyst_upside_pct": 16.1,
+      "days_to_earnings": 1,
+      "verdict": null,
+      "news": []
+    },
+    {
+      "ticker": "AVGO",
+      "sector": "Semiconductors",
+      "layer": "Growth",
+      "price": 334.59,
+      "chg_pct": 1.78,
+      "vol_ratio": 0.8,
+      "rsi": 40.3,
+      "w52_pos_pct": 22,
+      "analyst_target": 527.59,
+      "analyst_upside_pct": 57.7,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": [
+        {
+          "title": "Companies object to tokenized listings on OKX-ICE platform",
+          "url": "https://finance.yahoo.com/video/companies-object-to-tokenized-listings-on-okx-ice-platform-193603562.html?.tsrc=rss"
+        },
+        {
+          "title": "AVGO Stock Edges Up Overnight After 10-Year Docomo Deal, But Retail Stays On Edge Over CEO’s AI ‘Casino’ Remarks",
+          "url": "https://stocktwits.com/news-articles/markets/equity/avgo-stock-10-year-docomo-deal-retail-on-edge-ceo-ai-casino-remarks/cZxqiudRBuJ?.tsrc=rss"
+        },
+        {
+          "title": "Broadcom vs. Applied Materials: Which Buybacks Are Actually Shrinking the Share Count?",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/broadcom-vs-applied-materials-buybacks-185712459.html?.tsrc=rss"
+        }
+      ]
+    },
+    {
+      "ticker": "MU",
+      "sector": "Memory Chips",
+      "layer": "Growth",
+      "price": 904.9,
+      "chg_pct": 2.97,
+      "vol_ratio": 0.9,
+      "rsi": 29.8,
+      "w52_pos_pct": 67,
+      "analyst_target": 1560.57,
+      "analyst_upside_pct": 72.5,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": [
+        {
+          "title": "Micron (MU) Looks Cheap at 5 Times Forward Earnings. Can Its Profit Boom Last?",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/micron-mu-looks-cheap-5-153626120.html?.tsrc=rss"
+        },
+        {
+          "title": "Micron vs. Lam Research: Does Buying the Tool Supplier Reduce Memory-Cycle Risk?",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/micron-vs-lam-research-does-185704251.html?.tsrc=rss"
+        },
+        {
+          "title": "Micron (MU) vs. Sandisk (SNDK): Is the Smaller Factory Bill Really an Advantage?",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/micron-mu-vs-sandisk-sndk-185824641.html?.tsrc=rss"
+        }
+      ]
+    },
+    {
+      "ticker": "IBIT",
+      "sector": "Crypto",
+      "layer": "Speculation",
+      "price": 46.3,
+      "chg_pct": 0.33,
+      "vol_ratio": 1.0,
+      "rsi": 42.3,
+      "w52_pos_pct": 41,
+      "analyst_target": null,
+      "analyst_upside_pct": null,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": []
+    },
+    {
+      "ticker": "GLDM",
+      "sector": "Commodities / Gold",
+      "layer": "Stability",
+      "price": 81.94,
+      "chg_pct": -0.63,
+      "vol_ratio": 0.6,
+      "rsi": 46.3,
+      "w52_pos_pct": 14,
+      "analyst_target": null,
+      "analyst_upside_pct": null,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": []
+    },
+    {
+      "ticker": "VST",
+      "sector": "Energy / Nuclear",
+      "layer": "Growth",
+      "price": 149.7,
+      "chg_pct": -1.53,
+      "vol_ratio": 0.6,
+      "rsi": 56.2,
+      "w52_pos_pct": 24,
+      "analyst_target": 210.1,
+      "analyst_upside_pct": 40.3,
+      "days_to_earnings": 17,
+      "verdict": null,
+      "news": [
+        {
+          "title": "Musk: AI’s Hard Part Is “Scaling Power”: 3 Stocks Uniquely Suited to Win This New Bottleneck Trade",
+          "url": "https://www.tikr.com/blog/musk-ais-hard-part-is-scaling-power-3-stocks-uniquely-suited-to-win-this-new-bottleneck-trade?ref=yahoofinance&.tsrc=rss"
+        },
+        {
+          "title": "Vistra Stock Is Down 28% Over the Past Year. Discount or Warning Sign?",
+          "url": "https://www.tikr.com/blog/vistra-stock-is-down-28-over-the-past-year-discount-or-warning-sign?ref=yahoofinance&.tsrc=rss"
+        },
+        {
+          "title": "What Does Vistra (VST) Gain From Its $1 Billion Preferred Stock Redemption?",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/does-vistra-vst-gain-1-041825651.html?.tsrc=rss"
+        }
+      ]
+    },
+    {
+      "ticker": "APLD",
+      "sector": "AI Infrastructure",
+      "layer": "Speculation",
+      "price": 19.25,
+      "chg_pct": 6.65,
+      "vol_ratio": 1.5,
+      "rsi": 25.3,
+      "w52_pos_pct": 5,
+      "analyst_target": 64.27,
+      "analyst_upside_pct": null,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": [
+        {
+          "title": "Applied Digital (APLD) Blocks Tokenized Versions Of Its Stock",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/applied-digital-apld-blocks-tokenized-001906445.html?.tsrc=rss"
+        },
+        {
+          "title": "Applied Digital Stock Gains Attention After CoreWeave Upgrade Lifts AI Infrastructure Sentiment",
+          "url": "https://finance.yahoo.com/technology/ai/articles/applied-digital-stock-gains-attention-232219214.html?.tsrc=rss"
+        },
+        {
+          "title": "Applied Digital Soars 10%, IREN Up 5%, CoreWeave Up 2% as AI Infrastructure Selloff Reverses",
+          "url": "https://www.tikr.com/blog/applied-digital-soars-10-iren-up-5-coreweave-up-2-as-ai-infrastructure-selloff-reverses?ref=yahoofinance&.tsrc=rss"
+        }
+      ]
+    },
+    {
+      "ticker": "OKLO",
+      "sector": "Nuclear Energy",
+      "layer": "Speculation",
+      "price": 27.24,
+      "chg_pct": -2.61,
+      "vol_ratio": 0.9,
+      "rsi": 21.7,
+      "w52_pos_pct": 0,
+      "analyst_target": 75.08,
+      "analyst_upside_pct": 175.6,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": [
+        {
+          "title": "Nuclear Stock X-energy Ends A Losing Streak. Oklo Makes A New Low.",
+          "url": "https://finance.yahoo.com/m/481643d0-68ce-3569-b0b4-1c9559b60c46/nuclear-stock-x-energy-ends-a.html?.tsrc=rss"
+        },
+        {
+          "title": "Oklo Launched Another $1 Billion Stock Sale. Here's How Much Dilution Shareholders Have Absorbed Since It Went Public.",
+          "url": "https://www.fool.com/investing/2026/10/14/oklo-launched-another-1-billion-stock-sale/?.tsrc=rss"
+        },
+        {
+          "title": "A Year Ago We Said the SMR Rally Was Just Heating Up. Oklo and NuScale Both Fell Sharply.",
+          "url": "https://247wallst.com/investing/2026/10/14/a-year-ago-we-said-the-smr-rally-was-just-heating-up-oklo-and-nuscale-both-fell-sharply/?.tsrc=rss"
+        }
+      ]
+    },
+    {
+      "ticker": "DRAM",
+      "sector": "Memory Chips",
+      "layer": "Growth",
+      "price": 48.33,
+      "chg_pct": 4.05,
+      "vol_ratio": 1.0,
+      "rsi": 19.9,
+      "w52_pos_pct": 40,
+      "analyst_target": null,
+      "analyst_upside_pct": null,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": [
+        {
+          "title": "Memory stocks slide into another bear market as chip losses near $2.5 trillion: Chart of the Day",
+          "url": "https://finance.yahoo.com/markets/article/memory-stocks-slide-into-another-bear-market-as-chip-losses-near-25-trillion-chart-of-the-day-100000060.html?.tsrc=rss"
+        },
+        {
+          "title": "DRAM ETF Heads For Longest Weekly Losing Streak Since Inception, Roundhill CEO Says ‘Investor Sentiment Has Turned’",
+          "url": "https://stocktwits.com/news-articles/markets/equity/dram-etf-record-weekly-losing-streak-roundhill-ceo-investor-sentiment-has-turned/cZxhcl7RBrQ?.tsrc=rss"
+        },
+        {
+          "title": "Memory Stocks Slide as China’s CXMT Flags Denser Chip Design: Micron and SK Hynix Fall 4%, Western Digital Drops 2%",
+          "url": "https://247wallst.com/investing/2026/10/12/memory-stocks-slide-as-chinas-cxmt-flags-denser-chip-design-micron-and-sk-hynix-fall-4-western-digital-drops-2/?.tsrc=rss"
+        }
+      ]
+    },
+    {
+      "ticker": "CCJ",
+      "sector": "אנרגיה",
+      "layer": "Growth",
+      "price": 80.7,
+      "chg_pct": -1.01,
+      "vol_ratio": 0.6,
+      "rsi": 38.7,
+      "w52_pos_pct": 5,
+      "analyst_target": 128.48,
+      "analyst_upside_pct": 59.2,
+      "days_to_earnings": 10,
+      "verdict": null,
+      "news": []
+    }
+  ],
+  "watchlist_triggers": [],
+  "groq_insights": [],
+  "sector_summary": [
+    {
+      "sector": "AI / Semiconductors",
+      "avg_chg_pct": 1.38,
+      "tickers": [
+        "NVDA"
+      ]
+    },
+    {
+      "sector": "Tech / Cloud / AI",
+      "avg_chg_pct": 0.84,
+      "tickers": [
+        "MSFT"
+      ]
+    },
+    {
+      "sector": "Tech / Search / AI",
+      "avg_chg_pct": 0.96,
+      "tickers": [
+        "GOOG"
+      ]
+    },
+    {
+      "sector": "Social Media / AI",
+      "avg_chg_pct": -0.55,
+      "tickers": [
+        "META"
+      ]
+    },
+    {
+      "sector": "Semiconductors",
+      "avg_chg_pct": 1.78,
+      "tickers": [
+        "AVGO"
+      ]
+    },
+    {
+      "sector": "Memory Chips",
+      "avg_chg_pct": 3.51,
+      "tickers": [
+        "MU",
+        "DRAM"
+      ]
+    },
+    {
+      "sector": "Crypto",
+      "avg_chg_pct": 0.33,
+      "tickers": [
+        "IBIT"
+      ]
+    },
+    {
+      "sector": "Commodities / Gold",
+      "avg_chg_pct": -0.63,
+      "tickers": [
+        "GLDM"
+      ]
+    },
+    {
+      "sector": "Energy / Nuclear",
+      "avg_chg_pct": -1.53,
+      "tickers": [
+        "VST"
+      ]
+    },
+    {
+      "sector": "AI Infrastructure",
+      "avg_chg_pct": 6.65,
+      "tickers": [
+        "APLD"
+      ]
+    },
+    {
+      "sector": "Nuclear Energy",
+      "avg_chg_pct": -2.61,
+      "tickers": [
+        "OKLO"
+      ]
+    },
+    {
+      "sector": "אנרגיה",
+      "avg_chg_pct": -1.01,
+      "tickers": [
+        "CCJ"
+      ]
+    }
+  ],
+  "insider_alerts": {
+    "VST": {
+      "buy_val": 1173069.25,
+      "sell_val": 24318002.75,
+      "net": -23144933.5,
+      "verdict": "נטו מכירה בשוק הפתוח"
+    },
+    "APLD": {
+      "buy_val": 6664686.12,
+      "sell_val": 3018750.0,
+      "net": 3645936.12,
+      "verdict": "נטו קנייה בשוק הפתוח"
+    }
+  }
+};
