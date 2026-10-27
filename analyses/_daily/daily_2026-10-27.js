@@ -1,0 +1,429 @@
+window.DAILY_DATA = {
+  "generated": "2026-10-27",
+  "generated_time": "07:06",
+  "market_date": "2026-10-27",
+  "has_alerts": false,
+  "alert_tickers": [],
+  "macro": {
+    "spy_chg_pct": 0.71,
+    "qqq_chg_pct": 1.11,
+    "vix": null
+  },
+  "holdings": [
+    {
+      "ticker": "NVDA",
+      "sector": "AI / Semiconductors",
+      "layer": "Growth",
+      "price": 216.0,
+      "chg_pct": 2.39,
+      "vol_ratio": 0.9,
+      "rsi": 28.7,
+      "w52_pos_pct": 65,
+      "analyst_target": 328.95,
+      "analyst_upside_pct": 52.3,
+      "days_to_earnings": 21,
+      "verdict": null,
+      "news": [
+        {
+          "title": "Brazil Stocks Plunged. Should You Buy the Dip in MercadoLibre?",
+          "url": "https://www.fool.com/investing/2026/10/27/brazil-stocks-plunged-should-you-buy-the-dip-in-mercadolibre/?.tsrc=rss"
+        },
+        {
+          "title": "Nvidia to invest $3 bln in Meta share offering as part of bigger AI partnership",
+          "url": "https://finance.yahoo.com/technology/ai/articles/nvidia-invest-3-bln-meta-064611851.html?.tsrc=rss"
+        },
+        {
+          "title": "Agile Robots Launches Agile ONE SN Humanoid at NVIDIA GTC Berlin and Pilots Humanoids with Audi",
+          "url": "https://finance.yahoo.com/technology/ai/articles/agile-robots-launches-agile-one-062200731.html?.tsrc=rss"
+        }
+      ]
+    },
+    {
+      "ticker": "MSFT",
+      "sector": "Tech / Cloud / AI",
+      "layer": "Stability",
+      "price": 532.6,
+      "chg_pct": 1.54,
+      "vol_ratio": 0.9,
+      "rsi": 51.9,
+      "w52_pos_pct": 90,
+      "analyst_target": 603.43,
+      "analyst_upside_pct": 13.3,
+      "days_to_earnings": 1,
+      "verdict": null,
+      "news": [
+        {
+          "title": "Dow Jones Futures: Elon Musk-Led Tesla Leads Market Higher; Amazon, Alphabet, Microsoft Earnings On Deck",
+          "url": "https://finance.yahoo.com/m/4f45ec30-6388-381f-b8f7-2aed6d460b6f/dow-jones-futures%3A-elon.html?.tsrc=rss"
+        },
+        {
+          "title": "Find Strong Cloud Stocks With This Zacks Tool",
+          "url": "https://finance.yahoo.com/technology/articles/strong-cloud-stocks-zacks-tool-233000430.html?.tsrc=rss"
+        },
+        {
+          "title": "CORRECTING and REPLACING Waymo, Google and Microsoft Alums Raise $30M to Build the Data Layer for Physical AI",
+          "url": "https://finance.yahoo.com/technology/ai/articles/waymo-google-microsoft-alums-raise-160000050.html?.tsrc=rss"
+        }
+      ]
+    },
+    {
+      "ticker": "GOOG",
+      "sector": "Tech / Search / AI",
+      "layer": "Stability",
+      "price": 314.19,
+      "chg_pct": -0.97,
+      "vol_ratio": 1.1,
+      "rsi": 22.0,
+      "w52_pos_pct": 35,
+      "analyst_target": 422.36,
+      "analyst_upside_pct": 34.4,
+      "days_to_earnings": 1,
+      "verdict": null,
+      "news": []
+    },
+    {
+      "ticker": "META",
+      "sector": "Social Media / AI",
+      "layer": "Growth",
+      "price": 630.56,
+      "chg_pct": -1.88,
+      "vol_ratio": 1.6,
+      "rsi": 23.3,
+      "w52_pos_pct": 42,
+      "analyst_target": 845.5,
+      "analyst_upside_pct": 34.1,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": [
+        {
+          "title": "Nvidia to invest $3 bln in Meta share offering as part of bigger AI partnership",
+          "url": "https://finance.yahoo.com/technology/ai/articles/nvidia-invest-3-bln-meta-064611851.html?.tsrc=rss"
+        },
+        {
+          "title": "NVIDIA and Meta to Expand Collaboration on Muse and Muse Family of Models Amid Robust Growth",
+          "url": "https://finance.yahoo.com/technology/ai/articles/nvidia-meta-expand-collaboration-muse-055200163.html?.tsrc=rss"
+        },
+        {
+          "title": "Meta Announces Pricing of Offering of Depositary Shares Representing Series A Mandatory Convertible Preferred Stock and Offering of Class A Common Stock in Connection with Forward Sale Agreements",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/meta-announces-pricing-offering-depositary-050100930.html?.tsrc=rss"
+        }
+      ]
+    },
+    {
+      "ticker": "AVGO",
+      "sector": "Semiconductors",
+      "layer": "Growth",
+      "price": 329.17,
+      "chg_pct": 2.33,
+      "vol_ratio": 0.9,
+      "rsi": 23.9,
+      "w52_pos_pct": 19,
+      "analyst_target": 529.1,
+      "analyst_upside_pct": 60.7,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": [
+        {
+          "title": "Banks Reportedly Got Cold Feet on ‘Project North Star’ Until Hock Tan Stepped In: Broadcom’s $63 Billion Anthropic Financing Back on Track",
+          "url": "https://finance.yahoo.com/technology/ai/articles/banks-reportedly-got-cold-feet-032746843.html?.tsrc=rss"
+        },
+        {
+          "title": "Broadcom Partners With Wall Street Bigwigs To Forge $63B Deal To Power Anthropic’s AI Hardware",
+          "url": "https://stocktwits.com/news-articles/markets/equity/broadcom-partners-with-wall-street-bigwigs-to-forge-63-b-deal-to-power-anthropic-s-ai-hardware/cZU3ie1RBzJ?.tsrc=rss"
+        },
+        {
+          "title": "Broadcom secures $63 billion from banks to finance AI compute sales to Anthropic",
+          "url": "https://finance.yahoo.com/technology/ai/articles/broadcom-secures-63-billion-banks-205926176.html?.tsrc=rss"
+        }
+      ]
+    },
+    {
+      "ticker": "MU",
+      "sector": "Memory Chips",
+      "layer": "Growth",
+      "price": 903.7,
+      "chg_pct": 2.98,
+      "vol_ratio": 0.8,
+      "rsi": 34.0,
+      "w52_pos_pct": 67,
+      "analyst_target": 1561.91,
+      "analyst_upside_pct": 72.8,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": [
+        {
+          "title": "What a $1,000 Investment in Micron Could Be Worth by the End of 2027",
+          "url": "https://www.fool.com/investing/2026/10/26/what-a-1000-investment-in-micron-could-be-worth-by/?.tsrc=rss"
+        },
+        {
+          "title": "Stocks higher by year-end: George Seay on where to deploy cash now",
+          "url": "https://www.thestreet.com/video/stocks-higher-by-year-end-george-seay-on-where-to-deploy-your-cash-now?.tsrc=rss"
+        },
+        {
+          "title": "Micron Climbs 4% as Bank of America Grows More Positive on Memory; Western Digital Rises 5%, SanDisk Gains 3%",
+          "url": "https://247wallst.com/investing/2026/10/26/micron-climbs-4-as-bank-of-america-grows-more-positive-on-memory-western-digital-rises-5-sandisk-gains-3/?.tsrc=rss"
+        }
+      ]
+    },
+    {
+      "ticker": "IBIT",
+      "sector": "Crypto",
+      "layer": "Speculation",
+      "price": 45.22,
+      "chg_pct": -1.61,
+      "vol_ratio": 0.8,
+      "rsi": 32.0,
+      "w52_pos_pct": 37,
+      "analyst_target": null,
+      "analyst_upside_pct": null,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": [
+        {
+          "title": "Do Bitcoin ETF Flows Really Predict Future Bitcoin Price Moves? This New Research Has Important Implications for BTC Investors.",
+          "url": "https://www.fool.com/investing/2026/10/26/do-bitcoin-etf-flows-really-predict-future-bitcoin/?.tsrc=rss"
+        },
+        {
+          "title": "Circle Internet Jumps 6% as OCC Finalizes GENIUS Act Stablecoin Rules; Strategy Surges 8%, Coinbase Climbs 5%",
+          "url": "https://247wallst.com/investing/2026/10/21/circle-internet-jumps-6-as-occ-finalizes-genius-act-stablecoin-rules-strategy-surges-8-coinbase-climbs-5/?.tsrc=rss"
+        },
+        {
+          "title": "Forget GBTC. BlackRock Charges $1,250 Less a Year to Hold the Same Bitcoin on $100,000",
+          "url": "https://247wallst.com/investing/etf/2026/10/20/forget-gbtc-blackrock-charges-1250-less-a-year-to-hold-the-same-bitcoin-on-100000/?.tsrc=rss"
+        }
+      ]
+    },
+    {
+      "ticker": "GLDM",
+      "sector": "Commodities / Gold",
+      "layer": "Stability",
+      "price": 79.38,
+      "chg_pct": 0.32,
+      "vol_ratio": 0.8,
+      "rsi": 35.9,
+      "w52_pos_pct": 6,
+      "analyst_target": null,
+      "analyst_upside_pct": null,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": []
+    },
+    {
+      "ticker": "VST",
+      "sector": "Energy / Nuclear",
+      "layer": "Growth",
+      "price": 141.73,
+      "chg_pct": 1.12,
+      "vol_ratio": 0.5,
+      "rsi": 36.8,
+      "w52_pos_pct": 13,
+      "analyst_target": 208.86,
+      "analyst_upside_pct": 47.4,
+      "days_to_earnings": 10,
+      "verdict": null,
+      "news": []
+    },
+    {
+      "ticker": "APLD",
+      "sector": "AI Infrastructure",
+      "layer": "Speculation",
+      "price": 17.83,
+      "chg_pct": -2.3,
+      "vol_ratio": 1.0,
+      "rsi": 22.3,
+      "w52_pos_pct": 1,
+      "analyst_target": 62.44,
+      "analyst_upside_pct": null,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": [
+        {
+          "title": "Applied Digital Keeps Cratering: This Analyst Keeps Insisting It’s Going to Jump by 390%",
+          "url": "https://247wallst.com/investing/2026/10/26/applied-digital-keeps-cratering-this-analyst-keeps-insisting-its-going-to-jump-by-390/?.tsrc=rss"
+        },
+        {
+          "title": "Is Money for AI Data Centers Drying Up? Here’s Who Could Come Out on Top.",
+          "url": "https://247wallst.com/investing/2026/10/26/is-money-for-ai-data-centers-drying-up-heres-who-could-come-out-on-top/?.tsrc=rss"
+        },
+        {
+          "title": "Applied Digital Just Dropped 31% in a Month: Is It Time to Sell, or Load Up?",
+          "url": "https://www.tikr.com/blog/applied-digital-just-dropped-31-in-a-month-is-it-time-to-sell-or-load-up?ref=yahoofinance&.tsrc=rss"
+        }
+      ]
+    },
+    {
+      "ticker": "OKLO",
+      "sector": "Nuclear Energy",
+      "layer": "Speculation",
+      "price": 25.94,
+      "chg_pct": -1.56,
+      "vol_ratio": 0.7,
+      "rsi": 10.1,
+      "w52_pos_pct": 0,
+      "analyst_target": 66.8,
+      "analyst_upside_pct": 157.5,
+      "days_to_earnings": 10,
+      "verdict": null,
+      "news": [
+        {
+          "title": "Oklo Is Now Down 63% This Year: Is OKLO Stock Dead Money or Due for a Bounce?",
+          "url": "https://247wallst.com/investing/2026/10/26/oklo-is-now-down-63-this-year-is-oklo-stock-dead-money-or-due-for-a-bounce/?.tsrc=rss"
+        },
+        {
+          "title": "Oklo Sinks, then Rebounds as TD Cowen Starts Coverage at Hold Despite a “Unique Way” to Invest",
+          "url": "https://www.tikr.com/blog/oklo-sinks-then-rebounds-as-td-cowen-starts-coverage-at-hold-despite-a-unique-way-to-invest?ref=yahoofinance&.tsrc=rss"
+        },
+        {
+          "title": "Oklo Is Down 86% From Its High. Screaming Bargain or More Downside Ahead?",
+          "url": "https://www.fool.com/investing/2026/10/25/oklo-is-down-86-from-its-high-screaming-bargain-or/?.tsrc=rss"
+        }
+      ]
+    },
+    {
+      "ticker": "DRAM",
+      "sector": "Memory Chips",
+      "layer": "Growth",
+      "price": 48.33,
+      "chg_pct": 2.7,
+      "vol_ratio": 0.7,
+      "rsi": 27.3,
+      "w52_pos_pct": 40,
+      "analyst_target": null,
+      "analyst_upside_pct": null,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": [
+        {
+          "title": "Nasdaq Turns Green With Chip Stocks Rebounding",
+          "url": "https://finance.yahoo.com/m/06467ddf-4e9f-3f23-94b6-3cfc20c3bff0/nasdaq-turns-green-with-chip.html?.tsrc=rss"
+        },
+        {
+          "title": "Even With SOXX and DRAM Down Between 24% and 42% From Their Highs, I'd Still Rather Buy This Vanguard ETF for Semiconductor Stock Exposure",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/even-soxx-dram-down-between-112000899.html?.tsrc=rss"
+        },
+        {
+          "title": "2026's ETF Boom Is Approaching 2,000 Launches: Watch These 3",
+          "url": "https://www.marketbeat.com/articles/2026s-etf-boom-is-approaching-2-000-launches-watch-these-3/?utm_source=yahoofinance&utm_medium=yahoofinance&.tsrc=rss"
+        }
+      ]
+    },
+    {
+      "ticker": "CCJ",
+      "sector": "אנרגיה",
+      "layer": "Growth",
+      "price": 79.07,
+      "chg_pct": 0.6,
+      "vol_ratio": 0.7,
+      "rsi": 20.2,
+      "w52_pos_pct": 4,
+      "analyst_target": 125.41,
+      "analyst_upside_pct": 58.6,
+      "days_to_earnings": 3,
+      "verdict": null,
+      "news": []
+    }
+  ],
+  "watchlist_triggers": [],
+  "groq_insights": [],
+  "sector_summary": [
+    {
+      "sector": "AI / Semiconductors",
+      "avg_chg_pct": 2.39,
+      "tickers": [
+        "NVDA"
+      ]
+    },
+    {
+      "sector": "Tech / Cloud / AI",
+      "avg_chg_pct": 1.54,
+      "tickers": [
+        "MSFT"
+      ]
+    },
+    {
+      "sector": "Tech / Search / AI",
+      "avg_chg_pct": -0.97,
+      "tickers": [
+        "GOOG"
+      ]
+    },
+    {
+      "sector": "Social Media / AI",
+      "avg_chg_pct": -1.88,
+      "tickers": [
+        "META"
+      ]
+    },
+    {
+      "sector": "Semiconductors",
+      "avg_chg_pct": 2.33,
+      "tickers": [
+        "AVGO"
+      ]
+    },
+    {
+      "sector": "Memory Chips",
+      "avg_chg_pct": 2.84,
+      "tickers": [
+        "MU",
+        "DRAM"
+      ]
+    },
+    {
+      "sector": "Crypto",
+      "avg_chg_pct": -1.61,
+      "tickers": [
+        "IBIT"
+      ]
+    },
+    {
+      "sector": "Commodities / Gold",
+      "avg_chg_pct": 0.32,
+      "tickers": [
+        "GLDM"
+      ]
+    },
+    {
+      "sector": "Energy / Nuclear",
+      "avg_chg_pct": 1.12,
+      "tickers": [
+        "VST"
+      ]
+    },
+    {
+      "sector": "AI Infrastructure",
+      "avg_chg_pct": -2.3,
+      "tickers": [
+        "APLD"
+      ]
+    },
+    {
+      "sector": "Nuclear Energy",
+      "avg_chg_pct": -1.56,
+      "tickers": [
+        "OKLO"
+      ]
+    },
+    {
+      "sector": "אנרגיה",
+      "avg_chg_pct": 0.6,
+      "tickers": [
+        "CCJ"
+      ]
+    }
+  ],
+  "insider_alerts": {
+    "VST": {
+      "buy_val": 1173069.25,
+      "sell_val": 24318002.75,
+      "net": -23144933.5,
+      "verdict": "נטו מכירה בשוק הפתוח"
+    },
+    "APLD": {
+      "buy_val": 6664686.12,
+      "sell_val": 3018750.0,
+      "net": 3645936.12,
+      "verdict": "נטו קנייה בשוק הפתוח"
+    }
+  }
+};
