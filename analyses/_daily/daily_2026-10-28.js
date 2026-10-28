@@ -1,0 +1,416 @@
+window.DAILY_DATA = {
+  "generated": "2026-10-28",
+  "generated_time": "07:46",
+  "market_date": "2026-10-28",
+  "has_alerts": false,
+  "alert_tickers": [],
+  "macro": {
+    "spy_chg_pct": 0.56,
+    "qqq_chg_pct": 1.27,
+    "vix": null
+  },
+  "holdings": [
+    {
+      "ticker": "NVDA",
+      "sector": "AI / Semiconductors",
+      "layer": "Growth",
+      "price": 217.94,
+      "chg_pct": 0.9,
+      "vol_ratio": 0.8,
+      "rsi": 32.2,
+      "w52_pos_pct": 68,
+      "analyst_target": 328.95,
+      "analyst_upside_pct": 50.9,
+      "days_to_earnings": 20,
+      "verdict": null,
+      "news": []
+    },
+    {
+      "ticker": "MSFT",
+      "sector": "Tech / Cloud / AI",
+      "layer": "Stability",
+      "price": 531.33,
+      "chg_pct": -0.24,
+      "vol_ratio": 1.0,
+      "rsi": 50.9,
+      "w52_pos_pct": 89,
+      "analyst_target": 605.12,
+      "analyst_upside_pct": 13.9,
+      "days_to_earnings": 0,
+      "verdict": null,
+      "news": []
+    },
+    {
+      "ticker": "GOOG",
+      "sector": "Tech / Search / AI",
+      "layer": "Stability",
+      "price": 316.83,
+      "chg_pct": 0.84,
+      "vol_ratio": 1.1,
+      "rsi": 21.8,
+      "w52_pos_pct": 36,
+      "analyst_target": 422.36,
+      "analyst_upside_pct": 33.3,
+      "days_to_earnings": 0,
+      "verdict": null,
+      "news": []
+    },
+    {
+      "ticker": "META",
+      "sector": "Social Media / AI",
+      "layer": "Growth",
+      "price": 620.19,
+      "chg_pct": -1.64,
+      "vol_ratio": 2.6,
+      "rsi": 24.1,
+      "w52_pos_pct": 38,
+      "analyst_target": 846.79,
+      "analyst_upside_pct": 36.5,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": [
+        {
+          "title": "Meta Platforms Just Delivered Great News to AI Stock Investors",
+          "url": "https://www.fool.com/investing/2026/10/28/meta-platforms-just-gave-ai-investors-great-news/?.tsrc=rss"
+        },
+        {
+          "title": "Jio shares surge 21% in market debut after blockbuster India IPO",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/jio-shares-surge-21-market-052032079.html?.tsrc=rss"
+        },
+        {
+          "title": "Meta Platforms (META) Could Be 39% Undervalued Following Its AI Funding Push",
+          "url": "https://finance.yahoo.com/technology/ai/articles/meta-platforms-meta-could-39-051201606.html?.tsrc=rss"
+        }
+      ]
+    },
+    {
+      "ticker": "AVGO",
+      "sector": "Semiconductors",
+      "layer": "Growth",
+      "price": 342.33,
+      "chg_pct": 4.0,
+      "vol_ratio": 1.2,
+      "rsi": 33.2,
+      "w52_pos_pct": 26,
+      "analyst_target": 530.14,
+      "analyst_upside_pct": 54.9,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": [
+        {
+          "title": "How Anthropic could be the 'biggest, baddest, most consequential IPO in history'",
+          "url": "https://finance.yahoo.com/video/how-anthropic-could-be-the-biggest-baddest-most-consequential-ipo-in-history-200647130.html?.tsrc=rss"
+        },
+        {
+          "title": "Broadcom CEO says capital is ‘available’ after banks wavered",
+          "url": "https://www.thestreet.com/latest-news/broadcom-avgo-anthropic-63-billion-chip-deal-banks?.tsrc=rss"
+        },
+        {
+          "title": "Intel, Microchip Technology, Marvell Technology, onsemi, and Seagate stocks trade up, what you need to know",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/intel-microchip-technology-marvell-technology-231047842.html?.tsrc=rss"
+        }
+      ]
+    },
+    {
+      "ticker": "MU",
+      "sector": "Memory Chips",
+      "layer": "Growth",
+      "price": 928.76,
+      "chg_pct": 2.77,
+      "vol_ratio": 0.9,
+      "rsi": 31.3,
+      "w52_pos_pct": 69,
+      "analyst_target": 1561.91,
+      "analyst_upside_pct": 68.2,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": [
+        {
+          "title": "MU, SNDK, Neocloud Stocks Extend Gains On Anthropic Boost, SK Hynix Q3 Stunner; Jim Cramer Urges Caution",
+          "url": "https://stocktwits.com/news-articles/markets/equity/mu-sndk-neocloud-stocks-extend-gains-on-anthropic-boost-sk-hynix-q3-stunner-jim-cramer-urges-caution/cZU93s9RB61?.tsrc=rss"
+        },
+        {
+          "title": "Micron Technology And 2 High Growth Stocks To Watch",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/micron-technology-2-high-growth-044453302.html?.tsrc=rss"
+        },
+        {
+          "title": "Jim Cramer Says Micron Shouldn't Follow 'Whatever' SK Hynix Does As MU Shares Jump After Hours: 'I'm Hoping The Linkage Ends One Day'",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/jim-cramer-says-micron-shouldnt-032617885.html?.tsrc=rss"
+        }
+      ]
+    },
+    {
+      "ticker": "IBIT",
+      "sector": "Crypto",
+      "layer": "Speculation",
+      "price": 45.7,
+      "chg_pct": 1.06,
+      "vol_ratio": 0.7,
+      "rsi": 40.9,
+      "w52_pos_pct": 39,
+      "analyst_target": null,
+      "analyst_upside_pct": null,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": []
+    },
+    {
+      "ticker": "GLDM",
+      "sector": "Commodities / Gold",
+      "layer": "Stability",
+      "price": 80.32,
+      "chg_pct": 1.18,
+      "vol_ratio": 0.5,
+      "rsi": 46.2,
+      "w52_pos_pct": 9,
+      "analyst_target": null,
+      "analyst_upside_pct": null,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": []
+    },
+    {
+      "ticker": "VST",
+      "sector": "Energy / Nuclear",
+      "layer": "Growth",
+      "price": 146.66,
+      "chg_pct": 3.48,
+      "vol_ratio": 0.5,
+      "rsi": 35.6,
+      "w52_pos_pct": 21,
+      "analyst_target": 208.23,
+      "analyst_upside_pct": 42.0,
+      "days_to_earnings": 9,
+      "verdict": null,
+      "news": [
+        {
+          "title": "Vistra's Quarterly Earnings Preview: What You Need to Know",
+          "url": "https://www.barchart.com/story/news/8481054/vistra-s-quarterly-earnings-preview-what-you-need-to-know?.tsrc=rss"
+        },
+        {
+          "title": "Vistra Slides 17% in Three Months Despite a $4.2 Billion Nuclear Loan Offer",
+          "url": "https://www.tikr.com/blog/vistra-slides-17-in-three-months-despite-a-4-2-billion-nuclear-loan-offer?ref=yahoofinance&.tsrc=rss"
+        },
+        {
+          "title": "Is AI Power Demand Reset Altering The Investment Case For Vistra Stock?",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/ai-power-demand-reset-altering-051453540.html?.tsrc=rss"
+        }
+      ]
+    },
+    {
+      "ticker": "APLD",
+      "sector": "AI Infrastructure",
+      "layer": "Speculation",
+      "price": 19.51,
+      "chg_pct": 9.42,
+      "vol_ratio": 0.8,
+      "rsi": 34.3,
+      "w52_pos_pct": 6,
+      "analyst_target": 62.44,
+      "analyst_upside_pct": null,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": [
+        {
+          "title": "Applied Digital Jumps 10% as Data Center Stocks Rebound; Riot Climbs 7%, Core Scientific Gains 4%",
+          "url": "https://247wallst.com/investing/2026/10/27/applied-digital-jumps-10-as-data-center-stocks-rebound-riot-climbs-7-core-scientific-gains-4/?.tsrc=rss"
+        },
+        {
+          "title": "Applied Digital Keeps Cratering: This Analyst Keeps Insisting It’s Going to Jump by 390%",
+          "url": "https://247wallst.com/investing/2026/10/26/applied-digital-keeps-cratering-this-analyst-keeps-insisting-its-going-to-jump-by-390/?.tsrc=rss"
+        },
+        {
+          "title": "Is Money for AI Data Centers Drying Up? Here’s Who Could Come Out on Top.",
+          "url": "https://247wallst.com/investing/2026/10/26/is-money-for-ai-data-centers-drying-up-heres-who-could-come-out-on-top/?.tsrc=rss"
+        }
+      ]
+    },
+    {
+      "ticker": "OKLO",
+      "sector": "Nuclear Energy",
+      "layer": "Speculation",
+      "price": 27.33,
+      "chg_pct": 5.36,
+      "vol_ratio": 0.9,
+      "rsi": 19.3,
+      "w52_pos_pct": 2,
+      "analyst_target": 66.8,
+      "analyst_upside_pct": 144.4,
+      "days_to_earnings": 9,
+      "verdict": null,
+      "news": [
+        {
+          "title": "OKLO Stock Set To Snap 4-Week Losing Streak: Analyst Calls It ‘Conceptually Very Attractive’ But Flags Execution Risk",
+          "url": "https://stocktwits.com/news-articles/markets/equity/oklo-stock-set-to-snap-4-week-losing-streak-analyst-calls-it-conceptually-very-attractive-but-flags-execution-risk/cZU9Rc5RB6B?.tsrc=rss"
+        },
+        {
+          "title": "Energy Fuels Jumps 9% on $126M Australian Financing for Rare Earth Project; NuScale Power Climbs 7%, Oklo Gains 6%",
+          "url": "https://247wallst.com/investing/2026/10/27/energy-fuels-jumps-9-on-126m-australian-financing-for-rare-earth-project-nuscale-power-climbs-7-oklo-gains-6/?.tsrc=rss"
+        },
+        {
+          "title": "Oklo Is Now Down 63% This Year: Is OKLO Stock Dead Money or Due for a Bounce?",
+          "url": "https://247wallst.com/investing/2026/10/26/oklo-is-now-down-63-this-year-is-oklo-stock-dead-money-or-due-for-a-bounce/?.tsrc=rss"
+        }
+      ]
+    },
+    {
+      "ticker": "DRAM",
+      "sector": "Memory Chips",
+      "layer": "Growth",
+      "price": 50.52,
+      "chg_pct": 4.53,
+      "vol_ratio": 1.2,
+      "rsi": 32.0,
+      "w52_pos_pct": 44,
+      "analyst_target": null,
+      "analyst_upside_pct": null,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": [
+        {
+          "title": "Nasdaq Turns Green With Chip Stocks Rebounding",
+          "url": "https://finance.yahoo.com/m/06467ddf-4e9f-3f23-94b6-3cfc20c3bff0/nasdaq-turns-green-with-chip.html?.tsrc=rss"
+        },
+        {
+          "title": "Even With SOXX and DRAM Down Between 24% and 42% From Their Highs, I'd Still Rather Buy This Vanguard ETF for Semiconductor Stock Exposure",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/even-soxx-dram-down-between-112000899.html?.tsrc=rss"
+        },
+        {
+          "title": "2026's ETF Boom Is Approaching 2,000 Launches: Watch These 3",
+          "url": "https://www.marketbeat.com/articles/2026s-etf-boom-is-approaching-2-000-launches-watch-these-3/?utm_source=yahoofinance&utm_medium=yahoofinance&.tsrc=rss"
+        }
+      ]
+    },
+    {
+      "ticker": "CCJ",
+      "sector": "אנרגיה",
+      "layer": "Growth",
+      "price": 82.41,
+      "chg_pct": 4.22,
+      "vol_ratio": 1.0,
+      "rsi": 35.4,
+      "w52_pos_pct": 9,
+      "analyst_target": 125.15,
+      "analyst_upside_pct": 51.9,
+      "days_to_earnings": 2,
+      "verdict": null,
+      "news": [
+        {
+          "title": "3 Canadian Growth Stocks To Own In October 2026",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/3-canadian-growth-stocks-own-231718702.html?.tsrc=rss"
+        },
+        {
+          "title": "Cameco vs. Centrus vs. BWX Technologies: Ranking the 3 Nuclear Stocks That Get Paid Before a Reactor Is Built.",
+          "url": "https://www.fool.com/investing/2026/10/26/cameco-vs-centrus-vs-bwx-technologies-ranking-the/?.tsrc=rss"
+        },
+        {
+          "title": "Can Cameco’s 89x Premium Valuation Survive Another Big Miss on Oct. 30?",
+          "url": "https://247wallst.com/investing/2026/10/26/can-camecos-89x-premium-valuation-survive-another-big-miss-on-oct-30/?.tsrc=rss"
+        }
+      ]
+    }
+  ],
+  "watchlist_triggers": [],
+  "groq_insights": [],
+  "sector_summary": [
+    {
+      "sector": "AI / Semiconductors",
+      "avg_chg_pct": 0.9,
+      "tickers": [
+        "NVDA"
+      ]
+    },
+    {
+      "sector": "Tech / Cloud / AI",
+      "avg_chg_pct": -0.24,
+      "tickers": [
+        "MSFT"
+      ]
+    },
+    {
+      "sector": "Tech / Search / AI",
+      "avg_chg_pct": 0.84,
+      "tickers": [
+        "GOOG"
+      ]
+    },
+    {
+      "sector": "Social Media / AI",
+      "avg_chg_pct": -1.64,
+      "tickers": [
+        "META"
+      ]
+    },
+    {
+      "sector": "Semiconductors",
+      "avg_chg_pct": 4.0,
+      "tickers": [
+        "AVGO"
+      ]
+    },
+    {
+      "sector": "Memory Chips",
+      "avg_chg_pct": 3.65,
+      "tickers": [
+        "MU",
+        "DRAM"
+      ]
+    },
+    {
+      "sector": "Crypto",
+      "avg_chg_pct": 1.06,
+      "tickers": [
+        "IBIT"
+      ]
+    },
+    {
+      "sector": "Commodities / Gold",
+      "avg_chg_pct": 1.18,
+      "tickers": [
+        "GLDM"
+      ]
+    },
+    {
+      "sector": "Energy / Nuclear",
+      "avg_chg_pct": 3.48,
+      "tickers": [
+        "VST"
+      ]
+    },
+    {
+      "sector": "AI Infrastructure",
+      "avg_chg_pct": 9.42,
+      "tickers": [
+        "APLD"
+      ]
+    },
+    {
+      "sector": "Nuclear Energy",
+      "avg_chg_pct": 5.36,
+      "tickers": [
+        "OKLO"
+      ]
+    },
+    {
+      "sector": "אנרגיה",
+      "avg_chg_pct": 4.22,
+      "tickers": [
+        "CCJ"
+      ]
+    }
+  ],
+  "insider_alerts": {
+    "VST": {
+      "buy_val": 1173069.25,
+      "sell_val": 24318002.75,
+      "net": -23144933.5,
+      "verdict": "נטו מכירה בשוק הפתוח"
+    },
+    "APLD": {
+      "buy_val": 6664686.12,
+      "sell_val": 3018750.0,
+      "net": 3645936.12,
+      "verdict": "נטו קנייה בשוק הפתוח"
+    }
+  }
+};
