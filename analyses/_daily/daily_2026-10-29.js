@@ -1,0 +1,416 @@
+window.DAILY_DATA = {
+  "generated": "2026-10-29",
+  "generated_time": "07:51",
+  "market_date": "2026-10-29",
+  "has_alerts": false,
+  "alert_tickers": [],
+  "macro": {
+    "spy_chg_pct": 0.34,
+    "qqq_chg_pct": 0.6,
+    "vix": null
+  },
+  "holdings": [
+    {
+      "ticker": "NVDA",
+      "sector": "AI / Semiconductors",
+      "layer": "Growth",
+      "price": 215.38,
+      "chg_pct": -1.17,
+      "vol_ratio": 0.9,
+      "rsi": 35.0,
+      "w52_pos_pct": 65,
+      "analyst_target": 328.95,
+      "analyst_upside_pct": 52.7,
+      "days_to_earnings": 19,
+      "verdict": null,
+      "news": []
+    },
+    {
+      "ticker": "MSFT",
+      "sector": "Tech / Cloud / AI",
+      "layer": "Stability",
+      "price": 531.01,
+      "chg_pct": -0.06,
+      "vol_ratio": 1.4,
+      "rsi": 55.3,
+      "w52_pos_pct": 90,
+      "analyst_target": 605.12,
+      "analyst_upside_pct": 14.0,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": []
+    },
+    {
+      "ticker": "GOOG",
+      "sector": "Tech / Search / AI",
+      "layer": "Stability",
+      "price": 321.89,
+      "chg_pct": 1.6,
+      "vol_ratio": 2.1,
+      "rsi": 29.7,
+      "w52_pos_pct": 39,
+      "analyst_target": 422.36,
+      "analyst_upside_pct": 31.2,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": [
+        {
+          "title": "INTC, AMD, AVGO, MU Decline On Samsung’s Profit Miss, Lighter Capex From Microsoft, Alphabet",
+          "url": "https://stocktwits.com/news-articles/markets/equity/intc-amd-avgo-mu-decline-on-samsung-s-profit-miss-lighter-capex-from-microsoft-alphabet/cZUQgW3R9ba?.tsrc=rss"
+        },
+        {
+          "title": "Shares mixed after Google parent Alphabet's earnings disappoint",
+          "url": "https://www.euronews.com/2026/10/29/shares-and-us-futures-mixed-after-google-parent-alphabets-earnings-disappoint?.tsrc=rss"
+        },
+        {
+          "title": "‘Biggest Launch' — Google Teases Crypto Vault That Never Keeps the Whole Key in One Place",
+          "url": "https://finance.yahoo.com/markets/crypto/articles/biggest-launch-google-teases-crypto-062257040.html?.tsrc=rss"
+        }
+      ]
+    },
+    {
+      "ticker": "META",
+      "sector": "Social Media / AI",
+      "layer": "Growth",
+      "price": 612.49,
+      "chg_pct": -1.24,
+      "vol_ratio": 1.7,
+      "rsi": 23.2,
+      "w52_pos_pct": 36,
+      "analyst_target": 848.38,
+      "analyst_upside_pct": 38.5,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": [
+        {
+          "title": "Bessent Says AI Financing Stress Not \"Problematic,\" Neoclouds a Small Component",
+          "url": "https://finance.yahoo.com/technology/ai/articles/bessent-says-ai-financing-stress-230959162.html?.tsrc=rss"
+        },
+        {
+          "title": "Meta says its expanded processing capacity is driving ad results",
+          "url": "https://www.socialmediatoday.com/news/meta-says-its-expanded-processing-capacity-is-driving-ad-results/873133/?.tsrc=rss"
+        },
+        {
+          "title": "Meta Just Priced a Stock Sale at $625 a Share. I'd Consider Buying at the Same Price.",
+          "url": "https://www.fool.com/investing/2026/10/28/meta-just-priced-a-stock-sale-at-usd625-a-share-i-d-consider-buying-at-the-same-price/?.tsrc=rss"
+        }
+      ]
+    },
+    {
+      "ticker": "AVGO",
+      "sector": "Semiconductors",
+      "layer": "Growth",
+      "price": 351.81,
+      "chg_pct": 2.77,
+      "vol_ratio": 1.0,
+      "rsi": 45.6,
+      "w52_pos_pct": 30,
+      "analyst_target": 530.14,
+      "analyst_upside_pct": 50.7,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": [
+        {
+          "title": "INTC, AMD, AVGO, MU Decline On Samsung’s Profit Miss, Lighter Capex From Microsoft, Alphabet",
+          "url": "https://stocktwits.com/news-articles/markets/equity/intc-amd-avgo-mu-decline-on-samsung-s-profit-miss-lighter-capex-from-microsoft-alphabet/cZUQgW3R9ba?.tsrc=rss"
+        },
+        {
+          "title": "Broadcom And 2 More Quality Value Stocks To Watch",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/broadcom-2-more-quality-value-043350945.html?.tsrc=rss"
+        },
+        {
+          "title": "Broadcom Stock Is 29% Below Its Record. After Its New Anthropic Deal, I'd Consider Buying It a Little at a Time.",
+          "url": "https://www.fool.com/investing/2026/10/28/broadcom-stock-is-29-below-its-record-after-its-new-anthropic-deal-i-d-consider-buying-it-a-little-at-a-time/?.tsrc=rss"
+        }
+      ]
+    },
+    {
+      "ticker": "MU",
+      "sector": "Memory Chips",
+      "layer": "Growth",
+      "price": 983.23,
+      "chg_pct": 5.86,
+      "vol_ratio": 1.1,
+      "rsi": 43.8,
+      "w52_pos_pct": 74,
+      "analyst_target": 1561.91,
+      "analyst_upside_pct": 58.9,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": [
+        {
+          "title": "INTC, AMD, AVGO, MU Decline On Samsung’s Profit Miss, Lighter Capex From Microsoft, Alphabet",
+          "url": "https://stocktwits.com/news-articles/markets/equity/intc-amd-avgo-mu-decline-on-samsung-s-profit-miss-lighter-capex-from-microsoft-alphabet/cZUQgW3R9ba?.tsrc=rss"
+        },
+        {
+          "title": "BofA sees 80% upside for Seagate stock, but Micron shares look cheaper",
+          "url": "https://www.thestreet.com/investing/stocks/bofa-seagate-micron-stock-valuation?.tsrc=rss"
+        },
+        {
+          "title": "Here's Why Micron Is a Top AI Stock to Buy Right Now",
+          "url": "https://www.fool.com/investing/2026/10/28/heres-why-micron-is-a-top-ai-stock-to-buy-right-no/?.tsrc=rss"
+        }
+      ]
+    },
+    {
+      "ticker": "IBIT",
+      "sector": "Crypto",
+      "layer": "Speculation",
+      "price": 46.14,
+      "chg_pct": 0.96,
+      "vol_ratio": 0.6,
+      "rsi": 49.2,
+      "w52_pos_pct": 42,
+      "analyst_target": null,
+      "analyst_upside_pct": null,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": []
+    },
+    {
+      "ticker": "GLDM",
+      "sector": "Commodities / Gold",
+      "layer": "Stability",
+      "price": 80.6,
+      "chg_pct": 0.35,
+      "vol_ratio": 0.9,
+      "rsi": 44.5,
+      "w52_pos_pct": 9,
+      "analyst_target": null,
+      "analyst_upside_pct": null,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": []
+    },
+    {
+      "ticker": "VST",
+      "sector": "Energy / Nuclear",
+      "layer": "Growth",
+      "price": 142.72,
+      "chg_pct": -2.69,
+      "vol_ratio": 0.7,
+      "rsi": 39.4,
+      "w52_pos_pct": 15,
+      "analyst_target": 207.32,
+      "analyst_upside_pct": 45.3,
+      "days_to_earnings": 8,
+      "verdict": null,
+      "news": [
+        {
+          "title": "Is Vistra Stock Engineered To Make You Money?",
+          "url": "https://www.trefis.com/stock/vst/articles/620957/is-vistra-stock-engineered-to-make-you-money/2026-10-28?.tsrc=rss"
+        },
+        {
+          "title": "Vistra Corp. (VST) Stock Declines While Market Improves: Some Information for Investors",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/vistra-corp-vst-stock-declines-204504598.html?.tsrc=rss"
+        },
+        {
+          "title": "Vistra's Quarterly Earnings Preview: What You Need to Know",
+          "url": "https://www.barchart.com/story/news/8481054/vistra-s-quarterly-earnings-preview-what-you-need-to-know?.tsrc=rss"
+        }
+      ]
+    },
+    {
+      "ticker": "APLD",
+      "sector": "AI Infrastructure",
+      "layer": "Speculation",
+      "price": 20.39,
+      "chg_pct": 4.51,
+      "vol_ratio": 1.1,
+      "rsi": 38.1,
+      "w52_pos_pct": 9,
+      "analyst_target": 62.44,
+      "analyst_upside_pct": null,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": [
+        {
+          "title": "CRWV, NBIS, IREN, APLD Stocks Drop After Microsoft Capex Falls Short On Delayed Third-Party Capacity",
+          "url": "https://stocktwits.com/news-articles/markets/equity/crwv-nbis-iren-apld-stocks-drop-after-microsoft-capex-falls-short-on-delayed-third-party-capacity/cZUQeHWR9bT?.tsrc=rss"
+        },
+        {
+          "title": "Applied Digital (APLD) Shares Climbed, What Is Behind The Latest Attention?",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/applied-digital-apld-shares-climbed-231154698.html?.tsrc=rss"
+        },
+        {
+          "title": "Applied Digital Insiders Just Bought More Shares. Should You Join Them?",
+          "url": "https://www.fool.com/investing/2026/10/28/applied-digital-insiders-just-bought-more-shares/?.tsrc=rss"
+        }
+      ]
+    },
+    {
+      "ticker": "OKLO",
+      "sector": "Nuclear Energy",
+      "layer": "Speculation",
+      "price": 27.12,
+      "chg_pct": -0.77,
+      "vol_ratio": 0.7,
+      "rsi": 22.2,
+      "w52_pos_pct": 1,
+      "analyst_target": 66.8,
+      "analyst_upside_pct": 146.3,
+      "days_to_earnings": 8,
+      "verdict": null,
+      "news": []
+    },
+    {
+      "ticker": "DRAM",
+      "sector": "Memory Chips",
+      "layer": "Growth",
+      "price": 54.12,
+      "chg_pct": 7.13,
+      "vol_ratio": 1.2,
+      "rsi": 44.8,
+      "w52_pos_pct": 51,
+      "analyst_target": null,
+      "analyst_upside_pct": null,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": [
+        {
+          "title": "Nasdaq Turns Green With Chip Stocks Rebounding",
+          "url": "https://finance.yahoo.com/m/06467ddf-4e9f-3f23-94b6-3cfc20c3bff0/nasdaq-turns-green-with-chip.html?.tsrc=rss"
+        },
+        {
+          "title": "Even With SOXX and DRAM Down Between 24% and 42% From Their Highs, I'd Still Rather Buy This Vanguard ETF for Semiconductor Stock Exposure",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/even-soxx-dram-down-between-112000899.html?.tsrc=rss"
+        },
+        {
+          "title": "Nasdaq Lags Despite Memory Chip Surge. Tech Earnings Can't Come Soon Enough.",
+          "url": "https://finance.yahoo.com/m/7f8fbb85-20de-3e28-a1c8-7aac46f10f51/nasdaq-lags-despite-memory.html?.tsrc=rss"
+        }
+      ]
+    },
+    {
+      "ticker": "CCJ",
+      "sector": "אנרגיה",
+      "layer": "Growth",
+      "price": 83.84,
+      "chg_pct": 1.74,
+      "vol_ratio": 0.6,
+      "rsi": 42.6,
+      "w52_pos_pct": 12,
+      "analyst_target": 125.73,
+      "analyst_upside_pct": 50.0,
+      "days_to_earnings": 1,
+      "verdict": null,
+      "news": [
+        {
+          "title": "Cameco And 2 Other Canadian Growth Stocks To Watch",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/cameco-2-other-canadian-growth-001433229.html?.tsrc=rss"
+        },
+        {
+          "title": "CCJ Falls 27.6% in 6 Months as Execution Risks Test the Nuclear Thesis",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/ccj-falls-27-6-6-165100664.html?.tsrc=rss"
+        },
+        {
+          "title": "Cameco's Raised Revenue Outlook Faces a Crucial Execution Test Ahead",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/camecos-raised-revenue-outlook-faces-165000681.html?.tsrc=rss"
+        }
+      ]
+    }
+  ],
+  "watchlist_triggers": [],
+  "groq_insights": [],
+  "sector_summary": [
+    {
+      "sector": "AI / Semiconductors",
+      "avg_chg_pct": -1.17,
+      "tickers": [
+        "NVDA"
+      ]
+    },
+    {
+      "sector": "Tech / Cloud / AI",
+      "avg_chg_pct": -0.06,
+      "tickers": [
+        "MSFT"
+      ]
+    },
+    {
+      "sector": "Tech / Search / AI",
+      "avg_chg_pct": 1.6,
+      "tickers": [
+        "GOOG"
+      ]
+    },
+    {
+      "sector": "Social Media / AI",
+      "avg_chg_pct": -1.24,
+      "tickers": [
+        "META"
+      ]
+    },
+    {
+      "sector": "Semiconductors",
+      "avg_chg_pct": 2.77,
+      "tickers": [
+        "AVGO"
+      ]
+    },
+    {
+      "sector": "Memory Chips",
+      "avg_chg_pct": 6.5,
+      "tickers": [
+        "MU",
+        "DRAM"
+      ]
+    },
+    {
+      "sector": "Crypto",
+      "avg_chg_pct": 0.96,
+      "tickers": [
+        "IBIT"
+      ]
+    },
+    {
+      "sector": "Commodities / Gold",
+      "avg_chg_pct": 0.35,
+      "tickers": [
+        "GLDM"
+      ]
+    },
+    {
+      "sector": "Energy / Nuclear",
+      "avg_chg_pct": -2.69,
+      "tickers": [
+        "VST"
+      ]
+    },
+    {
+      "sector": "AI Infrastructure",
+      "avg_chg_pct": 4.51,
+      "tickers": [
+        "APLD"
+      ]
+    },
+    {
+      "sector": "Nuclear Energy",
+      "avg_chg_pct": -0.77,
+      "tickers": [
+        "OKLO"
+      ]
+    },
+    {
+      "sector": "אנרגיה",
+      "avg_chg_pct": 1.74,
+      "tickers": [
+        "CCJ"
+      ]
+    }
+  ],
+  "insider_alerts": {
+    "VST": {
+      "buy_val": 1173069.25,
+      "sell_val": 24318002.75,
+      "net": -23144933.5,
+      "verdict": "נטו מכירה בשוק הפתוח"
+    },
+    "APLD": {
+      "buy_val": 6664686.12,
+      "sell_val": 3018750.0,
+      "net": 3645936.12,
+      "verdict": "נטו קנייה בשוק הפתוח"
+    }
+  }
+};
