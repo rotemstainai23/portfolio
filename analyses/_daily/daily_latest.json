@@ -1,12 +1,12 @@
 {
-  "generated": "2026-10-29",
-  "generated_time": "07:51",
-  "market_date": "2026-10-29",
+  "generated": "2026-10-30",
+  "generated_time": "07:55",
+  "market_date": "2026-10-30",
   "has_alerts": false,
   "alert_tickers": [],
   "macro": {
-    "spy_chg_pct": 0.34,
-    "qqq_chg_pct": 0.6,
+    "spy_chg_pct": -0.38,
+    "qqq_chg_pct": -1.42,
     "vix": null
   },
   "holdings": [
@@ -14,14 +14,14 @@
       "ticker": "NVDA",
       "sector": "AI / Semiconductors",
       "layer": "Growth",
-      "price": 215.38,
-      "chg_pct": -1.17,
-      "vol_ratio": 0.9,
-      "rsi": 35.0,
-      "w52_pos_pct": 65,
+      "price": 213.66,
+      "chg_pct": -0.8,
+      "vol_ratio": 0.8,
+      "rsi": 34.7,
+      "w52_pos_pct": 62,
       "analyst_target": 328.95,
-      "analyst_upside_pct": 52.7,
-      "days_to_earnings": 19,
+      "analyst_upside_pct": 54.0,
+      "days_to_earnings": 18,
       "verdict": null,
       "news": []
     },
@@ -29,42 +29,55 @@
       "ticker": "MSFT",
       "sector": "Tech / Cloud / AI",
       "layer": "Stability",
-      "price": 531.01,
-      "chg_pct": -0.06,
-      "vol_ratio": 1.4,
-      "rsi": 55.3,
+      "price": 530.14,
+      "chg_pct": -0.16,
+      "vol_ratio": 1.9,
+      "rsi": 46.3,
       "w52_pos_pct": 90,
       "analyst_target": 605.12,
-      "analyst_upside_pct": 14.0,
+      "analyst_upside_pct": 14.1,
       "days_to_earnings": null,
       "verdict": null,
-      "news": []
+      "news": [
+        {
+          "title": "Big Tech Capex Scorecard: Amazon Spends Over $77B In One Quarter — How It Stacks Up With MSFT, TSLA, GOOGL",
+          "url": "https://stocktwits.com/news-articles/markets/equity/big-tech-capex-scorecard-amazon-spends-over-77-b-in-one-quarter-how-it-stacks-up-with-msft-tsla-googl/cZUh1oAR9Rr?.tsrc=rss"
+        },
+        {
+          "title": "Microsoft (MSFT) Stock Shrugs Off Q1 Earnings As AI Spending Looms",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/microsoft-msft-stock-shrugs-off-032056445.html?.tsrc=rss"
+        },
+        {
+          "title": "Cramer Calls Microsoft a Buy, Says Alphabet Carries Too Much Baggage",
+          "url": "https://beincrypto.com/cramer-microsoft-buy-alphabet-cash-flow/?.tsrc=rss"
+        }
+      ]
     },
     {
       "ticker": "GOOG",
       "sector": "Tech / Search / AI",
       "layer": "Stability",
-      "price": 321.89,
-      "chg_pct": 1.6,
-      "vol_ratio": 2.1,
-      "rsi": 29.7,
-      "w52_pos_pct": 39,
-      "analyst_target": 422.36,
-      "analyst_upside_pct": 31.2,
+      "price": 282.32,
+      "chg_pct": -12.29,
+      "vol_ratio": 5.5,
+      "rsi": 14.9,
+      "w52_pos_pct": 8,
+      "analyst_target": 405.53,
+      "analyst_upside_pct": 43.6,
       "days_to_earnings": null,
       "verdict": null,
       "news": [
         {
-          "title": "INTC, AMD, AVGO, MU Decline On Samsung’s Profit Miss, Lighter Capex From Microsoft, Alphabet",
-          "url": "https://stocktwits.com/news-articles/markets/equity/intc-amd-avgo-mu-decline-on-samsung-s-profit-miss-lighter-capex-from-microsoft-alphabet/cZUQgW3R9ba?.tsrc=rss"
+          "title": "Tech firms take fresh hit as earnings misses fan AI fears",
+          "url": "https://finance.yahoo.com/technology/ai/articles/tech-firms-fresh-hit-earnings-024928854.html?.tsrc=rss"
         },
         {
-          "title": "Shares mixed after Google parent Alphabet's earnings disappoint",
-          "url": "https://www.euronews.com/2026/10/29/shares-and-us-futures-mixed-after-google-parent-alphabets-earnings-disappoint?.tsrc=rss"
+          "title": "Selling the map, not the chips: How Gartner is cashing in on AI",
+          "url": "https://finance.yahoo.com/technology/ai/articles/selling-map-not-chips-gartner-071042597.html?.tsrc=rss"
         },
         {
-          "title": "‘Biggest Launch' — Google Teases Crypto Vault That Never Keeps the Whole Key in One Place",
-          "url": "https://finance.yahoo.com/markets/crypto/articles/biggest-launch-google-teases-crypto-062257040.html?.tsrc=rss"
+          "title": "Alphabet tumbles 12% on capex: Why Oracle is bucking the tech sell-off",
+          "url": "https://finance.yahoo.com/technology/articles/alphabet-tumbles-12-capex-why-070723105.html?.tsrc=rss"
         }
       ]
     },
@@ -72,27 +85,27 @@
       "ticker": "META",
       "sector": "Social Media / AI",
       "layer": "Growth",
-      "price": 612.49,
-      "chg_pct": -1.24,
-      "vol_ratio": 1.7,
-      "rsi": 23.2,
-      "w52_pos_pct": 36,
+      "price": 624.52,
+      "chg_pct": 1.96,
+      "vol_ratio": 1.5,
+      "rsi": 27.8,
+      "w52_pos_pct": 40,
       "analyst_target": 848.38,
-      "analyst_upside_pct": 38.5,
+      "analyst_upside_pct": 35.8,
       "days_to_earnings": null,
       "verdict": null,
       "news": [
         {
-          "title": "Bessent Says AI Financing Stress Not \"Problematic,\" Neoclouds a Small Component",
-          "url": "https://finance.yahoo.com/technology/ai/articles/bessent-says-ai-financing-stress-230959162.html?.tsrc=rss"
+          "title": "Jim Cramer praises Broadcom and recommends buying another iconic stock",
+          "url": "https://www.thestreet.com/investing/stocks/coca-cola-jim-cramer-praises-broadcom-but-recommends-buying-ko?.tsrc=rss"
         },
         {
-          "title": "Meta says its expanded processing capacity is driving ad results",
-          "url": "https://www.socialmediatoday.com/news/meta-says-its-expanded-processing-capacity-is-driving-ad-results/873133/?.tsrc=rss"
+          "title": "Meta's $100 billion stock sale shrinks your slice of the company",
+          "url": "https://www.thestreet.com/investing/stocks/meta-100-billion-stock-sale-shrinks-investor-shares?.tsrc=rss"
         },
         {
-          "title": "Meta Just Priced a Stock Sale at $625 a Share. I'd Consider Buying at the Same Price.",
-          "url": "https://www.fool.com/investing/2026/10/28/meta-just-priced-a-stock-sale-at-usd625-a-share-i-d-consider-buying-at-the-same-price/?.tsrc=rss"
+          "title": "Is Advanced Micro Devices (AMD) Cheap As Meta Expands Its AI Partnership?",
+          "url": "https://finance.yahoo.com/technology/ai/articles/advanced-micro-devices-amd-cheap-191227580.html?.tsrc=rss"
         }
       ]
     },
@@ -100,27 +113,27 @@
       "ticker": "AVGO",
       "sector": "Semiconductors",
       "layer": "Growth",
-      "price": 351.81,
-      "chg_pct": 2.77,
-      "vol_ratio": 1.0,
-      "rsi": 45.6,
-      "w52_pos_pct": 30,
+      "price": 345.0,
+      "chg_pct": -1.94,
+      "vol_ratio": 0.8,
+      "rsi": 41.8,
+      "w52_pos_pct": 27,
       "analyst_target": 530.14,
-      "analyst_upside_pct": 50.7,
+      "analyst_upside_pct": 53.7,
       "days_to_earnings": null,
       "verdict": null,
       "news": [
         {
-          "title": "INTC, AMD, AVGO, MU Decline On Samsung’s Profit Miss, Lighter Capex From Microsoft, Alphabet",
-          "url": "https://stocktwits.com/news-articles/markets/equity/intc-amd-avgo-mu-decline-on-samsung-s-profit-miss-lighter-capex-from-microsoft-alphabet/cZUQgW3R9ba?.tsrc=rss"
+          "title": "Jim Cramer praises Broadcom and recommends buying another iconic stock",
+          "url": "https://www.thestreet.com/investing/stocks/coca-cola-jim-cramer-praises-broadcom-but-recommends-buying-ko?.tsrc=rss"
         },
         {
-          "title": "Broadcom And 2 More Quality Value Stocks To Watch",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/broadcom-2-more-quality-value-043350945.html?.tsrc=rss"
+          "title": "Semiconductor Sell-Off: The 1 AI Chip Stock I'd Buy and 1 I'd Avoid",
+          "url": "https://www.fool.com/investing/2026/10/29/semiconductor-sell-off-the-1-ai-chip-stock-id-buy/?.tsrc=rss"
         },
         {
-          "title": "Broadcom Stock Is 29% Below Its Record. After Its New Anthropic Deal, I'd Consider Buying It a Little at a Time.",
-          "url": "https://www.fool.com/investing/2026/10/28/broadcom-stock-is-29-below-its-record-after-its-new-anthropic-deal-i-d-consider-buying-it-a-little-at-a-time/?.tsrc=rss"
+          "title": "Prediction: This Will Be Broadcom's Stock Price by the End of 2027",
+          "url": "https://www.fool.com/investing/2026/10/29/prediction-this-will-be-broadcoms-stock-price-by-t/?.tsrc=rss"
         }
       ]
     },
@@ -128,27 +141,27 @@
       "ticker": "MU",
       "sector": "Memory Chips",
       "layer": "Growth",
-      "price": 983.23,
-      "chg_pct": 5.86,
-      "vol_ratio": 1.1,
-      "rsi": 43.8,
-      "w52_pos_pct": 74,
+      "price": 934.27,
+      "chg_pct": -4.98,
+      "vol_ratio": 0.8,
+      "rsi": 39.9,
+      "w52_pos_pct": 70,
       "analyst_target": 1561.91,
-      "analyst_upside_pct": 58.9,
+      "analyst_upside_pct": 67.2,
       "days_to_earnings": null,
       "verdict": null,
       "news": [
         {
-          "title": "INTC, AMD, AVGO, MU Decline On Samsung’s Profit Miss, Lighter Capex From Microsoft, Alphabet",
-          "url": "https://stocktwits.com/news-articles/markets/equity/intc-amd-avgo-mu-decline-on-samsung-s-profit-miss-lighter-capex-from-microsoft-alphabet/cZUQgW3R9ba?.tsrc=rss"
+          "title": "Alphabet drops 12% in deepening tech and semiconductor rout",
+          "url": "https://finance.yahoo.com/video/alphabet-drops-12-in-deepening-tech-and-semiconductor-rout-202605913.html?.tsrc=rss"
         },
         {
-          "title": "BofA sees 80% upside for Seagate stock, but Micron shares look cheaper",
-          "url": "https://www.thestreet.com/investing/stocks/bofa-seagate-micron-stock-valuation?.tsrc=rss"
+          "title": "Learn Why The Bull Case For Micron Stock Could Change Following Memory Shortage Warning",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/learn-why-bull-case-micron-071618157.html?.tsrc=rss"
         },
         {
-          "title": "Here's Why Micron Is a Top AI Stock to Buy Right Now",
-          "url": "https://www.fool.com/investing/2026/10/28/heres-why-micron-is-a-top-ai-stock-to-buy-right-no/?.tsrc=rss"
+          "title": "Micron Is Trading for Less Than 6 Times Forward Earnings. Here's Why That's a Sign to Buy.",
+          "url": "https://www.fool.com/investing/2026/10/29/micron-is-trading-for-less-than-6x-forward-pe/?.tsrc=rss"
         }
       ]
     },
@@ -156,11 +169,11 @@
       "ticker": "IBIT",
       "sector": "Crypto",
       "layer": "Speculation",
-      "price": 46.14,
-      "chg_pct": 0.96,
-      "vol_ratio": 0.6,
-      "rsi": 49.2,
-      "w52_pos_pct": 42,
+      "price": 45.71,
+      "chg_pct": -0.93,
+      "vol_ratio": 0.9,
+      "rsi": 44.7,
+      "w52_pos_pct": 43,
       "analyst_target": null,
       "analyst_upside_pct": null,
       "days_to_earnings": null,
@@ -171,11 +184,11 @@
       "ticker": "GLDM",
       "sector": "Commodities / Gold",
       "layer": "Stability",
-      "price": 80.6,
-      "chg_pct": 0.35,
-      "vol_ratio": 0.9,
-      "rsi": 44.5,
-      "w52_pos_pct": 9,
+      "price": 79.56,
+      "chg_pct": -1.29,
+      "vol_ratio": 0.8,
+      "rsi": 32.7,
+      "w52_pos_pct": 6,
       "analyst_target": null,
       "analyst_upside_pct": null,
       "days_to_earnings": null,
@@ -186,39 +199,26 @@
       "ticker": "VST",
       "sector": "Energy / Nuclear",
       "layer": "Growth",
-      "price": 142.72,
-      "chg_pct": -2.69,
-      "vol_ratio": 0.7,
-      "rsi": 39.4,
-      "w52_pos_pct": 15,
-      "analyst_target": 207.32,
-      "analyst_upside_pct": 45.3,
-      "days_to_earnings": 8,
+      "price": 140.95,
+      "chg_pct": -1.24,
+      "vol_ratio": 0.6,
+      "rsi": 32.8,
+      "w52_pos_pct": 13,
+      "analyst_target": 206.95,
+      "analyst_upside_pct": 46.8,
+      "days_to_earnings": 7,
       "verdict": null,
-      "news": [
-        {
-          "title": "Is Vistra Stock Engineered To Make You Money?",
-          "url": "https://www.trefis.com/stock/vst/articles/620957/is-vistra-stock-engineered-to-make-you-money/2026-10-28?.tsrc=rss"
-        },
-        {
-          "title": "Vistra Corp. (VST) Stock Declines While Market Improves: Some Information for Investors",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/vistra-corp-vst-stock-declines-204504598.html?.tsrc=rss"
-        },
-        {
-          "title": "Vistra's Quarterly Earnings Preview: What You Need to Know",
-          "url": "https://www.barchart.com/story/news/8481054/vistra-s-quarterly-earnings-preview-what-you-need-to-know?.tsrc=rss"
-        }
-      ]
+      "news": []
     },
     {
       "ticker": "APLD",
       "sector": "AI Infrastructure",
       "layer": "Speculation",
-      "price": 20.39,
-      "chg_pct": 4.51,
-      "vol_ratio": 1.1,
-      "rsi": 38.1,
-      "w52_pos_pct": 9,
+      "price": 19.41,
+      "chg_pct": -4.81,
+      "vol_ratio": 0.6,
+      "rsi": 36.1,
+      "w52_pos_pct": 6,
       "analyst_target": 62.44,
       "analyst_upside_pct": null,
       "days_to_earnings": null,
@@ -242,14 +242,14 @@
       "ticker": "OKLO",
       "sector": "Nuclear Energy",
       "layer": "Speculation",
-      "price": 27.12,
-      "chg_pct": -0.77,
+      "price": 26.81,
+      "chg_pct": -1.14,
       "vol_ratio": 0.7,
-      "rsi": 22.2,
+      "rsi": 21.0,
       "w52_pos_pct": 1,
-      "analyst_target": 66.8,
-      "analyst_upside_pct": 146.3,
-      "days_to_earnings": 8,
+      "analyst_target": 65.25,
+      "analyst_upside_pct": 143.4,
+      "days_to_earnings": 7,
       "verdict": null,
       "news": []
     },
@@ -257,11 +257,11 @@
       "ticker": "DRAM",
       "sector": "Memory Chips",
       "layer": "Growth",
-      "price": 54.12,
-      "chg_pct": 7.13,
-      "vol_ratio": 1.2,
-      "rsi": 44.8,
-      "w52_pos_pct": 51,
+      "price": 51.75,
+      "chg_pct": -4.38,
+      "vol_ratio": 1.0,
+      "rsi": 40.6,
+      "w52_pos_pct": 46,
       "analyst_target": null,
       "analyst_upside_pct": null,
       "days_to_earnings": null,
@@ -285,29 +285,16 @@
       "ticker": "CCJ",
       "sector": "אנרגיה",
       "layer": "Growth",
-      "price": 83.84,
-      "chg_pct": 1.74,
-      "vol_ratio": 0.6,
-      "rsi": 42.6,
-      "w52_pos_pct": 12,
-      "analyst_target": 125.73,
-      "analyst_upside_pct": 50.0,
-      "days_to_earnings": 1,
+      "price": 83.49,
+      "chg_pct": -0.42,
+      "vol_ratio": 0.9,
+      "rsi": 39.4,
+      "w52_pos_pct": 11,
+      "analyst_target": 125.92,
+      "analyst_upside_pct": 50.8,
+      "days_to_earnings": 0,
       "verdict": null,
-      "news": [
-        {
-          "title": "Cameco And 2 Other Canadian Growth Stocks To Watch",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/cameco-2-other-canadian-growth-001433229.html?.tsrc=rss"
-        },
-        {
-          "title": "CCJ Falls 27.6% in 6 Months as Execution Risks Test the Nuclear Thesis",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/ccj-falls-27-6-6-165100664.html?.tsrc=rss"
-        },
-        {
-          "title": "Cameco's Raised Revenue Outlook Faces a Crucial Execution Test Ahead",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/camecos-raised-revenue-outlook-faces-165000681.html?.tsrc=rss"
-        }
-      ]
+      "news": []
     }
   ],
   "watchlist_triggers": [],
@@ -315,42 +302,42 @@
   "sector_summary": [
     {
       "sector": "AI / Semiconductors",
-      "avg_chg_pct": -1.17,
+      "avg_chg_pct": -0.8,
       "tickers": [
         "NVDA"
       ]
     },
     {
       "sector": "Tech / Cloud / AI",
-      "avg_chg_pct": -0.06,
+      "avg_chg_pct": -0.16,
       "tickers": [
         "MSFT"
       ]
     },
     {
       "sector": "Tech / Search / AI",
-      "avg_chg_pct": 1.6,
+      "avg_chg_pct": -12.29,
       "tickers": [
         "GOOG"
       ]
     },
     {
       "sector": "Social Media / AI",
-      "avg_chg_pct": -1.24,
+      "avg_chg_pct": 1.96,
       "tickers": [
         "META"
       ]
     },
     {
       "sector": "Semiconductors",
-      "avg_chg_pct": 2.77,
+      "avg_chg_pct": -1.94,
       "tickers": [
         "AVGO"
       ]
     },
     {
       "sector": "Memory Chips",
-      "avg_chg_pct": 6.5,
+      "avg_chg_pct": -4.68,
       "tickers": [
         "MU",
         "DRAM"
@@ -358,42 +345,42 @@
     },
     {
       "sector": "Crypto",
-      "avg_chg_pct": 0.96,
+      "avg_chg_pct": -0.93,
       "tickers": [
         "IBIT"
       ]
     },
     {
       "sector": "Commodities / Gold",
-      "avg_chg_pct": 0.35,
+      "avg_chg_pct": -1.29,
       "tickers": [
         "GLDM"
       ]
     },
     {
       "sector": "Energy / Nuclear",
-      "avg_chg_pct": -2.69,
+      "avg_chg_pct": -1.24,
       "tickers": [
         "VST"
       ]
     },
     {
       "sector": "AI Infrastructure",
-      "avg_chg_pct": 4.51,
+      "avg_chg_pct": -4.81,
       "tickers": [
         "APLD"
       ]
     },
     {
       "sector": "Nuclear Energy",
-      "avg_chg_pct": -0.77,
+      "avg_chg_pct": -1.14,
       "tickers": [
         "OKLO"
       ]
     },
     {
       "sector": "אנרגיה",
-      "avg_chg_pct": 1.74,
+      "avg_chg_pct": -0.42,
       "tickers": [
         "CCJ"
       ]
