@@ -1,12 +1,12 @@
 {
-  "generated": "2026-11-05",
-  "generated_time": "08:47",
-  "market_date": "2026-11-05",
+  "generated": "2026-11-06",
+  "generated_time": "08:48",
+  "market_date": "2026-11-06",
   "has_alerts": false,
   "alert_tickers": [],
   "macro": {
-    "spy_chg_pct": 1.65,
-    "qqq_chg_pct": 0.97,
+    "spy_chg_pct": -4.41,
+    "qqq_chg_pct": -6.49,
     "vix": null
   },
   "holdings": [
@@ -14,27 +14,27 @@
       "ticker": "NVDA",
       "sector": "AI / Semiconductors",
       "layer": "Growth",
-      "price": 200.13,
-      "chg_pct": -3.17,
-      "vol_ratio": 1.5,
-      "rsi": 35.1,
-      "w52_pos_pct": 45,
+      "price": 181.6,
+      "chg_pct": -9.26,
+      "vol_ratio": 3.0,
+      "rsi": 27.6,
+      "w52_pos_pct": 22,
       "analyst_target": 327.14,
-      "analyst_upside_pct": 63.5,
-      "days_to_earnings": 12,
+      "analyst_upside_pct": 80.1,
+      "days_to_earnings": 11,
       "verdict": null,
       "news": [
         {
-          "title": "Zacks Earnings Trends Highlights: Nvidia, Micron and Alphabet",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/zacks-earnings-trends-highlights-nvidia-071000049.html?.tsrc=rss"
+          "title": "Nasdaq Stock Market Correction: 3 Words From Warren Buffett To Remember RIght Now",
+          "url": "https://www.fool.com/investing/2026/11/06/nasdaq-stock-market-correction-three-words-from-warren-buffett-to-remember-now/?.tsrc=rss"
         },
         {
-          "title": "The Zacks Analyst Blog Highlights Analog Devices, Taiwan Semiconductor Manufacturing, Texas Instruments and NVIDIA",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/zacks-analyst-blog-highlights-analog-070000548.html?.tsrc=rss"
+          "title": "Oracle vs. Alphabet: Which Is the Better AI Cloud Stock to Own for the Next 5 Years?",
+          "url": "https://www.fool.com/investing/2026/11/06/oracle-vs-alphabet-which-is-the-better-ai-cloud-st/?.tsrc=rss"
         },
         {
-          "title": "The Midterms Are Over. Here's What Chip Stocks Did in the Year After Each of the Last 8.",
-          "url": "https://www.fool.com/investing/2026/11/05/the-midterms-are-over-here-s-what-chip-stocks-did-in-the-year-after-each-of-the-last-8/?.tsrc=rss"
+          "title": "Dow Jones Futures Fall, Techs Rise After Nasdaq Dives 5.5%; Nvidia, Sandisk, CoreWeave, SpaceX Plunge",
+          "url": "https://finance.yahoo.com/m/0cd2227b-7753-3d54-a8c5-286efe82ac39/dow-jones-futures-fall%2C-techs.html?.tsrc=rss"
         }
       ]
     },
@@ -42,27 +42,27 @@
       "ticker": "MSFT",
       "sector": "Tech / Cloud / AI",
       "layer": "Stability",
-      "price": 555.8,
-      "chg_pct": 6.68,
-      "vol_ratio": 2.3,
-      "rsi": 57.1,
-      "w52_pos_pct": 98,
+      "price": 535.93,
+      "chg_pct": -3.58,
+      "vol_ratio": 1.8,
+      "rsi": 52.8,
+      "w52_pos_pct": 89,
       "analyst_target": 633.13,
-      "analyst_upside_pct": 13.9,
+      "analyst_upside_pct": 18.1,
       "days_to_earnings": null,
       "verdict": null,
       "news": [
         {
-          "title": "Microsoft Is the Last Big Tech Buyback Holdout: Alphabet, Meta, Amazon Go Dark as AI Spending Eats Cash, Says This Market Commentator",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/microsoft-last-big-tech-buyback-071439478.html?.tsrc=rss"
+          "title": "Sector Update: Tech Stocks Tumble Late Afternoon",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/sector-tech-stocks-tumble-afternoon-205415545.html?.tsrc=rss"
         },
         {
-          "title": "The Zacks Analyst Blog Highlights Microsoft, SpaceX, Marvell Technology and Preformed Line Products",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/zacks-analyst-blog-highlights-microsoft-065000129.html?.tsrc=rss"
+          "title": "Is Microsoft Souring on Neoclouds? Here’s Why IREN Fell 16%",
+          "url": "https://blockspace.media/short/is-microsoft-souring-on-neoclouds-heres-why-iren-fell-16/?.tsrc=rss"
         },
         {
-          "title": "Microsoft declines Nscale Texas expansion ahead of $35 bln IPO - report",
-          "url": "https://finance.yahoo.com/technology/ai/articles/microsoft-declines-nscale-texas-expansion-062524546.html?.tsrc=rss"
+          "title": "Nvidia and Microsoft Get a New Spotlight From Bank of America",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/nvidia-microsoft-spotlight-bank-america-193451774.html?.tsrc=rss"
         }
       ]
     },
@@ -70,27 +70,27 @@
       "ticker": "GOOG",
       "sector": "Tech / Search / AI",
       "layer": "Stability",
-      "price": 287.3,
-      "chg_pct": 3.25,
-      "vol_ratio": 1.4,
-      "rsi": 20.6,
-      "w52_pos_pct": 12,
+      "price": 281.74,
+      "chg_pct": -1.94,
+      "vol_ratio": 1.8,
+      "rsi": 21.1,
+      "w52_pos_pct": 8,
       "analyst_target": 402.67,
-      "analyst_upside_pct": 40.2,
+      "analyst_upside_pct": 42.9,
       "days_to_earnings": null,
       "verdict": null,
       "news": [
         {
-          "title": "Microsoft Is the Last Big Tech Buyback Holdout: Alphabet, Meta, Amazon Go Dark as AI Spending Eats Cash, Says This Market Commentator",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/microsoft-last-big-tech-buyback-071439478.html?.tsrc=rss"
+          "title": "Oracle vs. Alphabet: Which Is the Better AI Cloud Stock to Own for the Next 5 Years?",
+          "url": "https://www.fool.com/investing/2026/11/06/oracle-vs-alphabet-which-is-the-better-ai-cloud-st/?.tsrc=rss"
         },
         {
-          "title": "Zacks Earnings Trends Highlights: Nvidia, Micron and Alphabet",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/zacks-earnings-trends-highlights-nvidia-071000049.html?.tsrc=rss"
+          "title": "Cathie Wood Sells $12.8 Million Of Alphabet, Days After The Stock Suffered Its Worst Day Since Its 2004 IPO, Losing Nearly Half A Trillion Dollars In Market Value",
+          "url": "https://247wallst.com/investing/2026/11/05/cathie-wood-sells-12-8-million-of-alphabet-days-after-the-stock-suffered-its-worst-day-since-its-2004-ipo-losing-nearly-half-a-trillion-dollars-in-market-value/?.tsrc=rss"
         },
         {
-          "title": "Google expands voluntary buyouts to 5 countries as AI spending fuels cost cuts",
-          "url": "https://www.foxbusiness.com/technology/google-expands-voluntary-buyouts-5-countries-ai-spending-fuels-cost-cuts?.tsrc=rss"
+          "title": "Elon Musk's SpaceX Could Build More Data Center Capacity in 18 Months Than Google Did in 27 Years, Says SemiAnalysis",
+          "url": "https://finance.yahoo.com/technology/ai/articles/elon-musks-spacex-could-build-003006299.html?.tsrc=rss"
         }
       ]
     },
@@ -98,42 +98,55 @@
       "ticker": "META",
       "sector": "Social Media / AI",
       "layer": "Growth",
-      "price": 630.0,
-      "chg_pct": 1.44,
-      "vol_ratio": 1.4,
-      "rsi": 21.0,
-      "w52_pos_pct": 42,
+      "price": 605.08,
+      "chg_pct": -3.96,
+      "vol_ratio": 1.2,
+      "rsi": 21.3,
+      "w52_pos_pct": 33,
       "analyst_target": 848.38,
-      "analyst_upside_pct": 34.7,
+      "analyst_upside_pct": 40.2,
       "days_to_earnings": null,
       "verdict": null,
-      "news": []
+      "news": [
+        {
+          "title": "GE Vernova Is Up 18% in 2026 After Three Guidance Raises: Take Profits, or Buy More?",
+          "url": "https://www.tikr.com/blog/ge-vernova-is-up-18-in-2026-after-three-guidance-raises-take-profits-or-buy-more?ref=yahoofinance&tlnk=yf-261105-wg2jv6gx&.tsrc=rss"
+        },
+        {
+          "title": "Apple, Alphabet, and Meta: 3 Big Takeaways from Recent Earnings",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/apple-alphabet-meta-3-big-230000891.html?.tsrc=rss"
+        },
+        {
+          "title": "Tech stocks are suffering their biggest selloff since Covid, as investors see premature end to AI datacenter boom",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/tech-stocks-suffering-biggest-selloff-204817833.html?.tsrc=rss"
+        }
+      ]
     },
     {
       "ticker": "AVGO",
       "sector": "Semiconductors",
       "layer": "Growth",
-      "price": 325.48,
-      "chg_pct": -2.0,
-      "vol_ratio": 1.1,
-      "rsi": 42.0,
-      "w52_pos_pct": 17,
+      "price": 291.53,
+      "chg_pct": -10.43,
+      "vol_ratio": 2.4,
+      "rsi": 36.3,
+      "w52_pos_pct": 1,
       "analyst_target": 526.81,
-      "analyst_upside_pct": 61.9,
+      "analyst_upside_pct": 80.7,
       "days_to_earnings": null,
       "verdict": null,
       "news": [
         {
-          "title": "Is Broadcom Stock a Buy After Marvell's $115 Billion Deal?",
-          "url": "https://www.fool.com/investing/2026/11/04/is-broadcom-stock-a-buy-after-marvell-s-usd115-billion-deal/?.tsrc=rss"
+          "title": "Prediction: November Will Be a Huge Month for Broadcom",
+          "url": "https://www.fool.com/investing/2026/11/06/prediction-november-will-be-a-huge-month-for-broad/?.tsrc=rss"
         },
         {
-          "title": "Broadcom Inc. (AVGO) Stock Slides as Market Rises: Facts to Know Before You Trade",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/broadcom-inc-avgo-stock-slides-214502619.html?.tsrc=rss"
+          "title": "Broadcom (AVGO) Stock Could Be 37% Undervalued Despite Fresh AI Demand News",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/broadcom-avgo-stock-could-37-021738809.html?.tsrc=rss"
         },
         {
-          "title": "Is Broadcom Stock a Buy Now?",
-          "url": "https://www.fool.com/investing/2026/11/04/is-broadcom-stock-a-buy-now/?.tsrc=rss"
+          "title": "The AI Trade Just Had Its Worst Day Since The Pandemic",
+          "url": "https://app.moby.co/home/news/news-the-ai-trade-just-had-its-worst-day-since-the-pandemic?utm_source=yahoo_finance&utm_medium=rss&.tsrc=rss"
         }
       ]
     },
@@ -141,27 +154,27 @@
       "ticker": "MU",
       "sector": "Memory Chips",
       "layer": "Growth",
-      "price": 795.23,
-      "chg_pct": -7.0,
-      "vol_ratio": 1.4,
-      "rsi": 36.9,
-      "w52_pos_pct": 57,
+      "price": 656.39,
+      "chg_pct": -17.46,
+      "vol_ratio": 2.9,
+      "rsi": 31.7,
+      "w52_pos_pct": 44,
       "analyst_target": 1561.91,
-      "analyst_upside_pct": 96.4,
+      "analyst_upside_pct": 138.0,
       "days_to_earnings": null,
       "verdict": null,
       "news": [
         {
-          "title": "Zacks Earnings Trends Highlights: Nvidia, Micron and Alphabet",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/zacks-earnings-trends-highlights-nvidia-071000049.html?.tsrc=rss"
+          "title": "Micron Stock Has Lost Over 40% Since Its June Record. I'd Still Buy It.",
+          "url": "https://www.fool.com/investing/2026/11/06/micron-stock-has-lost-over-40-since-its-june-record-i-d-still-buy-it/?.tsrc=rss"
         },
         {
-          "title": "Micron Hits 3-Month Low Amid Chip Rout After Top Democratic Lawmaker Calls For AI Regulation, Pause In Development",
-          "url": "https://stocktwits.com/news-articles/markets/equity/micron-hits-3-month-low-amid-chip-rout-after-top-democratic-lawmaker-calls-for-ai-regulation-pause-in-development/cNG14kWR9Eh?.tsrc=rss"
+          "title": "A 60-Year-Old Who Bought 1,000 Micron Shares at $192 Just Lost $138,840. He’s Still Up $464,000. Here’s What Happens Next.",
+          "url": "https://247wallst.com/investing/2026/11/05/a-60-year-old-who-bought-1000-micron-shares-at-192-just-lost-138840-hes-still-up-464000-heres-what-happens-next/?.tsrc=rss"
         },
         {
-          "title": "Micron (MU) Stock Looks Near Fair Value Despite AI Optimism",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/micron-mu-stock-looks-near-021122807.html?.tsrc=rss"
+          "title": "Ecopro Co Ltd (XKRX:086520) (Q3 2026) Earnings Call Highlights: Micron Orders and Recycling ...",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/ecopro-co-ltd-xkrx-086520-030825144.html?.tsrc=rss"
         }
       ]
     },
@@ -169,11 +182,11 @@
       "ticker": "IBIT",
       "sector": "Crypto",
       "layer": "Speculation",
-      "price": 45.33,
-      "chg_pct": 2.91,
-      "vol_ratio": 1.6,
-      "rsi": 44.0,
-      "w52_pos_pct": 45,
+      "price": 43.03,
+      "chg_pct": -5.07,
+      "vol_ratio": 1.7,
+      "rsi": 37.3,
+      "w52_pos_pct": 37,
       "analyst_target": null,
       "analyst_upside_pct": null,
       "days_to_earnings": null,
@@ -197,11 +210,11 @@
       "ticker": "GLDM",
       "sector": "Commodities / Gold",
       "layer": "Stability",
-      "price": 80.38,
-      "chg_pct": 3.68,
-      "vol_ratio": 1.0,
-      "rsi": 42.0,
-      "w52_pos_pct": 12,
+      "price": 81.06,
+      "chg_pct": 0.85,
+      "vol_ratio": 1.9,
+      "rsi": 45.1,
+      "w52_pos_pct": 14,
       "analyst_target": null,
       "analyst_upside_pct": null,
       "days_to_earnings": null,
@@ -225,27 +238,27 @@
       "ticker": "VST",
       "sector": "Energy / Nuclear",
       "layer": "Growth",
-      "price": 120.29,
-      "chg_pct": -13.83,
-      "vol_ratio": 2.8,
-      "rsi": 25.7,
-      "w52_pos_pct": 4,
+      "price": 112.89,
+      "chg_pct": -6.15,
+      "vol_ratio": 2.0,
+      "rsi": 23.9,
+      "w52_pos_pct": 2,
       "analyst_target": 204.32,
-      "analyst_upside_pct": 69.9,
-      "days_to_earnings": 1,
+      "analyst_upside_pct": 81.0,
+      "days_to_earnings": 0,
       "verdict": null,
       "news": [
         {
-          "title": "Vistra Sinks 16% in a Week to a New 52-Week Low. Is the Texas Selloff Overdone?",
-          "url": "https://www.tikr.com/blog/vistra-sinks-16-in-a-week-to-a-new-52-week-low-is-the-texas-selloff-overdone?ref=yahoofinance&tlnk=yf-261104-5m6ff8g9&.tsrc=rss"
+          "title": "Ahead of Vistra Earnings, Here's What Barchart Data Says Comes Next for VST Stock",
+          "url": "https://www.barchart.com/story/news/8679501/ahead-of-vistra-earnings-here-s-what-barchart-data-says-comes-next-for-vst-stock?.tsrc=rss"
         },
         {
-          "title": "Vistra (VST) Could Be 8% Undervalued On Dividend Approval",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/vistra-vst-could-8-undervalued-011029697.html?.tsrc=rss"
+          "title": "Vistra Cratered by 25% This Year: One Wall Street Team Says 110% Returns Ahead for Investors",
+          "url": "https://247wallst.com/investing/2026/11/05/vistra-cratered-by-25-this-year-one-wall-street-team-says-110-returns-ahead-for-investors/?.tsrc=rss"
         },
         {
-          "title": "VST, CEG Stocks Drop As Election Outcome Hits Merchant Power Generators",
-          "url": "https://stocktwits.com/news-articles/markets/equity/vst-ceg-stocks-drop-as-election-outcome-hits-merchant-power-generators/cNGLkduR93x?.tsrc=rss"
+          "title": "Vistra Fell 14% on the Texas Election Vote. Here’s What the November 6 Report Has to Settle",
+          "url": "https://www.tikr.com/blog/vistra-fell-14-on-the-texas-election-vote-heres-what-the-november-6-report-has-to-settle?ref=yahoofinance&tlnk=yf-261105-xjfxhhh3&.tsrc=rss"
         }
       ]
     },
@@ -253,27 +266,27 @@
       "ticker": "APLD",
       "sector": "AI Infrastructure",
       "layer": "Speculation",
-      "price": 16.61,
-      "chg_pct": -6.74,
-      "vol_ratio": 1.2,
-      "rsi": 39.5,
-      "w52_pos_pct": 2,
+      "price": 14.17,
+      "chg_pct": -14.69,
+      "vol_ratio": 1.7,
+      "rsi": 39.2,
+      "w52_pos_pct": 3,
       "analyst_target": 60.94,
       "analyst_upside_pct": null,
       "days_to_earnings": null,
       "verdict": null,
       "news": [
         {
-          "title": "Applied Digital Falls 4%, CoreWeave Down 7% as Data Centers “Feel the Heat” After Democratic Sweep",
-          "url": "https://www.tikr.com/blog/applied-digital-falls-4-coreweave-down-7-as-data-centers-feel-the-heat-after-democratic-sweep?ref=yahoofinance&tlnk=yf-261104-vjw8fm54&.tsrc=rss"
+          "title": "Applied Digital Sinks 18% in a Week to a 52-Week Low: “A Highly Technical Real Estate Business”",
+          "url": "https://www.tikr.com/blog/applied-digital-sinks-18-in-a-week-to-a-52-week-low-a-highly-technical-real-estate-business?ref=yahoofinance&tlnk=yf-261105-rr2qr6jf&.tsrc=rss"
         },
         {
-          "title": "AI data center stocks dip as midterm elections shake up Wall Street",
-          "url": "https://finance.yahoo.com/video/ai-data-center-stocks-dip-as-midterm-elections-shake-up-wall-street-140829988.html?.tsrc=rss"
+          "title": "Applied Digital Sinks 15% as Data Center Rout Deepens: “Remain in Gridlock”",
+          "url": "https://www.tikr.com/blog/applied-digital-sinks-15-as-data-center-rout-deepens-remain-in-gridlock?ref=yahoofinance&tlnk=yf-261105-xq7qf954&.tsrc=rss"
         },
         {
-          "title": "What Is Behind The Move In Applied Digital Stock?",
-          "url": "https://www.trefis.com/stock/apld/articles/622643/what-is-behind-the-move-in-applied-digital-stock/2026-11-04?.tsrc=rss"
+          "title": "Applied Digital Plunges 17%, Cipher Digital Sinks 14%, TeraWulf Tumbles 13% as Texas Data Center Fears Deepen",
+          "url": "https://247wallst.com/investing/2026/11/05/applied-digital-plunges-17-cipher-digital-sinks-14-terawulf-tumbles-13-as-texas-data-center-fears-deepen/?.tsrc=rss"
         }
       ]
     },
@@ -281,27 +294,27 @@
       "ticker": "OKLO",
       "sector": "Nuclear Energy",
       "layer": "Speculation",
-      "price": 22.12,
-      "chg_pct": -5.83,
-      "vol_ratio": 1.3,
-      "rsi": 16.1,
-      "w52_pos_pct": 0,
+      "price": 19.2,
+      "chg_pct": -13.2,
+      "vol_ratio": 2.0,
+      "rsi": 15.0,
+      "w52_pos_pct": 1,
       "analyst_target": 65.25,
-      "analyst_upside_pct": 195.0,
-      "days_to_earnings": 1,
+      "analyst_upside_pct": null,
+      "days_to_earnings": 0,
       "verdict": null,
       "news": [
         {
+          "title": "Oklo Sank 10% a Day After the Democratic Sweep Rattled AI Power Stocks. Here’s What Friday’s Report Has to Settle",
+          "url": "https://www.tikr.com/blog/oklo-sank-10-a-day-after-the-democratic-sweep-rattled-ai-power-stocks-heres-what-fridays-report-has-to-settle?ref=yahoofinance&tlnk=yf-261105-pmqh2jh6&.tsrc=rss"
+        },
+        {
+          "title": "Dear Oklo Stock Fans, Mark Your Calendars for November 6",
+          "url": "https://www.barchart.com/story/news/8675447/dear-oklo-stock-fans-mark-your-calendars-for-november-6?.tsrc=rss"
+        },
+        {
           "title": "Mine, Enrich, Build, Operate: Which Link in the Nuclear Supply Chain Is the Best Stock Right Now?",
           "url": "https://www.fool.com/investing/2026/11/04/mine-enrich-build-operate-which-link-in-the-nuclea/?.tsrc=rss"
-        },
-        {
-          "title": "Oklo Sinks 6%, Comfort Systems USA Down 15% as Democratic Sweep Rattles AI Power Stocks: “A Negative Surprise”",
-          "url": "https://www.tikr.com/blog/oklo-sinks-6-comfort-systems-usa-down-15-as-democratic-sweep-rattles-ai-power-stocks-a-negative-surprise?ref=yahoofinance&tlnk=yf-261104-h494c4g7&.tsrc=rss"
-        },
-        {
-          "title": "The Zacks Analyst Blog Highlights Oklo, Talen Energy and NuScale Power",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/zacks-analyst-blog-highlights-oklo-070500728.html?.tsrc=rss"
         }
       ]
     },
@@ -309,11 +322,11 @@
       "ticker": "DRAM",
       "sector": "Memory Chips",
       "layer": "Growth",
-      "price": 45.11,
-      "chg_pct": -5.31,
-      "vol_ratio": 1.3,
-      "rsi": 43.1,
-      "w52_pos_pct": 34,
+      "price": 37.01,
+      "chg_pct": -17.96,
+      "vol_ratio": 3.0,
+      "rsi": 36.7,
+      "w52_pos_pct": 20,
       "analyst_target": null,
       "analyst_upside_pct": null,
       "days_to_earnings": null,
@@ -337,59 +350,79 @@
       "ticker": "CCJ",
       "sector": "אנרגיה",
       "layer": "Growth",
-      "price": 71.68,
-      "chg_pct": -1.21,
-      "vol_ratio": 1.4,
-      "rsi": 26.9,
+      "price": 68.33,
+      "chg_pct": -4.67,
+      "vol_ratio": 2.4,
+      "rsi": 25.3,
       "w52_pos_pct": 3,
-      "analyst_target": 119.94,
-      "analyst_upside_pct": 67.3,
+      "analyst_target": 118.93,
+      "analyst_upside_pct": 74.1,
       "days_to_earnings": null,
       "verdict": null,
-      "news": []
+      "news": [
+        {
+          "title": "Cameco Reports Document Filing",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/cameco-reports-document-filing-011800464.html?.tsrc=rss"
+        },
+        {
+          "title": "3 Canadian Nuclear Stocks To Own In November 2026",
+          "url": "https://finance.yahoo.com/energy/articles/3-canadian-nuclear-stocks-own-232035019.html?.tsrc=rss"
+        },
+        {
+          "title": "Cameco Q3 Earnings Call Highlights Uranium Pricing Discipline",
+          "url": "https://finance.yahoo.com/energy/articles/cameco-q3-earnings-call-highlights-171400475.html?.tsrc=rss"
+        }
+      ]
     }
   ],
-  "watchlist_triggers": [],
+  "watchlist_triggers": [
+    {
+      "ticker": "NOW",
+      "trigger_price": 100.0,
+      "current_price": 102.36,
+      "distance_pct": 2.36
+    }
+  ],
   "groq_insights": [],
   "sector_summary": [
     {
       "sector": "AI / Semiconductors",
-      "avg_chg_pct": -3.17,
+      "avg_chg_pct": -9.26,
       "tickers": [
         "NVDA"
       ]
     },
     {
       "sector": "Tech / Cloud / AI",
-      "avg_chg_pct": 6.68,
+      "avg_chg_pct": -3.58,
       "tickers": [
         "MSFT"
       ]
     },
     {
       "sector": "Tech / Search / AI",
-      "avg_chg_pct": 3.25,
+      "avg_chg_pct": -1.94,
       "tickers": [
         "GOOG"
       ]
     },
     {
       "sector": "Social Media / AI",
-      "avg_chg_pct": 1.44,
+      "avg_chg_pct": -3.96,
       "tickers": [
         "META"
       ]
     },
     {
       "sector": "Semiconductors",
-      "avg_chg_pct": -2.0,
+      "avg_chg_pct": -10.43,
       "tickers": [
         "AVGO"
       ]
     },
     {
       "sector": "Memory Chips",
-      "avg_chg_pct": -6.15,
+      "avg_chg_pct": -17.71,
       "tickers": [
         "MU",
         "DRAM"
@@ -397,42 +430,42 @@
     },
     {
       "sector": "Crypto",
-      "avg_chg_pct": 2.91,
+      "avg_chg_pct": -5.07,
       "tickers": [
         "IBIT"
       ]
     },
     {
       "sector": "Commodities / Gold",
-      "avg_chg_pct": 3.68,
+      "avg_chg_pct": 0.85,
       "tickers": [
         "GLDM"
       ]
     },
     {
       "sector": "Energy / Nuclear",
-      "avg_chg_pct": -13.83,
+      "avg_chg_pct": -6.15,
       "tickers": [
         "VST"
       ]
     },
     {
       "sector": "AI Infrastructure",
-      "avg_chg_pct": -6.74,
+      "avg_chg_pct": -14.69,
       "tickers": [
         "APLD"
       ]
     },
     {
       "sector": "Nuclear Energy",
-      "avg_chg_pct": -5.83,
+      "avg_chg_pct": -13.2,
       "tickers": [
         "OKLO"
       ]
     },
     {
       "sector": "אנרגיה",
-      "avg_chg_pct": -1.21,
+      "avg_chg_pct": -4.67,
       "tickers": [
         "CCJ"
       ]
