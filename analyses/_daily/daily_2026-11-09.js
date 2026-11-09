@@ -1,0 +1,410 @@
+window.DAILY_DATA = {
+  "generated": "2026-11-09",
+  "generated_time": "08:53",
+  "market_date": "2026-11-09",
+  "has_alerts": false,
+  "alert_tickers": [],
+  "macro": {
+    "spy_chg_pct": 0.31,
+    "qqq_chg_pct": 1.4,
+    "vix": null
+  },
+  "holdings": [
+    {
+      "ticker": "NVDA",
+      "sector": "AI / Semiconductors",
+      "layer": "Growth",
+      "price": 186.64,
+      "chg_pct": 2.78,
+      "vol_ratio": 1.6,
+      "rsi": 29.6,
+      "w52_pos_pct": 28,
+      "analyst_target": 327.14,
+      "analyst_upside_pct": 75.3,
+      "days_to_earnings": 8,
+      "verdict": null,
+      "news": [
+        {
+          "title": "European equities flatline as markets digest Nvidia board probe",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/european-equities-flatline-markets-digest-083653253.html?.tsrc=rss"
+        },
+        {
+          "title": "Tech firms claw back some losses after midterms rout, eyes on Nvidia",
+          "url": "https://finance.yahoo.com/technology/articles/tech-firms-claw-back-losses-025428116.html?.tsrc=rss"
+        },
+        {
+          "title": "Traders open $9.1 million in Nvidia shorts as CEO admits to affair",
+          "url": "https://www.thestreet.com/crypto/markets/traders-open-9-1-million-in-nvidia-shorts-as-ceo-admits-to-affair?.tsrc=rss"
+        }
+      ]
+    },
+    {
+      "ticker": "MSFT",
+      "sector": "Tech / Cloud / AI",
+      "layer": "Stability",
+      "price": 530.61,
+      "chg_pct": -0.99,
+      "vol_ratio": 1.1,
+      "rsi": 48.8,
+      "w52_pos_pct": 86,
+      "analyst_target": 636.12,
+      "analyst_upside_pct": 19.9,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": []
+    },
+    {
+      "ticker": "GOOG",
+      "sector": "Tech / Search / AI",
+      "layer": "Stability",
+      "price": 283.93,
+      "chg_pct": 0.78,
+      "vol_ratio": 1.0,
+      "rsi": 20.3,
+      "w52_pos_pct": 9,
+      "analyst_target": 402.67,
+      "analyst_upside_pct": 41.8,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": []
+    },
+    {
+      "ticker": "META",
+      "sector": "Social Media / AI",
+      "layer": "Growth",
+      "price": 610.15,
+      "chg_pct": 0.84,
+      "vol_ratio": 0.7,
+      "rsi": 23.9,
+      "w52_pos_pct": 35,
+      "analyst_target": 850.1,
+      "analyst_upside_pct": 39.3,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": []
+    },
+    {
+      "ticker": "AVGO",
+      "sector": "Semiconductors",
+      "layer": "Growth",
+      "price": 293.69,
+      "chg_pct": 0.74,
+      "vol_ratio": 1.4,
+      "rsi": 34.5,
+      "w52_pos_pct": 2,
+      "analyst_target": 533.42,
+      "analyst_upside_pct": 81.6,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": []
+    },
+    {
+      "ticker": "MU",
+      "sector": "Memory Chips",
+      "layer": "Growth",
+      "price": 690.0,
+      "chg_pct": 5.12,
+      "vol_ratio": 1.5,
+      "rsi": 32.5,
+      "w52_pos_pct": 47,
+      "analyst_target": 1561.91,
+      "analyst_upside_pct": 126.4,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": [
+        {
+          "title": "Applied Materials, Cisco, Berkshire Hathaway, Nvidia, Micron and Alphabet are part of Zacks Earnings Preview",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/applied-materials-cisco-berkshire-hathaway-070000795.html?.tsrc=rss"
+        },
+        {
+          "title": "Micron Technology And 2 High Growth Stocks To Watch",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/micron-technology-2-high-growth-042757242.html?.tsrc=rss"
+        },
+        {
+          "title": "AMD, AVGO, INTC, MU: Chip Stocks Inch Higher As Investors Look Past Midterms-Led Selloff, Nvidia Controversy",
+          "url": "https://stocktwits.com/news-articles/markets/equity/amd-avgo-intc-mu-chip-stocks-inch-higher-as-investors-look-past-midterms-led-selloff-nvidia-controversy/cNGAD0CR9eR?.tsrc=rss"
+        }
+      ]
+    },
+    {
+      "ticker": "IBIT",
+      "sector": "Crypto",
+      "layer": "Speculation",
+      "price": 42.88,
+      "chg_pct": -0.35,
+      "vol_ratio": 1.0,
+      "rsi": 36.1,
+      "w52_pos_pct": 36,
+      "analyst_target": null,
+      "analyst_upside_pct": null,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": []
+    },
+    {
+      "ticker": "GLDM",
+      "sector": "Commodities / Gold",
+      "layer": "Stability",
+      "price": 80.41,
+      "chg_pct": -0.8,
+      "vol_ratio": 1.1,
+      "rsi": 44.7,
+      "w52_pos_pct": 12,
+      "analyst_target": null,
+      "analyst_upside_pct": null,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": []
+    },
+    {
+      "ticker": "VST",
+      "sector": "Energy / Nuclear",
+      "layer": "Growth",
+      "price": 124.8,
+      "chg_pct": 10.55,
+      "vol_ratio": 1.7,
+      "rsi": 35.3,
+      "w52_pos_pct": 16,
+      "analyst_target": 202.67,
+      "analyst_upside_pct": 62.4,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": [
+        {
+          "title": "Not Bloom Energy. Not Vistra. This AI Power Stock Just Posted a 96% Jump in Orders.",
+          "url": "https://www.fool.com/investing/2026/11/08/not-bloom-energy-not-vistra-this-ai-power-stock/?.tsrc=rss"
+        },
+        {
+          "title": "Vistra Q3 Earnings Call Highlights",
+          "url": "https://www.marketbeat.com/instant-alerts/transcript-vistra-q3-earnings-call-highlights-2026-11-08/?utm_source=yahoofinance&utm_medium=yahoofinance&.tsrc=rss"
+        },
+        {
+          "title": "Texas Data Center Freeze: Is Vistra a Better Buy Than Vertiv?",
+          "url": "https://247wallst.com/investing/2026/11/07/texas-data-center-freeze-is-vistra-a-better-buy-than-vertiv/?.tsrc=rss"
+        }
+      ]
+    },
+    {
+      "ticker": "APLD",
+      "sector": "AI Infrastructure",
+      "layer": "Speculation",
+      "price": 15.55,
+      "chg_pct": 9.74,
+      "vol_ratio": 1.1,
+      "rsi": 39.8,
+      "w52_pos_pct": 6,
+      "analyst_target": 60.94,
+      "analyst_upside_pct": null,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": [
+        {
+          "title": "It’s Game Over for DJT Stock as Trump Becomes a Lame-Duck President Following Midterm Losses",
+          "url": "https://www.barchart.com/story/news/8724309/its-game-over-for-djt-stock-as-trump-becomes-a-lame-duck-president-following-midterm-losses?.tsrc=rss"
+        },
+        {
+          "title": "Is Applied Digital (APLD) Stock a Value Trap or a Golden Multibagger Buying Opportunity at 52-Week Lows?",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/applied-digital-apld-stock-value-232808656.html?.tsrc=rss"
+        },
+        {
+          "title": "What Just Happened To Applied Digital Stock On Friday?",
+          "url": "https://www.trefis.com/stock/apld/articles/623741/what-just-happened-to-applied-digital-stock-on-friday/2026-11-07?.tsrc=rss"
+        }
+      ]
+    },
+    {
+      "ticker": "OKLO",
+      "sector": "Nuclear Energy",
+      "layer": "Speculation",
+      "price": 23.55,
+      "chg_pct": 22.66,
+      "vol_ratio": 2.5,
+      "rsi": 38.6,
+      "w52_pos_pct": 5,
+      "analyst_target": 62.62,
+      "analyst_upside_pct": 165.9,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": [
+        {
+          "title": "Oklo: 3 Key Takeaways for Long-Term Investors",
+          "url": "https://www.fool.com/earnings/takeaways/2026/11/08/oklo-3-key-takeaways-for-long-term-investors/?.tsrc=rss"
+        },
+        {
+          "title": "Why Is Oklo (OKLO) Locking In Domestic Reactor Manufacturing Capacity?",
+          "url": "https://finance.yahoo.com/energy/articles/why-oklo-oklo-locking-domestic-221608889.html?.tsrc=rss"
+        },
+        {
+          "title": "Oklo Q3 Earnings Call Highlights",
+          "url": "https://www.marketbeat.com/instant-alerts/transcript-oklo-q3-earnings-call-highlights-2026-11-07/?utm_source=yahoofinance&utm_medium=yahoofinance&.tsrc=rss"
+        }
+      ]
+    },
+    {
+      "ticker": "DRAM",
+      "sector": "Memory Chips",
+      "layer": "Growth",
+      "price": 39.29,
+      "chg_pct": 6.16,
+      "vol_ratio": 1.5,
+      "rsi": 37.4,
+      "w52_pos_pct": 24,
+      "analyst_target": null,
+      "analyst_upside_pct": null,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": [
+        {
+          "title": "Weekly Options Come to the 2X Long DRAM ETF (RAM)",
+          "url": "https://finance.yahoo.com/markets/options/articles/weekly-options-come-2x-long-140700952.html?.tsrc=rss"
+        },
+        {
+          "title": "Nasdaq Turns Green With Chip Stocks Rebounding",
+          "url": "https://finance.yahoo.com/m/06467ddf-4e9f-3f23-94b6-3cfc20c3bff0/nasdaq-turns-green-with-chip.html?.tsrc=rss"
+        },
+        {
+          "title": "Even With SOXX and DRAM Down Between 24% and 42% From Their Highs, I'd Still Rather Buy This Vanguard ETF for Semiconductor Stock Exposure",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/even-soxx-dram-down-between-112000899.html?.tsrc=rss"
+        }
+      ]
+    },
+    {
+      "ticker": "CCJ",
+      "sector": "אנרגיה",
+      "layer": "Growth",
+      "price": 71.3,
+      "chg_pct": 4.35,
+      "vol_ratio": 1.4,
+      "rsi": 33.7,
+      "w52_pos_pct": 8,
+      "analyst_target": 118.8,
+      "analyst_upside_pct": 66.6,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": [
+        {
+          "title": "Cameco Reports Document Filing",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/cameco-reports-document-filing-011800464.html?.tsrc=rss"
+        },
+        {
+          "title": "3 Canadian Nuclear Stocks To Own In November 2026",
+          "url": "https://finance.yahoo.com/energy/articles/3-canadian-nuclear-stocks-own-232035019.html?.tsrc=rss"
+        },
+        {
+          "title": "Cameco Q3 Earnings Call Highlights Uranium Pricing Discipline",
+          "url": "https://finance.yahoo.com/energy/articles/cameco-q3-earnings-call-highlights-171400475.html?.tsrc=rss"
+        }
+      ]
+    }
+  ],
+  "watchlist_triggers": [
+    {
+      "ticker": "NOW",
+      "trigger_price": 100.0,
+      "current_price": 101.97,
+      "distance_pct": 1.97
+    }
+  ],
+  "groq_insights": [],
+  "sector_summary": [
+    {
+      "sector": "AI / Semiconductors",
+      "avg_chg_pct": 2.78,
+      "tickers": [
+        "NVDA"
+      ]
+    },
+    {
+      "sector": "Tech / Cloud / AI",
+      "avg_chg_pct": -0.99,
+      "tickers": [
+        "MSFT"
+      ]
+    },
+    {
+      "sector": "Tech / Search / AI",
+      "avg_chg_pct": 0.78,
+      "tickers": [
+        "GOOG"
+      ]
+    },
+    {
+      "sector": "Social Media / AI",
+      "avg_chg_pct": 0.84,
+      "tickers": [
+        "META"
+      ]
+    },
+    {
+      "sector": "Semiconductors",
+      "avg_chg_pct": 0.74,
+      "tickers": [
+        "AVGO"
+      ]
+    },
+    {
+      "sector": "Memory Chips",
+      "avg_chg_pct": 5.64,
+      "tickers": [
+        "MU",
+        "DRAM"
+      ]
+    },
+    {
+      "sector": "Crypto",
+      "avg_chg_pct": -0.35,
+      "tickers": [
+        "IBIT"
+      ]
+    },
+    {
+      "sector": "Commodities / Gold",
+      "avg_chg_pct": -0.8,
+      "tickers": [
+        "GLDM"
+      ]
+    },
+    {
+      "sector": "Energy / Nuclear",
+      "avg_chg_pct": 10.55,
+      "tickers": [
+        "VST"
+      ]
+    },
+    {
+      "sector": "AI Infrastructure",
+      "avg_chg_pct": 9.74,
+      "tickers": [
+        "APLD"
+      ]
+    },
+    {
+      "sector": "Nuclear Energy",
+      "avg_chg_pct": 22.66,
+      "tickers": [
+        "OKLO"
+      ]
+    },
+    {
+      "sector": "אנרגיה",
+      "avg_chg_pct": 4.35,
+      "tickers": [
+        "CCJ"
+      ]
+    }
+  ],
+  "insider_alerts": {
+    "VST": {
+      "buy_val": 1173069.25,
+      "sell_val": 24318002.75,
+      "net": -23144933.5,
+      "verdict": "נטו מכירה בשוק הפתוח"
+    },
+    "APLD": {
+      "buy_val": 6664686.12,
+      "sell_val": 682500.0,
+      "net": 5982186.12,
+      "verdict": "נטו קנייה בשוק הפתוח"
+    }
+  }
+};
