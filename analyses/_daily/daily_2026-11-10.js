@@ -1,0 +1,462 @@
+window.DAILY_DATA = {
+  "generated": "2026-11-10",
+  "generated_time": "09:00",
+  "market_date": "2026-11-10",
+  "has_alerts": false,
+  "alert_tickers": [],
+  "macro": {
+    "spy_chg_pct": 2.37,
+    "qqq_chg_pct": 3.54,
+    "vix": null
+  },
+  "holdings": [
+    {
+      "ticker": "NVDA",
+      "sector": "AI / Semiconductors",
+      "layer": "Growth",
+      "price": 178.67,
+      "chg_pct": -4.27,
+      "vol_ratio": 3.9,
+      "rsi": 27.0,
+      "w52_pos_pct": 18,
+      "analyst_target": 325.78,
+      "analyst_upside_pct": 82.3,
+      "days_to_earnings": 7,
+      "verdict": null,
+      "news": [
+        {
+          "title": "Nvidia sued by investors over ‘Chinese spy’ affair",
+          "url": "https://uk.finance.yahoo.com/news/nvidia-sued-investors-over-chinese-085523836.html?.tsrc=rss"
+        },
+        {
+          "title": "Nvidia’s China Spy Fallout Deepens: Report Says Moonshot AI Accessed NVDA’s Advanced Chips Despite Export Controls",
+          "url": "https://stocktwits.com/news-articles/markets/equity/nvidia-s-china-spy-fallout-deepens-report-says-moonshot-ai-accessed-nvda-s-advanced-chips-despite-export-controls/cNGua6lR97A?.tsrc=rss"
+        },
+        {
+          "title": "Wall Street Expects Nvidia to Sell “a Trillion Dollars of Chips” in 2029. One Investor Doubts It",
+          "url": "https://www.tikr.com/blog/wall-street-expects-nvidia-to-sell-a-trillion-dollars-of-chips-in-2029-one-investor-doubts-it?ref=yahoofinance&tlnk=yf-261110-2g7jg74g&.tsrc=rss"
+        }
+      ]
+    },
+    {
+      "ticker": "MSFT",
+      "sector": "Tech / Cloud / AI",
+      "layer": "Stability",
+      "price": 545.18,
+      "chg_pct": 2.75,
+      "vol_ratio": 1.0,
+      "rsi": 54.8,
+      "w52_pos_pct": 93,
+      "analyst_target": 636.12,
+      "analyst_upside_pct": 16.7,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": [
+        {
+          "title": "Tech leads stock rally as traders track Wall St rebound",
+          "url": "https://finance.yahoo.com/markets/world-indices/articles/tech-leads-asian-stock-rally-023930562.html?.tsrc=rss"
+        },
+        {
+          "title": "Quantexa Launches Supply Chain Integrity & Fraud Solution with PwC, to Expose Hidden Risk Across Multi-Tier Supplier Networks",
+          "url": "https://finance.yahoo.com/technology/ai/articles/quantexa-launches-supply-chain-integrity-063000206.html?.tsrc=rss"
+        },
+        {
+          "title": "Microsoft (MSFT) Signs Global AI Safety Declaration",
+          "url": "https://finance.yahoo.com/technology/ai/articles/microsoft-msft-signs-global-ai-042734846.html?.tsrc=rss"
+        }
+      ]
+    },
+    {
+      "ticker": "GOOG",
+      "sector": "Tech / Search / AI",
+      "layer": "Stability",
+      "price": 286.01,
+      "chg_pct": 0.73,
+      "vol_ratio": 0.9,
+      "rsi": 22.9,
+      "w52_pos_pct": 11,
+      "analyst_target": 399.64,
+      "analyst_upside_pct": 39.7,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": []
+    },
+    {
+      "ticker": "META",
+      "sector": "Social Media / AI",
+      "layer": "Growth",
+      "price": 641.37,
+      "chg_pct": 5.12,
+      "vol_ratio": 0.8,
+      "rsi": 36.9,
+      "w52_pos_pct": 47,
+      "analyst_target": 850.1,
+      "analyst_upside_pct": 32.5,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": [
+        {
+          "title": "Meta’s Muse “Looks a Lot More Like Malware,” and Chase Just Blocked It",
+          "url": "https://www.tikr.com/blog/metas-muse-looks-a-lot-more-like-malware-and-chase-just-blocked-it?ref=yahoofinance&tlnk=yf-261110-hh43m27r&.tsrc=rss"
+        },
+        {
+          "title": "Alphabet, Amazon and Meta Haven’t Bought Back a Share in 2026. Big Tech Buybacks Fell 90%",
+          "url": "https://www.tikr.com/blog/alphabet-amazon-and-meta-havent-bought-back-a-share-in-2026-big-tech-buybacks-fell-90?ref=yahoofinance&tlnk=yf-261110-mv2r372c&.tsrc=rss"
+        },
+        {
+          "title": "Meta Platforms Stock: Is it a Steal of a Deal at $650?",
+          "url": "https://www.fool.com/investing/2026/11/09/meta-platforms-stock-is-it-a-steal-of-a-deal-at-650/?.tsrc=rss"
+        }
+      ]
+    },
+    {
+      "ticker": "AVGO",
+      "sector": "Semiconductors",
+      "layer": "Growth",
+      "price": 319.48,
+      "chg_pct": 8.78,
+      "vol_ratio": 1.5,
+      "rsi": 45.3,
+      "w52_pos_pct": 14,
+      "analyst_target": 533.42,
+      "analyst_upside_pct": 67.0,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": [
+        {
+          "title": "A Fund With $2 Billion in US Equities Bought These 3 Stocks",
+          "url": "https://www.tikr.com/blog/a-fund-with-2-billion-in-us-equities-bought-these-3-stocks?ref=yahoofinance&tlnk=yf-261110-538qw3hc&.tsrc=rss"
+        },
+        {
+          "title": "Broadcom (AVGO) Brings VM API To Open Source And Expands Kubernetes Reach",
+          "url": "https://finance.yahoo.com/technology/articles/broadcom-avgo-brings-vm-api-061320441.html?.tsrc=rss"
+        },
+        {
+          "title": "Allegro MicroSystems, IPG Photonics, Lattice Semiconductor, Entegris, and Broadcom shares skyrocket, what you need to know",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/allegro-microsystems-ipg-photonics-lattice-030136618.html?.tsrc=rss"
+        }
+      ]
+    },
+    {
+      "ticker": "MU",
+      "sector": "Memory Chips",
+      "layer": "Growth",
+      "price": 733.15,
+      "chg_pct": 6.25,
+      "vol_ratio": 1.0,
+      "rsi": 37.4,
+      "w52_pos_pct": 51,
+      "analyst_target": 1561.91,
+      "analyst_upside_pct": 113.0,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": [
+        {
+          "title": "Micron, FormFactor, Amkor, Teradyne, and Nvidia shares skyrocket, what you need to know",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/micron-formfactor-amkor-teradyne-nvidia-024536276.html?.tsrc=rss"
+        },
+        {
+          "title": "Western Digital or Micron? Jim Cramer Says “I Think Micron’s a Better Company.” Here’s the Test",
+          "url": "https://www.tikr.com/blog/western-digital-or-micron-jim-cramer-says-i-think-microns-a-better-company-heres-the-test?ref=yahoofinance&tlnk=yf-261109-x6xcjv7g&.tsrc=rss"
+        },
+        {
+          "title": "Why Micron Technology Stock Gained On Monday",
+          "url": "https://www.fool.com/investing/2026/11/09/why-micron-technology-stock-gained-on-monday/?.tsrc=rss"
+        }
+      ]
+    },
+    {
+      "ticker": "IBIT",
+      "sector": "Crypto",
+      "layer": "Speculation",
+      "price": 42.32,
+      "chg_pct": -1.31,
+      "vol_ratio": 0.8,
+      "rsi": 32.4,
+      "w52_pos_pct": 34,
+      "analyst_target": null,
+      "analyst_upside_pct": null,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": []
+    },
+    {
+      "ticker": "GLDM",
+      "sector": "Commodities / Gold",
+      "layer": "Stability",
+      "price": 81.91,
+      "chg_pct": 1.87,
+      "vol_ratio": 1.0,
+      "rsi": 51.4,
+      "w52_pos_pct": 16,
+      "analyst_target": null,
+      "analyst_upside_pct": null,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": [
+        {
+          "title": "Gold ETFs to Watch Amid Fed Rate Hike & Oil Risks",
+          "url": "https://finance.yahoo.com/markets/commodities/articles/gold-etfs-watch-amid-fed-142100738.html?.tsrc=rss"
+        },
+        {
+          "title": "Forget GLD. Investors Sent $500 Million to the Cheaper SPDR Gold Fund",
+          "url": "https://247wallst.com/investing/etf/2026/10/19/forget-gld-investors-sent-500-million-to-the-cheaper-spdr-gold-fund/?.tsrc=rss"
+        },
+        {
+          "title": "The Zacks Analyst Blog Highlights GLD, IAU, GLDM, IAUM, GDX, SGDM and SGDJ",
+          "url": "https://finance.yahoo.com/markets/commodities/articles/zacks-analyst-blog-highlights-gld-114000046.html?.tsrc=rss"
+        }
+      ]
+    },
+    {
+      "ticker": "VST",
+      "sector": "Energy / Nuclear",
+      "layer": "Growth",
+      "price": 133.92,
+      "chg_pct": 7.31,
+      "vol_ratio": 1.0,
+      "rsi": 41.2,
+      "w52_pos_pct": 27,
+      "analyst_target": 202.76,
+      "analyst_upside_pct": 51.4,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": [
+        {
+          "title": "Vistra Q3 Earnings Call Highlights Cash Flow Plans & Demand Risks",
+          "url": "https://finance.yahoo.com/energy/articles/vistra-q3-earnings-call-highlights-185100312.html?.tsrc=rss"
+        },
+        {
+          "title": "Vistra and Constellation Both Fell Sharply After the Election. One Has Far More Exposure to Texas.",
+          "url": "https://www.fool.com/investing/2026/11/09/vistra-and-constellation-both-fell-sharply-after-t/?.tsrc=rss"
+        },
+        {
+          "title": "Vistra (VST) Stock Looks Reasonable As Its Five Year Run Continues",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/vistra-vst-stock-looks-reasonable-171727179.html?.tsrc=rss"
+        }
+      ]
+    },
+    {
+      "ticker": "APLD",
+      "sector": "AI Infrastructure",
+      "layer": "Speculation",
+      "price": 16.72,
+      "chg_pct": 7.52,
+      "vol_ratio": 0.8,
+      "rsi": 43.2,
+      "w52_pos_pct": 10,
+      "analyst_target": 59.94,
+      "analyst_upside_pct": null,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": [
+        {
+          "title": "Applied Digital Slides 37% YTD: Time to Exit or Hold the Stock?",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/applied-digital-slides-37-ytd-152000407.html?.tsrc=rss"
+        },
+        {
+          "title": "IREN Falls 5% After Friday’s 20% Surge as AI Lending Worries Mount; TeraWulf and Applied Digital Rise 2%",
+          "url": "https://247wallst.com/investing/2026/11/09/iren-falls-5-after-fridays-20-surge-as-ai-lending-worries-mount-terawulf-and-applied-digital-rise-2/?.tsrc=rss"
+        },
+        {
+          "title": "It’s Game Over for DJT Stock as Trump Becomes a Lame-Duck President Following Midterm Losses",
+          "url": "https://www.barchart.com/story/news/8724309/its-game-over-for-djt-stock-as-trump-becomes-a-lame-duck-president-following-midterm-losses?.tsrc=rss"
+        }
+      ]
+    },
+    {
+      "ticker": "OKLO",
+      "sector": "Nuclear Energy",
+      "layer": "Speculation",
+      "price": 26.84,
+      "chg_pct": 13.97,
+      "vol_ratio": 1.9,
+      "rsi": 48.3,
+      "w52_pos_pct": 8,
+      "analyst_target": 57.19,
+      "analyst_upside_pct": 113.1,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": [
+        {
+          "title": "OKLO Stock Is On Track To Reverse 6 Weeks Of Losses, But This Analyst Warns Nuclear Euphoria Is Fading",
+          "url": "https://stocktwits.com/news-articles/markets/equity/oklo-stock-is-on-track-to-reverse-6-weeks-of-losses-but-this-analyst-warns-nuclear-euphoria-is-fading/cNGuGRmR97O?.tsrc=rss"
+        },
+        {
+          "title": "Should You Buy Oklo Stock While It's Under $30?",
+          "url": "https://www.fool.com/investing/2026/11/09/should-you-buy-oklo-stock-while-it-s-under-30/?.tsrc=rss"
+        },
+        {
+          "title": "Oklo Is Down 86% From Its High. Will Shares Soar When Meta's Reactor Comes Online?",
+          "url": "https://www.fool.com/investing/2026/11/09/oklo-down-86-from-its-high-will-shares-soar-when/?.tsrc=rss"
+        }
+      ]
+    },
+    {
+      "ticker": "DRAM",
+      "sector": "Memory Chips",
+      "layer": "Growth",
+      "price": 41.78,
+      "chg_pct": 6.34,
+      "vol_ratio": 1.1,
+      "rsi": 42.2,
+      "w52_pos_pct": 28,
+      "analyst_target": null,
+      "analyst_upside_pct": null,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": [
+        {
+          "title": "Weekly Options Come to the 2X Long DRAM ETF (RAM)",
+          "url": "https://finance.yahoo.com/markets/options/articles/weekly-options-come-2x-long-140700952.html?.tsrc=rss"
+        },
+        {
+          "title": "Nasdaq Turns Green With Chip Stocks Rebounding",
+          "url": "https://finance.yahoo.com/m/06467ddf-4e9f-3f23-94b6-3cfc20c3bff0/nasdaq-turns-green-with-chip.html?.tsrc=rss"
+        },
+        {
+          "title": "Here’s How Much Traders Expect AMD Stock to Move After Earnings",
+          "url": "https://www.investopedia.com/how-much-traders-expect-amd-stock-to-move-after-earnings-12209201?.tsrc=rss"
+        }
+      ]
+    },
+    {
+      "ticker": "CCJ",
+      "sector": "אנרגיה",
+      "layer": "Growth",
+      "price": 75.37,
+      "chg_pct": 5.71,
+      "vol_ratio": 0.9,
+      "rsi": 42.1,
+      "w52_pos_pct": 13,
+      "analyst_target": 116.75,
+      "analyst_upside_pct": 54.9,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": [
+        {
+          "title": "3 Canadian Growth Stocks To Own In November 2026",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/3-canadian-growth-stocks-own-001900465.html?.tsrc=rss"
+        },
+        {
+          "title": "Cameco Reports Document Filing",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/cameco-reports-document-filing-011800464.html?.tsrc=rss"
+        },
+        {
+          "title": "3 Canadian Nuclear Stocks To Own In November 2026",
+          "url": "https://finance.yahoo.com/energy/articles/3-canadian-nuclear-stocks-own-232035019.html?.tsrc=rss"
+        }
+      ]
+    }
+  ],
+  "watchlist_triggers": [
+    {
+      "ticker": "NOW",
+      "trigger_price": 100.0,
+      "current_price": 102.76,
+      "distance_pct": 2.76
+    }
+  ],
+  "groq_insights": [],
+  "sector_summary": [
+    {
+      "sector": "AI / Semiconductors",
+      "avg_chg_pct": -4.27,
+      "tickers": [
+        "NVDA"
+      ]
+    },
+    {
+      "sector": "Tech / Cloud / AI",
+      "avg_chg_pct": 2.75,
+      "tickers": [
+        "MSFT"
+      ]
+    },
+    {
+      "sector": "Tech / Search / AI",
+      "avg_chg_pct": 0.73,
+      "tickers": [
+        "GOOG"
+      ]
+    },
+    {
+      "sector": "Social Media / AI",
+      "avg_chg_pct": 5.12,
+      "tickers": [
+        "META"
+      ]
+    },
+    {
+      "sector": "Semiconductors",
+      "avg_chg_pct": 8.78,
+      "tickers": [
+        "AVGO"
+      ]
+    },
+    {
+      "sector": "Memory Chips",
+      "avg_chg_pct": 6.29,
+      "tickers": [
+        "MU",
+        "DRAM"
+      ]
+    },
+    {
+      "sector": "Crypto",
+      "avg_chg_pct": -1.31,
+      "tickers": [
+        "IBIT"
+      ]
+    },
+    {
+      "sector": "Commodities / Gold",
+      "avg_chg_pct": 1.87,
+      "tickers": [
+        "GLDM"
+      ]
+    },
+    {
+      "sector": "Energy / Nuclear",
+      "avg_chg_pct": 7.31,
+      "tickers": [
+        "VST"
+      ]
+    },
+    {
+      "sector": "AI Infrastructure",
+      "avg_chg_pct": 7.52,
+      "tickers": [
+        "APLD"
+      ]
+    },
+    {
+      "sector": "Nuclear Energy",
+      "avg_chg_pct": 13.97,
+      "tickers": [
+        "OKLO"
+      ]
+    },
+    {
+      "sector": "אנרגיה",
+      "avg_chg_pct": 5.71,
+      "tickers": [
+        "CCJ"
+      ]
+    }
+  ],
+  "insider_alerts": {
+    "VST": {
+      "buy_val": 1173069.25,
+      "sell_val": 24318002.75,
+      "net": -23144933.5,
+      "verdict": "נטו מכירה בשוק הפתוח"
+    },
+    "APLD": {
+      "buy_val": 6664686.12,
+      "sell_val": 682500.0,
+      "net": 5982186.12,
+      "verdict": "נטו קנייה בשוק הפתוח"
+    }
+  }
+};
