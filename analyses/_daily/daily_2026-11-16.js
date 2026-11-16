@@ -1,0 +1,423 @@
+window.DAILY_DATA = {
+  "generated": "2026-11-16",
+  "generated_time": "08:48",
+  "market_date": "2026-11-16",
+  "has_alerts": false,
+  "alert_tickers": [],
+  "macro": {
+    "spy_chg_pct": -0.36,
+    "qqq_chg_pct": -1.2,
+    "vix": null
+  },
+  "holdings": [
+    {
+      "ticker": "NVDA",
+      "sector": "AI / Semiconductors",
+      "layer": "Growth",
+      "price": 162.85,
+      "chg_pct": -2.01,
+      "vol_ratio": 1.9,
+      "rsi": 19.1,
+      "w52_pos_pct": 15,
+      "analyst_target": 268.76,
+      "analyst_upside_pct": 65.0,
+      "days_to_earnings": 1,
+      "verdict": null,
+      "news": [
+        {
+          "title": "European shares flat as Nvidia turmoil lingers and markets brace for AI mega-tests",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/european-shares-flat-nvidia-turmoil-083952986.html?.tsrc=rss"
+        },
+        {
+          "title": "Stocks extend losses as traders digest Nvidia fallout",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/stocks-extend-losses-traders-digest-030006305.html?.tsrc=rss"
+        },
+        {
+          "title": "Retail Traders' Power Fuels Volatility: Market Analysis",
+          "url": "https://finance.yahoo.com/video/retail-traders-power-fuels-volatility-081723893.html?.tsrc=rss"
+        }
+      ]
+    },
+    {
+      "ticker": "MSFT",
+      "sector": "Tech / Cloud / AI",
+      "layer": "Stability",
+      "price": 523.88,
+      "chg_pct": 0.17,
+      "vol_ratio": 1.0,
+      "rsi": 46.9,
+      "w52_pos_pct": 83,
+      "analyst_target": 636.12,
+      "analyst_upside_pct": 21.4,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": []
+    },
+    {
+      "ticker": "GOOG",
+      "sector": "Tech / Search / AI",
+      "layer": "Stability",
+      "price": 292.52,
+      "chg_pct": -0.96,
+      "vol_ratio": 0.7,
+      "rsi": 37.3,
+      "w52_pos_pct": 16,
+      "analyst_target": 393.0,
+      "analyst_upside_pct": 34.3,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": []
+    },
+    {
+      "ticker": "META",
+      "sector": "Social Media / AI",
+      "layer": "Growth",
+      "price": 641.69,
+      "chg_pct": 2.9,
+      "vol_ratio": 0.6,
+      "rsi": 53.3,
+      "w52_pos_pct": 47,
+      "analyst_target": 850.59,
+      "analyst_upside_pct": 32.6,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": [
+        {
+          "title": "AAPL Stock Posted Best Week In 4 Months Amid Nvidia Disruption: Apple Reportedly Plans Smart Glasses To Rival Meta Next Year",
+          "url": "https://stocktwits.com/news-articles/markets/equity/aapl-stock-posted-best-week-in-4-months-amid-nvidia-disruption-apple-reportedly-plans-smart-glasses-to-rival-meta-next-year/cNb7iIhR9X0?.tsrc=rss"
+        },
+        {
+          "title": "Is Meta Stock Still a Buy After Borrowing About $25 Billion This Month?",
+          "url": "https://www.fool.com/investing/2026/11/15/is-meta-stock-still-a-buy-after-borrowing-about-usd25-billion-this-month/?.tsrc=rss"
+        },
+        {
+          "title": "By The Way: Headlines You May Have Missed",
+          "url": "https://finance.yahoo.com/video/way-headlines-may-missed-155039548.html?.tsrc=rss"
+        }
+      ]
+    },
+    {
+      "ticker": "AVGO",
+      "sector": "Semiconductors",
+      "layer": "Growth",
+      "price": 347.01,
+      "chg_pct": -4.76,
+      "vol_ratio": 1.2,
+      "rsi": 54.6,
+      "w52_pos_pct": 28,
+      "analyst_target": 528.17,
+      "analyst_upside_pct": 52.2,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": [
+        {
+          "title": "Broadcom Heads 3 Top Growth Stocks To Watch",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/broadcom-heads-3-top-growth-180757072.html?.tsrc=rss"
+        },
+        {
+          "title": "Broadcom Stock Jumps as Nvidia’s Leadership Crisis Raises a Billion-Dollar Opportunity for Its AI Chip Business",
+          "url": "https://www.barchart.com/story/news/8844179/broadcom-stock-jumps-as-nvidias-leadership-crisis-raises-a-billion-dollar-opportunity-for-its-ai-chip-business?.tsrc=rss"
+        },
+        {
+          "title": "Is Credo Technology a Better AI Networking Buy Than Broadcom?",
+          "url": "https://www.fool.com/investing/2026/11/15/is-credo-technology-a-better-ai-networking-buy-than-broadcom/?.tsrc=rss"
+        }
+      ]
+    },
+    {
+      "ticker": "MU",
+      "sector": "Memory Chips",
+      "layer": "Growth",
+      "price": 778.31,
+      "chg_pct": -2.52,
+      "vol_ratio": 0.9,
+      "rsi": 40.4,
+      "w52_pos_pct": 55,
+      "analyst_target": 1561.91,
+      "analyst_upside_pct": 100.7,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": [
+        {
+          "title": "Why Micron Stock Is a Screaming Buy Before Year-End",
+          "url": "https://www.fool.com/investing/2026/11/15/why-micron-stock-is-a-screaming-buy-before-year-end/?.tsrc=rss"
+        },
+        {
+          "title": "Popular fund manager switches Nvidia shares for Micron amid Huang drama",
+          "url": "https://www.thestreet.com/investing/stocks/popular-fund-manager-switches-nvidia-shares-for-micron-amid-huang-drama?.tsrc=rss"
+        },
+        {
+          "title": "Prediction: This Will Be Micron's Stock Price by Late 2027 (Hint: Wall Street Expects 106% Upside)",
+          "url": "https://www.fool.com/investing/2026/11/15/this-will-be-microns-stock-price-late-2027/?.tsrc=rss"
+        }
+      ]
+    },
+    {
+      "ticker": "IBIT",
+      "sector": "Crypto",
+      "layer": "Speculation",
+      "price": 38.94,
+      "chg_pct": -3.52,
+      "vol_ratio": 1.2,
+      "rsi": 26.2,
+      "w52_pos_pct": 27,
+      "analyst_target": null,
+      "analyst_upside_pct": null,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": [
+        {
+          "title": "JPMorgan Chase Increases Crypto Exposure",
+          "url": "https://www.cryptoprowl.com/releases/jpmorgan-chase-increases-crypto-exposure-7896?.tsrc=rss"
+        },
+        {
+          "title": "Barclays, Citi boost stakes in BlackRock's Bitcoin fund",
+          "url": "https://www.thestreet.com/crypto/investing/barclays-citi-increase-stakes-in-iconic-blackrock-fund?.tsrc=rss"
+        },
+        {
+          "title": "5 Days of Bitcoin ETF Outflows, Brought to You Mostly by BlackRock",
+          "url": "https://beincrypto.com/blackrock-bitcoin-etf-outflows-five-days/?.tsrc=rss"
+        }
+      ]
+    },
+    {
+      "ticker": "GLDM",
+      "sector": "Commodities / Gold",
+      "layer": "Stability",
+      "price": 76.7,
+      "chg_pct": 0.13,
+      "vol_ratio": 0.8,
+      "rsi": 42.5,
+      "w52_pos_pct": 2,
+      "analyst_target": null,
+      "analyst_upside_pct": null,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": []
+    },
+    {
+      "ticker": "VST",
+      "sector": "Energy / Nuclear",
+      "layer": "Growth",
+      "price": 133.01,
+      "chg_pct": -1.12,
+      "vol_ratio": 0.5,
+      "rsi": 44.4,
+      "w52_pos_pct": 28,
+      "analyst_target": 200.05,
+      "analyst_upside_pct": 50.4,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": []
+    },
+    {
+      "ticker": "APLD",
+      "sector": "AI Infrastructure",
+      "layer": "Speculation",
+      "price": 15.97,
+      "chg_pct": -5.78,
+      "vol_ratio": 0.9,
+      "rsi": 44.8,
+      "w52_pos_pct": 8,
+      "analyst_target": 59.94,
+      "analyst_upside_pct": null,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": [
+        {
+          "title": "Applied Digital (APLD) Uses Augmented Reality At Polaris Forge 1",
+          "url": "https://finance.yahoo.com/technology/ai/articles/applied-digital-apld-uses-augmented-210651825.html?.tsrc=rss"
+        },
+        {
+          "title": "Applied Digital Sinks 10%, Nebius Down 13%, CoreWeave Down 11% as AI Data Center Selloff Resumes",
+          "url": "https://www.tikr.com/blog/applied-digital-sinks-10-nebius-down-13-coreweave-down-11-as-ai-data-center-selloff-resumes?ref=yahoofinance&tlnk=yf-261113-2h82gfgj&.tsrc=rss"
+        },
+        {
+          "title": "Prediction: This Data Center Stock Will Keep Sliding in 2027",
+          "url": "https://www.fool.com/investing/2026/11/13/prediction-this-data-center-stock-will-keep-sliding-in-2027/?.tsrc=rss"
+        }
+      ]
+    },
+    {
+      "ticker": "OKLO",
+      "sector": "Nuclear Energy",
+      "layer": "Speculation",
+      "price": 23.92,
+      "chg_pct": -2.17,
+      "vol_ratio": 0.6,
+      "rsi": 45.3,
+      "w52_pos_pct": 6,
+      "analyst_target": 55.43,
+      "analyst_upside_pct": 131.7,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": [
+        {
+          "title": "Oklo Has Lost 76% in a Year. Wall Street Still Sees $56. Bullish Wedbush Sees Just $36",
+          "url": "https://www.tikr.com/blog/oklo-has-lost-76-in-a-year-wall-street-still-sees-56-bullish-wedbush-sees-just-36?ref=yahoofinance&tlnk=yf-261114-xwxf2ggx&.tsrc=rss"
+        },
+        {
+          "title": "Centrus Energy (LEU) Has Fresh Attention, But What Is The Market Missing?",
+          "url": "https://finance.yahoo.com/energy/articles/centrus-energy-leu-fresh-attention-031235109.html?.tsrc=rss"
+        },
+        {
+          "title": "Oklo Advances Groves-1 Reactor Into Research and Testing Phase",
+          "url": "https://finance.yahoo.com/energy/articles/oklo-advances-groves-1-reactor-151800308.html?.tsrc=rss"
+        }
+      ]
+    },
+    {
+      "ticker": "DRAM",
+      "sector": "Memory Chips",
+      "layer": "Growth",
+      "price": 42.4,
+      "chg_pct": -2.89,
+      "vol_ratio": 0.7,
+      "rsi": 42.2,
+      "w52_pos_pct": 29,
+      "analyst_target": null,
+      "analyst_upside_pct": null,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": [
+        {
+          "title": "Weekly Options Come to the 2X Long DRAM ETF (RAM)",
+          "url": "https://finance.yahoo.com/markets/options/articles/weekly-options-come-2x-long-140700952.html?.tsrc=rss"
+        },
+        {
+          "title": "Here’s How Much Traders Expect AMD Stock to Move After Earnings",
+          "url": "https://www.investopedia.com/how-much-traders-expect-amd-stock-to-move-after-earnings-12209201?.tsrc=rss"
+        },
+        {
+          "title": "Nasdaq Lags Despite Memory Chip Surge. Tech Earnings Can't Come Soon Enough.",
+          "url": "https://finance.yahoo.com/m/7f8fbb85-20de-3e28-a1c8-7aac46f10f51/nasdaq-lags-despite-memory.html?.tsrc=rss"
+        }
+      ]
+    },
+    {
+      "ticker": "CCJ",
+      "sector": "אנרגיה",
+      "layer": "Growth",
+      "price": 70.73,
+      "chg_pct": -1.46,
+      "vol_ratio": 0.8,
+      "rsi": 38.0,
+      "w52_pos_pct": 7,
+      "analyst_target": 115.74,
+      "analyst_upside_pct": 63.6,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": []
+    }
+  ],
+  "watchlist_triggers": [
+    {
+      "ticker": "NOW",
+      "trigger_price": 100.0,
+      "current_price": 102.25,
+      "distance_pct": 2.25
+    }
+  ],
+  "groq_insights": [],
+  "sector_summary": [
+    {
+      "sector": "AI / Semiconductors",
+      "avg_chg_pct": -2.01,
+      "tickers": [
+        "NVDA"
+      ]
+    },
+    {
+      "sector": "Tech / Cloud / AI",
+      "avg_chg_pct": 0.17,
+      "tickers": [
+        "MSFT"
+      ]
+    },
+    {
+      "sector": "Tech / Search / AI",
+      "avg_chg_pct": -0.96,
+      "tickers": [
+        "GOOG"
+      ]
+    },
+    {
+      "sector": "Social Media / AI",
+      "avg_chg_pct": 2.9,
+      "tickers": [
+        "META"
+      ]
+    },
+    {
+      "sector": "Semiconductors",
+      "avg_chg_pct": -4.76,
+      "tickers": [
+        "AVGO"
+      ]
+    },
+    {
+      "sector": "Memory Chips",
+      "avg_chg_pct": -2.71,
+      "tickers": [
+        "MU",
+        "DRAM"
+      ]
+    },
+    {
+      "sector": "Crypto",
+      "avg_chg_pct": -3.52,
+      "tickers": [
+        "IBIT"
+      ]
+    },
+    {
+      "sector": "Commodities / Gold",
+      "avg_chg_pct": 0.13,
+      "tickers": [
+        "GLDM"
+      ]
+    },
+    {
+      "sector": "Energy / Nuclear",
+      "avg_chg_pct": -1.12,
+      "tickers": [
+        "VST"
+      ]
+    },
+    {
+      "sector": "AI Infrastructure",
+      "avg_chg_pct": -5.78,
+      "tickers": [
+        "APLD"
+      ]
+    },
+    {
+      "sector": "Nuclear Energy",
+      "avg_chg_pct": -2.17,
+      "tickers": [
+        "OKLO"
+      ]
+    },
+    {
+      "sector": "אנרגיה",
+      "avg_chg_pct": -1.46,
+      "tickers": [
+        "CCJ"
+      ]
+    }
+  ],
+  "insider_alerts": {
+    "VST": {
+      "buy_val": 1173069.25,
+      "sell_val": 24318002.75,
+      "net": -23144933.5,
+      "verdict": "נטו מכירה בשוק הפתוח"
+    },
+    "APLD": {
+      "buy_val": 6664686.12,
+      "sell_val": 682500.0,
+      "net": 5982186.12,
+      "verdict": "נטו קנייה בשוק הפתוח"
+    }
+  }
+};

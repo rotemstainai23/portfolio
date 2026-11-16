@@ -1,12 +1,12 @@
 window.DAILY_DATA = {
-  "generated": "2026-11-13",
-  "generated_time": "08:55",
-  "market_date": "2026-11-13",
+  "generated": "2026-11-16",
+  "generated_time": "08:48",
+  "market_date": "2026-11-16",
   "has_alerts": false,
   "alert_tickers": [],
   "macro": {
-    "spy_chg_pct": -0.35,
-    "qqq_chg_pct": -0.32,
+    "spy_chg_pct": -0.36,
+    "qqq_chg_pct": -1.2,
     "vix": null
   },
   "holdings": [
@@ -14,27 +14,27 @@ window.DAILY_DATA = {
       "ticker": "NVDA",
       "sector": "AI / Semiconductors",
       "layer": "Growth",
-      "price": 166.19,
-      "chg_pct": -4.34,
-      "vol_ratio": 4.6,
-      "rsi": 24.5,
-      "w52_pos_pct": 18,
-      "analyst_target": 285.35,
-      "analyst_upside_pct": 71.7,
-      "days_to_earnings": 4,
+      "price": 162.85,
+      "chg_pct": -2.01,
+      "vol_ratio": 1.9,
+      "rsi": 19.1,
+      "w52_pos_pct": 15,
+      "analyst_target": 268.76,
+      "analyst_upside_pct": 65.0,
+      "days_to_earnings": 1,
       "verdict": null,
       "news": [
         {
-          "title": "European shares fall as Nvidia CEO’s exit raises doubts over AI boom",
-          "url": "https://www.euronews.com/2026/11/13/european-shares-fall-as-nvidia-ceos-exit-raises-doubts-over-ai-boom?.tsrc=rss"
+          "title": "European shares flat as Nvidia turmoil lingers and markets brace for AI mega-tests",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/european-shares-flat-nvidia-turmoil-083952986.html?.tsrc=rss"
         },
         {
-          "title": "Huang's exit, AI bubble and financial crisis fears in focus on Web Summit's last day",
-          "url": "https://www.euronews.com/2026/11/12/huangs-exit-ai-bubble-and-financial-crisis-fears-in-focus-on-web-summits-last-day?.tsrc=rss"
+          "title": "Stocks extend losses as traders digest Nvidia fallout",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/stocks-extend-losses-traders-digest-030006305.html?.tsrc=rss"
         },
         {
-          "title": "Asian markets turn negative as early rally fades after Huang downfall",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/tech-firms-extend-rally-asia-024621637.html?.tsrc=rss"
+          "title": "Retail Traders' Power Fuels Volatility: Market Analysis",
+          "url": "https://finance.yahoo.com/video/retail-traders-power-fuels-volatility-081723893.html?.tsrc=rss"
         }
       ]
     },
@@ -42,13 +42,13 @@ window.DAILY_DATA = {
       "ticker": "MSFT",
       "sector": "Tech / Cloud / AI",
       "layer": "Stability",
-      "price": 523.0,
-      "chg_pct": 0.36,
-      "vol_ratio": 0.7,
-      "rsi": 49.5,
+      "price": 523.88,
+      "chg_pct": 0.17,
+      "vol_ratio": 1.0,
+      "rsi": 46.9,
       "w52_pos_pct": 83,
       "analyst_target": 636.12,
-      "analyst_upside_pct": 21.6,
+      "analyst_upside_pct": 21.4,
       "days_to_earnings": null,
       "verdict": null,
       "news": []
@@ -57,70 +57,70 @@ window.DAILY_DATA = {
       "ticker": "GOOG",
       "sector": "Tech / Search / AI",
       "layer": "Stability",
-      "price": 295.35,
-      "chg_pct": 1.62,
-      "vol_ratio": 0.9,
-      "rsi": 37.1,
-      "w52_pos_pct": 18,
-      "analyst_target": 393.93,
-      "analyst_upside_pct": 33.4,
-      "days_to_earnings": null,
-      "verdict": null,
-      "news": [
-        {
-          "title": "3 Undervalued Stocks To Own In November 2026",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/3-undervalued-stocks-own-november-043427585.html?.tsrc=rss"
-        },
-        {
-          "title": "5 Unrivaled Stocks to Buy for the Next Decade",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/5-unrivaled-stocks-buy-next-223321955.html?.tsrc=rss"
-        },
-        {
-          "title": "Anthropic’s IPO Price Isn’t So Outlandish. Here’s the Case for the Stock.",
-          "url": "https://finance.yahoo.com/m/b191fb08-44aa-3b9a-8661-c6bbc45c3098/anthropic%E2%80%99s-ipo-price-isn%E2%80%99t.html?.tsrc=rss"
-        }
-      ]
-    },
-    {
-      "ticker": "META",
-      "sector": "Social Media / AI",
-      "layer": "Growth",
-      "price": 623.61,
-      "chg_pct": -0.82,
-      "vol_ratio": 0.4,
-      "rsi": 44.1,
-      "w52_pos_pct": 40,
-      "analyst_target": 850.1,
-      "analyst_upside_pct": 36.3,
+      "price": 292.52,
+      "chg_pct": -0.96,
+      "vol_ratio": 0.7,
+      "rsi": 37.3,
+      "w52_pos_pct": 16,
+      "analyst_target": 393.0,
+      "analyst_upside_pct": 34.3,
       "days_to_earnings": null,
       "verdict": null,
       "news": []
     },
     {
-      "ticker": "AVGO",
-      "sector": "Semiconductors",
+      "ticker": "META",
+      "sector": "Social Media / AI",
       "layer": "Growth",
-      "price": 364.36,
-      "chg_pct": 5.54,
-      "vol_ratio": 1.7,
-      "rsi": 61.7,
-      "w52_pos_pct": 36,
-      "analyst_target": 533.42,
-      "analyst_upside_pct": 46.4,
+      "price": 641.69,
+      "chg_pct": 2.9,
+      "vol_ratio": 0.6,
+      "rsi": 53.3,
+      "w52_pos_pct": 47,
+      "analyst_target": 850.59,
+      "analyst_upside_pct": 32.6,
       "days_to_earnings": null,
       "verdict": null,
       "news": [
         {
-          "title": "Nvidia CEO Jensen Huang resigns: Is the stock now a 50% bargain?",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/nvidia-ceo-jensen-huang-resigns-073049064.html?.tsrc=rss"
+          "title": "AAPL Stock Posted Best Week In 4 Months Amid Nvidia Disruption: Apple Reportedly Plans Smart Glasses To Rival Meta Next Year",
+          "url": "https://stocktwits.com/news-articles/markets/equity/aapl-stock-posted-best-week-in-4-months-amid-nvidia-disruption-apple-reportedly-plans-smart-glasses-to-rival-meta-next-year/cNb7iIhR9X0?.tsrc=rss"
         },
         {
-          "title": "Broadcom Stock Just Jumped More Than 20% in 4 Days. It Has Done That Only 6 Other Times Since 2009.",
-          "url": "https://www.fool.com/investing/2026/11/13/broadcom-stock-just-jumped-more-than-20-in-4-days-it-has-done-that-only-6-other-times-since-2009/?.tsrc=rss"
+          "title": "Is Meta Stock Still a Buy After Borrowing About $25 Billion This Month?",
+          "url": "https://www.fool.com/investing/2026/11/15/is-meta-stock-still-a-buy-after-borrowing-about-usd25-billion-this-month/?.tsrc=rss"
         },
         {
-          "title": "Can Huang's Exit Create Chip Competition",
-          "url": "https://finance.yahoo.com/video/huangs-exit-create-chip-competition-230039379.html?.tsrc=rss"
+          "title": "By The Way: Headlines You May Have Missed",
+          "url": "https://finance.yahoo.com/video/way-headlines-may-missed-155039548.html?.tsrc=rss"
+        }
+      ]
+    },
+    {
+      "ticker": "AVGO",
+      "sector": "Semiconductors",
+      "layer": "Growth",
+      "price": 347.01,
+      "chg_pct": -4.76,
+      "vol_ratio": 1.2,
+      "rsi": 54.6,
+      "w52_pos_pct": 28,
+      "analyst_target": 528.17,
+      "analyst_upside_pct": 52.2,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": [
+        {
+          "title": "Broadcom Heads 3 Top Growth Stocks To Watch",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/broadcom-heads-3-top-growth-180757072.html?.tsrc=rss"
+        },
+        {
+          "title": "Broadcom Stock Jumps as Nvidia’s Leadership Crisis Raises a Billion-Dollar Opportunity for Its AI Chip Business",
+          "url": "https://www.barchart.com/story/news/8844179/broadcom-stock-jumps-as-nvidias-leadership-crisis-raises-a-billion-dollar-opportunity-for-its-ai-chip-business?.tsrc=rss"
+        },
+        {
+          "title": "Is Credo Technology a Better AI Networking Buy Than Broadcom?",
+          "url": "https://www.fool.com/investing/2026/11/15/is-credo-technology-a-better-ai-networking-buy-than-broadcom/?.tsrc=rss"
         }
       ]
     },
@@ -128,27 +128,27 @@ window.DAILY_DATA = {
       "ticker": "MU",
       "sector": "Memory Chips",
       "layer": "Growth",
-      "price": 798.44,
-      "chg_pct": -1.59,
+      "price": 778.31,
+      "chg_pct": -2.52,
       "vol_ratio": 0.9,
-      "rsi": 44.0,
-      "w52_pos_pct": 57,
+      "rsi": 40.4,
+      "w52_pos_pct": 55,
       "analyst_target": 1561.91,
-      "analyst_upside_pct": 95.6,
+      "analyst_upside_pct": 100.7,
       "days_to_earnings": null,
       "verdict": null,
       "news": [
         {
-          "title": "How AI Memory Demand At Micron Stock Has Changed Its Investment Story",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/ai-memory-demand-micron-stock-081121346.html?.tsrc=rss"
+          "title": "Why Micron Stock Is a Screaming Buy Before Year-End",
+          "url": "https://www.fool.com/investing/2026/11/15/why-micron-stock-is-a-screaming-buy-before-year-end/?.tsrc=rss"
         },
         {
-          "title": "Micron, Other Memory Chip Stocks Fall on Nvidia Shakeup. Why They’re at Risk.",
-          "url": "https://finance.yahoo.com/m/f926aef6-fcf4-3434-ab71-c741fbd3bf3e/micron%2C-other-memory-chip.html?.tsrc=rss"
+          "title": "Popular fund manager switches Nvidia shares for Micron amid Huang drama",
+          "url": "https://www.thestreet.com/investing/stocks/popular-fund-manager-switches-nvidia-shares-for-micron-amid-huang-drama?.tsrc=rss"
         },
         {
-          "title": "Micron Stock Is Down 33% From Its High. History Suggests a $5,000 Investment Now Will Be Worth This Much by 2028.",
-          "url": "https://www.fool.com/investing/2026/11/12/micron-stock-is-down-40-from-its-high-history-sugg/?.tsrc=rss"
+          "title": "Prediction: This Will Be Micron's Stock Price by Late 2027 (Hint: Wall Street Expects 106% Upside)",
+          "url": "https://www.fool.com/investing/2026/11/15/this-will-be-microns-stock-price-late-2027/?.tsrc=rss"
         }
       ]
     },
@@ -156,16 +156,20 @@ window.DAILY_DATA = {
       "ticker": "IBIT",
       "sector": "Crypto",
       "layer": "Speculation",
-      "price": 40.36,
-      "chg_pct": -4.45,
-      "vol_ratio": 1.3,
-      "rsi": 27.6,
-      "w52_pos_pct": 29,
+      "price": 38.94,
+      "chg_pct": -3.52,
+      "vol_ratio": 1.2,
+      "rsi": 26.2,
+      "w52_pos_pct": 27,
       "analyst_target": null,
       "analyst_upside_pct": null,
       "days_to_earnings": null,
       "verdict": null,
       "news": [
+        {
+          "title": "JPMorgan Chase Increases Crypto Exposure",
+          "url": "https://www.cryptoprowl.com/releases/jpmorgan-chase-increases-crypto-exposure-7896?.tsrc=rss"
+        },
         {
           "title": "Barclays, Citi boost stakes in BlackRock's Bitcoin fund",
           "url": "https://www.thestreet.com/crypto/investing/barclays-citi-increase-stakes-in-iconic-blackrock-fund?.tsrc=rss"
@@ -173,10 +177,6 @@ window.DAILY_DATA = {
         {
           "title": "5 Days of Bitcoin ETF Outflows, Brought to You Mostly by BlackRock",
           "url": "https://beincrypto.com/blackrock-bitcoin-etf-outflows-five-days/?.tsrc=rss"
-        },
-        {
-          "title": "BlackRock Bitcoin ETF Sees $213M Outflow as CPI Report Tests Crypto Markets",
-          "url": "https://99bitcoins.com/news/bitcoin-btc/blackrock-bitcoin-etf-outflows-cpi-report/?.tsrc=rss"
         }
       ]
     },
@@ -184,41 +184,28 @@ window.DAILY_DATA = {
       "ticker": "GLDM",
       "sector": "Commodities / Gold",
       "layer": "Stability",
-      "price": 76.6,
-      "chg_pct": -2.8,
-      "vol_ratio": 1.4,
-      "rsi": 42.9,
-      "w52_pos_pct": 1,
+      "price": 76.7,
+      "chg_pct": 0.13,
+      "vol_ratio": 0.8,
+      "rsi": 42.5,
+      "w52_pos_pct": 2,
       "analyst_target": null,
       "analyst_upside_pct": null,
       "days_to_earnings": null,
       "verdict": null,
-      "news": [
-        {
-          "title": "Gold ETFs to Watch Amid Fed Rate Hike & Oil Risks",
-          "url": "https://finance.yahoo.com/markets/commodities/articles/gold-etfs-watch-amid-fed-142100738.html?.tsrc=rss"
-        },
-        {
-          "title": "Forget GLD. Investors Sent $500 Million to the Cheaper SPDR Gold Fund",
-          "url": "https://247wallst.com/investing/etf/2026/10/19/forget-gld-investors-sent-500-million-to-the-cheaper-spdr-gold-fund/?.tsrc=rss"
-        },
-        {
-          "title": "The Zacks Analyst Blog Highlights GLD, IAU, GLDM, IAUM, GDX, SGDM and SGDJ",
-          "url": "https://finance.yahoo.com/markets/commodities/articles/zacks-analyst-blog-highlights-gld-114000046.html?.tsrc=rss"
-        }
-      ]
+      "news": []
     },
     {
       "ticker": "VST",
       "sector": "Energy / Nuclear",
       "layer": "Growth",
-      "price": 134.51,
-      "chg_pct": 0.79,
+      "price": 133.01,
+      "chg_pct": -1.12,
       "vol_ratio": 0.5,
-      "rsi": 46.3,
-      "w52_pos_pct": 30,
-      "analyst_target": 202.48,
-      "analyst_upside_pct": 50.5,
+      "rsi": 44.4,
+      "w52_pos_pct": 28,
+      "analyst_target": 200.05,
+      "analyst_upside_pct": 50.4,
       "days_to_earnings": null,
       "verdict": null,
       "news": []
@@ -227,27 +214,27 @@ window.DAILY_DATA = {
       "ticker": "APLD",
       "sector": "AI Infrastructure",
       "layer": "Speculation",
-      "price": 16.95,
-      "chg_pct": -5.36,
-      "vol_ratio": 0.8,
-      "rsi": 46.2,
-      "w52_pos_pct": 10,
+      "price": 15.97,
+      "chg_pct": -5.78,
+      "vol_ratio": 0.9,
+      "rsi": 44.8,
+      "w52_pos_pct": 8,
       "analyst_target": 59.94,
       "analyst_upside_pct": null,
       "days_to_earnings": null,
       "verdict": null,
       "news": [
         {
-          "title": "Applied Digital Sinks 8% as Nebius Outlook and NVIDIA CEO Exit Hit AI Data Center Stocks; Cipher Digital Falls 4%, TeraWulf Slides 3%",
-          "url": "https://247wallst.com/investing/2026/11/12/applied-digital-sinks-8-as-nebius-outlook-and-nvidia-ceo-exit-hit-ai-data-center-stocks-cipher-digital-falls-4-terawulf-slides-3/?.tsrc=rss"
+          "title": "Applied Digital (APLD) Uses Augmented Reality At Polaris Forge 1",
+          "url": "https://finance.yahoo.com/technology/ai/articles/applied-digital-apld-uses-augmented-210651825.html?.tsrc=rss"
         },
         {
-          "title": "XYZ Reality and McGough's New Documentary Proves Delivery Predictability on Live AI Factory Campus Build",
-          "url": "https://finance.yahoo.com/technology/ai/articles/xyz-reality-mcgoughs-documentary-proves-130000386.html?.tsrc=rss"
+          "title": "Applied Digital Sinks 10%, Nebius Down 13%, CoreWeave Down 11% as AI Data Center Selloff Resumes",
+          "url": "https://www.tikr.com/blog/applied-digital-sinks-10-nebius-down-13-coreweave-down-11-as-ai-data-center-selloff-resumes?ref=yahoofinance&tlnk=yf-261113-2h82gfgj&.tsrc=rss"
         },
         {
-          "title": "Morgan Stanley Just Cut Its Applied Digital Target From $41 to $25",
-          "url": "https://www.tikr.com/blog/morgan-stanley-just-cut-its-applied-digital-target-from-41-to-25?ref=yahoofinance&tlnk=yf-261112-9jp376x8&.tsrc=rss"
+          "title": "Prediction: This Data Center Stock Will Keep Sliding in 2027",
+          "url": "https://www.fool.com/investing/2026/11/13/prediction-this-data-center-stock-will-keep-sliding-in-2027/?.tsrc=rss"
         }
       ]
     },
@@ -255,27 +242,27 @@ window.DAILY_DATA = {
       "ticker": "OKLO",
       "sector": "Nuclear Energy",
       "layer": "Speculation",
-      "price": 24.45,
-      "chg_pct": -5.45,
-      "vol_ratio": 0.8,
-      "rsi": 45.6,
+      "price": 23.92,
+      "chg_pct": -2.17,
+      "vol_ratio": 0.6,
+      "rsi": 45.3,
       "w52_pos_pct": 6,
-      "analyst_target": 55.57,
-      "analyst_upside_pct": 127.3,
+      "analyst_target": 55.43,
+      "analyst_upside_pct": 131.7,
       "days_to_earnings": null,
       "verdict": null,
       "news": [
         {
+          "title": "Oklo Has Lost 76% in a Year. Wall Street Still Sees $56. Bullish Wedbush Sees Just $36",
+          "url": "https://www.tikr.com/blog/oklo-has-lost-76-in-a-year-wall-street-still-sees-56-bullish-wedbush-sees-just-36?ref=yahoofinance&tlnk=yf-261114-xwxf2ggx&.tsrc=rss"
+        },
+        {
+          "title": "Centrus Energy (LEU) Has Fresh Attention, But What Is The Market Missing?",
+          "url": "https://finance.yahoo.com/energy/articles/centrus-energy-leu-fresh-attention-031235109.html?.tsrc=rss"
+        },
+        {
           "title": "Oklo Advances Groves-1 Reactor Into Research and Testing Phase",
           "url": "https://finance.yahoo.com/energy/articles/oklo-advances-groves-1-reactor-151800308.html?.tsrc=rss"
-        },
-        {
-          "title": "Oklo, Centrus Secure Fuel Supply for Aurora Powerhouse Deployment in Ohio",
-          "url": "https://finance.yahoo.com/energy/articles/oklo-centrus-secure-fuel-supply-123000411.html?.tsrc=rss"
-        },
-        {
-          "title": "Can Oklo (OKLO) Be Below Fair Value After Groves Progress?",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/oklo-oklo-below-fair-value-031445412.html?.tsrc=rss"
         }
       ]
     },
@@ -283,11 +270,11 @@ window.DAILY_DATA = {
       "ticker": "DRAM",
       "sector": "Memory Chips",
       "layer": "Growth",
-      "price": 43.66,
-      "chg_pct": -2.65,
-      "vol_ratio": 1.0,
-      "rsi": 45.5,
-      "w52_pos_pct": 32,
+      "price": 42.4,
+      "chg_pct": -2.89,
+      "vol_ratio": 0.7,
+      "rsi": 42.2,
+      "w52_pos_pct": 29,
       "analyst_target": null,
       "analyst_upside_pct": null,
       "days_to_earnings": null,
@@ -311,79 +298,66 @@ window.DAILY_DATA = {
       "ticker": "CCJ",
       "sector": "אנרגיה",
       "layer": "Growth",
-      "price": 71.78,
-      "chg_pct": -3.42,
-      "vol_ratio": 0.9,
-      "rsi": 40.1,
-      "w52_pos_pct": 8,
-      "analyst_target": 115.67,
-      "analyst_upside_pct": 61.1,
+      "price": 70.73,
+      "chg_pct": -1.46,
+      "vol_ratio": 0.8,
+      "rsi": 38.0,
+      "w52_pos_pct": 7,
+      "analyst_target": 115.74,
+      "analyst_upside_pct": 63.6,
       "days_to_earnings": null,
       "verdict": null,
-      "news": [
-        {
-          "title": "CCJ's Share of Uranium Output Down 20% in Q3: Will 2026 Targets be Met?",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/ccjs-share-uranium-output-down-124400298.html?.tsrc=rss"
-        },
-        {
-          "title": "Brokers Suggest Investing in Cameco (CCJ): Read This Before Placing a Bet",
-          "url": "https://finance.yahoo.com/markets/stocks/articles/brokers-suggest-investing-cameco-ccj-133003087.html?.tsrc=rss"
-        },
-        {
-          "title": "Are Options Traders Betting on a Big Move in Cameco Stock?",
-          "url": "https://finance.yahoo.com/markets/options/articles/options-traders-betting-big-move-132300718.html?.tsrc=rss"
-        }
-      ]
+      "news": []
     }
   ],
   "watchlist_triggers": [
     {
       "ticker": "NOW",
       "trigger_price": 100.0,
-      "current_price": 100.66,
-      "distance_pct": 0.66
+      "current_price": 102.25,
+      "distance_pct": 2.25
     }
   ],
   "groq_insights": [],
   "sector_summary": [
     {
       "sector": "AI / Semiconductors",
-      "avg_chg_pct": -4.34,
+      "avg_chg_pct": -2.01,
       "tickers": [
         "NVDA"
       ]
     },
     {
       "sector": "Tech / Cloud / AI",
-      "avg_chg_pct": 0.36,
+      "avg_chg_pct": 0.17,
       "tickers": [
         "MSFT"
       ]
     },
     {
       "sector": "Tech / Search / AI",
-      "avg_chg_pct": 1.62,
+      "avg_chg_pct": -0.96,
       "tickers": [
         "GOOG"
       ]
     },
     {
       "sector": "Social Media / AI",
-      "avg_chg_pct": -0.82,
+      "avg_chg_pct": 2.9,
       "tickers": [
         "META"
       ]
     },
     {
       "sector": "Semiconductors",
-      "avg_chg_pct": 5.54,
+      "avg_chg_pct": -4.76,
       "tickers": [
         "AVGO"
       ]
     },
     {
       "sector": "Memory Chips",
-      "avg_chg_pct": -2.12,
+      "avg_chg_pct": -2.71,
       "tickers": [
         "MU",
         "DRAM"
@@ -391,42 +365,42 @@ window.DAILY_DATA = {
     },
     {
       "sector": "Crypto",
-      "avg_chg_pct": -4.45,
+      "avg_chg_pct": -3.52,
       "tickers": [
         "IBIT"
       ]
     },
     {
       "sector": "Commodities / Gold",
-      "avg_chg_pct": -2.8,
+      "avg_chg_pct": 0.13,
       "tickers": [
         "GLDM"
       ]
     },
     {
       "sector": "Energy / Nuclear",
-      "avg_chg_pct": 0.79,
+      "avg_chg_pct": -1.12,
       "tickers": [
         "VST"
       ]
     },
     {
       "sector": "AI Infrastructure",
-      "avg_chg_pct": -5.36,
+      "avg_chg_pct": -5.78,
       "tickers": [
         "APLD"
       ]
     },
     {
       "sector": "Nuclear Energy",
-      "avg_chg_pct": -5.45,
+      "avg_chg_pct": -2.17,
       "tickers": [
         "OKLO"
       ]
     },
     {
       "sector": "אנרגיה",
-      "avg_chg_pct": -3.42,
+      "avg_chg_pct": -1.46,
       "tickers": [
         "CCJ"
       ]
