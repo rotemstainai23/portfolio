@@ -1,19 +1,19 @@
 window.WEEKLY_DATA = {
-  "generated": "2026-09-20",
-  "week_label": "שבוע 14/09-20/09",
+  "generated": "2026-11-15",
+  "week_label": "שבוע 09/11-15/11",
   "ceo_verdict": "",
   "portfolio_performance": {
-    "total_value": 2107,
-    "week_pct": 1.8,
-    "total_pnl_pct": 2.5,
+    "total_value": 1859,
+    "week_pct": 3.6,
+    "total_pnl_pct": -9.6,
     "ytd_pct": null,
-    "vs_spy_week": 1.3,
+    "vs_spy_week": 0.7,
     "regime": "risk_on"
   },
   "macro_snapshot": {
-    "vix": 14.81,
-    "spy_week_pct": 0.5,
-    "qqq_week_pct": 1.8,
+    "vix": 19.3,
+    "spy_week_pct": 2.9,
+    "qqq_week_pct": 5.1,
     "dxy_trend": null,
     "rate_outlook": null,
     "regime_note": null
@@ -22,7 +22,7 @@ window.WEEKLY_DATA = {
     {
       "ticker": "NVDA",
       "company": "NVDA",
-      "price_change_pct": 1.8,
+      "price_change_pct": -10.3,
       "status": "",
       "key_news": "",
       "headline": "",
@@ -31,7 +31,7 @@ window.WEEKLY_DATA = {
     {
       "ticker": "MSFT",
       "company": "MSFT",
-      "price_change_pct": 0.3,
+      "price_change_pct": -2.2,
       "status": "",
       "key_news": "",
       "headline": "",
@@ -40,7 +40,7 @@ window.WEEKLY_DATA = {
     {
       "ticker": "GOOG",
       "company": "GOOG",
-      "price_change_pct": 4.2,
+      "price_change_pct": 3.8,
       "status": "",
       "key_news": "",
       "headline": "",
@@ -49,7 +49,7 @@ window.WEEKLY_DATA = {
     {
       "ticker": "META",
       "company": "META",
-      "price_change_pct": 3.3,
+      "price_change_pct": 6.1,
       "status": "",
       "key_news": "",
       "headline": "",
@@ -58,7 +58,7 @@ window.WEEKLY_DATA = {
     {
       "ticker": "AVGO",
       "company": "AVGO",
-      "price_change_pct": -0.9,
+      "price_change_pct": 19.0,
       "status": "",
       "key_news": "",
       "headline": "",
@@ -67,7 +67,7 @@ window.WEEKLY_DATA = {
     {
       "ticker": "MU",
       "company": "MU",
-      "price_change_pct": 3.9,
+      "price_change_pct": 18.6,
       "status": "WATCHLIST",
       "key_news": "**ועדת השקעות - ישיבה** **אימות קלטים** * HANDOFF אנליסט: קיבלנו",
       "headline": "",
@@ -76,7 +76,7 @@ window.WEEKLY_DATA = {
     {
       "ticker": "IBIT",
       "company": "IBIT",
-      "price_change_pct": 5.4,
+      "price_change_pct": -9.5,
       "status": "",
       "key_news": "",
       "headline": "",
@@ -85,7 +85,7 @@ window.WEEKLY_DATA = {
     {
       "ticker": "GLDM",
       "company": "GLDM",
-      "price_change_pct": 1.3,
+      "price_change_pct": -5.4,
       "status": "",
       "key_news": "",
       "headline": "",
@@ -94,7 +94,7 @@ window.WEEKLY_DATA = {
     {
       "ticker": "VST",
       "company": "VST",
-      "price_change_pct": -4.3,
+      "price_change_pct": 17.8,
       "status": "",
       "key_news": "",
       "headline": "",
@@ -103,7 +103,7 @@ window.WEEKLY_DATA = {
     {
       "ticker": "APLD",
       "company": "APLD",
-      "price_change_pct": 9.1,
+      "price_change_pct": 12.7,
       "status": "",
       "key_news": "",
       "headline": "",
@@ -112,7 +112,7 @@ window.WEEKLY_DATA = {
     {
       "ticker": "OKLO",
       "company": "OKLO",
-      "price_change_pct": -4.7,
+      "price_change_pct": 24.6,
       "status": "",
       "key_news": "",
       "headline": "",
@@ -121,7 +121,7 @@ window.WEEKLY_DATA = {
     {
       "ticker": "DRAM",
       "company": "DRAM",
-      "price_change_pct": 1.8,
+      "price_change_pct": 14.6,
       "status": null,
       "key_news": "[ic: לא התקבל פלט מ-Groq]",
       "headline": "",
@@ -130,7 +130,7 @@ window.WEEKLY_DATA = {
     {
       "ticker": "CCJ",
       "company": "CCJ",
-      "price_change_pct": -6.0,
+      "price_change_pct": 3.5,
       "status": "WATCHLIST",
       "key_news": "| מדד | ערך | | --- | --- | | שם חברה | CAMECO CORPORATION |",
       "headline": "",
@@ -165,16 +165,16 @@ window.WEEKLY_DATA = {
   "action_items": [],
   "macro": {
     "spy": {
-      "price": 761.69,
-      "chg_week": 0.5
+      "price": 754.37,
+      "chg_week": 2.9
     },
     "qqq": {
-      "price": 721.45,
-      "chg_week": 1.8
+      "price": 679.89,
+      "chg_week": 5.1
     },
     "vix": {
-      "price": 14.81,
-      "chg_week": -17.0
+      "price": 19.3,
+      "chg_week": -31.5
     }
   }
 };

@@ -1,19 +1,19 @@
 {
-  "generated": "2026-11-15",
-  "week_label": "שבוע 09/11-15/11",
+  "generated": "2026-11-22",
+  "week_label": "שבוע 16/11-22/11",
   "ceo_verdict": "",
   "portfolio_performance": {
-    "total_value": 1859,
-    "week_pct": 3.6,
-    "total_pnl_pct": -9.6,
+    "total_value": 1604,
+    "week_pct": -12.5,
+    "total_pnl_pct": -22.0,
     "ytd_pct": null,
-    "vs_spy_week": 0.7,
-    "regime": "risk_on"
+    "vs_spy_week": -3.6,
+    "regime": "risk_off"
   },
   "macro_snapshot": {
-    "vix": 19.3,
-    "spy_week_pct": 2.9,
-    "qqq_week_pct": 5.1,
+    "vix": 35.89,
+    "spy_week_pct": -8.9,
+    "qqq_week_pct": -11.6,
     "dxy_trend": null,
     "rate_outlook": null,
     "regime_note": null
@@ -22,7 +22,7 @@
     {
       "ticker": "NVDA",
       "company": "NVDA",
-      "price_change_pct": -10.3,
+      "price_change_pct": -24.5,
       "status": "",
       "key_news": "",
       "headline": "",
@@ -31,7 +31,7 @@
     {
       "ticker": "MSFT",
       "company": "MSFT",
-      "price_change_pct": -2.2,
+      "price_change_pct": -7.4,
       "status": "",
       "key_news": "",
       "headline": "",
@@ -40,7 +40,7 @@
     {
       "ticker": "GOOG",
       "company": "GOOG",
-      "price_change_pct": 3.8,
+      "price_change_pct": -10.6,
       "status": "",
       "key_news": "",
       "headline": "",
@@ -49,7 +49,7 @@
     {
       "ticker": "META",
       "company": "META",
-      "price_change_pct": 6.1,
+      "price_change_pct": -10.1,
       "status": "",
       "key_news": "",
       "headline": "",
@@ -58,7 +58,7 @@
     {
       "ticker": "AVGO",
       "company": "AVGO",
-      "price_change_pct": 19.0,
+      "price_change_pct": -16.5,
       "status": "",
       "key_news": "",
       "headline": "",
@@ -67,7 +67,7 @@
     {
       "ticker": "MU",
       "company": "MU",
-      "price_change_pct": 18.6,
+      "price_change_pct": -25.5,
       "status": "WATCHLIST",
       "key_news": "**ועדת השקעות - ישיבה** **אימות קלטים** * HANDOFF אנליסט: קיבלנו",
       "headline": "",
@@ -76,7 +76,7 @@
     {
       "ticker": "IBIT",
       "company": "IBIT",
-      "price_change_pct": -9.5,
+      "price_change_pct": -18.2,
       "status": "",
       "key_news": "",
       "headline": "",
@@ -85,7 +85,7 @@
     {
       "ticker": "GLDM",
       "company": "GLDM",
-      "price_change_pct": -5.4,
+      "price_change_pct": -9.0,
       "status": "",
       "key_news": "",
       "headline": "",
@@ -94,7 +94,7 @@
     {
       "ticker": "VST",
       "company": "VST",
-      "price_change_pct": 17.8,
+      "price_change_pct": -14.3,
       "status": "",
       "key_news": "",
       "headline": "",
@@ -103,7 +103,7 @@
     {
       "ticker": "APLD",
       "company": "APLD",
-      "price_change_pct": 12.7,
+      "price_change_pct": -32.2,
       "status": "",
       "key_news": "",
       "headline": "",
@@ -112,7 +112,7 @@
     {
       "ticker": "OKLO",
       "company": "OKLO",
-      "price_change_pct": 24.6,
+      "price_change_pct": -18.8,
       "status": "",
       "key_news": "",
       "headline": "",
@@ -121,7 +121,7 @@
     {
       "ticker": "DRAM",
       "company": "DRAM",
-      "price_change_pct": 14.6,
+      "price_change_pct": -23.6,
       "status": null,
       "key_news": "[ic: לא התקבל פלט מ-Groq]",
       "headline": "",
@@ -130,7 +130,7 @@
     {
       "ticker": "CCJ",
       "company": "CCJ",
-      "price_change_pct": 3.5,
+      "price_change_pct": -19.2,
       "status": "WATCHLIST",
       "key_news": "| מדד | ערך | | --- | --- | | שם חברה | CAMECO CORPORATION |",
       "headline": "",
@@ -165,16 +165,16 @@
   "action_items": [],
   "macro": {
     "spy": {
-      "price": 754.37,
-      "chg_week": 2.9
+      "price": 689.81,
+      "chg_week": -8.9
     },
     "qqq": {
-      "price": 679.89,
-      "chg_week": 5.1
+      "price": 608.45,
+      "chg_week": -11.6
     },
     "vix": {
-      "price": 19.3,
-      "chg_week": -31.5
+      "price": 35.89,
+      "chg_week": 91.9
     }
   }
 }
