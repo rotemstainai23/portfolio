@@ -1,0 +1,488 @@
+window.DAILY_DATA = {
+  "generated": "2026-11-24",
+  "generated_time": "11:52",
+  "market_date": "2026-11-24",
+  "has_alerts": false,
+  "alert_tickers": [],
+  "macro": {
+    "spy_chg_pct": 4.71,
+    "qqq_chg_pct": 7.0,
+    "vix": null
+  },
+  "holdings": [
+    {
+      "ticker": "NVDA",
+      "sector": "AI / Semiconductors",
+      "layer": "Growth",
+      "price": 165.05,
+      "chg_pct": 31.48,
+      "vol_ratio": 2.7,
+      "rsi": 35.2,
+      "w52_pos_pct": 34,
+      "analyst_target": 244.55,
+      "analyst_upside_pct": 48.2,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": [
+        {
+          "title": "How Jensen Huang's return to Nvidia made the world trillions richer",
+          "url": "https://www.euronews.com/2026/11/24/how-jensen-huangs-return-to-nvidia-made-the-world-trillions-richer?.tsrc=rss"
+        },
+        {
+          "title": "Tech firms fuel global rally on Huang's shock Nvidia return",
+          "url": "https://finance.yahoo.com/technology/ai/articles/tech-firms-soar-huangs-return-023753159.html?.tsrc=rss"
+        },
+        {
+          "title": "Nvidia Shares Fall 5% in Premarket Trading as Goldman Sachs Highlights Lingering Uncertainty Following Huang’s Return",
+          "url": "https://investorshub.advfn.com/market-news/article/40601/nvidia-shares-fall-5-in-premarket-trading-as-goldman-sachs-highlights-lingering-uncertainty-following-huangs-return?.tsrc=rss"
+        }
+      ]
+    },
+    {
+      "ticker": "MSFT",
+      "sector": "Tech / Cloud / AI",
+      "layer": "Stability",
+      "price": 492.5,
+      "chg_pct": 1.65,
+      "vol_ratio": 1.0,
+      "rsi": 40.7,
+      "w52_pos_pct": 68,
+      "analyst_target": 637.36,
+      "analyst_upside_pct": 29.4,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": [
+        {
+          "title": "Invesco NASDAQ 100 ETF (QQQM) Adds Apple and Microsoft on Friday",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/invesco-nasdaq-100-etf-qqqm-110444816.html?.tsrc=rss"
+        },
+        {
+          "title": "iShares Russell 1000 Growth (IWF) Buys $22.7 Million More Apple on Nov. 20",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/ishares-russell-1000-growth-iwf-110440903.html?.tsrc=rss"
+        },
+        {
+          "title": "What ProShares Trust (TQQQ) Bought: Apple Leads on Friday",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/proshares-trust-tqqq-bought-apple-110432486.html?.tsrc=rss"
+        }
+      ]
+    },
+    {
+      "ticker": "GOOG",
+      "sector": "Tech / Search / AI",
+      "layer": "Stability",
+      "price": 279.53,
+      "chg_pct": 5.88,
+      "vol_ratio": 1.1,
+      "rsi": 50.8,
+      "w52_pos_pct": 12,
+      "analyst_target": 389.0,
+      "analyst_upside_pct": 39.2,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": [
+        {
+          "title": "Jim Cramer Calls CrowdStrike’s Zscaler Deal the Biggest in Cybersecurity History. What It Means for Both Stocks",
+          "url": "https://247wallst.com/investing/2026/11/24/jim-cramer-calls-crowdstrikes-zscaler-deal-the-biggest-in-cybersecurity-history-what-it-means-for-both-stocks/?.tsrc=rss"
+        },
+        {
+          "title": "Can Adobe Stock Rise 30% From Here?",
+          "url": "https://www.trefis.com/stock/adbe/articles/628292/can-adobe-stock-rise-30-from-here/2026-11-24?.tsrc=rss"
+        },
+        {
+          "title": "Alphabet (GOOG) Sees $310.5 Million in Net ETF Buying on Nov. 20",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/alphabet-goog-sees-310-5-110112722.html?.tsrc=rss"
+        }
+      ]
+    },
+    {
+      "ticker": "META",
+      "sector": "Social Media / AI",
+      "layer": "Growth",
+      "price": 597.6,
+      "chg_pct": 6.55,
+      "vol_ratio": 0.9,
+      "rsi": 44.8,
+      "w52_pos_pct": 30,
+      "analyst_target": 845.38,
+      "analyst_upside_pct": 41.5,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": [
+        {
+          "title": "Meta Platforms (META) Sees $240.4 Million in Net ETF Buying on Friday",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/meta-platforms-meta-sees-240-110128528.html?.tsrc=rss"
+        },
+        {
+          "title": "Why 1 Billionaire Investor Just Poured $3 Billion Into Amazon, Meta, and Alphabet",
+          "url": "https://www.fool.com/investing/2026/11/24/why-one-billionaire-investor-just-poured-usd3-billion-into-amazon-meta-and-alphabet/?.tsrc=rss"
+        },
+        {
+          "title": "David Tepper, George Soros and 5 Other Famous Investors Own Meta. Here’s Who Bought and Sold Recently",
+          "url": "https://www.tikr.com/blog/david-tepper-george-soros-and-5-other-famous-investors-own-meta-heres-who-bought-and-sold-recently?ref=yahoofinance&tlnk=yf-261124-5q744xgw&.tsrc=rss"
+        }
+      ]
+    },
+    {
+      "ticker": "AVGO",
+      "sector": "Semiconductors",
+      "layer": "Growth",
+      "price": 313.55,
+      "chg_pct": 3.0,
+      "vol_ratio": 1.3,
+      "rsi": 45.8,
+      "w52_pos_pct": 12,
+      "analyst_target": 525.51,
+      "analyst_upside_pct": 67.6,
+      "days_to_earnings": 15,
+      "verdict": null,
+      "news": [
+        {
+          "title": "Prediction: This Is What Will Happen to Broadcom’s Stock Price in December",
+          "url": "https://www.fool.com/investing/2026/11/24/prediction-this-is-what-will-happen-to-broadcom-s-stock-price-in-december/?.tsrc=rss"
+        },
+        {
+          "title": "JPMorgan U.S. Tech Leaders (JTEK) Sells $27.7 Million of Broadcom on Nov. 20",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/jpmorgan-u-tech-leaders-jtek-110436195.html?.tsrc=rss"
+        },
+        {
+          "title": "iShares PHLX SOX Semiconductor (SOXX) Adds AMD and AVGO on Nov. 20",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/ishares-phlx-sox-semiconductor-soxx-110302788.html?.tsrc=rss"
+        }
+      ]
+    },
+    {
+      "ticker": "MU",
+      "sector": "Memory Chips",
+      "layer": "Growth",
+      "price": 707.7,
+      "chg_pct": 19.04,
+      "vol_ratio": 1.5,
+      "rsi": 39.5,
+      "w52_pos_pct": 47,
+      "analyst_target": 1550.24,
+      "analyst_upside_pct": 119.1,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": [
+        {
+          "title": "What ProShares Trust (TQQQ) Bought: Apple Leads on Friday",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/proshares-trust-tqqq-bought-apple-110432486.html?.tsrc=rss"
+        },
+        {
+          "title": "State Street Technology SPDR (XLK) Buys $87.3 Million More Apple on Friday",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/state-street-technology-spdr-xlk-110344271.html?.tsrc=rss"
+        },
+        {
+          "title": "What INVESCO QQQ Trust (QQQ) Bought: Apple Leads on Friday",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/invesco-qqq-trust-qqq-bought-110317120.html?.tsrc=rss"
+        }
+      ]
+    },
+    {
+      "ticker": "IBIT",
+      "sector": "Crypto",
+      "layer": "Speculation",
+      "price": 34.62,
+      "chg_pct": 4.85,
+      "vol_ratio": 1.5,
+      "rsi": 21.1,
+      "w52_pos_pct": 9,
+      "analyst_target": null,
+      "analyst_upside_pct": null,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": [
+        {
+          "title": "$1.79 Billion Left Bitcoin ETFs in One Week: Who Is Still Buying?",
+          "url": "https://beincrypto.com/bitcoin-etf-outflows-ibit-morgan-stanley/?.tsrc=rss"
+        },
+        {
+          "title": "BlackRock ETF approaching third anniversary just had its worst day",
+          "url": "https://www.thestreet.com/crypto/markets/blackrock-etf-approaching-third-anniversary-just-had-its-worst-day?.tsrc=rss"
+        },
+        {
+          "title": "BC-Most Active Stocks",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/bc-most-active-stocks-164606636.html?.tsrc=rss"
+        }
+      ]
+    },
+    {
+      "ticker": "GLDM",
+      "sector": "Commodities / Gold",
+      "layer": "Stability",
+      "price": 71.87,
+      "chg_pct": 3.1,
+      "vol_ratio": 1.1,
+      "rsi": 36.0,
+      "w52_pos_pct": 6,
+      "analyst_target": null,
+      "analyst_upside_pct": null,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": [
+        {
+          "title": "Here's Why Long-Term Investors Shouldn't Overlook Gold ETFs",
+          "url": "https://finance.yahoo.com/markets/commodities/articles/heres-why-long-term-investors-141200018.html?.tsrc=rss"
+        },
+        {
+          "title": "Gold ETFs to Watch Amid Fed Rate Hike & Oil Risks",
+          "url": "https://finance.yahoo.com/markets/commodities/articles/gold-etfs-watch-amid-fed-142100738.html?.tsrc=rss"
+        },
+        {
+          "title": "Forget GLD. Investors Sent $500 Million to the Cheaper SPDR Gold Fund",
+          "url": "https://247wallst.com/investing/etf/2026/10/19/forget-gld-investors-sent-500-million-to-the-cheaper-spdr-gold-fund/?.tsrc=rss"
+        }
+      ]
+    },
+    {
+      "ticker": "VST",
+      "sector": "Energy / Nuclear",
+      "layer": "Growth",
+      "price": 123.87,
+      "chg_pct": 7.48,
+      "vol_ratio": 0.9,
+      "rsi": 40.4,
+      "w52_pos_pct": 18,
+      "analyst_target": 197.18,
+      "analyst_upside_pct": 59.2,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": [
+        {
+          "title": "Exelon Or Vistra: Which Fits Your Power Demand Bet?",
+          "url": "https://www.trefis.com/stock/exc/articles/627544/exelon-or-vistra-which-fits-your-power-demand-bet/2026-11-23?.tsrc=rss"
+        },
+        {
+          "title": "1 Compelling Reason to Buy Vistra Stock Before November Ends",
+          "url": "https://www.fool.com/investing/2026/11/21/1-compelling-reason-to-buy-vistra-stock-before-november-ends/?.tsrc=rss"
+        },
+        {
+          "title": "Has Buying The Dips In Vistra Stock Paid Off?",
+          "url": "https://www.trefis.com/stock/vst/articles/627175/has-buying-the-dips-in-vistra-stock-paid-off/2026-11-20?.tsrc=rss"
+        }
+      ]
+    },
+    {
+      "ticker": "APLD",
+      "sector": "AI Infrastructure",
+      "layer": "Speculation",
+      "price": 13.82,
+      "chg_pct": 20.28,
+      "vol_ratio": 1.7,
+      "rsi": 38.0,
+      "w52_pos_pct": 6,
+      "analyst_target": 58.69,
+      "analyst_upside_pct": null,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": [
+        {
+          "title": "Dead Cat Bounce? AI Stocks Climb 20%+, but IREN, Applied Digital Stay Down 50%+",
+          "url": "https://beincrypto.com/ai-stocks-dead-cat-bounce-iren/?.tsrc=rss"
+        },
+        {
+          "title": "Applied Digital Stock Surged 20% on a Hyperscaler Deal. What to Know About Its $41 Billion in Leases",
+          "url": "https://www.fool.com/investing/2026/11/23/applied-digital-stock-surged-20-on-a-hyperscaler-deal-what-to-know-about-its-usd41-billion-in-leases/?.tsrc=rss"
+        },
+        {
+          "title": "A $5.4 Billion Reason Why Applied Digital Stock Is Up Today",
+          "url": "https://www.barchart.com/story/news/8970460/a-5-4-billion-reason-why-applied-digital-stock-is-up-today?.tsrc=rss"
+        }
+      ]
+    },
+    {
+      "ticker": "OKLO",
+      "sector": "Nuclear Energy",
+      "layer": "Speculation",
+      "price": 20.77,
+      "chg_pct": 4.63,
+      "vol_ratio": 0.9,
+      "rsi": 43.6,
+      "w52_pos_pct": 2,
+      "analyst_target": 55.43,
+      "analyst_upside_pct": 166.9,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": [
+        {
+          "title": "Wall Street Is Watching AI Stocks. But This Stock Could Be a Bigger Nuclear Energy Opportunity",
+          "url": "https://247wallst.com/investing/2026/11/23/wall-street-is-watching-ai-stocks-but-this-stock-could-be-a-bigger-nuclear-energy-opportunity/?.tsrc=rss"
+        },
+        {
+          "title": "Energy Fuels Rallies 14% on Plan to Produce 1 Million Pounds of Uranium; Oklo Surges 12%, NuScale Power Gains 13%",
+          "url": "https://247wallst.com/investing/2026/11/23/energy-fuels-surges-8-on-plan-to-produce-1-million-pounds-of-uranium-oklo-climbs-7-nuscale-power-gains-6/?.tsrc=rss"
+        },
+        {
+          "title": "If You’d Bought Oklo at Its SPAC Debut, Here’s What You’d Have Today",
+          "url": "https://www.fool.com/investing/2026/11/23/if-youd-bought-oklo-at-its-spac-debut-heres-what-youd-have-today/?.tsrc=rss"
+        }
+      ]
+    },
+    {
+      "ticker": "DRAM",
+      "sector": "Memory Chips",
+      "layer": "Growth",
+      "price": 39.57,
+      "chg_pct": 18.62,
+      "vol_ratio": 1.5,
+      "rsi": 39.6,
+      "w52_pos_pct": 24,
+      "analyst_target": null,
+      "analyst_upside_pct": null,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": [
+        {
+          "title": "Weekly Options Come to the 2X Long DRAM ETF (RAM)",
+          "url": "https://finance.yahoo.com/markets/options/articles/weekly-options-come-2x-long-140700952.html?.tsrc=rss"
+        },
+        {
+          "title": "SOXX and DRAM Are Down Between 35.6% and 51.9% From Their Highs. Here’s an Even Better Growth Stock ETF to Buy During the Nasdaq Correction.",
+          "url": "https://www.fool.com/investing/2026/11/22/soxx-and-dram-are-down-between-35-6-and-51-9-from-their-highs-here-s-an-even-better-growth-stock-etf-to-buy-during-the-nasdaq-correction/?.tsrc=rss"
+        },
+        {
+          "title": "Here’s How Much Traders Expect AMD Stock to Move After Earnings",
+          "url": "https://www.investopedia.com/how-much-traders-expect-amd-stock-to-move-after-earnings-12209201?.tsrc=rss"
+        }
+      ]
+    },
+    {
+      "ticker": "CCJ",
+      "sector": "אנרגיה",
+      "layer": "Growth",
+      "price": 61.5,
+      "chg_pct": 6.03,
+      "vol_ratio": 1.3,
+      "rsi": 34.2,
+      "w52_pos_pct": 5,
+      "analyst_target": 115.31,
+      "analyst_upside_pct": 87.5,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": [
+        {
+          "title": "What Sent Cameco Stock Lower Again?",
+          "url": "https://www.trefis.com/stock/ccj/articles/627836/what-sent-cameco-stock-lower-again/2026-11-23?.tsrc=rss"
+        },
+        {
+          "title": "Cameco vs. Denison: Which Uranium Stock Offers Better Opportunity Today?",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/cameco-vs-denison-uranium-stock-165900016.html?.tsrc=rss"
+        },
+        {
+          "title": "Cameco (TSX:CCO) On Its Loss And Share Sale With Fair Value Back In Focus",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/cameco-tsx-cco-loss-share-171211130.html?.tsrc=rss"
+        }
+      ]
+    }
+  ],
+  "watchlist_triggers": [
+    {
+      "ticker": "ROCK",
+      "trigger_price": 28.0,
+      "current_price": 28.39,
+      "distance_pct": 1.39
+    }
+  ],
+  "groq_insights": [],
+  "sector_summary": [
+    {
+      "sector": "AI / Semiconductors",
+      "avg_chg_pct": 31.48,
+      "tickers": [
+        "NVDA"
+      ]
+    },
+    {
+      "sector": "Tech / Cloud / AI",
+      "avg_chg_pct": 1.65,
+      "tickers": [
+        "MSFT"
+      ]
+    },
+    {
+      "sector": "Tech / Search / AI",
+      "avg_chg_pct": 5.88,
+      "tickers": [
+        "GOOG"
+      ]
+    },
+    {
+      "sector": "Social Media / AI",
+      "avg_chg_pct": 6.55,
+      "tickers": [
+        "META"
+      ]
+    },
+    {
+      "sector": "Semiconductors",
+      "avg_chg_pct": 3.0,
+      "tickers": [
+        "AVGO"
+      ]
+    },
+    {
+      "sector": "Memory Chips",
+      "avg_chg_pct": 18.83,
+      "tickers": [
+        "MU",
+        "DRAM"
+      ]
+    },
+    {
+      "sector": "Crypto",
+      "avg_chg_pct": 4.85,
+      "tickers": [
+        "IBIT"
+      ]
+    },
+    {
+      "sector": "Commodities / Gold",
+      "avg_chg_pct": 3.1,
+      "tickers": [
+        "GLDM"
+      ]
+    },
+    {
+      "sector": "Energy / Nuclear",
+      "avg_chg_pct": 7.48,
+      "tickers": [
+        "VST"
+      ]
+    },
+    {
+      "sector": "AI Infrastructure",
+      "avg_chg_pct": 20.28,
+      "tickers": [
+        "APLD"
+      ]
+    },
+    {
+      "sector": "Nuclear Energy",
+      "avg_chg_pct": 4.63,
+      "tickers": [
+        "OKLO"
+      ]
+    },
+    {
+      "sector": "אנרגיה",
+      "avg_chg_pct": 6.03,
+      "tickers": [
+        "CCJ"
+      ]
+    }
+  ],
+  "insider_alerts": {
+    "VST": {
+      "buy_val": 1173069.25,
+      "sell_val": 24244575.83,
+      "net": -23071506.58,
+      "verdict": "נטו מכירה בשוק הפתוח"
+    },
+    "APLD": {
+      "buy_val": 6664686.12,
+      "sell_val": 682500.0,
+      "net": 5982186.12,
+      "verdict": "נטו קנייה בשוק הפתוח"
+    }
+  }
+};
