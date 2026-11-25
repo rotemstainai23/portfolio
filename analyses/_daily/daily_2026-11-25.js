@@ -1,0 +1,442 @@
+window.DAILY_DATA = {
+  "generated": "2026-11-25",
+  "generated_time": "10:43",
+  "market_date": "2026-11-25",
+  "has_alerts": false,
+  "alert_tickers": [],
+  "macro": {
+    "spy_chg_pct": -0.49,
+    "qqq_chg_pct": -1.99,
+    "vix": null
+  },
+  "holdings": [
+    {
+      "ticker": "NVDA",
+      "sector": "AI / Semiconductors",
+      "layer": "Growth",
+      "price": 155.38,
+      "chg_pct": -5.86,
+      "vol_ratio": 1.2,
+      "rsi": 34.4,
+      "w52_pos_pct": 26,
+      "analyst_target": 244.71,
+      "analyst_upside_pct": 57.5,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": [
+        {
+          "title": "Stock market today: Dow, S&P 500, Nasdaq futures fall ahead of inflation data",
+          "url": "https://finance.yahoo.com/markets/live/stock-market-today-wednesday-november-25-dow-sp-500-nasdaq-pce-inflation-data-091428237.html?.tsrc=rss"
+        },
+        {
+          "title": "Nvidia stock stumbles again after Jensen Huang's spectacular comeback rally",
+          "url": "https://finance.yahoo.com/markets/stocks/article/nvidia-stock-stumbles-again-after-jensen-huangs-spectacular-comeback-rally-094741665.html?.tsrc=rss"
+        },
+        {
+          "title": "Not Tesla. Not Nvidia. This \"Magnificent Seven\" Stock Could Be Overdue for a Big Rally.",
+          "url": "https://www.fool.com/investing/2026/11/25/not-tesla-nvidia-magnificent-seven-stock-big-rally/?.tsrc=rss"
+        }
+      ]
+    },
+    {
+      "ticker": "MSFT",
+      "sector": "Tech / Cloud / AI",
+      "layer": "Stability",
+      "price": 496.13,
+      "chg_pct": 0.74,
+      "vol_ratio": 0.8,
+      "rsi": 25.5,
+      "w52_pos_pct": 70,
+      "analyst_target": 637.36,
+      "analyst_upside_pct": 28.5,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": []
+    },
+    {
+      "ticker": "GOOG",
+      "sector": "Tech / Search / AI",
+      "layer": "Stability",
+      "price": 276.58,
+      "chg_pct": -1.06,
+      "vol_ratio": 0.8,
+      "rsi": 42.8,
+      "w52_pos_pct": 10,
+      "analyst_target": 389.0,
+      "analyst_upside_pct": 40.6,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": []
+    },
+    {
+      "ticker": "META",
+      "sector": "Social Media / AI",
+      "layer": "Growth",
+      "price": 589.82,
+      "chg_pct": -1.3,
+      "vol_ratio": 0.6,
+      "rsi": 41.0,
+      "w52_pos_pct": 27,
+      "analyst_target": 842.54,
+      "analyst_upside_pct": 42.8,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": []
+    },
+    {
+      "ticker": "AVGO",
+      "sector": "Semiconductors",
+      "layer": "Growth",
+      "price": 301.08,
+      "chg_pct": -3.98,
+      "vol_ratio": 1.0,
+      "rsi": 44.7,
+      "w52_pos_pct": 6,
+      "analyst_target": 525.51,
+      "analyst_upside_pct": 74.5,
+      "days_to_earnings": 14,
+      "verdict": null,
+      "news": [
+        {
+          "title": "Billionaire David Tepper Dumped Appaloosa's Stake in AMD and Broadcom and Piled Into an Artificial Intelligence (AI) Stock Trading at 44x Forward Adjusted EPS",
+          "url": "https://www.fool.com/investing/2026/11/25/billionaire-david-tepper-appaloosa-stake-amd-broadcom-artificial-intelligence-ai-stock-trading-44x-forward-eps/?.tsrc=rss"
+        },
+        {
+          "title": "Broadcom Stock Could Have 70% Upside, Analysts Say. What AVGO’s Valuation Reveals.",
+          "url": "https://www.barchart.com/story/news/8991255/broadcom-stock-could-have-70-upside-analysts-say-what-avgos-valuation-reveals?.tsrc=rss"
+        },
+        {
+          "title": "Broadcom Stocks Fall 3.98% as Google TPU Order Report Clouds AI Outlook",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/broadcom-stocks-fall-3-98-165405396.html?.tsrc=rss"
+        }
+      ]
+    },
+    {
+      "ticker": "MU",
+      "sector": "Memory Chips",
+      "layer": "Growth",
+      "price": 629.79,
+      "chg_pct": -11.01,
+      "vol_ratio": 1.1,
+      "rsi": 38.5,
+      "w52_pos_pct": 40,
+      "analyst_target": 1529.69,
+      "analyst_upside_pct": 142.9,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": [
+        {
+          "title": "Anthropic falls below IPO price as Nvidia gives back gains",
+          "url": "https://finance.yahoo.com/video/anthropic-falls-below-ipo-price-as-nvidia-gives-back-gains-214558309.html?.tsrc=rss"
+        },
+        {
+          "title": "Micron Reports in December. Here's the 1 Number I'll Be Watching.",
+          "url": "https://www.fool.com/investing/2026/11/25/micron-reports-in-december-here-s-the-1-number-i-ll-be-watching/?.tsrc=rss"
+        },
+        {
+          "title": "MU, SKHY, SNDK Stocks In Focus After TrendForce Lowers DRAM Pricing Forecast",
+          "url": "https://stocktwits.com/news-articles/markets/equity/mu-skhy-sndk-stocks-in-focus-after-trend-force-lowers-dram-pricing-forecast/cNbH7VLR9l8?.tsrc=rss"
+        }
+      ]
+    },
+    {
+      "ticker": "IBIT",
+      "sector": "Crypto",
+      "layer": "Speculation",
+      "price": 33.76,
+      "chg_pct": -2.48,
+      "vol_ratio": 1.1,
+      "rsi": 13.6,
+      "w52_pos_pct": 5,
+      "analyst_target": null,
+      "analyst_upside_pct": null,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": [
+        {
+          "title": "$1.79 Billion Left Bitcoin ETFs in One Week: Who Is Still Buying?",
+          "url": "https://beincrypto.com/bitcoin-etf-outflows-ibit-morgan-stanley/?.tsrc=rss"
+        },
+        {
+          "title": "BlackRock ETF approaching third anniversary just had its worst day",
+          "url": "https://www.thestreet.com/crypto/markets/blackrock-etf-approaching-third-anniversary-just-had-its-worst-day?.tsrc=rss"
+        },
+        {
+          "title": "BC-Most Active Stocks",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/bc-most-active-stocks-164606636.html?.tsrc=rss"
+        }
+      ]
+    },
+    {
+      "ticker": "GLDM",
+      "sector": "Commodities / Gold",
+      "layer": "Stability",
+      "price": 70.26,
+      "chg_pct": -2.24,
+      "vol_ratio": 1.3,
+      "rsi": 23.4,
+      "w52_pos_pct": 2,
+      "analyst_target": null,
+      "analyst_upside_pct": null,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": [
+        {
+          "title": "Here's Why Long-Term Investors Shouldn't Overlook Gold ETFs",
+          "url": "https://finance.yahoo.com/markets/commodities/articles/heres-why-long-term-investors-141200018.html?.tsrc=rss"
+        },
+        {
+          "title": "Gold ETFs to Watch Amid Fed Rate Hike & Oil Risks",
+          "url": "https://finance.yahoo.com/markets/commodities/articles/gold-etfs-watch-amid-fed-142100738.html?.tsrc=rss"
+        },
+        {
+          "title": "Forget GLD. Investors Sent $500 Million to the Cheaper SPDR Gold Fund",
+          "url": "https://247wallst.com/investing/etf/2026/10/19/forget-gld-investors-sent-500-million-to-the-cheaper-spdr-gold-fund/?.tsrc=rss"
+        }
+      ]
+    },
+    {
+      "ticker": "VST",
+      "sector": "Energy / Nuclear",
+      "layer": "Growth",
+      "price": 120.72,
+      "chg_pct": -2.54,
+      "vol_ratio": 0.7,
+      "rsi": 50.3,
+      "w52_pos_pct": 14,
+      "analyst_target": 197.18,
+      "analyst_upside_pct": 63.3,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": [
+        {
+          "title": "Is Vistra (VST) Still Below Fair Value After Data Center Clarity?",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/vistra-vst-still-below-fair-211126773.html?.tsrc=rss"
+        },
+        {
+          "title": "What Just Happened To Vistra Stock?",
+          "url": "https://www.trefis.com/stock/vst/articles/628627/what-just-happened-to-vistra-stock-2/2026-11-24?.tsrc=rss"
+        },
+        {
+          "title": "How Has Vistra Stock's Story Changed?",
+          "url": "https://www.trefis.com/stock/vst/articles/628443/how-has-vistra-stock-s-story-changed/2026-11-24?.tsrc=rss"
+        }
+      ]
+    },
+    {
+      "ticker": "APLD",
+      "sector": "AI Infrastructure",
+      "layer": "Speculation",
+      "price": 12.22,
+      "chg_pct": -11.58,
+      "vol_ratio": 1.3,
+      "rsi": 37.1,
+      "w52_pos_pct": 2,
+      "analyst_target": 54.31,
+      "analyst_upside_pct": null,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": [
+        {
+          "title": "Applied Digital Is Down 33% in a Month. What Will It Take to Get APLD Stock Back to $20?",
+          "url": "https://247wallst.com/investing/2026/11/24/applied-digital-is-down-33-in-a-month-what-will-it-take-to-get-apld-stock-back-to-20/?.tsrc=rss"
+        },
+        {
+          "title": "Can Applied Digital Stock Double From Here?",
+          "url": "https://www.trefis.com/stock/apld/articles/628276/can-applied-digital-stock-double-from-here/2026-11-24?.tsrc=rss"
+        },
+        {
+          "title": "Why Is Applied Digital Stock Going Up?",
+          "url": "https://www.trefis.com/stock/apld/articles/628619/why-is-applied-digital-stock-going-up/2026-11-24?.tsrc=rss"
+        }
+      ]
+    },
+    {
+      "ticker": "OKLO",
+      "sector": "Nuclear Energy",
+      "layer": "Speculation",
+      "price": 19.2,
+      "chg_pct": -7.56,
+      "vol_ratio": 0.9,
+      "rsi": 43.2,
+      "w52_pos_pct": 1,
+      "analyst_target": 55.43,
+      "analyst_upside_pct": 188.7,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": [
+        {
+          "title": "1 Reason I Haven’t Bought Oklo Stock -- and Probably Never Will",
+          "url": "https://www.fool.com/investing/2026/11/24/1-reason-i-haven-t-bought-oklo-stock-and-probably-never-will/?.tsrc=rss"
+        },
+        {
+          "title": "Groves 1 Approval Could Open NASA Opportunity For Oklo Stock",
+          "url": "https://finance.yahoo.com/energy/articles/groves-1-approval-could-open-181225173.html?.tsrc=rss"
+        },
+        {
+          "title": "Oklo Slides 7% as Monday’s Nuclear Rebound Fades; NuScale Power and Energy Fuels Drop 6%",
+          "url": "https://247wallst.com/investing/2026/11/24/oklo-slides-7-as-mondays-nuclear-rebound-fades-nuscale-power-and-energy-fuels-drop-6/?.tsrc=rss"
+        }
+      ]
+    },
+    {
+      "ticker": "DRAM",
+      "sector": "Memory Chips",
+      "layer": "Growth",
+      "price": 35.92,
+      "chg_pct": -9.22,
+      "vol_ratio": 1.3,
+      "rsi": 38.5,
+      "w52_pos_pct": 18,
+      "analyst_target": null,
+      "analyst_upside_pct": null,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": [
+        {
+          "title": "Weekly Options Come to the 2X Long DRAM ETF (RAM)",
+          "url": "https://finance.yahoo.com/markets/options/articles/weekly-options-come-2x-long-140700952.html?.tsrc=rss"
+        },
+        {
+          "title": "SOXX and DRAM Are Down Between 35.6% and 51.9% From Their Highs. Here’s an Even Better Growth Stock ETF to Buy During the Nasdaq Correction.",
+          "url": "https://www.fool.com/investing/2026/11/22/soxx-and-dram-are-down-between-35-6-and-51-9-from-their-highs-here-s-an-even-better-growth-stock-etf-to-buy-during-the-nasdaq-correction/?.tsrc=rss"
+        },
+        {
+          "title": "Here’s How Much Traders Expect AMD Stock to Move After Earnings",
+          "url": "https://www.investopedia.com/how-much-traders-expect-amd-stock-to-move-after-earnings-12209201?.tsrc=rss"
+        }
+      ]
+    },
+    {
+      "ticker": "CCJ",
+      "sector": "אנרגיה",
+      "layer": "Growth",
+      "price": 59.79,
+      "chg_pct": -2.78,
+      "vol_ratio": 0.8,
+      "rsi": 33.4,
+      "w52_pos_pct": 2,
+      "analyst_target": 113.48,
+      "analyst_upside_pct": 89.8,
+      "days_to_earnings": null,
+      "verdict": null,
+      "news": [
+        {
+          "title": "What Sent Cameco Stock Lower Again?",
+          "url": "https://www.trefis.com/stock/ccj/articles/627836/what-sent-cameco-stock-lower-again/2026-11-23?.tsrc=rss"
+        },
+        {
+          "title": "Cameco vs. Denison: Which Uranium Stock Offers Better Opportunity Today?",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/cameco-vs-denison-uranium-stock-165900016.html?.tsrc=rss"
+        },
+        {
+          "title": "Cameco (TSX:CCO) On Its Loss And Share Sale With Fair Value Back In Focus",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/cameco-tsx-cco-loss-share-171211130.html?.tsrc=rss"
+        }
+      ]
+    }
+  ],
+  "watchlist_triggers": [],
+  "groq_insights": [],
+  "sector_summary": [
+    {
+      "sector": "AI / Semiconductors",
+      "avg_chg_pct": -5.86,
+      "tickers": [
+        "NVDA"
+      ]
+    },
+    {
+      "sector": "Tech / Cloud / AI",
+      "avg_chg_pct": 0.74,
+      "tickers": [
+        "MSFT"
+      ]
+    },
+    {
+      "sector": "Tech / Search / AI",
+      "avg_chg_pct": -1.06,
+      "tickers": [
+        "GOOG"
+      ]
+    },
+    {
+      "sector": "Social Media / AI",
+      "avg_chg_pct": -1.3,
+      "tickers": [
+        "META"
+      ]
+    },
+    {
+      "sector": "Semiconductors",
+      "avg_chg_pct": -3.98,
+      "tickers": [
+        "AVGO"
+      ]
+    },
+    {
+      "sector": "Memory Chips",
+      "avg_chg_pct": -10.12,
+      "tickers": [
+        "MU",
+        "DRAM"
+      ]
+    },
+    {
+      "sector": "Crypto",
+      "avg_chg_pct": -2.48,
+      "tickers": [
+        "IBIT"
+      ]
+    },
+    {
+      "sector": "Commodities / Gold",
+      "avg_chg_pct": -2.24,
+      "tickers": [
+        "GLDM"
+      ]
+    },
+    {
+      "sector": "Energy / Nuclear",
+      "avg_chg_pct": -2.54,
+      "tickers": [
+        "VST"
+      ]
+    },
+    {
+      "sector": "AI Infrastructure",
+      "avg_chg_pct": -11.58,
+      "tickers": [
+        "APLD"
+      ]
+    },
+    {
+      "sector": "Nuclear Energy",
+      "avg_chg_pct": -7.56,
+      "tickers": [
+        "OKLO"
+      ]
+    },
+    {
+      "sector": "אנרגיה",
+      "avg_chg_pct": -2.78,
+      "tickers": [
+        "CCJ"
+      ]
+    }
+  ],
+  "insider_alerts": {
+    "VST": {
+      "buy_val": 1173069.25,
+      "sell_val": 24244575.83,
+      "net": -23071506.58,
+      "verdict": "נטו מכירה בשוק הפתוח"
+    },
+    "APLD": {
+      "buy_val": 6664686.12,
+      "sell_val": 682500.0,
+      "net": 5982186.12,
+      "verdict": "נטו קנייה בשוק הפתוח"
+    }
+  }
+};
